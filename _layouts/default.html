@@ -4,13 +4,11 @@
     {% include head.html %}
 </head>
 <body>
-<div class="site">
+<div class="site{% if page.layout == 'docs' %} docs-layout{% endif %}">
     {% include header.html %}
-
     <main class="site-main">
         {{ content }}
     </main>
-
     {% include footer.html %}
 </div>
 </body>
