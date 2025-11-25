@@ -1,23 +1,24 @@
 # ----
 # Site
 
-title: "WAF++"
-url: "https://waf2p.dev/"
+title: Hydra Template
+url: "https://proud-alligator.cloudvent.net"
 baseurl:
 google_analytics_key:
 google_maps_javascript_api_key:
 disqus_shortname:
 
-logo: "https://avatars.githubusercontent.com/u/245947051"
-description: "WAF++ ist ein community-getriebenes, cloud-agnostisches Open-Source-Framework für Architektur, Security, Governance und Reifegradmodelle."
+# Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
+logo: /siteicon.png
+description: Product marketing template for Jekyll.
 author:
-  name: "WAF++ Community"
-  email: "info@waf2p.dev" # falls du noch keine Adresse hast: leer lassen oder anpassen
-  twitter: ""             # leer lassen oder Namen eintragen, z.B. wafpp
+  name:
+  email:
+  twitter: # twitter username without the @ symbol
 social:
-  name: "CNC by Vogel IT"
+  name: Hydra Template
   links:
-    - https://www.cloudnativeconference.de/
+    - https://github.com/CloudCannon/hydra-jekyll-template
 
 # -----
 # Build
@@ -26,7 +27,7 @@ timezone: Etc/UTC
 
 collections:
   staff_members:
-    _hide_content: false
+    _hide_content: true
 
 paginate: 10
 paginate_path: "/blog/:num/"
@@ -46,12 +47,10 @@ defaults:
       path: ""
       type: "staff_members"
     values:
-      full_width: true
-  - scope:
-      path: "/docs"
-    values:
-      layout: "docs"
-      full_width: false
+      _options:
+        image_path:
+          width: 600
+          height: 600
   - scope:
       path: ""
     values:
@@ -60,6 +59,10 @@ defaults:
       path: "index.html"
     values:
       layout: "default"
+  - scope:
+      path: "contact.html"
+    values:
+      full_width: true
 
 jekyll-archives:
   enabled:
@@ -79,6 +82,7 @@ exclude:
   - LICENSE
 
 # -----------
+# CloudCannon
 
 _select_data:
   social_icons:
@@ -90,7 +94,6 @@ _select_data:
     - Twitter
     - YouTube
     - RSS
-    - Github
 
 _comments:
   map: Update the map location and display settings.

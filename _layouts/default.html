@@ -9,7 +9,7 @@
     {% feed_meta %}
 
     <link rel="stylesheet" href="{{ site.baseurl }}/css/screen.css">
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/images/WAFpp_upscaled_1000.png">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon.png">
 
     {% if jekyll.environment == 'production' and site.google_analytics_key and site.google_analytics_key != '' %}
     <script>
@@ -25,10 +25,9 @@
 </head>
 <body>
 <header>
-    <div class="container" style="height:25px;">
-        <div class="company-name" style="float:left;"><a href="{{ site.baseurl }}/"><img
-                src="{{ site.baseurl }}/images/WAFpp_upscaled_1000_length.png"
-                alt="WAF++ Logo" width="95" height="45"/></a></div>
+    <div class="container">
+        <div class="company-name"><a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/logo.svg"
+                                                                     alt="Hydra Logo" width="95" height="33"/></a></div>
         {% include navigation.html %}
     </div>
 </header>
@@ -51,11 +50,8 @@
                 {% endfor %}
             </ul>
             {% endfor %}
-            <p style="width: 200px"><a href="https://www.cloudnativeconference.de/" target="_blank" rel="nofollow"><img
-                    src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/cn-logo-negativ-schatten-1020w.png"/>
-            </a></p>
         </div>
-        <p class="copyright">&copy; {{ site.time | date: '%Y' }} WAF++ • <a href="/impressum/">Impressum</a>
+        <p class="copyright">&copy; {{ site.time | date: '%Y' }} MyApp Ltd. • <a href="#">Terms</a> &amp; <a href="#">Privacy</a>
             • <a href="https://cloudcannon.com/">Template by CloudCannon</a></p>
     </div>
 </footer>
@@ -64,27 +60,6 @@
         document.body.classList.toggle("nav-open");
         return false;
     };
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const slides = document.querySelectorAll(".slide");
-      let currentIndex = 0;
-
-      function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle("active", i === index);
-        });
-      }
-
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-      }
-
-      // Start Slider
-      showSlide(currentIndex);
-      setInterval(nextSlide, 8000); // alle 4 Sekunden wechseln
-    });
 </script>
 </body>
 </html>
