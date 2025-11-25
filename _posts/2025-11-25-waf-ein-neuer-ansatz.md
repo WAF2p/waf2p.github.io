@@ -1,6 +1,6 @@
 ---
 date: 2025-11-25
-title: WAF++: Ein neuer Ansatz für souveräne Multi-Cloud-Architekturen
+title: WAF2p: Ein neuer Ansatz für souveräne Multi-Cloud-Architekturen
 categories:
   - cloud
 author_staff_member: sascha
