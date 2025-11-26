@@ -2,17 +2,30 @@
 title: Unser team
 description: Die Köpfe hinter WAF++
 ---
-
-<ul class="staff">
-    {% for person in site.staff_members %}
-    <li>
-        <div class="square-image"><img src="{% include relative-src.html src=person.image_path %}"
-                                       alt="{{ person.name }}"/></div>
-        <div class="name"><a target="_blank" href="https://github.com/{{ person.github }}">{{ person.name }}</a></div>
-        <div class="position">{{ person.position }}</div>
-    </li>
-    {% endfor %}
-</ul>
+<section class="team">
+    <div class="team-grid">
+        <!-- Team Member -->
+        {% for person in site.staff_members %}
+        <div class="team-card" style="float:left; text-align: center;">
+            <div class="image"><img src="{% include relative-src.html src=person.image_path %}"
+                                    style="width: 200px !important;" alt="{{ person.name }}"/></div>
+            <h3><a class="name" target="_blank" href="https://github.com/{{ person.github }}">{{ person.name }}</a></h3>
+            <p class="position">{{ person.position }}</p>
+            <div class="social-links">
+                {% for link in person.social %}
+                <li style="list-style-type: none; width: 25px;"><a {% if link.new_window %}target="_blank" {% endif %}
+                                                                   href="{% include relative-src.html src=link.link %}"
+                                                                   {% if link.social_icon
+                                                                   %}class="{{ link.social_icon }}-icon" {% endif %}>
+                    {% if link.social_icon %}
+                    {% include social-icon.html icon=link.social_icon %}
+                    {% endif %}</a></li>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 <hr>
 
