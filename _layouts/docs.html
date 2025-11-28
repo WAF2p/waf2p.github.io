@@ -1,7 +1,43 @@
----
-layout: defaultdocs
----
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% seo %}
+    {% feed_meta %}
+
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/screen.css">
+    <link rel="icon" type="image/png" href="{{ site.baseurl }}/images/WAFpp_upscaled_1000.png">
+
+    {% if jekyll.environment == 'production' and site.google_analytics_key and site.google_analytics_key != '' %}
+    <script>
+        window.ga = window.ga || function () {
+            (ga.q = ga.q || []).push(arguments)
+        };
+        ga.l = +new Date;
+        ga('create', '{{ site.google_analytics_key }}', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    {% endif %}
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="company-name"><a href="{{ site.baseurl }}/"><img
+                src="{{ site.baseurl }}/images/WAFpp_upscaled_1000_length.png"
+                alt="WAF++ Logo" width="95" height="45"/></a></div>
+        {% include navigation.html %}
+    </div>
+</header>
 <div class="content">
+    <div class="container">
+        {% include nav-documentation.html %}
+    </div>
+
+    <h1>TEST</h1>
+
     <section class="page">
         <div class="container {% if page.full_width %}max-container{% endif %}">
             {% if page.heading %}
@@ -16,3 +52,37 @@ layout: defaultdocs
         </div>
     </section>
 </div>
+<footer>
+    <div class="container">
+        <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong>
+            Edit footer</a></p>
+        <div class="footer-columns">
+            {% for column in site.data.footer %}
+            <ul class="footer-links">
+                {% for link in column.links %}
+                <li><a {% if link.new_window %}target="_blank" {% endif %}
+                       href="{% include relative-src.html src=link.link %}" {% if link.social_icon
+                       %}class="{{ link.social_icon }}-icon" {% endif %}>
+                    {% if link.social_icon %}
+                    {% include social-icon.html icon=link.social_icon %}
+                    {% endif %}
+                    {{ link.name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+            <p style="width: 200px"><a href="https://www.cloudnativeconference.de/" target="_blank" rel="nofollow"><img
+                    src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/cn-logo-negativ-schatten-1020w.png"/>
+            </a></p>
+        </div>
+        <p class="copyright">&copy; {{ site.time | date: '%Y' }} WAF++ • <a href="/impressum/">Impressum</a>
+            • <a href="https://cloudcannon.com/">Template by CloudCannon</a></p>
+    </div>
+</footer>
+<script>
+    document.getElementById("open-nav").onclick = function () {
+        document.body.classList.toggle("nav-open");
+        return false;
+    };
+</script>
+</body>
+</html>
