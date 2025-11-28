@@ -1,17 +1,47 @@
-<nav>
+<nav class="main-nav">
     <a class="nav-toggle" id="open-nav" href="#">&#9776;</a>
-    <a class="editor-link btn" href="cloudcannon:collections/_data/navigation.yml" class="btn"><strong>&#9998;</strong>
-        Edit navigation</a>
-    {% for link in site.data.navigation %}
-    {% assign class = "" %}
-    {% if link.highlight %}
-    {% assign class = class | append: " highlight" %}
-    {% endif %}
+    <ul class="nav-root">
+        {% for link in site.data.navigation %}
+        {% assign class = "" %}
+        {% if link.highlight %}
+        {% assign class = class | append: " highlight" %}
+        {% endif %}
+        {% if page.url == link.link or page.url contains link.link %}
+        {% assign class = class | append: " active" %}
+        {% endif %}
 
-    {% if link.link == page.url %}
-    {% assign class = class | append: " active" %}
-    {% endif %}
-    <a href="{% include relative-src.html src=link.link %}" class="{{ class }}" {% if link.new_window %}target="_blank"
-       {% endif %}>{{ link.name }}</a>
-    {% endfor %}
+        <li class="{{ class }}">
+            <a href="{% include relative-src.html src=link.link %}"
+               {% if link.new_window %}target="_blank" {% endif %}>
+                {{ link.name }}
+            </a>
+
+            {%- comment -%}
+            Show first-level children only if we are inside /docs/
+            {%- endcomment -%}
+            {% if link.children and page.url contains '/docs/' and page.url contains link.link %}
+            <ul class="nav-children">
+                {% for child in link.children %}
+                <li class="{% if page.url contains child.link %}active{% endif %}">
+                    <a href="{% include relative-src.html src=child.link %}">{{ child.name }}</a>
+
+                    {%- comment -%}
+                    Show grandchildren only if we are inside this child’s subpage
+                    {%- endcomment -%}
+                    {% if child.children and page.url contains child.link %}
+                    <ul class="nav-grandchildren">
+                        {% for grandchild in child.children %}
+                        <li class="{% if page.url contains grandchild.link %}active{% endif %}">
+                            <a href="{% include relative-src.html src=grandchild.link %}">{{ grandchild.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
 </nav>
