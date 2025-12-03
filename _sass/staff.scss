@@ -55,12 +55,6 @@
   margin-bottom: 2rem;
 }
 
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
-
 .team-card {
   background: #fff;
   border-radius: 12px;
@@ -116,18 +110,43 @@ body {
 }
 
 .team-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .team-row {
-  display: flex;
-  gap: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: nowrap; /* keep one row */
 }
+
+.team-card {
+    text-align: center;
+    flex: 1 1 0;       /* stretch and shrink evenly */
+    max-width: 250px;  /* limit size on large screens */
+    min-width: 150px;  /* allow shrinking on small screens */
+}
+
+
+ .team-card .image img {
+     width: 180px;
+     height: 180px;
+     object-fit: cover;
+     border-radius: 50%; /* makes the image round */
+     border: 3px solid #ddd;
+ }
+
+ .social-links {
+     margin-top: 10px;
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+ }
+
 
 .team-row.left-image .team-card {
   order: 1;
@@ -145,11 +164,6 @@ body {
   order: 1;
 }
 
-.team-card {
-  text-align: center;
-  width: 300px;
-}
-
 .team-card img {
   width: 200px;
   border-radius: 8px;
@@ -162,14 +176,6 @@ body {
 .position {
   font-weight: bold;
   color: #555;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 0;
-  margin-top: 10px;
 }
 
 .social-links li {
