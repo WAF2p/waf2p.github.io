@@ -1,0 +1,32 @@
+
+<aside class="docs-sidebar">
+    <nav>
+        <ul class="nav-root">
+            {% for link in site.data.navigation %}
+            {% if link.link contains '/docs/' %}
+            <li class="{% if page.url contains link.link %}active{% endif %}">
+                <a href="{% include relative-src.html src=link.link %}">{{ link.name }}</a>
+                {% if link.children %}
+                <ul class="nav-children">
+                    {% for child in link.children %}
+                    <li class="{% if page.url contains child.link %}active{% endif %}">
+                        <a href="{% include relative-src.html src=child.link %}">{{ child.name }}</a>
+                        {% if child.children %}
+                        <ul class="nav-grandchildren">
+                            {% for grandchild in child.children %}
+                            <li class="{% if page.url contains grandchild.link %}active{% endif %}">
+                                <a href="{% include relative-src.html src=grandchild.link %}">{{ grandchild.name }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</aside>

@@ -1,0 +1,71 @@
+
+.docs-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.docs-sidebar {
+  width: 250px;
+  background: #f0f4f8;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Remove bullets */
+.docs-sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Top-level links */
+.docs-sidebar .nav-root > li > a {
+  display: block;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: left;
+}
+
+/* Hover effect */
+.docs-sidebar .nav-root > li > a:hover {
+  background-color: #007acc;
+  color: #fff;
+}
+
+/* Children links */
+.docs-sidebar .nav-children li a {
+  display: block;
+  padding: 8px 12px 8px 30px; /* extra left padding for hierarchy */
+  color: #555;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: left;
+}
+
+/* Grandchildren links */
+.docs-sidebar .nav-grandchildren li a {
+  display: block;
+  padding: 8px 12px 8px 80px; /* 50px more than children */
+  color: #555;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: left;
+}
+
+/* Hover and active states */
+.docs-sidebar li a:hover {
+  background-color: #e0e7ef;
+  color: #007acc;
+}
+
+.docs-sidebar li.active > a {
+  background-color: #007acc;
+  color: #fff;
+}
