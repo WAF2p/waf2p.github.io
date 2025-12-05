@@ -1,72 +1,77 @@
 ---
 title: Unser Team
 description: Die Köpfe hinter WAF++
+permalink: /about/
 ---
 
 <section class="team">
     <div class="team-grid">
-        {% for person in site.staff_members %}
-        <div class="team-row {% if forloop.index0 % 2 == 0 %}left-image{% else %}right-image{% endif %}">
+        <div class="team-row">
+            {% for person in site.staff_members %}
             <div class="team-card">
-                <div class="image"><img src="{% include relative-src.html src=person.image_path %}"
-                                        style="width: 200px !important;" alt="{{ person.name }}"/></div>
-                <h3><a class="name" target="_blank" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
+                <div class="image">
+                    <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+                </div>
+                <h3>
+                    <a class="name" target="_blank" href="https://github.com/{{ person.github }}">
+                        {{ person.name }}
+                    </a>
                 </h3>
-                <p class="position">{{ person.position }}</p>
+
                 <div class="social-links">
                     {% for link in person.social %}
-                    <li style="list-style-type: none; width: 25px;"><a {% if link.new_window %}target="_blank" {% endif
-                                                                       %}
-                                                                       href="{% include relative-src.html src=link.link %}"
-                                                                       {% if link.social_icon
-                                                                       %}class="{{ link.social_icon }}-icon" {% endif
-                                                                       %}>
-                        {% if link.social_icon %}
-                        {% include social-icon.html icon=link.social_icon %}
-                        {% endif %}</a></li>
+                    <li style="list-style-type: none;">
+                        <a {% if link.new_window %}target="_blank"{% endif %}
+                           href="{% include relative-src.html src=link.link %}"
+                           {% if link.social_icon %}class="{{ link.social_icon }}-icon"{% endif %}>
+                            {% if link.social_icon %}
+                            {% include social-icon.html icon=link.social_icon %}
+                            {% endif %}
+                        </a>
+                    </li>
                     {% endfor %}
                 </div>
             </div>
-            <div class="team-bio">
-                <p>{{person.blurb}}</p>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+
 </section>
 
 
 <hr>
 
-<div class="text-container">
-    <p><strong>Über WAF++</strong></p>
-    <p>
-        WAF++ ist ein community-getriebenes, cloud-agnostisches Framework, das aus der Praxis heraus entstanden ist.
-        Ziel ist es, eine gemeinsame Grundlage für souveräne, verantwortungsvolle und nachvollziehbare Cloud-Nutzung zu
-        schaffen –
-        unabhängig von einzelnen Anbietern und jenseits von Marketing-Narrativen.
-        Statt auf isolierte Best-Practice-Sammlungen zu setzen, vereint WAF++ die Erfahrungen von Architekt:innen,
-        Plattform-Teams, Security-Spezialist:innen und Compliance-Expert:innen in einem offenen, transparenten und
-        neutralen Rahmen.
-    </p>
+<section class="about-content container">
+    <div class="intro">
+        <p>
+            WAF2P ist eine moderne Plattform, die Arbeitsabläufe vereinfacht und Innovation beschleunigt.
+            Unsere Mission: Eine sichere, entwicklerfreundliche Umgebung schaffen, die Zusammenarbeit fördert.
+        </p>
+    </div>
 
-    <p>
-        Die Mitglieder hinter den Icons stehen für Expertise aus echten Kundenprojekten, Audits, Operation-Erfahrungen
-        und langjährigen Engagements in der Cloud- und Open-Source-Community.
-        Gemeinsam entwickeln sie Referenzmodelle, Reifegradansätze und Entscheidungsleitfäden,
-        die Organisationen helfen sollen, Risiken, Kosten, Architekturfragen und regulatorische Anforderungen
-        strukturiert zu verstehen und bewusst zu steuern.
-        Dabei verfolgt WAF++ einen klaren Anspruch: Cloud-Komplexität greifbar machen,
-        Verantwortlichkeiten schärfen und Teams in die Lage versetzen, nachhaltige technische und organisatorische
-        Entscheidungen zu treffen.
-    </p>
+    <div class="highlight-box">
+        <h2>Unsere Mission</h2>
+        <p>
+            Leistung, Flexibilität und Community-getriebene Lösungen für Entwickler weltweit.
+        </p>
+    </div>
 
-    <p>
-        WAF++ ist offen für alle, die Cloud-Realität nicht nur konsumieren, sondern aktiv mitgestalten wollen.
-        Egal ob du eigene Erfahrungen teilen, bestehende Kapitel ergänzen, Inhalte reviewen
-        oder an neuen Bausteinen mitarbeiten möchtest – dein Beitrag zählt.
-        Das Projekt lebt von echtem Austausch und unabhängiger Expertise.
-        Wenn du dich hier wiederfindest, bist du eingeladen, WAF++ weiterzuentwickeln
-        und Teil einer starken, praxisorientierten Community zu werden.
-    </p>
-</div>
+    <div class="values-grid">
+        <div class="value-item">
+            <h3>Performance</h3>
+            <p>Optimiert für Geschwindigkeit und Zuverlässigkeit – für reibungslose Nutzererlebnisse.</p>
+        </div>
+        <div class="value-item">
+            <h3>Flexibilität</h3>
+            <p>Modular aufgebaut, damit du dich mühelos anpassen und skalieren kannst.</p>
+        </div>
+        <div class="value-item">
+            <h3>Community</h3>
+            <p>Getrieben von Zusammenarbeit und Open-Source-Prinzipien für nachhaltiges Wachstum.</p>
+        </div>
+    </div>
+
+    <div class="cta">
+        <a href="/" class="btn-primary">Jetzt WAF2P entdecken</a>
+    </div>
+</section>

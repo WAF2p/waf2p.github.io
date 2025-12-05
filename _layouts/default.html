@@ -25,7 +25,7 @@
 </head>
 <body>
 <header>
-    <div class="container">
+    <div class="container" style="height:25px;">
         <div class="company-name" style="float:left;"><a href="{{ site.baseurl }}/"><img
                 src="{{ site.baseurl }}/images/WAFpp_upscaled_1000_length.png"
                 alt="WAF++ Logo" width="95" height="45"/></a></div>
@@ -64,6 +64,27 @@
         document.body.classList.toggle("nav-open");
         return false;
     };
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slides = document.querySelectorAll(".slide");
+      let currentIndex = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      }
+
+      // Start Slider
+      showSlide(currentIndex);
+      setInterval(nextSlide, 8000); // alle 4 Sekunden wechseln
+    });
 </script>
 </body>
 </html>

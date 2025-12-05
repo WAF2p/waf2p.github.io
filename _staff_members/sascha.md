@@ -6,11 +6,11 @@ github: lewandos
 blurb:  Mit einer umfassenden Erfahrung in der IT-Sicherheit trägt er maßgeblich zur Entwicklung innovativer Cloud-Lösungen bei.
 social:
   - name: Github
-    link: https://github.com/waf2p/
+    link: https://github.com/lewandos/
     new_window: true
     social_icon: Github
   - name: LinkedIn
-    link: https://linkedin.com/
+    link: https://www.linkedin.com/in/sascha-lewandowski/
     new_window: true
     social_icon: LinkedIn
 ---
