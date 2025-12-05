@@ -32,7 +32,20 @@
         {% include navigation.html %}
     </div>
 </header>
+
+
+{% if page.url contains '/docs/' %}
+<div class="docs-layout">
+    {% include sidebar.html %}
+    <main class="docs-content">
+        {{ content }}
+    </main>
+</div>
+{% else %}
 {{ content }}
+{% endif %}
+
+
 <footer>
     <div class="container">
         <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong>

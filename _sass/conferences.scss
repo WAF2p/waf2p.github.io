@@ -1,0 +1,79 @@
+
+/* Grid für die Konferenzen */
+.conference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Karten-Design */
+.conference-card {
+    background-color: #3A3A3A; /* dunkler Hintergrund */
+    color: #E0E0E0; /* hellgrauer Text für Lesbarkeit */
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 350px; /* gleiche Höhe für alle Karten */
+    transition: transform 0.3s ease;
+}
+
+.conference-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Logo-Bereich */
+.conf-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px; /* feste Höhe für Logo-Bereich */
+    margin-bottom: 1rem;
+}
+
+.conf-logo img {
+    max-height: 100%;
+    max-width: 150px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.conf-logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Titel */
+.conf-title {
+    font-size: 1.4rem;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+    color: #FFFFFF; /* Weiß für starken Kontrast */
+}
+
+/* Textbereiche */
+.conf-date,
+.conf-location,
+.conf-description {
+    margin: 0.5rem 0;
+    color: #E0E0E0;
+}
+
+/* Button */
+.conf-link a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #007ACC;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.conf-link a:hover {
+    background-color: #005FA3;
+}

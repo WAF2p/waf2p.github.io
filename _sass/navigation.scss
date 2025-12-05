@@ -115,21 +115,7 @@ nav {
 }
 
 /* First-level children: horizontal sub-menu bar */
-.nav-children {
-  list-style: none;
-  margin: 20px 0 0 0;
-  padding: 0 1rem;
-  display: flex;
-  gap: 1.5rem;
-  background: var(--header-bg, #333); /* same as header background */
-  height: 60px; /* larger height */
-  align-items: center; /* vertically center items */
-  position: absolute; /* take out of normal flow */
-  top: 160%; /* directly below header */
-  right: 0; /* align with right side */
-  left: 0; /* stretch full width */
-  z-index:1000;
-}
+
 
 .nav-children li a {
   text-decoration: none;
@@ -142,24 +128,7 @@ nav {
 }
 
 /* Second-level children: horizontal row under their parent */
-.nav-grandchildren {
-  list-style: none;
-  margin: 0;
-  padding: 0 1rem;
-  display: flex;
-  gap: 1rem;
-  background: var(--header-bg, #333);
-  height: 60px;
-  align-items: center;
-  position: absolute;
-  top: 100%; /* directly below its parent */
-  left: 0;
-  right: 0;
-  padding: 0px 0px 0px 17px !important;
-  margin-top: -30px;
-  padding-left: 10px;
-  font-size: 10px;
-}
+
 
 .nav-grandchildren a {
   text-decoration: none;
@@ -169,4 +138,36 @@ nav {
 
 .nav-grandchildren li.active > a {
   color: #9AD9EA;
+}
+
+
+.docs-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.docs-sidebar {
+  width: 250px;
+  background: #f4f4f4;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.docs-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Optional: style nested lists for clarity */
+.nav-root > li > a {
+  font-weight: bold;
+}
+.nav-children {
+  margin-left: 15px;
+}
+.nav-grandchildren {
+  margin-left: 30px;
 }
