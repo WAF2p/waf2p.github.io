@@ -77,3 +77,50 @@
 .conf-link a:hover {
     background-color: #005FA3;
 }
+
+.conf-members {
+    margin-top: 1rem;
+}
+
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* bis zu 4 nebeneinander */
+    gap: 1rem;
+    justify-items: center; /* zentriert jedes Element */
+}
+
+.member-card {
+    text-align: center;
+    width: 70px;
+}
+
+.square-image {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.member-image {
+    width: 200%;
+    height: 300%;
+    object-fit: cover;
+    transform: scale(0.35); /* weit rausgezoomt */
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+}
+
+.member-image:hover {
+    transform: scale(0.4); /* leichter Zoom beim Hover */
+}
+
+@media (max-width: 768px) {
+    .member-grid {
+        grid-template-columns: repeat(2, 1fr); /* nur 2 pro Reihe auf kleineren Screens */
+    }
+}
+

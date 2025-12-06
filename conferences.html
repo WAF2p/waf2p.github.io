@@ -11,7 +11,7 @@ permalink: /conferences/
         {% for conf in conferences %}
         <div class="conference-card">
             <div class="conf-image">
-                <img src="{{ conf.logo }}" alt="{{ conf.name }}" />
+                <img src="{{ conf.logo }}" alt="{{ conf.name }}">
             </div>
             <h3 class="conf-title">{{ conf.name }}</h3>
             <p class="conf-date"><strong>Date:</strong> {{ conf.date }}</p>
@@ -20,8 +20,26 @@ permalink: /conferences/
             <div class="conf-link">
                 <a href="{{ conf.link }}" target="_blank" class="btn-primary">Learn More</a>
             </div>
+
+            {% if conf.members %}
+            <div class="conf-members">
+                <h4>WAF++ Members attending:</h4>
+                <div class="member-grid">
+                    {% for member_name in conf.members %}
+                    {% assign author_id = member_name | slugify | prepend: "/staff_members/" | append: "/" %}
+                    {% assign member = site.staff_members | where: "url", author_id | first %}
+                    {% if member %}
+                    <div class="member-card">
+                        <div class="square-image">
+                            <img class="member-image" src="{% include relative-src.html src=member.image_path %}" alt="{{ member.name }}">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
 </section>
-
