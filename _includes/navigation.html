@@ -6,8 +6,11 @@
         {% assign class = "" %}
         {% if link.highlight %}{% assign class = class | append: " highlight" %}{% endif %}
         {% if page.url == link.link or page.url contains link.link %}{% assign class = class | append: " active" %}{% endif %}
+
+        {% assign clean_link = link.link | replace: ' ', '' | replace: '\n', '' | replace: '\r', '' %}
+
         <li class="{{ class }}">
-            <a href="{% include relative-src.html src=link.link %}" {% if link.new_window %}target="_blank"{% endif %}>
+            <a href="{% include relative-src.html src=clean_link %}" {% if link.new_window %}target="_blank"{% endif %}>
                 {{ link.name }}
             </a>
         </li>
