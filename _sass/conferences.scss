@@ -103,16 +103,102 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    position: relative;
+
 }
 
 .member-image {
-    width: 200%;
-    height: 300%;
     object-fit: cover;
     transform: scale(0.35); /* weit rausgezoomt */
     transform-origin: center center;
-    transition: transform 0.3s ease;
+    border-radius: 50%; /* macht das Bild rund */
+    border: 4px solid transparent; /* Standard */
+    height: 200px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
+
+.member-image.speaker {
+    border-color: #ff0000; /* Rot für Speaker */
+}
+
+.member-image.attendee {
+    border-color: #00aa00; /* Grün für Attendee */
+}
+
+.member-image:hover {
+    filter: blur(2px);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.member-image.attendee:hover {
+    box-shadow: 0 0 20px rgba(0, 170, 0, 0.4);
+}
+
+
+.member-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-overlay.active {
+    display: flex;
+}
+
+.overlay-content {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+.overlay-content img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.overlay-details {
+    flex: 1;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: #eee;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.close-btn:hover {
+    background: #ccc;
+}
+
 
 .member-image:hover {
     transform: scale(0.4); /* leichter Zoom beim Hover */

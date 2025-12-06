@@ -1,0 +1,194 @@
+
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --text-color: #fff;
+    --text-muted: #ccc;
+    --light-bg: #f5f5f5;
+}
+
+/* Allgemeiner Seitenabstand */
+.page-content {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Profil-Header */
+.profile-header {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.profile-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+}
+
+.profile-info h1 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.blurb {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+/* Expertise-Tags */
+.profile-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 10px 0;
+    list-style: none;
+}
+
+.profile-topics li {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.profile-topics li:hover {
+    background: var(--primary-dark);
+    cursor: pointer;
+}
+
+/* Vita */
+.profile-vita {
+    margin-top: 40px;
+}
+
+.vita-text {
+    padding: 20px;
+    border-left: 4px solid var(--primary-color);
+    background: var(--light-bg);
+    border-radius: 6px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Konferenzen */
+.profile-conferences {
+    margin-top: 50px;
+}
+
+.profile-conferences h3 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* Grid für Konferenz-Cards */
+.conference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Einzelne Card */
+.conference-card {
+    background: rgb(58, 58, 58);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.conference-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Highlight für Speaker */
+.highlight-member {
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 12px rgba(0, 150, 255, 0.6);
+}
+
+/* Logo zentriert */
+.conf-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.conf-image img {
+    max-width: 120px;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Titel */
+.conf-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+/* Datum & Ort */
+.conf-date, .conf-location {
+    font-size: 0.95rem;
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+/* Rolle & Thema */
+.conf-role {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Button */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 18px;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+/* Responsive Anpassung */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .conference-grid {
+        grid-template-columns: 1fr;
+    }
+}
