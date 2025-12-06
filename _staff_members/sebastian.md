@@ -1,4 +1,5 @@
 ---
+layout: staff_member
 name: Sebastian Meyer
 position: Bereichsleiter Agile Entwicklung
 image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/meyer-sebastian-web-0ce01114-1920w.jpg

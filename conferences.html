@@ -25,17 +25,26 @@ permalink: /conferences/
             <div class="conf-members">
                 <h4>WAF++ Members attending:</h4>
                 <div class="member-grid">
-                    {% for member_name in conf.members %}
-                    {% assign author_id = member_name | slugify | prepend: "/staff_members/" | append: "/" %}
+
+                    {% for member_info in conf.members %}
+                    {% assign author_id = member_info.name | slugify | prepend: "/staff_members/" | append: "/" %}
                     {% assign member = site.staff_members | where: "url", author_id | first %}
                     {% if member %}
                     <div class="member-card">
                         <div class="square-image">
-                            <img class="member-image" src="{% include relative-src.html src=member.image_path %}" alt="{{ member.name }}">
+                            <img class="member-image {{ member_info.role | downcase }}"
+                                 src="{% include relative-src.html src=member.image_path %}"
+                                 alt="{{ member_info.name }}"
+                                 data-name="{{ member_info.name }}"
+                                 data-role="{{ member_info.role }}"
+                                 {% if member_info.topic %}data-topic="{{ member_info.topic }}"{% endif %}
+                                 {% if member.position %}data-bio="{{ member.position }}"{% endif %}
+                                 {% if member.blurb %}data-bio="{{ member.blurb }}"{% endif %}>
                         </div>
                     </div>
                     {% endif %}
                     {% endfor %}
+
                 </div>
             </div>
             {% endif %}
@@ -43,3 +52,11 @@ permalink: /conferences/
         {% endfor %}
     </div>
 </section>
+
+<div class="member-overlay">
+    <div class="overlay-content">
+        <div class="close-btn">✖</div>
+        <!-- Dynamischer Inhalt kommt hier rein -->
+    </div>
+</div>
+

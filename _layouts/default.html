@@ -99,5 +99,30 @@
       setInterval(nextSlide, 8000); // alle 4 Sekunden wechseln
     });
 </script>
+<script>
+    document.querySelectorAll('.member-image').forEach(img => {
+        img.addEventListener('click', () => {
+            const overlay = document.querySelector('.member-overlay');
+            const content = overlay.querySelector('.overlay-content');
+            content.innerHTML = `
+                <div class="close-btn">✖</div>
+                <img src="${img.src}" alt="${img.dataset.name}">
+                <div class="overlay-details">
+                    <h2>${img.dataset.name}</h2>
+                    <p><strong>Role:</strong> ${img.dataset.role}</p>
+                    ${img.dataset.topic ? `<p><strong>Topic:</strong> ${img.dataset.topic}</p>` : ''}
+                    ${img.dataset.bio ? `<p>${img.dataset.bio}</p>` : ''}
+                </div>
+            `;
+            overlay.classList.add('active');
+
+            // Close Button neu binden
+            content.querySelector('.close-btn').addEventListener('click', () => {
+                overlay.classList.remove('active');
+            });
+        });
+    });
+
+</script>
 </body>
 </html>

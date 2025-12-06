@@ -1,4 +1,5 @@
 ---
+layout: staff_member
 name: Tim Urlaub
 position: Lead Platform Engineer
 image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/urlaub-tim-web-weiss-1920w.jpg

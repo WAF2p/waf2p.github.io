@@ -1,4 +1,5 @@
 ---
+layout: staff_member
 name: Artem Lajko
 position: Head Platform Engineering
 image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lajko-artem-web-1920w.jpg
