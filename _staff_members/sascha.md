@@ -18,7 +18,6 @@ social:
     link: https://www.linkedin.com/in/sascha-lewandowski/
     new_window: true
     social_icon: LinkedIn
-permalink: /team/sascha/
 conferences: 
   - "Cloud Native Conference"
   - "DevOps Summit Europe"
@@ -46,4 +45,5 @@ Sascha Lewandowski ist Cloud Architect, IT-Security Engineer und DevOps-Speziali
 - Vision & Community  
   Sein Ansatz ist klar: Technik, Recht und Design müssen zusammengeführt werden, um Standards zu schaffen, die langfristig Bestand haben. Mit seiner Erfahrung in Moderation und Dokumentation offener Projekte trägt er dazu bei, dass WAF++ von der Community getragen und weiterentwickelt wird.  
 "
+vita_short: "Sascha Lewandowski ist ein mehrfach ausgezeichneter Cloud-Architekt und IT-Security-Experte mit über 10 Jahren Erfahrung, davon 2 Jahre in der Schweiz. Als verantwortlicher Cloud Architekt bei LGT Capital Partners und Preisempfänger des Cloud Native Rockstar Awards ist er eine zentrale Stimme bei der Definition des WAF++ Standards."
 ---
