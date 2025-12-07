@@ -8,8 +8,8 @@
 
 /* Karten-Design */
 .conference-card {
-    background-color: #3A3A3A; /* dunkler Hintergrund */
-    color: #E0E0E0; /* hellgrauer Text für Lesbarkeit */
+    background-color: #3A3A3A;
+    color: #E0E0E0;
     border-radius: 8px;
     padding: 1.5rem;
     text-align: center;
@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 350px; /* gleiche Höhe für alle Karten */
+    min-height: 350px;
     transition: transform 0.3s ease;
 }
 
@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px; /* feste Höhe für Logo-Bereich */
+    height: 120px;
     margin-bottom: 1rem;
 }
 
@@ -51,7 +51,7 @@
     font-size: 1.4rem;
     margin-top: auto;
     margin-bottom: 0.5rem;
-    color: #FFFFFF; /* Weiß für starken Kontrast */
+    color: #FFFFFF;
 }
 
 /* Textbereiche */
@@ -84,49 +84,51 @@
 
 .member-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* bis zu 4 nebeneinander */
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    justify-items: center; /* zentriert jedes Element */
+    justify-items: center;
 }
 
+/* Mitgliederkarten */
 .member-card {
     text-align: center;
     width: 70px;
 }
 
+/* Perfekte Kreise */
 .square-image {
     width: 80px;
     height: 80px;
-    overflow: hidden;
     border-radius: 50%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    position: relative;
-
 }
 
 .member-image {
+    width: 200px; /* bleibt groß für den Zoom */
     object-fit: cover;
-    transform: scale(0.35); /* weit rausgezoomt */
-    transform-origin: center center;
-    border-radius: 50%; /* macht das Bild rund */
-    border: 4px solid transparent; /* Standard */
-    height: 200px;
     border-radius: 50%;
+    border: 4px solid transparent;
     transition: all 0.3s ease;
     cursor: pointer;
+    transform: scale(0.18); /* weiter rausgezoomt */
+    transform-origin: center center;
 }
 
+
+/* Farbige Ränder für Rollen */
 .member-image.speaker {
-    border-color: #ff0000; /* Rot für Speaker */
+    border-color: #ff0000;
 }
 
 .member-image.attendee {
-    border-color: #00aa00; /* Grün für Attendee */
+    border-color: #00aa00;
 }
 
+/* Hover-Effekte */
 .member-image:hover {
     filter: blur(2px);
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
@@ -136,7 +138,7 @@
     box-shadow: 0 0 20px rgba(0, 170, 0, 0.4);
 }
 
-
+/* Overlay für Details */
 .member-overlay {
     display: none;
     position: fixed;
@@ -199,14 +201,9 @@
     background: #ccc;
 }
 
-
-.member-image:hover {
-    transform: scale(0.4); /* leichter Zoom beim Hover */
-}
-
+/* Responsive Anpassung */
 @media (max-width: 768px) {
     .member-grid {
-        grid-template-columns: repeat(2, 1fr); /* nur 2 pro Reihe auf kleineren Screens */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-
