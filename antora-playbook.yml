@@ -1,0 +1,29 @@
+site:
+  title: WAF++ Documentation
+  url: https://waf2p.dev
+  start_page: wafpp::index.adoc
+
+content:
+  sources:
+  # Production: Pull from GitHub
+  - url: https://github.com/WAF2p/framework.git
+    branches: main
+    start_path: .
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files:
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll ]
+
+asciidoc:
+  attributes:
+    page-pagination: ''
+    source-language: asciidoc@
+
+output:
+  clean: true
+  dir: ./_site/docs

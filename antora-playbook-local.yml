@@ -1,0 +1,29 @@
+site:
+  title: WAF++ Documentation (Local Dev)
+  url: http://localhost:4000
+  start_page: wafpp::index.adoc
+
+content:
+  sources:
+  # Local development: Use local filesystem
+  - url: /Users/tim.urlaub/git/github.com/WAF2p/framework
+    branches: HEAD
+    start_path: .
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files:
+    - path: ui.yml
+      contents: |
+        static_files: [ .nojekyll ]
+
+asciidoc:
+  attributes:
+    page-pagination: ''
+    source-language: asciidoc@
+
+output:
+  clean: true
+  dir: ./_site/docs
