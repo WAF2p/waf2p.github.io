@@ -1,0 +1,120 @@
+version: '3'
+
+vars:
+  ANTORA_VERSION: 3.1.0
+  JEKYLL_ENV: development
+  LOCAL_FRAMEWORK_PATH: /Users/tim.urlaub/git/github.com/WAF2p/framework
+  BUNDLE: /opt/homebrew/opt/ruby/bin/bundle
+
+tasks:
+  # Documentation tasks
+  docs:build:
+    desc: Build Antora documentation from remote repository (production-like)
+    cmds:
+      - npx antora antora-playbook.yml
+
+  docs:build:local:
+    desc: Build Antora documentation from local filesystem
+    cmds:
+      - npx antora antora-playbook-local.yml
+
+  docs:serve:
+    desc: Build and serve documentation locally for development
+    deps:
+      - docs:build:local
+    cmds:
+      - echo "Documentation available at http://localhost:8000/docs/wafpp/1.0/"
+      - python3 -m http.server 8000 -d _site
+
+  docs:clean:
+    desc: Clean Antora build artifacts and cache
+    cmds:
+      - rm -rf _site/docs
+      - rm -rf .cache/antora
+      - rm -rf build
+
+  # Jekyll tasks
+  jekyll:build:
+    desc: Build Jekyll marketing site
+    cmds:
+      - "{{.BUNDLE}} exec jekyll build"
+
+  jekyll:serve:
+    desc: Serve Jekyll site with live reload
+    cmds:
+      - "{{.BUNDLE}} exec jekyll serve --livereload"
+
+  jekyll:clean:
+    desc: Clean Jekyll build artifacts
+    cmds:
+      - "{{.BUNDLE}} exec jekyll clean"
+
+  # Combined tasks
+  site:build:
+    desc: Build complete site (Jekyll + Antora)
+    cmds:
+      - task: jekyll:build
+      - task: docs:build:local
+
+  site:serve:
+    desc: Build and serve complete site locally
+    cmds:
+      - task: site:build
+      - echo ""
+      - echo "================================================"
+      - echo "Complete site available at http://localhost:8000/"
+      - echo "Marketing at http://localhost:8000/"
+      - echo "Documentation at http://localhost:8000/docs/wafpp/1.0/"
+      - echo "================================================"
+      - echo ""
+      - python3 -m http.server 8000 -d _site
+
+  site:clean:
+    desc: Clean all build artifacts
+    cmds:
+      - task: jekyll:clean
+      - task: docs:clean
+
+  # Validation tasks
+  validate:links:
+    desc: Validate internal links in documentation
+    cmds:
+      - echo "Link validation not yet implemented"
+      - echo "TODO - Install and configure html-proofer or similar"
+
+  validate:adoc:
+    desc: Validate AsciiDoc syntax in framework repository
+    dir: "{{.LOCAL_FRAMEWORK_PATH}}"
+    cmds:
+      - find modules -name "*.adoc" -type f -print
+      - echo "AsciiDoc validation - Found files listed above"
+
+  # Submodule management
+  submodule:update:
+    desc: Update docs submodule to latest commit
+    cmds:
+      - git submodule update --remote --merge docs
+
+  submodule:status:
+    desc: Show submodule status
+    cmds:
+      - git submodule status
+
+  # Dependency management
+  deps:install:
+    desc: Install all dependencies (Ruby + Node.js)
+    cmds:
+      - "{{.BUNDLE}} install"
+      - npm install
+
+  deps:update:
+    desc: Update all dependencies
+    cmds:
+      - "{{.BUNDLE}} update"
+      - npm update
+
+  # Default task
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
