@@ -283,6 +283,8 @@ The documentation is sourced from the `framework` repository:
 
 - **Production builds**: Antora clones from GitHub (`antora-playbook.yml`)
 - **Local builds**: Antora reads from local filesystem (`antora-playbook-local.yml`)
+  - Default path: `../framework` (relative to this repository)
+  - Custom path: Set `LOCAL_FRAMEWORK_PATH` environment variable (e.g., `export LOCAL_FRAMEWORK_PATH=/custom/path/to/framework`)
 - **Output**: Documentation generated to `_site/docs/`
 - **Jekyll config**: Configured to preserve Antora output via `keep_files: [docs]`
 
