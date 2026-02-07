@@ -149,6 +149,31 @@ Detaillierte technische Informationen findest du in der Datei `AGENTS.md` in die
   brew install go-task
   ```
 
+#### Repository-Struktur
+
+Dieses Projekt geht von folgender Verzeichnisstruktur aus:
+
+```
+your-projects/
+├── waf2p.github.io/    # Dieses Repository (Website)
+└── framework/           # Framework-Repository (Dokumentationsquelle)
+```
+
+Klone beide Repositories als Geschwister-Verzeichnisse:
+
+```bash
+mkdir waf2p-development
+cd waf2p-development
+git clone https://github.com/WAF2p/waf2p.github.io.git
+git clone https://github.com/WAF2p/framework.git
+```
+
+Falls du eine andere Struktur verwendest, setze die Umgebungsvariable `LOCAL_FRAMEWORK_PATH`:
+
+```bash
+export LOCAL_FRAMEWORK_PATH=/pfad/zu/deinem/framework
+```
+
 #### Installation
 
 ```bash
@@ -201,6 +226,14 @@ Das `Taskfile.yml` definiert folgende Tasks:
 | `validate:links` | Prüft auf defekte Links (benötigt html-proofer) |
 | `validate:adoc` | Validiert AsciiDoc-Syntax im Framework-Repo |
 
+#### Umgebungsvariablen
+
+Die folgenden Umgebungsvariablen können zur Anpassung der Setup-Konfiguration verwendet werden:
+
+- **LOCAL_FRAMEWORK_PATH**: Pfad zum lokalen Framework-Repository
+  - Standard: `../framework` (relativ zum Website-Repository)
+  - Beispiel: `export LOCAL_FRAMEWORK_PATH=/custom/path/to/framework`
+
 ### Jekyll-Konfiguration für Antora
 
 In `_config.yml`:
@@ -240,7 +273,7 @@ keep_files:
    ```yaml
    content:
      sources:
-       - url: /Users/tim.urlaub/git/github.com/WAF2p/framework
+       - url: ../framework  # Relativer Pfad zum lokalen Framework-Klon
          branches: HEAD
          start_path: .
    ```
@@ -287,12 +320,7 @@ Die Datei `.github/workflows/jekyll-gh-pages.yml` definiert den Deployment-Proze
 gem 'ostruct'
 ```
 
-**Taskfile-Konfiguration**: Nutzt Homebrew Ruby explizit:
-
-```yaml
-env:
-  BUNDLE_PATH: /opt/homebrew/opt/ruby/bin/bundle
-```
+**Hinweis**: Ruby muss korrekt in PATH konfiguriert sein (siehe Voraussetzungen oben).
 
 ### Troubleshooting
 
