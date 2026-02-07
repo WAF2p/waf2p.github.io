@@ -3,8 +3,10 @@ version: '3'
 vars:
   ANTORA_VERSION: 3.1.0
   JEKYLL_ENV: development
-  LOCAL_FRAMEWORK_PATH: /Users/tim.urlaub/git/github.com/WAF2p/framework
-  BUNDLE: /opt/homebrew/opt/ruby/bin/bundle
+  # Path to local framework repository
+  # Can be overridden via environment variable: export LOCAL_FRAMEWORK_PATH=/custom/path
+  LOCAL_FRAMEWORK_PATH:
+    sh: echo "${LOCAL_FRAMEWORK_PATH:-../framework}"
 
 tasks:
   # Documentation tasks
@@ -15,6 +17,8 @@ tasks:
 
   docs:build:local:
     desc: Build Antora documentation from local filesystem
+    deps:
+      - validate:framework-path
     cmds:
       - npx antora antora-playbook-local.yml
 
@@ -37,17 +41,17 @@ tasks:
   jekyll:build:
     desc: Build Jekyll marketing site
     cmds:
-      - "{{.BUNDLE}} exec jekyll build"
+      - bundle exec jekyll build
 
   jekyll:serve:
     desc: Serve Jekyll site with live reload
     cmds:
-      - "{{.BUNDLE}} exec jekyll serve --livereload"
+      - bundle exec jekyll serve --livereload
 
   jekyll:clean:
     desc: Clean Jekyll build artifacts
     cmds:
-      - "{{.BUNDLE}} exec jekyll clean"
+      - bundle exec jekyll clean
 
   # Combined tasks
   site:build:
@@ -76,6 +80,20 @@ tasks:
       - task: docs:clean
 
   # Validation tasks
+  validate:framework-path:
+    desc: Validate LOCAL_FRAMEWORK_PATH exists
+    cmds:
+      - |
+        if [ ! -d "{{.LOCAL_FRAMEWORK_PATH}}" ]; then
+          echo "❌ Error: Framework repository not found at: {{.LOCAL_FRAMEWORK_PATH}}"
+          echo ""
+          echo "Solutions:"
+          echo "  1. Clone framework as sibling: git clone https://github.com/WAF2p/framework.git ../framework"
+          echo "  2. Or set custom path: export LOCAL_FRAMEWORK_PATH=/your/custom/path"
+          exit 1
+        fi
+        echo "✓ Framework found at: {{.LOCAL_FRAMEWORK_PATH}}"
+
   validate:links:
     desc: Validate internal links in documentation
     cmds:
@@ -84,6 +102,8 @@ tasks:
 
   validate:adoc:
     desc: Validate AsciiDoc syntax in framework repository
+    deps:
+      - validate:framework-path
     dir: "{{.LOCAL_FRAMEWORK_PATH}}"
     cmds:
       - find modules -name "*.adoc" -type f -print
@@ -104,13 +124,13 @@ tasks:
   deps:install:
     desc: Install all dependencies (Ruby + Node.js)
     cmds:
-      - "{{.BUNDLE}} install"
+      - bundle install
       - npm install
 
   deps:update:
     desc: Update all dependencies
     cmds:
-      - "{{.BUNDLE}} update"
+      - bundle update
       - npm update
 
   # Default task
