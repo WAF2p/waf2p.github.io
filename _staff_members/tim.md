@@ -7,11 +7,11 @@ blurb: Seine Leidenschaft ist es, Lösungen zu entwickeln, die es seinen Entwick
   und internen Kunden ermöglichen, produktiver zu sein.
 social:
 - name: Github
-  link: https://github.com/waf2p/
+  link: https://github.com/t1murl/
   new_window: true
   social_icon: Github
 - name: LinkedIn
-  link: https://linkedin.com/
+  link: https://www.linkedin.com/in/t1murl/
   new_window: true
   social_icon: LinkedIn
 title: Tim Urlaub

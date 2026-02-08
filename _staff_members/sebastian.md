@@ -7,11 +7,11 @@ blurb: Seit 2016 baute er ein Entwicklungsteam auf, welches sich mit der Entwick
   und Nutzung von mobilen Applikationen in den Rossmann Verkaufsstellen beschäftigt.
 social:
 - name: Github
-  link: https://github.com/waf2p/
+  link: https://github.com/objectivex/
   new_window: true
   social_icon: Github
 - name: LinkedIn
-  link: https://linkedin.com/
+  link: https://www.linkedin.com/in/sebastian-meyer-646676259/
   new_window: true
   social_icon: LinkedIn
 title: Sebastian Meyer

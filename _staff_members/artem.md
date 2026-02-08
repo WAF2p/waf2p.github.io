@@ -7,11 +7,11 @@ blurb: Er ist Autor von Implementing GitOps with Kubernetes, Mitgründer von con
   und arbeitet als IT-Freelancer für verschiedene Verlage.
 social:
 - name: Github
-  link: https://github.com/waf2p/
+  link: https://github.com/la-cc/
   new_window: true
   social_icon: Github
 - name: LinkedIn
-  link: https://linkedin.com/
+  link: https://www.linkedin.com/in/lajko/
   new_window: true
   social_icon: LinkedIn
 title: Artem Lajko
