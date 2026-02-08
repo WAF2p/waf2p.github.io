@@ -1,0 +1,73 @@
+{% assign conf = include.conf %}
+<article class="conf-card">
+  <div class="conf-card__top">
+    {% if conf.logo %}
+      <div class="conf-card__logo">
+        <img src="{{ conf.logo | relative_url }}" alt="{{ conf.name }} Logo" loading="lazy">
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="conf-card__body">
+    <h3 class="conf-card__title">{{ conf.name }}</h3>
+
+    <div class="conf-card__meta">
+      <div class="conf-card__meta-row">
+        <i data-lucide="calendar" class="conf-icon"></i>
+        <span>
+          {% if conf.date_display %}
+          {{ conf.date_display }}
+          {% else %}
+            {% assign s = conf.start_date | default: conf.start %}
+            {% assign e = conf.end_date | default: conf.end %}
+            {% if e and s and e != s %}
+              {{ s | date: "%-d. %b %Y" }} – {{ e | date: "%-d. %b %Y" }}
+            {% else %}
+              {{ s | date: "%-d. %b %Y" }}
+            {% endif %}
+          {% endif %}
+      
+        </span>
+      </div>
+      <div class="conf-card__meta-row">
+        <i data-lucide="map-pin" class="conf-icon"></i>
+        <span>{{ conf.location }}</span>
+      </div>
+    </div>
+
+    {% if conf.description %}
+      <p class="conf-card__desc">{{ conf.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="conf-card__footer">
+    {% if conf.link %}
+      <a class="btn btn-primary btn-small" href="{{ conf.link }}" target="_blank" rel="noopener">{{ conf.cta | default: "Mehr erfahren" }}</a>
+    {% endif %}
+
+    {% if conf.members %}
+      <div class="conf-card__members">
+        <span class="conf-card__members-label">WAF++ Mitglieder:</span>
+        <div class="conf-avatars">
+          {% for p in conf.members %}
+            {% assign handle = p.id | default: p.name | slugify %}
+            {% assign m = site.staff_members | where: "slug", handle | first %}
+            {% if m %}
+              <button class="avatar-btn"
+                type="button"
+                aria-label="{{ m.name }} anzeigen"
+                data-person-name="{{ m.name | escape }}"
+                data-person-role="{{ p.role | default: m.position | escape }}"
+                data-person-title="{{ p.topic | default: m.blurb | escape }}"
+                data-person-image="{{ m.image_path | escape }}"
+              >
+                <img src="{{ m.image_path }}" alt="{{ m.name }}" loading="lazy">
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</article>

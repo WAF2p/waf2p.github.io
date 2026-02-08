@@ -1,0 +1,26 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <img src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="WAF++ Logo">
+      <span>{{ site.title }}</span>
+    </a>
+
+    <button class="burger" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="{% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
+      
+      <a class="{% if page.url contains '/saeulen/' %}active{% endif %}" href="{{ '/saeulen/' | relative_url }}">7 Säulen</a>
+<a class="{% if page.url contains '/pass' %}active{% endif %}" href="{{ '/pass/' | relative_url }}">PASS</a>
+      <a class="{% if page.url contains '/conferences' %}active{% endif %}" href="{{ '/conferences/' | relative_url }}">Konferenzen</a>
+      <a class="{% if page.url contains '/blog' %}active{% endif %}" href="{{ '/blog/' | relative_url }}">Blog</a>
+      <a class="{% if page.url == '/about/' %}active{% endif %}" href="{{ '/about/' | relative_url }}">Über uns</a>
+
+      <div class="cta-row">
+        <a class="btn btn-primary{% if page.url contains '/docs' %} active{% endif %}" href="{{ '/docs/' | relative_url }}">Dokumentation</a>
+      </div>
+    </nav>
+  </div>
+</header>

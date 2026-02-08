@@ -1,0 +1,241 @@
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  box-shadow: 0 1px 0 rgba(15,23,42,.04);
+}
+.btn-primary{
+  border-color: color-mix(in srgb, var(--brand-500) 55%, var(--border));
+  background: var(--brand-500);
+  color:white;
+  box-shadow: 0 16px 40px rgba(0,148,255,.20);
+}
+.btn-primary:hover{background: var(--brand-400)}
+.btn-primary.active{
+  background: var(--brand-400);
+}
+.btn-ghost{
+  background: transparent;
+}
+.btn-accent{
+  border-color: color-mix(in srgb, var(--accent-300) 55%, var(--border));
+  background: color-mix(in srgb, var(--accent-300) 55%, var(--surface));
+}
+
+/* Chips / badge */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 6px 10px;
+  border-radius:999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--brand-500) 10%, transparent);
+}
+
+/* Small pill (used in post & staff meta rows) */
+.pill{
+  display:inline-flex;
+  align-items:center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  color: var(--text-default);
+}
+.pill--soft{
+  background: color-mix(in srgb, var(--brand-500) 10%, var(--surface));
+  border-color: color-mix(in srgb, var(--brand-500) 16%, var(--border));
+  color: var(--text-default);
+}
+.dot{
+  width:8px; height:8px;
+  border-radius:999px;
+  background: var(--accent-300);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-300) 22%, transparent);
+}
+
+/* Cards */
+.card{
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+.card-pad{padding:22px}
+.card-title{font-weight: 850; letter-spacing:.2px}
+.card-kicker{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color: var(--muted);
+}
+
+/* Logo strip */
+.logos{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 14px;
+  align-items:center;
+  opacity:.92;
+}
+.logo-pill{
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius:999px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Soft "app" mock blocks */
+.mock{
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(900px 420px at 15% 0%, rgba(0,148,255,.12), transparent 60%),
+    radial-gradient(900px 420px at 90% 10%, rgba(255,207,99,.10), transparent 60%),
+    color-mix(in srgb, var(--surface) 84%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+/* Grid helpers */
+.grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:24px}
+.grid-3{display:grid; grid-template-columns: 1fr 1fr 1fr; gap:18px}
+@media (max-width: 860px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+
+
+/* Small buttons (for cards) */
+.btn-small{
+  height: 38px;
+  padding: 0 14px;
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+}
+
+.breadcrumb__inner {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--brand-500);
+}
+
+.breadcrumb__sep {
+  opacity: 0.6;
+}
+
+.breadcrumb__current {
+  color: var(--text-default);
+  font-weight: 500;
+}
+
+/* Category badges */
+.post-cats {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.cat-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(0, 148, 255, 0.12);
+  color: var(--brand-500);
+  border: 1px solid rgba(0, 148, 255, 0.18);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cat-badge:hover {
+  background: rgba(0, 148, 255, 0.18);
+  border-color: rgba(0, 148, 255, 0.28);
+}
+
+
+/* Chips (Expertise) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.7);
+  color: var(--text-default);
+}
+
+
+/* Breadcrumb (inline in hero/page-hero) */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--text);
+}
+
+.breadcrumb__sep {
+  opacity: 0.55;
+}
+
+.breadcrumb__current {
+  color: var(--text);
+  opacity: 0.9;
+}
