@@ -1,7 +1,8 @@
 ---
-name:
-position:
-image_path:
-github:
-blurb:
+name: null
+position: null
+image_path: null
+github: null
+blurb: null
+title: null
 ---

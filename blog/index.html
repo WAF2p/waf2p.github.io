@@ -1,28 +1,50 @@
 ---
+layout: default
 title: Blog
-description: Alle Neuigkeiten
+description: Updates, Hintergründe und neue Inhalte rund um WAF++.
 ---
 
-<div class="text-container">
-    <p class="editor-link"><a href="cloudcannon:collections/_posts" class="btn"><strong>&#9998;</strong> Hinzufügen</a>
-    </p>
-    <ul class="blog-posts">
-        {% include list-posts.html posts=paginator.posts %}
-    </ul>
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb-inline.html %}
+{% include breadcrumb-inline.html %}
+{% include breadcrumb.html %}
 
-    {% if paginator.total_pages > 1 %}
-    <!-- Pagination links -->
-    <div class="pagination">
-        {% if paginator.previous_page %}
-        <a href="{% include relative-src.html src=paginator.previous_page_path %}" class="previous btn">&larr; Neue News
-        </a>
-        {% endif %}
+    <div class="badge"><span class="dot"></span> WAF++ Blog</div>
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.description }}</p>
+  </div>
+</section>
 
-        <span class="page_number ">{{ paginator.page }} of {{ paginator.total_pages }}</span>
-
-        {% if paginator.next_page %}
-        <a href="{% include relative-src.html src=paginator.next_page_path %}" class="next btn">Alte News &rarr;</a>
-        {% endif %}
+<section class="section">
+  <div class="container">
+    <div class="blog-grid">
+      {% assign posts_list = paginator.posts | default: site.posts %}
+      {% for post in posts_list %}
+        {% include blog-card.html post=post %}
+      {% endfor %}
     </div>
+
+{% if paginator and paginator.total_pages > 1 %}
+  <div class="pagination modern">
+    {% if paginator.previous_page %}
+      <a class="btn" href="{% include relative-src.html src=paginator.previous_page_path %}">
+        <span aria-hidden="true">&larr;</span> Neuere
+      </a>
+    {% else %}
+      <span></span>
     {% endif %}
-</div>
+
+    <div class="muted small">Seite {{ paginator.page }} von {{ paginator.total_pages }}</div>
+
+    {% if paginator.next_page %}
+      <a class="btn" href="{% include relative-src.html src=paginator.next_page_path %}">
+        Ältere <span aria-hidden="true">&rarr;</span>
+      </a>
+    {% else %}
+      <span></span>
+    {% endif %}
+  </div>
+{% endif %}
+  </div>
+</section>

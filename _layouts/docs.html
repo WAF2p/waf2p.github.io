@@ -52,37 +52,8 @@
         </div>
     </section>
 </div>
-<footer>
-    <div class="container">
-        <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong>
-            Edit footer</a></p>
-        <div class="footer-columns">
-            {% for column in site.data.footer %}
-            <ul class="footer-links">
-                {% for link in column.links %}
-                <li><a {% if link.new_window %}target="_blank" {% endif %}
-                       href="{% include relative-src.html src=link.link %}" {% if link.social_icon
-                       %}class="{{ link.social_icon }}-icon" {% endif %}>
-                    {% if link.social_icon %}
-                    {% include social-icon.html icon=link.social_icon %}
-                    {% endif %}
-                    {{ link.name }}</a></li>
-                {% endfor %}
-            </ul>
-            {% endfor %}
-            <p style="width: 200px"><a href="https://www.cloudnativeconference.de/" target="_blank" rel="nofollow"><img
-                    src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/cn-logo-negativ-schatten-1020w.png"/>
-            </a></p>
-        </div>
-        <p class="copyright">&copy; {{ site.time | date: '%Y' }} WAF++ • <a href="/impressum/">Impressum</a>
-            • <a href="https://cloudcannon.com/">Template by CloudCannon</a></p>
-    </div>
-</footer>
-<script>
-    document.getElementById("open-nav").onclick = function () {
-        document.body.classList.toggle("nav-open");
-        return false;
-    };
-</script>
+{% include footer.html %}
+<script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
 </body>
 </html>
+

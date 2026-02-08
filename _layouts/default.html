@@ -1,128 +1,27 @@
 <!doctype html>
-
-<html lang="en">
-<head>
+<html lang="de">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {% seo %}
-    {% feed_meta %}
-
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/screen.css">
-    <link rel="icon" type="image/png" href="{{ site.baseurl }}/images/WAFpp_upscaled_1000.png">
-
-    {% if jekyll.environment == 'production' and site.google_analytics_key and site.google_analytics_key != '' %}
-    <script>
-        window.ga = window.ga || function () {
-            (ga.q = ga.q || []).push(arguments)
-        };
-        ga.l = +new Date;
-        ga('create', '{{ site.google_analytics_key }}', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    {% endif %}
-</head>
-<body>
-<header>
-    <div class="container" style="height:40px;">
-        <div class="company-name" style="float:left;"><a href="{{ site.baseurl }}/"><img
-                src="{{ site.baseurl }}/images/WAFpp_upscaled_1000_length.png"
-                alt="WAF++ Logo" width="95" height="45"/></a></div>
-        {% include navigation.html %}
-    </div>
-</header>
-
-
-{% if page.url contains '/docs/' %}
-<div class="docs-layout">
-    {% include sidebar.html %}
-    <main class="docs-content">
-        {{ content }}
-    </main>
-</div>
-{% else %}
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+    <link rel="stylesheet" href="{{ '/css/screen.css' | relative_url }}">
+    <link rel="icon" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}">
+  </head>
+  <body>
+    {% include header.html %}
+<main>
 {{ content }}
-{% endif %}
-
-
-<footer>
-    <div class="container">
-        <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong>
-            Edit footer</a></p>
-        <div class="footer-columns">
-            {% for column in site.data.footer %}
-            <ul class="footer-links">
-                {% for link in column.links %}
-                <li><a {% if link.new_window %}target="_blank" {% endif %}
-                       href="{% include relative-src.html src=link.link %}" {% if link.social_icon
-                       %}class="{{ link.social_icon }}-icon" {% endif %}>
-                    {% if link.social_icon %}
-                    {% include social-icon.html icon=link.social_icon %}
-                    {% endif %}
-                    {{ link.name }}</a></li>
-                {% endfor %}
-            </ul>
-            {% endfor %}
-            <p style="width: 200px"><a href="https://www.cloudnativeconference.de/" target="_blank" rel="nofollow"><img
-                    src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/cn-logo-negativ-schatten-1020w.png"/>
-            </a></p>
-        </div>
-        <p class="copyright">&copy; {{ site.time | date: '%Y' }} WAF++ • <a href="/impressum/">Impressum</a>
-            • Powered by Github Pages • <a href="https://cloudcannon.com/">Template by CloudCannon</a></p>
-    </div>
-</footer>
-<script>
-    document.getElementById("open-nav").onclick = function () {
-        document.body.classList.toggle("nav-open");
-        return false;
-    };
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const slides = document.querySelectorAll(".slide");
-      let currentIndex = 0;
-
-      function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle("active", i === index);
-        });
-      }
-
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-      }
-
-      // Start Slider
-      showSlide(currentIndex);
-      setInterval(nextSlide, 8000); // alle 4 Sekunden wechseln
-    });
-</script>
-<script>
-    document.querySelectorAll('.member-image').forEach(img => {
-        img.addEventListener('click', () => {
-            const overlay = document.querySelector('.member-overlay');
-            const content = overlay.querySelector('.overlay-content');
-            content.innerHTML = `
-                <div class="close-btn">✖</div>
-                <img src="${img.src}" alt="${img.dataset.name}">
-                <div class="overlay-details">
-                    <h2>${img.dataset.name}</h2>
-                    <p><strong>Role:</strong> ${img.dataset.role}</p>
-                    ${img.dataset.topic ? `<p><strong>Topic:</strong> ${img.dataset.topic}</p>` : ''}
-                    ${img.dataset.bio ? `<p>${img.dataset.bio}</p>` : ''}
-                </div>
-            `;
-            overlay.classList.add('active');
-
-            // Close Button neu binden
-            content.querySelector('.close-btn').addEventListener('click', () => {
-                overlay.classList.remove('active');
-            });
-        });
-    });
-
-</script>
-</body>
+    </main>
+    {% include footer.html %}
+    <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script defer>
+      window.addEventListener('DOMContentLoaded', function () {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      });
+    </script>
+  </body>
 </html>
