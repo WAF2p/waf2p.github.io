@@ -10,16 +10,51 @@
     </button>
 
     <nav class="nav" aria-label="Hauptnavigation">
-      <a class="{% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
-      
-      <a class="{% if page.url contains '/saeulen/' %}active{% endif %}" href="{{ '/saeulen/' | relative_url }}">7 Säulen</a>
-<a class="{% if page.url contains '/pass' %}active{% endif %}" href="{{ '/pass/' | relative_url }}">PASS</a>
-      <a class="{% if page.url contains '/conferences' %}active{% endif %}" href="{{ '/conferences/' | relative_url }}">Konferenzen</a>
-      <a class="{% if page.url contains '/blog' %}active{% endif %}" href="{{ '/blog/' | relative_url }}">Blog</a>
-      <a class="{% if page.url == '/about/' %}active{% endif %}" href="{{ '/about/' | relative_url }}">Über uns</a>
+      {%- assign nav_items = site.data.navigation -%}
+
+      {%- comment -%}
+      Render normal links (non-highlight) as top-level navigation, with optional dropdowns.
+      Render highlight items as CTA buttons at the end (Dokumentation).
+      {%- endcomment -%}
+
+      <div class="nav-main">
+        {% for item in nav_items %}
+          {% unless item.highlight %}
+            {% assign is_active = false %}
+            {% if page.url == item.link or (item.link != '/' and page.url contains item.link) %}
+              {% assign is_active = true %}
+            {% endif %}
+
+            {% if item.children %}
+              <div class="nav-group{% if is_active %} is-active{% endif %}">
+                <a class="{% if is_active %}active{% endif %}" href="{{ item.link | relative_url }}">{{ item.name }}</a>
+                <div class="nav-dropdown" aria-label="{{ item.name }} submenu">
+                  {% for child in item.children %}
+                    {% assign child_active = false %}
+                    {% if page.url == child.link or (child.link != '/' and page.url contains child.link) %}
+                      {% assign child_active = true %}
+                    {% endif %}
+                    <a class="nav-dropdown__link{% if child_active %} active{% endif %}" href="{{ child.link | relative_url }}">{{ child.name }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <a class="{% if is_active %}active{% endif %}" href="{{ item.link | relative_url }}">{{ item.name }}</a>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+      </div>
 
       <div class="cta-row">
-        <a class="btn btn-primary{% if page.url contains '/docs' %} active{% endif %}" href="{{ '/docs/' | relative_url }}">Dokumentation</a>
+        {% for item in nav_items %}
+          {% if item.highlight %}
+            {% assign cta_active = false %}
+            {% if page.url contains item.link %}
+              {% assign cta_active = true %}
+            {% endif %}
+            <a class="btn btn-primary{% if cta_active %} active{% endif %}" href="{{ item.link | relative_url }}">{{ item.name }}</a>
+          {% endif %}
+        {% endfor %}
       </div>
     </nav>
   </div>

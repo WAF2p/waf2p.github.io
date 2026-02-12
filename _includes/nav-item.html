@@ -1,0 +1,16 @@
+{%- assign item = include.item -%}
+<li class="nav-item{% if page.url == item.link %} active{% endif %}{% if item.children %} has-children{% endif %}">
+  <a href="{{ item.link | relative_url }}"
+     class="nav-link{% if item.highlight %} highlight{% endif %}"
+     {% if item.new_window %}target="_blank" rel="noopener"{% endif %}>
+    {{ item.name }}
+  </a>
+
+  {% if item.children %}
+  <ul class="dropdown">
+    {% for child in item.children %}
+      {% include nav-item.html item=child %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+</li>
