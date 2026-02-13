@@ -1,0 +1,36 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+{% assign pages_list = site.pages | where_exp: "p", "p.sitemap != false" %}
+{% for page in pages_list %}
+  {% unless page.url contains '/404' or page.url contains '/feed' or page.url contains '/assets/' or page.url contains '/css/' or page.url contains '/js/' or page.url contains '/images/' or page.url contains '/docs/' %}
+  <url>
+    <loc>{{ site.url }}{{ page.url | replace:'index.html','' }}</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>
+      {% if page.url == '/' %}1.0
+      {% elsif page.url contains 'saeulen' %}0.9
+      {% elsif page.url contains 'governance' %}0.8
+      {% elsif page.url contains 'roadmap' %}0.8
+      {% else %}0.7
+      {% endif %}
+    </priority>
+  </url>
+  {% endunless %}
+{% endfor %}
+
+{% for post in site.posts %}
+  <url>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+{% endfor %}
+
+</urlset>
