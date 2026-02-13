@@ -1,0 +1,79 @@
+{%- comment -%}
+Structured Data (JSON-LD)
+- Organization (global)
+- Event (for /conferences/)
+- FAQPage (for /faq/)
+{%- endcomment -%}
+
+{%- assign site_base = site.url | append: site.baseurl -%}
+{%- if site.url and site.url != '' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site.title | jsonify }},
+  "url": {{ site_base | jsonify }},
+  "logo": {{ (site_base | append: '/images/WAFpp_upscaled_1000.png') | jsonify }},
+  "sameAs": [
+    "https://github.com/waf2p/"
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if page.url == '/conferences/' -%}
+{%- assign today = 'now' | date: '%Y-%m-%d' -%}
+{%- assign conferences = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" -%}
+{%- if conferences and conferences.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {%- for conf in conferences -%}
+    {
+      "@type": "Event",
+      "name": {{ conf.name | jsonify }},
+      "startDate": {{ conf.start_date | jsonify }},
+      "endDate": {{ conf.end_date | default: conf.start_date | jsonify }},
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "url": {{ conf.link | jsonify }},
+      "image": {{ conf.logo | jsonify }},
+      "location": {
+        "@type": "Place",
+        "name": {{ conf.location | jsonify }}
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": {{ site.title | jsonify }},
+        "url": {{ site_base | jsonify }}
+      },
+      "description": {{ conf.description | strip_html | strip_newlines | jsonify }}
+    }{%- if forloop.last == false -%},{%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+{%- endif -%}
+
+{%- if page.url == '/faq/' and site.data.faq and site.data.faq.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for item in site.data.faq -%}
+    {
+      "@type": "Question",
+      "name": {{ item.q | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.a | strip_html | strip_newlines | jsonify }}
+      }
+    }{%- if forloop.last == false -%},{%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
