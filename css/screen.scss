@@ -3,22 +3,13 @@
 @charset "utf-8";
 
 /* Core */
-@import "theme/base";
-@import "theme/layout";
-@import "theme/components";
-@import "theme/sections";
+@use "theme/base" as *;
+@use "theme/layout" as *;
+@use "theme/components" as *;
+@use "theme/sections" as *;
 
-/* Site sections / pages */
-@import "conferences";
-@import "saulen";
-@import "legal";
-@import "roadmap";
-@import "vision";
-@import "faq";
-@import "github-hero";
-@import "github-hero-inline-fix";
-@import "comparison";
+/* Existing legacy partials can remain unused for now. */
 
-
-/* Navigation behaviour (if present in repo; safe even if unused elsewhere) */
-@import "navigation-hover-intent";
+/* Pages */
+@use "saulen" as *;
+@use "conferences" as *;
