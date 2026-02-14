@@ -1,0 +1,110 @@
+<style>
+/* Governance contributors block (scoped) */
+.gov-contrib { margin-top: 28px; }
+.gov-grid { margin-top: 16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.gov-card { background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:18px; padding:16px; box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+.gov-top { display:flex; gap:12px; align-items:flex-start; }
+.gov-avatar { width:48px; height:48px; border-radius:16px; object-fit:cover; border:1px solid rgba(0,0,0,.08); background: rgba(0,0,0,.03); }
+.gov-name { font-weight:900; color: rgba(0,0,0,.86); }
+.gov-role { color: rgba(0,0,0,.60); font-weight:700; font-size: 13px; margin-top: 2px; }
+.gov-note { margin-top: 10px; color: rgba(0,0,0,.72); }
+.gov-tags { margin-top: 10px; display:flex; flex-wrap:wrap; gap:6px; }
+.gov-bullets { margin-top: 10px; color: rgba(0,0,0,.72); padding-left: 18px; }
+.tag { display:inline-flex; align-items:center; justify-content:center; padding:4px 10px; border-radius:999px; border:1px solid rgba(0,0,0,.10); font-weight:800; font-size: 12px; color: rgba(0,0,0,.72); background: rgba(0,0,0,.02); }
+.tag--code { background: rgba(34,197,94,.10); border-color: rgba(34,197,94,.18); color: rgb(22,163,74); }
+.tag--gov { background: rgba(59,130,246,.10); border-color: rgba(59,130,246,.18); color: rgb(37,99,235); }
+.tag--rfc { background: rgba(234,179,8,.14); border-color: rgba(234,179,8,.22); color: rgb(202,138,4); }
+.tag--docs { background: rgba(168,85,247,.10); border-color: rgba(168,85,247,.18); color: rgb(147,51,234); }
+.tag--community { background: rgba(20,184,166,.10); border-color: rgba(20,184,166,.18); color: rgb(13,148,136); }
+.tag--trans { background: rgba(244,63,94,.10); border-color: rgba(244,63,94,.18); color: rgb(225,29,72); }
+.tag--events { background: rgba(99,102,241,.10); border-color: rgba(99,102,241,.18); color: rgb(79,70,229); }
+
+.pills { margin-top: 14px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.pills a { display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; border:1px solid rgba(0,0,0,.08); background: rgba(0,0,0,.02); text-decoration:none; color: rgba(0,0,0,.80); font-weight:800; font-size: 13px; }
+.pills img { width:20px; height:20px; border-radius:999px; border:1px solid rgba(0,0,0,.12); }
+</style>
+
+<section class="section gov-contrib" aria-label="Contributors">
+  <div class="container">
+    <div class="section-kicker">Community</div>
+    <div class="section-title">Contributors</div>
+    <p class="muted" style="max-width: 90ch;">
+      WAF++ zählt Contributions nicht nur als Code. Reviews, RFC-Kommentare, Issue-Triage, Working Groups,
+      Dokumentation und Übersetzungen sind genauso wichtig. Daher kombinieren wir
+      <strong>GitHub Code Contributors (automatisch)</strong> mit <strong>Community Impact Contributors (kuratiert)</strong>.
+    </p>
+
+    <div class="section-title" style="font-size: 22px; margin-top: 18px;">Core Contributors</div>
+    <div class="gov-grid">
+      {% for c in site.data.core_contributors %}
+      <div class="gov-card">
+        <div class="gov-top">
+          <img class="gov-avatar" alt="{{ c.display_name | default: c.github }}" src="https://github.com/{{ c.github }}.png?size=96">
+          <div>
+            <div class="gov-name"><a href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">{{ c.display_name | default: c.github }}</a></div>
+            <div class="gov-role">{{ c.role }}</div>
+          </div>
+        </div>
+        {% if c.types %}
+        <div class="gov-tags">{% for t in c.types %}{% include contrib-tag.html type=t %}{% endfor %}</div>
+        {% endif %}
+        {% if c.note %}<div class="gov-note">{{ c.note }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="section-title" style="font-size: 22px; margin-top: 22px;">Community Impact Contributors</div>
+    <div class="muted">Curated list for non-code contributions (comments, reviews, discussions, triage).</div>
+    <div class="gov-grid">
+      {% for c in site.data.community_contributors %}
+      <div class="gov-card">
+        <div class="gov-top">
+          {% if c.github %}
+          <img class="gov-avatar" alt="{{ c.display_name | default: c.github }}" src="https://github.com/{{ c.github }}.png?size=96">
+          {% else %}
+          <img class="gov-avatar" alt="{{ c.display_name | default: 'Contributor' }}" src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}">
+          {% endif %}
+          <div>
+            <div class="gov-name">
+              {% if c.github %}
+                <a href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">{{ c.display_name | default: c.github }}</a>
+              {% elsif c.link %}
+                <a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.display_name }}</a>
+              {% else %}
+                {{ c.display_name | default: 'Contributor' }}
+              {% endif %}
+            </div>
+            <div class="gov-role">Community Contributor</div>
+          </div>
+        </div>
+
+        {% if c.types %}
+        <div class="gov-tags">{% for t in c.types %}{% include contrib-tag.html type=t %}{% endfor %}</div>
+        {% endif %}
+
+        {% if c.contributions %}
+        <ul class="gov-bullets">
+          {% for b in c.contributions %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="section-title" style="font-size: 22px; margin-top: 22px;">All code contributors</div>
+    <div class="muted">Auto-loaded from GitHub · <span data-code-contrib-count>—</span> total</div>
+    <div class="pills" data-code-contributors><span class="muted">Loading…</span></div>
+
+    <div class="hero-actions" style="margin-top: 18px;">
+      <a class="btn btn-primary" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing Guide →</a>
+      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener">Good first issues →</a>
+      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/discussions" target="_blank" rel="noopener">Discussions →</a>
+    </div>
+  </div>
+
+  <div hidden
+       data-github-org="{{ site.data.github.org }}"
+       data-github-repo="{{ site.data.github.repo }}"
+       data-github-per-page="{{ site.data.github.per_page | default: 30 }}"
+       data-contrib-config></div>
+</section>

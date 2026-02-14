@@ -12,9 +12,8 @@ description: Moderne Web Application Firewall – schneller, transparenter und c
       <p class="lead">WAF++ ist ein offenes Framework für alle, die Cloud-Architekturen bewusst, sicher und vendor-neutral gestalten wollen.</p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Dokumentation</a>
-        {% include github-hero-cta.html %}
-      </div>
+  <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Dokumentation</a>
+</div>
 
       <div style="margin-top:22px">
         <p class="small muted" style="margin:0 0 10px">Vertrauen von security & platform teams</p>
@@ -47,6 +46,9 @@ description: Moderne Web Application Firewall – schneller, transparenter und c
   </div>
   </div>
 </section>
+
+{% include contributors-home.html %}
+
 
 <section class="section" id="framework-entry">
   <div class="container">
@@ -152,38 +154,51 @@ description: Moderne Web Application Firewall – schneller, transparenter und c
 <section class="reviews-fullwidth" aria-label="Referenzen">
   <div class="reviews-inner">
     <h2 class="section-title">Referenzen</h2>
-
     <div class="review-slider fullwidth" data-review-slider>
-      <div class="review-viewport">
-        {% for r in site.data.reviews %}
-        <article class="review{% if forloop.first %} is-active{% endif %}" data-review>
-          <p class="review-quote">„{{ r.quote | strip_newlines }}“</p>
-          <div class="review-person">
-            <img class="review-avatar" src="{{ r.avatar }}" alt="{{ r.name }}">
-            <div class="review-person-meta">
-              <div class="review-name">{{ r.name }}</div>
-              <div class="review-role">{{ r.role }}</div>
-            </div>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-
-      <div class="review-controls" aria-label="Navigation">
-        <button class="icon-btn" type="button" data-review-prev aria-label="Vorherige Referenz">
-          <i data-lucide="chevron-left"></i>
-        </button>
-
-        <div class="review-dots" data-review-dots aria-label="Seiten"></div>
-
-        <button class="icon-btn" type="button" data-review-next aria-label="Nächste Referenz">
-          <i data-lucide="chevron-right"></i>
-        </button>
-      </div>
+  <div class="review-viewport">
+    <article class="review is-active" data-review>
+  <p class="review-quote">„WAF++ bietet eine stabile Grundlage für digitale Anwendungen und zeigt, wie
+  technische Präzision und gestalterische Sensibilität erfolgreich zusammengeführt werden können.
+  Die Wahl der Farbpalette – mit einem soliden, modernen Grundton und einem frischen Akzent –
+  vermittelt Verlässlichkeit und schafft gleichzeitig eine visuelle Identität, die sowohl
+  skalierbar als auch ansprechend ist.“</p>
+  <div class="review-person">
+    <img class="review-avatar" src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lydia-01-1920w.jpg" alt="Lydia Hundsdörfer">
+    <div class="review-person-meta">
+      <div class="review-name">Lydia Hundsdörfer</div>
+      <div class="review-role">Project &amp; Partner Manager Vogel IT</div>
     </div>
   </div>
-</section>
+</article>
 
+<article class="review" data-review>
+  <p class="review-quote">„WAF++ hat das große Potential, die perfekte Antwort auf die realen Alltagsfragen der Technologie-,
+  Cloud- &amp; Developer-Community zu werden. Durch die zunehmende Dynamik und das Spannungsfeld zwischen Innovationsdrang,
+  Technologie-Überangebot und Souveränität sind Unternehmen und Technologie-Experten zunehmend unter Druck und finden bislang
+  nur fragmentierte oder vertriebsorientierte Antworten. Mit WAF++ startet eine Bewegung, die echte Hands-On-Expertise aus dem
+  Leben zusammenbringt und weiterentwickeln kann.“</p>
+  <div class="review-person">
+    <img class="review-avatar" src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/Profilbild_Maximilian_Hille_weiss-1920w.jpg" alt="Maximilian Hille">
+    <div class="review-person-meta">
+      <div class="review-name">Maximilian Hille</div>
+      <div class="review-role">Cloud Analyst</div>
+    </div>
+  </div>
+</article>
+  </div>
+
+  <div class="review-controls" aria-label="Navigation">
+    <button class="icon-btn" type="button" data-review-prev aria-label="Vorherige Referenz">
+      <i data-lucide="chevron-left"></i>
+    </button>
+
+    <div class="review-dots" data-review-dots aria-label="Seiten"></div>
+
+    <button class="icon-btn" type="button" data-review-next aria-label="Nächste Referenz">
+      <i data-lucide="chevron-right"></i>
+    </button>
+  </div>
+</div>
 
 <section class="section" id="cta">
   <div class="container">

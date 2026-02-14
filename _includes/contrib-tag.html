@@ -1,0 +1,11 @@
+{%- assign t = include.type | downcase -%}
+{%- assign label = include.type -%}
+{%- assign cls = 'tag' -%}
+{%- if t contains 'code' -%}{%- assign cls = 'tag tag--code' -%}{%- endif -%}
+{%- if t contains 'govern' -%}{%- assign cls = 'tag tag--gov' -%}{%- endif -%}
+{%- if t contains 'rfc' -%}{%- assign cls = 'tag tag--rfc' -%}{%- endif -%}
+{%- if t contains 'doc' -%}{%- assign cls = 'tag tag--docs' -%}{%- endif -%}
+{%- if t contains 'comm' -%}{%- assign cls = 'tag tag--community' -%}{%- endif -%}
+{%- if t contains 'trans' -%}{%- assign cls = 'tag tag--trans' -%}{%- endif -%}
+{%- if t contains 'event' -%}{%- assign cls = 'tag tag--events' -%}{%- endif -%}
+<span class="{{ cls }}">{{ label }}</span>
