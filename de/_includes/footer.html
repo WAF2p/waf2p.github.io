@@ -1,0 +1,38 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-columns">
+      {% for column in site.data.footer %}
+        <ul class="footer-links">
+          {% for link in column.links %}
+            <li>
+              <a
+                href="{% include relative-src.html src=link.link %}"
+                {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+                {% if link.social_icon %}class="social-link"{% endif %}
+              >
+                {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+                {{ link.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+
+      <div class="footer-partner">
+        <a href="https://www.cloudnativeconference.de/" target="_blank" rel="noopener nofollow">
+          <img
+            src="{{ '/assets/images/cloud-native-conference.png' | relative_url }}"
+            alt="Cloud Native Conference"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; {{ site.time | date: '%Y' }} WAF++
+      &bull; <a href="{{ '/impressum/' | relative_url }}">Impressum</a>
+      &bull; Powered by GitHub Pages
+    </p>
+  </div>
+</footer>

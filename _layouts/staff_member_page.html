@@ -3,152 +3,152 @@ layout: default
 ---
 {% assign member = site.staff_members | where: "slug", page.member_id | first %}
 {% if member == nil %}
-  <section class="page-hero">
-    <div class="container">
-      {% include breadcrumb-inline.html %}
-{% include breadcrumb-inline.html %}
-<h1>Person nicht gefunden</h1>
-      <p class="lead">Die angeforderte Profilseite existiert nicht.</p>
-    </div>
-  </section>
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb-inline.html %}
+    <h1>Person not found</h1>
+    <p class="lead">The requested profile page does not exist.</p>
+  </div>
+</section>
 {% else %}
-  {%- comment -%} Reuse the existing staff_member layout by rendering its core markup inline {%- endcomment -%}
-  <section class="page-hero">
-    <div class="container">
-      {% include breadcrumb.html %}
-      <div class="hero-split">
-        {%- comment -%} Avatar / visual on the left {%- endcomment -%}
-        <div class="hero-visual">
-          <div class="card profile-card">
-            <div class="profile-avatar">
-              <div class="profile-avatar__ring" aria-hidden="true"></div>
-              <img class="profile-avatar__img" src="{{ member.image_path | default: '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="{{ member.name }}" loading="lazy">
-            </div>
+{%- comment -%} Reuse the existing staff_member layout by rendering its core markup inline {%- endcomment -%}
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb.html %}
+    <div class="hero-split">
+      {%- comment -%} Avatar / visual on the left {%- endcomment -%}
+      <div class="hero-visual">
+        <div class="card profile-card">
+          <div class="profile-avatar">
+            <div class="profile-avatar__ring" aria-hidden="true"></div>
+            <img class="profile-avatar__img" src="{{ member.image_path | default: '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="{{ member.name }}" loading="lazy">
           </div>
         </div>
+      </div>
 
-        {%- comment -%} Profile content to the right of the image {%- endcomment -%}
-        <div class="profile-copy">
-          <div class="meta-row">
-            <span class="badge">Team</span>
-          </div>
-          <h1 class="hero-title">{{ member.name }}</h1>
-          {% if member.position %}<p class="lead">{{ member.position }}</p>{% endif %}
-          {% if member.blurb %}<p class="muted">{{ member.blurb }}</p>{% endif %}
-
-          {% if member.expertise %}
-          <div class="chips">
-            {% for e in member.expertise %}
-              <span class="chip">{{ e }}</span>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          {% if member.social %}
-          <div class="profile-actions">
-            {% for s in member.social %}
-              <a class="btn btn-ghost btn-small" href="{{ s.link }}" {% if s.new_window %}target="_blank" rel="noopener"{% endif %}>
-                <i data-lucide="{% if s.social_icon %}{{ s.social_icon | downcase }}{% else %}link{% endif %}"></i>
-                <span>{{ s.name }}</span>
-              </a>
-            {% endfor %}
-          </div>
-          {% endif %}
+      {%- comment -%} Profile content to the right of the image {%- endcomment -%}
+      <div class="profile-copy">
+        <div class="meta-row">
+          <span class="badge">Team</span>
         </div>
-      </div>
-    </div>
-  </section>
+        <h1 class="hero-title">{{ member.name }}</h1>
+        {% if member.position %}<p class="lead">{{ member.position }}</p>{% endif %}
+        {% if member.blurb %}<p class="muted">{{ member.blurb }}</p>{% endif %}
 
-  
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2>Vita</h2>
-        <p class="muted">Ein kurzer Überblick über den Background.</p>
-      </div>
-      <div class="prose">
-        {% if member.content and member.content != "" %}
-          {{ member.content }}
-        {% elsif member.blurb %}
-          <p>{{ member.blurb }}</p>
-        {% else %}
-          <p>Mehr Informationen folgen in Kürze.</p>
+        {% if member.expertise %}
+        <div class="chips">
+          {% for e in member.expertise %}
+          <span class="chip">{{ e }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if member.social %}
+        <div class="profile-actions">
+          {% for s in member.social %}
+          <a class="btn btn-ghost btn-small" href="{{ s.link }}" {% if s.new_window %}target="_blank" rel="noopener"{% endif %}>
+            <i data-lucide="{% if s.social_icon %}{{ s.social_icon | downcase }}{% else %}link{% endif %}"></i>
+            <span>{{ s.name }}</span>
+          </a>
+          {% endfor %}
+        </div>
         {% endif %}
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  {% assign authored_posts = site.posts | where: "author_staff_member", page.member_id %}
-  {% if authored_posts and authored_posts.size > 0 %}
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section-head">
-        <h2>Beiträge</h2>
-        <p class="muted">Artikel von {{ member.name }} im Blog.</p>
-      </div>
-      <div class="blog-grid">
-        {% for p in authored_posts limit: 3 %}
-          {% include blog-card.html post=p %}
-        {% endfor %}
-      </div>
-      <div class="section-actions">
-        <a class="btn btn-ghost" href="/blog/">Alle Blogposts</a>
-      </div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Bio</h2>
+      <p class="muted">A short overview of the background.</p>
     </div>
-  </section>
-  {% endif %}
-
-  {% assign all_confs = site.data.conferences | default: empty %}
-  {% assign now_ts = site.time | date: "%s" %}
-  {% assign upcoming = "" | split: "" %}
-  {% assign past = "" | split: "" %}
-
-  {% for c in all_confs %}
-    {% assign participates = false %}
-    {% if c.members %}
-      {% for p in c.members %}
-        {% assign pid = p.id | default: p.name | slugify %}
-        {% if pid == page.member_id %}
-          {% assign participates = true %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-    {% if participates %}
-      {% assign c_ts = c.start_date | default: c.start | date: "%s" %}
-      {% if c_ts >= now_ts %}
-        {% assign upcoming = upcoming | push: c %}
+    <div class="prose">
+      {% if member.content and member.content != "" %}
+      {{ member.content }}
+      {% elsif member.blurb %}
+      <p>{{ member.blurb }}</p>
       {% else %}
-        {% assign past = past | push: c %}
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-
-  {% if upcoming.size > 0 or past.size > 0 %}
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2>Konferenzen</h2>
-        <p class="muted">Wo du {{ member.name }} getroffen hast – und als Nächstes triffst.</p>
-      </div>
-
-      {% if upcoming.size > 0 %}
-        <h3 class="subhead">Geplant</h3>
-        <div class="conf-grid">
-          {% for c in upcoming %}
-            {% include conference-card.html conf=c %}
-          {% endfor %}
-        </div>
-      {% endif %}
-
-      {% if past.size > 0 %}
-        <h3 class="subhead">Vergangen</h3>
-        <div class="conf-grid">
-          {% for c in past %}
-            {% include conference-card.html conf=c %}
-          {% endfor %}
-        </div>
+      <p>More information coming soon.</p>
       {% endif %}
     </div>
-  </section>
-  {% endif %}
+  </div>
+</section>
+
+{% assign authored_posts = site.posts | where: "author_staff_member", page.member_id %}
+{% if authored_posts and authored_posts.size > 0 %}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Posts</h2>
+      <p class="muted">Articles by {{ member.name }} on the blog.</p>
+    </div>
+    <div class="blog-grid">
+      {% for p in authored_posts limit: 3 %}
+      {% include blog-card.html post=p %}
+      {% endfor %}
+    </div>
+    <div class="section-actions">
+      <a class="btn btn-ghost" href="/blog/">All blog posts</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% assign all_confs = site.data.conferences | default: empty %}
+{% assign now_ts = site.time | date: "%s" %}
+{% assign upcoming = "" | split: "" %}
+{% assign past = "" | split: "" %}
+
+{% for c in all_confs %}
+{% assign participates = false %}
+{% if c.members %}
+{% for p in c.members %}
+{% assign pid = p.id | default: p.name | slugify %}
+{% if pid == page.member_id %}
+{% assign participates = true %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if participates %}
+{% assign c_ts = c.start_date | default: c.start | date: "%s" %}
+{% if c_ts >= now_ts %}
+{% assign upcoming = upcoming | push: c %}
+{% else %}
+{% assign past = past | push: c %}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+{% if upcoming.size > 0 or past.size > 0 %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Conferences</h2>
+      <p class="muted">Where you met {{ member.name }} — and where you’ll meet them next.</p>
+    </div>
+
+    {% if upcoming.size > 0 %}
+    <h3 class="subhead">Upcoming</h3>
+    <div class="conf-grid">
+      {% for c in upcoming %}
+      {% include conference-card.html conf=c %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if past.size > 0 %}
+    <h3 class="subhead">Past</h3>
+    <div class="conf-grid">
+      {% for c in past %}
+      {% include conference-card.html conf=c %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
 {% endif %}

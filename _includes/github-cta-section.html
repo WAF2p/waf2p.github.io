@@ -1,0 +1,82 @@
+{% assign is_de = page.lang == 'de' or page.url contains '/de/' %}
+<section class="section section--tight">
+  <div class="container">
+    <div class="card card-pad" style="overflow:hidden;">
+      <div style="display:grid; grid-template-columns: 1.15fr .85fr; gap:18px; align-items:center;">
+        <div>
+          <div class="kicker">{% if is_de %}OPEN SOURCE{% else %}OPEN SOURCE{% endif %}</div>
+          <h2 style="margin:8px 0 10px;">
+            {% if is_de %}WAF++ auf GitHub{% else %}WAF++ on GitHub{% endif %}
+          </h2>
+          <p class="lead" style="margin:0; max-width: 85ch;">
+            {% if is_de %}
+              Folg dem Projekt, diskutiere Anforderungen und hilf beim Aufbau von Controls, Patterns und Tests.
+            {% else %}
+              Follow the project, discuss requirements, and help build controls, patterns, and testability.
+            {% endif %}
+          </p>
+
+          <div class="hero-actions" style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+              <i data-lucide="star" aria-hidden="true"></i>
+              {% if is_de %}Star geben{% else %}Star the repo{% endif %}
+            </a>
+            <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+              <i data-lucide="github" aria-hidden="true"></i>
+              {% if is_de %}Repository öffnen{% else %}Open repository{% endif %}
+            </a>
+            <a class="btn" href="https://github.com/waf2p/discussions" target="_blank" rel="noopener">
+              <i data-lucide="messages-square" aria-hidden="true"></i>
+              {% if is_de %}Discussions{% else %}Discussions{% endif %}
+            </a>
+          </div>
+        </div>
+
+        <div style="display:grid; gap:10px;">
+          <div class="card" style="padding:12px; border-radius:16px; border:1px solid rgba(0,0,0,.08);">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div class="icon-pill"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+              <div>
+                <div style="font-weight:900;">
+                  {% if is_de %}Contribute{% else %}Contribute{% endif %}
+                </div>
+                <div class="muted" style="margin-top:2px;">
+                  {% if is_de %}PRs, Reviews, Issues &amp; RFCs{% else %}PRs, reviews, issues &amp; RFCs{% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px; border-radius:16px; border:1px solid rgba(0,0,0,.08);">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div class="icon-pill"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+              <div>
+                <div style="font-weight:900;">
+                  {% if is_de %}Controls-first{% else %}Controls-first{% endif %}
+                </div>
+                <div class="muted" style="margin-top:2px;">
+                  {% if is_de %}Maschinenlesbar &amp; auditierbar{% else %}Machine-readable &amp; auditable{% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px; border-radius:16px; border:1px solid rgba(0,0,0,.08);">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <div class="icon-pill"><i data-lucide="users" aria-hidden="true"></i></div>
+              <div>
+                <div style="font-weight:900;">
+                  {% if is_de %}Community-driven{% else %}Community-driven{% endif %}
+                </div>
+                <div class="muted" style="margin-top:2px;">
+                  {% if is_de %}Transparente Governance &amp; Roadmap{% else %}Transparent governance &amp; roadmap{% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

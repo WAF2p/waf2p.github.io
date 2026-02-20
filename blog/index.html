@@ -1,14 +1,14 @@
 ---
 layout: default
+lang: en
+ref: blog
 title: Blog
-description: Updates, Hintergründe und neue Inhalte rund um WAF++.
+description: Updates, insights, and new content around WAF++.
 ---
-
 <section class="page-hero">
   <div class="container">
     {% include breadcrumb-inline.html %}
-{% include breadcrumb-inline.html %}
-{% include breadcrumb.html %}
+    {% include breadcrumb.html %}
 
     <div class="badge"><span class="dot"></span> WAF++ Blog</div>
     <h1>{{ page.title }}</h1>
@@ -21,30 +21,30 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
     <div class="blog-grid">
       {% assign posts_list = paginator.posts | default: site.posts %}
       {% for post in posts_list %}
-        {% include blog-card.html post=post %}
+      {% include blog-card.html post=post %}
       {% endfor %}
     </div>
 
-{% if paginator and paginator.total_pages > 1 %}
-  <div class="pagination modern">
-    {% if paginator.previous_page %}
+    {% if paginator and paginator.total_pages > 1 %}
+    <div class="pagination modern">
+      {% if paginator.previous_page %}
       <a class="btn" href="{% include relative-src.html src=paginator.previous_page_path %}">
-        <span aria-hidden="true">&larr;</span> Neuere
+        <span aria-hidden="true">&larr;</span> Newer
       </a>
-    {% else %}
+      {% else %}
       <span></span>
-    {% endif %}
+      {% endif %}
 
-    <div class="muted small">Seite {{ paginator.page }} von {{ paginator.total_pages }}</div>
+      <div class="muted small">Page {{ paginator.page }} of {{ paginator.total_pages }}</div>
 
-    {% if paginator.next_page %}
+      {% if paginator.next_page %}
       <a class="btn" href="{% include relative-src.html src=paginator.next_page_path %}">
-        Ältere <span aria-hidden="true">&rarr;</span>
+        Older <span aria-hidden="true">&rarr;</span>
       </a>
-    {% else %}
+      {% else %}
       <span></span>
+      {% endif %}
+    </div>
     {% endif %}
-  </div>
-{% endif %}
   </div>
 </section>

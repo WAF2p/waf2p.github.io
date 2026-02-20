@@ -1,0 +1,33 @@
+{%- comment -%}
+  Central language variables (GitHub Pages safe, no plugins)
+
+  Conventions:
+  - English is default (no prefix)
+  - German lives under /de/
+
+  Exposes:
+  - lang ("en"|"de")
+  - lang_prefix (""|"/de")
+  - i18n (hash with translated UI strings)
+{%- endcomment -%}
+
+{%- assign lang = page.lang | default: nil -%}
+
+{%- if lang == nil or lang == '' -%}
+  {%- if page.url and page.url != '' and page.url != '/' and page.url contains '/de/' -%}
+    {%- assign lang = 'de' -%}
+  {%- elsif page.url == '/de/' -%}
+    {%- assign lang = 'de' -%}
+  {%- else -%}
+    {%- assign lang = 'en' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if lang == 'de' -%}
+  {%- assign lang_prefix = '/de' -%}
+{%- else -%}
+  {%- assign lang_prefix = '' -%}
+  {%- assign lang = 'en' -%}
+{%- endif -%}
+
+{%- assign i18n = site.data.i18n[lang] | default: site.data.i18n.en -%}

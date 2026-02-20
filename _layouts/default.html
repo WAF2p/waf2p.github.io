@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="de">
+{% include lang-vars.html %}
+<html lang="{{ lang | escape }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,7 @@
   <body>
     {% include header.html %}
     <main>
+      {% include translation-notice.html %}
       {{ content }}
     </main>
     {% include footer.html %}
@@ -30,6 +32,5 @@
 
     <!-- Site JS -->
     <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
-    <script src="{{ '/assets/js/contributors.js?v=20260214-1' | relative_url }}" defer></script>
   </body>
 </html>

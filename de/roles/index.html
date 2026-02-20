@@ -1,0 +1,120 @@
+---
+layout: default
+lang: de
+ref: roles
+title: Rollen & Mitglieder
+permalink: /de/roles/
+---
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Governance</div>
+    <h1>Rollen & Mitglieder</h1>
+    <p class="lead" style="max-width: 72ch;">
+      Überblick über alle Rollen im Projekt – mit den zugewiesenen Mitgliedern, im selben Layout wie eure Team-Übersicht.
+      Die Zuordnung wird vollständig über <code>_data/roles.yml</code> gesteuert.
+    </p>
+    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
+      <a class="btn btn-primary" href="/governance-community/">Governance & Community</a>
+      <a class="btn" href="#roles">Zu den Rollen</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="roles">
+  <div class="container">
+    <div class="section-kicker">Directory</div>
+    <div class="section-title">Alle Rollen</div>
+
+    {% assign roles = site.data.roles %}
+
+    <div class="grid-3" style="margin-top: 18px;">
+      {% for role in roles %}
+      <a class="card card-pad" href="#{{ role.id }}" style="text-decoration:none;">
+        <div class="card-kicker">Role</div>
+        <h3 style="margin-top: 6px;">{{ role.title }}</h3>
+        <p class="muted">{{ role.description }}</p>
+        <div class="muted" style="margin-top: 10px;">
+          <strong>Members:</strong>
+          {% if role.members and role.members.size > 0 %}
+            {{ role.members.size }}
+          {% else %}
+            tbd
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% for role in site.data.roles %}
+<section class="section section--tight" id="{{ role.id }}">
+  <div class="container">
+    <div class="section-kicker">Role</div>
+    <div class="section-title">{{ role.title }}</div>
+    <p class="muted" style="max-width: 78ch; margin-top: 10px;">{{ role.description }}</p>
+
+    {% if role.members and role.members.size > 0 %}
+      <div class="people-grid" style="margin-top: 18px;">
+        {% for m in role.members %}
+          {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
+          {%- assign person = site.staff_members | where: "url", member_url | first -%}
+          {% if person %}
+          <article class="person-card">
+            <div class="person-card__head">
+              <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+              <div>
+                <div class="person-card__name">
+                  <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
+                </div>
+                <div class="person-card__role">{{ person.position }}</div>
+              </div>
+            </div>
+
+            {% if person.blurb %}
+            <p class="person-card__bio">{{ person.blurb }}</p>
+            {% endif %}
+
+            {% if person.social %}
+            <div class="person-card__social">
+              {% for link in person.social %}
+              <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+                 href="{% include relative-src.html src=link.link %}">
+                {% if link.social_icon %}
+                  {% include social-icon.html icon=link.social_icon %}
+                {% endif %}
+              </a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </article>
+          {% else %}
+          <div class="card card-pad">
+            <div class="card-kicker">Missing</div>
+            <h3>Unbekannter Staff Member</h3>
+            <p class="muted">
+              In <code>_data/roles.yml</code> ist <strong>{{ m }}</strong> eingetragen,
+              aber es wurde keine Seite unter <code>{{ member_url }}</code> gefunden.
+            </p>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="card card-pad" style="margin-top: 18px;">
+        <div class="card-kicker">tbd</div>
+        <h3>Mitglieder noch nicht zugewiesen</h3>
+        <p class="muted" style="max-width: 85ch;">
+          Weise dieser Rolle Mitglieder zu, indem du in <code>_data/roles.yml</code> unter
+          <code>members:</code> die Staff-Member Slugs einträgst (z. B. <code>sascha-lewandowski</code>).
+        </p>
+      </div>
+    {% endif %}
+
+    <div style="margin-top: 16px;">
+      <a class="btn" href="#roles">Zur Rollen-Übersicht</a>
+      <a class="btn" style="margin-left: 10px;" href="/governance-community/">Governance Details</a>
+    </div>
+  </div>
+</section>
+{% endfor %}

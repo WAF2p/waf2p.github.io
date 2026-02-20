@@ -1,0 +1,211 @@
+---
+layout: default
+ref: about
+title: Über uns
+description: Die Köpfe hinter WAF++
+permalink: /de/about/
+lang: de
+---
+<section class="hero hero--page">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> WAF++ Community</div>
+    <h1>Über uns</h1>
+    <p class="lead" style="max-width: 70ch">
+      WAF++ ist ein community-getriebenes, cloud-agnostisches Framework aus der Praxis.
+      Wir schaffen eine gemeinsame Grundlage für souveräne, verantwortungsvolle und nachvollziehbare Cloud-Nutzung —
+      unabhängig von Anbietern und jenseits von Marketing-Narrativen.
+    </p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="split">
+      <div class="split-copy">
+        <div class="card-kicker">Warum WAF++</div>
+        <h2>Engineering-first statt Best-Practice-Sammlung.</h2>
+        <p class="lead">
+          Wir vereinen Erfahrungen von Architekt:innen, Plattform-Teams, Security- und Compliance-Spezialist:innen
+          in einem offenen, transparenten und neutralen Rahmen.
+        </p>
+        <div class="compliance" style="margin-top: 14px">
+          <span class="pill">Referenzmodelle</span>
+          <span class="pill">Reifegrad</span>
+          <span class="pill">Entscheidungsleitfäden</span>
+          <span class="pill">Auditierbar</span>
+        </div>
+      </div>
+
+      <div class="split-visual">
+        <div class="card card-pad">
+          <div class="card-kicker">Prinzipien</div>
+          <div class="about-points">
+            <div class="about-point">
+              <div class="about-point__icon">1</div>
+              <div>
+                <strong>Neutral & offen</strong>
+                <div class="muted">Vendor-agnostisch, transparent, community-driven.</div>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="about-point__icon">2</div>
+              <div>
+                <strong>Praxisnah</strong>
+                <div class="muted">Aus echten Projekten, Audits und Betriebserfahrung.</div>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="about-point__icon">3</div>
+              <div>
+                <strong>Nachvollziehbar</strong>
+                <div class="muted">Struktur, Verantwortlichkeiten und Entscheidungsklarheit.</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 18px">
+            <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Dokumentation</a>
+            <a class="btn" href="{{ '/conferences/' | relative_url }}">Konferenzen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Team</div>
+    <div class="section-title">Die Köpfe hinter WAF++</div>
+
+    <div class="people-grid">
+      {% for person in site.staff_members %}
+      {% if person.name and person.name != '' %}
+      <article class="person-card">
+        <div class="person-card__head">
+          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+          <div>
+            <div class="person-card__name">
+              <a href="{{ "/staff_members/" | append: person.slug | append: "/" | relative_url }}">{{ person.name }}</a>
+            </div>
+            <div class="person-card__role">{{ person.position }}</div>
+          </div>
+        </div>
+
+        {% if person.blurb %}
+        <p class="person-card__bio">{{ person.blurb }}</p>
+        {% endif %}
+
+        {% if person.social %}
+        <div class="person-card__social">
+          {% for link in person.social %}
+          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+             href="{% include relative-src.html src=link.link %}">
+            {% if link.social_icon %}
+              {% include social-icon.html icon=link.social_icon %}
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-kicker">Honoured Members</div>
+    <div class="section-title">Von Anfang an dabei</div>
+    <p class="muted" style="max-width: 75ch; margin-top: 10px">
+      Menschen, die WAF++ von Beginn an geprägt haben und uns bis heute begleiten – ohne aktuell im Core-Team aktiv zu sein.
+    </p>
+
+    <div class="people-grid people-grid--honoured" style="margin-top: 18px">
+      {% for person in site.data.honoured_members %}
+      <article class="person-card">
+        <div class="person-card__head">
+          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+          <div>
+            <div class="person-card__name">
+              {% if person.github and person.github != "" %}
+                <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
+              {% else %}
+                {{ person.name }}
+              {% endif %}
+            </div>
+            <div class="person-card__role">{{ person.position }}</div>
+          </div>
+        </div>
+
+        {% if person.blurb %}
+        <p class="person-card__bio">{{ person.blurb }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-kicker">Geschichte</div>
+    <div class="section-title">Wie WAF++ gewachsen ist</div>
+    <p class="muted" style="max-width: 75ch; margin-top: 10px">
+      Von den ersten Skizzen bis zur lebendigen Community: WAF++ entsteht iterativ — aus Projektrealität, Diskussionen und dem Willen,
+      Cloud-Entscheidungen nachvollziehbar zu machen.
+    </p>
+
+    <div class="timeline" style="margin-top: 18px">
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Start: Problem klären</div>
+          <div class="timeline-text">Wir haben typische Fragen aus Plattform- und Architektur-Teams gesammelt und in ein gemeinsames Raster gebracht.</div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Struktur: Prinzipien & Leitplanken</div>
+          <div class="timeline-text">Aus Erfahrungswerten wurden wiederholbare Bausteine: Verantwortlichkeiten, Entscheidungswege und Reifegrad.</div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Community: Review & Feedback</div>
+          <div class="timeline-text">In Reviews, Workshops und Gesprächen wurden Inhalte geschärft — mit Fokus auf Neutralität und Praxisnähe.</div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Heute: Weiterentwicklung</div>
+          <div class="timeline-text">WAF++ bleibt offen: neue Beiträge, neue Perspektiven, kontinuierliche Verbesserungen — transparent im Alltag nutzbar.</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cta">
+  <div class="container">
+    <div class="cta">
+      <h2>Mitmachen?</h2>
+      <p class="lead" style="max-width: 70ch">
+        WAF++ ist offen für alle, die Cloud-Realität nicht nur konsumieren, sondern aktiv mitgestalten wollen.
+        Egal ob du Erfahrungen teilen, Inhalte reviewen oder neue Bausteine mitentwickeln möchtest — dein Beitrag zählt.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/" target="_blank" rel="noopener">Github</a>
+        <a class="btn" href="{{ '/blog/' | relative_url }}">Blog</a>
+      </div>
+    </div>
+  </div>
+</section>

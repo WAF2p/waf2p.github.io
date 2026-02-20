@@ -1,21 +1,23 @@
 ---
 layout: default
+lang: en
+ref: conferences
 permalink: /conferences/
 ---
-
 <!-- Full width hero -->
 <section class="hero hero--page hero--fullwidth">
   <div class="hero__bg"></div>
   <div class="container">
-    <div class="badge"><span class="dot"></span> WAF++ Präsenz</div>
-    <h1>Konferenzen</h1>
+    <div class="badge"><span class="dot"></span> WAF++ Presence</div>
+    <h1>Conferences</h1>
     <p class="lead" style="max-width: 75ch">
-      Das sind Konferenzen, auf denen wir sind — inklusive Datum, Location, Beschreibung und den anwesenden WAF++ Mitgliedern.
+      These are the conferences we attend — including date, location, description,
+      and the WAF++ members present.
     </p>
 
     <div class="hero-actions hero-actions--spaced">
-      <a class="btn btn-primary" href="#upcoming">Nächste Konferenzen</a>
-      <a class="btn" href="#speaker">Speaker</a>
+      <a class="btn btn-primary" href="#upcoming">Upcoming conferences</a>
+      <a class="btn" href="#speaker">Speakers</a>
       <a class="btn" href="#community">Open Source</a>
     </div>
   </div>
@@ -25,7 +27,7 @@ permalink: /conferences/
 <section class="section" id="upcoming">
   <div class="container">
     <div class="section-kicker">Upcoming</div>
-    <div class="section-title">Die nächsten Konferenzen mit WAF++</div>
+    <div class="section-title">Upcoming conferences featuring WAF++</div>
 
     <div class="conference-grid">
       {% assign today = 'now' | date: '%Y-%m-%d' %}
@@ -44,23 +46,23 @@ permalink: /conferences/
         <p class="conf-description">{{ conf.description }}</p>
 
         <div class="conf-link">
-          <a href="{{ conf.link }}" target="_blank" class="btn btn-primary" rel="noopener">Learn More</a>
+          <a href="{{ conf.link }}" target="_blank" class="btn btn-primary" rel="noopener">Learn more</a>
         </div>
 
         {% if conf.members %}
         <div class="conf-members">
-          <h4>WAF++ Mitglieder</h4>
+          <h4>WAF++ Members</h4>
           <div class="member-grid">
             {% for member_info in conf.members %}
-              {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
-              {% assign member = site.staff_members | where: "url", author_id | first %}
-              {% if member %}
-              <a class="member-chip"
-                 href="{{ member.url | relative_url }}"
-                 title="{{ member_info.name }}{% if member_info.role %} ({{ member_info.role }}){% endif %}">
-                <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
-              </a>
-              {% endif %}
+            {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+            {% assign member = site.staff_members | where: "url", author_id | first %}
+            {% if member %}
+            <a class="member-chip"
+               href="{{ member.url | relative_url }}"
+               title="{{ member_info.name }}{% if member_info.role %} ({{ member_info.role }}){% endif %}">
+              <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
+            </a>
+            {% endif %}
             {% endfor %}
           </div>
         </div>
@@ -71,114 +73,115 @@ permalink: /conferences/
   </div>
 </section>
 
-<!-- Speaker teaser (same look as “Die Köpfe hinter WAF++”) -->
+<!-- Speaker teaser -->
 <section class="section" id="speaker">
   <div class="container">
-    <div class="section-kicker">Speaker</div>
-    <div class="section-title">Speaker Teaser</div>
+    <div class="section-kicker">Speakers</div>
+    <div class="section-title">Speaker teaser</div>
     <p class="muted" style="max-width: 75ch; margin-top: 10px">
-      Diese WAF++ Mitglieder sind bei den kommenden Konferenzen dabei. Der Name führt zur Detailseite.
+      These WAF++ members will be attending upcoming conferences.
+      Click a name to view the detailed profile.
     </p>
 
     {% assign today = 'now' | date: '%Y-%m-%d' %}
     {% assign upcoming = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" %}
     {% assign speaker_names = "" | split: "|" %}
     {% for conf in upcoming %}
-      {% if conf.members %}
-        {% for member_info in conf.members %}
-          {% assign speaker_names = speaker_names | push: member_info.name %}
-        {% endfor %}
-      {% endif %}
+    {% if conf.members %}
+    {% for member_info in conf.members %}
+    {% assign speaker_names = speaker_names | push: member_info.name %}
+    {% endfor %}
+    {% endif %}
     {% endfor %}
     {% assign speaker_names = speaker_names | uniq %}
 
     <div class="people-grid">
       {% for speaker_name in speaker_names %}
-        {% assign author_id = speaker_name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
-        {% assign person = site.staff_members | where: "url", author_id | first %}
-        {% if person %}
-        <article class="person-card">
-          <div class="person-card__head">
-            <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
-            <div>
-              <div class="person-card__name">
-                <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
-              </div>
-              <div class="person-card__role">{{ person.position }}</div>
+      {% assign author_id = speaker_name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+      {% assign person = site.staff_members | where: "url", author_id | first %}
+      {% if person %}
+      <article class="person-card">
+        <div class="person-card__head">
+          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+          <div>
+            <div class="person-card__name">
+              <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
             </div>
+            <div class="person-card__role">{{ person.position }}</div>
           </div>
+        </div>
 
-          {% if person.blurb %}
-          <p class="person-card__bio">{{ person.blurb }}</p>
-          {% endif %}
-
-          {% if person.social %}
-          <div class="person-card__social">
-            {% for link in person.social %}
-            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
-               href="{% include relative-src.html src=link.link %}">
-              {% if link.social_icon %}
-                {% include social-icon.html icon=link.social_icon %}
-              {% endif %}
-            </a>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </article>
+        {% if person.blurb %}
+        <p class="person-card__bio">{{ person.blurb }}</p>
         {% endif %}
+
+        {% if person.social %}
+        <div class="person-card__social">
+          {% for link in person.social %}
+          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+             href="{% include relative-src.html src=link.link %}">
+            {% if link.social_icon %}
+            {% include social-icon.html icon=link.social_icon %}
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- Sponsoring -->
+<!-- Open Source & Community -->
 <section class="section section--tight" id="community">
   <div class="container">
     <div class="section-kicker">Open Source</div>
-    <div class="section-title">Community & Mitmachen</div>
+    <div class="section-title">Community & how to get involved</div>
     <p class="muted" style="max-width: 78ch; margin-top: 10px">
-      Aktuell liegt unser Fokus auf Open Source: Inhalte, Reviews, Working Groups und Austausch auf Konferenzen.
-      Sponsoring ist perspektivisch möglich – aber bewusst nicht der Startpunkt.
+      Our current focus is Open Source: content, reviews, working groups, and exchange at conferences.
+      Sponsorship may be possible in the future — but it is intentionally not the starting point.
     </p>
 
     <div class="grid-3">
       <div class="card card-pad">
         <div class="card-kicker">Contribute</div>
         <h3>Issues & Pull Requests</h3>
-        <div class="muted">Kriterien, Fragen, Beispiele oder Code – alles hilft.</div>
+        <div class="muted">Criteria, questions, examples, or code — everything helps.</div>
         <ul class="list" style="margin-top: 12px">
-          <li>Use Cases einbringen</li>
-          <li>Reviews auf bestehende Inhalte</li>
-          <li>Patterns / Anti-Patterns teilen</li>
+          <li>Share use cases</li>
+          <li>Review existing content</li>
+          <li>Contribute patterns / anti-patterns</li>
         </ul>
       </div>
 
       <div class="card card-pad">
         <div class="card-kicker">Working Groups</div>
-        <h3>Gemeinsam ausarbeiten</h3>
-        <div class="muted">Themenbezogene Gruppen je Säule/Topic.</div>
+        <h3>Collaborative development</h3>
+        <div class="muted">Topic-focused groups per pillar/topic.</div>
         <ul class="list" style="margin-top: 12px">
-          <li>RFCs diskutieren & iterieren</li>
-          <li>Scoring / Reifegradansätze prüfen</li>
-          <li>Referenzmodelle schärfen</li>
+          <li>Discuss & iterate on RFCs</li>
+          <li>Review scoring / maturity approaches</li>
+          <li>Refine reference models</li>
         </ul>
       </div>
 
       <div class="card card-pad">
         <div class="card-kicker">Conferences</div>
         <h3>Sessions & BoFs</h3>
-        <div class="muted">Trefft uns auf Events – wir bauen öffentlich.</div>
+        <div class="muted">Meet us at events — we build in the open.</div>
         <ul class="list" style="margin-top: 12px">
-          <li>Öffentliche Roadmap-Updates</li>
-          <li>Workshop-Formate</li>
-          <li>Q&A mit Maintainers</li>
+          <li>Public roadmap updates</li>
+          <li>Workshop formats</li>
+          <li>Q&A with maintainers</li>
         </ul>
       </div>
     </div>
 
     <div class="btn-row" style="margin-top: 18px">
-      <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Auf GitHub mitmachen →</a>
-      <a class="btn" style="margin-left: 10px" href="{{ '/governance-community/' | relative_url }}">Governance & Rollen →</a>
+      <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribute on GitHub →</a>
+      <a class="btn" style="margin-left: 10px" href="{{ '/governance-community/' | relative_url }}">Governance & roles →</a>
     </div>
   </div>
 </section>

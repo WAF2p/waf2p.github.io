@@ -1,0 +1,27 @@
+---
+layout: default
+lang: de
+ref: _layouts/archive
+---
+{% include breadcrumb.html %}
+
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb-inline.html %}
+<div class="page-hero__eyebrow">
+      <span class="badge">Blog</span>
+    </div>
+    <h1 class="page-hero__title">Kategorie: {{ page.title }}</h1>
+    <p class="page-hero__lead">Alle Artikel in der Kategorie <strong>{{ page.title }}</strong>.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="blog-grid">
+      {% for post in page.posts %}
+        {% include blog-card.html post=post %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
