@@ -8,6 +8,7 @@ gem "bigdecimal"
 gem "tzinfo"
 gem "tzinfo-data"
 gem "liquid", "~> 4.0"
+gem "ostruct"  # Required by jekyll-spaceship for Ruby 4.0+
 
 group :jekyll_plugins do
   gem "jekyll-asciidoc"                # no version known

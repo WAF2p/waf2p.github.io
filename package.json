@@ -1,0 +1,18 @@
+{
+  "name": "waf2p-website",
+  "version": "1.0.0",
+  "description": "WAF++ Website with Antora Documentation",
+  "scripts": {
+    "docs:build": "antora antora-playbook.yml",
+    "docs:build:local": "antora antora-playbook-local.yml",
+    "docs:serve": "antora antora-playbook-local.yml && python3 -m http.server 8000 -d _site",
+    "site:build": "bundle exec jekyll build && npm run docs:build:local"
+  },
+  "keywords": ["waf", "cloud", "architecture", "documentation"],
+  "author": "WAF++ Community",
+  "license": "MIT",
+  "devDependencies": {
+    "@antora/cli": "^3.1.0",
+    "@antora/site-generator": "^3.1.0"
+  }
+}

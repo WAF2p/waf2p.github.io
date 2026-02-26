@@ -1,5 +1,5 @@
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy Jekyll + Antora to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -26,18 +26,54 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout main repository
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true   # Fetch all submodules recursively
-          fetch-depth: 0     # Ensures full history (important for some submodules)
+          fetch-depth: 0
+
+      # Setup Node.js for Antora
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Setup Ruby for Jekyll
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      # Install Node dependencies
+      - name: Install Node dependencies
+        run: npm ci
+
+      # Setup GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+
+      # Build Jekyll site first
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      # Build Antora documentation (outputs to _site/docs)
+      - name: Build Antora documentation
+        run: npx antora antora-playbook.yml
+
+      # Verify build output
+      - name: Verify build
+        run: |
+          echo "=== Jekyll output ==="
+          ls -la _site/
+          echo ""
+          echo "=== Antora output ==="
+          ls -la _site/docs/ || echo "Docs directory not found!"
+
+      # Upload combined artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
