@@ -8,7 +8,14 @@ content:
   # Production: Pull from GitHub
   - url: https://github.com/WAF2p/framework.git
     branches: main
-    start_path: .
+
+antora:
+  extensions:
+  - require: '@antora/lunr-extension'
+    index_latest_only: true
+    index_by_heading: true
+    languages: [en, de]
+    snippet_length: 150
 
 ui:
   bundle:
@@ -18,8 +25,26 @@ ui:
     - path: ui.yml
       contents: |
         static_files: [ .nojekyll ]
+    - path: partials/header-content.hbs
+      contents: |
+        <header class="header">
+          <nav class="navbar">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="https://waf2p.dev/">Back to WAF++ Homepage</a>
+            </div>
+            {{#if env.SITE_SEARCH_PROVIDER}}
+            <div class="navbar-item search hide-for-print">
+              <div id="search-field" class="field">
+                <input id="search-input" type="text" placeholder="Search the docs">
+              </div>
+            </div>
+            {{/if}}
+          </nav>
+        </header>
 
 asciidoc:
+  extensions:
+    - asciidoctor-kroki
   attributes:
     page-pagination: ''
     source-language: asciidoc@

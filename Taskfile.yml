@@ -109,17 +109,6 @@ tasks:
       - find modules -name "*.adoc" -type f -print
       - echo "AsciiDoc validation - Found files listed above"
 
-  # Submodule management
-  submodule:update:
-    desc: Update docs submodule to latest commit
-    cmds:
-      - git submodule update --remote --merge docs
-
-  submodule:status:
-    desc: Show submodule status
-    cmds:
-      - git submodule status
-
   # Dependency management
   deps:install:
     desc: Install all dependencies (Ruby + Node.js)
