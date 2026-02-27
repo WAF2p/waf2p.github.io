@@ -1,0 +1,120 @@
+---
+layout: default
+lang: en
+ref: roles
+title: Roles & Members
+permalink: /roles/
+---
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Governance</div>
+    <h1>Roles & Members</h1>
+    <p class="lead" style="max-width: 72ch;">
+      Overview of all roles in the project — with assigned members, using the same layout as your team overview.
+      The mapping is fully driven by <code>_data/roles.yml</code>.
+    </p>
+    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
+      <a class="btn btn-primary" href="/governance-community/">Governance & Community</a>
+      <a class="btn" href="#roles">Go to roles</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="roles">
+  <div class="container">
+    <div class="section-kicker">Directory</div>
+    <div class="section-title">All roles</div>
+
+    {% assign roles = site.data.roles %}
+
+    <div class="grid-3" style="margin-top: 18px;">
+      {% for role in roles %}
+      <a class="card card-pad" href="#{{ role.id }}" style="text-decoration:none;">
+        <div class="card-kicker">Role</div>
+        <h3 style="margin-top: 6px;">{{ role.title }}</h3>
+        <p class="muted">{{ role.description }}</p>
+        <div class="muted" style="margin-top: 10px;">
+          <strong>Members:</strong>
+          {% if role.members and role.members.size > 0 %}
+          {{ role.members.size }}
+          {% else %}
+          tbd
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% for role in site.data.roles %}
+<section class="section section--tight" id="{{ role.id }}">
+  <div class="container">
+    <div class="section-kicker">Role</div>
+    <div class="section-title">{{ role.title }}</div>
+    <p class="muted" style="max-width: 78ch; margin-top: 10px;">{{ role.description }}</p>
+
+    {% if role.members and role.members.size > 0 %}
+    <div class="people-grid" style="margin-top: 18px;">
+      {% for m in role.members %}
+      {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
+      {%- assign person = site.staff_members | where: "url", member_url | first -%}
+      {% if person %}
+      <article class="person-card">
+        <div class="person-card__head">
+          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+          <div>
+            <div class="person-card__name">
+              <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
+            </div>
+            <div class="person-card__role">{{ person.position }}</div>
+          </div>
+        </div>
+
+        {% if person.blurb %}
+        <p class="person-card__bio">{{ person.blurb }}</p>
+        {% endif %}
+
+        {% if person.social %}
+        <div class="person-card__social">
+          {% for link in person.social %}
+          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+             href="{% include relative-src.html src=link.link %}">
+            {% if link.social_icon %}
+            {% include social-icon.html icon=link.social_icon %}
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% else %}
+      <div class="card card-pad">
+        <div class="card-kicker">Missing</div>
+        <h3>Unknown staff member</h3>
+        <p class="muted">
+          <strong>{{ m }}</strong> is listed in <code>_data/roles.yml</code>,
+          but no page was found at <code>{{ member_url }}</code>.
+        </p>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card card-pad" style="margin-top: 18px;">
+      <div class="card-kicker">tbd</div>
+      <h3>Members not assigned yet</h3>
+      <p class="muted" style="max-width: 85ch;">
+        Assign members to this role by adding staff-member slugs under <code>members:</code> in <code>_data/roles.yml</code>
+        (e.g., <code>sascha-lewandowski</code>).
+      </p>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 16px;">
+      <a class="btn" href="#roles">Back to role overview</a>
+      <a class="btn" style="margin-left: 10px;" href="/governance-community/">Governance details</a>
+    </div>
+  </div>
+</section>
+{% endfor %}

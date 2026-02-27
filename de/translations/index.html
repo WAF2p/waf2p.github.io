@@ -1,0 +1,108 @@
+---
+layout: default
+lang: de
+ref: translations
+title: Übersetzungen
+description: Übersicht der Seiten und ihrer Sprachvarianten (EN/DE).
+permalink: /de/translations/
+---
+
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> WAF++</div>
+    <h1>Übersetzungen</h1>
+    <p class="lead" style="max-width: 78ch;">
+      Übersicht der Seiten, die es in Englisch und Deutsch gibt. Diese Seite wird erzeugt, indem alle Pages mit <code>ref</code> gescannt werden.
+    </p>
+
+    <div class="hero-actions" style="margin-top: 22px; justify-content:center;">
+      <a class="btn btn-primary" href="{{ '/translations/' | relative_url }}">English →</a>
+      <a class="btn" href="{{ '/de/faq/' | relative_url }}">FAQ</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Index</div>
+    <div class="section-title">Sprachabdeckung</div>
+    <p class="muted" style="max-width: 90ch; margin-top: 10px;">
+      Als „übersetzt“ gilt eine Seite, wenn es eine Version unter <code>/de/</code> und eine Version außerhalb davon
+      mit derselben <code>ref</code> gibt. Seiten ohne <code>ref</code> werden ignoriert.
+    </p>
+
+    {% assign pages_with_ref = site.pages | where_exp: "p", "p.ref" %}
+    {% assign refs = "" | split: "" %}
+
+    {% for p in pages_with_ref %}
+    {% if p.ref %}
+    {%- comment -%}
+    IMPORTANT: do NOT sort refs, because some pages might have numeric refs (Integer)
+    while others have string refs, which breaks Liquid/Ruby sorting.
+    {%- endcomment -%}
+    {% assign refs = refs | push: p.ref %}
+    {% endif %}
+    {% endfor %}
+
+    {% assign refs = refs | uniq %}
+
+    <div class="card card-pad" style="margin-top: 18px;">
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+          <tr>
+            <th style="width: 28%;">Ref</th>
+            <th style="width: 36%;">Englisch</th>
+            <th style="width: 36%;">Deutsch</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for r in refs %}
+          {% assign items = pages_with_ref | where: "ref", r %}
+
+          {% assign de_item = nil %}
+          {% for p in items %}
+          {% if p.url contains '/de/' %}
+          {% assign de_item = p %}
+          {% break %}
+          {% endif %}
+          {% endfor %}
+
+          {% assign en_item = nil %}
+          {% for p in items %}
+          {% unless p.url contains '/de/' %}
+          {% assign en_item = p %}
+          {% break %}
+          {% endunless %}
+          {% endfor %}
+
+          <tr>
+            <td><code>{{ r }}</code></td>
+
+            <td>
+              {% if en_item %}
+              <a href="{{ en_item.url | relative_url }}">{{ en_item.title | default: en_item.name | default: en_item.url }}</a>
+              {% else %}
+              <span class="muted">fehlt</span>
+              {% endif %}
+            </td>
+
+            <td>
+              {% if de_item %}
+              <a href="{{ de_item.url | relative_url }}">{{ de_item.title | default: de_item.name | default: de_item.url }}</a>
+              {% else %}
+              <span class="muted">fehlt</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="muted small" style="margin-top: 12px;">
+        Tipp: Stelle sicher, dass jede Seite im Front Matter <code>ref:</code> und <code>lang:</code> enthält.
+      </div>
+    </div>
+  </div>
+</section>

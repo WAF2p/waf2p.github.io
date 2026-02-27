@@ -1,143 +1,67 @@
-# ----
-# Site
-
-title: "WAF++"
-url: "https://waf2p.dev/"
-baseurl:
-disqus_shortname:
-
-logo: "https://avatars.githubusercontent.com/u/245947051"
-description: "WAF++ ist ein community-getriebenes, cloud-agnostisches Open-Source-Framework für Architektur, Security, Governance und Reifegradmodelle."
+title: WAF++
+url: https://waf2p.dev
+baseurl: ""
+google_analytics_key: null
+google_maps_javascript_api_key: null
+disqus_shortname: null
+logo: https://avatars.githubusercontent.com/u/245947051
+description: WAF++ ist ein community-getriebenes, cloud-agnostisches Open-Source-Framework
+  für Architektur, Security, Governance und Reifegradmodelle.
 author:
-  name: "WAF++ Community"
-  email: "info@waf2p.dev" # falls du noch keine Adresse hast: leer lassen oder anpassen
-  twitter: ""             # leer lassen oder Namen eintragen, z.B. wafpp
+  name: WAF++ Community
+  email: info@wafpp.dev
+  twitter: ''
 social:
-  name: "CNC by Vogel IT"
+  name: CNC by Vogel IT
   links:
-    - https://www.cloudnativeconference.de/
-
-# -----
-# Build
-
+  - https://www.cloudnativeconference.de/
 timezone: Etc/UTC
 
 collections:
   staff_members:
-    output: true
-    permalink: /staff_members/:name/
-
-
+    output: false
+    _hide_content: false
 paginate: 10
-paginate_path: "/blog/:num/"
+paginate_path: /blog/:num/
 permalink: pretty
-
 defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      _options:
-        content:
-          width: 1500
-          height: 2500
-  - scope:
-      path: ""
-      type: "staff_members"
-    values:
-      full_width: true
-  - scope:
-      path: "/docs"
-    values:
-      layout: "docs"
-      full_width: false
-  - scope:
-      path: ""
-    values:
-      layout: "page"
-  - scope:
-      path: "index.html"
-    values:
-      layout: "default"
-
-mermaid:
-  src: 'js/mermaid.js'
-
-jekyll-spaceship:
-  # default enabled processors
-  processors:
-    - table-processor
-    - mathjax-processor
-    - plantuml-processor
-    - mermaid-processor
-    - polyfill-processor
-    - media-processor
-    - emoji-processor
-    - element-processor
-  mathjax-processor:
-    src:
-      - https://polyfill.io/v3/polyfill.min.js?features=es6
-      - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    config:
-      tex:
-        inlineMath:
-          - ['$','$']
-          - ['\(','\)']
-        displayMath:
-          - ['$$','$$']
-          - ['\[','\]']
-      svg:
-        fontCache: 'global'
-    optimize: # optimization on building stage to check and add mathjax scripts
-      enabled: true # value `false` for adding to all pages
-      include: []   # include patterns for math expressions checking (regexp)
-      exclude: []   # exclude patterns for math expressions checking (regexp)
-  plantuml-processor:
-    mode: default  # mode value 'pre-fetch' for fetching image at building stage
-    css:
-      class: plantuml
-    syntax:
-      code: 'plantuml!'
-      custom: ['@startuml', '@enduml']
-    src: http://www.plantuml.com/plantuml/svg/
-  mermaid-processor:
-    mode: default  # mode value 'pre-fetch' for fetching image at building stage
-    css:
-      class: mermaid
-    syntax:
-      code: 'mermaid!'
-      custom: ['@startmermaid', '@endmermaid']
-    config:
-      theme: default
-    src: https://mermaid.ink/svg/
-  media-processor:
-    default:
-      id: 'media-{id}'
-      class: 'media'
-      width: '100%'
-      height: 350
-      frameborder: 0
-      style: 'max-width: 600px; outline: none;'
-      allow: 'encrypted-media; picture-in-picture'
-  emoji-processor:
-    css:
-      class: emoji
-    src: https://github.githubassets.com/images/icons/emoji/
-
+- scope:
+    path: ''
+    type: posts
+  values:
+    layout: post
+    _options:
+      content:
+        width: 1500
+        height: 2500
+- scope:
+    path: ''
+    type: staff_members
+  values:
+    full_width: true
+    layout: staff_member
+- scope:
+    path: /docs
+  values:
+    layout: docs
+    full_width: false
+- scope:
+    path: ''
+  values:
+    layout: page
+- scope:
+    path: index.html
+  values:
+    layout: default
 jekyll-archives:
   enabled:
-    - categories
-
+  - categories
 plugins:
-  - jekyll-asciidoc
-  - jekyll-spaceship
-  - jekyll-archives
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-feed
-  - jekyll-paginate
-
+- jekyll-archives
+- jekyll-sitemap
+- jekyll-seo-tag
+- jekyll-feed
+- jekyll-paginate
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -162,16 +86,15 @@ keep_files:
 
 _select_data:
   social_icons:
-    - Facebook
-    - Instagram
-    - LinkedIn
-    - Pinterest
-    - Tumblr
-    - Twitter
-    - YouTube
-    - RSS
-    - Github
-
+  - Facebook
+  - Instagram
+  - LinkedIn
+  - Pinterest
+  - Tumblr
+  - Twitter
+  - YouTube
+  - RSS
+  - Github
 _comments:
   map: Update the map location and display settings.
   latitude: Coordinates for the center marker on the map.

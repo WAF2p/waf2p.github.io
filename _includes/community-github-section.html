@@ -1,0 +1,63 @@
+{% assign is_de = page.lang == 'de' or page.url contains '/de/' %}
+{% assign repo = site.data.contributors_meta.repo | default: 'waf2p/waf2p.github.io' %}
+{% assign discussions = site.data.contributors_meta.discussions_url | default: 'https://github.com/waf2p/waf2p.github.io/discussions' %}
+{% assign community_count = site.data.contributors_meta.community_contributors | default: 1 %}
+{% assign gh_cache = site.data.github_contributors %}
+{% assign gh_contribs = gh_cache.contributors %}
+
+<section class="section section--tight" id="community">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <div>
+        <div class="kicker">COMMUNITY</div>
+        <h2 style="margin:6px 0 0;">{% if is_de %}Von der Community gebaut{% else %}Built by the community{% endif %}</h2>
+      </div>
+      <div class="muted small">
+        — code contributors · {{ community_count }} community contributors
+      </div>
+    </div>
+
+    <div class="card card-pad" style="margin-top:14px;">
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        {% assign maintainer_ids = "artem,sascha,sebastian,tim" | split: "," %}
+        {% for mid in maintainer_ids %}
+          {% assign author_id = mid | prepend: "/staff_members/" | append: "/" %}
+          {% assign member = site.staff_members | where: "url", author_id | first %}
+          {% if member %}
+          <a href="{{ member.url | relative_url }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid rgba(0,0,0,.08); border-radius:14px; text-decoration:none; color:inherit; background:#fff; min-width:220px; flex:1 1 220px;">
+            <img src="{{ member.image_path }}" alt="{{ member.name }}" style="width:34px; height:34px; border-radius:999px; object-fit:cover;">
+            <div>
+              <div style="font-weight:800;">{{ member.name }}</div>
+              <div class="muted small">Maintainer</div>
+            </div>
+          </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div style="display:flex; justify-content:space-between; margin-top:18px;">
+        <div class="muted" style="font-weight:700;">Recent GitHub contributors</div>
+        <div class="muted" id="github-contrib-status">{% if gh_contribs and gh_contribs.size > 0 %}&nbsp;{% else %}Loading...{% endif %}</div>
+      </div>
+
+      <div id="github-contributors" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+        {% if gh_contribs and gh_contribs.size > 0 %}
+          {% for c in gh_contribs limit:12 %}
+            <a href="{{ c.html_url }}" target="_blank" rel="noopener" style="display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff;">
+              <img src="{{ c.avatar_url }}" alt="{{ c.login }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://github.com/{{ repo }}" target="_blank">⭐ Star on GitHub</a>
+        <a class="btn" href="{% if is_de %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">Governance & Community →</a>
+        <a class="btn" href="{{ discussions }}" target="_blank">Join discussions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/contributors.js' | relative_url }}" defer></script>
+<script>window.__WAFPP_CONTRIB__ = { repo: "{{ repo }}" };</script>

@@ -1,0 +1,51 @@
+---
+layout: default
+lang: en
+ref: faq
+title: FAQ
+description: Frequently asked questions about WAF++ — short, technical, and without buzzwords.
+permalink: /faq/
+---
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> WAF++</div>
+    <h1>FAQ</h1>
+    <p class="lead" style="max-width: 72ch;">
+      The most important questions about WAF++ — answered concisely. Click a question to reveal the answer.
+    </p>
+    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
+      <a class="btn btn-primary" href="{{ '/saeulen/' | relative_url }}">7 Pillars</a>
+      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance</a>
+      <a class="btn" href="{{ '/docs/' | relative_url }}">Documentation</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Frequently Asked Questions</div>
+    <div class="section-title">15 common questions</div>
+    <p class="muted" style="max-width: 80ch; margin-top: 10px;">
+      Note: WAF++ is intentionally vendor-neutral. Where it helps, we link to governance and RFCs instead of “hard” prescriptions.
+    </p>
+
+    <div class="faq-accordion" style="margin-top: 18px;">
+      {% assign items = site.data.faq_en %}
+      {% for item in items %}
+      <details class="faq-item" {% if forloop.first %}open{% endif %}>
+        <summary>{{ forloop.index }}) {{ item.q }}</summary>
+        <div class="faq-answer">
+          {{ item.a }}
+          {% if item.link %}
+          <div style="margin-top: 12px;">
+            <a class="btn btn-primary" href="{{ item.link | relative_url }}">{{ item.link_label | default: 'Learn more →' }}</a>
+          </div>
+          {% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/faq-accordion.js' | relative_url }}" defer></script>

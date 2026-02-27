@@ -1,0 +1,133 @@
+<header class="site-header">
+  {% include lang-vars.html %}
+  <div class="container header-inner">
+    <a class="brand" href="{{ (lang_prefix | append: '/') | relative_url }}">
+      <img src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="WAF++ Logo">
+      <span>{{ site.title }}</span>
+    </a>
+
+    <button class="burger" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      {%- assign nav_items = site.data.navigation -%}
+
+      {%- comment -%}
+      Render normal links (non-highlight) as top-level navigation, with optional dropdowns.
+      Render highlight items as CTA buttons at the end (Dokumentation).
+      {%- endcomment -%}
+
+      <div class="nav-main">
+        {% for item in nav_items %}
+          {% unless item.highlight %}
+            {%- assign item_path = item.link -%}
+            {%- assign item_localized = true -%}
+            {%- if item.localized == false or item.no_lang_prefix == true -%}
+              {%- assign item_localized = false -%}
+            {%- endif -%}
+            {%- if item_path contains '://' -%}
+              {%- assign item_href = item_path -%}
+            {%- else -%}
+              {%- if item_localized -%}
+                {%- assign item_href = lang_prefix | append: item_path -%}
+              {%- else -%}
+                {%- assign item_href = item_path -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- assign item_label = item.name -%}
+            {%- if item.key and i18n.nav[item.key] -%}
+              {%- assign item_label = i18n.nav[item.key] -%}
+            {%- endif -%}
+
+            {% assign is_active = false %}
+            {%- assign home_href = lang_prefix | append: '/' -%}
+            {%- assign is_home_item = false -%}
+            {%- if item_path == '/' -%}
+              {%- assign is_home_item = true -%}
+            {%- endif -%}
+
+            {%- if is_home_item -%}
+              {%- if page.url == home_href -%}
+                {% assign is_active = true %}
+              {%- endif -%}
+            {%- else -%}
+              {% if page.url == item_href or (item_href != home_href and page.url contains item_href) %}
+                {% assign is_active = true %}
+              {% endif %}
+            {%- endif -%}
+
+            {% if item.children %}
+              <div class="nav-group{% if is_active %} is-active{% endif %}">
+                <a class="{% if is_active %}active{% endif %}" href="{{ item_href | relative_url }}">{{ item_label }}</a>
+                <div class="nav-dropdown" aria-label="{{ item_label }} submenu">
+                  {% for child in item.children %}
+                    {%- assign child_path = child.link -%}
+                    {%- assign child_localized = item_localized -%}
+                    {%- if child.localized == false or child.no_lang_prefix == true -%}
+                      {%- assign child_localized = false -%}
+                    {%- endif -%}
+                    {%- if child_path contains '://' -%}
+                      {%- assign child_href = child_path -%}
+                    {%- else -%}
+                      {%- if child_localized -%}
+                        {%- assign child_href = lang_prefix | append: child_path -%}
+                      {%- else -%}
+                        {%- assign child_href = child_path -%}
+                      {%- endif -%}
+                    {%- endif -%}
+
+                    {%- assign child_label = child.name -%}
+                    {%- if child.key and i18n.nav[child.key] -%}
+                      {%- assign child_label = i18n.nav[child.key] -%}
+                    {%- endif -%}
+
+                    {% assign child_active = false %}
+                    {%- if page.url == child_href or (child_href != home_href and page.url contains child_href) -%}
+                      {% assign child_active = true %}
+                    {%- endif -%}
+                    <a class="nav-dropdown__link{% if child_active %} active{% endif %}" href="{{ child_href | relative_url }}">{{ child_label }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <a class="{% if is_active %}active{% endif %}" href="{{ item_href | relative_url }}">{{ item_label }}</a>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+      </div>
+
+      <div class="cta-row">
+        {% include lang-switch.html %}
+        {% for item in nav_items %}
+          {% if item.highlight %}
+            {% assign cta_active = false %}
+            {%- assign cta_path = item.link -%}
+            {%- assign cta_localized = true -%}
+            {%- if item.localized == false or item.no_lang_prefix == true -%}
+              {%- assign cta_localized = false -%}
+            {%- endif -%}
+            {%- if cta_path contains '://' -%}
+              {%- assign cta_href = cta_path -%}
+            {%- else -%}
+              {%- if cta_localized -%}
+                {%- assign cta_href = lang_prefix | append: cta_path -%}
+              {%- else -%}
+                {%- assign cta_href = cta_path -%}
+              {%- endif -%}
+            {%- endif -%}
+            {% if page.url contains cta_href %}
+              {% assign cta_active = true %}
+            {% endif %}
+            {%- assign cta_label = item.name -%}
+            {%- if item.key and i18n.nav[item.key] -%}
+              {%- assign cta_label = i18n.nav[item.key] -%}
+            {%- endif -%}
+            <a class="btn btn-primary{% if cta_active %} active{% endif %}" href="{{ cta_href | relative_url }}">{{ cta_label }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
+  </div>
+</header>

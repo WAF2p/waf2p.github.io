@@ -1,0 +1,16 @@
+{% assign src = include.src %}
+{% assign prefix2 = src | slice: 0, 2 %}
+{% assign protocol = src | slice: 0, 4 %}
+{% assign is_external = false %}
+{% if protocol == 'http' or prefix2 == '//' %}{% assign is_external = true %}{% endif %}
+
+{% assign add_ded = false %}
+{% if page.url contains '/de/' and is_external == false %}
+  {% if src | slice: 0, 1 == '/' %}
+    {% unless src contains '/docs/' or src contains '/assets/' or src contains '/css/' or src contains '/js/' or src contains '/de/' %}
+      {% assign add_ded = true %}
+    {% endunless %}
+  {% endif %}
+{% endif %}
+
+{% unless is_external %}{{ site.baseurl }}{% endunless %}{% if add_ded %}/de{% endif %}{{ src }}

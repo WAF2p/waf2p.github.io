@@ -2,85 +2,86 @@
 layout: default
 ---
 
-<section class="profile container page-content">
-    <div class="profile-header">
-        <img src="{{ page.image_path }}" alt="{{ page.name }}" class="profile-image">
-        <div class="profile-info">
-            <h1>{{ page.name }}</h1>
-            <p><strong>Position:</strong> {{ page.position }}</p>
-            <p class="blurb">{{ page.blurb }}</p>
+{% comment %}
+Staff member detail page (Lindy-like)
+URL: /staff_members/<slug>/
+  {% endcomment %}
 
-            {% if page.topics %}
-            <h3>Expertise:</h3>
-            <ul class="profile-topics">
-                {% for topic in page.topics %}
-                <li>{{ topic }}</li>
-                {% endfor %}
-            </ul>
+  <section class="post-hero staff-hero">
+    <div class="container">
+      {% include breadcrumb.html %}
+
+      <div class="split">
+        <div class="split-copy">
+          <div class="post-hero__meta">
+            <span class="pill">Team</span>
+            {% if page.position %}
+            <span class="muted small">•</span>
+            <span class="pill pill--soft">{{ page.position }}</span>
+            {% endif %}
+          </div>
+
+          <h1 class="post-hero__title">{{ page.name | default: page.title }}</h1>
+
+          {% if page.blurb %}
+          <p class="lead post-hero__lead">{{ page.blurb }}</p>
+          {% endif %}
+
+          <div class="staff-links">
+            {% if page.github and page.github != "" %}
+            <a class="btn btn-ghost" href="https://github.com/{{ page.github }}" target="_blank" rel="noopener">
+              <span data-lucide="github" aria-hidden="true"></span>
+              GitHub
+            </a>
             {% endif %}
 
             {% if page.social %}
-            <h3>Connect:</h3>
-            <ul class="social-links">
-                {% for s in page.social %}
-                <li><a href="{{ s.link }}" target="_blank">{{ s.social_icon }}</a></li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-    </div>
-
-
-    {% assign conferences = site.data.conferences %}
-    {% assign first_name = page.name | split: ' ' | first %}
-    <div class="profile-conferences">
-        <h3>Konferenzen mit {{ page.name }}:</h3>
-
-        {% assign has_conferences = false %}
-        <div class="conference-grid">
-            {% for conf in conferences %}
-            {% assign current_member = nil %}
-            {% for member in conf.members %}
-            {% if member.name == first_name %}
-            {% assign current_member = member %}
-            {% endif %}
+            {% for link in page.social %}
+            <a class="btn btn-ghost" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+               href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}
+              {% include social-icon.html icon=link.social_icon %}
+              {% else %}
+              <span data-lucide="link" aria-hidden="true"></span>
+              {% endif %}
+              {{ link.name }}
+            </a>
             {% endfor %}
+            {% endif %}
+          </div>
+        </div>
 
-            {% if current_member %}
-            {% assign has_conferences = true %}
-            <div class="conference-card {% if current_member.role == 'Speaker' %}highlight-member{% endif %}">
-                <div class="conf-image">
-                    <img src="{{ conf.logo }}" alt="{{ conf.name }}">
-                </div>
-                <h4 class="conf-title">{{ conf.name }}</h4>
-                <p class="conf-date"><strong>Datum:</strong> {{ conf.date_display }}</p>
-                <p class="conf-location"><strong>Ort:</strong> {{ conf.location }}</p>
-                <p class="conf-role">
-                    <strong>{{ current_member.role }}</strong>
-                    {% if current_member.topic %}
-                    <br><em>{{ current_member.topic }}</em>
-                    {% endif %}
-                </p>
-                <div class="conf-link">
-                    <a href="{{ conf.link }}" target="_blank" class="btn-primary">Details ansehen</a>
-                </div>
+        <div class="split-visual">
+          <div class="card staff-card">
+            <div class="staff-card__avatar">
+              <img src="{% include relative-src.html src=page.image_path %}" alt="{{ page.name | default: page.title }}">
             </div>
-            {% endif %}
-            {% endfor %}
+            <div class="staff-card__meta">
+              {% if page.position %}<div class="staff-card__role">{{ page.position }}</div>{% endif %}
+              {% if page.github and page.github != "" %}
+              <div class="staff-card__handle">@{{ page.github }}</div>
+              {% endif %}
+            </div>
+          </div>
         </div>
-
-        {% unless has_conferences %}
-        <p>Keine Konferenzen für {{ page.name }} gefunden.</p>
-        {% endunless %}
+      </div>
     </div>
+  </section>
 
+  <section class="post-body">
+    <div class="container">
+      {% if content and content != "" %}
+      <article class="prose">
+        {{ content }}
+      </article>
+      {% else %}
+      <div class="prose">
+        <p class="muted">More information coming soon.</p>
+      </div>
+      {% endif %}
 
-    {% if page.vita %}
-    <div class="profile-vita">
-        <h3>Vita:</h3>
-        <div class="vita-text">
-            {{ page.vita | markdownify }}
-        </div>
+      <div style="margin-top: 24px">
+        <a class="btn" href="{% include relative-src.html src='/about/' %}">Back to About us</a>
+      </div>
     </div>
-    {% endif %}
-</section>
+  </section>

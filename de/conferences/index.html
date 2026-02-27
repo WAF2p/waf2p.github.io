@@ -1,0 +1,187 @@
+---
+layout: default
+lang: de
+ref: conferences
+permalink: /de/conferences/
+---
+<!-- Full width hero -->
+<section class="hero hero--page hero--fullwidth">
+  <div class="hero__bg"></div>
+  <div class="container">
+    <div class="badge"><span class="dot"></span> WAF++ Präsenz</div>
+    <h1>Konferenzen</h1>
+    <p class="lead" style="max-width: 75ch">
+      Das sind Konferenzen, auf denen wir sind — inklusive Datum, Location, Beschreibung und den anwesenden WAF++ Mitgliedern.
+    </p>
+
+    <div class="hero-actions hero-actions--spaced">
+      <a class="btn btn-primary" href="#upcoming">Nächste Konferenzen</a>
+      <a class="btn" href="#speaker">Speaker</a>
+      <a class="btn" href="#sponsoring">Sponsoring</a>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming conferences -->
+<section class="section" id="upcoming">
+  <div class="container">
+    <div class="section-kicker">Upcoming</div>
+    <div class="section-title">Die nächsten Konferenzen mit WAF++</div>
+
+    <div class="conference-grid">
+      {% assign today = 'now' | date: '%Y-%m-%d' %}
+      {% assign conferences = site.data.conferences | where_exp: "conf", "conf.start_date >= today" %}
+      {% assign conferences = conferences | sort: "start_date" %}
+
+      {% for conf in conferences %}
+      <article class="conference-card conference-card--dark">
+        <div class="conf-image">
+          <img src="{{ conf.logo }}" alt="{{ conf.name }}">
+        </div>
+
+        <h3 class="conf-title">{{ conf.name }}</h3>
+        <p class="conf-date"><strong>Date:</strong> {{ conf.date_display }}</p>
+        <p class="conf-location"><strong>Location:</strong> {{ conf.location }}</p>
+        <p class="conf-description">{{ conf.description }}</p>
+
+        <div class="conf-link">
+          <a href="{{ conf.link }}" target="_blank" class="btn btn-primary" rel="noopener">Learn More</a>
+        </div>
+
+        {% if conf.members %}
+        <div class="conf-members">
+          <h4>WAF++ Mitglieder</h4>
+          <div class="member-grid">
+            {% for member_info in conf.members %}
+              {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+              {% assign member = site.staff_members | where: "url", author_id | first %}
+              {% if member %}
+              <a class="member-chip"
+                 href="{{ member.url | relative_url }}"
+                 title="{{ member_info.name }}{% if member_info.role %} ({{ member_info.role }}){% endif %}">
+                <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
+              </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Speaker teaser (same look as “Die Köpfe hinter WAF++”) -->
+<section class="section" id="speaker">
+  <div class="container">
+    <div class="section-kicker">Speaker</div>
+    <div class="section-title">Speaker Teaser</div>
+    <p class="muted" style="max-width: 75ch; margin-top: 10px">
+      Diese WAF++ Mitglieder sind bei den kommenden Konferenzen dabei. Der Name führt zur Detailseite.
+    </p>
+
+    {% assign today = 'now' | date: '%Y-%m-%d' %}
+    {% assign upcoming = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" %}
+    {% assign speaker_names = "" | split: "|" %}
+    {% for conf in upcoming %}
+      {% if conf.members %}
+        {% for member_info in conf.members %}
+          {% assign speaker_names = speaker_names | push: member_info.name %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    {% assign speaker_names = speaker_names | uniq %}
+
+    <div class="people-grid">
+      {% for speaker_name in speaker_names %}
+        {% assign author_id = speaker_name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+        {% assign person = site.staff_members | where: "url", author_id | first %}
+        {% if person %}
+        <article class="person-card">
+          <div class="person-card__head">
+            <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+            <div>
+              <div class="person-card__name">
+                <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
+              </div>
+              <div class="person-card__role">{{ person.position }}</div>
+            </div>
+          </div>
+
+          {% if person.blurb %}
+          <p class="person-card__bio">{{ person.blurb }}</p>
+          {% endif %}
+
+          {% if person.social %}
+          <div class="person-card__social">
+            {% for link in person.social %}
+            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+               href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}
+                {% include social-icon.html icon=link.social_icon %}
+              {% endif %}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Sponsoring -->
+<section class="section section--tight" id="sponsoring">
+  <div class="container">
+    <div class="section-kicker">Support</div>
+    <div class="section-title">Sponsoring</div>
+    <p class="muted" style="max-width: 75ch; margin-top: 10px">
+      WAF++ ist ein Nonprofit-Community-Projekt. Sponsoring hilft uns, Konferenzteilnahmen, Material, Infrastruktur
+      und Community-Aktivitäten zu finanzieren — transparent und zweckgebunden.
+    </p>
+
+    <div class="grid-3">
+      <div class="card card-pad">
+        <div class="card-kicker">Tier 1</div>
+        <h3>Community Sponsor</h3>
+        <div class="muted">Für kleine Teams & Startups.</div>
+        <ul class="list" style="margin-top: 12px">
+          <li>Logo auf der Website</li>
+          <li>Danke im Recap</li>
+          <li>1 Ticket (falls Ticketing)</li>
+        </ul>
+        <div class="muted" style="margin-top: 8px"><strong>Preis:</strong> tbd</div>
+      </div>
+
+      <div class="card card-pad">
+        <div class="card-kicker">Tier 2</div>
+        <h3>Partner Sponsor</h3>
+        <div class="muted">Für Firmen mit Community- & Talent-Fokus.</div>
+        <ul class="list" style="margin-top: 12px">
+          <li>Logo + Link prominent</li>
+          <li>2 Tickets (falls Ticketing)</li>
+          <li>Mentions in Posts/Agenda</li>
+        </ul>
+        <div class="muted" style="margin-top: 8px"><strong>Preis:</strong> tbd</div>
+      </div>
+
+      <div class="card card-pad">
+        <div class="card-kicker">Tier 3</div>
+        <h3>Platinum Sponsor</h3>
+        <div class="muted">Für größere Unterstützung.</div>
+        <ul class="list" style="margin-top: 12px">
+          <li>Top-Platzierung Logo</li>
+          <li>4 Tickets (falls Ticketing)</li>
+          <li>Co-branded Community Session</li>
+        </ul>
+        <div class="muted" style="margin-top: 8px"><strong>Preis:</strong> tbd</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 18px">
+      <a class="btn btn-primary" href="{{ '/impressum/' | relative_url }}">Sponsoring anfragen →</a>
+    </div>
+  </div>
+</section>

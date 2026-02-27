@@ -1,0 +1,56 @@
+{% include lang-vars.html %}
+
+{%- comment -%}
+  Phase 3: Translation workflow helper
+
+  Shows a small notice when the current page has no counterpart in the other language.
+  - Uses page.ref for reliable pairing
+  - Falls back to mirrored URL existence check
+  - GitHub Pages safe (no plugins)
+{%- endcomment -%}
+
+{%- assign candidates = site.pages | concat: site.documents -%}
+
+{%- assign other_lang = 'de' -%}
+{%- if lang == 'de' -%}{%- assign other_lang = 'en' -%}{%- endif -%}
+
+{%- assign has_other = false -%}
+
+{%- if page.ref and page.ref != '' -%}
+  {%- assign other_page = candidates | where: 'ref', page.ref | where: 'lang', other_lang | first -%}
+  {%- if other_page and other_page.url -%}
+    {%- assign has_other = true -%}
+  {%- endif -%}
+{%- else -%}
+  {%- comment -%}Fallback: mirrored path existence{%- endcomment -%}
+  {%- assign path_no_prefix = page.url -%}
+  {%- if lang == 'de' -%}
+    {%- assign path_no_prefix = page.url | remove_first: '/de' -%}
+    {%- if path_no_prefix == '' -%}{%- assign path_no_prefix = '/' -%}{%- endif -%}
+  {%- endif -%}
+  {%- assign mirrored = path_no_prefix -%}
+  {%- if lang == 'en' -%}
+    {%- assign mirrored = '/de' | append: path_no_prefix -%}
+    {%- if path_no_prefix == '/' -%}{%- assign mirrored = '/de/' -%}{%- endif -%}
+  {%- endif -%}
+  {%- if lang == 'de' -%}
+    {%- assign mirrored = path_no_prefix -%}
+  {%- endif -%}
+  {%- assign mirrored_page = candidates | where: 'url', mirrored | first -%}
+  {%- if mirrored_page -%}{%- assign has_other = true -%}{%- endif -%}
+{%- endif -%}
+
+{%- comment -%}
+  Optional opt-out per page: translation_notice: false
+{%- endcomment -%}
+{%- if page.translation_notice == false -%}{%- assign has_other = true -%}{%- endif -%}
+
+{%- if has_other == false -%}
+  <div class="translation-notice" role="note" aria-label="Translation status">
+    {%- if lang == 'en' -%}
+      {{ i18n.common.translation_missing_de | default: 'This page is not available in German yet.' }}
+    {%- else -%}
+      {{ i18n.common.translation_missing_en | default: 'Diese Seite ist noch nicht auf Englisch verfügbar.' }}
+    {%- endif -%}
+  </div>
+{%- endif -%}

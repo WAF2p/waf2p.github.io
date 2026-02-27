@@ -1,0 +1,102 @@
+{%- comment -%}
+Structured Data (JSON-LD)
+- Organization: global
+- Event: conferences page (from _data/conferences)
+- FAQPage: faq page (from _data/faq)
+{%- endcomment -%}
+
+{%- assign abs_base = site.url | append: site.baseurl -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.title | escape }}",
+  "url": "{{ abs_base }}",
+  {%- if site.description %}"description": "{{ site.description | strip_newlines | escape }}",{%- endif -%}
+  {%- if site.logo %}"logo": "{{ abs_base }}{{ site.logo | relative_url }}",{%- endif -%}
+  "sameAs": [
+    "https://github.com/waf2p/"
+  ]
+}
+</script>
+
+{%- if page.url == '/conferences/' or page.permalink == '/conferences/' -%}
+{%- assign today = 'now' | date: '%Y-%m-%d' -%}
+{%- assign conferences = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" -%}
+
+{%- if conferences and conferences.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {%- for conf in conferences -%}
+    {
+      "@type": "Event",
+      "name": "{{ conf.name | escape }}",
+      "startDate": "{{ conf.start_date }}",
+      {%- if conf.end_date %}"endDate": "{{ conf.end_date }}",{%- endif -%}
+      {%- if conf.description %}"description": "{{ conf.description | strip_newlines | escape }}",{%- endif -%}
+      {%- if conf.link %}"url": "{{ conf.link | escape }}",{%- endif -%}
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "organizer": {
+        "@type": "Organization",
+        "name": "{{ site.title | escape }}",
+        "url": "{{ abs_base }}"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "{{ conf.location | default: conf.city | default: 'TBA' | escape }}",
+        "address": "{{ conf.location | default: conf.city | default: 'TBA' | escape }}"
+      }
+      {%- if conf.members and conf.members.size > 0 -%},
+      "performer": [
+        {%- for member_info in conf.members -%}
+          {%- assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" -%}
+          {%- assign member = site.staff_members | where: "url", author_id | first -%}
+          {%- if member -%}
+          {
+            "@type": "Person",
+            "name": "{{ member_info.name | escape }}",
+            "url": "{{ abs_base }}{{ member.url | relative_url }}"{%- if member_info.role -%},
+            "jobTitle": "{{ member_info.role | escape }}"{%- endif -%}
+          }{%- else -%}
+          {
+            "@type": "Person",
+            "name": "{{ member_info.name | escape }}"{%- if member_info.role -%},
+            "jobTitle": "{{ member_info.role | escape }}"{%- endif -%}
+          }{%- endif -%}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+      {%- endif -%}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+{%- endif -%}
+
+{%- if page.url == '/faq/' or page.permalink == '/faq/' -%}
+{%- if site.data.faq and site.data.faq.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for item in site.data.faq -%}
+    {
+      "@type": "Question",
+      "name": "{{ item.q | strip_newlines | escape }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ item.a | strip_newlines | escape }}"
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+{%- endif -%}

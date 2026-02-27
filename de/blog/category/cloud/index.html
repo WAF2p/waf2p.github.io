@@ -1,0 +1,35 @@
+---
+layout: default
+lang: de
+ref: blog/category/cloud
+title: "cloud"
+category: "cloud"
+permalink: /de/blog/category/cloud/
+description: "Artikel in der Kategorie cloud."
+---
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb-inline.html %}
+{% include breadcrumb.html %}
+    <div class="badge"><span class="dot"></span> Kategorie</div>
+    <h1>{{ page.category }}</h1>
+    <p class="lead">{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="blog-grid">
+      {% assign posts_in_cat = site.posts | where_exp: "p", "p.categories contains page.category" %}
+      {% for post in posts_in_cat %}
+        {% include blog-card.html post=post %}
+      {% endfor %}
+    </div>
+
+    <div class="pagination modern" style="margin-top:32px;">
+      <a class="btn btn-ghost" href="/blog/">← Zur Blog-Übersicht</a>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</section>

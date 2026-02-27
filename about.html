@@ -1,76 +1,211 @@
 ---
-title: Unser Team
-description: Die Köpfe hinter WAF++
+layout: default
+lang: en
+ref: about
+title: About us
+description: The people behind WAF++
 permalink: /about/
 ---
-
-<section class="team">
-    <div class="team-grid">
-        <div class="team-row">
-            {% for person in site.staff_members %}
-            <div class="team-card">
-                <div class="image">
-                    <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
-                </div>
-                <h3>
-                    <a class="name" href="{{ person.url }}">
-                        {{ person.name }}
-                    </a>
-                </h3>
-
-                <div class="social-links">
-                    {% for link in person.social %}
-                    <li style="list-style-type: none;">
-                        <a {% if link.new_window %}target="_blank"{% endif %}
-                           href="{% include relative-src.html src=link.link %}"
-                           {% if link.social_icon %}class="{{ link.social_icon }}-icon"{% endif %}>
-                            {% if link.social_icon %}
-                            {% include social-icon.html icon=link.social_icon %}
-                            {% endif %}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
+<section class="hero hero--page">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> WAF++ Community</div>
+    <h1>About us</h1>
+    <p class="lead" style="max-width: 70ch">
+      WAF++ is a community-driven, cloud-agnostic framework built from real-world experience.
+      We create a shared foundation for sovereign, responsible, and traceable cloud adoption —
+      independent of providers and beyond marketing narratives.
+    </p>
+  </div>
 </section>
 
-<hr>
-
-<section class="about-content container">
-    <div class="intro">
-        <p>
-            WAF2P ist eine moderne Plattform, die Arbeitsabläufe vereinfacht und Innovation beschleunigt.
-            Unsere Mission: Eine sichere, entwicklerfreundliche Umgebung schaffen, die Zusammenarbeit fördert.
+<section class="section section--tight">
+  <div class="container">
+    <div class="split">
+      <div class="split-copy">
+        <div class="card-kicker">Why WAF++</div>
+        <h2>Engineering-first — not a best-practices collection.</h2>
+        <p class="lead">
+          We bring together experience from architects, platform teams, security, and compliance specialists
+          in an open, transparent, and neutral framework.
         </p>
-    </div>
-
-    <div class="highlight-box">
-        <h2>Unsere Mission</h2>
-        <p>
-            Leistung, Flexibilität und Community-getriebene Lösungen für Entwickler weltweit.
-        </p>
-    </div>
-
-    <div class="values-grid">
-        <div class="value-item">
-            <h3>Performance</h3>
-            <p>Optimiert für Geschwindigkeit und Zuverlässigkeit – für reibungslose Nutzererlebnisse.</p>
+        <div class="compliance" style="margin-top: 14px">
+          <span class="pill">Reference models</span>
+          <span class="pill">Maturity</span>
+          <span class="pill">Decision guides</span>
+          <span class="pill">Auditable</span>
         </div>
-        <div class="value-item">
-            <h3>Flexibilität</h3>
-            <p>Modular aufgebaut, damit du dich mühelos anpassen und skalieren kannst.</p>
-        </div>
-        <div class="value-item">
-            <h3>Community</h3>
-            <p>Getrieben von Zusammenarbeit und Open-Source-Prinzipien für nachhaltiges Wachstum.</p>
-        </div>
-    </div>
+      </div>
 
+      <div class="split-visual">
+        <div class="card card-pad">
+          <div class="card-kicker">Principles</div>
+          <div class="about-points">
+            <div class="about-point">
+              <div class="about-point__icon">1</div>
+              <div>
+                <strong>Neutral & open</strong>
+                <div class="muted">Vendor-agnostic, transparent, community-driven.</div>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="about-point__icon">2</div>
+              <div>
+                <strong>Practical</strong>
+                <div class="muted">From real projects, audits, and operational experience.</div>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="about-point__icon">3</div>
+              <div>
+                <strong>Traceable</strong>
+                <div class="muted">Structure, responsibilities, and decision clarity.</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 18px">
+            <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Documentation</a>
+            <a class="btn" href="{{ '/conferences/' | relative_url }}">Conferences</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Team</div>
+    <div class="section-title">The people behind WAF++</div>
+
+    <div class="people-grid">
+      {% for person in site.staff_members %}
+      {% if person.name and person.name != '' %}
+      <article class="person-card">
+        <div class="person-card__head">
+          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+          <div>
+            <div class="person-card__name">
+              <a href="{{ "/staff_members/" | append: person.slug | append: "/" | relative_url }}">{{ person.name }}</a>
+            </div>
+            <div class="person-card__role">{{ person.position }}</div>
+          </div>
+        </div>
+
+        {% if person.blurb %}
+        <p class="person-card__bio">{{ person.blurb }}</p>
+        {% endif %}
+
+        {% if person.social %}
+        <div class="person-card__social">
+          {% for link in person.social %}
+          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+             href="{% include relative-src.html src=link.link %}">
+            {% if link.social_icon %}
+            {% include social-icon.html icon=link.social_icon %}
+            {% endif %}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-kicker">Honoured Members</div>
+    <div class="section-title">With us from the beginning</div>
+    <p class="muted" style="max-width: 75ch; margin-top: 10px">
+      People who shaped WAF++ from the very beginning and still support us today — without currently being active in the core team.
+    </p>
+
+    <div class="people-grid people-grid--honoured" style="margin-top: 18px">
+      {% for person in site.data.honoured_members %}
+      <article class="person-card">
+        <div class="person-card__head">
+          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+          <div>
+            <div class="person-card__name">
+              {% if person.github and person.github != "" %}
+              <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
+              {% else %}
+              {{ person.name }}
+              {% endif %}
+            </div>
+            <div class="person-card__role">{{ person.position }}</div>
+          </div>
+        </div>
+
+        {% if person.blurb %}
+        <p class="person-card__bio">{{ person.blurb }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-kicker">History</div>
+    <div class="section-title">How WAF++ has grown</div>
+    <p class="muted" style="max-width: 75ch; margin-top: 10px">
+      From the first sketches to a thriving community: WAF++ is built iteratively — shaped by project reality,
+      discussions, and the drive to make cloud decisions traceable.
+    </p>
+
+    <div class="timeline" style="margin-top: 18px">
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Start: Clarifying the problem</div>
+          <div class="timeline-text">We collected common questions from platform and architecture teams and structured them into a shared lens.</div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Structure: Principles & guardrails</div>
+          <div class="timeline-text">Experience turned into repeatable building blocks: responsibilities, decision paths, and maturity.</div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Community: Review & feedback</div>
+          <div class="timeline-text">Through reviews, workshops, and conversations, content was refined — with a focus on neutrality and practicality.</div>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Today: Continuous evolution</div>
+          <div class="timeline-text">WAF++ stays open: new contributions, new perspectives, continuous improvements — transparent and usable day to day.</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cta">
+  <div class="container">
     <div class="cta">
-        <a href="/" class="btn-primary">Jetzt WAF2P entdecken</a>
+      <h2>Want to contribute?</h2>
+      <p class="lead" style="max-width: 70ch">
+        WAF++ is open to anyone who doesn’t just consume cloud reality, but helps shape it.
+        Whether you want to share experience, review content, or co-create new building blocks — your contribution matters.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="{{ '/blog/' | relative_url }}">Blog</a>
+      </div>
     </div>
+  </div>
 </section>

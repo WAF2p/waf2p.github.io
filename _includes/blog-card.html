@@ -1,0 +1,75 @@
+{% assign post = include.post %}
+
+{%- comment -%}
+  Try to infer a preview image from the first Markdown image in the post content.
+  Fallback to the site logo if none is present.
+{%- endcomment -%}
+
+{% assign preview = '' %}
+{% assign content_raw = post.content | strip %}
+
+{%- comment -%}
+  Jekyll renders Markdown to HTML for post.content.
+  1) Prefer first <img src=...> found in rendered HTML.
+  2) Fallback to first Markdown image pattern if it still exists.
+  3) Finally fallback to the WAF++ logo.
+{%- endcomment -%}
+
+{%- assign html_split = content_raw | split: '<img' -%}
+{%- if html_split.size > 1 -%}
+  {%- assign img_chunk = html_split[1] -%}
+  {%- assign src_split = img_chunk | split: 'src="' -%}
+  {%- if src_split.size > 1 -%}
+    {%- assign src_rest = src_split[1] -%}
+    {%- assign src = src_rest | split: '"' | first -%}
+    {%- assign preview = src -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if preview == '' -%}
+  {%- assign bang_split = content_raw | split: '![' -%}
+  {%- if bang_split.size > 1 -%}
+    {%- assign after = bang_split[1] -%}
+    {%- assign url_part = after | split: '](' | last -%}
+    {%- assign url_raw = url_part | split: ')' | first -%}
+    {%- assign preview = url_raw | split: ' ' | first -%}
+  {%- endif -%}
+{%- endif -%}
+
+{% if preview == '' %}
+  {% assign preview = '/images/WAFpp_upscaled_1000.png' %}
+{% endif %}
+
+<article class="post-card">
+  <a class="post-card__media" href="{% include relative-src.html src=post.url %}">
+    <img src="{{ preview }}" alt="">
+  </a>
+
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <span class="pill">{{ post.date | date: "%d.%m.%Y" }}</span>
+      {% if post.categories and post.categories.size > 0 %}
+        <span class="muted small">•</span>
+        <span class="post-cats">
+          {% for c in post.categories %}
+            <a class="cat-badge" href="/blog/category/{{ c | slugify }}/">{{ c }}</a>
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+
+    <h3 class="post-card__title">
+      <a href="{% include relative-src.html src=post.url %}">{{ post.title }}</a>
+    </h3>
+
+    <p class="post-card__excerpt">
+      {{ post.excerpt | strip_html | strip | truncate: 170 }}
+    </p>
+
+    <div class="post-card__actions">
+      <a class="btn btn-small" href="{% include relative-src.html src=post.url %}">
+        Weiterlesen
+      </a>
+    </div>
+  </div>
+</article>

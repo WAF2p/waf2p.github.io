@@ -1,0 +1,20 @@
+<section class="section section--conferences">
+  <div class="container">
+    {% assign today = site.time | date: "%Y-%m-%d" %}
+    {%- assign upcoming = site.data.conferences | where_exp: "c", "c.start_date >= today" -%}
+    {%- assign upcoming = upcoming | sort: "start_date" -%}
+
+    <div class="conf-grid">
+      {% for conf in upcoming %}
+        {% include conference-card.html conf=conf %}
+      {% endfor %}
+    </div>
+
+    {% if upcoming == empty %}
+      <div class="empty-state">
+        <h3>Aktuell sind keine kommenden Konferenzen eingetragen.</h3>
+        <p>Schau bald wieder vorbei – wir aktualisieren die Liste regelmäßig.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>

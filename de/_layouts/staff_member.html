@@ -1,0 +1,88 @@
+---
+layout: default
+lang: de
+ref: _layouts/staff_member
+---
+{% comment %}
+  Staff member detail page (Lindy-like)
+  URL: /staff_members/<slug>/
+{% endcomment %}
+
+<section class="post-hero staff-hero">
+  <div class="container">
+    {% include breadcrumb.html %}
+
+    <div class="split">
+      <div class="split-copy">
+        <div class="post-hero__meta">
+          <span class="pill">Team</span>
+          {% if page.position %}
+            <span class="muted small">•</span>
+            <span class="pill pill--soft">{{ page.position }}</span>
+          {% endif %}
+        </div>
+
+        <h1 class="post-hero__title">{{ page.name | default: page.title }}</h1>
+
+        {% if page.blurb %}
+          <p class="lead post-hero__lead">{{ page.blurb }}</p>
+        {% endif %}
+
+        <div class="staff-links">
+          {% if page.github and page.github != "" %}
+            <a class="btn btn-ghost" href="https://github.com/{{ page.github }}" target="_blank" rel="noopener">
+              <span data-lucide="github" aria-hidden="true"></span>
+              GitHub
+            </a>
+          {% endif %}
+
+          {% if page.social %}
+            {% for link in page.social %}
+              <a class="btn btn-ghost" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+                 href="{% include relative-src.html src=link.link %}">
+                {% if link.social_icon %}
+                  {% include social-icon.html icon=link.social_icon %}
+                {% else %}
+                  <span data-lucide="link" aria-hidden="true"></span>
+                {% endif %}
+                {{ link.name }}
+              </a>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="split-visual">
+        <div class="card staff-card">
+          <div class="staff-card__avatar">
+            <img src="{% include relative-src.html src=page.image_path %}" alt="{{ page.name | default: page.title }}">
+          </div>
+          <div class="staff-card__meta">
+            {% if page.position %}<div class="staff-card__role">{{ page.position }}</div>{% endif %}
+            {% if page.github and page.github != "" %}
+              <div class="staff-card__handle">@{{ page.github }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="container">
+    {% if content and content != "" %}
+      <article class="prose">
+        {{ content }}
+      </article>
+    {% else %}
+      <div class="prose">
+        <p class="muted">Mehr Infos folgen in Kürze.</p>
+      </div>
+    {% endif %}
+
+    <div style="margin-top: 24px">
+      <a class="btn" href="{% include relative-src.html src='/about/' %}">Zurück zu Über uns</a>
+    </div>
+  </div>
+</section>

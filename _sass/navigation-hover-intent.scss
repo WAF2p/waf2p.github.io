@@ -1,0 +1,43 @@
+/* GitHub-level smooth dropdowns: JS toggles .is-open on .nav-item.has-children */
+
+.main-nav {
+  .nav-item {
+    position: relative;
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0s linear 0.22s;
+
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    &.is-open > .dropdown,
+    &:focus-within > .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition-delay: 0s;
+      pointer-events: auto;
+    }
+
+    /* Hover buffer */
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: -12px;
+      width: calc(100% + 24px);
+      height: 22px;
+    }
+  }
+}

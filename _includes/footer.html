@@ -1,0 +1,49 @@
+<footer class="site-footer">
+  {% include lang-vars.html %}
+  <div class="container">
+    <div class="footer-columns">
+      {% assign footer_data = site.data.footer_en %}
+      {% if lang == 'de' %}{% assign footer_data = site.data.footer_de %}{% endif %}
+      {% for column in footer_data %}
+        <ul class="footer-links">
+          {% for link in column.links %}
+            {%- assign link_path = link.link -%}
+            {%- if link_path contains '://' -%}
+              {%- assign link_href = link_path -%}
+            {%- else -%}
+              {%- assign link_href = lang_prefix | append: link_path -%}
+            {%- endif -%}
+            <li>
+              <a
+                href="{% include relative-src.html src=link_href %}"
+                {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+                {% if link.social_icon %}class="social-link"{% endif %}
+              >
+                {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+                {{ link.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+
+      <div class="footer-partner">
+        <a href="https://www.cloudnativeconference.de/" target="_blank" rel="noopener nofollow">
+          <img
+            src="{{ '/assets/images/cloud-native-conference.png' | relative_url }}"
+            alt="Cloud Native Conference"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; {{ site.time | date: '%Y' }} WAF++
+      &bull; <a href="{{ (lang_prefix | append: '/impressum/') | relative_url }}">{{ i18n.nav.imprint | default: 'Impressum' }}</a>
+      &bull; {{ i18n.footer.powered_by | default: 'Powered by GitHub Pages' }}
+    </p>
+  </div>
+</footer>
+
+<script src="{{ '/assets/js/nav-hover-intent.js' | relative_url }}" defer></script>

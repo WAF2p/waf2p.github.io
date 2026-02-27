@@ -1,23 +1,26 @@
 ---
-layout: page
+layout: default
 ---
 
-<div class="text-container">
-    {% assign blog = site.pages | where: "path", "blog/index.html" | first %}
+{% include breadcrumb.html %}
 
-    {% if blog.title %}
-    <h2>{{ blog.title }}</h2>
-    {% endif %}
-
-    {% if blog.description %}
-    <p class="subtext">{{ blog.description }}</p>
-    {% endif %}
-
-    <div class="center-text">
-        <span class="blog-filter cross"><a href="{{ site.baseurl }}/blog/">{{ page.title | capitalize }}</a></span>
+<section class="page-hero">
+  <div class="container">
+    {% include breadcrumb-inline.html %}
+<div class="page-hero__eyebrow">
+      <span class="badge">Blog</span>
     </div>
+    <h1 class="page-hero__title">Kategorie: {{ page.title }}</h1>
+    <p class="page-hero__lead">Alle Artikel in der Kategorie <strong>{{ page.title }}</strong>.</p>
+  </div>
+</section>
 
-    <ul class="blog-posts">
-        {% include list-posts.html posts=page.posts %}
-    </ul>
-</div>
+<section class="section">
+  <div class="container">
+    <div class="blog-grid">
+      {% for post in page.posts %}
+        {% include blog-card.html post=post %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

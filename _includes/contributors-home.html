@@ -1,0 +1,75 @@
+<style>
+/* Contributors sections (scoped) */
+.contrib-wrap { margin-top: 28px; }
+.contrib-head { display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+.contrib-meta { color: rgba(0,0,0,.62); font-weight:600; }
+.contrib-grid { margin-top: 16px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.contrib-card { background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:18px; padding:14px; box-shadow: 0 10px 24px rgba(0,0,0,.06); display:flex; gap:12px; align-items:flex-start; text-decoration:none; }
+.contrib-avatar { width:44px; height:44px; border-radius:16px; object-fit:cover; border:1px solid rgba(0,0,0,.08); background: rgba(0,0,0,.03); }
+.contrib-name { font-weight:900; color: rgba(0,0,0,.86); line-height:1.15; }
+.contrib-role { color: rgba(0,0,0,.60); font-weight:700; font-size: 13px; margin-top: 2px; }
+.contrib-tags { margin-top: 8px; display:flex; flex-wrap:wrap; gap:6px; }
+.tag { display:inline-flex; align-items:center; justify-content:center; padding:4px 10px; border-radius:999px; border:1px solid rgba(0,0,0,.10); font-weight:800; font-size: 12px; color: rgba(0,0,0,.72); background: rgba(0,0,0,.02); }
+.tag--code { background: rgba(34,197,94,.10); border-color: rgba(34,197,94,.18); color: rgb(22,163,74); }
+.tag--gov { background: rgba(59,130,246,.10); border-color: rgba(59,130,246,.18); color: rgb(37,99,235); }
+.tag--rfc { background: rgba(234,179,8,.14); border-color: rgba(234,179,8,.22); color: rgb(202,138,4); }
+.tag--docs { background: rgba(168,85,247,.10); border-color: rgba(168,85,247,.18); color: rgb(147,51,234); }
+.tag--community { background: rgba(20,184,166,.10); border-color: rgba(20,184,166,.18); color: rgb(13,148,136); }
+.tag--trans { background: rgba(244,63,94,.10); border-color: rgba(244,63,94,.18); color: rgb(225,29,72); }
+.tag--events { background: rgba(99,102,241,.10); border-color: rgba(99,102,241,.18); color: rgb(79,70,229); }
+
+.contrib-avatars { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.contrib-avatars img { width:28px; height:28px; border-radius:999px; border:1px solid rgba(0,0,0,.10); }
+.contrib-skeleton { opacity:.6; }
+
+.contrib-actions { margin-top: 16px; display:flex; gap:12px; flex-wrap:wrap; }
+</style>
+
+<section class="section section--tight contrib-wrap" aria-label="Community Contributors">
+  <div class="container">
+    <div class="contrib-head">
+      <div>
+        <div class="section-kicker">Community</div>
+        <h2 style="margin:0;">Built by the community</h2>
+      </div>
+      <div class="contrib-meta">
+        <span data-code-contrib-count>—</span> code contributors ·
+        <span>{{ site.data.community_contributors | size }}</span> community contributors
+      </div>
+    </div>
+
+    <div class="contrib-grid" data-core>
+      {% for c in site.data.core_contributors %}
+      <a class="contrib-card" href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">
+        <img class="contrib-avatar" alt="{{ c.display_name | default: c.github }}" src="https://github.com/{{ c.github }}.png?size=96">
+        <div>
+          <div class="contrib-name">{{ c.display_name | default: c.github }}</div>
+          <div class="contrib-role">{{ c.role }}</div>
+          {% if c.types %}
+          <div class="contrib-tags">
+            {% for t in c.types %}{% include contrib-tag.html type=t %}{% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="contrib-head" style="margin-top:18px;">
+      <div class="contrib-meta">Recent GitHub contributors</div>
+      <div class="contrib-avatars contrib-skeleton" data-code-contrib-avatars><span>Loading…</span></div>
+    </div>
+
+    <div class="contrib-actions">
+      <a class="btn btn-primary" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}" target="_blank" rel="noopener">⭐ Star on GitHub</a>
+      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance & Community →</a>
+      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/discussions" target="_blank" rel="noopener">Join discussions →</a>
+    </div>
+  </div>
+
+  <div hidden
+       data-github-org="{{ site.data.github.org }}"
+       data-github-repo="{{ site.data.github.repo }}"
+       data-github-per-page="{{ site.data.github.per_page | default: 30 }}"
+       data-contrib-config></div>
+</section>
