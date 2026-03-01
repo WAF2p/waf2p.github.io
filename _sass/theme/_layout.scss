@@ -163,11 +163,13 @@
 }
 .footer-bottom a{color: inherit;}
 
-/* Footer columns (CloudCannon-style layout like screenshot) */
+/* Footer columns (CloudCannon-style layout like screenshot)
+   Use theme variables so it doesn't turn "grey" in dark mode.
+*/
 .site-footer{
-  border-top: none;
-  background: #3b3b3b;
-  color: #cfcfcf;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
 }
 .site-footer a{color: inherit; text-decoration:none;}
 .site-footer a:hover{color:#fff;}
@@ -213,10 +215,10 @@
 .copyright{
   margin: 22px 0 0;
   padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.10);
+  border-top: 1px solid var(--border);
   text-align:center;
   font-size: 13px;
-  color: rgba(255,255,255,.55);
+  color: var(--muted);
 }
 .copyright a{color: rgba(255,255,255,.65);}
 .copyright a:hover{color:#fff;}
