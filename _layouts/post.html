@@ -35,17 +35,10 @@ Fallback to the WAF++ logo.
       {{ page.excerpt | strip_html | strip | truncate: 220 }}
     </p>
 
-    {% if author %}
-    <div class="post-hero__byline">
-        <span class="post-hero__avatar">
-          <img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
-        </span>
-      <div class="post-hero__byline-text">
-        <div class="post-hero__byline-name">{{ author.name }}</div>
-        {% if author.position %}<div class="post-hero__byline-role">{{ author.position }}</div>{% endif %}
-      </div>
-    </div>
-    {% endif %}
+    {%- comment -%}
+      Intentionally omit author byline in the hero.
+      The author card at the bottom is sufficient and avoids duplicated metadata.
+    {%- endcomment -%}
   </div>
 </section>
 

@@ -386,7 +386,7 @@
 
 .empty-state{
   padding: 32px;
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--border);
   background: var(--surface);
   border-radius: 18px;
 }
@@ -688,7 +688,7 @@
 
 .post-card{
   background: var(--surface);
-  border: 1px solid rgba(17,24,39,.08);
+  border: 1px solid var(--border);
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 18px 40px rgba(17,24,39,.06);
@@ -703,7 +703,7 @@
 .post-card__media{
   display: block;
   aspect-ratio: 16 / 9;
-  background: rgba(17,24,39,.04);
+  background: color-mix(in srgb, var(--surface) 88%, var(--text) 12%);
   overflow: hidden;
 }
 
@@ -737,7 +737,7 @@
 
 .post-card__excerpt{
   margin: 0 0 14px;
-  color: rgba(17,24,39,.72);
+  color: var(--muted);
   font-size: 15px;
   line-height: 1.55;
 }
@@ -871,7 +871,7 @@
 
 .prose img{
   border-radius: 18px;
-  border: 1px solid rgba(17,24,39,.10);
+  border: 1px solid var(--border);
   box-shadow: 0 16px 50px rgba(17,24,39,.10);
 }
 
@@ -897,7 +897,7 @@
   align-items:center;
   padding: 18px;
   border-radius: 22px;
-  border: 1px solid rgba(17,24,39,.10);
+  border: 1px solid var(--border);
   background: var(--surface);
   box-shadow: 0 18px 60px rgba(17,24,39,.10);
 }
@@ -907,7 +907,7 @@
   height: 64px;
   border-radius: 18px;
   overflow:hidden;
-  border: 1px solid rgba(17,24,39,.12);
+  border: 1px solid var(--border);
   flex: 0 0 auto;
 }
 
@@ -915,7 +915,7 @@
 
 .author-card__name{ font-weight: 800; }
 .author-card__role{ font-size: 13px; color: var(--muted); margin-top: 2px; }
-.author-card__blurb{ margin: 8px 0 0; color: rgba(17,24,39,.72); }
+.author-card__blurb{ margin: 8px 0 0; color: var(--muted); }
 
 .post-nav{
   width: min(980px, 100%);
@@ -1033,7 +1033,7 @@
 
 .pass-model__item{
   background: var(--surface);
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 18px 18px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -1062,7 +1062,7 @@
 }
 .pass-bullets li{
   margin: 8px 0;
-  color: var(--text-muted);
+  color: var(--muted);
   line-height: 1.55;
 }
 .pass-bullets strong{
@@ -1094,7 +1094,7 @@
 
 .pass-bullets li{
   margin: 8px 0;
-  color: var(--text-muted);
+  color: var(--muted);
   line-height: 1.55;
 }
 
@@ -1126,7 +1126,7 @@
 }
 .pass-bullets li{
   margin: 8px 0;
-  color: var(--text-muted);
+  color: var(--muted);
   line-height: 1.55;
 }
 .pass-bullets strong{
@@ -1178,7 +1178,7 @@
 
 .review-viewport {
   background: var(--surface);
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 34px 34px 28px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -1217,7 +1217,7 @@
 }
 
 .review-role {
-  color: var(--text-muted);
+  color: var(--muted);
   font-size: 14px;
   margin-top: 2px;
 }
@@ -1319,21 +1319,22 @@
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--muted);
   margin-bottom: 10px;
 }
 
 .split-rows .bullets {
   margin: 14px 0 0;
   padding-left: 18px;
-  color: var(--text-muted);
+  color: var(--muted);
 }
 
 .soft-card {
-  background: rgba(255,255,255,0.72);
-  border: 1px solid var(--border-soft);
+  /* Use theme surfaces so it works in both light + dark mode */
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  border: 1px solid var(--border);
   border-radius: 22px;
-  box-shadow: 0 18px 55px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 900px) {

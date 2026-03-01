@@ -24,7 +24,7 @@
           {% assign author_id = mid | prepend: "/staff_members/" | append: "/" %}
           {% assign member = site.staff_members | where: "url", author_id | first %}
           {% if member %}
-          <a href="{{ member.url | relative_url }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid rgba(0,0,0,.08); border-radius:14px; text-decoration:none; color:inherit; background:#fff; min-width:220px; flex:1 1 220px;">
+          <a href="{{ member.url | relative_url }}" style="display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid var(--border); border-radius:14px; text-decoration:none; color:inherit; background:var(--surface); min-width:220px; flex:1 1 220px;">
             <img src="{{ member.image_path }}" alt="{{ member.name }}" style="width:34px; height:34px; border-radius:999px; object-fit:cover;">
             <div>
               <div style="font-weight:800;">{{ member.name }}</div>
@@ -43,7 +43,7 @@
       <div id="github-contributors" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
         {% if gh_contribs and gh_contribs.size > 0 %}
           {% for c in gh_contribs limit:12 %}
-            <a href="{{ c.html_url }}" target="_blank" rel="noopener" style="display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff;">
+            <a href="{{ c.html_url }}" target="_blank" rel="noopener" style="display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid var(--border);background:var(--surface);">
               <img src="{{ c.avatar_url }}" alt="{{ c.login }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
             </a>
           {% endfor %}

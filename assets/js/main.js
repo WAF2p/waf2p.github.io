@@ -132,3 +132,39 @@
   setActive(0);
   startAuto();
 })();
+
+
+// Theme toggle (light/dark) with persistence
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  function currentTheme() {
+    const t = root.getAttribute('data-theme');
+    if (t === 'dark' || t === 'light') return t;
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+
+  function setTheme(t) {
+    root.setAttribute('data-theme', t);
+    try { localStorage.setItem('theme', t); } catch (e) {}
+    btn.setAttribute('aria-pressed', String(t === 'dark'));
+    // swap icon (lucide)
+    btn.innerHTML = t === 'dark'
+      ? '<i data-lucide="sun"></i>'
+      : '<i data-lucide="moon"></i>';
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  }
+
+  // init button state (early theme is already applied in <head> if stored)
+  setTheme(currentTheme());
+
+  btn.addEventListener('click', function () {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+  });
+})();
+

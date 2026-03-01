@@ -28,7 +28,7 @@
         const a = document.createElement("a");
         a.href = c.html_url;
         a.target = "_blank";
-        a.style.cssText = "display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:#fff;";
+        a.style.cssText = "display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid var(--border);background:var(--surface);";
         const img = document.createElement("img");
         img.src = c.avatar_url;
         img.alt = c.login;

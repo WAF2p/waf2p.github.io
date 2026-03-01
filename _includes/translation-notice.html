@@ -45,6 +45,14 @@
 {%- endcomment -%}
 {%- if page.translation_notice == false -%}{%- assign has_other = true -%}{%- endif -%}
 
+{%- comment -%}
+  Do not show translation notices on blog posts.
+  Posts are often intentionally single-language, and the notice is visually noisy.
+{%- endcomment -%}
+{%- if page.layout == 'post' or page.collection == 'posts' -%}
+  {%- assign has_other = true -%}
+{%- endif -%}
+
 {%- if has_other == false -%}
   <div class="translation-notice" role="note" aria-label="Translation status">
     {%- if lang == 'en' -%}

@@ -65,6 +65,22 @@
   background: color-mix(in srgb, var(--surface) 70%, transparent);
   box-shadow: var(--shadow-sm);
 }
+
+
+.theme-toggle{
+  width:36px; height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 12px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  box-shadow: var(--shadow-sm);
+  padding:0;
+  cursor:pointer;
+}
+.theme-toggle:hover{background: color-mix(in srgb, var(--brand-500) 12%, transparent)}
+.theme-toggle i{width:18px; height:18px}
 .burger span{
   display:block;
   width:18px; height:2px;
@@ -147,15 +163,19 @@
 }
 .footer-bottom a{color: inherit;}
 
-/* Footer columns (CloudCannon-style layout like screenshot) */
+/* Footer columns (CloudCannon-style layout like screenshot)
+   Use theme variables so it doesn't turn "grey" in dark mode.
+*/
 .site-footer{
-  border-top: none;
-  background: #3b3b3b;
-  color: #cfcfcf;
+  border-top: 1px solid var(--border);
+  background: var(--footer-bg);
+  color: var(--footer-muted);
 }
 .site-footer a{color: inherit; text-decoration:none;}
 .site-footer a:hover{color:#fff;}
 
+
+.site-footer h1,.site-footer h2,.site-footer h3,.site-footer h4,.site-footer h5,.site-footer h6{color: var(--footer-text);}
 .footer-columns{
   display:flex;
   flex-wrap:wrap;
@@ -197,10 +217,10 @@
 .copyright{
   margin: 22px 0 0;
   padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.10);
+  border-top: 1px solid var(--border);
   text-align:center;
   font-size: 13px;
-  color: rgba(255,255,255,.55);
+  color: var(--footer-muted);
 }
 .copyright a{color: rgba(255,255,255,.65);}
 .copyright a:hover{color:#fff;}
@@ -236,7 +256,7 @@
   left: 0;
   min-width: 220px;
   padding: 10px;
-  background: var(--surface);
+  background: var(--footer-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -246,7 +266,7 @@
   display:block;
   padding: 10px 12px;
   border-radius: 12px;
-  color: var(--muted);
+  color: var(--footer-muted);
   font-size: 14px;
 }
 
