@@ -1,0 +1,80 @@
+{%- comment -%}
+JSON-LD Article schema + BreadcrumbList for post pages.
+Placed in <body> via post layout — valid per schema.org spec.
+{%- endcomment -%}
+{%- assign _abs_base   = site.url | append: site.baseurl -%}
+{%- assign _abs_url    = _abs_base | append: page.url -%}
+{%- assign _art_image  = page.image | default: site.logo -%}
+{%- assign _art_desc   = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 -%}
+{%- assign _art_lang   = page.lang | default: 'en' -%}
+{%- if page.last_modified_at -%}
+  {%- assign _art_modified = page.last_modified_at | date_to_xmlschema -%}
+{%- else -%}
+  {%- assign _art_modified = page.date | date_to_xmlschema -%}
+{%- endif -%}
+{%- assign _art_author = nil -%}
+{%- if page.author_staff_member -%}
+  {%- assign _art_author = site.staff_members | where: 'slug', page.author_staff_member | first -%}
+{%- endif -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ _art_desc | escape }}",
+  "url": "{{ _abs_url }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ _art_modified }}",
+  "inLanguage": "{{ _art_lang }}",
+  "image": "{{ _art_image }}",
+  "author": {
+    "@type": "Person",
+    {%- if _art_author %}
+    "name": "{{ _art_author.name | escape }}",
+    "url": "{{ _abs_base }}{{ _art_author.url }}"
+    {%- else %}
+    "name": "{{ site.author.name | escape }}"
+    {%- endif %}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title | escape }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.logo }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ _abs_url }}"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ site.title | escape }}",
+      "item": "{{ _abs_base }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ _abs_base }}/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.title | escape }}",
+      "item": "{{ _abs_url }}"
+    }
+  ]
+}
+</script>

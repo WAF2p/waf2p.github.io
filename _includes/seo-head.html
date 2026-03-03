@@ -1,0 +1,82 @@
+{%- comment -%}
+SEO head: canonical, hreflang EN/DE/x-default, OpenGraph, Twitter Card.
+Pulls lang-vars.html so it works from both root and de/ layouts.
+{%- endcomment -%}
+{%- include lang-vars.html -%}
+{%- assign _abs_base = site.url | append: site.baseurl -%}
+{%- assign _canonical = _abs_base | append: page.url -%}
+{%- if page.title != blank and page.title != nil -%}
+  {%- assign _seo_title = page.title | append: ' · ' | append: site.title -%}
+{%- else -%}
+  {%- assign _seo_title = site.title -%}
+{%- endif -%}
+{%- assign _seo_desc = page.description | default: site.description | strip_html | strip_newlines | truncate: 160 -%}
+{%- assign _seo_image = page.image | default: site.logo -%}
+{%- assign _og_type = 'website' -%}
+{%- if page.layout == 'post' -%}{%- assign _og_type = 'article' -%}{%- endif -%}
+{%- assign _og_locale = 'en_US' -%}
+{%- if lang == 'de' -%}{%- assign _og_locale = 'de_DE' -%}{%- endif -%}
+
+{%- comment -%} Resolve hreflang counterpart URLs {%- endcomment -%}
+{%- assign _all_pages = site.pages | concat: site.documents -%}
+{%- if lang == 'de' -%}
+  {%- assign _de_href = _canonical -%}
+  {%- if page.ref and page.ref != blank -%}
+    {%- assign _en_peer = _all_pages | where: 'ref', page.ref | where: 'lang', 'en' | first -%}
+    {%- if _en_peer -%}
+      {%- assign _en_href = _abs_base | append: _en_peer.url -%}
+    {%- else -%}
+      {%- assign _url_stripped = page.url | remove_first: '/de' -%}
+      {%- if _url_stripped == blank -%}{%- assign _url_stripped = '/' -%}{%- endif -%}
+      {%- assign _en_href = _abs_base | append: _url_stripped -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign _url_stripped = page.url | remove_first: '/de' -%}
+    {%- if _url_stripped == blank -%}{%- assign _url_stripped = '/' -%}{%- endif -%}
+    {%- assign _en_href = _abs_base | append: _url_stripped -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign _en_href = _canonical -%}
+  {%- assign _de_href = nil -%}
+  {%- if page.ref and page.ref != blank -%}
+    {%- assign _de_peer = _all_pages | where: 'ref', page.ref | where: 'lang', 'de' | first -%}
+    {%- if _de_peer -%}
+      {%- assign _de_href = _abs_base | append: _de_peer.url -%}
+    {%- else -%}
+      {%- assign _de_candidate = '/de' | append: page.url -%}
+      {%- assign _de_cand_page = _all_pages | where: 'url', _de_candidate | first -%}
+      {%- if _de_cand_page -%}{%- assign _de_href = _abs_base | append: _de_candidate -%}{%- endif -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign _de_candidate = '/de' | append: page.url -%}
+    {%- assign _de_cand_page = _all_pages | where: 'url', _de_candidate | first -%}
+    {%- if _de_cand_page -%}{%- assign _de_href = _abs_base | append: _de_candidate -%}{%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+<link rel="canonical" href="{{ _canonical }}">
+<link rel="alternate" hreflang="en" href="{{ _en_href }}">
+{%- if _de_href -%}
+<link rel="alternate" hreflang="de" href="{{ _de_href }}">
+{%- endif -%}
+<link rel="alternate" hreflang="x-default" href="{{ _en_href }}">
+<meta property="og:type" content="{{ _og_type }}">
+<meta property="og:title" content="{{ _seo_title | escape }}">
+<meta property="og:description" content="{{ _seo_desc | escape }}">
+<meta property="og:url" content="{{ _canonical }}">
+<meta property="og:image" content="{{ _seo_image }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:locale" content="{{ _og_locale }}">
+{%- if _og_type == 'article' -%}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- if page.last_modified_at -%}
+<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+{%- endif -%}
+{%- for _cat in page.categories -%}
+<meta property="article:tag" content="{{ _cat | escape }}">
+{%- endfor -%}
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ _seo_title | escape }}">
+<meta name="twitter:description" content="{{ _seo_desc | escape }}">
+<meta name="twitter:image" content="{{ _seo_image }}">

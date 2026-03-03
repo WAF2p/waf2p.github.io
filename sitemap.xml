@@ -1,36 +1,86 @@
 ---
 layout: null
 permalink: /sitemap.xml
+sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-{% assign pages_list = site.pages | where_exp: "p", "p.sitemap != false" %}
-{% for page in pages_list %}
-  {% unless page.url contains '/404' or page.url contains '/feed' or page.url contains '/assets/' or page.url contains '/css/' or page.url contains '/js/' or page.url contains '/images/' or page.url contains '/docs/' %}
+{%- assign _skip_patterns = '/404,/feed,/assets/,/css/,/js/,/images/,/docs/' | split: ',' -%}
+{%- assign _all_site_pages = site.pages | where_exp: "p", "p.sitemap != false" -%}
+{%- assign _all_urls = site.pages | concat: site.documents -%}
+
+{%- for p in _all_site_pages -%}
+  {%- assign _skip = false -%}
+  {%- for pat in _skip_patterns -%}
+    {%- if p.url contains pat -%}{%- assign _skip = true -%}{%- endif -%}
+  {%- endfor -%}
+  {%- unless _skip -%}
+
+  {%- comment -%}Determine lang and counterpart URLs{%- endcomment -%}
+  {%- if p.url contains '/de/' or p.url == '/de/' -%}
+    {%- assign _de_url = site.url | append: p.url -%}
+    {%- assign _stripped = p.url | remove_first: '/de' -%}
+    {%- if _stripped == blank -%}{%- assign _stripped = '/' -%}{%- endif -%}
+    {%- assign _en_peer = _all_urls | where: 'url', _stripped | first -%}
+    {%- if _en_peer -%}
+      {%- assign _en_url = site.url | append: _stripped -%}
+    {%- else -%}
+      {%- assign _en_url = nil -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign _en_url = site.url | append: p.url -%}
+    {%- assign _de_candidate = '/de' | append: p.url -%}
+    {%- assign _de_peer = _all_urls | where: 'url', _de_candidate | first -%}
+    {%- if _de_peer -%}
+      {%- assign _de_url = site.url | append: _de_candidate -%}
+    {%- else -%}
+      {%- assign _de_url = nil -%}
+    {%- endif -%}
+  {%- endif -%}
+
   <url>
-    <loc>{{ site.url }}{{ page.url | replace:'index.html','' }}</loc>
+    <loc>{{ site.url }}{{ p.url | replace:'index.html','' }}</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>
-      {% if page.url == '/' %}1.0
-      {% elsif page.url contains 'saeulen' %}0.9
-      {% elsif page.url contains 'governance' %}0.8
-      {% elsif page.url contains 'roadmap' %}0.8
-      {% else %}0.7
-      {% endif %}
-    </priority>
+    <priority>{% if p.url == '/' %}1.0{% elsif p.url contains 'saeulen' or p.url contains 'pillars' %}0.9{% elsif p.url contains 'governance' or p.url contains 'roadmap' %}0.8{% else %}0.7{% endif %}</priority>
+    {%- if _en_url -%}
+    <xhtml:link rel="alternate" hreflang="en" href="{{ _en_url | replace:'index.html','' }}"/>
+    {%- endif -%}
+    {%- if _de_url -%}
+    <xhtml:link rel="alternate" hreflang="de" href="{{ _de_url | replace:'index.html','' }}"/>
+    {%- endif -%}
+    {%- if _en_url -%}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ _en_url | replace:'index.html','' }}"/>
+    {%- endif -%}
+    {%- if p.image -%}
+    <image:image>
+      <image:loc>{{ p.image }}</image:loc>
+      {%- if p.title -%}<image:title>{{ p.title | escape }}</image:title>{%- endif -%}
+    </image:image>
+    {%- endif -%}
   </url>
-  {% endunless %}
-{% endfor %}
+  {%- endunless -%}
+{%- endfor -%}
 
-{% for post in site.posts %}
+{%- for post in site.posts -%}
+  {%- assign _post_url = site.url | append: post.url -%}
   <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
     <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="{{ post.lang | default: 'en' }}" href="{{ _post_url }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ _post_url }}"/>
+    {%- if post.image -%}
+    <image:image>
+      <image:loc>{{ post.image }}</image:loc>
+      {%- if post.title -%}<image:title>{{ post.title | escape }}</image:title>{%- endif -%}
+    </image:image>
+    {%- endif -%}
   </url>
-{% endfor %}
+{%- endfor -%}
 
 </urlset>
