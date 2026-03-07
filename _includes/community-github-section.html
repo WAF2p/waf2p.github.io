@@ -1,4 +1,4 @@
-{% assign is_de = page.lang == 'de' or page.url contains '/de/' %}
+{% include lang-vars.html %}
 {% assign repo = site.data.contributors_meta.repo | default: 'waf2p/waf2p.github.io' %}
 {% assign discussions = site.data.contributors_meta.discussions_url | default: 'https://github.com/waf2p/waf2p.github.io/discussions' %}
 {% assign community_count = site.data.contributors_meta.community_contributors | default: 1 %}
@@ -10,7 +10,7 @@
     <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;">
       <div>
         <div class="kicker">COMMUNITY</div>
-        <h2 style="margin:6px 0 0;">{% if is_de %}Von der Community gebaut{% else %}Built by the community{% endif %}</h2>
+        <h2 style="margin:6px 0 0;">{% if lang == 'de' %}Von der Community gebaut{% else %}Built by the community{% endif %}</h2>
       </div>
       <div class="muted small">
         — code contributors · {{ community_count }} community contributors
@@ -36,8 +36,8 @@
       </div>
 
       <div style="display:flex; justify-content:space-between; margin-top:18px;">
-        <div class="muted" style="font-weight:700;">Recent GitHub contributors</div>
-        <div class="muted" id="github-contrib-status">{% if gh_contribs and gh_contribs.size > 0 %}&nbsp;{% else %}Loading...{% endif %}</div>
+        <div class="muted" style="font-weight:700;">{% if lang == 'de' %}Aktuelle GitHub-Mitwirkende{% else %}Recent GitHub contributors{% endif %}</div>
+        <div class="muted" id="github-contrib-status">{% if gh_contribs and gh_contribs.size > 0 %}&nbsp;{% else %}{% if lang == 'de' %}Laden...{% else %}Loading...{% endif %}{% endif %}</div>
       </div>
 
       <div id="github-contributors" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
@@ -51,9 +51,13 @@
       </div>
 
       <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="https://github.com/{{ repo }}" target="_blank">⭐ Star on GitHub</a>
-        <a class="btn" href="{% if is_de %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">Governance & Community →</a>
-        <a class="btn" href="{{ discussions }}" target="_blank">Join discussions →</a>
+        <a class="btn btn-primary" href="https://github.com/{{ repo }}" target="_blank">⭐ {% if lang == 'de' %}Auf GitHub staren{% else %}Star on GitHub{% endif %}</a>
+        <a class="btn" href="{% if lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">Governance & Community →</a>
+        <a class="btn" href="{{ discussions }}" target="_blank">{% if lang == 'de' %}Diskussionen beitreten →{% else %}Join discussions →{% endif %}</a>
+        <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsAW" target="_blank" rel="noopener">
+          {% include slack-icon.html size=16 %}
+          {% if lang == 'de' %}Community Slack beitreten{% else %}Join Community Slack{% endif %}
+        </a>
       </div>
     </div>
   </div>
