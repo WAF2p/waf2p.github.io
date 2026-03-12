@@ -1,0 +1,302 @@
+---
+layout: default
+lang: de
+ref: rfc_tracker
+title: RFC Tracker — WAF++
+description: Alle offenen, entschiedenen und umgesetzten Requests for Comments, die WAF++ Framework, Governance und Tooling prägen.
+permalink: /de/rfc/
+---
+
+<style>
+.rfc-radio { display: none; }
+.rfc-tab-nav {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  border-bottom: 2px solid var(--border, #e5e7eb);
+  margin-bottom: 28px;
+}
+.rfc-tab-nav label {
+  padding: 9px 16px;
+  cursor: pointer; font-weight: 600; font-size: 0.88rem;
+  color: var(--muted-text, #6b7280);
+  border-bottom: 2px solid transparent; margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.rfc-tab-nav label:hover { color: var(--text, #111); }
+.rfc-pane { display: none; }
+
+#rfc-all:checked    ~ .rfc-tab-nav label[for="rfc-all"]    ,
+#rfc-open:checked   ~ .rfc-tab-nav label[for="rfc-open"]   ,
+#rfc-draft:checked  ~ .rfc-tab-nav label[for="rfc-draft"]  ,
+#rfc-done:checked   ~ .rfc-tab-nav label[for="rfc-done"]   { color: var(--accent,#2563eb); border-bottom-color: var(--accent,#2563eb); }
+
+#rfc-all:checked   ~ #pane-all   { display: block; }
+#rfc-open:checked  ~ #pane-open  { display: block; }
+#rfc-draft:checked ~ #pane-draft { display: block; }
+#rfc-done:checked  ~ #pane-done  { display: block; }
+
+.rfc-list { display: grid; gap: 14px; }
+.rfc-card {
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px;
+  padding: 18px 20px;
+  background: var(--card-bg, #fff);
+  display: grid; gap: 10px;
+}
+.rfc-card:hover { border-color: var(--accent, #2563eb); }
+.rfc-card-header { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+.rfc-id { font-family: monospace; font-size: 0.8rem; font-weight: 700; color: var(--muted-text, #6b7280); flex-shrink: 0; margin-top: 3px; }
+.rfc-title { font-weight: 700; font-size: 1rem; line-height: 1.4; flex: 1; }
+.rfc-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.rfc-status { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 3px 8px; border-radius: 5px; flex-shrink: 0; }
+.rfc-status--draft        { background: #f3f4f6; color: #374151; }
+.rfc-status--open         { background: #dbeafe; color: #1d4ed8; }
+.rfc-status--accepted     { background: #d1fae5; color: #065f46; }
+.rfc-status--implemented  { background: #dcfce7; color: #15803d; }
+.rfc-status--rejected     { background: #fee2e2; color: #b91c1c; }
+.rfc-status--withdrawn    { background: #f3f4f6; color: #9ca3af; }
+.rfc-cat { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding: 3px 8px; border-radius: 5px; flex-shrink: 0; }
+.rfc-cat--framework   { background: #ede9fe; color: #6d28d9; }
+.rfc-cat--governance  { background: #fef9c3; color: #92400e; }
+.rfc-cat--tooling     { background: #fff7ed; color: #c2410c; }
+.rfc-cat--docs        { background: #e0f2fe; color: #0369a1; }
+.rfc-cat--website     { background: #f0fdf4; color: #15803d; }
+.rfc-summary { font-size: 0.88rem; color: var(--muted-text, #6b7280); line-height: 1.6; }
+.rfc-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted-text, #6b7280); border-top: 1px solid var(--border, #f3f4f6); padding-top: 10px; }
+.rfc-meta span { display: flex; gap: 4px; align-items: center; }
+.rfc-meta a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.rfc-meta strong { color: var(--text, #111); }
+.rfc-stats { display: flex; gap: 0; flex-wrap: wrap; border: 1px solid var(--border, #e5e7eb); border-radius: 12px; overflow: hidden; margin-bottom: 28px; }
+.rfc-stat { flex: 1 1 100px; padding: 16px 20px; text-align: center; border-right: 1px solid var(--border, #e5e7eb); }
+.rfc-stat:last-child { border-right: none; }
+.rfc-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--accent,#2563eb); line-height: 1; }
+.rfc-stat-label { font-size: 0.78rem; color: var(--muted-text, #6b7280); margin-top: 4px; }
+.rfc-empty { text-align: center; padding: 40px 20px; color: var(--muted-text, #6b7280); font-size: 0.9rem; }
+.rfc-submit { border: 1px solid var(--border, #e5e7eb); border-radius: 12px; padding: 20px 24px; margin-top: 28px; display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+.rfc-submit-text { flex: 1; min-width: 200px; }
+.rfc-submit-text h3 { margin: 0 0 6px; font-size: 1rem; }
+.rfc-submit-text p  { margin: 0; font-size: 0.88rem; color: var(--muted-text,#6b7280); }
+</style>
+
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Governance</div>
+    <h1>RFC Tracker</h1>
+    <p class="lead" style="max-width: 72ch;">
+      Jede wesentliche Änderung an WAF++ beginnt mit einem öffentlichen Request for Comments.
+      Diese Seite verfolgt jeden RFC — von der Entwurfsphase bis zur Umsetzung — damit Entscheidungen immer nachvollziehbar sind.
+    </p>
+    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
+      <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussions →</a>
+      <a class="btn" href="{{ '/de/governance-community/' | relative_url }}">Governance-Modell →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    {% assign all_rfcs       = site.data.rfcs %}
+    {% assign draft_rfcs     = site.data.rfcs | where: "status", "draft" %}
+    {% assign open_rfcs      = site.data.rfcs | where: "status", "open" %}
+    {% assign accepted_rfcs  = site.data.rfcs | where: "status", "accepted" %}
+    {% assign impl_rfcs      = site.data.rfcs | where: "status", "implemented" %}
+    {% assign rejected_rfcs  = site.data.rfcs | where: "status", "rejected" %}
+    {% assign withdrawn_rfcs = site.data.rfcs | where: "status", "withdrawn" %}
+    {% assign done_rfcs      = impl_rfcs | concat: accepted_rfcs | concat: rejected_rfcs | concat: withdrawn_rfcs %}
+
+    <div class="rfc-stats">
+      <div class="rfc-stat">
+        <div class="rfc-stat-num">{{ all_rfcs | size }}</div>
+        <div class="rfc-stat-label">RFCs gesamt</div>
+      </div>
+      <div class="rfc-stat">
+        <div class="rfc-stat-num" style="color:#1d4ed8;">{{ open_rfcs | size }}</div>
+        <div class="rfc-stat-label">Offen zur Prüfung</div>
+      </div>
+      <div class="rfc-stat">
+        <div class="rfc-stat-num" style="color:#374151;">{{ draft_rfcs | size }}</div>
+        <div class="rfc-stat-label">Entwurf</div>
+      </div>
+      <div class="rfc-stat">
+        <div class="rfc-stat-num" style="color:#15803d;">{{ impl_rfcs | size }}</div>
+        <div class="rfc-stat-label">Umgesetzt</div>
+      </div>
+      <div class="rfc-stat">
+        <div class="rfc-stat-num" style="color:#b91c1c;">{{ rejected_rfcs | size }}</div>
+        <div class="rfc-stat-label">Abgelehnt</div>
+      </div>
+    </div>
+
+    <div class="rfc-tabs">
+      <input type="radio" name="rfc-tab" id="rfc-all"   class="rfc-radio" checked>
+      <input type="radio" name="rfc-tab" id="rfc-open"  class="rfc-radio">
+      <input type="radio" name="rfc-tab" id="rfc-draft" class="rfc-radio">
+      <input type="radio" name="rfc-tab" id="rfc-done"  class="rfc-radio">
+
+      <nav class="rfc-tab-nav">
+        <label for="rfc-all">Alle ({{ all_rfcs | size }})</label>
+        <label for="rfc-open">Offen zur Prüfung ({{ open_rfcs | size }})</label>
+        <label for="rfc-draft">Entwurf ({{ draft_rfcs | size }})</label>
+        <label for="rfc-done">Entschieden / umgesetzt ({{ done_rfcs | size }})</label>
+      </nav>
+
+      <div class="rfc-pane" id="pane-all">
+        <div class="rfc-list">
+          {% for rfc in site.data.rfcs %}
+          {% include rfc-card.html rfc=rfc lang="de" %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="rfc-pane" id="pane-open">
+        {% if open_rfcs.size > 0 %}
+        <div class="rfc-list">
+          {% for rfc in site.data.rfcs %}{% if rfc.status == "open" %}
+          {% include rfc-card.html rfc=rfc lang="de" %}
+          {% endif %}{% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">Aktuell keine offenen RFCs. <a href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">Einen RFC auf GitHub vorschlagen →</a></div>
+        {% endif %}
+      </div>
+
+      <div class="rfc-pane" id="pane-draft">
+        {% if draft_rfcs.size > 0 %}
+        <div class="rfc-list">
+          {% for rfc in site.data.rfcs %}{% if rfc.status == "draft" %}
+          {% include rfc-card.html rfc=rfc lang="de" %}
+          {% endif %}{% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">Keine Entwürfe im Moment.</div>
+        {% endif %}
+      </div>
+
+      <div class="rfc-pane" id="pane-done">
+        <div class="rfc-list">
+          {% for rfc in site.data.rfcs %}
+          {% unless rfc.status == "draft" or rfc.status == "open" %}
+          {% include rfc-card.html rfc=rfc lang="de" %}
+          {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rfc-submit">
+      <div class="rfc-submit-text">
+        <h3>Eine Änderung vorschlagen?</h3>
+        <p>Eine GitHub Discussion mit dem RFC-Template eröffnen. Die Community prüft es, Maintainer entscheiden — alles ist dokumentiert und nachvollziehbar.</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">RFC eröffnen →</a>
+        <a class="btn" href="{{ '/de/contributing/' | relative_url }}">RFC-Prozess-Leitfaden →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-kicker">Prozess</div>
+    <div class="section-title">Was qualifiziert sich als RFC?</div>
+    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
+      Nicht jede Änderung braucht einen RFC — nur wesentliche. Die folgende Tabelle hilft bei der Entscheidung.
+    </p>
+
+    <div class="card card-pad" style="margin-top: 18px; overflow-x: auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--border,#e5e7eb);">
+            <th style="text-align:left; padding:8px 12px; font-weight:700;">Änderungstyp</th>
+            <th style="text-align:left; padding:8px 12px; font-weight:700;">RFC erforderlich?</th>
+            <th style="text-align:left; padding:8px 12px; font-weight:700;">Prozess</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Neuer Pillar oder Entfernung eines Pillars</td>
+            <td style="padding:10px 12px;"><strong style="color:#15803d;">Ja</strong></td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC-Abstimmung → PR</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Änderungen am Scoring-Modell (PASS-Tiers, Gewichtungen)</td>
+            <td style="padding:10px 12px;"><strong style="color:#15803d;">Ja</strong></td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC-Abstimmung → PR</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Breaking Changes am Controls-Schema oder IDs</td>
+            <td style="padding:10px 12px;"><strong style="color:#15803d;">Ja</strong></td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC-Abstimmung → PR</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Neuer Working-Group-Vorschlag</td>
+            <td style="padding:10px 12px;"><strong style="color:#15803d;">Ja</strong></td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → Lazy Consensus → Charter veröffentlicht</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Governance- oder Rollenänderungen</td>
+            <td style="padding:10px 12px;"><strong style="color:#15803d;">Ja</strong></td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC-Supermehrheit</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Neuer Control (nicht-breaking, additiv)</td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">Empfohlen</td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">PR mit Diskussionslink · Lazy Consensus</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
+            <td style="padding:10px 12px;">Docs-Wording, Tippfehler, Übersetzungen</td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">Nein</td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">Nur PR</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 12px;">Website-Inhalte, Blog-Beiträge</td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">Nein</td>
+            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">Nur PR</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="section-kicker">Lebenszyklus</div>
+    <div class="section-title">RFC-Status-Ablauf</div>
+
+    <div class="card card-pad" style="margin-top: 18px;">
+      <div style="display:flex; gap:0; flex-wrap:wrap; justify-content:space-between; align-items:flex-start;">
+        <div style="flex:1 1 120px; padding:12px; text-align:center;">
+          <div style="font-size:1.6rem; margin-bottom:6px;">📝</div>
+          <div class="rfc-status rfc-status--draft" style="display:inline-block; margin-bottom:6px;">draft</div>
+          <div class="muted small">Autor verfasst den Vorschlag in GitHub Discussions</div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px; color:var(--muted-text,#9ca3af);">→</div>
+        <div style="flex:1 1 120px; padding:12px; text-align:center;">
+          <div style="font-size:1.6rem; margin-bottom:6px;">💬</div>
+          <div class="rfc-status rfc-status--open" style="display:inline-block; margin-bottom:6px;">open</div>
+          <div class="muted small">Mindestens 5 Werktage offen für Community-Kommentare</div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px; color:var(--muted-text,#9ca3af);">→</div>
+        <div style="flex:1 1 120px; padding:12px; text-align:center;">
+          <div style="font-size:1.6rem; margin-bottom:6px;">✅</div>
+          <div class="rfc-status rfc-status--accepted" style="display:inline-block; margin-bottom:6px;">accepted</div>
+          <div class="muted small">TSC-Abstimmung oder Lazy Consensus — öffentlich dokumentiert</div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px; color:var(--muted-text,#9ca3af);">→</div>
+        <div style="flex:1 1 120px; padding:12px; text-align:center;">
+          <div style="font-size:1.6rem; margin-bottom:6px;">🚀</div>
+          <div class="rfc-status rfc-status--implemented" style="display:inline-block; margin-bottom:6px;">implemented</div>
+          <div class="muted small">PR gemergt, Changelog-Eintrag hinzugefügt, RFC geschlossen</div>
+        </div>
+      </div>
+      <p class="muted small" style="margin: 12px 0 0; border-top: 1px solid var(--border,#f3f4f6); padding-top: 12px;">
+        Alternative Ausgänge: <span class="rfc-status rfc-status--rejected" style="display:inline;">rejected</span> (nach Review nicht akzeptiert) oder <span class="rfc-status rfc-status--withdrawn" style="display:inline;">withdrawn</span> (vom Autor zurückgezogen). Beide werden mit Begründung dokumentiert.
+      </p>
+    </div>
+  </div>
+</section>
