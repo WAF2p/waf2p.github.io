@@ -1,0 +1,169 @@
+---
+layout: default
+lang: de
+ref: changelog
+title: Changelog — WAF++
+description: Ein öffentliches Protokoll aller wesentlichen Änderungen am WAF++-Framework und der Marketing-Website.
+permalink: /de/changelog/
+---
+
+<style>
+.cl-radio { display: none; }
+.cl-tab-nav { display: flex; gap: 4px; border-bottom: 2px solid var(--border, #e5e7eb); margin-bottom: 28px; }
+.cl-tab-nav label {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--muted-text, #6b7280);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.cl-tab-nav label:hover { color: var(--text, #111); }
+.cl-pane { display: none; }
+#cl-tab-fw:checked ~ .cl-tab-nav label[for="cl-tab-fw"],
+#cl-tab-mkt:checked ~ .cl-tab-nav label[for="cl-tab-mkt"] {
+  color: var(--accent, #2563eb);
+  border-bottom-color: var(--accent, #2563eb);
+}
+#cl-tab-fw:checked ~ #cl-pane-fw { display: block; }
+#cl-tab-mkt:checked ~ #cl-pane-mkt { display: block; }
+
+.cl-group { margin-bottom: 36px; }
+.cl-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.cl-group-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted-text, #6b7280); }
+.cl-version-badge {
+  font-size: 0.75rem; font-weight: 700;
+  padding: 3px 9px; border-radius: 5px;
+  background: var(--accent, #2563eb); color: #fff;
+}
+.cl-beta-badge {
+  font-size: 0.75rem; font-weight: 600;
+  padding: 3px 9px; border-radius: 5px;
+  background: #fef9c3; color: #92400e;
+}
+.cl-entries { display: grid; gap: 8px; }
+.cl-entry { display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; border-radius: 8px; background: var(--card-bg, #f9fafb); }
+.cl-type {
+  flex-shrink: 0;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  padding: 2px 7px; border-radius: 4px; margin-top: 2px;
+}
+.cl-type--new      { background: #dcfce7; color: #15803d; }
+.cl-type--fix      { background: #fee2e2; color: #b91c1c; }
+.cl-type--improvement { background: #dbeafe; color: #1d4ed8; }
+.cl-type--docs     { background: #ede9fe; color: #6d28d9; }
+.cl-type--infra    { background: #f3f4f6; color: #374151; }
+.cl-type--breaking { background: #fff7ed; color: #c2410c; }
+.cl-text { font-size: 0.92rem; line-height: 1.5; }
+.cl-pr { font-size: 0.8rem; color: var(--muted-text, #6b7280); margin-left: 6px; }
+
+.cl-notice {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: #fef9c3; border: 1px solid #fde68a; border-radius: 10px;
+  padding: 14px 18px; margin-bottom: 28px; font-size: 0.9rem;
+}
+</style>
+
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Verlauf</div>
+    <h1>Changelog</h1>
+    <p class="lead" style="max-width: 72ch;">
+      Ein transparentes Protokoll jeder wesentlichen Änderung — jeweils verknüpft mit dem RFC oder PR, der sie eingeführt hat.
+    </p>
+    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
+      <a class="btn btn-primary" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
+      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="changelog-tabs">
+      <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
+      <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
+
+      <nav class="cl-tab-nav">
+        <label for="cl-tab-fw">Framework</label>
+        <label for="cl-tab-mkt">Marketing-Website</label>
+      </nav>
+
+      <!-- Framework pane -->
+      <div class="cl-pane" id="cl-pane-fw">
+
+        <div class="cl-notice">
+          <span style="font-size:1.1rem;">⚠️</span>
+          <div>
+            <strong>Öffentliche Beta</strong> — Framework v1.0 wird kurz vor dem <strong>12. Mai 2026</strong> erwartet.
+            Alle Einträge unten sind Vor-Release-Änderungen. API, Controls und Scoring-Modell können sich noch ändern.
+          </div>
+        </div>
+
+        {% for group in site.data.changelog_framework %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_de }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_de }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/framework/pulls/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted small" style="margin-top: 8px;">
+          Vollständiger Verlauf: <a href="https://github.com/waf2p/framework/commits/main" target="_blank" rel="noopener">github.com/waf2p/framework</a>
+        </p>
+      </div>
+
+      <!-- Marketing site pane -->
+      <div class="cl-pane" id="cl-pane-mkt">
+
+        {% for group in site.data.changelog_marketing %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_de }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_de }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/waf2p.github.io/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted small" style="margin-top: 8px;">
+          Vollständiger Verlauf: <a href="https://github.com/waf2p/waf2p.github.io/commits/main" target="_blank" rel="noopener">github.com/waf2p/waf2p.github.io</a>
+        </p>
+      </div>
+
+    </div><!-- /.changelog-tabs -->
+
+  </div>
+</section>
+
+<!-- Auf dem Laufenden -->
+<section class="section section--tight">
+  <div class="container" style="text-align:center">
+    <h2>Kein Update verpassen</h2>
+    <p class="muted" style="max-width:62ch; margin: 0 auto 20px;">
+      Den RSS-Feed abonnieren oder Slack beitreten, um benachrichtigt zu werden, wenn neue Releases erscheinen.
+    </p>
+    <a class="btn btn-primary" href="{{ '/de/stay-updated/' | relative_url }}">Auf dem Laufenden bleiben →</a>
+    <a class="btn" style="margin-left:10px;" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
+  </div>
+</section>
