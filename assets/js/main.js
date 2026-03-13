@@ -134,6 +134,17 @@
 })();
 
 
+// Mobile nav: reset dropdowns when burger closes the nav
+(function () {
+  var burgerBtn = document.getElementById('nav-toggle');
+  if (!burgerBtn) return;
+  burgerBtn.addEventListener('click', function () {
+    document.querySelectorAll('.nav-dropdown').forEach(function (d) { d.style.display = 'none'; });
+    document.querySelectorAll('.nav-group-toggle').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+  });
+})();
+
+
 // Theme toggle (light/dark) with persistence
 (function () {
   const root = document.documentElement;
