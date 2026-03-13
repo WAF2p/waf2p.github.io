@@ -18,18 +18,18 @@ permalink: /rfc/
 .rfc-tab-nav label {
   padding: 9px 16px;
   cursor: pointer; font-weight: 600; font-size: 0.88rem;
-  color: var(--muted-text, #6b7280);
+  color: var(--muted);
   border-bottom: 2px solid transparent; margin-bottom: -2px;
   transition: color 0.15s, border-color 0.15s;
   white-space: nowrap;
 }
-.rfc-tab-nav label:hover { color: var(--text, #111); }
+.rfc-tab-nav label:hover { color: var(--text); }
 .rfc-pane { display: none; }
 
 #rfc-all:checked    ~ .rfc-tab-nav label[for="rfc-all"]    ,
 #rfc-open:checked   ~ .rfc-tab-nav label[for="rfc-open"]   ,
 #rfc-draft:checked  ~ .rfc-tab-nav label[for="rfc-draft"]  ,
-#rfc-done:checked   ~ .rfc-tab-nav label[for="rfc-done"]   { color: var(--accent,#2563eb); border-bottom-color: var(--accent,#2563eb); }
+#rfc-done:checked   ~ .rfc-tab-nav label[for="rfc-done"]   { color: var(--brand-500); border-bottom-color: var(--brand-500); }
 
 #rfc-all:checked   ~ #pane-all   { display: block; }
 #rfc-open:checked  ~ #pane-open  { display: block; }
@@ -39,17 +39,17 @@ permalink: /rfc/
 /* ── RFC card ────────────────────────────────────────────────────────────── */
 .rfc-list { display: grid; gap: 14px; }
 .rfc-card {
-  border: 1px solid var(--border, #e5e7eb);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
-  background: var(--card-bg, #fff);
+  background: var(--surface);
   display: grid; gap: 10px;
 }
-.rfc-card:hover { border-color: var(--accent, #2563eb); }
+.rfc-card:hover { border-color: var(--brand-500); }
 .rfc-card-header { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
 .rfc-id {
   font-family: monospace; font-size: 0.8rem; font-weight: 700;
-  color: var(--muted-text, #6b7280); flex-shrink: 0; margin-top: 3px;
+  color: var(--muted); flex-shrink: 0; margin-top: 3px;
 }
 .rfc-title { font-weight: 700; font-size: 1rem; line-height: 1.4; flex: 1; }
 .rfc-badges { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -59,33 +59,32 @@ permalink: /rfc/
   font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .05em; padding: 3px 8px; border-radius: 5px; flex-shrink: 0;
 }
-.rfc-status--draft        { background: #f3f4f6; color: #374151; }
-.rfc-status--open         { background: #dbeafe; color: #1d4ed8; }
-.rfc-status--accepted     { background: #d1fae5; color: #065f46; }
-.rfc-status--implemented  { background: #dcfce7; color: #15803d; }
-.rfc-status--rejected     { background: #fee2e2; color: #b91c1c; }
-.rfc-status--withdrawn    { background: #f3f4f6; color: #9ca3af; }
+.rfc-status--draft        { background: color-mix(in srgb, #6b7280 18%, var(--surface)); color: color-mix(in srgb, #6b7280 85%, var(--text)); }
+.rfc-status--open         { background: color-mix(in srgb, #2563eb 18%, var(--surface)); color: color-mix(in srgb, #2563eb 85%, var(--text)); }
+.rfc-status--accepted     { background: color-mix(in srgb, #059669 18%, var(--surface)); color: color-mix(in srgb, #059669 85%, var(--text)); }
+.rfc-status--implemented  { background: color-mix(in srgb, #16a34a 18%, var(--surface)); color: color-mix(in srgb, #16a34a 85%, var(--text)); }
+.rfc-status--rejected     { background: color-mix(in srgb, #dc2626 18%, var(--surface)); color: color-mix(in srgb, #dc2626 85%, var(--text)); }
+.rfc-status--withdrawn    { background: color-mix(in srgb, #9ca3af 18%, var(--surface)); color: color-mix(in srgb, #9ca3af 85%, var(--text)); }
 
 /* category badges */
 .rfc-cat {
   font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
   letter-spacing: .04em; padding: 3px 8px; border-radius: 5px; flex-shrink: 0;
 }
-.rfc-cat--framework   { background: #ede9fe; color: #6d28d9; }
-.rfc-cat--governance  { background: #fef9c3; color: #92400e; }
-.rfc-cat--tooling     { background: #fff7ed; color: #c2410c; }
-.rfc-cat--docs        { background: #e0f2fe; color: #0369a1; }
-.rfc-cat--website     { background: #f0fdf4; color: #15803d; }
+.rfc-cat--framework   { background: color-mix(in srgb, #7c3aed 18%, var(--surface)); color: color-mix(in srgb, #7c3aed 85%, var(--text)); }
+.rfc-cat--governance  { background: color-mix(in srgb, #d97706 18%, var(--surface)); color: color-mix(in srgb, #d97706 85%, var(--text)); }
+.rfc-cat--tooling     { background: color-mix(in srgb, #ea580c 18%, var(--surface)); color: color-mix(in srgb, #ea580c 85%, var(--text)); }
+.rfc-cat--docs        { background: color-mix(in srgb, #0284c7 18%, var(--surface)); color: color-mix(in srgb, #0284c7 85%, var(--text)); }
 
-.rfc-summary { font-size: 0.88rem; color: var(--muted-text, #6b7280); line-height: 1.6; }
+.rfc-summary { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 .rfc-meta {
   display: flex; gap: 16px; flex-wrap: wrap;
-  font-size: 0.78rem; color: var(--muted-text, #6b7280);
-  border-top: 1px solid var(--border, #f3f4f6); padding-top: 10px;
+  font-size: 0.78rem; color: var(--muted);
+  border-top: 1px solid var(--border); padding-top: 10px;
 }
 .rfc-meta span { display: flex; gap: 4px; align-items: center; }
 .rfc-meta a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-.rfc-meta strong { color: var(--text, #111); }
+.rfc-meta strong { color: var(--text); }
 
 /* ── Stats bar ───────────────────────────────────────────────────────────── */
 .rfc-stats {
@@ -98,10 +97,10 @@ permalink: /rfc/
   border-right: 1px solid var(--border, #e5e7eb);
 }
 .rfc-stat:last-child { border-right: none; }
-.rfc-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--accent,#2563eb); line-height: 1; }
-.rfc-stat-label { font-size: 0.78rem; color: var(--muted-text, #6b7280); margin-top: 4px; }
+.rfc-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--brand-500); line-height: 1; }
+.rfc-stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
 
-.rfc-empty { text-align: center; padding: 40px 20px; color: var(--muted-text, #6b7280); font-size: 0.9rem; }
+.rfc-empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.9rem; }
 
 /* ── Submit box ──────────────────────────────────────────────────────────── */
 .rfc-submit {
@@ -111,7 +110,7 @@ permalink: /rfc/
 }
 .rfc-submit-text { flex: 1; min-width: 200px; }
 .rfc-submit-text h3 { margin: 0 0 6px; font-size: 1rem; }
-.rfc-submit-text p  { margin: 0; font-size: 0.88rem; color: var(--muted-text,#6b7280); }
+.rfc-submit-text p  { margin: 0; font-size: 0.88rem; color: var(--muted); }
 </style>
 
 <section class="hero hero--page hero--centered">
@@ -265,42 +264,42 @@ permalink: /rfc/
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">New pillar or removal of a pillar</td>
             <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC vote → PR</td>
+            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC vote → PR</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">Scoring model changes (PASS tiers, weights)</td>
             <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC vote → PR</td>
+            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC vote → PR</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">Breaking change to controls schema or IDs</td>
             <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC vote → PR</td>
+            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC vote → PR</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">New Working Group proposal</td>
             <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → lazy consensus → charter published</td>
+            <td style="padding:10px 12px; color:var(--muted);">RFC → lazy consensus → charter published</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">Governance or role changes</td>
             <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">RFC → TSC supermajority</td>
+            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC supermajority</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">New control (non-breaking, additive)</td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">Recommended</td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">PR with discussion link · lazy consensus</td>
+            <td style="padding:10px 12px; color:var(--muted);">Recommended</td>
+            <td style="padding:10px 12px; color:var(--muted);">PR with discussion link · lazy consensus</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
             <td style="padding:10px 12px;">Docs wording, typo fixes, translations</td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">No</td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">PR only</td>
+            <td style="padding:10px 12px; color:var(--muted);">No</td>
+            <td style="padding:10px 12px; color:var(--muted);">PR only</td>
           </tr>
           <tr>
             <td style="padding:10px 12px;">Website content, blog posts</td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">No</td>
-            <td style="padding:10px 12px; color:var(--muted-text,#6b7280);">PR only</td>
+            <td style="padding:10px 12px; color:var(--muted);">No</td>
+            <td style="padding:10px 12px; color:var(--muted);">PR only</td>
           </tr>
         </tbody>
       </table>
@@ -321,19 +320,19 @@ permalink: /rfc/
           <div class="rfc-status rfc-status--draft" style="display:inline-block; margin-bottom:6px;">draft</div>
           <div class="muted small">Author writes the proposal in GitHub Discussions</div>
         </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted-text,#9ca3af);">→</div>
+        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
         <div style="flex:1 1 120px; padding:12px; text-align:center;">
           <div style="font-size:1.6rem; margin-bottom:6px;">💬</div>
           <div class="rfc-status rfc-status--open" style="display:inline-block; margin-bottom:6px;">open</div>
           <div class="muted small">Minimum 5 business days open for community comment</div>
         </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted-text,#9ca3af);">→</div>
+        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
         <div style="flex:1 1 120px; padding:12px; text-align:center;">
           <div style="font-size:1.6rem; margin-bottom:6px;">✅</div>
           <div class="rfc-status rfc-status--accepted" style="display:inline-block; margin-bottom:6px;">accepted</div>
           <div class="muted small">TSC vote or lazy consensus — documented publicly</div>
         </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted-text,#9ca3af);">→</div>
+        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
         <div style="flex:1 1 120px; padding:12px; text-align:center;">
           <div style="font-size:1.6rem; margin-bottom:6px;">🚀</div>
           <div class="rfc-status rfc-status--implemented" style="display:inline-block; margin-bottom:6px;">implemented</div>
