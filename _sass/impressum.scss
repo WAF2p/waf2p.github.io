@@ -1,32 +1,40 @@
-.map {
-  width: 100%;
-  margin: 100px 0;
-  height: 400px;
+// ── Impressum / Legal grid ────────────────────────────────────────────────
+
+.impressum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 
-.contact-box {
-  @extend %flexbox;
-  @include flex-flow(wrap);
-  max-width: 750px;
-  margin: 0 auto;
+.impressum-card { height: 100%; }
 
-  form {
-    width: 100%
+.impressum-kv {
+  margin-top: 14px;
+
+  .row {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid rgba(0,0,0,.06);
+    align-items: flex-start;
   }
 
-  p {
+  dt {
+    min-width: 108px;
+    font-weight: 800;
+  }
+
+  dd {
     margin: 0;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
-  .contact-form, .contact-details {
-    @media #{$desktop} {
-      -webkit-flex: 1;
-      flex: 1;
-    }
-    margin: 0 30px;
-  }
-
-  .contact-details {
-    font-size: .9em;
+  a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 }
+
