@@ -60,7 +60,8 @@
 
             {% if item.children %}
               <div class="nav-group{% if is_active %} is-active{% endif %}">
-                <a class="{% if is_active %}active{% endif %}" href="{{ item_href | relative_url }}">{{ item_label }}</a>
+                <a class="nav-group-label{% if is_active %} active{% endif %}" href="{{ item_href | relative_url }}">{{ item_label }}</a>
+                <button class="nav-group-toggle" type="button" aria-expanded="false" onclick="var d=this.parentNode.querySelector('.nav-dropdown'),o=d.style.display==='block';document.querySelectorAll('.nav-dropdown').forEach(function(x){x.style.display='none'});if(!o){d.style.display='block';this.setAttribute('aria-expanded','true');}else{this.setAttribute('aria-expanded','false');}">{{ item_label }}</button>
                 <div class="nav-dropdown" aria-label="{{ item_label }} submenu">
                   {% for child in item.children %}
                     {%- assign child_path = child.link -%}
@@ -100,6 +101,7 @@
 
       <div class="cta-row">
         {% include lang-switch.html %}
+        <a class="theme-toggle" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsAW" target="_blank" rel="noopener" aria-label="Join WAF++ Community on Slack" title="Join Community Slack">{% include slack-icon.html size=18 %}</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Theme umschalten" aria-pressed="false"><i data-lucide="moon"></i></button>
 
         {% for item in nav_items %}

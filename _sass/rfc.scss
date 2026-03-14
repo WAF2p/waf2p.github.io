@@ -1,0 +1,198 @@
+// ── RFC Tracker ────────────────────────────────────────────────────────────
+
+.rfc-radio { display: none; }
+
+.rfc-tab-nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 28px;
+
+  label {
+    padding: 9px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+
+    &:hover { color: var(--text); }
+  }
+}
+
+.rfc-pane { display: none; }
+
+#rfc-all:checked   ~ .rfc-tab-nav label[for="rfc-all"],
+#rfc-open:checked  ~ .rfc-tab-nav label[for="rfc-open"],
+#rfc-draft:checked ~ .rfc-tab-nav label[for="rfc-draft"],
+#rfc-done:checked  ~ .rfc-tab-nav label[for="rfc-done"] {
+  color: var(--brand-500);
+  border-bottom-color: var(--brand-500);
+}
+
+#rfc-all:checked   ~ #pane-all   { display: block; }
+#rfc-open:checked  ~ #pane-open  { display: block; }
+#rfc-draft:checked ~ #pane-draft { display: block; }
+#rfc-done:checked  ~ #pane-done  { display: block; }
+
+// ── Card ──────────────────────────────────────────────────────────────────
+
+.rfc-list { display: grid; gap: 14px; }
+
+.rfc-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  background: var(--surface);
+  display: grid;
+  gap: 10px;
+
+  &:hover { border-color: var(--brand-500); }
+}
+
+.rfc-card-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.rfc-id {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.rfc-title {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.rfc-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+// ── Status badges ─────────────────────────────────────────────────────────
+
+.rfc-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 3px 8px;
+  border-radius: 5px;
+  flex-shrink: 0;
+
+  &--draft       { background: color-mix(in srgb, #6b7280 18%, var(--surface)); color: color-mix(in srgb, #6b7280 85%, var(--text)); }
+  &--open        { background: color-mix(in srgb, #2563eb 18%, var(--surface)); color: color-mix(in srgb, #2563eb 85%, var(--text)); }
+  &--accepted    { background: color-mix(in srgb, #059669 18%, var(--surface)); color: color-mix(in srgb, #059669 85%, var(--text)); }
+  &--implemented { background: color-mix(in srgb, #16a34a 18%, var(--surface)); color: color-mix(in srgb, #16a34a 85%, var(--text)); }
+  &--rejected    { background: color-mix(in srgb, #dc2626 18%, var(--surface)); color: color-mix(in srgb, #dc2626 85%, var(--text)); }
+  &--withdrawn   { background: color-mix(in srgb, #9ca3af 18%, var(--surface)); color: color-mix(in srgb, #9ca3af 85%, var(--text)); }
+}
+
+// ── Category badges ───────────────────────────────────────────────────────
+
+.rfc-cat {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 3px 8px;
+  border-radius: 5px;
+  flex-shrink: 0;
+
+  &--framework  { background: color-mix(in srgb, #7c3aed 18%, var(--surface)); color: color-mix(in srgb, #7c3aed 85%, var(--text)); }
+  &--governance { background: color-mix(in srgb, #d97706 18%, var(--surface)); color: color-mix(in srgb, #d97706 85%, var(--text)); }
+  &--tooling    { background: color-mix(in srgb, #ea580c 18%, var(--surface)); color: color-mix(in srgb, #ea580c 85%, var(--text)); }
+  &--docs       { background: color-mix(in srgb, #0284c7 18%, var(--surface)); color: color-mix(in srgb, #0284c7 85%, var(--text)); }
+}
+
+.rfc-summary {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.rfc-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+
+  span    { display: flex; gap: 4px; align-items: center; }
+  a       { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  strong  { color: var(--text); }
+}
+
+// ── Stats bar ─────────────────────────────────────────────────────────────
+
+.rfc-stats {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.rfc-stat {
+  flex: 1 1 100px;
+  padding: 16px 20px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+
+  &:last-child { border-right: none; }
+}
+
+.rfc-stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--brand-500);
+  line-height: 1;
+}
+
+.rfc-stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.rfc-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+// ── Submit CTA ────────────────────────────────────────────────────────────
+
+.rfc-submit {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.rfc-submit-text {
+  flex: 1;
+  min-width: 200px;
+
+  h3 { margin: 0 0 6px; font-size: 1rem; }
+  p  { margin: 0; font-size: 0.88rem; color: var(--muted); }
+}

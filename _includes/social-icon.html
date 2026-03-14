@@ -5,4 +5,8 @@
 {%- endcomment -%}
 
 {%- assign icon_name = include.icon | downcase -%}
-<i data-lucide="{{ icon_name }}" aria-hidden="true"></i>
+{%- if icon_name == 'slack' -%}
+  {% include slack-icon.html size=22 %}
+{%- else -%}
+  <i data-lucide="{{ icon_name }}" aria-hidden="true"></i>
+{%- endif -%}

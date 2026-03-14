@@ -1,0 +1,110 @@
+---
+layout: default
+lang: de
+ref: changelog
+title: Changelog — WAF++
+description: Ein öffentliches Protokoll aller wesentlichen Änderungen am WAF++-Framework und der Marketing-Website.
+permalink: /de/changelog/
+---
+
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Verlauf</div>
+    <h1>Changelog</h1>
+    <p class="lead" style="max-width: 72ch;">
+      Ein transparentes Protokoll jeder wesentlichen Änderung — jeweils verknüpft mit dem RFC oder PR, der sie eingeführt hat.
+    </p>
+    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
+      <a class="btn btn-primary" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
+      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="changelog-tabs">
+      <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
+      <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
+
+      <nav class="cl-tab-nav">
+        <label for="cl-tab-fw">Framework</label>
+        <label for="cl-tab-mkt">Marketing-Website</label>
+      </nav>
+
+      <!-- Framework pane -->
+      <div class="cl-pane" id="cl-pane-fw">
+
+        <div class="cl-notice">
+          <span style="font-size:1.1rem;">⚠️</span>
+          <div>
+            <strong>Öffentliche Beta</strong> — Framework v1.0 wird kurz vor dem <strong>12. Mai 2026</strong> erwartet.
+            Alle Einträge unten sind Vor-Release-Änderungen. API, Controls und Scoring-Modell können sich noch ändern.
+          </div>
+        </div>
+
+        {% for group in site.data.changelog_framework %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_de }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_de }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/framework/pulls/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted small" style="margin-top: 8px;">
+          Vollständiger Verlauf: <a href="https://github.com/waf2p/framework/commits/main" target="_blank" rel="noopener">github.com/waf2p/framework</a>
+        </p>
+      </div>
+
+      <!-- Marketing site pane -->
+      <div class="cl-pane" id="cl-pane-mkt">
+
+        {% for group in site.data.changelog_marketing %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_de }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_de }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/waf2p.github.io/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted small" style="margin-top: 8px;">
+          Vollständiger Verlauf: <a href="https://github.com/waf2p/waf2p.github.io/commits/main" target="_blank" rel="noopener">github.com/waf2p/waf2p.github.io</a>
+        </p>
+      </div>
+
+    </div><!-- /.changelog-tabs -->
+
+  </div>
+</section>
+
+<!-- Auf dem Laufenden -->
+<section class="section section--tight">
+  <div class="container" style="text-align:center">
+    <h2>Kein Update verpassen</h2>
+    <p class="muted" style="max-width:62ch; margin: 0 auto 20px;">
+      Den RSS-Feed abonnieren oder Slack beitreten, um benachrichtigt zu werden, wenn neue Releases erscheinen.
+    </p>
+    <a class="btn btn-primary" href="{{ '/de/stay-updated/' | relative_url }}">Auf dem Laufenden bleiben →</a>
+    <a class="btn" style="margin-left:10px;" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
+  </div>
+</section>

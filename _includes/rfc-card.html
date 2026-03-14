@@ -1,0 +1,40 @@
+{%- assign rfc = include.rfc -%}
+{%- assign lang = include.lang | default: "en" -%}
+{%- if lang == "de" -%}
+  {%- assign rfc_title   = rfc.title_de -%}
+  {%- assign rfc_summary = rfc.summary_de -%}
+  {%- assign label_author = "Autor" -%}
+  {%- assign label_opened = "Eröffnet" -%}
+  {%- assign label_decided = "Entschieden" -%}
+  {%- assign label_implemented = "Umgesetzt" -%}
+  {%- assign label_discussion = "Diskussion" -%}
+  {%- assign label_pr = "PR" -%}
+{%- else -%}
+  {%- assign rfc_title   = rfc.title_en -%}
+  {%- assign rfc_summary = rfc.summary_en -%}
+  {%- assign label_author = "Author" -%}
+  {%- assign label_opened = "Opened" -%}
+  {%- assign label_decided = "Decided" -%}
+  {%- assign label_implemented = "Implemented" -%}
+  {%- assign label_discussion = "Discussion" -%}
+  {%- assign label_pr = "PR" -%}
+{%- endif -%}
+<div class="rfc-card">
+  <div class="rfc-card-header">
+    <span class="rfc-id">{{ rfc.id }}</span>
+    <span class="rfc-title">{{ rfc_title }}</span>
+  </div>
+  <div class="rfc-badges">
+    <span class="rfc-status rfc-status--{{ rfc.status }}">{{ rfc.status | replace: "_", " " }}</span>
+    <span class="rfc-cat rfc-cat--{{ rfc.category }}">{{ rfc.category }}</span>
+  </div>
+  <p class="rfc-summary">{{ rfc_summary }}</p>
+  <div class="rfc-meta">
+    <span><strong>{{ label_author }}:</strong> {{ rfc.author }}</span>
+    <span><strong>{{ label_opened }}:</strong> {{ rfc.opened }}</span>
+    {%- if rfc.decided %}<span><strong>{{ label_decided }}:</strong> {{ rfc.decided }}</span>{% endif -%}
+    {%- if rfc.implemented %}<span><strong>{{ label_implemented }}:</strong> {{ rfc.implemented }}</span>{% endif -%}
+    {%- if rfc.discussion %}<span><strong>{{ label_discussion }}:</strong> <a href="{{ rfc.discussion }}" target="_blank" rel="noopener">GitHub →</a></span>{% endif -%}
+    {%- if rfc.pr %}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/waf2p/framework/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{% endif -%}
+  </div>
+</div>

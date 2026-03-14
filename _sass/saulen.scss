@@ -59,3 +59,29 @@
   gap: 12px;
   flex-wrap: wrap;
 }
+
+// ── Pillar card layout & availability states ──────────────────────────────
+
+.pillar-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pillar-actions {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.pillar--disabled {
+  opacity: 0.45;
+  filter: saturate(0.6);
+
+  h3, .muted { opacity: 0.85; }
+
+  // keep the action button fully visible
+  .pillar-actions a {
+    opacity: 1;
+    filter: none;
+  }
+}
