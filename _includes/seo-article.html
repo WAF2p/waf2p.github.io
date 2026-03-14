@@ -4,8 +4,19 @@ Placed in <body> via post layout — valid per schema.org spec.
 {%- endcomment -%}
 {%- assign _abs_base   = site.url | append: site.baseurl -%}
 {%- assign _abs_url    = _abs_base | append: page.url -%}
-{%- assign _art_image  = page.image | default: site.logo -%}
 {%- assign _art_desc   = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 -%}
+{%- comment -%} Image: frontmatter image > first <img> in content > site logo {%- endcomment -%}
+{%- assign _art_first_img = nil -%}
+{%- if page.content contains '<img' -%}
+  {%- assign _art_img_split = page.content | split: '<img' -%}
+  {%- assign _art_first_img = _art_img_split[1] | split: 'src="' | last | split: '"' | first -%}
+{%- endif -%}
+{%- assign _art_raw_image = page.image | default: _art_first_img | default: site.logo -%}
+{%- if _art_raw_image contains '://' -%}
+  {%- assign _art_image = _art_raw_image -%}
+{%- else -%}
+  {%- assign _art_image = _abs_base | append: _art_raw_image -%}
+{%- endif -%}
 {%- assign _art_lang   = page.lang | default: 'en' -%}
 {%- if page.last_modified_at -%}
   {%- assign _art_modified = page.last_modified_at | date_to_xmlschema -%}

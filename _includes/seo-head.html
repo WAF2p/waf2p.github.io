@@ -11,7 +11,18 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
   {%- assign _seo_title = site.title -%}
 {%- endif -%}
 {%- assign _seo_desc = page.description | default: site.description | strip_html | strip_newlines | truncate: 160 -%}
-{%- assign _seo_image = page.image | default: site.logo -%}
+{%- comment -%} Image: frontmatter image > first <img> in content > site logo {%- endcomment -%}
+{%- assign _first_content_img = nil -%}
+{%- if page.content contains '<img' -%}
+  {%- assign _img_split = page.content | split: '<img' -%}
+  {%- assign _first_content_img = _img_split[1] | split: 'src="' | last | split: '"' | first -%}
+{%- endif -%}
+{%- assign _raw_image = page.image | default: _first_content_img | default: site.logo -%}
+{%- if _raw_image contains '://' -%}
+  {%- assign _seo_image = _raw_image -%}
+{%- else -%}
+  {%- assign _seo_image = _abs_base | append: _raw_image -%}
+{%- endif -%}
 {%- assign _og_type = 'website' -%}
 {%- if page.layout == 'post' -%}{%- assign _og_type = 'article' -%}{%- endif -%}
 {%- assign _og_locale = 'en_US' -%}
@@ -65,12 +76,20 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
 <meta property="og:description" content="{{ _seo_desc | escape }}">
 <meta property="og:url" content="{{ _canonical }}">
 <meta property="og:image" content="{{ _seo_image }}">
+<meta property="og:image:alt" content="{{ page.title | default: site.title | escape }}">
+<meta property="og:image:type" content="image/png">
 <meta property="og:site_name" content="{{ site.title | escape }}">
 <meta property="og:locale" content="{{ _og_locale }}">
 {%- if _og_type == 'article' -%}
 <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
 {%- if page.last_modified_at -%}
 <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+{%- endif -%}
+{%- if page.author_staff_member -%}
+  {%- assign _seo_author = site.staff_members | where: 'slug', page.author_staff_member | first -%}
+  {%- if _seo_author -%}
+<meta property="article:author" content="{{ _abs_base }}{{ _seo_author.url }}">
+  {%- endif -%}
 {%- endif -%}
 {%- for _cat in page.categories -%}
 <meta property="article:tag" content="{{ _cat | escape }}">
@@ -80,3 +99,4 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
 <meta name="twitter:title" content="{{ _seo_title | escape }}">
 <meta name="twitter:description" content="{{ _seo_desc | escape }}">
 <meta name="twitter:image" content="{{ _seo_image }}">
+<meta name="twitter:image:alt" content="{{ page.title | default: site.title | escape }}">
