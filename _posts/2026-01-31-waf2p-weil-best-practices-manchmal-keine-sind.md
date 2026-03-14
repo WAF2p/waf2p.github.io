@@ -1,5 +1,6 @@
 ---
 date: 2026-01-31
+lang: de
 title: WAF++ - Weil Best Practices manchmal keine sind
 categories:
   - cloud
