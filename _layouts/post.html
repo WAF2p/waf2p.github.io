@@ -62,19 +62,35 @@ Fallback to the WAF++ logo.
     {% endif %}
 
     <nav class="post-nav" aria-label="Blog Navigation">
-      {% if page.previous.url %}
-      <a class="btn btn-ghost" href="{% include relative-src.html src=page.previous.url %}">
-        <span aria-hidden="true">←</span> {{ page.previous.title }}
+      {% assign prev_post = nil %}
+      {% assign next_post = nil %}
+      {% assign found = false %}
+      {% assign lang_posts = site.posts | where: "lang", page.lang %}
+      {% for p in lang_posts %}
+        {% if p.url == page.url %}
+          {% assign found = true %}
+        {% elsif found == false %}
+          {% assign prev_post = p %}
+        {% elsif next_post == nil %}
+          {% assign next_post = p %}
+        {% endif %}
+      {% endfor %}
+
+      {% if prev_post %}
+      <a class="btn btn-ghost" href="{% include relative-src.html src=prev_post.url %}">
+        <span aria-hidden="true">←</span> {{ prev_post.title }}
       </a>
       {% else %}
       <span></span>
       {% endif %}
 
-      <a class="btn" href="{% include relative-src.html src='/blog/' %}">Back to overview</a>
+      {% assign overview_path = '/blog/' %}
+      {% if page.lang == 'de' %}{% assign overview_path = '/de/blog/' %}{% endif %}
+      <a class="btn" href="{% include relative-src.html src=overview_path %}">{% if page.lang == 'de' %}Zur Übersicht{% else %}Back to overview{% endif %}</a>
 
-      {% if page.next.url %}
-      <a class="btn btn-ghost" href="{% include relative-src.html src=page.next.url %}">
-        {{ page.next.title }} <span aria-hidden="true">→</span>
+      {% if next_post %}
+      <a class="btn btn-ghost" href="{% include relative-src.html src=next_post.url %}">
+        {{ next_post.title }} <span aria-hidden="true">→</span>
       </a>
       {% else %}
       <span></span>

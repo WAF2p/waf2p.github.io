@@ -20,7 +20,8 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
 <section class="section">
   <div class="container">
     <div class="blog-grid">
-      {% assign posts_list = paginator.posts | default: site.posts %}
+      {% assign all_posts = paginator.posts | default: site.posts %}
+      {% assign posts_list = all_posts | where: "lang", page.lang %}
       {% for post in posts_list %}
         {% include blog-card.html post=post %}
       {% endfor %}
