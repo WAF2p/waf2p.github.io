@@ -65,7 +65,7 @@ Das ist es, was WAF++ von einer Sammlung von Best-Practice-Dokumenten unterschei
 
 Das Community-Governance-Modell spiegelt diese Transparenz wider: ein Technical Steering Committee, Maintainer-Teams, Working Groups und ein RFC-Prozess. Jede Entscheidung ist öffentlich dokumentiert. Jede Rolle hat eine definierte Amtszeit und klare Verantwortlichkeiten.
 
-![WAF++ auf der Cloud Native Conference 2026 Frankfurt](/assets/images/articles/cloud_native_conference_waf2p.png)
+![WAF++ auf der Cloud Native Conference 2026 Frankfurt](https://waf2p.dev/assets/images/articles/cloud_native_conference_waf2p.png)
 *Cloud Native Conference 2026 · Frankfurt · 13. Mai 2026*
 
 ## Frankfurt ist eine Startlinie, kein Ziel
