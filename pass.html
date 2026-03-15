@@ -2,23 +2,25 @@
 layout: default
 lang: en
 ref: pass
-title: PASS
-description: WAF++ PASS – a guideline for practical Architecture & Security standards.
+title: WAFPass
+description: WAFPass – the WAF++ CLI that automatically validates your Terraform infrastructure against security, governance, and compliance controls.
 permalink: /pass/
 ---
 <section class="hero hero--page">
   <div class="container">
-    <div class="badge"><span class="dot"></span> WAF++ Product</div>
-    <h1>PASS</h1>
+    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div class="badge"><span class="dot"></span> WAF++ Product</div>
+      <span class="pill">BETA</span>
+    </div>
+    <h1>WAFPass</h1>
     <p class="lead" style="max-width: 72ch">
-      PASS is a virtual guideline within WAF++: a clear, practical guide that helps teams make architecture,
-      security, and governance decisions consistently —
-      not through rigid “best practices”, but through transparent, traceable criteria.
+      WAFPass is the official CLI for the WAF++ Framework — an automated compliance checker
+      that validates your Terraform infrastructure against the seven pillars:
+      security, cost, performance, reliability, operations, sustainability, and sovereignty.
     </p>
 
     <div class="hero-actions">
-      <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Documentation</a>
-      <a class="btn btn-ghost" href="{{ '/conferences/' | relative_url }}">Conferences</a>
+      <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">Documentation</a>
     </div>
   </div>
 </section>
@@ -28,8 +30,8 @@ permalink: /pass/
     <div class="section-head center">
       <h2>PASS – Platform · Architecture · Strategy · Standards</h2>
       <p class="muted" style="max-width: 80ch; margin: 0 auto">
-        PASS brings together four perspectives that always belong together in real projects —
-        and makes decisions traceable, repeatable, and auditable.
+        WAFPass applies four PASS perspectives as automated checks against your infrastructure —
+        making compliance decisions traceable, repeatable, and auditable across any cloud.
       </p>
     </div>
 
@@ -37,28 +39,32 @@ permalink: /pass/
       <div class="pass-model__item pass-model__item--platform">
         <h3>Platform</h3>
         <p class="muted">
-          <strong>WAF++</strong> provides clear, neutral building blocks for robust and consistent platforms.
+          Validates baseline platform controls — tagging strategies, resource configuration,
+          and account-level guardrails — automatically.
         </p>
       </div>
 
       <div class="pass-model__item pass-model__item--strategy">
         <h3>Strategy</h3>
         <p class="muted">
-          <strong>WAF++</strong> anchors governance, goals, and decision logic — so standards hold over time.
+          Enforces governance and cost policies as code — so strategic decisions
+          hold over time and across teams.
         </p>
       </div>
 
       <div class="pass-model__item pass-model__item--architecture">
         <h3>Architecture</h3>
         <p class="muted">
-          <strong>WAF++</strong> enables sovereign, provider-neutral architectures for long-term cloud flexibility.
+          Checks network topology, data residency, and sovereignty requirements
+          against provider-neutral WAF++ controls.
         </p>
       </div>
 
       <div class="pass-model__item pass-model__item--standards">
         <h3>Standards</h3>
         <p class="muted">
-          <strong>WAF++</strong> delivers reusable guardrails & artifacts — independent of individual cloud providers.
+          Applies zero-trust and security controls directly to Terraform —
+          with clear PASS, FAIL, and SKIP outcomes for every check.
         </p>
       </div>
 
@@ -90,70 +96,103 @@ permalink: /pass/
 <section class="section">
   <div class="container split">
     <div>
-      <h2>What is PASS?</h2>
+      <h2>What is WAFPass?</h2>
       <p class="muted" style="max-width: 70ch">
-        PASS is not a tool you install — it’s a <strong>decision-safe rule set</strong>.
-        You get a structured guideline made of principles, checks, examples, and evidence hints.
-        This lets you apply standards, measure them, and document them in an auditable way — without slowing down innovation.
+        WAFPass reads your Terraform <code>.tf</code> files and evaluates them against
+        machine-readable YAML control definitions — giving you <strong>immediate, structured feedback</strong>
+        on whether your infrastructure meets WAF++ standards.
+        No cloud access needed. No runtime state required.
       </p>
 
       <div class="ticks">
-        <div class="tick"><span class="tick-dot"></span> Clear criteria instead of gut feeling</div>
-        <div class="tick"><span class="tick-dot"></span> Vendor-neutral & community-driven</div>
-        <div class="tick"><span class="tick-dot"></span> Traceable for security, platform & product</div>
+        <div class="tick"><span class="tick-dot"></span> Static analysis — works before <code>terraform apply</code></div>
+        <div class="tick"><span class="tick-dot"></span> Vendor-neutral controls across all seven pillars</div>
+        <div class="tick"><span class="tick-dot"></span> Native CI/CD integration — GitHub Actions, GitLab CI, pre-commit</div>
       </div>
     </div>
 
     <div class="card card-pad pass-definition-card">
-      <h3>What you get</h3>
+      <h3>Three clear outcomes</h3>
       <p class="muted">
-        A structured guideline that makes decisions reproducible — from principles and checks
-        all the way to evidence.
+        Every control check produces one of three results — no ambiguity,
+        no hidden state.
       </p>
       <ul class="pass-bullets">
-        <li><strong>Principles</strong> – goals & guardrails (e.g., sovereignty, zero trust)</li>
-        <li><strong>Checks</strong> – concrete questions & acceptance criteria</li>
-        <li><strong>Evidence</strong> – ADRs, policies, IaC, logs as proof</li>
-        <li><strong>Templates</strong> – reusable artifacts for reviews</li>
+        <li><strong>PASS</strong> – control requirements fully met</li>
+        <li><strong>FAIL</strong> – requirements not met, with remediation guidance</li>
+        <li><strong>SKIP</strong> – requires runtime context, flagged for manual review</li>
       </ul>
     </div>
   </div>
 </section>
 
 <section class="section">
+  <div class="container split">
+    <div>
+      <h2>WAFPass in action</h2>
+      <p class="muted" style="max-width: 60ch">
+        A single command gives you a structured compliance report across your entire Terraform codebase —
+        control by control, pillar by pillar, with clear remediation for every failure.
+      </p>
+      <p class="muted" style="max-width: 60ch">
+        WAFPass generates a PDF report you can share with your team, attach to your ADR,
+        or hand to an auditor — without any extra tooling.
+      </p>
+      <div class="ticks">
+        <div class="tick"><span class="tick-dot"></span> Per-control PASS / FAIL / SKIP breakdown</div>
+        <div class="tick"><span class="tick-dot"></span> Severity-ranked findings</div>
+        <div class="tick"><span class="tick-dot"></span> Shareable PDF output</div>
+      </div>
+    </div>
+
+    <figure style="margin: 0;">
+      <img
+        src="{{ '/assets/images/wafpass-report.png' | relative_url }}"
+        alt="WAFPass compliance report output"
+        loading="lazy"
+        style="width: 100%; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.12);"
+      />
+      <figcaption class="muted small" style="margin-top: 0.6rem">
+        WAFPass compliance report — PASS, FAIL, and SKIP results per control and pillar.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section">
   <div class="container">
     <div class="section-head">
-      <h2>What you use PASS for</h2>
+      <h2>Built for real engineering workflows</h2>
       <p class="muted" style="max-width: 75ch">
-        PASS is built to work in real projects — from landing zone to platform,
-        from workloads to compliance.
+        WAFPass is designed to live in your pipeline — not as a one-off audit tool,
+        but as a continuous compliance gate.
       </p>
     </div>
 
     <div class="grid grid-3">
       <div class="card card-pad">
-        <h3>Design Reviews</h3>
-        <p class="muted">Structure architecture decisions with clear questions, acceptance criteria, and evidence.</p>
+        <h3>Automated Validation</h3>
+        <p class="muted">20+ assertion operators evaluate Terraform resources against controls — fully automated for static analysis, clearly flagged for runtime checks.</p>
       </div>
       <div class="card card-pad">
-        <h3>Security & Compliance</h3>
-        <p class="muted">A shared denominator for security, platform, and product — auditable and traceable.</p>
+        <h3>Pillar Filtering</h3>
+        <p class="muted">Run checks for a single pillar, a set of control IDs, or a specific severity level — focus on what matters for the current context.</p>
       </div>
       <div class="card card-pad">
-        <h3>Team Alignment</h3>
-        <p class="muted">Less interpretation: PASS creates shared language, boundaries, and decision clarity.</p>
+        <h3>CI/CD Integration</h3>
+        <p class="muted">Native support for GitHub Actions, GitLab CI, and pre-commit hooks. Configurable exit codes make pipeline gating straightforward.</p>
       </div>
       <div class="card card-pad">
-        <h3>Maturity over dogma</h3>
-        <p class="muted">Maturity as a path: pragmatic steps instead of “everything perfect right now”.</p>
+        <h3>Remediation Guidance</h3>
+        <p class="muted">Every FAIL includes clear guidance on what needs to change — no guessing, no manual cross-referencing of documentation.</p>
       </div>
       <div class="card card-pad">
-        <h3>Templates & Examples</h3>
-        <p class="muted">Reusable artifacts: decision records, checklists, controls, documentation snippets.</p>
+        <h3>YAML Controls</h3>
+        <p class="muted">Controls are machine-readable YAML — version-controlled, extensible, and shareable. Bring your own or use the community-maintained WAF++ control library.</p>
       </div>
       <div class="card card-pad">
-        <h3>Engineering-first</h3>
-        <p class="muted">Close to daily work: Git workflows, pull requests, clear ownership — without PowerPoint frameworks.</p>
+        <h3>All Seven Pillars</h3>
+        <p class="muted">Security, Cost, Performance, Reliability, Operations, Sustainability, Sovereignty — one tool covers the full WAF++ Framework.</p>
       </div>
     </div>
   </div>
@@ -162,36 +201,40 @@ permalink: /pass/
 <section class="section">
   <div class="container split split--reverse">
     <div>
-      <h2>How PASS fits into WAF++</h2>
+      <h2>How WAFPass works</h2>
       <p class="muted" style="max-width: 70ch">
-        WAF++ provides the open framework. PASS is a concrete “product” within it:
-        a guideline you can apply directly — and that grows together with the community.
+        WAFPass follows a simple, predictable execution flow — from your Terraform files
+        to a structured compliance report in seconds.
       </p>
 
       <ol class="pass-steps">
         <li>
-          <div class="pass-step-title">Choose a principle</div>
-          <div class="muted small">Which goal (e.g., sovereignty, zero trust, reliability) is relevant?</div>
+          <div class="pass-step-title">Point at your Terraform</div>
+          <div class="muted small">Run <code>wafpass check &lt;PATH&gt;</code> against a file or directory of <code>.tf</code> configurations.</div>
         </li>
         <li>
-          <div class="pass-step-title">Apply checks</div>
-          <div class="muted small">Apply concrete questions & criteria to architecture/workloads/platforms.</div>
+          <div class="pass-step-title">Controls are evaluated</div>
+          <div class="muted small">WAFPass parses HCL2 and applies YAML control assertions — filtering by pillar, ID, or severity as needed.</div>
         </li>
         <li>
-          <div class="pass-step-title">Document evidence</div>
-          <div class="muted small">Collect proof (ADR, policies, IaC, logs) — auditable and reusable.</div>
+          <div class="pass-step-title">Results with remediation</div>
+          <div class="muted small">Every control produces a PASS, FAIL, or SKIP — with remediation guidance for every failure, aggregated into a full report.</div>
         </li>
       </ol>
     </div>
 
     <div class="card card-pad">
-      <h3>PASS is intentionally “virtual”</h3>
+      <h3>Currently in Beta</h3>
       <p class="muted">
-        You don’t install anything. You gain clarity: criteria, examples, and artifacts you use in your process.
-        PASS works with any stack — and adapts to your context.
+        WAFPass requires Python 3.10+ and your existing Terraform files.
+        No cloud credentials, no runtime state — just your code and the WAF++ controls.
+      </p>
+      <p class="muted">
+        WAFPass is in active development. PyPI availability is planned for the v1 release.
+        Follow the project for updates.
       </p>
       <div class="hr"></div>
-      <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">View PASS in the documentation</a>
+      <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">View full documentation</a>
     </div>
   </div>
 </section>
