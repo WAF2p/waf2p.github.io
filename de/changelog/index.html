@@ -27,10 +27,12 @@ permalink: /de/changelog/
     <div class="changelog-tabs">
       <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
       <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
+      <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
 
       <nav class="cl-tab-nav">
         <label for="cl-tab-fw">Framework</label>
         <label for="cl-tab-mkt">Marketing-Website</label>
+        <label for="cl-tab-pass">WAFPass</label>
       </nav>
 
       <!-- Framework pane -->
@@ -89,6 +91,40 @@ permalink: /de/changelog/
 
         <p class="muted small" style="margin-top: 8px;">
           Vollständiger Verlauf: <a href="https://github.com/waf2p/waf2p.github.io/commits/main" target="_blank" rel="noopener">github.com/waf2p/waf2p.github.io</a>
+        </p>
+      </div>
+
+      <!-- WAFPass pane -->
+      <div class="cl-pane" id="cl-pane-pass">
+
+        <div class="cl-notice">
+          <span style="font-size:1.1rem;">⚠️</span>
+          <div>
+            <strong>Öffentliche Beta</strong> — WAFPass v1.0 ist gemeinsam mit Framework v1.0 geplant, kurz vor dem <strong>12. Mai 2026</strong>.
+            PyPI-Verfügbarkeit und stabile CLI-Schnittstelle erscheinen mit v1.0.
+          </div>
+        </div>
+
+        {% for group in site.data.changelog_wafpass %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_de }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_de }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/pass/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted small" style="margin-top: 8px;">
+          Vollständiger Verlauf: <a href="https://github.com/waf2p/pass/commits/main" target="_blank" rel="noopener">github.com/waf2p/pass</a>
         </p>
       </div>
 
