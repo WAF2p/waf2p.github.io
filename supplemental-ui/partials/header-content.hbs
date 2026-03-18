@@ -23,15 +23,57 @@
         </div>
       {{/if}}
 
-      <!-- Language switcher (simple, robust) -->
-      <div class="waf-lang" aria-label="Language switcher">
-        <a class="waf-lang__btn" href="{{{relativize site.url}}}/" title="English">
-          <span class="waf-flag" aria-hidden="true">🇬🇧</span><span class="waf-lang__txt"></span>
+      <!-- Language switcher (context-aware: swaps /de/ ↔ /en/ in current page URL) -->
+      <div class="waf-lang"
+           id="waf-lang-switcher"
+           aria-label="Language switcher"
+           data-page-url="{{page.url}}"
+           data-site-url="{{{site.url}}}">
+        <a class="waf-lang__btn{{#eq page.version 'en'}} is-active{{/eq}}"
+           id="waf-lang-btn-en"
+           href="{{{site.url}}}/wafpp/en/ROOT/index.html"
+           title="English"
+           lang="en">
+          <svg class="waf-lang__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="b"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#a)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#b)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>
         </a>
-        <a class="waf-lang__btn" href="{{{relativize site.url}}}/de/" title="Deutsch">
-          <span class="waf-flag" aria-hidden="true">🇩🇪</span><span class="waf-lang__txt"></span>
+        <a class="waf-lang__btn{{#eq page.version 'de'}} is-active{{/eq}}"
+           id="waf-lang-btn-de"
+           href="{{{site.url}}}/wafpp/de/ROOT/index.html"
+           title="Deutsch"
+           lang="de">
+          <svg class="waf-lang__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><rect width="5" height="3" y="0" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
         </a>
       </div>
+      <script>
+        (function () {
+          var switcher = document.getElementById('waf-lang-switcher');
+          if (!switcher) return;
+          // Use window.location.pathname so it works on any host (local + prod)
+          var currentPath = window.location.pathname;
+          var langPairs = [['de', 'en'], ['en', 'de']];
+          langPairs.forEach(function (pair) {
+            var from = pair[0], to = pair[1];
+            var btn = document.getElementById('waf-lang-btn-' + to);
+            if (!btn) return;
+            // Replace the version segment: /wafpp/de/ → /wafpp/en/
+            var switched = currentPath.replace(
+              new RegExp('(/wafpp/)' + from + '(/|$)'),
+              '$1' + to + '$2'
+            );
+            if (switched !== currentPath) {
+              btn.href = switched;
+            }
+          });
+          // Mark active button based on current path
+          ['de', 'en'].forEach(function (lang) {
+            var btn = document.getElementById('waf-lang-btn-' + lang);
+            if (btn) {
+              var isActive = new RegExp('/wafpp/' + lang + '/').test(currentPath);
+              btn.classList.toggle('is-active', isActive);
+            }
+          });
+        })();
+      </script>
 
       <!-- CTA -->
       <a class="waf-cta" href="{{{relativize site.url}}}/">Back to WAF++ Homepage</a>
