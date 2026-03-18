@@ -300,9 +300,31 @@ border: 1px solid var(--border);
 }
 
 @media (min-width: 861px){
+  /* Use visibility/opacity so we can add a close delay */
+  .nav-dropdown{
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, visibility 0.15s;
+    transition-delay: 0.25s; /* delay before closing */
+  }
   .nav-group:hover .nav-dropdown,
   .nav-group:focus-within .nav-dropdown{
-    display:block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s; /* open immediately */
+  }
+  /* Invisible bridge fills the gap between the nav item and dropdown,
+     keeping the hover state alive as the mouse moves down */
+  .nav-group::after{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 14px;
   }
 }
 
