@@ -6,161 +6,365 @@ title: Well Architected Framework ++
 image: /images/WAFpp_upscaled_1000.png
 description: Sovereign cloud architectures for a multi-cloud reality — open, transparent and community-driven.
 ---
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
 
-      <h1>Sovereign cloud architectures for a multi-cloud reality</h1>
-      <p class="lead">WAF++ is an open framework for everyone who wants to design cloud architectures intentionally, securely, and vendor-neutral.</p>
+<!-- ===================== HERO ===================== -->
+<section class="hero hero--home">
+  <div class="container home-hero-grid">
+
+    <!-- Copy -->
+    <div>
+      <div class="home-badge">
+        <span class="home-badge__dot"></span>
+        Open Framework &middot; Public Beta
+      </div>
+      <h1 class="home-h1">Sovereign cloud architectures for a <span class="text-gradient">multi-cloud reality</span></h1>
+      <p class="lead">WAF++ is an open framework for everyone who wants to design cloud architectures intentionally, securely, and vendor-neutral — built from real engineering, not marketing.</p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Documentation</a>
+        <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Read the Docs →</a>
+        <a class="btn" href="{{ '/pass/' | relative_url }}">WAFPass CLI</a>
       </div>
 
-      <div style="margin-top:22px">
-        <p class="small muted" style="margin:0 0 10px">Trusted by security & platform teams</p>
-        <div class="logos">
-          <span class="logo-pill">AppSec</span>
-          <span class="logo-pill">SRE</span>
-          <span class="logo-pill">Platform</span>
-          <span class="logo-pill">Cloud</span>
-          <span class="logo-pill">Engineering</span>
+      <div class="home-trust">
+        <div class="home-trust__label">Trusted by</div>
+        <div class="home-trust__pills">
+          <span class="home-trust__pill">AppSec</span>
+          <span class="home-trust__pill">SRE</span>
+          <span class="home-trust__pill">Platform</span>
+          <span class="home-trust__pill">Cloud</span>
+          <span class="home-trust__pill">Engineering</span>
         </div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="card card-pad">
-        <div class="card-kicker">WAF++ console</div>
-        <div class="card-title" style="font-size:18px; margin-top:10px">Signal → Decision → Policy</div>
-        <p class="muted" style="margin:8px 0 0">
 
-        </p>
-        <div class="kpi">
-          <div class="mini"><strong>69&nbsp;%</strong><span>of data breaches involve misconfiguration</span></div>
-          <div class="mini"><strong>68&nbsp;%</strong><span>rank misconfiguration as a top risk</span></div>
-          <div class="mini"><strong>5+&nbsp;M&nbsp;USD</strong><span>impact of non-compliance</span></div>
-          <div class="mini"><strong>7</strong><span>pillars in WAF++</span></div>
+    <!-- Visual -->
+    <div>
+      <div class="hero-stats-card">
+        <div class="hero-stats-card__kicker">WAF++ · Risk Intelligence</div>
+        <div class="hero-stats-card__title">Signal &rarr; Decision &rarr; Policy</div>
+
+        <div class="hero-kpi-grid">
+          <div class="hero-kpi-item">
+            <strong>69&nbsp;%</strong>
+            <span>of breaches involve misconfiguration</span>
+          </div>
+          <div class="hero-kpi-item">
+            <strong>68&nbsp;%</strong>
+            <span>rank misconfiguration as top risk</span>
+          </div>
+          <div class="hero-kpi-item">
+            <strong>5+ M USD</strong>
+            <span>impact of non-compliance</span>
+          </div>
+          <div class="hero-kpi-item">
+            <strong>7</strong>
+            <span>pillars covering the full stack</span>
+          </div>
         </div>
-        <p class="small muted" style="margin:12px 0 0"></p>
+
+        <!-- Mini terminal -->
+        <div class="terminal-mock">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <div class="terminal-dot terminal-dot--red"></div>
+              <div class="terminal-dot terminal-dot--yellow"></div>
+              <div class="terminal-dot terminal-dot--green"></div>
+            </div>
+            <div class="terminal-title-bar">wafpass</div>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line">
+              <span class="t-prompt">$</span>
+              <span class="t-cmd">wafpass check ./infra/</span>
+            </div>
+            <div class="t-blank"></div>
+            <div class="t-line">
+              <span class="t-icon">✓</span>
+              <span class="t-pass">PASS</span>
+              <span class="t-code">[SEC-001]</span>
+              <span class="t-desc">Encryption at rest enabled</span>
+            </div>
+            <div class="t-line">
+              <span class="t-icon">✓</span>
+              <span class="t-pass">PASS</span>
+              <span class="t-code">[SOV-003]</span>
+              <span class="t-desc">Data residency: eu-central-1</span>
+            </div>
+            <div class="t-line">
+              <span class="t-icon">✗</span>
+              <span class="t-fail">FAIL</span>
+              <span class="t-code">[COST-002]</span>
+              <span class="t-desc">Untagged resources detected</span>
+            </div>
+            <div class="t-line">
+              <span class="t-icon">–</span>
+              <span class="t-skip">SKIP</span>
+              <span class="t-code">[PERF-001]</span>
+              <span class="t-desc">Load balancer: no config</span>
+            </div>
+            <div class="t-sep"></div>
+            <div class="t-line">
+              <span class="t-summary">2 pass &middot; 1 fail &middot; 1 skip &mdash; 4 controls checked</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== 7 PILLARS ===================== -->
+<section class="section pillars-section" id="pillars">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">FRAMEWORK</div>
+      <h2>The 7 Pillars of WAF++</h2>
+      <p class="lead muted">A vendor-neutral structure that brings together multi-cloud reality, sovereignty, and regulatory requirements in one coherent framework.</p>
+    </div>
+
+    <div class="pillars-grid">
+
+      <!-- 01 Security -->
+      <a class="pillar-card" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="shield" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">01</div>
+        <div class="pillar-card__name">Security</div>
+        <p class="pillar-card__desc">Protect workloads against threats, misconfigurations, and unauthorized access across every layer.</p>
+      </a>
+
+      <!-- 02 Cost Optimization -->
+      <a class="pillar-card" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="trending-down" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">02</div>
+        <div class="pillar-card__name">Cost Optimization</div>
+        <p class="pillar-card__desc">Eliminate waste and make every cloud dollar count — without sacrificing reliability or security.</p>
+      </a>
+
+      <!-- 03 Performance Efficiency -->
+      <a class="pillar-card" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="zap" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">03</div>
+        <div class="pillar-card__name">Performance Efficiency</div>
+        <p class="pillar-card__desc">Right-size compute for the actual load. Avoid over-provisioning without compromising throughput.</p>
+      </a>
+
+      <!-- 04 Reliability -->
+      <a class="pillar-card" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="activity" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">04</div>
+        <div class="pillar-card__name">Reliability</div>
+        <p class="pillar-card__desc">Build systems that recover gracefully from failure and serve users consistently at scale.</p>
+      </a>
+
+      <!-- 05 Operational Excellence -->
+      <a class="pillar-card" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="settings-2" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">05</div>
+        <div class="pillar-card__name">Operational Excellence</div>
+        <p class="pillar-card__desc">Run, monitor, and continuously improve cloud workloads with clear runbooks and automation.</p>
+      </a>
+
+      <!-- 06 Sustainability -->
+      <a class="pillar-card" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="leaf" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">06</div>
+        <div class="pillar-card__name">Sustainability</div>
+        <p class="pillar-card__desc">Minimize environmental footprint through efficient resource usage and carbon-aware design.</p>
+      </a>
+
+      <!-- 07 Sovereign (featured — spans 2 cols on large screens) -->
+      <a class="pillar-card pillar-card--sovereign" href="{{ '/docs/' | relative_url }}">
+        <div class="pillar-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
+        <div class="pillar-card__body">
+          <div class="pillar-card__num">07</div>
+          <div class="pillar-card__name">Sovereign</div>
+          <p class="pillar-card__desc">Retain full control of your data and infrastructure. Avoid vendor lock-in and meet digital sovereignty requirements — the pillar unique to WAF++.</p>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="text-align:center; margin-top:36px">
+      <a class="btn btn-primary" href="{{ '/saeulen/' | relative_url }}">Explore all 7 pillars &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== WAFPASS ===================== -->
+<section class="section wafpass-section" id="wafpass">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <!-- Copy side -->
+      <div>
+        <div class="kicker">WAFPASS · CLI TOOL</div>
+        <h2>Validate your Terraform against WAF++ <span class="beta-badge">Beta</span></h2>
+        <p class="lead">WAFPass automatically checks your infrastructure-as-code against WAF++ controls — static analysis, no cloud access required.</p>
+
+        <div class="wafpass-features">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="scan-search" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Static analysis on .tf files</div>
+              <p class="wafpass-feat__desc">Runs entirely on your Terraform source. No cloud credentials needed, no API calls — safe for CI and local dev.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">All 7 pillars covered</div>
+              <p class="wafpass-feat__desc">Controls mapped across Security, Cost, Performance, Reliability, Ops, Sustainability, and Sovereign.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">PDF compliance reports</div>
+              <p class="wafpass-feat__desc">Export shareable reports with findings, severity, and remediation guidance. Maps to GDPR, BSI, ISO 27001, SOC 2.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="git-merge" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">CI/CD ready</div>
+              <p class="wafpass-feat__desc">Native GitHub Actions, GitLab CI, and pre-commit hook integrations. Block merges on policy violations.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="outcome-pills">
+          <span class="outcome-pill outcome-pill--pass">✓ PASS</span>
+          <span class="outcome-pill outcome-pill--fail">✗ FAIL</span>
+          <span class="outcome-pill outcome-pill--skip">– SKIP</span>
+        </div>
+
+        <div class="hero-actions" style="margin-top:26px">
+          <a class="btn btn-primary" href="{{ '/pass/' | relative_url }}">Learn about WAFPass &rarr;</a>
+          <a class="btn" href="{{ '/docs/' | relative_url }}">Documentation</a>
+        </div>
+      </div>
+
+      <!-- Terminal side -->
+      <div class="wafpass-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="terminal-dot terminal-dot--red"></div>
+            <div class="terminal-dot terminal-dot--yellow"></div>
+            <div class="terminal-dot terminal-dot--green"></div>
+          </div>
+          <div class="terminal-title-bar">wafpass — ./infrastructure/</div>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">wafpass check ./infrastructure/</span>
+          </div>
+          <div class="t-blank"></div>
+          <div class="t-line"><span class="t-desc">Checking 47 controls across 7 pillars...</span></div>
+          <div class="t-blank"></div>
+          <div class="t-line">
+            <span class="t-icon">✓</span><span class="t-pass">PASS</span>
+            <span class="t-code">SEC-001</span><span class="t-desc">Encryption at rest enabled (S3, RDS)</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✓</span><span class="t-pass">PASS</span>
+            <span class="t-code">SEC-007</span><span class="t-desc">MFA required for IAM users</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✗</span><span class="t-fail">FAIL</span>
+            <span class="t-code">SEC-012</span><span class="t-desc">Public S3 bucket: logs-bucket</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✓</span><span class="t-pass">PASS</span>
+            <span class="t-code">SOV-001</span><span class="t-desc">Data residency: eu-central-1 ✓</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">–</span><span class="t-skip">SKIP</span>
+            <span class="t-code">SOV-004</span><span class="t-desc">Cross-border data flow (no config)</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✗</span><span class="t-fail">FAIL</span>
+            <span class="t-code">COST-002</span><span class="t-desc">12 untagged EC2 resources found</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✓</span><span class="t-pass">PASS</span>
+            <span class="t-code">COST-005</span><span class="t-desc">Reserved instance coverage: 78%</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">–</span><span class="t-skip">SKIP</span>
+            <span class="t-code">PERF-001</span><span class="t-desc">Load balancer check: no ALB found</span>
+          </div>
+          <div class="t-sep"></div>
+          <div class="t-line">
+            <span class="t-summary">Results: 4 pass &middot; 2 fail &middot; 2 skip &mdash; PDF report ready</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ===================== WHY WAF++ ===================== -->
+<section class="section why-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">PRINCIPLES</div>
+      <h2>Built for the real world</h2>
+      <p class="lead muted">No vendor marketing, no lock-in — just engineering-first principles shaped by real cloud projects.</p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-card__num">01</div>
+        <div class="why-card__title">Neutral &amp; Open</div>
+        <p class="why-card__body">WAF++ is not tied to AWS, Azure, or GCP. It applies across all cloud providers and is fully open — MIT licensed, community-governed, and free to use forever.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num">02</div>
+        <div class="why-card__title">Engineering-first</div>
+        <p class="why-card__body">Every control, every principle is rooted in real project experience. No theoretical frameworks — just patterns that survive contact with production environments.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num">03</div>
+        <div class="why-card__title">Fully Traceable</div>
+        <p class="why-card__body">Every decision is documented, every change is reviewed. RFC-driven governance means you always know why a rule exists — and can challenge it if reality disagrees.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== COMMUNITY ===================== -->
 {% include community-github-section.html %}
 
-{% include slack-cta-section.html %}
 
-<section class="section" id="framework-entry">
-  <div class="container">
-    <div class="split-rows">
-
-      <!-- 1) 7 Säulen Teaser -->
-      <div class="split-row">
-        <div class="split-left">
-          <div class="kicker">GET STARTED</div>
-          <h2>The 7 pillars of WAF++</h2>
-          <p class="lead">
-            WAF++ structures cloud architecture across seven pillars — from Security to Sovereign.
-            This creates a vendor-neutral framework that brings together multi-cloud reality, sovereignty,
-            and regulatory requirements.
-          </p>
-          <ul class="pillars-teaser">
-            <li>Security</li><li>Cost Optimization</li><li>Performance Efficiency</li>
-            <li>Reliability</li><li>Operational Excellence</li><li>Sustainability</li><li>Sovereign</li>
-          </ul>
-          <div class="hero-actions" style="margin-top:18px">
-            <a class="btn btn-primary" href="{{ '/saeulen/' | relative_url }}">Explore the 7 pillars</a>
-          </div>
-        </div>
-
-        <div class="split-right">
-          <div class="card card-pad soft-card">
-            <div class="card-kicker">7 PILLARS</div>
-            <div class="card-title">From architecture to decisions</div>
-            <p class="muted">
-              Each pillar provides principles and guiding questions to identify risks early — such as misconfiguration,
-              lock-in, and lack of transparency — and to act with sovereignty.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <!-- 2) Governance & Community -->
-      <div class="split-row">
-        <div class="split-left">
-          <div class="kicker">GOVERNANCE & COMMUNITY</div>
-          <h2>From the community — for the community</h2>
-          <p class="lead">
-            WAF++ is built openly, transparently, and iteratively. Governance ensures consistency,
-            quality, and transparency — so community contributions scale without drifting into
-            proprietary patterns.
-          </p>
-          <div class="hero-actions" style="margin-top:18px">
-            <a class="btn btn-secondary" href="{{ '/about/' | relative_url }}">How we work</a>
-          </div>
-        </div>
-
-        <div class="split-right">
-          <div class="card card-pad soft-card">
-            <div class="card-kicker">GOVERNANCE</div>
-            <div class="card-title">Principles, reviews, standards</div>
-            <ul class="bullets">
-              <li>Vendor-neutral guardrails instead of provider-specific prescriptions</li>
-              <li>Review process for reference architectures & content</li>
-              <li>Transparent decisions and traceable changes</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <!-- 3) Quick Start & Ressourcen -->
-      <div class="split-row">
-        <div class="split-left">
-          <div class="kicker">QUICK START & RESOURCES</div>
-          <h2>Your path to getting started</h2>
-          <p class="lead">
-            Start with the fundamentals, use checklists, and work your way step by step
-            through the pillars and PASS. Documentation is your central entry point.
-          </p>
-          <div class="hero-actions" style="margin-top:18px">
-            <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Documentation</a>
-            <a class="btn btn-secondary" href="{{ '/pass/' | relative_url }}" style="margin-left:10px">Learn about PASS</a>
-          </div>
-        </div>
-
-        <div class="split-right">
-          <div class="card card-pad soft-card">
-            <div class="card-kicker">RESOURCES</div>
-            <div class="card-title">Quick Start</div>
-            <ul class="bullets">
-              <li>Overview: WAF++ in 10 minutes</li>
-              <li>First checklist: structure risks & decisions</li>
-              <li>Next: pillar details, PASS, and reference architectures</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
+<!-- ===================== TESTIMONIALS ===================== -->
 <section class="reviews-fullwidth" aria-label="References">
   <div class="reviews-inner">
     <h2 class="section-title">References</h2>
     <div class="review-slider fullwidth" data-review-slider>
       <div class="review-viewport">
+
         <article class="review is-active" data-review>
-          <p class="review-quote">“WAF++ provides a stable foundation for digital applications and shows how technical precision and design sensitivity can be successfully combined.
-            The chosen color palette — with a solid, modern base tone and a fresh accent —
-            conveys reliability while creating a visual identity that is both scalable and appealing.”</p>
+          <p class="review-quote">"WAF++ provides a stable foundation for digital applications and shows how technical precision and design sensitivity can be successfully combined. The chosen color palette — with a solid, modern base tone and a fresh accent — conveys reliability while creating a visual identity that is both scalable and appealing."</p>
           <div class="review-person">
             <img class="review-avatar" src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lydia-01-1920w.jpg" alt="Lydia Hundsdörfer">
             <div class="review-person-meta">
@@ -171,10 +375,7 @@ description: Sovereign cloud architectures for a multi-cloud reality — open, t
         </article>
 
         <article class="review" data-review>
-          <p class="review-quote">“WAF++ has great potential to become the perfect answer to real-world everyday questions from the technology, cloud &amp; developer community.
-            With increasing dynamics and the tension between the drive for innovation, technology overload, and sovereignty,
-            companies and technology experts are under growing pressure and have so far found mostly fragmented or sales-driven answers.
-            WAF++ starts a movement that brings together genuine hands-on expertise from the field — and can evolve it further.”</p>
+          <p class="review-quote">"WAF++ has great potential to become the perfect answer to real-world everyday questions from the technology, cloud &amp; developer community. With increasing dynamics and the tension between the drive for innovation, technology overload, and sovereignty, companies and technology experts are under growing pressure and have so far found mostly fragmented or sales-driven answers. WAF++ starts a movement that brings together genuine hands-on expertise from the field — and can evolve it further."</p>
           <div class="review-person">
             <img class="review-avatar" src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/Profilbild_Maximilian_Hille_weiss-1920w.jpg" alt="Maximilian Hille">
             <div class="review-person-meta">
@@ -183,44 +384,43 @@ description: Sovereign cloud architectures for a multi-cloud reality — open, t
             </div>
           </div>
         </article>
+
       </div>
 
       <div class="review-controls" aria-label="Navigation">
         <button class="icon-btn" type="button" data-review-prev aria-label="Previous reference">
           <i data-lucide="chevron-left"></i>
         </button>
-
         <div class="review-dots" data-review-dots aria-label="Pages"></div>
-
         <button class="icon-btn" type="button" data-review-next aria-label="Next reference">
           <i data-lucide="chevron-right"></i>
         </button>
       </div>
     </div>
+  </div>
+</section>
 
-    <section class="section" id="cta">
-      <div class="container">
-        <div class="card cta">
-          <div class="split" style="align-items:center">
-            <div>
-              <h2>Get started now.</h2>
-              <p class="lead">Iterate rules in minutes, reduce noise, and keep policies traceable.</p>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Read the documentation</a>
-              </div>
-            </div>
-            <div>
-              <p class="small muted" style="margin:0 0 10px">Compliance</p>
-              <div class="compliance">
-                <span class="pill">GDPR compliant</span>
-                <span class="pill">SOC 2 compliant</span>
-                <span class="pill">HIPAA</span>
-                <span class="pill">PIPEDA</span>
-              </div>
-            </div>
-          </div>
-        </div>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">GET STARTED</div>
+      <h2>Ready to design with intention?</h2>
+      <p class="lead muted">Start with the fundamentals, validate your Terraform with WAFPass, and build cloud architectures that are secure, sovereign, and built to last.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Read the Documentation</a>
+        <a class="btn" href="{{ '/saeulen/' | relative_url }}">Explore the 7 Pillars</a>
+        <a class="btn" href="{{ '/pass/' | relative_url }}">Try WAFPass</a>
       </div>
-    </section>
+      <div class="home-cta-compliance">
+        <span class="pill">GDPR compliant</span>
+        <span class="pill">SOC 2 ready</span>
+        <span class="pill">HIPAA</span>
+        <span class="pill">PIPEDA</span>
+        <span class="pill">BSI C5</span>
+        <span class="pill">ISO 27001</span>
+      </div>
+    </div>
   </div>
 </section>
