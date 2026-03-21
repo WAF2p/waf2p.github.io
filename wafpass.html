@@ -1,0 +1,490 @@
+---
+layout: default
+lang: en
+ref: wafpass
+title: WAFPass – IaC Compliance CLI
+description: WAFPass validates your Infrastructure-as-Code against WAF++ security, governance, and compliance controls — Terraform, AWS CDK, and more. Static analysis, no cloud access needed.
+permalink: /wafpass/
+---
+
+<!-- ===================== HERO ===================== -->
+<section class="hero hero--home">
+  <div class="container home-hero-grid">
+
+    <!-- Copy -->
+    <div>
+      <div class="home-badge">
+        <span class="home-badge__dot"></span>
+        WAF++ CLI &middot; Beta
+      </div>
+      <h1 class="home-h1">Validate IaC.<br><span class="text-gradient">Ship with confidence.</span></h1>
+      <p class="lead">WAFPass automatically checks your infrastructure-as-code against WAF++ controls — Terraform, AWS CDK, and more. Static analysis. No cloud credentials. No runtime state. Results in seconds.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">Read the Docs →</a>
+        <button class="btn btn-ghost"
+                data-action="download-controls"
+                data-label-loading="Preparing…"
+                data-label-done="Downloaded!"
+                data-label-error="Error – try again">Download Controls</button>
+      </div>
+
+      <div class="home-trust">
+        <div class="home-trust__label">Compliance frameworks covered</div>
+        <div class="home-trust__pills">
+          <span class="home-trust__pill">GDPR</span>
+          <span class="home-trust__pill">BSI C5</span>
+          <span class="home-trust__pill">ISO 27001</span>
+          <span class="home-trust__pill">SOC 2</span>
+          <span class="home-trust__pill">HIPAA</span>
+          <span class="home-trust__pill">NIS2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div>
+      <div class="hero-stats-card">
+        <div class="hero-stats-card__kicker">WAFPass · Multi-IaC Analysis</div>
+        <div class="hero-stats-card__title">Parse &rarr; Evaluate &rarr; Report</div>
+
+        <div class="hero-kpi-grid">
+          <div class="hero-kpi-item">
+            <strong>2</strong>
+            <span>IaC frameworks (Terraform, CDK)</span>
+          </div>
+          <div class="hero-kpi-item">
+            <strong>7</strong>
+            <span>WAF++ pillars covered</span>
+          </div>
+          <div class="hero-kpi-item">
+            <strong>20+</strong>
+            <span>assertion operators</span>
+          </div>
+          <div class="hero-kpi-item">
+            <strong>4</strong>
+            <span>outcomes: PASS / FAIL / SKIP / WAIVED</span>
+          </div>
+        </div>
+
+        <div class="terminal-mock">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <div class="terminal-dot terminal-dot--red"></div>
+              <div class="terminal-dot terminal-dot--yellow"></div>
+              <div class="terminal-dot terminal-dot--green"></div>
+            </div>
+            <div class="terminal-title-bar">wafpass</div>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line">
+              <span class="t-prompt">$</span>
+              <span class="t-cmd">wafpass check ./infra/ --iac terraform</span>
+            </div>
+            <div class="t-blank"></div>
+            <div class="t-line">
+              <span class="t-icon">✓</span>
+              <span class="t-pass">PASS</span>
+              <span class="t-code">[SEC-001]</span>
+              <span class="t-desc">Encryption at rest enabled</span>
+            </div>
+            <div class="t-line">
+              <span class="t-icon">✓</span>
+              <span class="t-pass">PASS</span>
+              <span class="t-code">[SOV-001]</span>
+              <span class="t-desc">Data residency: eu-central-1</span>
+            </div>
+            <div class="t-line">
+              <span class="t-icon">✗</span>
+              <span class="t-fail">FAIL</span>
+              <span class="t-code">[COST-002]</span>
+              <span class="t-desc">Untagged resources detected</span>
+            </div>
+            <div class="t-line">
+              <span class="t-icon">○</span>
+              <span class="t-skip">WAIVED</span>
+              <span class="t-code">[SEC-020]</span>
+              <span class="t-desc">IAM RBAC — quarterly review</span>
+            </div>
+            <div class="t-sep"></div>
+            <div class="t-line">
+              <span class="t-summary">1 pass &middot; 1 fail &middot; 0 skip &middot; 1 waived &mdash; PDF ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== PASS MODEL ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">THE PASS MODEL</div>
+      <h2>Platform · Architecture · Strategy · Standards</h2>
+      <p class="lead muted">WAFPass applies four PASS perspectives as automated checks — making compliance decisions traceable, repeatable, and auditable across any cloud and any IaC framework.</p>
+    </div>
+
+    <!-- 3-col grid; last card (Standards) spans the full row -->
+    <div class="pillars-grid" style="grid-template-columns: repeat(3, 1fr);">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="server" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">P — Platform</div>
+        <div class="pillar-card__name">Baseline Controls</div>
+        <p class="pillar-card__desc">Validates tagging strategies, resource configuration, and account-level guardrails — automatically, every run.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">A — Architecture</div>
+        <div class="pillar-card__name">Network &amp; Residency</div>
+        <p class="pillar-card__desc">Checks network topology, data residency, and sovereignty requirements against provider-neutral WAF++ controls.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="target" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">S — Strategy</div>
+        <div class="pillar-card__name">Governance as Code</div>
+        <p class="pillar-card__desc">Enforces governance and cost policies as code — so strategic decisions hold over time and across teams.</p>
+      </div>
+
+      <!-- Standards — full row -->
+      <div class="pillar-card" style="grid-column: 1 / -1; flex-direction: row; align-items: flex-start; gap: 28px;">
+        <div class="pillar-card__icon" style="flex-shrink: 0; margin-top: 4px;"><i data-lucide="shield" aria-hidden="true"></i></div>
+        <div>
+          <div class="pillar-card__num">S — Standards</div>
+          <div class="pillar-card__name">Zero-Trust &amp; Security Controls</div>
+          <p class="pillar-card__desc">Applies zero-trust principles, IAM least-privilege, encryption-at-rest, and security hardening controls directly to your IaC — evaluated per-resource with PASS, FAIL, SKIP, or WAIVED outcomes for every check. The most opinionated PASS perspective, backed by WAF++ security controls mapped to GDPR, BSI C5, ISO 27001, SOC 2, and HIPAA.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== IaC PLUGINS ===================== -->
+<section class="section wafpass-section" id="capabilities">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <!-- Copy side -->
+      <div>
+        <div class="kicker">MULTI-IaC SUPPORT</div>
+        <h2>Not just Terraform</h2>
+        <p class="lead">WAFPass uses a plugin architecture — the same controls work across multiple IaC frameworks without changing the engine or the YAML definitions.</p>
+
+        <div class="wafpass-features">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Terraform (default)</div>
+              <p class="wafpass-feat__desc">Parses <code>.tf</code> files with HCL2. Works before <code>terraform apply</code> — no plan file, no state, no cloud access required.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="package" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">AWS CDK</div>
+              <p class="wafpass-feat__desc">Reads synthesised CloudFormation templates from <code>cdk.out/</code>. Run <code>cdk synth</code>, then WAFPass — no CDK CLI at runtime.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="code" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Bicep &amp; Pulumi (stubs)</div>
+              <p class="wafpass-feat__desc">Plugin skeletons are in place — ready for community contribution. The same YAML controls work once the plugin is implemented.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Multi-cloud &amp; multi-path scanning</div>
+              <p class="wafpass-feat__desc">Pass multiple paths to scan IaC spread across providers in one run: <code>wafpass check ./aws ./azure ./gcp</code> — unified report.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="outcome-pills">
+          <span class="outcome-pill outcome-pill--pass">✓ PASS</span>
+          <span class="outcome-pill outcome-pill--fail">✗ FAIL</span>
+          <span class="outcome-pill outcome-pill--skip">– SKIP</span>
+          <span class="outcome-pill outcome-pill--skip" style="background: rgba(124,58,237,.10); border-color: rgba(124,58,237,.22); color: #6d28d9;">○ WAIVED</span>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 26px;">
+          <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">Read the Documentation</a>
+          <a class="btn" href="{{ '/docs/' | relative_url }}">WAF++ Framework</a>
+        </div>
+      </div>
+
+      <!-- Terminal side — multi-cloud scan -->
+      <div class="wafpass-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="terminal-dot terminal-dot--red"></div>
+            <div class="terminal-dot terminal-dot--yellow"></div>
+            <div class="terminal-dot terminal-dot--green"></div>
+          </div>
+          <div class="terminal-title-bar">wafpass — multi-cloud</div>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">wafpass check ./aws ./azure ./gcp</span>
+          </div>
+          <div class="t-blank"></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Scanning [terraform]: ./aws</span></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Scanning [terraform]: ./azure</span></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Scanning [terraform]: ./gcp</span></div>
+          <div class="t-blank"></div>
+          <div class="t-line"><span class="t-desc">Checking 47 controls across 7 pillars...</span></div>
+          <div class="t-blank"></div>
+          <div class="t-line">
+            <span class="t-icon">✓</span><span class="t-pass">PASS</span>
+            <span class="t-code">SEC-001</span><span class="t-desc">Encryption at rest enabled</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✓</span><span class="t-pass">PASS</span>
+            <span class="t-code">SOV-001</span><span class="t-desc">Data residency: eu-central-1 ✓</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✗</span><span class="t-fail">FAIL</span>
+            <span class="t-code">SEC-012</span><span class="t-desc">Public S3 bucket: logs-bucket</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">✗</span><span class="t-fail">FAIL</span>
+            <span class="t-code">COST-002</span><span class="t-desc">12 untagged EC2 resources</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">–</span><span class="t-skip">SKIP</span>
+            <span class="t-code">SOV-004</span><span class="t-desc">Cross-border flow (no config)</span>
+          </div>
+          <div class="t-line">
+            <span class="t-icon">○</span><span class="t-skip" style="color:rgba(167,139,250,.8);">WAIVED</span>
+            <span class="t-code">SEC-020</span><span class="t-desc">IAM RBAC — tracked SEC-1234</span>
+          </div>
+          <div class="t-sep"></div>
+          <div class="t-line">
+            <span class="t-summary">3 pass · 2 fail · 1 skip · 1 waived — PDF report ready</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section why-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">HOW IT WORKS</div>
+      <h2>From code to compliance in three steps</h2>
+      <p class="lead muted">WAFPass follows a simple, predictable execution flow — no cloud access, no agents, no magic. Just your IaC files and the WAF++ controls.</p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-card__num">01</div>
+        <div class="why-card__title">Point at your IaC</div>
+        <p class="why-card__body">Run <code>wafpass check &lt;PATH&gt;</code> against a file or directory — Terraform <code>.tf</code> files or a CDK project (after <code>cdk synth</code>). Select the plugin with <code>--iac terraform</code> or <code>--iac cdk</code>. Multi-cloud: pass multiple paths in one command.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num">02</div>
+        <div class="why-card__title">Controls are evaluated</div>
+        <p class="why-card__body">WAFPass parses your IaC via the selected plugin and applies YAML control assertions across all 7 pillars using 20+ operators. Controls are engine-tagged — Terraform checks only run against Terraform, CDK checks against CDK. Filter by pillar, control ID, or severity.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num">03</div>
+        <div class="why-card__title">Results with remediation</div>
+        <p class="why-card__body">Every control produces PASS, FAIL, SKIP, or WAIVED — with clear remediation guidance for every failure and recorded justifications for intentional waivers. Aggregated into a PDF report ready for teams, ADRs, or auditors.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== FEATURE GRID ===================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">BUILT FOR ENGINEERS</div>
+      <h2>Built for real engineering workflows</h2>
+      <p class="lead muted">WAFPass is a continuous compliance gate — not a checkbox tool. Every feature is built around how engineers actually ship infrastructure.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="zap" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Automated Validation</h3>
+        <p class="muted">20+ assertion operators evaluate IaC resources against controls — fully automated for static analysis, clearly flagged for runtime checks that require cloud state.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="filter" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Pillar &amp; Severity Filtering</h3>
+        <p class="muted">Run checks for a single pillar, a set of control IDs, or a minimum severity level — <code>--pillar cost</code>, <code>--controls WAF-SEC-001</code>, <code>--severity high</code>.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="git-pull-request" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>CI/CD Integration</h3>
+        <p class="muted">Native GitHub Actions and GitLab CI examples included. Configurable exit codes via <code>--fail-on fail|skip|any</code> — block merges on real violations only.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="shield-off" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Intentional Waivers</h3>
+        <p class="muted">Skip controls on purpose with a written justification in <code>.wafpass-skip.yml</code>. WAIVED controls appear in PDF reports and never break CI — even when expired, you get a warning, not a failure.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="wrench" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Remediation Guidance</h3>
+        <p class="muted">Every FAIL includes clear guidance on what needs to change — no guessing, no manual cross-referencing. Guidance is part of the control YAML, so it's version-controlled too.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="file-text" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>PDF Compliance Reports</h3>
+        <p class="muted">Generate a shareable PDF with <code>--output pdf</code>. Includes findings, severity, remediation, and a waived-controls table — ready for auditors, ADRs, or security reviews.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== REQUIREMENTS + COMPLIANCE ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <!-- Requirements -->
+      <div>
+        <div class="kicker">REQUIREMENTS</div>
+        <h2>Simple to set up <span class="beta-badge">Beta</span></h2>
+        <p class="lead">WAFPass requires Python 3.10+ and your existing IaC files. No cloud credentials, no runtime state — just your code and the controls.</p>
+
+        <div class="wafpass-features" style="margin-top: 20px;">
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Python 3.10+</div>
+              <p class="wafpass-feat__desc">Install with <code>pip install -e .</code> or <code>uv pip install -e .</code> (recommended). No cloud dependencies — runs anywhere Python runs.</p>
+            </div>
+          </div>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="folder-open" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Your IaC files</div>
+              <p class="wafpass-feat__desc">Terraform <code>.tf</code> files or a CDK project with <code>cdk.out/</code>. Point at a single file, a directory, or multiple paths for multi-cloud scans.</p>
+            </div>
+          </div>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="package" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">WAF++ Controls</div>
+              <p class="wafpass-feat__desc">Copy controls from the WAF++ framework repo into a local <code>controls/</code> directory, or download them below. Author your own YAML controls — same format, same engine.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="muted small" style="margin-top: 16px;">PyPI availability planned for the v1 release. Follow the project on GitHub for updates.</p>
+
+        <div class="hero-actions" style="margin-top: 20px;">
+          <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">View full documentation</a>
+          <button class="btn btn-ghost"
+                  data-action="download-controls"
+                  data-label-loading="Preparing…"
+                  data-label-done="Downloaded!"
+                  data-label-error="Error – try again">Download Controls</button>
+        </div>
+      </div>
+
+      <!-- Compliance -->
+      <div>
+        <div class="kicker">COMPLIANCE COVERAGE</div>
+        <h2>Maps to major frameworks</h2>
+        <p class="lead">WAFPass controls are mapped to widely-used compliance frameworks — giving your PDF reports immediate context for auditors and stakeholders.</p>
+
+        <div class="grid grid-2" style="margin-top: 24px; gap: 12px;">
+          <div class="card card-pad">
+            <div style="font-size: 20px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px;">GDPR</div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">EU Data Protection</div>
+            <p class="muted small" style="margin: 0;">Data residency, encryption, and access control requirements.</p>
+          </div>
+          <div class="card card-pad">
+            <div style="font-size: 20px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px;">BSI C5</div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">German Cloud Standard</div>
+            <p class="muted small" style="margin: 0;">BSI Cloud Computing Compliance Criteria Catalogue.</p>
+          </div>
+          <div class="card card-pad">
+            <div style="font-size: 20px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px;">ISO 27001</div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Information Security</div>
+            <p class="muted small" style="margin: 0;">Systematic information security management controls.</p>
+          </div>
+          <div class="card card-pad">
+            <div style="font-size: 20px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 4px;">SOC 2</div>
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Service Organization</div>
+            <p class="muted small" style="margin: 0;">Security, availability, and confidentiality controls.</p>
+          </div>
+        </div>
+
+        <div class="home-cta-compliance" style="margin-top: 14px; justify-content: flex-start;">
+          <span class="pill">HIPAA</span>
+          <span class="pill">PIPEDA</span>
+          <span class="pill">NIS2</span>
+          <span class="pill">SOX</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom: 14px;">GET STARTED</div>
+      <h2>Ready to validate your infrastructure?</h2>
+      <p class="lead muted">Download the WAF++ controls, run WAFPass against your Terraform or CDK code, and get a full compliance report in minutes — no cloud access required.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">Read the Documentation</a>
+        <button class="btn btn-ghost"
+                data-action="download-controls"
+                data-label-loading="Preparing…"
+                data-label-done="Downloaded!"
+                data-label-error="Error – try again">Download Controls</button>
+        <a class="btn" href="{{ '/docs/' | relative_url }}">Explore WAF++ Framework</a>
+      </div>
+      <div class="home-cta-compliance">
+        <span class="pill">GDPR compliant</span>
+        <span class="pill">SOC 2 ready</span>
+        <span class="pill">HIPAA</span>
+        <span class="pill">BSI C5</span>
+        <span class="pill">ISO 27001</span>
+        <span class="pill">NIS2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/wafpass-download.js' | relative_url }}"></script>
