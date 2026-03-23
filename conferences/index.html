@@ -3,185 +3,375 @@ layout: default
 lang: en
 ref: conferences
 permalink: /conferences/
+title: Conferences — WAF++
+description: Conferences where WAF++ is present — upcoming events, speakers, and how to meet the community in person.
 ---
-<!-- Full width hero -->
-<section class="hero hero--page hero--fullwidth">
-  <div class="hero__bg"></div>
-  <div class="container">
-    <div class="badge"><span class="dot"></span> WAF++ Presence</div>
-    <h1>Conferences</h1>
-    <p class="lead" style="max-width: 75ch">
-      These are the conferences we attend — including date, location, description,
-      and the WAF++ members present.
+
+<!-- ===================== HERO ===================== -->
+<section class="hero hero--page hero--centered">
+  <div class="container" style="max-width: 800px;">
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      WAF++ Presence &middot; Meet us in person
+    </div>
+    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
+      <span class="text-gradient">Conferences</span>
+    </h1>
+    <p class="lead" style="max-width: 66ch; margin: 0 auto 28px;">
+      Where WAF++ shows up — talks, workshops, and Birds-of-a-Feather sessions at leading
+      cloud native and developer conferences. Come find us.
     </p>
 
-    <div class="hero-actions hero-actions--spaced">
-      <a class="btn btn-primary" href="#upcoming">Upcoming conferences</a>
-      <a class="btn" href="#speaker">Speakers</a>
-      <a class="btn" href="#community">Open Source</a>
+    <!-- Stats strip -->
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      {% assign today = 'now' | date: '%Y-%m-%d' %}
+      {% assign upcoming_count = site.data.conferences | where_exp: "c", "c.start_date >= today" | size %}
+      {% assign past_count = site.data.conferences | where_exp: "c", "c.start_date < today" | size %}
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="calendar" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        {{ upcoming_count }} upcoming
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="map-pin" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        EU &amp; USA
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="mic" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Talks · Workshops · BoFs
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#upcoming">Upcoming events &rarr;</a>
+      <a class="btn" href="#speakers">Speakers</a>
+      <a class="btn" href="#get-involved">Get involved</a>
     </div>
   </div>
 </section>
 
-<!-- Upcoming conferences -->
-<section class="section" id="upcoming">
+
+<!-- ===================== UPCOMING CONFERENCES ===================== -->
+<section class="section pillars-section" id="upcoming">
   <div class="container">
-    <div class="section-kicker">Upcoming</div>
-    <div class="section-title">Upcoming conferences featuring WAF++</div>
 
-    <div class="conference-grid">
-      {% assign today = 'now' | date: '%Y-%m-%d' %}
-      {% assign conferences = site.data.conferences | where_exp: "conf", "conf.start_date >= today" %}
-      {% assign conferences = conferences | sort: "start_date" %}
+    <div class="section-header">
+      <div class="kicker">UPCOMING</div>
+      <h2>Upcoming conferences featuring WAF++</h2>
+      <p class="lead muted">Sessions, workshops, and community meetups. Click a card to find out more about the event.</p>
+    </div>
 
-      {% for conf in conferences %}
-      <article class="conference-card conference-card--dark">
-        <div class="conf-image">
-          <img src="{{ conf.logo }}" alt="{{ conf.name }}">
-        </div>
+    {% assign today = 'now' | date: '%Y-%m-%d' %}
+    {% assign upcoming = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" %}
 
-        <h3 class="conf-title">{{ conf.name }}</h3>
-        <p class="conf-date"><strong>Date:</strong> {{ conf.date_display }}</p>
-        <p class="conf-location"><strong>Location:</strong> {{ conf.location }}</p>
-        <p class="conf-description">{{ conf.description }}</p>
+    {% if upcoming.size > 0 %}
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:28px;">
+      {% for conf in upcoming %}
+      <article class="card card-pad" style="display:flex;flex-direction:column;gap:0;">
 
-        <div class="conf-link">
-          <a href="{{ conf.link }}" target="_blank" class="btn btn-primary" rel="noopener">Learn more</a>
-        </div>
-
-        {% if conf.members %}
-        <div class="conf-members">
-          <h4>WAF++ Members</h4>
-          <div class="member-grid">
-            {% for member_info in conf.members %}
-            {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
-            {% assign member = site.staff_members | where: "url", author_id | first %}
-            {% if member %}
-            <a class="member-chip"
-               href="{{ member.url | relative_url }}"
-               title="{{ member_info.name }}{% if member_info.role %} ({{ member_info.role }}){% endif %}">
-              <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
-            </a>
-            {% endif %}
-            {% endfor %}
+        <!-- Header: logo + name + meta -->
+        <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;">
+          <div style="width:52px;height:52px;flex-shrink:0;border:1px solid rgba(128,128,128,.15);border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(128,128,128,.12);padding:6px;">
+            <img src="{{ conf.logo }}" alt="{{ conf.name }}" style="width:100%;height:100%;object-fit:contain;" loading="lazy">
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:700;font-size:15px;line-height:1.3;">{{ conf.name }}</div>
+            <div style="display:flex;flex-direction:column;gap:3px;margin-top:5px;">
+              <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;" class="muted">
+                <i data-lucide="calendar" style="width:12px;height:12px;flex-shrink:0;" aria-hidden="true"></i>
+                {{ conf.date_display }}
+              </span>
+              <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;" class="muted">
+                <i data-lucide="map-pin" style="width:12px;height:12px;flex-shrink:0;" aria-hidden="true"></i>
+                {{ conf.location }}
+              </span>
+            </div>
           </div>
         </div>
+
+        {% if conf.description %}
+        <p class="muted" style="font-size:13.5px;margin:0 0 14px;line-height:1.55;">{{ conf.description }}</p>
         {% endif %}
+
+        <!-- Topics (deduplicated) -->
+        {% if conf.members %}
+        {% assign conf_topics = "" | split: "|" %}
+        {% for member_info in conf.members %}
+          {% if member_info.topic %}
+            {% assign conf_topics = conf_topics | push: member_info.topic %}
+          {% endif %}
+        {% endfor %}
+        {% assign conf_topics = conf_topics | uniq %}
+        {% for topic in conf_topics %}
+          <div style="font-size:12px;padding:8px 10px;border-radius:6px;border:1px solid rgba(128,128,128,.15);margin-bottom:8px;display:flex;align-items:flex-start;gap:8px;">
+            <i data-lucide="message-square" style="width:13px;height:13px;color:var(--brand-500);flex-shrink:0;margin-top:1px;" aria-hidden="true"></i>
+            <span class="muted">&ldquo;{{ topic }}&rdquo;</span>
+          </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- Footer: members + CTA -->
+        <div style="margin-top:auto;padding-top:14px;border-top:1px solid rgba(128,128,128,.15);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+
+          {% if conf.members %}
+          <div style="display:flex;align-items:center;gap:6px;">
+            {% for member_info in conf.members %}
+              {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+              {% assign member = site.staff_members | where: "url", author_id | first %}
+              {% if member %}
+              <a class="member-chip" href="{{ member.url | relative_url }}"
+                 title="{{ member_info.name }}{% if member_info.role %} · {{ member_info.role }}{% endif %}">
+                <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
+              </a>
+              {% endif %}
+            {% endfor %}
+            {% assign first_member = conf.members | first %}
+            {% if first_member.role %}
+            <span class="beta-badge" style="font-size:11px;margin-left:4px;">{{ first_member.role }}</span>
+            {% endif %}
+          </div>
+          {% else %}
+          <div></div>
+          {% endif %}
+
+          <a href="{{ conf.link }}" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:13px;padding:7px 16px;white-space:nowrap;">
+            Learn more &rarr;
+          </a>
+
+        </div>
+
       </article>
       {% endfor %}
     </div>
+    {% else %}
+    <div class="card card-pad" style="margin-top:28px;text-align:center;padding:40px;">
+      <i data-lucide="calendar" style="width:32px;height:32px;color:var(--brand-500);margin:0 auto 12px;" aria-hidden="true"></i>
+      <p class="muted">No upcoming conferences scheduled yet. Check back soon.</p>
+    </div>
+    {% endif %}
+
   </div>
 </section>
 
-<!-- Speaker teaser -->
-<section class="section" id="speaker">
+
+<!-- ===================== PAST CONFERENCES ===================== -->
+{% assign past = site.data.conferences | where_exp: "conf", "conf.start_date < today" | sort: "start_date" | reverse %}
+{% if past.size > 0 %}
+<section class="section why-section">
   <div class="container">
-    <div class="section-kicker">Speakers</div>
-    <div class="section-title">Speaker teaser</div>
-    <p class="muted" style="max-width: 75ch; margin-top: 10px">
-      These WAF++ members will be attending upcoming conferences.
-      Click a name to view the detailed profile.
-    </p>
+
+    <div class="section-header">
+      <div class="kicker">PAST EVENTS</div>
+      <h2>Where WAF++ has been</h2>
+      <p class="lead muted">Previous conferences where WAF++ was present — the community roots.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px;">
+      {% for conf in past %}
+      <div class="card card-pad" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div style="width:40px;height:40px;flex-shrink:0;border:1px solid rgba(128,128,128,.15);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(128,128,128,.12);padding:5px;">
+          <img src="{{ conf.logo }}" alt="{{ conf.name }}" style="width:100%;height:100%;object-fit:contain;" loading="lazy">
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:600;font-size:14px;">{{ conf.name }}</div>
+          <div style="display:flex;gap:16px;margin-top:3px;flex-wrap:wrap;">
+            <span class="muted" style="font-size:12px;display:inline-flex;align-items:center;gap:4px;">
+              <i data-lucide="calendar" style="width:11px;height:11px;" aria-hidden="true"></i>
+              {{ conf.date_display }}
+            </span>
+            <span class="muted" style="font-size:12px;display:inline-flex;align-items:center;gap:4px;">
+              <i data-lucide="map-pin" style="width:11px;height:11px;" aria-hidden="true"></i>
+              {{ conf.location }}
+            </span>
+          </div>
+          {% if conf.description %}
+          <p class="muted" style="font-size:12px;margin:4px 0 0;">{{ conf.description }}</p>
+          {% endif %}
+        </div>
+        {% if conf.members %}
+        <div style="display:flex;align-items:center;gap:5px;flex-shrink:0;">
+          {% for member_info in conf.members %}
+            {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+            {% assign member = site.staff_members | where: "url", author_id | first %}
+            {% if member %}
+            <a class="member-chip" href="{{ member.url | relative_url }}" title="{{ member_info.name }}">
+              <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
+            </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <a href="{{ conf.link }}" target="_blank" rel="noopener" class="btn" style="font-size:12px;padding:6px 14px;flex-shrink:0;">
+          View &rarr;
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ===================== SPEAKERS ===================== -->
+<section class="section pillars-section" id="speakers">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">SPEAKERS</div>
+      <h2>WAF++ speakers at upcoming events</h2>
+      <p class="lead muted">The people representing WAF++ at conferences — click a profile to learn more.</p>
+    </div>
 
     {% assign today = 'now' | date: '%Y-%m-%d' %}
     {% assign upcoming = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" %}
     {% assign speaker_names = "" | split: "|" %}
     {% for conf in upcoming %}
-    {% if conf.members %}
-    {% for member_info in conf.members %}
-    {% assign speaker_names = speaker_names | push: member_info.name %}
-    {% endfor %}
-    {% endif %}
+      {% if conf.members %}
+        {% for member_info in conf.members %}
+          {% assign speaker_names = speaker_names | push: member_info.name %}
+        {% endfor %}
+      {% endif %}
     {% endfor %}
     {% assign speaker_names = speaker_names | uniq %}
 
-    <div class="people-grid">
+    <div class="people-grid" style="margin-top:28px;">
       {% for speaker_name in speaker_names %}
-      {% assign author_id = speaker_name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
-      {% assign person = site.staff_members | where: "url", author_id | first %}
-      {% if person %}
-      <article class="person-card">
-        <div class="person-card__head">
-          <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
-          <div>
-            <div class="person-card__name">
-              <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
+        {% assign author_id = speaker_name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+        {% assign person = site.staff_members | where: "url", author_id | first %}
+        {% if person %}
+        <article class="person-card">
+          <div class="person-card__head">
+            <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+            <div>
+              <div class="person-card__name">
+                <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
+              </div>
+              <div class="person-card__role">{{ person.position }}</div>
             </div>
-            <div class="person-card__role">{{ person.position }}</div>
+          </div>
+          {% if person.blurb %}
+          <p class="person-card__bio">{{ person.blurb }}</p>
+          {% endif %}
+          {% if person.social %}
+          <div class="person-card__social">
+            {% for link in person.social %}
+            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+               href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== GET INVOLVED ===================== -->
+<section class="section wafpass-section" id="get-involved">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <div>
+        <div class="kicker">GET INVOLVED</div>
+        <h2>Meet us &amp; contribute</h2>
+        <p class="lead">Our focus is open source: content, reviews, working groups, and in-person exchange at conferences. Every format is an entry point.</p>
+
+        <div class="wafpass-features" style="margin-top:28px;">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="mic" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Sessions &amp; BoFs</div>
+              <p class="wafpass-feat__desc">Find us at talks and Birds-of-a-Feather sessions — share real challenges, hear how others use WAF++, and shape the roadmap together.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="pen-tool" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Workshops</div>
+              <p class="wafpass-feat__desc">Hands-on sessions covering maturity models, scoring, and practical assessment — framework theory turned into engineering practice.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="github" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">GitHub</div>
+              <p class="wafpass-feat__desc">Issues, PRs, and RFCs — everything happens in the open. Share use cases, propose criteria, review patterns. No minimum contribution size.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="card card-pad">
+          <div class="card-kicker" style="margin-bottom:16px;">Community formats</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="presentation" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Conference talks</div>
+                <div class="muted" style="font-size:12px;">Framework concepts · Real case studies</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="users" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Birds of a Feather</div>
+                <div class="muted" style="font-size:12px;">Open discussion · Community input</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="pen-tool" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Workshops</div>
+                <div class="muted" style="font-size:12px;">Scoring · Maturity models · Assessment</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
+              <i data-lucide="map" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Roadmap &amp; RFC sessions</div>
+                <div class="muted" style="font-size:12px;">Shape what gets built next · Open to all</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(128,128,128,.15);font-size:12px;">
+            No invite required. Every session is open to anyone interested in cloud architecture.
           </div>
         </div>
+      </div>
 
-        {% if person.blurb %}
-        <p class="person-card__bio">{{ person.blurb }}</p>
-        {% endif %}
-
-        {% if person.social %}
-        <div class="person-card__social">
-          {% for link in person.social %}
-          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
-             href="{% include relative-src.html src=link.link %}">
-            {% if link.social_icon %}
-            {% include social-icon.html icon=link.social_icon %}
-            {% endif %}
-          </a>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </article>
-      {% endif %}
-      {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- Open Source & Community -->
-<section class="section section--tight" id="community">
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
   <div class="container">
-    <div class="section-kicker">Open Source</div>
-    <div class="section-title">Community & how to get involved</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px">
-      Our current focus is Open Source: content, reviews, working groups, and exchange at conferences.
-      Sponsorship may be possible in the future — but it is intentionally not the starting point.
-    </p>
-
-    <div class="grid-3">
-      <div class="card card-pad">
-        <div class="card-kicker">Contribute</div>
-        <h3>Issues & Pull Requests</h3>
-        <div class="muted">Criteria, questions, examples, or code — everything helps.</div>
-        <ul class="list" style="margin-top: 12px">
-          <li>Share use cases</li>
-          <li>Review existing content</li>
-          <li>Contribute patterns / anti-patterns</li>
-        </ul>
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">SEE YOU THERE</div>
+      <h2>Come talk to us.</h2>
+      <p class="lead muted">Find us at the next event, open a GitHub Discussion, or just follow along. WAF++ is built in public — and the community is always open.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub &rarr;</a>
+        <a class="btn" href="{{ '/governance-community/' | relative_url }}">Community &amp; governance</a>
+        <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
       </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">Working Groups</div>
-        <h3>Collaborative development</h3>
-        <div class="muted">Topic-focused groups per pillar/topic.</div>
-        <ul class="list" style="margin-top: 12px">
-          <li>Discuss & iterate on RFCs</li>
-          <li>Review scoring / maturity approaches</li>
-          <li>Refine reference models</li>
-        </ul>
-      </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">Conferences</div>
-        <h3>Sessions & BoFs</h3>
-        <div class="muted">Meet us at events — we build in the open.</div>
-        <ul class="list" style="margin-top: 12px">
-          <li>Public roadmap updates</li>
-          <li>Workshop formats</li>
-          <li>Q&A with maintainers</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="btn-row" style="margin-top: 18px">
-      <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribute on GitHub →</a>
-      <a class="btn" style="margin-left: 10px" href="{{ '/governance-community/' | relative_url }}">Governance & roles →</a>
     </div>
   </div>
 </section>

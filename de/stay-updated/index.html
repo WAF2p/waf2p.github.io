@@ -6,104 +6,186 @@ title: Auf dem Laufenden — WAF++
 description: WAF++-Framework-Releases, Blog-Beiträge und Community-News verfolgen. Per RSS, Slack oder GitHub abonnieren.
 permalink: /de/stay-updated/
 ---
+
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Informiert bleiben</div>
-    <h1>Auf dem Laufenden</h1>
-    <p class="lead" style="max-width: 72ch;">
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Informiert bleiben · Dabei sein
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Auf dem Laufenden</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
       WAF++ entwickelt sich schnell weiter. Über deinen bevorzugten Kanal — RSS-Feed, Slack-Community oder GitHub —
       immer über Releases, RFCs und Community-Diskussionen informiert bleiben.
     </p>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="rss" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        RSS · Slack · GitHub
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="lock-open" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Kein Account für RSS nötig
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="globe" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Öffentlich entwickelt
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#channels">Abonnement-Kanäle &rarr;</a>
+      <a class="btn" href="{{ '/de/changelog/' | relative_url }}">Changelog</a>
+      <a class="btn" href="{{ '/de/roadmap/' | relative_url }}">Roadmap</a>
+    </div>
   </div>
 </section>
 
-<!-- Kanäle -->
+
+<!-- ===================== KANÄLE + INHALTE ===================== -->
+<section class="section wafpass-section" id="channels">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <div>
+        <div class="kicker">KANÄLE</div>
+        <h2>Wie du WAF++ verfolgen kannst</h2>
+        <p class="lead">Einen oder alle drei wählen — jeder Kanal ist kostenlos und offen. Keine Newsletter, kein Tracking, kein Rauschen.</p>
+
+        <div class="wafpass-features" style="margin-top:28px;">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="rss" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">RSS / Atom-Feed</div>
+              <p class="wafpass-feat__desc">Den Blog-RSS-Feed abonnieren und neue Beiträge direkt im Feed-Reader erhalten. Kein Account, keine Anmeldung.</p>
+              <a href="/feed.xml" class="btn btn-small" style="margin-top:10px;">RSS abonnieren &rarr;</a>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Slack-Community</div>
+              <p class="wafpass-feat__desc">Der WAF++-Community auf Slack beitreten. Ankündigungen in <code>#announcements</code> erhalten, Releases in <code>#general</code> diskutieren und jederzeit Fragen stellen.</p>
+              <a href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" class="btn btn-small" style="margin-top:10px;">{% include slack-icon.html size=14 %} Slack beitreten &rarr;</a>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="github" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">GitHub</div>
+              <p class="wafpass-feat__desc">Das Repository beobachten oder mit einem Stern versehen für Benachrichtigungen zu Releases, Issues und PRs. Discussions für RFCs und Community-Entscheidungen folgen.</p>
+              <a href="https://github.com/waf2p/" target="_blank" rel="noopener" class="btn btn-small" style="margin-top:10px;">Auf GitHub beobachten &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <div class="card card-pad">
+          <div class="card-kicker" style="margin-bottom:16px;">Was du erfahren wirst</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="package" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Framework-Releases &amp; Änderungen</div>
+                <div class="muted" style="font-size:12px;">Pillar-Updates · Scoring-Änderungen · Controls-Ergänzungen</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="message-square" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">RFCs &amp; Community-Entscheidungen</div>
+                <div class="muted" style="font-size:12px;">Offene RFCs · Diskussions-Threads · Governance-Abstimmungen</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="file-text" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Blog-Artikel &amp; Einblicke</div>
+                <div class="muted" style="font-size:12px;">Technische Beiträge · Fallstudien · Erfahrungsberichte</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
+              <i data-lucide="calendar" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Konferenzen &amp; Events</div>
+                <div class="muted" style="font-size:12px;">Kommende Talks · Workshops · Community-Meetups</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(128,128,128,.15);font-size:12px;">
+            Kein Marketing, keine Newsletter. Nur echte Updates aus der echten Entwicklung — alles öffentlich und nachvollziehbar.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== AKTUELLE UPDATES ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-kicker">Kanäle</div>
-    <div class="section-title">Wie du WAF++ verfolgen kannst</div>
+    <div class="section-header">
+      <div class="kicker">AKTUELL</div>
+      <h2>Wo du dich informieren kannst</h2>
+      <p class="lead muted">Was sich geändert hat, was als Nächstes kommt und was die Community zuletzt geschrieben hat.</p>
+    </div>
 
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Feed</div>
-        <h3>RSS / Atom</h3>
-        <p class="muted">Den Blog-RSS-Feed abonnieren, um neue Beiträge direkt im Feed-Reader zu erhalten. Kein Account erforderlich.</p>
-        <a href="/feed.xml" class="btn" style="margin-top:14px;">RSS abonnieren →</a>
+    <div class="why-grid" style="margin-top:32px;">
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="list" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Changelog</h3>
+        <p class="why-card__desc">Vollständige Geschichte aller Framework-Releases, Pillar-Updates und Scoring-Änderungen. Jeder Eintrag ist mit dem zugehörigen RFC verknüpft.</p>
+        <a class="btn btn-small" href="{{ '/de/changelog/' | relative_url }}" style="margin-top:14px;">Changelog ansehen &rarr;</a>
       </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Community</div>
-        <h3>Slack</h3>
-        <p class="muted">Der WAF++-Community auf Slack beitreten. Ankündigungen in <code>#announcements</code> erhalten, Releases in <code>#general</code> diskutieren und jederzeit Fragen stellen.</p>
-        <a href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" class="btn" style="margin-top:14px;">{% include slack-icon.html size=16 %} Slack beitreten</a>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="map" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Roadmap</h3>
+        <p class="why-card__desc">Was geplant ist, was in Arbeit ist und was offen für Community-Input ist. Die nächsten Schritte mitgestalten, indem man sich an der Diskussion beteiligt.</p>
+        <a class="btn btn-small" href="{{ '/de/roadmap/' | relative_url }}" style="margin-top:14px;">Roadmap ansehen &rarr;</a>
       </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Quelle</div>
-        <h3>GitHub</h3>
-        <p class="muted">Das GitHub-Repository beobachten oder mit einem Stern versehen, um Benachrichtigungen für Releases, Issues und Pull Requests zu erhalten. GitHub Discussions für RFCs und Community-Entscheidungen folgen.</p>
-        <a href="https://github.com/waf2p/" target="_blank" rel="noopener" class="btn" style="margin-top:14px;">Auf GitHub beobachten →</a>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="pen-line" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Blog</h3>
+        <p class="why-card__desc">Technische Artikel, Erfahrungsberichte und Community-Einblicke. Praktische Cloud-Architektur-Inhalte — kein Marketing.</p>
+        <a class="btn btn-small" href="{{ '/de/blog/' | relative_url }}" style="margin-top:14px;">Blog lesen &rarr;</a>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- Was zu erwarten ist -->
-<section class="section section--tight">
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
   <div class="container">
-    <div class="section-kicker">Inhalte</div>
-    <div class="section-title">Was du erfahren wirst</div>
-
-    <div class="grid-2" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Framework</div>
-        <h3>Releases & Änderungen</h3>
-        <p class="muted">Neue Framework-Versionen, Pillar-Updates, Scoring-Modell-Änderungen und Erweiterungen der Controls Library. Jedes Release ist im <a href="{{ '/de/changelog/' | relative_url }}">Changelog</a> dokumentiert und mit dem zugehörigen RFC verknüpft.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Community</div>
-        <h3>RFCs & Entscheidungen</h3>
-        <p class="muted">Offene RFCs, bei denen dein Input das Framework prägt. GitHub Discussions folgen oder Slack beitreten, um teilzunehmen, bevor Entscheidungen getroffen werden.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Blog</div>
-        <h3>Artikel & Einblicke</h3>
-        <p class="muted">Technische Blog-Beiträge, Fallstudien und Erfahrungsberichte aus der WAF++-Community. Praktische Cloud-Architektur-Inhalte — kein Marketing.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Events</div>
-        <h3>Konferenzen & Talks</h3>
-        <p class="muted">Kommende Konferenz-Talks, Workshops und Community-Events, bei denen WAF++ präsentiert oder diskutiert wird. Details auf der <a href="{{ '/de/conferences/' | relative_url }}">Konferenzseite</a>.</p>
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">MITMACHEN STATT NUR ZUSCHAUEN</div>
+      <h2>Nicht nur folgen — mitgestalten.</h2>
+      <p class="lead muted">WAF++ wird von den Menschen geprägt, die es nutzen. Jeder RFC, jede Diskussion, jeder Beitrag treibt das Framework voran.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="{{ '/de/contributing/' | relative_url }}">So kannst du mitmachen &rarr;</a>
+        <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Slack beitreten</a>
+        <a class="btn" href="{{ '/de/rfc/' | relative_url }}">RFC-Tracker</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Aktuelle Updates -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Aktuell</div>
-    <div class="section-title">Aktuelle Updates</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Den vollständigen Verlauf der Änderungen gibt es im <a href="{{ '/de/changelog/' | relative_url }}">Changelog</a>.
-      Was als Nächstes kommt, steht auf der <a href="{{ '/de/roadmap/' | relative_url }}">Roadmap</a>.
-    </p>
-
-    <div style="margin-top: 22px; display:flex; gap:12px; flex-wrap:wrap;">
-      <a class="btn" href="{{ '/de/changelog/' | relative_url }}">Changelog →</a>
-      <a class="btn" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
-      <a class="btn" href="{{ '/de/blog/' | relative_url }}">Blog →</a>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Mitmachen statt nur zuschauen</h2>
-    <p class="muted" style="max-width:62ch; margin: 0 auto 20px;">
-      Nicht nur folgen — mitgestalten. WAF++ wird von den Menschen geprägt, die es nutzen. Jeder RFC, jede
-      Diskussion, jeder Beitrag treibt das Framework voran.
-    </p>
-    <a class="btn btn-primary" href="{{ '/de/contributing/' | relative_url }}">So kannst du mitmachen →</a>
-    <a class="btn" style="margin-left:10px;" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Slack beitreten</a>
   </div>
 </section>

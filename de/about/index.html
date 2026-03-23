@@ -6,78 +6,124 @@ description: Die Köpfe hinter WAF++
 permalink: /de/about/
 lang: de
 ---
-<section class="hero hero--page">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> WAF++ Community</div>
-    <h1>Über uns</h1>
-    <p class="lead" style="max-width: 70ch">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero hero--page hero--centered">
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      WAF++ Community
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Über uns</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
       WAF++ ist ein community-getriebenes, cloud-agnostisches Framework aus der Praxis.
       Wir schaffen eine gemeinsame Grundlage für souveräne, verantwortungsvolle und nachvollziehbare Cloud-Nutzung —
       unabhängig von Anbietern und jenseits von Marketing-Narrativen.
     </p>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="users" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Community-getrieben
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="shield-check" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Anbieterneutral
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="lock-open" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Open Source
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#team">Das Team &rarr;</a>
+      <a class="btn" href="#mission">Unsere Mission</a>
+      <a class="btn" href="#history">Geschichte</a>
+    </div>
   </div>
 </section>
 
-<section class="section section--tight">
+
+<!-- ===================== MISSION / WARUM ===================== -->
+<section class="section wafpass-section" id="mission">
   <div class="container">
-    <div class="split">
-      <div class="split-copy">
-        <div class="card-kicker">Warum WAF++</div>
+    <div class="wafpass-grid">
+
+      <div>
+        <div class="kicker">WARUM WAF++</div>
         <h2>Engineering-first statt Best-Practice-Sammlung.</h2>
-        <p class="lead">
-          Wir vereinen Erfahrungen von Architekt:innen, Plattform-Teams, Security- und Compliance-Spezialist:innen
-          in einem offenen, transparenten und neutralen Rahmen.
-        </p>
-        <div class="compliance" style="margin-top: 14px">
+        <p class="lead">Wir vereinen Erfahrungen von Architekt:innen, Plattform-Teams, Security- und Compliance-Spezialist:innen in einem offenen, transparenten und neutralen Rahmen.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
           <span class="pill">Referenzmodelle</span>
           <span class="pill">Reifegrad</span>
           <span class="pill">Entscheidungsleitfäden</span>
           <span class="pill">Auditierbar</span>
         </div>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Dokumentation &rarr;</a>
+          <a class="btn" href="{{ '/de/conferences/' | relative_url }}">Konferenzen</a>
+        </div>
       </div>
 
-      <div class="split-visual">
+      <div>
         <div class="card card-pad">
-          <div class="card-kicker">Prinzipien</div>
-          <div class="about-points">
-            <div class="about-point">
-              <div class="about-point__icon">1</div>
+          <div class="card-kicker" style="margin-bottom:16px;">Prinzipien</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="shield-check" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
               <div>
-                <strong>Neutral & offen</strong>
-                <div class="muted">Vendor-agnostisch, transparent, community-driven.</div>
+                <div style="font-weight:700;font-size:14px;">Neutral &amp; offen</div>
+                <div class="muted" style="font-size:13px;">Vendor-agnostisch, transparent, community-driven.</div>
               </div>
             </div>
-            <div class="about-point">
-              <div class="about-point__icon">2</div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="wrench" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
               <div>
-                <strong>Praxisnah</strong>
-                <div class="muted">Aus echten Projekten, Audits und Betriebserfahrung.</div>
+                <div style="font-weight:700;font-size:14px;">Praxisnah</div>
+                <div class="muted" style="font-size:13px;">Aus echten Projekten, Audits und Betriebserfahrung.</div>
               </div>
             </div>
-            <div class="about-point">
-              <div class="about-point__icon">3</div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="git-branch" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
               <div>
-                <strong>Nachvollziehbar</strong>
-                <div class="muted">Struktur, Verantwortlichkeiten und Entscheidungsklarheit.</div>
+                <div style="font-weight:700;font-size:14px;">Nachvollziehbar</div>
+                <div class="muted" style="font-size:13px;">Struktur, Verantwortlichkeiten und Entscheidungsklarheit.</div>
               </div>
             </div>
-          </div>
-          <div style="margin-top: 18px">
-            <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Dokumentation</a>
-            <a class="btn" href="{{ '/conferences/' | relative_url }}">Konferenzen</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="section-kicker">Team</div>
-    <div class="section-title">Die Köpfe hinter WAF++</div>
 
-    <div class="people-grid">
+<!-- ===================== TEAM ===================== -->
+<section class="section pillars-section" id="team">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">TEAM</div>
+      <h2>Die Köpfe hinter WAF++</h2>
+      <p class="lead muted">Architekt:innen, Engineers und Security-Spezialist:innen, die echte Projekterfahrung in ein offenes Framework überführt haben.</p>
+    </div>
+
+    <div class="people-grid" style="margin-top:32px;">
       {% for person in site.staff_members %}
       {% if person.name and person.name != '' %}
       <article class="person-card">
@@ -85,24 +131,20 @@ lang: de
           <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
           <div>
             <div class="person-card__name">
-              <a href="{{ "/staff_members/" | append: person.slug | append: "/" | relative_url }}">{{ person.name }}</a>
+              <a href="{{ '/de/staff_members/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a>
             </div>
             <div class="person-card__role">{{ person.position }}</div>
           </div>
         </div>
-
         {% if person.blurb %}
         <p class="person-card__bio">{{ person.blurb }}</p>
         {% endif %}
-
         {% if person.social %}
         <div class="person-card__social">
           {% for link in person.social %}
           <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
              href="{% include relative-src.html src=link.link %}">
-            {% if link.social_icon %}
-              {% include social-icon.html icon=link.social_icon %}
-            {% endif %}
+            {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
           </a>
           {% endfor %}
         </div>
@@ -115,31 +157,31 @@ lang: de
 </section>
 
 
-<section class="section section--tight">
+<!-- ===================== HONOURED MEMBERS ===================== -->
+<section class="section">
   <div class="container">
-    <div class="section-kicker">Honoured Members</div>
-    <div class="section-title">Von Anfang an dabei</div>
-    <p class="muted" style="max-width: 75ch; margin-top: 10px">
-      Menschen, die WAF++ von Beginn an geprägt haben und uns bis heute begleiten – ohne aktuell im Core-Team aktiv zu sein.
-    </p>
+    <div class="section-header">
+      <div class="kicker">HONOURED MEMBERS</div>
+      <h2>Von Anfang an dabei</h2>
+      <p class="lead muted">Menschen, die WAF++ von Beginn an geprägt haben und uns bis heute begleiten — ohne aktuell im Core-Team aktiv zu sein.</p>
+    </div>
 
-    <div class="people-grid people-grid--honoured" style="margin-top: 18px">
+    <div class="people-grid people-grid--honoured" style="margin-top:32px;">
       {% for person in site.data.honoured_members %}
       <article class="person-card">
         <div class="person-card__head">
           <img class="person-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
           <div>
             <div class="person-card__name">
-              {% if person.github and person.github != "" %}
-                <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
+              {% if person.github and person.github != '' %}
+              <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
               {% else %}
-                {{ person.name }}
+              {{ person.name }}
               {% endif %}
             </div>
             <div class="person-card__role">{{ person.position }}</div>
           </div>
         </div>
-
         {% if person.blurb %}
         <p class="person-card__bio">{{ person.blurb }}</p>
         {% endif %}
@@ -149,16 +191,17 @@ lang: de
   </div>
 </section>
 
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Geschichte</div>
-    <div class="section-title">Wie WAF++ gewachsen ist</div>
-    <p class="muted" style="max-width: 75ch; margin-top: 10px">
-      Von den ersten Skizzen bis zur lebendigen Community: WAF++ entsteht iterativ — aus Projektrealität, Diskussionen und dem Willen,
-      Cloud-Entscheidungen nachvollziehbar zu machen.
-    </p>
 
-    <div class="timeline" style="margin-top: 18px">
+<!-- ===================== GESCHICHTE ===================== -->
+<section class="section" id="history">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">GESCHICHTE</div>
+      <h2>Wie WAF++ gewachsen ist</h2>
+      <p class="lead muted">Von den ersten Skizzen bis zur lebendigen Community: WAF++ entsteht iterativ — aus Projektrealität, Diskussionen und dem Willen, Cloud-Entscheidungen nachvollziehbar zu machen.</p>
+    </div>
+
+    <div class="timeline" style="margin-top:32px;">
       <article class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
@@ -170,7 +213,7 @@ lang: de
       <article class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-title">Struktur: Prinzipien & Leitplanken</div>
+          <div class="timeline-title">Struktur: Prinzipien &amp; Leitplanken</div>
           <div class="timeline-text">Aus Erfahrungswerten wurden wiederholbare Bausteine: Verantwortlichkeiten, Entscheidungswege und Reifegrad.</div>
         </div>
       </article>
@@ -178,7 +221,7 @@ lang: de
       <article class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-title">Community: Review & Feedback</div>
+          <div class="timeline-title">Community: Review &amp; Feedback</div>
           <div class="timeline-text">In Reviews, Workshops und Gesprächen wurden Inhalte geschärft — mit Fokus auf Neutralität und Praxisnähe.</div>
         </div>
       </article>
@@ -194,17 +237,18 @@ lang: de
   </div>
 </section>
 
-<section class="section" id="cta">
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
   <div class="container">
-    <div class="cta">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">MITMACHEN</div>
       <h2>Mitmachen?</h2>
-      <p class="lead" style="max-width: 70ch">
-        WAF++ ist offen für alle, die Cloud-Realität nicht nur konsumieren, sondern aktiv mitgestalten wollen.
-        Egal ob du Erfahrungen teilen, Inhalte reviewen oder neue Bausteine mitentwickeln möchtest — dein Beitrag zählt.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://github.com/" target="_blank" rel="noopener">Github</a>
-        <a class="btn" href="{{ '/blog/' | relative_url }}">Blog</a>
+      <p class="lead muted">WAF++ ist offen für alle, die Cloud-Realität nicht nur konsumieren, sondern aktiv mitgestalten wollen. Egal ob du Erfahrungen teilen, Inhalte reviewen oder neue Bausteine mitentwickeln möchtest — dein Beitrag zählt.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub &rarr;</a>
+        <a class="btn" href="{{ '/de/contributing/' | relative_url }}">So kannst du mitmachen</a>
+        <a class="btn" href="{{ '/de/blog/' | relative_url }}">Blog</a>
       </div>
     </div>
   </div>

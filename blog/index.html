@@ -5,22 +5,77 @@ ref: blog
 title: Blog
 description: Updates, insights, and new content around WAF++.
 ---
-<section class="page-hero">
-  <div class="container">
+
+{% assign en_posts = site.posts | where: "lang", "en" %}
+{% assign all_cats = "" | split: "|" %}
+{% for p in en_posts %}
+  {% for c in p.categories %}
+    {% assign all_cats = all_cats | push: c %}
+  {% endfor %}
+{% endfor %}
+{% assign unique_cats = all_cats | uniq %}
+
+<!-- ===================== HERO ===================== -->
+<section class="hero hero--page hero--centered">
+  <div class="container" style="max-width:800px;">
     {% include breadcrumb-inline.html %}
     {% include breadcrumb.html %}
 
-    <div class="badge"><span class="dot"></span> WAF++ Blog</div>
-    <h1>{{ page.title }}</h1>
-    <p class="lead">{{ page.description }}</p>
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Community · Insights
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Blog</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
+      {{ page.description }}
+    </p>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="pen-line" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Open for contributions
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="globe" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        EN &amp; DE
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Cloud · Architecture · Governance
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#posts">Latest posts &rarr;</a>
+      <a class="btn" href="#write-for-us">Write for us</a>
+    </div>
   </div>
 </section>
 
-<section class="section">
+
+<!-- ===================== CATEGORY CHIPS ===================== -->
+{% if unique_cats.size > 0 %}
+<section class="section" style="padding-top:32px;padding-bottom:0;">
   <div class="container">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <span class="muted" style="font-size:13px;margin-right:4px;">Browse by topic:</span>
+      {% for c in unique_cats %}
+      <a class="cat-badge" href="{{ '/blog/category/' | append: c | slugify | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ===================== POSTS ===================== -->
+<section class="section" id="posts">
+  <div class="container">
+    {% assign all_posts = paginator.posts | default: en_posts %}
+    {% assign posts_list = all_posts | where: "lang", page.lang %}
     <div class="blog-grid">
-      {% assign all_posts = paginator.posts | default: site.posts %}
-      {% assign posts_list = all_posts | where: "lang", page.lang %}
       {% for post in posts_list %}
       {% include blog-card.html post=post %}
       {% endfor %}
@@ -47,5 +102,94 @@ description: Updates, insights, and new content around WAF++.
       {% endif %}
     </div>
     {% endif %}
+  </div>
+</section>
+
+
+<!-- ===================== WRITE FOR US ===================== -->
+<section class="section wafpass-section" id="write-for-us">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <div>
+        <div class="kicker">WRITE FOR US</div>
+        <h2>Share your perspective</h2>
+        <p class="lead">The WAF++ blog is community-written and open source. If you work in cloud architecture, platform engineering, or governance — your experience belongs here.</p>
+
+        <div class="wafpass-features" style="margin-top:28px;">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Technical articles</div>
+              <p class="wafpass-feat__desc">Deep dives into WAF++ pillars, cloud sovereignty, multi-cloud patterns, or framework comparisons — grounded in real engineering decisions.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Case studies &amp; experiences</div>
+              <p class="wafpass-feat__desc">Applied WAF++ in a real project? Ran an assessment? Encountered a gap in existing frameworks? Write it up — the community learns from concrete examples.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Open a PR</div>
+              <p class="wafpass-feat__desc">Posts live in the GitHub repo as Markdown. Draft in a branch, open a PR — the editorial process is fully transparent and community-reviewed.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Start on GitHub &rarr;</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="card card-pad">
+          <div class="card-kicker" style="margin-bottom:16px;">What we're looking for</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="shield" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Cloud sovereignty &amp; compliance</div>
+                <div class="muted" style="font-size:12px;">Regulatory requirements · Data residency · Exit capability</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="layers" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Multi-cloud &amp; platform engineering</div>
+                <div class="muted" style="font-size:12px;">IDP design · Golden paths · Workload portability</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="scale" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Governance &amp; open standards</div>
+                <div class="muted" style="font-size:12px;">Framework comparisons · RFC process · Vendor-neutral criteria</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
+              <i data-lucide="bar-chart-2" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Architecture assessments</div>
+                <div class="muted" style="font-size:12px;">WAF++ in practice · Scoring experiences · Pillar deep dives</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(128,128,128,.15);font-size:12px;">
+            No minimum length or format requirements. A short post with a concrete insight is more valuable than a long one without one.
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>

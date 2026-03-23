@@ -3,17 +3,16 @@ layout: default
 lang: de
 ref: _layouts/post
 ---
-{%- comment -%}
-  Post layout aligned with the Lindy-like landing style.
-  We infer a cover image from the first Markdown image in the post content.
-  Fallback to the WAF++ logo.
-{%- endcomment -%}
 
 {% assign author = nil %}
 {% if page.author_staff_member %}
   {% assign author = site.staff_members | where: 'slug', page.author_staff_member | first %}
 {% endif %}
 
+{% assign words = content | number_of_words %}
+{% assign read_time = words | divided_by: 200 | plus: 1 %}
+
+<!-- ===================== HERO ===================== -->
 <section class="post-hero">
   <div class="container">
     {% include breadcrumb.html %}
@@ -21,14 +20,19 @@ ref: _layouts/post
     <div class="post-hero__meta">
       <span class="pill">{{ page.date | date: "%d.%m.%Y" }}</span>
       {% if page.categories and page.categories.size > 0 %}
-        <span class="muted small">•</span>
+        <span class="muted small">·</span>
         <span class="post-cats">
           {% for c in page.categories %}
-            <a class="cat-badge" href="/blog/category/{{ c | slugify }}/">{{ c }}</a>
+            <a class="cat-badge" href="{{ '/de/blog/category/' | append: c | slugify | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
           {% endfor %}
         </span>
       {% endif %}
-</div>
+      <span class="muted small">·</span>
+      <span class="muted small" style="display:inline-flex;align-items:center;gap:4px;">
+        <i data-lucide="clock" style="width:12px;height:12px;" aria-hidden="true"></i>
+        {{ read_time }} Min. Lesezeit
+      </span>
+    </div>
 
     <h1 class="post-hero__title">{{ page.title }}</h1>
 
@@ -36,77 +40,129 @@ ref: _layouts/post
       {{ page.excerpt | strip_html | strip | truncate: 220 }}
     </p>
 
-    {% if author %}
-      <div class="post-hero__byline">
-        <span class="post-hero__avatar">
-          <img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
-        </span>
-        <div class="post-hero__byline-text">
-          <div class="post-hero__byline-name">{{ author.name }}</div>
-          {% if author.position %}<div class="post-hero__byline-role">{{ author.position }}</div>{% endif %}
-        </div>
-      </div>
-    {% endif %}
   </div>
 </section>
 
+
+<!-- ===================== POST BODY ===================== -->
 <section class="post-body">
   <div class="container">
     <article class="prose">
       {{ content }}
     </article>
 
+    <!-- Author card -->
     {% if author %}
-      <section class="author-card" aria-label="Autor">
-        <div class="author-card__avatar">
-          <img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
+    <section class="author-card" aria-label="Autor">
+      <div class="author-card__avatar">
+        <img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
+      </div>
+      <div class="author-card__content">
+        <div class="author-card__name">{{ author.name }}</div>
+        {% if author.position %}<div class="author-card__role">{{ author.position }}</div>{% endif %}
+        {% if author.expertise %}
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;">
+          {% for e in author.expertise %}
+          <span style="font-size:11px;padding:2px 9px;border:1px solid rgba(128,128,128,.2);border-radius:999px;" class="muted">{{ e }}</span>
+          {% endfor %}
         </div>
-        <div class="author-card__content">
-          <div class="author-card__name">{{ author.name }}</div>
-          {% if author.position %}<div class="author-card__role">{{ author.position }}</div>{% endif %}
-          {% if author.blurb %}<p class="author-card__blurb">{{ author.blurb }}</p>{% endif %}
+        {% endif %}
+        {% if author.blurb %}<p class="author-card__blurb">{{ author.blurb }}</p>{% endif %}
+        <div style="display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;">
+          {% if author.social %}
+          <div style="display:flex;gap:8px;">
+            {% for link in author.social %}
+            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <a class="btn btn-small" href="{{ '/de/staff_members/' | append: author.slug | append: '/' | relative_url }}">Profil ansehen &rarr;</a>
         </div>
-      </section>
+      </div>
+    </section>
     {% endif %}
 
+    <!-- Post nav -->
     <nav class="post-nav" aria-label="Blog Navigation">
-      {% if page.previous.url %}
-        <a class="btn btn-ghost" href="{% include relative-src.html src=page.previous.url %}">
-          <span aria-hidden="true">←</span> {{ page.previous.title }}
-        </a>
+      {% assign prev_post = nil %}
+      {% assign next_post = nil %}
+      {% assign found = false %}
+      {% assign lang_posts = site.posts | where: "lang", page.lang %}
+      {% for p in lang_posts %}
+        {% if p.url == page.url %}
+          {% assign found = true %}
+        {% elsif found == false %}
+          {% assign prev_post = p %}
+        {% elsif next_post == nil %}
+          {% assign next_post = p %}
+        {% endif %}
+      {% endfor %}
+
+      {% if prev_post %}
+      <a class="btn btn-ghost" href="{% include relative-src.html src=prev_post.url %}">
+        <span aria-hidden="true">←</span> {{ prev_post.title | truncate: 40 }}
+      </a>
       {% else %}
-        <span></span>
+      <span></span>
       {% endif %}
 
-      <a class="btn" href="{% include relative-src.html src='/blog/' %}">Zur Übersicht</a>
+      <a class="btn" href="{{ '/de/blog/' | relative_url }}">Zur Übersicht</a>
 
-      {% if page.next.url %}
-        <a class="btn btn-ghost" href="{% include relative-src.html src=page.next.url %}">
-          {{ page.next.title }} <span aria-hidden="true">→</span>
-        </a>
+      {% if next_post %}
+      <a class="btn btn-ghost" href="{% include relative-src.html src=next_post.url %}">
+        {{ next_post.title | truncate: 40 }} <span aria-hidden="true">→</span>
+      </a>
       {% else %}
-        <span></span>
+      <span></span>
       {% endif %}
     </nav>
 
     {% if site.disqus_shortname and page.comments %}
-      <div class="post-comments" id="disqus_thread"></div>
-      <script>
-        var disqus_shortname = '{{ site.disqus_shortname }}';
-        var disqus_config = function () {
-          this.page.url = "{{ page.url | prepend: site.url }}";
-          this.page.identifier = "{{ page.id }}";
-        };
-
-        (function () {
-          var d = document, s = d.createElement('script');
-          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    <div class="post-comments" id="disqus_thread"></div>
+    <script>
+      var disqus_shortname = '{{ site.disqus_shortname }}';
+      var disqus_config = function () {
+        this.page.url = "{{ page.url | prepend: site.url }}";
+        this.page.identifier = "{{ page.id }}";
+      };
+      (function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Bitte JavaScript aktivieren, um Kommentare zu sehen.</noscript>
     {% endif %}
   </div>
 </section>
+
+
+<!-- ===================== WEITERE ARTIKEL ===================== -->
+{% assign lang_posts = site.posts | where: "lang", page.lang %}
+{% assign other_posts = "" | split: "" %}
+{% for p in lang_posts %}
+  {% unless p.url == page.url %}
+    {% assign other_posts = other_posts | push: p %}
+  {% endunless %}
+{% endfor %}
+{% assign more_posts = other_posts | slice: 0, 3 %}
+{% if more_posts.size > 0 %}
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">WEITERE ARTIKEL</div>
+      <h2>Weiterlesen</h2>
+    </div>
+    <div class="blog-grid" style="margin-top:28px;">
+      {% for post in more_posts %}
+      {% include blog-card.html post=post %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {% include seo-article.html %}

@@ -6,182 +6,261 @@ title: Contributing to WAF++
 description: How to contribute to WAF++ — code, content, translations, and community.
 permalink: /contributing/
 ---
+
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Get involved</div>
-    <h1>Contributing to WAF++</h1>
-    <p class="lead" style="max-width: 76ch;">
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Open Source · Community
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Contributing to WAF++</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
       WAF++ lives from contributions. Whether you write code, improve documentation, review RFCs,
       or share experience from real projects — every contribution shapes the framework.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub →</a>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="git-pull-request" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        6 ways to contribute
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="shield-check" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        No minimum contribution size
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="lock-open" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Everything happens in the open
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#start">Get started &rarr;</a>
+      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Slack</a>
-      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance →</a>
     </div>
   </div>
 </section>
 
-<!-- Ways to contribute -->
+
+<!-- ===================== WAYS TO CONTRIBUTE ===================== -->
+<section class="section pillars-section" id="ways">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">HOW</div>
+      <h2>Ways to contribute</h2>
+      <p class="lead muted">Code, content, community — pick what fits your skills and time.</p>
+    </div>
+
+    <div class="pillars-grid" style="margin-top:32px;">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Code</div>
+        <h3 class="pillar-card__title">PRs &amp; Issues</h3>
+        <p class="pillar-card__desc">Fix bugs, implement controls, improve tooling. Every PR gets reviewed by a maintainer and linked back to a decision.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Content</div>
+        <h3 class="pillar-card__title">Docs &amp; Patterns</h3>
+        <p class="pillar-card__desc">Write pillar documentation, reference architectures, best-practice patterns, or concrete examples from real projects.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="message-square" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Review</div>
+        <h3 class="pillar-card__title">RFC Reviews</h3>
+        <p class="pillar-card__desc">Comment on open RFCs, propose alternatives, or vote on framework decisions. Every voice counts — especially real-world perspective.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Translation</div>
+        <h3 class="pillar-card__title">Localisation</h3>
+        <p class="pillar-card__desc">Help translate content into German, English, or further languages. WAF++ should be accessible to the global cloud community.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Community</div>
+        <h3 class="pillar-card__title">Working Groups</h3>
+        <p class="pillar-card__desc">Join or propose a Working Group around a specific pillar, scoring model, controls library, or reference architecture.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="mic" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Events</div>
+        <h3 class="pillar-card__title">Talks &amp; BoFs</h3>
+        <p class="pillar-card__desc">Present WAF++ at a conference, host a Birds-of-a-Feather session, or run a community workshop. Practical experience is gold.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== GETTING STARTED ===================== -->
+<section class="section" id="start">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">FIRST STEPS</div>
+      <h2>Getting started</h2>
+      <p class="lead muted">Four steps from newcomer to contributor.</p>
+    </div>
+
+    <div style="display:grid;gap:16px;margin-top:32px;max-width:800px;margin-inline:auto;">
+
+      <div class="card card-pad" style="display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:36px;height:36px;flex-shrink:0;border-radius:999px;background:var(--brand-500);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;">1</div>
+        <div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:6px;">Explore the GitHub organisation</div>
+          <p class="muted" style="margin:0;">Browse open issues labelled <code>good first issue</code> or <code>help wanted</code> at <a href="https://github.com/waf2p/" target="_blank" rel="noopener">github.com/waf2p</a>. No issue yet? Open one and describe what you want to tackle.</p>
+        </div>
+      </div>
+
+      <div class="card card-pad" style="display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:36px;height:36px;flex-shrink:0;border-radius:999px;background:var(--brand-500);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;">2</div>
+        <div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:6px;">Introduce yourself on Slack</div>
+          <p class="muted" style="margin:0;">Join the community on Slack, say hi in <code>#general</code>, ask questions, and find out which Working Group fits your background and interests.</p>
+        </div>
+      </div>
+
+      <div class="card card-pad" style="display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:36px;height:36px;flex-shrink:0;border-radius:999px;background:var(--brand-500);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;">3</div>
+        <div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:6px;">Fork → branch → PR</div>
+          <p class="muted" style="margin:0;">Fork the relevant repository, create a feature branch, and open a pull request. A maintainer will review it, give feedback, and guide you through the process.</p>
+        </div>
+      </div>
+
+      <div class="card card-pad" style="display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:36px;height:36px;flex-shrink:0;border-radius:999px;background:var(--brand-500);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;">4</div>
+        <div>
+          <div style="font-weight:700;font-size:16px;margin-bottom:6px;">Larger changes? Open an RFC first</div>
+          <p class="muted" style="margin:0;">For new pillars, breaking changes, scoring changes, or governance updates — draft an RFC in GitHub Discussions. The community reviews it before implementation begins. This keeps decisions traceable.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== WORKING GROUPS ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">COLLABORATION</div>
+      <h2>Working Groups</h2>
+      <p class="lead muted">Working Groups are topic-focused teams building specific parts of WAF++. Anyone can propose one — all you need is a charter, at least one lead, and a maintainer sponsor.</p>
+    </div>
+
+    <div class="why-grid" style="margin-top:32px;">
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="search" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Find a WG</h3>
+        <p class="why-card__desc">Check open WG proposals on GitHub Discussions and join the matching channel on Slack. You can contribute without a full-time commitment.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="plus-circle" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Start a WG</h3>
+        <p class="why-card__desc">Draft a charter in a GitHub Discussion, find a maintainer sponsor, and announce it on Slack. WGs can focus on any scope: a single pillar, a tooling question, a scoring approach.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="package-check" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Ship results</h3>
+        <p class="why-card__desc">WG outputs flow back as PRs and RFCs. Every result is public, traceable, and citable — consistent with WAF++'s transparency principles.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== RFC PROCESS ===================== -->
+<section class="section" id="rfc">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">PROCESS</div>
+      <h2>The RFC process</h2>
+      <p class="lead muted">Significant changes go through an RFC (Request for Comments). The process is lightweight but ensures every decision is community-reviewed and documented.</p>
+    </div>
+
+    <div class="card card-pad" style="margin-top:32px;">
+      <div style="display:grid;grid-template-columns:repeat(7,auto);align-items:center;justify-content:center;gap:0;flex-wrap:wrap;" class="rfc-flow-grid">
+
+        <div style="text-align:center;padding:16px 20px;">
+          <div style="width:48px;height:48px;border-radius:999px;border:2px solid var(--brand-500);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+            <i data-lucide="file-text" style="width:20px;height:20px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div style="font-weight:800;font-size:14px;">Draft</div>
+          <div class="muted" style="font-size:12px;margin-top:4px;max-width:110px;">Open a GitHub Discussion with your proposal</div>
+        </div>
+
+        <div class="muted" style="font-size:20px;text-align:center;padding:0 4px;">&rarr;</div>
+
+        <div style="text-align:center;padding:16px 20px;">
+          <div style="width:48px;height:48px;border-radius:999px;border:2px solid var(--brand-500);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+            <i data-lucide="message-square" style="width:20px;height:20px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div style="font-weight:800;font-size:14px;">Review</div>
+          <div class="muted" style="font-size:12px;margin-top:4px;max-width:110px;">Community &amp; maintainers comment and refine</div>
+        </div>
+
+        <div class="muted" style="font-size:20px;text-align:center;padding:0 4px;">&rarr;</div>
+
+        <div style="text-align:center;padding:16px 20px;">
+          <div style="width:48px;height:48px;border-radius:999px;border:2px solid var(--brand-500);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+            <i data-lucide="check-circle-2" style="width:20px;height:20px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div style="font-weight:800;font-size:14px;">Decision</div>
+          <div class="muted" style="font-size:12px;margin-top:4px;max-width:110px;">TSC or lazy consensus — documented publicly</div>
+        </div>
+
+        <div class="muted" style="font-size:20px;text-align:center;padding:0 4px;">&rarr;</div>
+
+        <div style="text-align:center;padding:16px 20px;">
+          <div style="width:48px;height:48px;border-radius:999px;border:2px solid var(--brand-500);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+            <i data-lucide="rocket" style="width:20px;height:20px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div style="font-weight:800;font-size:14px;">Implementation</div>
+          <div class="muted" style="font-size:12px;margin-top:4px;max-width:110px;">PR merged, changelog updated</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:20px;">
+      <a class="btn" href="{{ '/rfc/' | relative_url }}">View RFC tracker &rarr;</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CTA ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-kicker">How</div>
-    <div class="section-title">Ways to contribute</div>
-
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Code</div>
-        <h3>PRs & Issues</h3>
-        <p class="muted">Fix bugs, implement controls, improve tooling. Every PR gets reviewed by a maintainer and linked back to a decision.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Content</div>
-        <h3>Docs & Patterns</h3>
-        <p class="muted">Write pillar documentation, reference architectures, best-practice patterns, or concrete examples from real projects.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Review</div>
-        <h3>RFC Reviews</h3>
-        <p class="muted">Comment on open RFCs, propose alternatives, or vote on framework decisions. Every voice counts — especially real-world perspective.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Translation</div>
-        <h3>Localisation</h3>
-        <p class="muted">Help translate content into German, English, or further languages. WAF++ should be accessible to the global cloud community.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Community</div>
-        <h3>Working Groups</h3>
-        <p class="muted">Join or propose a Working Group around a specific pillar, scoring model, controls library, or reference architecture.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Events</div>
-        <h3>Talks & BoFs</h3>
-        <p class="muted">Present WAF++ at a conference, host a Birds-of-a-Feather session, or run a community workshop. Practical experience is gold.</p>
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">READY TO START?</div>
+      <h2>No contribution is too small.</h2>
+      <p class="lead muted">A typo fix, a clarifying comment, a review — it all moves the framework forward. WAF++ is built in public and the community is always open.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Open GitHub &rarr;</a>
+        <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">Join Slack</a>
+        <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance &amp; Community</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Getting started -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">First steps</div>
-    <div class="section-title">Getting started</div>
-
-    <div class="card card-pad" style="margin-top: 22px;">
-      <div style="display:grid; gap:20px;">
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <div class="about-point__icon">1</div>
-          <div>
-            <strong>Explore the GitHub organisation</strong>
-            <p class="muted" style="margin:4px 0 0;">Browse open issues labelled <code>good first issue</code> or <code>help wanted</code> at <a href="https://github.com/waf2p/" target="_blank" rel="noopener">github.com/waf2p</a>. No issue yet? Open one and describe what you want to tackle.</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <div class="about-point__icon">2</div>
-          <div>
-            <strong>Introduce yourself on Slack</strong>
-            <p class="muted" style="margin:4px 0 0;">Join the community on Slack, say hi in <code>#general</code>, ask questions, and find out which Working Group fits your background and interests.</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <div class="about-point__icon">3</div>
-          <div>
-            <strong>Fork → branch → PR</strong>
-            <p class="muted" style="margin:4px 0 0;">Fork the relevant repository, create a feature branch, and open a pull request. A maintainer will review it, give feedback, and guide you through the process.</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:16px; align-items:flex-start;">
-          <div class="about-point__icon">4</div>
-          <div>
-            <strong>Larger changes? Open an RFC first</strong>
-            <p class="muted" style="margin:4px 0 0;">For new pillars, breaking changes, scoring changes, or governance updates — draft an RFC in GitHub Discussions. The community reviews it before implementation begins. This keeps decisions traceable.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Working Groups -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Collaboration</div>
-    <div class="section-title">Working Groups</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Working Groups are topic-focused teams building specific parts of WAF++. Anyone can propose a WG
-      — all you need is a charter (goal, scope, deliverables), at least one lead, and a maintainer sponsor.
-    </p>
-
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Join</div>
-        <h3>Find a WG</h3>
-        <p class="muted">Check open WG proposals on GitHub Discussions and join the matching channel on Slack. You can contribute without a full-time commitment.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Propose</div>
-        <h3>Start a WG</h3>
-        <p class="muted">Draft a charter in a GitHub Discussion, find a maintainer sponsor, and announce it on Slack. WGs can focus on any scope: a single pillar, a tooling question, a scoring approach.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Output</div>
-        <h3>Ship results</h3>
-        <p class="muted">WG outputs flow back as PRs and RFCs. Every WG result is public, traceable, and citable — consistent with WAF++'s transparency principles.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RFC Process -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Process</div>
-    <div class="section-title">The RFC process</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Significant changes go through an RFC (Request for Comments). The process is lightweight but ensures every decision is community-reviewed and documented.
-    </p>
-
-    <div class="card card-pad" style="margin-top: 18px;">
-      <div style="display:flex; gap:0; flex-wrap:wrap; justify-content:space-between; align-items:flex-start;">
-        <div style="flex:1 1 180px; padding:12px; text-align:center;">
-          <div style="font-size:28px; margin-bottom:8px;">📝</div>
-          <div style="font-weight:800;">Draft</div>
-          <div class="muted small">Open a GitHub Discussion with your proposal</div>
-        </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
-        <div style="flex:1 1 180px; padding:12px; text-align:center;">
-          <div style="font-size:28px; margin-bottom:8px;">💬</div>
-          <div style="font-weight:800;">Review</div>
-          <div class="muted small">Community & maintainers comment and refine</div>
-        </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
-        <div style="flex:1 1 180px; padding:12px; text-align:center;">
-          <div style="font-size:28px; margin-bottom:8px;">✅</div>
-          <div style="font-weight:800;">Decision</div>
-          <div class="muted small">TSC or lazy consensus — documented publicly</div>
-        </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
-        <div style="flex:1 1 180px; padding:12px; text-align:center;">
-          <div style="font-size:28px; margin-bottom:8px;">🚀</div>
-          <div style="font-weight:800;">Implementation</div>
-          <div class="muted small">PR merged, changelog updated</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Ready to get started?</h2>
-    <p class="muted" style="max-width:62ch; margin: 0 auto 20px;">
-      No contribution is too small. A typo fix, a clarifying comment, a review — it all moves the framework forward.
-    </p>
-    <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Open GitHub →</a>
-    <a class="btn" style="margin-left:10px;" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">Join Slack →</a>
-    <a class="btn" style="margin-left:10px;" href="{{ '/governance-community/' | relative_url }}">Governance & Community</a>
   </div>
 </section>

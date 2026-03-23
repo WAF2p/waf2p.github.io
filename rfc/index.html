@@ -7,25 +7,33 @@ description: All open, decided, and implemented Requests for Comments that shape
 permalink: /rfc/
 ---
 
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Governance</div>
-    <h1>RFC Tracker</h1>
-    <p class="lead" style="max-width: 72ch;">
+  <div class="container" style="max-width: 800px;">
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Governance &middot; Transparent by default
+    </div>
+    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
+      RFC <span class="text-gradient">Tracker</span>
+    </h1>
+    <p class="lead" style="max-width: 68ch; margin: 0 auto 32px;">
       Every significant change to WAF++ starts with a public Request for Comments.
       This page tracks every RFC — draft through implementation — so decisions are always traceable.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussions →</a>
-      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance model →</a>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussions &rarr;</a>
+      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance model</a>
+      <a class="btn" href="#process">How it works</a>
     </div>
   </div>
 </section>
 
+
+<!-- ===================== RFC TRACKER ===================== -->
 <section class="section">
   <div class="container">
 
-    <!-- Stats -->
     {% assign all_rfcs       = site.data.rfcs %}
     {% assign draft_rfcs     = site.data.rfcs | where: "status", "draft" %}
     {% assign open_rfcs      = site.data.rfcs | where: "status", "open" %}
@@ -46,7 +54,7 @@ permalink: /rfc/
         <div class="rfc-stat-label">Open for review</div>
       </div>
       <div class="rfc-stat">
-        <div class="rfc-stat-num" style="color:#374151;">{{ draft_rfcs | size }}</div>
+        <div class="rfc-stat-num" style="color:#6b7280;">{{ draft_rfcs | size }}</div>
         <div class="rfc-stat-label">Draft</div>
       </div>
       <div class="rfc-stat">
@@ -127,115 +135,202 @@ permalink: /rfc/
         <h3>Want to propose a change?</h3>
         <p>Open a GitHub Discussion using the RFC template. The community reviews it, maintainers decide — everything is documented and traceable.</p>
       </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-        <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">Open RFC →</a>
-        <a class="btn" href="{{ '/contributing/' | relative_url }}">RFC process guide →</a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+        <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">Open RFC &rarr;</a>
+        <a class="btn" href="{{ '/contributing/' | relative_url }}">RFC process guide &rarr;</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- What is an RFC? -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Process</div>
-    <div class="section-title">What qualifies as an RFC?</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Not every change needs an RFC — only significant ones. Use the table below to decide.
-    </p>
 
-    <div class="card card-pad" style="margin-top: 18px; overflow-x: auto;">
-      <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+<!-- ===================== WHAT QUALIFIES ===================== -->
+<section class="section why-section" id="process">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">PROCESS</div>
+      <h2>What qualifies as an RFC?</h2>
+      <p class="lead muted">Not every change needs an RFC — only significant ones. Use the table below to decide.</p>
+    </div>
+
+    <div class="card card-pad" style="margin-top:28px;overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
         <thead>
-          <tr style="border-bottom: 2px solid var(--border,#e5e7eb);">
-            <th style="text-align:left; padding:8px 12px; font-weight:700;">Change type</th>
-            <th style="text-align:left; padding:8px 12px; font-weight:700;">RFC needed?</th>
-            <th style="text-align:left; padding:8px 12px; font-weight:700;">Process</th>
+          <tr style="border-bottom:2px solid rgba(128,128,128,.2);">
+            <th style="text-align:left;padding:10px 14px;font-weight:700;">Change type</th>
+            <th style="text-align:left;padding:10px 14px;font-weight:700;">RFC needed?</th>
+            <th style="text-align:left;padding:10px 14px;font-weight:700;">Process</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">New pillar or removal of a pillar</td>
-            <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC vote → PR</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">New pillar or removal of a pillar</td>
+            <td style="padding:11px 14px;"><strong style="color:#15803d;">Yes</strong></td>
+            <td style="padding:11px 14px;" class="muted">RFC &rarr; TSC vote &rarr; PR</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">Scoring model changes (PASS tiers, weights)</td>
-            <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC vote → PR</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">Scoring model changes (PASS tiers, weights)</td>
+            <td style="padding:11px 14px;"><strong style="color:#15803d;">Yes</strong></td>
+            <td style="padding:11px 14px;" class="muted">RFC &rarr; TSC vote &rarr; PR</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">Breaking change to controls schema or IDs</td>
-            <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC vote → PR</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">Breaking change to controls schema or IDs</td>
+            <td style="padding:11px 14px;"><strong style="color:#15803d;">Yes</strong></td>
+            <td style="padding:11px 14px;" class="muted">RFC &rarr; TSC vote &rarr; PR</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">New Working Group proposal</td>
-            <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted);">RFC → lazy consensus → charter published</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">New Working Group proposal</td>
+            <td style="padding:11px 14px;"><strong style="color:#15803d;">Yes</strong></td>
+            <td style="padding:11px 14px;" class="muted">RFC &rarr; lazy consensus &rarr; charter published</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">Governance or role changes</td>
-            <td style="padding:10px 12px;"><strong style="color:#15803d;">Yes</strong></td>
-            <td style="padding:10px 12px; color:var(--muted);">RFC → TSC supermajority</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">Governance or role changes</td>
+            <td style="padding:11px 14px;"><strong style="color:#15803d;">Yes</strong></td>
+            <td style="padding:11px 14px;" class="muted">RFC &rarr; TSC supermajority</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">New control (non-breaking, additive)</td>
-            <td style="padding:10px 12px; color:var(--muted);">Recommended</td>
-            <td style="padding:10px 12px; color:var(--muted);">PR with discussion link · lazy consensus</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">New control (non-breaking, additive)</td>
+            <td style="padding:11px 14px;" class="muted">Recommended</td>
+            <td style="padding:11px 14px;" class="muted">PR with discussion link &middot; lazy consensus</td>
           </tr>
-          <tr style="border-bottom:1px solid var(--border,#f3f4f6);">
-            <td style="padding:10px 12px;">Docs wording, typo fixes, translations</td>
-            <td style="padding:10px 12px; color:var(--muted);">No</td>
-            <td style="padding:10px 12px; color:var(--muted);">PR only</td>
+          <tr style="border-bottom:1px solid rgba(128,128,128,.12);">
+            <td style="padding:11px 14px;">Docs wording, typo fixes, translations</td>
+            <td style="padding:11px 14px;" class="muted">No</td>
+            <td style="padding:11px 14px;" class="muted">PR only</td>
           </tr>
           <tr>
-            <td style="padding:10px 12px;">Website content, blog posts</td>
-            <td style="padding:10px 12px; color:var(--muted);">No</td>
-            <td style="padding:10px 12px; color:var(--muted);">PR only</td>
+            <td style="padding:11px 14px;">Website content, blog posts</td>
+            <td style="padding:11px 14px;" class="muted">No</td>
+            <td style="padding:11px 14px;" class="muted">PR only</td>
           </tr>
         </tbody>
       </table>
     </div>
+
   </div>
 </section>
 
-<!-- RFC lifecycle -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Lifecycle</div>
-    <div class="section-title">RFC status flow</div>
 
-    <div class="card card-pad" style="margin-top: 18px;">
-      <div style="display:flex; gap:0; flex-wrap:wrap; justify-content:space-between; align-items:flex-start;">
-        <div style="flex:1 1 120px; padding:12px; text-align:center;">
-          <div style="font-size:1.6rem; margin-bottom:6px;">📝</div>
-          <div class="rfc-status rfc-status--draft" style="display:inline-block; margin-bottom:6px;">draft</div>
-          <div class="muted small">Author writes the proposal in GitHub Discussions</div>
+<!-- ===================== RFC LIFECYCLE ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">LIFECYCLE</div>
+      <h2>RFC status flow</h2>
+      <p class="lead muted">Every RFC follows the same documented path — from first draft to closed decision.</p>
+    </div>
+
+    <div class="card card-pad" style="margin-top:28px;">
+
+      <!-- Flow steps -->
+      <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:0;align-items:center;">
+
+        <div style="text-align:center;padding:16px 8px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+            <i data-lucide="file-text" style="width:22px;height:22px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div class="rfc-status rfc-status--draft" style="display:inline-block;margin-bottom:8px;">draft</div>
+          <div class="muted" style="font-size:13px;">Author writes the proposal in GitHub Discussions</div>
         </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
-        <div style="flex:1 1 120px; padding:12px; text-align:center;">
-          <div style="font-size:1.6rem; margin-bottom:6px;">💬</div>
-          <div class="rfc-status rfc-status--open" style="display:inline-block; margin-bottom:6px;">open</div>
-          <div class="muted small">Minimum 5 business days open for community comment</div>
+
+        <div class="muted" style="padding:0 8px;font-size:20px;text-align:center;">&rarr;</div>
+
+        <div style="text-align:center;padding:16px 8px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+            <i data-lucide="message-square" style="width:22px;height:22px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div class="rfc-status rfc-status--open" style="display:inline-block;margin-bottom:8px;">open</div>
+          <div class="muted" style="font-size:13px;">Minimum 5 business days open for community comment</div>
         </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
-        <div style="flex:1 1 120px; padding:12px; text-align:center;">
-          <div style="font-size:1.6rem; margin-bottom:6px;">✅</div>
-          <div class="rfc-status rfc-status--accepted" style="display:inline-block; margin-bottom:6px;">accepted</div>
-          <div class="muted small">TSC vote or lazy consensus — documented publicly</div>
+
+        <div class="muted" style="padding:0 8px;font-size:20px;text-align:center;">&rarr;</div>
+
+        <div style="text-align:center;padding:16px 8px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+            <i data-lucide="check-circle-2" style="width:22px;height:22px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div class="rfc-status rfc-status--accepted" style="display:inline-block;margin-bottom:8px;">accepted</div>
+          <div class="muted" style="font-size:13px;">TSC vote or lazy consensus — documented publicly</div>
         </div>
-        <div style="display:flex; align-items:center; padding:12px; color:var(--muted);">→</div>
-        <div style="flex:1 1 120px; padding:12px; text-align:center;">
-          <div style="font-size:1.6rem; margin-bottom:6px;">🚀</div>
-          <div class="rfc-status rfc-status--implemented" style="display:inline-block; margin-bottom:6px;">implemented</div>
-          <div class="muted small">PR merged, changelog entry added, RFC closed</div>
+
+        <div class="muted" style="padding:0 8px;font-size:20px;text-align:center;">&rarr;</div>
+
+        <div style="text-align:center;padding:16px 8px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+            <i data-lucide="rocket" style="width:22px;height:22px;color:var(--brand-500);" aria-hidden="true"></i>
+          </div>
+          <div class="rfc-status rfc-status--implemented" style="display:inline-block;margin-bottom:8px;">implemented</div>
+          <div class="muted" style="font-size:13px;">PR merged, changelog entry added, RFC closed</div>
         </div>
+
       </div>
-      <p class="muted small" style="margin: 12px 0 0; border-top: 1px solid var(--border,#f3f4f6); padding-top: 12px;">
-        Alternative outcomes: <span class="rfc-status rfc-status--rejected" style="display:inline;">rejected</span> (not accepted after review) or <span class="rfc-status rfc-status--withdrawn" style="display:inline;">withdrawn</span> (pulled by author). Both are documented with reasons.
-      </p>
+
+      <!-- Alternative outcomes -->
+      <div class="muted" style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(128,128,128,.15);font-size:13px;">
+        Alternative outcomes:
+        <span class="rfc-status rfc-status--rejected" style="display:inline;margin:0 4px;">rejected</span>
+        (not accepted after review) &nbsp;&middot;&nbsp;
+        <span class="rfc-status rfc-status--withdrawn" style="display:inline;margin:0 4px;">withdrawn</span>
+        (pulled by author). Both are documented with reasons.
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== HOW TO WRITE ONE ===================== -->
+<section class="section why-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">WRITING AN RFC</div>
+      <h2>How to write a good RFC</h2>
+      <p class="lead muted">Three things that make the difference between an RFC that moves fast and one that stalls.</p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-card__num"><i data-lucide="target" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <div class="why-card__title">State the problem, not the solution</div>
+        <p class="why-card__body">Start with what is broken or missing — not with what you want to build. Reviewers need to agree that the problem is real before they can evaluate your proposed solution. Frame the "why" before the "what".</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num"><i data-lucide="scale" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <div class="why-card__title">Document trade-offs explicitly</div>
+        <p class="why-card__body">Every decision has costs. Name them. What gets worse? What are the alternatives you considered? An RFC that acknowledges trade-offs earns trust faster than one that only sells the upside.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num"><i data-lucide="git-pull-request" style="width:20px;height:20px;" aria-hidden="true"></i></div>
+        <div class="why-card__title">Link to evidence</div>
+        <p class="why-card__body">Point to real examples — issues, incidents, prior discussions, or production patterns. Evidence turns opinions into traceable facts and dramatically shortens the review cycle.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">READY TO CONTRIBUTE?</div>
+      <h2>Start an RFC today.</h2>
+      <p class="lead muted">Open a discussion on GitHub, follow the template, and let the process do the rest. No prior approval needed — just a clear problem statement.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">Open RFC on GitHub &rarr;</a>
+        <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance model</a>
+        <a class="btn" href="{{ '/roles/' | relative_url }}">Who decides</a>
+      </div>
     </div>
   </div>
 </section>

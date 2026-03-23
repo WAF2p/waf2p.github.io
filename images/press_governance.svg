@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#0d1f3c"/>
+    </linearGradient>
+    <linearGradient id="nodebg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#112240"/>
+      <stop offset="100%" stop-color="#0d1a30"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Background decorative ring -->
+  <circle cx="400" cy="225" r="170" fill="none" stroke="#0094FF" stroke-width="0.5" opacity="0.15"/>
+  <circle cx="400" cy="225" r="120" fill="none" stroke="#0094FF" stroke-width="0.5" opacity="0.1"/>
+
+  <!-- Header -->
+  <text x="400" y="40" text-anchor="middle" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" letter-spacing="0.12em" opacity="0.5">WAF++ FRAMEWORK</text>
+  <text x="400" y="70" text-anchor="middle" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="800" letter-spacing="-0.02em">Open Governance</text>
+
+  <!-- RFC Flow: Idea → Draft → Review → Vote → Merge -->
+  <!-- Connecting lines -->
+  <line x1="148" y1="225" x2="202" y2="225" stroke="#0094FF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="298" y1="225" x2="352" y2="225" stroke="#0094FF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="448" y1="225" x2="502" y2="225" stroke="#0094FF" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="598" y1="225" x2="652" y2="225" stroke="#34d399" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Arrowheads -->
+  <polygon points="202,220 214,225 202,230" fill="#0094FF" opacity="0.5"/>
+  <polygon points="352,220 364,225 352,230" fill="#0094FF" opacity="0.5"/>
+  <polygon points="502,220 514,225 502,230" fill="#0094FF" opacity="0.5"/>
+  <polygon points="652,220 664,225 652,230" fill="#34d399" opacity="0.7"/>
+
+  <!-- Node 1: Idea -->
+  <rect x="58" y="193" width="90" height="64" rx="10" fill="url(#nodebg)" stroke="#1e3a5f" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="103" y="218" text-anchor="middle" fill="#0094FF" font-family="system-ui,sans-serif" font-size="20">💡</text>
+  <text x="103" y="238" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Idea</text>
+  <text x="103" y="251" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="9">GitHub Issue</text>
+
+  <!-- Node 2: Draft RFC -->
+  <rect x="208" y="193" width="90" height="64" rx="10" fill="url(#nodebg)" stroke="#0094FF" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="253" y="218" text-anchor="middle" fill="#0094FF" font-family="system-ui,sans-serif" font-size="20">📄</text>
+  <text x="253" y="238" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Draft RFC</text>
+  <text x="253" y="251" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="9">Pull Request</text>
+
+  <!-- Node 3: Review -->
+  <rect x="358" y="193" width="90" height="64" rx="10" fill="url(#nodebg)" stroke="#1e3a5f" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="403" y="218" text-anchor="middle" fill="#a78bfa" font-family="system-ui,sans-serif" font-size="20">👥</text>
+  <text x="403" y="238" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Review</text>
+  <text x="403" y="251" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="9">Community</text>
+
+  <!-- Node 4: Vote -->
+  <rect x="508" y="193" width="90" height="64" rx="10" fill="url(#nodebg)" stroke="#1e3a5f" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="553" y="218" text-anchor="middle" fill="#f59e0b" font-family="system-ui,sans-serif" font-size="20">🗳️</text>
+  <text x="553" y="238" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11" font-weight="700">TSC Vote</text>
+  <text x="553" y="251" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="9">Transparent</text>
+
+  <!-- Node 5: Merged -->
+  <rect x="658" y="193" width="90" height="64" rx="10" fill="#0a2a1a" stroke="#34d399" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="703" y="218" text-anchor="middle" fill="#34d399" font-family="system-ui,sans-serif" font-size="20">✅</text>
+  <text x="703" y="238" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Merged</text>
+  <text x="703" y="251" text-anchor="middle" fill="#34d399" font-family="system-ui,sans-serif" font-size="9">Published</text>
+
+  <!-- Governance pillars below -->
+  <text x="400" y="310" text-anchor="middle" fill="#3a5a80" font-family="system-ui,sans-serif" font-size="11" font-weight="600" letter-spacing="0.08em">GOVERNANCE BODIES</text>
+
+  <!-- TSC -->
+  <rect x="100" y="325" width="140" height="50" rx="8" fill="#112240" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="170" y="346" text-anchor="middle" fill="#0094FF" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Technical Steering</text>
+  <text x="170" y="362" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="10">Committee (TSC)</text>
+
+  <!-- Working Groups -->
+  <rect x="270" y="325" width="140" height="50" rx="8" fill="#112240" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="340" y="346" text-anchor="middle" fill="#a78bfa" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Working Groups</text>
+  <text x="340" y="362" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="10">Pillar-specific teams</text>
+
+  <!-- Maintainers -->
+  <rect x="440" y="325" width="140" height="50" rx="8" fill="#112240" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="510" y="346" text-anchor="middle" fill="#22d3ee" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Maintainers</text>
+  <text x="510" y="362" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="10">Merge &amp; quality gate</text>
+
+  <!-- Community -->
+  <rect x="610" y="325" width="90" height="50" rx="8" fill="#112240" stroke="#1e3a5f" stroke-width="1"/>
+  <text x="655" y="346" text-anchor="middle" fill="#34d399" font-family="system-ui,sans-serif" font-size="11" font-weight="700">Community</text>
+  <text x="655" y="362" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="10">Everyone</text>
+
+  <!-- Footer -->
+  <text x="400" y="420" text-anchor="middle" fill="#3a5a80" font-family="system-ui,sans-serif" font-size="11" font-weight="500">Every decision is traceable · Every RFC is public · No black-box governance</text>
+</svg>

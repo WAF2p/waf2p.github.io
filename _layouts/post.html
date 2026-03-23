@@ -2,31 +2,34 @@
 layout: default
 ---
 
-{%- comment -%}
-Post layout aligned with the Lindy-like landing style.
-We infer a cover image from the first Markdown image in the post content.
-Fallback to the WAF++ logo.
-{%- endcomment -%}
-
 {% assign author = nil %}
 {% if page.author_staff_member %}
 {% assign author = site.staff_members | where: 'slug', page.author_staff_member | first %}
 {% endif %}
 
+{% assign words = content | number_of_words %}
+{% assign read_time = words | divided_by: 200 | plus: 1 %}
+
+<!-- ===================== HERO ===================== -->
 <section class="post-hero">
   <div class="container">
     {% include breadcrumb.html %}
 
     <div class="post-hero__meta">
-      <span class="pill">{{ page.date | date: "%d.%m.%Y" }}</span>
+      <span class="pill">{{ page.date | date: "%d %b %Y" }}</span>
       {% if page.categories and page.categories.size > 0 %}
-      <span class="muted small">•</span>
-      <span class="post-cats">
+        <span class="muted small">·</span>
+        <span class="post-cats">
           {% for c in page.categories %}
-            <a class="cat-badge" href="/blog/category/{{ c | slugify }}/">{{ c }}</a>
+            <a class="cat-badge" href="{{ '/blog/category/' | append: c | slugify | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
           {% endfor %}
         </span>
       {% endif %}
+      <span class="muted small">·</span>
+      <span class="muted small" style="display:inline-flex;align-items:center;gap:4px;">
+        <i data-lucide="clock" style="width:12px;height:12px;" aria-hidden="true"></i>
+        {{ read_time }} min read
+      </span>
     </div>
 
     <h1 class="post-hero__title">{{ page.title }}</h1>
@@ -35,19 +38,18 @@ Fallback to the WAF++ logo.
       {{ page.excerpt | strip_html | strip | truncate: 220 }}
     </p>
 
-    {%- comment -%}
-      Intentionally omit author byline in the hero.
-      The author card at the bottom is sufficient and avoids duplicated metadata.
-    {%- endcomment -%}
   </div>
 </section>
 
+
+<!-- ===================== POST BODY ===================== -->
 <section class="post-body">
   <div class="container">
     <article class="prose">
       {{ content }}
     </article>
 
+    <!-- Author card -->
     {% if author %}
     <section class="author-card" aria-label="Author">
       <div class="author-card__avatar">
@@ -56,11 +58,31 @@ Fallback to the WAF++ logo.
       <div class="author-card__content">
         <div class="author-card__name">{{ author.name }}</div>
         {% if author.position %}<div class="author-card__role">{{ author.position }}</div>{% endif %}
+        {% if author.expertise %}
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;">
+          {% for e in author.expertise %}
+          <span style="font-size:11px;padding:2px 9px;border:1px solid rgba(128,128,128,.2);border-radius:999px;" class="muted">{{ e }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
         {% if author.blurb %}<p class="author-card__blurb">{{ author.blurb }}</p>{% endif %}
+        <div style="display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;">
+          {% if author.social %}
+          <div style="display:flex;gap:8px;">
+            {% for link in author.social %}
+            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <a class="btn btn-small" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}">View profile &rarr;</a>
+        </div>
       </div>
     </section>
     {% endif %}
 
+    <!-- Post nav -->
     <nav class="post-nav" aria-label="Blog Navigation">
       {% assign prev_post = nil %}
       {% assign next_post = nil %}
@@ -78,19 +100,17 @@ Fallback to the WAF++ logo.
 
       {% if prev_post %}
       <a class="btn btn-ghost" href="{% include relative-src.html src=prev_post.url %}">
-        <span aria-hidden="true">←</span> {{ prev_post.title }}
+        <span aria-hidden="true">←</span> {{ prev_post.title | truncate: 40 }}
       </a>
       {% else %}
       <span></span>
       {% endif %}
 
-      {% assign overview_path = '/blog/' %}
-      {% if page.lang == 'de' %}{% assign overview_path = '/de/blog/' %}{% endif %}
-      <a class="btn" href="{% include relative-src.html src=overview_path %}">{% if page.lang == 'de' %}Zur Übersicht{% else %}Back to overview{% endif %}</a>
+      <a class="btn" href="{{ '/blog/' | relative_url }}">Back to overview</a>
 
       {% if next_post %}
       <a class="btn btn-ghost" href="{% include relative-src.html src=next_post.url %}">
-        {{ next_post.title }} <span aria-hidden="true">→</span>
+        {{ next_post.title | truncate: 40 }} <span aria-hidden="true">→</span>
       </a>
       {% else %}
       <span></span>
@@ -105,7 +125,6 @@ Fallback to the WAF++ logo.
         this.page.url = "{{ page.url | prepend: site.url }}";
         this.page.identifier = "{{ page.id }}";
       };
-
       (function () {
         var d = document, s = d.createElement('script');
         s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -117,4 +136,31 @@ Fallback to the WAF++ logo.
     {% endif %}
   </div>
 </section>
+
+
+<!-- ===================== MORE ARTICLES ===================== -->
+{% assign lang_posts = site.posts | where: "lang", page.lang %}
+{% assign other_posts = "" | split: "" %}
+{% for p in lang_posts %}
+  {% unless p.url == page.url %}
+    {% assign other_posts = other_posts | push: p %}
+  {% endunless %}
+{% endfor %}
+{% assign more_posts = other_posts | slice: 0, 3 %}
+{% if more_posts.size > 0 %}
+<section class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">MORE FROM WAF++</div>
+      <h2>Continue reading</h2>
+    </div>
+    <div class="blog-grid" style="margin-top:28px;">
+      {% for post in more_posts %}
+      {% include blog-card.html post=post %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {% include seo-article.html %}

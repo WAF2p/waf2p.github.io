@@ -7,24 +7,58 @@ description: Ein öffentliches Protokoll aller wesentlichen Änderungen am WAF++
 permalink: /de/changelog/
 ---
 
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Verlauf</div>
-    <h1>Changelog</h1>
-    <p class="lead" style="max-width: 72ch;">
-      Ein transparentes Protokoll jeder wesentlichen Änderung — jeweils verknüpft mit dem RFC oder PR, der sie eingeführt hat.
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Transparenz · Verlauf
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Changelog</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
+      Ein transparentes Protokoll jeder wesentlichen Änderung &ndash; jeweils verknüpft mit dem RFC oder PR, der sie eingeführt hat.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
-      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub →</a>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Framework · Website · WAFPass
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="git-pull-request" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Verknüpft mit PRs &amp; RFCs
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="eye" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Vollständig öffentlich
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#changelog-content">Änderungen ansehen &darr;</a>
+      <a class="btn" href="{{ '/de/roadmap/' | relative_url }}">Roadmap</a>
+      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
 
-<section class="section">
+
+<!-- ===================== CHANGELOG ===================== -->
+<section class="section" id="changelog-content">
   <div class="container">
 
-    <div class="changelog-tabs">
+    <div class="section-header">
+      <div class="kicker">CHANGELOG</div>
+      <h2>Alle Änderungen</h2>
+      <p class="lead muted">Komponente auswählen, um den jeweiligen Änderungsverlauf anzusehen. Jeder Eintrag verweist auf den PR oder RFC, in dem die Entscheidung getroffen wurde.</p>
+    </div>
+
+    <div class="changelog-tabs" style="margin-top:32px;">
       <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
       <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
       <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
@@ -64,7 +98,7 @@ permalink: /de/changelog/
         </div>
         {% endfor %}
 
-        <p class="muted small" style="margin-top: 8px;">
+        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
           Vollständiger Verlauf: <a href="https://github.com/waf2p/framework/commits/main" target="_blank" rel="noopener">github.com/waf2p/framework</a>
         </p>
       </div>
@@ -89,7 +123,7 @@ permalink: /de/changelog/
         </div>
         {% endfor %}
 
-        <p class="muted small" style="margin-top: 8px;">
+        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
           Vollständiger Verlauf: <a href="https://github.com/waf2p/waf2p.github.io/commits/main" target="_blank" rel="noopener">github.com/waf2p/waf2p.github.io</a>
         </p>
       </div>
@@ -100,8 +134,8 @@ permalink: /de/changelog/
         <div class="cl-notice">
           <span style="font-size:1.1rem;">⚠️</span>
           <div>
-            <strong>Öffentliche Beta</strong> — WAFPass v1.0 ist gemeinsam mit Framework v1.0 geplant, kurz vor dem <strong>12. Mai 2026</strong>.
-            PyPI-Verfügbarkeit und stabile CLI-Schnittstelle erscheinen mit v1.0.
+            <strong>Öffentliche Beta</strong> — Aktuelles Release ist <strong>v0.1.1</strong>. WAFPass v1.0 ist gemeinsam mit Framework v1.0 geplant, kurz vor dem <strong>12. Mai 2026</strong>.
+            Alle Versionen unter v1.0 sind Beta. PyPI-Verfügbarkeit und stabile CLI-Schnittstelle erscheinen mit v1.0.
           </div>
         </div>
 
@@ -123,7 +157,7 @@ permalink: /de/changelog/
         </div>
         {% endfor %}
 
-        <p class="muted small" style="margin-top: 8px;">
+        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
           Vollständiger Verlauf: <a href="https://github.com/waf2p/pass/commits/main" target="_blank" rel="noopener">github.com/waf2p/pass</a>
         </p>
       </div>
@@ -133,14 +167,19 @@ permalink: /de/changelog/
   </div>
 </section>
 
-<!-- Auf dem Laufenden -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Kein Update verpassen</h2>
-    <p class="muted" style="max-width:62ch; margin: 0 auto 20px;">
-      Den RSS-Feed abonnieren oder Slack beitreten, um benachrichtigt zu werden, wenn neue Releases erscheinen.
-    </p>
-    <a class="btn btn-primary" href="{{ '/de/stay-updated/' | relative_url }}">Auf dem Laufenden bleiben →</a>
-    <a class="btn" style="margin-left:10px;" href="{{ '/de/roadmap/' | relative_url }}">Roadmap →</a>
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">AUF DEM LAUFENDEN BLEIBEN</div>
+      <h2>Kein Update verpassen.</h2>
+      <p class="lead muted">Den RSS-Feed abonnieren, das GitHub-Repository beobachten oder Slack beitreten &ndash; so wirst du benachrichtigt, wenn neue Releases erscheinen.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="{{ '/de/stay-updated/' | relative_url }}">Auf dem Laufenden bleiben &rarr;</a>
+        <a class="btn" href="{{ '/de/roadmap/' | relative_url }}">Roadmap</a>
+        <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </div>
 </section>
