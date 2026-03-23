@@ -7,19 +7,73 @@ description: Definitions of key terms used in the WAF++ framework — pillars, c
 permalink: /glossary/
 ---
 
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Reference</div>
-    <h1>Glossary</h1>
-    <p class="lead" style="max-width: 68ch;">
+  <div class="container" style="max-width: 780px;">
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Reference &middot; Authoritative definitions
+    </div>
+    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
+      <span class="text-gradient">Glossary</span>
+    </h1>
+    <p class="lead" style="max-width: 68ch; margin: 0 auto 28px;">
       Definitions of key terms used across the WAF++ framework, scoring model, governance, and tooling.
       When in doubt, this is the authoritative source.
     </p>
+
+    <!-- Stats strip -->
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="book-open" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        28 terms
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="tag" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        5 categories
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        14 letters
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Full documentation &rarr;</a>
+      <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+    </div>
   </div>
 </section>
 
+
+<!-- ===================== GLOSSARY ===================== -->
 <section class="section">
   <div class="container">
+
+    <!-- Tag legend -->
+    <div class="card card-pad" style="margin-bottom:28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+      <span class="muted" style="font-size:13px;font-weight:600;flex-shrink:0;">Term categories:</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="gl-tag gl-tag--framework">framework</span>
+        <span class="muted" style="font-size:12px;line-height:1.8;">pillars, controls, scoring model, assessments</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="gl-tag gl-tag--governance">governance</span>
+        <span class="muted" style="font-size:12px;line-height:1.8;">roles, policies, licences, community</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="gl-tag gl-tag--scoring">scoring</span>
+        <span class="muted" style="font-size:12px;line-height:1.8;">PASS model, tiers, scores</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="gl-tag gl-tag--process">process</span>
+        <span class="muted" style="font-size:12px;line-height:1.8;">RFC, decisions, contributions</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="gl-tag gl-tag--tooling">tooling</span>
+        <span class="muted" style="font-size:12px;line-height:1.8;">Antora, AsciiDoc, WAFPass CLI</span>
+      </div>
+    </div>
 
     <!-- Alpha nav -->
     <nav class="gl-alpha-nav" aria-label="Jump to letter">
@@ -129,7 +183,7 @@ permalink: /glossary/
         <div class="gl-entry">
           <div class="gl-term">Governance <span class="gl-tag gl-tag--governance">governance</span></div>
           <p class="gl-def">The set of rules, processes, and roles that determine how decisions are made in the WAF++ project. WAF++ governance is documented publicly and covers: RFC process, TSC composition and voting, maintainer terms, working group rules, and code of conduct enforcement.</p>
-          <p class="gl-also">See also: <a href="#TSC">TSC</a>, <a href="#RFC">RFC</a>, <a href="{{ '/governance-community/' | relative_url }}">Governance & Community page</a></p>
+          <p class="gl-also">See also: <a href="#TSC">TSC</a>, <a href="#RFC">RFC</a>, <a href="{{ '/governance-community/' | relative_url }}">Governance &amp; Community page</a></p>
         </div>
 
       </div>
@@ -153,7 +207,7 @@ permalink: /glossary/
       <div class="gl-letter">L</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Lazy-consensus">
           <div class="gl-term">Lazy consensus <span class="gl-tag gl-tag--process">process</span></div>
           <p class="gl-def">A lightweight decision-making mechanism used for non-breaking or lower-risk changes. A proposal is posted publicly with a minimum 5-business-day review window. If no substantiated objection is raised, the proposal is considered accepted. For major changes, TSC voting is used instead.</p>
           <p class="gl-also">See also: <a href="#TSC">TSC</a>, <a href="#RFC">RFC</a></p>
@@ -170,7 +224,7 @@ permalink: /glossary/
         <div class="gl-entry" id="Maintainer">
           <div class="gl-term">Maintainer <span class="gl-tag gl-tag--governance">governance</span></div>
           <p class="gl-def">A contributor with merge permissions on one or more WAF++ repositories. Maintainers review PRs, approve or reject RFCs, and are responsible for the quality and direction of their area. Maintainer terms are 12 months, renewable. Inactivity for 90+ days may result in emeritus status.</p>
-          <p class="gl-also">See also: <a href="{{ '/roles/' | relative_url }}">Roles & Members page</a></p>
+          <p class="gl-also">See also: <a href="{{ '/roles/' | relative_url }}">Roles &amp; Members page</a></p>
         </div>
 
       </div>
@@ -195,7 +249,7 @@ permalink: /glossary/
 
         <div class="gl-entry" id="Pillar">
           <div class="gl-term">Pillar <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def">One of the seven assessment dimensions of WAF++. Each pillar groups a set of controls that address a specific quality concern for cloud workloads. The seven pillars are: Security, Reliability, Performance Efficiency, Cost Optimisation, Operational Excellence, Sustainability, and Developer Experience (Sovereign is the 7th pillar added in v1.0-beta).</p>
+          <p class="gl-def">One of the seven assessment dimensions of WAF++. Each pillar groups a set of controls that address a specific quality concern for cloud workloads. The seven pillars are: Security, Reliability, Performance Efficiency, Cost Optimisation, Operational Excellence, Sustainability, and Sovereign.</p>
           <p class="gl-also">See also: <a href="#Control">Control</a>, <a href="{{ '/saeulen/' | relative_url }}">The 7 pillars</a></p>
         </div>
 
@@ -253,7 +307,7 @@ permalink: /glossary/
         <div class="gl-entry" id="TSC">
           <div class="gl-term">TSC — Technical Steering Committee <span class="gl-tag gl-tag--governance">governance</span></div>
           <p class="gl-def">The governing body of the WAF++ project. The TSC is responsible for technical direction, RFC decisions, and maintainer appointments. Members serve 12-month renewable terms. TSC composition follows the principle of "active contributors first" and vendor-neutral balance. All TSC decisions are publicly documented.</p>
-          <p class="gl-also">See also: <a href="{{ '/governance-community/' | relative_url }}">Governance & Community</a>, <a href="{{ '/roles/' | relative_url }}">Roles & Members</a></p>
+          <p class="gl-also">See also: <a href="{{ '/governance-community/' | relative_url }}">Governance &amp; Community</a>, <a href="{{ '/roles/' | relative_url }}">Roles &amp; Members</a></p>
         </div>
 
       </div>
@@ -300,14 +354,19 @@ permalink: /glossary/
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Term missing or unclear?</h2>
-    <p class="muted" style="max-width:60ch; margin: 0 auto 20px;">
-      Open a content issue on GitHub or suggest a definition in Slack.
-    </p>
-    <a class="btn btn-primary" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">Open issue →</a>
-    <a class="btn" style="margin-left:10px;" href="{{ '/docs/' | relative_url }}">Full documentation →</a>
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">SOMETHING MISSING?</div>
+      <h2>Term missing or unclear?</h2>
+      <p class="lead muted">Open a content issue on GitHub or suggest a definition in Slack. The glossary grows with the community — every addition makes the framework easier to use.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">Open issue &rarr;</a>
+        <a class="btn" href="{{ '/docs/' | relative_url }}">Full documentation</a>
+        <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+      </div>
+    </div>
   </div>
 </section>

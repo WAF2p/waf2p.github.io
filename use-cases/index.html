@@ -6,152 +6,255 @@ title: Use Cases — WAF++
 description: Real-world examples of how teams use WAF++ to assess, improve, and communicate cloud workload quality.
 permalink: /use-cases/
 ---
+
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> In practice</div>
-    <h1>Use Cases</h1>
-    <p class="lead" style="max-width: 72ch;">
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      In Practice · Real Projects
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Use Cases</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
       WAF++ is built for real projects. Here's how engineering teams, architects, and platform teams
       apply the framework to make better decisions — faster.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Read the docs →</a>
-      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub →</a>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="users" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        6 audience types
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        5 application patterns
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="shield-check" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Vendor-neutral
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#audiences">Who uses WAF++ &rarr;</a>
+      <a class="btn" href="#scenarios">Application patterns</a>
+      <a class="btn" href="{{ '/docs/' | relative_url }}">Docs</a>
     </div>
   </div>
 </section>
 
-<!-- Who uses it -->
+
+<!-- ===================== AUDIENCES ===================== -->
+<section class="section pillars-section" id="audiences">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">AUDIENCES</div>
+      <h2>Who uses WAF++</h2>
+      <p class="lead muted">From individual engineers to platform teams and leadership — the framework scales to every context.</p>
+    </div>
+
+    <div class="pillars-grid" style="margin-top:32px;">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="server" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Engineering</div>
+        <h3 class="pillar-card__title">Cloud Engineers &amp; Architects</h3>
+        <p class="pillar-card__desc">Use the 7-pillar scoring model to identify gaps in existing workloads and prioritise remediation work. Create a shared baseline for architecture reviews.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="settings-2" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Platform</div>
+        <h3 class="pillar-card__title">Platform &amp; SRE Teams</h3>
+        <p class="pillar-card__desc">Embed WAF++ controls into platform guardrails, IaC templates, and deployment pipelines. Make best practices default — not optional.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="trending-up" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Leadership</div>
+        <h3 class="pillar-card__title">Tech Leads &amp; CTOs</h3>
+        <p class="pillar-card__desc">Use PASS scores to communicate workload maturity across teams, track improvement over time, and set transparent quality targets.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="clipboard-check" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Consulting</div>
+        <h3 class="pillar-card__title">Consultants &amp; Auditors</h3>
+        <p class="pillar-card__desc">Apply a consistent, vendor-neutral framework to assess client workloads. Deliver structured findings with traceable scoring rather than opinion-based reviews.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="book-open" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Academia</div>
+        <h3 class="pillar-card__title">Researchers &amp; Educators</h3>
+        <p class="pillar-card__desc">WAF++ provides an open, documented baseline for cloud architecture research and teaching. Use the framework to structure case studies and compare approaches.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="code-2" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Community</div>
+        <h3 class="pillar-card__title">Open Source Projects</h3>
+        <p class="pillar-card__desc">Apply WAF++ to your own infrastructure. Contribute back patterns, controls, and reference architectures that work in practice.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== SCENARIOS ===================== -->
+<section class="section" id="scenarios">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">SCENARIOS</div>
+      <h2>Common application patterns</h2>
+      <p class="lead muted">Five concrete ways teams put WAF++ to work — from single workload reviews to org-wide benchmarking.</p>
+    </div>
+
+    <div class="why-grid" style="margin-top:32px;">
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="search" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Workload assessment</h3>
+        <p class="why-card__desc">Run a structured review against all 7 pillars to identify gaps. Score each pillar using the PASS model. Produce a findings report with prioritised remediation items — comparable across teams and over time.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="layout-template" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Architecture design review</h3>
+        <p class="why-card__desc">Use WAF++ as a structured checklist during pre-launch design reviews. Map proposed architecture decisions to specific controls before deployment — catch gaps early, not in production.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Multi-team benchmarking</h3>
+        <p class="why-card__desc">Apply a consistent scoring model across multiple teams or services. Use PASS scores to identify outliers, align on shared improvements, and track progress with a single metric over time.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="refresh-cw" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Continuous improvement</h3>
+        <p class="why-card__desc">Embed WAF++ into quarterly engineering reviews or OKR cycles. Re-score workloads as improvements ship. Use trend data to demonstrate progress and justify investment in platform quality.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Vendor-neutral due diligence</h3>
+        <p class="why-card__desc">Use WAF++ as an independent framework when evaluating cloud migrations, platform choices, or acquisitions. Not tied to any cloud provider — assessments remain objective.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== SHARE YOUR USE CASE ===================== -->
+<section class="section wafpass-section">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <div>
+        <div class="kicker">COMMUNITY</div>
+        <h2>Share your use case</h2>
+        <p class="lead">Applied WAF++ in an interesting context? Real-world experience drives the framework forward — both as inspiration for others and as input for future RFCs.</p>
+
+        <div class="wafpass-features" style="margin-top:28px;">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Write a blog post</div>
+              <p class="wafpass-feat__desc">Document your experience on the WAF++ site. Describe the context, how you applied the framework, and what you learned. Open a PR on GitHub.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Share in Slack</div>
+              <p class="wafpass-feat__desc">Post your story in <code>#use-cases</code>. Get feedback, find collaborators, and connect with others facing similar challenges.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Contribute a pattern</div>
+              <p class="wafpass-feat__desc">Turn your experience into a reusable reference architecture or control. Open a PR and the community will review and integrate it.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
+          <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Join Slack</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="card card-pad">
+          <div class="card-kicker" style="margin-bottom:16px;">What makes a good use case</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="target" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Clear context</div>
+                <div class="muted" style="font-size:12px;">What kind of workload, what industry, what constraints</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="layers" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Which pillars you applied</div>
+                <div class="muted" style="font-size:12px;">Full review or a specific subset — both are valuable</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="lightbulb" aria-hidden="true" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">What you learned</div>
+                <div class="muted" style="font-size:12px;">Gaps found, decisions made, what changed afterwards</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
+              <i data-lucide="trending-up" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Measurable outcome</div>
+                <div class="muted" style="font-size:12px;">PASS score delta, PRs shipped, decisions unblocked</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(128,128,128,.15);font-size:12px;">
+            No minimum length. A short, honest account of one use case is more valuable than a polished marketing story.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CTA ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-kicker">Audiences</div>
-    <div class="section-title">Who uses WAF++</div>
-
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Engineering</div>
-        <h3>Cloud Engineers & Architects</h3>
-        <p class="muted">Use the 7-pillar scoring model to identify gaps in existing workloads and prioritise remediation work. Create a shared baseline for architecture reviews.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Platform</div>
-        <h3>Platform & SRE Teams</h3>
-        <p class="muted">Embed WAF++ controls into platform guardrails, IaC templates, and deployment pipelines. Make best practices default — not optional.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Leadership</div>
-        <h3>Tech Leads & CTOs</h3>
-        <p class="muted">Use PASS scores to communicate workload maturity across teams, track improvement over time, and set transparent quality targets.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Consulting</div>
-        <h3>Consultants & Auditors</h3>
-        <p class="muted">Apply a consistent, vendor-neutral framework to assess client workloads. Deliver structured findings with traceable scoring rather than opinion-based reviews.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Academia</div>
-        <h3>Researchers & Educators</h3>
-        <p class="muted">WAF++ provides an open, documented baseline for cloud architecture research and teaching. Use the framework to structure case studies and compare approaches.</p>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Community</div>
-        <h3>Open Source Projects</h3>
-        <p class="muted">Apply WAF++ to your own infrastructure. Contribute back patterns, controls, and reference architectures that work in practice.</p>
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">READY TO APPLY WAF++?</div>
+      <h2>Start with your first assessment.</h2>
+      <p class="lead muted">Read the docs to understand the pillars and scoring model, then run a structured review against your first workload.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Read the docs &rarr;</a>
+        <a class="btn" href="{{ '/saeulen/' | relative_url }}">The 7 pillars</a>
+        <a class="btn" href="{{ '/wafpass/' | relative_url }}">WAFPass</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Scenarios -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Scenarios</div>
-    <div class="section-title">Common application patterns</div>
-
-    <div class="card card-pad" style="margin-top: 22px;">
-      <div style="display:grid; gap:28px;">
-
-        <div style="display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:48px; height:48px; border-radius:12px; background:var(--accent-light,#eff6ff); display:flex; align-items:center; justify-content:center; font-size:22px;">🔍</div>
-          <div>
-            <strong>Workload assessment</strong>
-            <p class="muted" style="margin:4px 0 0;">Run a structured review against all 7 pillars to identify gaps. Score each pillar using the PASS model. Produce a findings report with prioritised remediation items — comparable across teams and over time.</p>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:48px; height:48px; border-radius:12px; background:var(--accent-light,#eff6ff); display:flex; align-items:center; justify-content:center; font-size:22px;">🏗️</div>
-          <div>
-            <strong>Architecture design review</strong>
-            <p class="muted" style="margin:4px 0 0;">Use WAF++ as a structured checklist during pre-launch design reviews. Map proposed architecture decisions to specific controls before deployment begins — catch gaps early, not in production.</p>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:48px; height:48px; border-radius:12px; background:var(--accent-light,#eff6ff); display:flex; align-items:center; justify-content:center; font-size:22px;">📊</div>
-          <div>
-            <strong>Multi-team benchmarking</strong>
-            <p class="muted" style="margin:4px 0 0;">Apply a consistent scoring model across multiple teams or services. Use PASS scores to identify outliers, align on shared improvements, and track progress with a single metric over time.</p>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:48px; height:48px; border-radius:12px; background:var(--accent-light,#eff6ff); display:flex; align-items:center; justify-content:center; font-size:22px;">🔄</div>
-          <div>
-            <strong>Continuous improvement</strong>
-            <p class="muted" style="margin:4px 0 0;">Embed WAF++ into quarterly engineering reviews or OKR cycles. Re-score workloads as improvements ship. Use trend data to demonstrate progress and justify investment in platform quality.</p>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:48px; height:48px; border-radius:12px; background:var(--accent-light,#eff6ff); display:flex; align-items:center; justify-content:center; font-size:22px;">🤝</div>
-          <div>
-            <strong>Vendor-neutral due diligence</strong>
-            <p class="muted" style="margin:4px 0 0;">Use WAF++ as an independent framework when evaluating cloud migrations, platform choices, or acquisitions. The framework is not tied to any cloud provider — assessments remain objective.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Share your use case -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Community</div>
-    <div class="section-title">Share your use case</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Applied WAF++ in an interesting context? We'd love to feature it. Real-world experience drives the framework forward —
-      both as inspiration for others and as input for future RFCs.
-    </p>
-
-    <div class="grid-2" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Write</div>
-        <h3>Blog post</h3>
-        <p class="muted">Document your experience in a blog post on the WAF++ site. Describe the context, how you applied the framework, and what you learned. Open a PR on GitHub.</p>
-        <a href="https://github.com/waf2p/" target="_blank" rel="noopener" class="btn" style="margin-top:14px;">Contribute on GitHub →</a>
-      </div>
-      <div class="card card-pad">
-        <div class="card-kicker">Discuss</div>
-        <h3>Community Slack</h3>
-        <p class="muted">Share your story in <code>#use-cases</code> on Slack. Get feedback, find collaborators, and connect with others facing similar challenges.</p>
-        <a href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" class="btn" style="margin-top:14px;">{% include slack-icon.html size=16 %} Join Slack</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Ready to apply WAF++?</h2>
-    <p class="muted" style="max-width:62ch; margin: 0 auto 20px;">
-      Start with the documentation to understand the pillars and scoring model, then run your first workload assessment.
-    </p>
-    <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Read the docs →</a>
-    <a class="btn" style="margin-left:10px;" href="{{ '/saeulen/' | relative_url }}">The 7 pillars →</a>
-    <a class="btn" style="margin-left:10px;" href="{{ '/wafpass/' | relative_url }}">WAFPass →</a>
   </div>
 </section>

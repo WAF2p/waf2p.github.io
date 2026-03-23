@@ -5,57 +5,93 @@ ref: roles
 title: Rollen & Mitglieder
 permalink: /de/roles/
 ---
+
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Governance</div>
-    <h1>Rollen & Mitglieder</h1>
-    <p class="lead" style="max-width: 72ch;">
-      Überblick über alle Rollen im Projekt – mit den zugewiesenen Mitgliedern, im selben Layout wie eure Team-Übersicht.
-      Die Rollenbesetzung wird vom Projekt gepflegt und regelmäßig aktualisiert.
+  <div class="container" style="max-width: 780px;">
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Governance &middot; Rollen &amp; Mitglieder
+    </div>
+    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
+      Rollen &amp; <span class="text-gradient">Mitglieder</span>
+    </h1>
+    <p class="lead" style="max-width: 66ch; margin: 0 auto 32px;">
+      Alle Governance-Rollen in WAF++ — mit Verantwortlichkeiten und zugewiesenen Mitgliedern.
+      Die Rollenbesetzung wird vom Projekt gepflegt und mit wachsender Community aktualisiert.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="/governance-community/">Governance & Community</a>
-      <a class="btn" href="#roles">Zu den Rollen</a>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn btn-primary" href="{{ '/de/governance-community/' | relative_url }}">Governance &rarr;</a>
+      <a class="btn" href="#roles">Alle Rollen</a>
     </div>
   </div>
 </section>
 
-<section class="section" id="roles">
+
+<!-- ===================== ROLLEN-ÜBERSICHT ===================== -->
+<section class="section pillars-section" id="roles">
   <div class="container">
-    <div class="section-kicker">Directory</div>
-    <div class="section-title">Alle Rollen</div>
+
+    <div class="section-header">
+      <div class="kicker">ÜBERSICHT</div>
+      <h2>Alle Rollen auf einen Blick</h2>
+      <p class="lead muted">Fünf Rollen über Governance, Maintenance und Community — jede mit klar definiertem Umfang, Verantwortung und Prozess.</p>
+    </div>
 
     {% assign roles = site.data.roles %}
 
-    <div class="grid-3" style="margin-top: 18px;">
+    <div class="pillars-grid" style="grid-template-columns:repeat(3,1fr);">
       {% for role in roles %}
-      <a class="card card-pad" href="#{{ role.id }}" style="text-decoration:none;">
-        <div class="card-kicker">Role</div>
-        <h3 style="margin-top: 6px;">{{ role.title }}</h3>
-        <p class="muted">{{ role.description }}</p>
-        <div class="muted" style="margin-top: 10px;">
-          <strong>Members:</strong>
+      <a class="pillar-card" href="#{{ role.id }}" style="text-decoration:none;cursor:pointer;">
+        <div class="pillar-card__icon">
+          {% case role.id %}
+            {% when 'tsc' %}<i data-lucide="settings-2" aria-hidden="true"></i>
+            {% when 'maintainers' %}<i data-lucide="users" aria-hidden="true"></i>
+            {% when 'wg-leads' %}<i data-lucide="git-branch" aria-hidden="true"></i>
+            {% when 'user-advisory' %}<i data-lucide="message-circle" aria-hidden="true"></i>
+            {% when 'contributors' %}<i data-lucide="git-pull-request" aria-hidden="true"></i>
+            {% else %}<i data-lucide="circle" aria-hidden="true"></i>
+          {% endcase %}
+        </div>
+        <div class="pillar-card__num">
           {% if role.members and role.members.size > 0 %}
-            {{ role.members.size }}
+            {{ role.members.size }} Mitglied{% if role.members.size != 1 %}er{% endif %}
           {% else %}
-            tbd
+            Offen
           {% endif %}
         </div>
+        <div class="pillar-card__name">{{ role.title }}</div>
+        <p class="pillar-card__desc">{{ role.description }}</p>
       </a>
       {% endfor %}
     </div>
+
   </div>
 </section>
 
+
+<!-- ===================== ROLLEN-DETAILSEKTIONEN ===================== -->
 {% for role in site.data.roles %}
-<section class="section section--tight" id="{{ role.id }}">
+<section class="section{% cycle '', ' why-section', '', ' wafpass-section', '' %}" id="{{ role.id }}">
   <div class="container">
-    <div class="section-kicker">Role</div>
-    <div class="section-title">{{ role.title }}</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">{{ role.description }}</p>
+
+    <div class="section-header">
+      <div class="kicker">
+        {% case role.id %}
+          {% when 'tsc' %}GOVERNANCE
+          {% when 'maintainers' %}QUALITÄT
+          {% when 'wg-leads' %}KOORDINATION
+          {% when 'user-advisory' %}COMMUNITY
+          {% when 'contributors' %}OFFEN FÜR ALLE
+          {% else %}ROLLE
+        {% endcase %}
+      </div>
+      <h2>{{ role.title }}</h2>
+      <p class="lead muted" style="max-width:72ch;">{{ role.description }}</p>
+    </div>
 
     {% if role.members and role.members.size > 0 %}
-      <div class="people-grid" style="margin-top: 18px;">
+      <div class="people-grid" style="margin-top:28px;">
         {% for m in role.members %}
           {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
           {%- assign person = site.staff_members | where: "url", member_url | first -%}
@@ -90,29 +126,46 @@ permalink: /de/roles/
           </article>
           {% else %}
           <div class="card card-pad">
-            <div class="card-kicker">Missing</div>
-            <h3>Unbekannter Staff Member</h3>
-            <p class="muted">
-              Für diese Rolle ist <strong>{{ m }}</strong> referenziert, aber die Profilseite konnte nicht gefunden werden.
-            </p>
+            <div class="card-kicker">Profil fehlt</div>
+            <h3>Unbekanntes Mitglied</h3>
+            <p class="muted"><strong>{{ m }}</strong> ist für diese Rolle referenziert, aber das Mitgliedsprofil konnte nicht gefunden werden.</p>
           </div>
           {% endif %}
         {% endfor %}
       </div>
     {% else %}
-      <div class="card card-pad" style="margin-top: 18px;">
-        <div class="card-kicker">tbd</div>
-        <h3>Mitglieder noch nicht zugewiesen</h3>
-        <p class="muted" style="max-width: 85ch;">
-          Mitglieder für diese Rolle werden in Kürze ergänzt.
-        </p>
+      <div class="card card-pad" style="margin-top:28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+        <div>
+          <div class="card-kicker" style="margin-bottom:8px;">Demnächst</div>
+          <h3 style="margin:0 0 8px;">Mitglieder noch nicht zugewiesen</h3>
+          <p class="muted" style="margin:0;max-width:60ch;">Diese Rolle ist definiert und offen. Mitglieder werden bekannt gegeben, wenn die Community wächst. Interesse? Melde dich auf GitHub.</p>
+        </div>
+        <a class="btn" href="https://github.com/WAF2p" target="_blank" rel="noopener" style="flex-shrink:0;">Beitragen &rarr;</a>
       </div>
     {% endif %}
 
-    <div style="margin-top: 16px;">
-      <a class="btn" href="#roles">Zur Rollen-Übersicht</a>
-      <a class="btn" style="margin-left: 10px;" href="/governance-community/">Governance Details</a>
+    <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+      <a class="btn" href="#roles">Alle Rollen</a>
+      <a class="btn" href="{{ '/de/governance-community/' | relative_url }}">Governance-Details</a>
     </div>
+
   </div>
 </section>
 {% endfor %}
+
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">MITMACHEN</div>
+      <h2>Möchtest du beitragen?</h2>
+      <p class="lead muted">Alle Rollen stehen aktiven Contributoren offen. Lies das Governance-Modell, um zu verstehen, wie Rollen funktionieren — dann zeig dich auf GitHub.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub &rarr;</a>
+        <a class="btn" href="{{ '/de/governance-community/' | relative_url }}">Governance-Modell</a>
+        <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC-Prozess</a>
+      </div>
+    </div>
+  </div>
+</section>

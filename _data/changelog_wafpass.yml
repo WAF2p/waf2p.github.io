@@ -3,53 +3,103 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "Unreleased"
+  group_de: "Unveröffentlicht"
+  date: "2026-03-unreleased"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Carbon footprint estimation added — ESG module tracks and reports carbon impact of cloud workload decisions"
+      text_de: "Carbon-Footprint-Schätzung hinzugefügt — ESG-Modul verfolgt und berichtet den CO₂-Einfluss von Cloud-Workload-Entscheidungen"
+    - type: new
+      text_en: "Secret scanner and remediation information — detects exposed secrets in configurations and provides actionable remediation guidance"
+      text_de: "Secret-Scanner und Remediation-Informationen — erkennt exponierte Secrets in Konfigurationen und liefert umsetzbare Behebungshinweise"
+      pr: 11
+    - type: new
+      text_en: "Blast radius information for controls — each control now includes a blast radius assessment to quantify potential failure impact"
+      text_de: "Blast-Radius-Informationen für Controls — jede Control enthält jetzt eine Blast-Radius-Bewertung zur Quantifizierung des potenziellen Ausfallimpakts"
+      pr: 10
+    - type: docs
+      text_en: "Permitted Git workflow documented — contributing guide for branching, PRs, and release process added to the repository"
+      text_de: "Erlaubter Git-Workflow dokumentiert — Contributing-Guide für Branching, PRs und Release-Prozess dem Repository hinzugefügt"
+
 - group_en: "March 2026"
   group_de: "März 2026"
-  date: "2026-03"
+  version: "v0.1.1"
+  date: "2026-03-22"
+  beta: true
+  changes:
+    - type: fix
+      text_en: "Release workflow corrected — GitHub Actions pipeline for PyPI publishing was failing; resolved path and trigger issues"
+      text_de: "Release-Workflow korrigiert — GitHub-Actions-Pipeline für PyPI-Publishing schlug fehl; Pfad- und Trigger-Probleme behoben"
+      pr: 9
+    - type: infra
+      text_en: "Release workflow fix attempt — intermediate fix for the broken PyPI release automation"
+      text_de: "Release-Workflow-Fix-Versuch — Zwischenlösung für die defekte PyPI-Release-Automation"
+      pr: 8
+
+- group_en: "March 2026"
+  group_de: "März 2026"
+  version: "v0.1.0"
+  date: "2026-03-22"
   beta: true
   changes:
     - type: new
       text_en: "Alicloud, Yandex Cloud, and Oracle Cloud datacenter support added to geographic data model"
       text_de: "Alicloud, Yandex Cloud und Oracle Cloud Rechenzentrumsunterstützung zum geografischen Datenmodell hinzugefügt"
+      pr: 3
     - type: new
       text_en: "Executive summary added to PDF reports — high-level compliance overview at the start of each report"
       text_de: "Executive Summary in PDF-Reports hinzugefügt — übergeordnete Compliance-Übersicht am Anfang jedes Reports"
+      pr: 3
     - type: new
       text_en: "Decision board added to PDF reports — structured decision support section for stakeholder communication"
       text_de: "Decision Board in PDF-Reports hinzugefügt — strukturierter Entscheidungsunterstützungsbereich für Stakeholder-Kommunikation"
+      pr: 3
     - type: improvement
       text_en: "Financial impact split into distinct root groups in PDF reports for clearer risk cost attribution"
       text_de: "Finanzielle Auswirkungen in PDF-Reports in separate Wurzelgruppen aufgeteilt für klarere Risikokostenzuordnung"
+      pr: 3
     - type: new
       text_en: "Multi / split report mode — single wafpass run can now generate separate reports per pillar or module"
       text_de: "Multi / Split-Report-Modus — ein einzelner wafpass-Lauf kann jetzt separate Reports pro Säule oder Modul erzeugen"
+      pr: 3
     - type: new
       text_en: "Intentional skip support — controls can be explicitly marked as skipped via a skip file; skipped items are reflected in report output"
       text_de: "Intentionales Skip-Feature — Controls können über eine Skip-Datei explizit als übersprungen markiert werden; übersprungene Controls werden im Report ausgegeben"
+      pr: 3
     - type: fix
       text_en: "CLI skip file detection — corrected path resolution for the skip configuration file"
       text_de: "CLI Skip-Datei-Erkennung — Pfadauflösung für die Skip-Konfigurationsdatei korrigiert"
+      pr: 3
     - type: new
       text_en: "Risk estimation in PDF reports — fact-based risk estimation and risk cost estimation added to compliance report output"
       text_de: "Risikoschätzung in PDF-Reports — faktenbasierte Risikoschätzung und Risikokostenabschätzung dem Compliance-Report-Output hinzugefügt"
+      pr: 3
     - type: new
       text_en: "OpenStreetMap integration in PDF reports — geographic map rendered directly in the PDF output"
       text_de: "OpenStreetMap-Integration in PDF-Reports — geografische Karte wird direkt in der PDF-Ausgabe gerendert"
+      pr: 3
     - type: new
       text_en: "Regional spread map in PDF reports — map visualising worldwide data distribution across regions"
       text_de: "Regionale Verteilungskarte in PDF-Reports — Karte zur Visualisierung der weltweiten Datenverteilung über Regionen"
+      pr: 3
     - type: new
       text_en: "Regulatory controls mapping — controls can now be mapped to regulatory frameworks (e.g. GDPR, BSI, ISO 27001) in PDF reports"
       text_de: "Regulatorisches Controls-Mapping — Controls können nun in PDF-Reports regulatorischen Rahmenwerken (z.B. DSGVO, BSI, ISO 27001) zugeordnet werden"
+      pr: 3
     - type: new
       text_en: "Dynamic pillar loading — control logic is now embedded in each control file; any new pillar loads automatically without code changes"
       text_de: "Dynamisches Pillar-Laden — Control-Logik ist jetzt in jeder Control-Datei eingebettet; neue Pillars werden automatisch ohne Code-Änderungen geladen"
+      pr: 2
     - type: new
       text_en: "PDF export of compliance check results — shareable reports directly from the CLI"
       text_de: "PDF-Export der Compliance-Check-Ergebnisse — teilbare Reports direkt aus dem CLI"
+      pr: 2
     - type: new
       text_en: "Security pillar (Pillar 1) checks added — first non-cost control set integrated"
       text_de: "Security-Pillar-Checks (Säule 1) hinzugefügt — erster Nicht-Cost-Kontrollsatz integriert"
+      pr: 2
     - type: new
       text_en: "Initial control check application — base architecture, control loading, and pillar evaluation engine"
       text_de: "Initiale Control-Check-Applikation — Basis-Architektur, Control-Loading und Pillar-Evaluierungs-Engine"

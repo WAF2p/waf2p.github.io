@@ -7,31 +7,118 @@ description: Pressekit, Brand Assets, Boilerplate-Text und Medienkontakt für Jo
 permalink: /de/press/
 ---
 
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Medien</div>
-    <h1>Presse & Medien</h1>
-    <p class="lead" style="max-width: 72ch;">
-      Alles, was du für eine Berichterstattung über WAF++ brauchst — Brand Assets, Boilerplate-Text, Kennzahlen und direkten Kontakt zum Presseteam.
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Presse &amp; Medien
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Pressekit</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
+      Alles, was du für eine Berichterstattung über WAF++ brauchst &ndash; Brand Assets, Boilerplate-Text, Kennzahlen und direkten Kontakt zum Presseteam.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="mailto:page@waf2p.dev">Pressekontakt</a>
-      <a class="btn" href="{{ '/de/about/' | relative_url }}">Über WAF++ →</a>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="image" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        8 Brand Assets
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="file-text" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Freigegebener Boilerplate
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="mail" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Antwort in 2 Werktagen
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="mailto:page@waf2p.dev">Pressekontakt &rarr;</a>
+      <a class="btn" href="#assets">Brand Assets</a>
+      <a class="btn" href="{{ '/de/about/' | relative_url }}">Über WAF++</a>
     </div>
   </div>
 </section>
 
-<!-- Brand Assets -->
-<section class="section">
-  <div class="container">
-    <div class="section-kicker">Assets</div>
-    <div class="section-title">Brand Assets</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Alle WAF++-Brand-Assets sind zur redaktionellen Nutzung unter der Open-Source-Lizenz des Projekts verfügbar.
-      Bitte Farben und Proportionen nicht verändern.
-    </p>
 
-    <div class="press-asset-grid">
+<!-- ===================== KENNZAHLEN ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">FAKTEN</div>
+      <h2>Kennzahlen auf einen Blick</h2>
+      <p class="lead muted">Die wichtigsten Zahlen und Meilensteine für deine Berichterstattung über WAF++.</p>
+    </div>
+
+    <div class="pillars-grid" style="margin-top:32px;">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker" style="font-size:2rem;font-weight:800;color:var(--brand-500);letter-spacing:-.02em;">7</div>
+        <h3 class="pillar-card__title">Säulen</h3>
+        <p class="pillar-card__desc">Sicherheit · Zuverlässigkeit · Performance · Kosten · Betrieb · Nachhaltigkeit · Developer Experience</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="github" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker" style="font-size:2rem;font-weight:800;color:var(--brand-500);letter-spacing:-.02em;">Offen</div>
+        <h3 class="pillar-card__title">Governance</h3>
+        <p class="pillar-card__desc">Alle Entscheidungen über öffentliche RFCs in GitHub Discussions &ndash; transparent, community-reviewed, jeder Schritt nachvollziehbar.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="rocket" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker" style="font-size:2rem;font-weight:800;color:var(--brand-500);letter-spacing:-.02em;">v1.0</div>
+        <h3 class="pillar-card__title">Erwartet Mai 2026</h3>
+        <p class="pillar-card__desc">Erstes stabiles Release mit vollständiger Pillar-Abdeckung, Controls Library und dem PASS-Scoring-Modell.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker" style="font-size:1.2rem;font-weight:800;color:var(--brand-500);letter-spacing:-.02em;">Anbieterneutral</div>
+        <h3 class="pillar-card__title">Cloud-agnostisch</h3>
+        <p class="pillar-card__desc">Funktioniert über AWS, Azure, GCP, On-Premises und hybride Umgebungen hinweg &ndash; unabhängig von Anbieter-Marketing.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker" style="font-size:2rem;font-weight:800;color:var(--brand-500);letter-spacing:-.02em;">PASS</div>
+        <h3 class="pillar-card__title">Scoring-Modell</h3>
+        <p class="pillar-card__desc">Vier Reifegrade pro Säule &ndash; Poor, Adequate, Strong, Superior &ndash; geben Teams einen klaren, reproduzierbaren Score, der sich über Zeit verfolgen lässt.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="scale" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker" style="font-size:1.1rem;font-weight:800;color:var(--brand-500);letter-spacing:-.02em;">CC BY 4.0 · Apache 2.0</div>
+        <h3 class="pillar-card__title">Offene Lizenz</h3>
+        <p class="pillar-card__desc">Die Dokumentation steht unter Creative Commons BY 4.0. Der Quellcode &ndash; darunter WAFPASS &ndash; ist unter Apache 2.0 lizenziert. Beides ist kostenlos nutzbar, anpassbar und weiterbaubar.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== BRAND ASSETS ===================== -->
+<section class="section" id="assets">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">ASSETS</div>
+      <h2>Brand Assets</h2>
+      <p class="lead muted">
+        Alle WAF++-Brand-Assets sind zur redaktionellen Nutzung unter der Open-Source-Lizenz des Projekts verfügbar.
+        Bitte Farben und Proportionen nicht verändern.
+      </p>
+    </div>
+
+    <div class="press-asset-grid" style="margin-top:32px;">
 
       <div class="press-asset-card">
         <div class="press-asset-preview">
@@ -41,8 +128,8 @@ permalink: /de/press/
           <div class="press-asset-name">Logo — quadratisch</div>
           <div class="press-asset-meta">PNG · 1000 × 1000 px · transparenter Hintergrund</div>
           <div class="press-asset-actions">
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" download>Download</a>
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
           </div>
         </div>
       </div>
@@ -55,176 +142,306 @@ permalink: /de/press/
           <div class="press-asset-name">Logo — horizontal</div>
           <div class="press-asset-meta">PNG · Querformat · transparenter Hintergrund</div>
           <div class="press-asset-actions">
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000_length.png' | relative_url }}" download>Download</a>
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000_length.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000_length.png' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/WAFpp_upscaled_1000_length.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
           </div>
         </div>
       </div>
 
       <div class="press-asset-card">
-        <div class="press-asset-preview" style="background-color:#fff; background-image:none;">
+        <div class="press-asset-preview" style="background-color:var(--surface);background-image:none;">
           <img src="{{ '/images/waf++7p2.png' | relative_url }}" alt="WAF++ — Die 7 Säulen des Frameworks">
         </div>
         <div class="press-asset-info">
           <div class="press-asset-name">Die 7 Säulen</div>
           <div class="press-asset-meta">PNG · Framework-Übersichtsgrafik</div>
           <div class="press-asset-actions">
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/waf++7p2.png' | relative_url }}" download>Download</a>
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/waf++7p2.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/waf++7p2.png' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/waf++7p2.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
           </div>
         </div>
       </div>
 
       <div class="press-asset-card">
-        <div class="press-asset-preview" style="background-color:#fff; background-image:none;">
+        <div class="press-asset-preview" style="background-color:var(--surface);background-image:none;">
           <img src="{{ '/images/waf++1.png' | relative_url }}" alt="WAF++ — Anbieterneutraler Vergleich">
         </div>
         <div class="press-asset-info">
           <div class="press-asset-name">Anbieterneutraler Vergleich</div>
           <div class="press-asset-meta">PNG · Säulen vs. Cloud-Anbieter Matrix</div>
           <div class="press-asset-actions">
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/waf++1.png' | relative_url }}" download>Download</a>
-            <a class="btn" style="font-size:0.82rem; padding:5px 12px;" href="{{ '/images/waf++1.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/waf++1.png' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/waf++1.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="press-asset-card">
+        <div class="press-asset-preview" style="background-color:var(--surface);background-image:none;">
+          <img src="{{ '/images/waf++0.png' | relative_url }}" alt="WAF++ — Framework-Grafik">
+        </div>
+        <div class="press-asset-info">
+          <div class="press-asset-name">Framework-Grafik</div>
+          <div class="press-asset-meta">PNG · alternative Framework-Illustration</div>
+          <div class="press-asset-actions">
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/waf++0.png' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/waf++0.png' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="press-asset-card">
+        <div class="press-asset-preview" style="background-color:#0a1628;background-image:none;padding:0;">
+          <img src="{{ '/images/press_pillars.svg' | relative_url }}" alt="WAF++ — Die 7 Säulen Illustration" style="max-height:none;width:100%;height:180px;object-fit:cover;">
+        </div>
+        <div class="press-asset-info">
+          <div class="press-asset-name">Die 7 Säulen — illustriert</div>
+          <div class="press-asset-meta">SVG · Balkendiagramm aller 7 Säulen · für Artikelheader geeignet</div>
+          <div class="press-asset-actions">
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/press_pillars.svg' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/press_pillars.svg' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="press-asset-card">
+        <div class="press-asset-preview" style="background-color:#0a1628;background-image:none;padding:0;">
+          <img src="{{ '/images/press_governance.svg' | relative_url }}" alt="WAF++ — Offene Governance RFC-Flow Illustration" style="max-height:none;width:100%;height:180px;object-fit:cover;">
+        </div>
+        <div class="press-asset-info">
+          <div class="press-asset-name">Offene Governance — illustriert</div>
+          <div class="press-asset-meta">SVG · RFC-Flussdiagramm · für Governance-Artikel geeignet</div>
+          <div class="press-asset-actions">
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/press_governance.svg' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/press_governance.svg' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="press-asset-card">
+        <div class="press-asset-preview" style="background-color:#0a1628;background-image:none;padding:0;">
+          <img src="{{ '/images/press_quickstart.svg' | relative_url }}" alt="WAF++ — Einstieg in 3 Schritten Illustration" style="max-height:none;width:100%;height:180px;object-fit:cover;">
+        </div>
+        <div class="press-asset-info">
+          <div class="press-asset-name">Einstieg — illustriert</div>
+          <div class="press-asset-meta">SVG · Assess → Score → Improve · für Einstiegsbeiträge geeignet</div>
+          <div class="press-asset-actions">
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/press_quickstart.svg' | relative_url }}" download>Download</a>
+            <a class="btn" style="font-size:0.82rem;padding:5px 12px;" href="{{ '/images/press_quickstart.svg' | relative_url }}" target="_blank" rel="noopener">Ansehen</a>
           </div>
         </div>
       </div>
 
     </div>
 
-    <p class="muted small" style="margin-top: 14px;">
+    <p class="muted" style="font-size:0.85rem;margin-top:14px;">
       Weitere Assets und Quelldateien sind im
       <a href="https://github.com/waf2p/waf2p.github.io/tree/main/images" target="_blank" rel="noopener">GitHub-Repository</a> verfügbar.
     </p>
   </div>
 </section>
 
-<!-- Boilerplate -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Text</div>
-    <div class="section-title">Freigegebener Boilerplate-Text</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Folgender Text kann bei der Beschreibung von WAF++ in Artikeln, Podcasts oder Präsentationen verwendet werden.
-    </p>
 
-    <div class="press-boilerplate">
-      <div class="press-boilerplate-label">Kurz (1 Satz)</div>
-      <p>WAF++ ist ein Open-Source-, anbieterneutrales Framework zur Bewertung und Verbesserung der Qualität von Cloud-Workloads über 7 Säulen: Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, operationelle Exzellenz, Nachhaltigkeit und Developer Experience.</p>
+<!-- ===================== BOILERPLATE ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">TEXT</div>
+      <h2>Freigegebener Boilerplate-Text</h2>
+      <p class="lead muted">Folgender Text kann bei der Beschreibung von WAF++ in Artikeln, Podcasts oder Präsentationen verwendet werden.</p>
     </div>
 
-    <div class="press-boilerplate" style="margin-top: 14px;">
-      <div class="press-boilerplate-label">Standard (2–3 Sätze)</div>
-      <p>WAF++ (Well-Architected Framework Plus Plus) ist ein Open-Source-, community-gesteuertes Framework zur Bewertung und Verbesserung der Qualität von Cloud-Workloads. Es umfasst 7 Säulen — Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, operationelle Exzellenz, Nachhaltigkeit und Developer Experience — mit einem transparenten Scoring-Modell namens PASS.</p>
-      <p>Im Gegensatz zu proprietären Anbieter-Frameworks wird WAF++ offen über RFCs in GitHub Discussions gesteuert, sodass jede Entscheidung nachvollziehbar und jeder Control zitierbar ist. Das Framework ist kostenlos nutzbar, kann frei beigetragen und weiterentwickelt werden.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Kennzahlen -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Fakten</div>
-    <div class="section-title">Kennzahlen auf einen Blick</div>
-
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad" style="text-align:center;">
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--brand-500);">7</div>
-        <div style="font-weight: 600; margin-top: 4px;">Säulen</div>
-        <p class="muted small">Sicherheit · Zuverlässigkeit · Performance · Kosten · Betrieb · Nachhaltigkeit · Developer Experience</p>
+    <div style="max-width:800px;margin:32px auto 0;">
+      <div class="press-boilerplate">
+        <div class="press-boilerplate-label">Kurz (1 Satz)</div>
+        <p>WAF++ ist ein Open-Source-, anbieterneutrales Framework zur Bewertung und Verbesserung der Qualität von Cloud-Workloads über 7 Säulen: Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, operationelle Exzellenz, Nachhaltigkeit und Developer Experience.</p>
       </div>
-      <div class="card card-pad" style="text-align:center;">
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--brand-500);">Offen</div>
-        <div style="font-weight: 600; margin-top: 4px;">Governance</div>
-        <p class="muted small">Alle Entscheidungen über öffentliche RFCs in GitHub Discussions — transparent und community-reviewed</p>
+
+      <div class="press-boilerplate" style="margin-top:14px;">
+        <div class="press-boilerplate-label">Standard (2–3 Sätze)</div>
+        <p>WAF++ (Well-Architected Framework Plus Plus) ist ein Open-Source-, community-gesteuertes Framework zur Bewertung und Verbesserung der Qualität von Cloud-Workloads. Es umfasst 7 Säulen &ndash; Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, operationelle Exzellenz, Nachhaltigkeit und Developer Experience &ndash; mit einem transparenten Scoring-Modell namens PASS.</p>
+        <p>Im Gegensatz zu proprietären Anbieter-Frameworks wird WAF++ offen über RFCs in GitHub Discussions gesteuert, sodass jede Entscheidung nachvollziehbar und jeder Control zitierbar ist. Das Framework ist kostenlos nutzbar, kann frei beigetragen und weiterentwickelt werden.</p>
       </div>
-      <div class="card card-pad" style="text-align:center;">
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--brand-500);">v1.0</div>
-        <div style="font-weight: 600; margin-top: 4px;">Erwartet Mai 2026</div>
-        <p class="muted small">Erstes stabiles Release mit vollständiger Pillar-Abdeckung, Controls Library und PASS-Scoring-Modell</p>
+
+      <div class="press-boilerplate" style="margin-top:14px;">
+        <div class="press-boilerplate-label">Podcast / Interview-Intro</div>
+        <p>WAF++ &ndash; ausgesprochen „waf plus plus" &ndash; ist ein Open-Source-Framework, das Engineering- und Architektur-Teams eine anbieterneutrale Linse für die Bewertung von Cloud-Workloads gibt. Es strukturiert alles entlang von sieben Säulen: Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, operationelle Exzellenz, Nachhaltigkeit und Developer Experience.</p>
+        <p>Was WAF++ besonders macht, ist die Art, wie es entsteht: Jede Regel, jedes Scoring-Kriterium und jede Designentscheidung durchläuft einen öffentlichen RFC-Prozess auf GitHub &ndash; vollständig transparent, vollständig community-getrieben. Kein Vendor dahinter, kein Upsell, keine Black Box. Jede:r kann die Kriterien lesen, hinterfragen und verbessern.</p>
+      </div>
+
+      <div class="press-boilerplate" style="margin-top:14px;">
+        <div class="press-boilerplate-label">Social / Kurzform (≤ 280 Zeichen)</div>
+        <p>WAF++ ist ein Open-Source-, anbieterneutrales Framework für Cloud-Architekturqualität &ndash; 7 Säulen, transparentes Scoring, community-gesteuert via öffentliche RFCs. Doku: CC BY 4.0, Code: Apache 2.0. waf2p.dev</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Pressekontakt -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-kicker">Kontakt</div>
-    <div class="section-title">Pressekontakt</div>
 
-    <div class="card card-pad" style="margin-top: 22px;">
-      <div class="press-contact-card">
-        <div class="contact-detail">
-          <div class="contact-item">
-            <strong>Presseanfragen</strong>
-            <a href="mailto:page@waf2p.dev">page@waf2p.dev</a>
+<!-- ===================== KONTAKT + RICHTLINIEN ===================== -->
+<section class="section wafpass-section">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <div>
+        <div class="kicker">KONTAKT</div>
+        <h2>Pressekontakt</h2>
+        <p class="lead">Für Interviewanfragen, Faktenprüfungen oder redaktionelle Fragen &ndash; direkt ans Presseteam wenden.</p>
+
+        <div class="wafpass-features" style="margin-top:24px;">
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="mail" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Presseanfragen</div>
+              <div class="wafpass-feat__desc"><a href="mailto:page@waf2p.dev">page@waf2p.dev</a> · Antwort innerhalb von 2 Werktagen</div>
+            </div>
           </div>
-          <div class="contact-item">
-            <strong>Antwortzeit</strong>
-            <span>Innerhalb von 2 Werktagen</span>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Hintergrund &amp; Community-Kontext</div>
+              <div class="wafpass-feat__desc">Offene <a href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub Discussions</a> durchsuchen oder im öffentlichen Slack fragen &ndash; alle Community-Entscheidungen sind öffentlich.</div>
+            </div>
           </div>
-          <div class="contact-item">
-            <strong>GitHub</strong>
-            <a href="https://github.com/waf2p/" target="_blank" rel="noopener">github.com/waf2p</a>
-          </div>
-          <div class="contact-item">
-            <strong>Community Slack</strong>
-            <a href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">Workspace beitreten →</a>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="mic" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Speaker-Anfragen</div>
+              <div class="wafpass-feat__desc">Auf der <a href="{{ '/de/conferences/' | relative_url }}">Konferenzseite</a> sind aktuelle Engagements gelistet, oder direkt per E-Mail anfragen.</div>
+            </div>
           </div>
         </div>
-        <div>
-          <p class="muted" style="margin: 0 0 14px;">
-            Für <strong>Interviewanfragen, Faktenprüfungen oder redaktionelle Fragen</strong> direkt an <a href="mailto:page@waf2p.dev">page@waf2p.dev</a> wenden.
-          </p>
-          <p class="muted" style="margin: 0 0 14px;">
-            Für <strong>Hintergrundinformationen und Community-Perspektiven</strong> stehen offene <a href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub Discussions</a> zur Verfügung — alle Community-Entscheidungen sind öffentlich. Alternativ im öffentlichen Slack-Workspace fragen.
-          </p>
-          <p class="muted" style="margin: 0;">
-            Ein WAF++-Maintainer soll bei einem <strong>Event oder Podcast sprechen</strong>? Auf der <a href="{{ '/de/conferences/' | relative_url }}">Konferenzseite</a> sind aktuelle Engagements gelistet, oder einfach direkt Kontakt aufnehmen.
-          </p>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="mailto:page@waf2p.dev">Presseteam kontaktieren &rarr;</a>
+          <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Slack beitreten</a>
         </div>
       </div>
+
+      <div>
+        <div class="card card-pad">
+          <div class="card-kicker" style="margin-bottom:16px;">Schnellkontakt</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="mail" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;"><a href="mailto:page@waf2p.dev" style="color:inherit;">page@waf2p.dev</a></div>
+                <div class="muted" style="font-size:13px;">Presseanfragen &amp; Medienanliegen</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="github" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;"><a href="https://github.com/waf2p/" target="_blank" rel="noopener" style="color:inherit;">github.com/waf2p</a></div>
+                <div class="muted" style="font-size:13px;">Quellcode, Discussions &amp; Governance</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="clock" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;">Innerhalb von 2 Werktagen</div>
+                <div class="muted" style="font-size:13px;">Typische Antwortzeit für Presseanfragen</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="users" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;"><a href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" style="color:inherit;">Community Slack</a></div>
+                <div class="muted" style="font-size:13px;">Öffentlicher Workspace &ndash; Community direkt befragen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- Nutzungsrichtlinien -->
-<section class="section section--tight">
+
+<!-- ===================== BRAND-RICHTLINIEN ===================== -->
+<section class="section">
   <div class="container">
-    <div class="section-kicker">Richtlinien</div>
-    <div class="section-title">Brand-Nutzungsrichtlinien</div>
+    <div class="section-header">
+      <div class="kicker">RICHTLINIEN</div>
+      <h2>Brand-Nutzungsrichtlinien</h2>
+      <p class="lead muted">So wird WAF++ in redaktionellen Inhalten korrekt referenziert.</p>
+    </div>
 
-    <div class="grid-2" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <div class="card-kicker" style="color: #16a34a;">Empfohlen</div>
-        <ul style="margin: 8px 0 0; padding-left: 18px; display: grid; gap: 8px;">
-          <li class="muted">Projektnamen als <strong>WAF++</strong> schreiben — zwei Pluszeichen, Großbuchstaben</li>
-          <li class="muted">Unveränderte Logo-Dateien von dieser Seite verwenden</li>
-          <li class="muted">Als <em>„WAF++, Open-Source-Cloud-Architektur-Framework"</em> referenzieren</li>
-          <li class="muted">Auf <strong>waf2p.dev</strong> verlinken, damit Leser mehr erfahren können</li>
-        </ul>
+    <div class="why-grid" style="margin-top:32px;grid-template-columns:1fr 1fr;">
+
+      <div class="why-card">
+        <div class="why-card__icon" style="color:#16a34a;"><i data-lucide="check-circle-2" aria-hidden="true"></i></div>
+        <h3 class="why-card__title" style="color:#16a34a;">Empfohlen</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="check" style="width:15px;height:15px;color:#16a34a;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Projektnamen als <strong>WAF++</strong> schreiben &ndash; zwei Pluszeichen, Großbuchstaben</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="check" style="width:15px;height:15px;color:#16a34a;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Unveränderte Logo-Dateien von dieser Seite verwenden</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="check" style="width:15px;height:15px;color:#16a34a;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Als <em>&bdquo;WAF++, Open-Source-Cloud-Architektur-Framework&ldquo;</em> referenzieren</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="check" style="width:15px;height:15px;color:#16a34a;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Auf <strong>waf2p.dev</strong> verlinken, damit Leser:innen mehr erfahren können</p>
+          </div>
+        </div>
       </div>
-      <div class="card card-pad">
-        <div class="card-kicker" style="color: #b91c1c;">Nicht erlaubt</div>
-        <ul style="margin: 8px 0 0; padding-left: 18px; display: grid; gap: 8px;">
-          <li class="muted">Logo-Farben, Proportionen oder Effekte nicht verändern</li>
-          <li class="muted">Keine Unterstützung oder offizielle Partnerschaft ohne schriftliche Genehmigung implizieren</li>
-          <li class="muted">WAF++-Assets nicht auf eine Weise verwenden, die Scope oder Governance des Projekts falsch darstellt</li>
-          <li class="muted">Den Namen ohne Genehmigung nicht in Produkt- oder Dienstleistungsnamen verwenden</li>
-        </ul>
+
+      <div class="why-card">
+        <div class="why-card__icon" style="color:#b91c1c;"><i data-lucide="x-circle" aria-hidden="true"></i></div>
+        <h3 class="why-card__title" style="color:#b91c1c;">Nicht erlaubt</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="x" style="width:15px;height:15px;color:#b91c1c;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Logo-Farben, Proportionen oder Effekte nicht verändern</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="x" style="width:15px;height:15px;color:#b91c1c;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Keine Unterstützung oder offizielle Partnerschaft ohne schriftliche Genehmigung implizieren</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="x" style="width:15px;height:15px;color:#b91c1c;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">WAF++-Assets nicht auf eine Weise verwenden, die Scope oder Governance des Projekts falsch darstellt</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <i data-lucide="x" style="width:15px;height:15px;color:#b91c1c;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <p class="muted" style="margin:0;font-size:0.9rem;">Den Namen ohne Genehmigung nicht in Produkt- oder Dienstleistungsnamen verwenden</p>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Berichtest du über WAF++?</h2>
-    <p class="muted" style="max-width:60ch; margin: 0 auto 20px;">
-      Wir würden es gerne wissen. Schreib uns an <a href="mailto:page@waf2p.dev">page@waf2p.dev</a> oder teile deinen Artikel in unserer Slack-Community.
-    </p>
-    <a class="btn btn-primary" href="mailto:page@waf2p.dev">Kontakt aufnehmen →</a>
-    <a class="btn" style="margin-left:10px;" href="{{ '/de/about/' | relative_url }}">Über das Projekt →</a>
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">BERICHTEST DU ÜBER WAF++?</div>
+      <h2>Wir würden es gerne wissen.</h2>
+      <p class="lead muted">Schreib uns an <a href="mailto:page@waf2p.dev">page@waf2p.dev</a> oder teile deinen Artikel in unserer Slack-Community. Wir antworten auf alle Presseanfragen innerhalb von 2 Werktagen.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="mailto:page@waf2p.dev">Kontakt aufnehmen &rarr;</a>
+        <a class="btn" href="{{ '/de/about/' | relative_url }}">Über das Projekt</a>
+        <a class="btn" href="{{ '/de/conferences/' | relative_url }}">Konferenzen</a>
+      </div>
+    </div>
   </div>
 </section>

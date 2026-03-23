@@ -6,231 +6,298 @@ title: Vision & Mission
 description: Why WAF++ exists – and where we want to go as a community.
 permalink: /vision/
 ---
+
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Strategy</div>
-    <h1>Vision & Mission</h1>
-    <p class="lead" style="max-width: 78ch;">
+  <div class="container" style="max-width:800px;">
+    {% include breadcrumb-inline.html %}
+    {% include breadcrumb.html %}
+
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Strategy · Community
+    </div>
+    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
+      <span class="text-gradient">Vision &amp; Mission</span>
+    </h1>
+    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
       WAF++ is a community-driven, vendor-neutral framework built from real-world experience.
-      Our goal: make architecture quality, governance, and sovereignty in cloud and multi-cloud environments
-      transparently assessable and continuously improvable.
+      Our goal: make architecture quality, governance, and sovereignty in cloud and multi-cloud
+      environments transparently assessable and continuously improvable.
     </p>
-    <div class="hero-actions" style="margin-top: 22px; justify-content: center;">
-      <a class="btn btn-primary" href="{{ '/saeulen/' | relative_url }}">The 7 Pillars</a>
-      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance</a>
+
+    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="shield-check" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Vendor-neutral
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="users" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Community-driven
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
+        <i data-lucide="lock-open" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+        Open source
+      </span>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
+      <a class="btn btn-primary" href="#mission">Our mission &rarr;</a>
+      <a class="btn" href="{{ '/saeulen/' | relative_url }}">The 7 pillars</a>
       <a class="btn" href="{{ '/roadmap/' | relative_url }}">Roadmap</a>
     </div>
   </div>
 </section>
 
+
+<!-- ===================== WHY WAF++ ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">WHY</div>
+      <h2>Why WAF++?</h2>
+      <p class="lead muted">Three structural gaps in the existing landscape that WAF++ was built to close.</p>
+    </div>
+
+    <div class="why-grid" style="margin-top:32px;">
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="cpu" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Engineering-first</h3>
+        <p class="why-card__desc">Best practices are often context-free. WAF++ focuses on transparent criteria, evidence, and trade-offs — so decisions remain reproducible across teams.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Provider-independent</h3>
+        <p class="why-card__desc">WAF++ defines principles, reference models, and controls — regardless of whether you run AWS, Azure, GCP, on-premises, or hybrid combinations.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">Transparency by design</h3>
+        <p class="why-card__desc">Decisions are discussed, documented, and versioned publicly via RFCs, reviews, and the roadmap. This makes the framework auditable and community-ready.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== VISION ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-kicker">Why</div>
-    <div class="section-title">Why WAF++?</div>
+    <div class="section-header">
+      <div class="kicker">VISION</div>
+      <h2>Our Vision</h2>
+      <p class="lead muted">
+        Organizations should be able to evaluate cloud architectures in a multi-cloud reality — clearly, transparently,
+        and independently of marketing narratives. WAF++ provides a shared lens of pillars, criteria, and reference models.
+      </p>
+    </div>
 
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad vision-card">
-        <div class="card-kicker">Engineering-first</div>
-        <h3>More than “best practices”</h3>
-        <p class="muted">
-          Best practices are often context-free. WAF++ focuses on transparent criteria, evidence, and trade-offs —
-          so decisions remain reproducible across teams.
-        </p>
-      </div>
-
-      <div class="card card-pad vision-card">
-        <div class="card-kicker">Vendor-neutral</div>
-        <h3>Provider-independent</h3>
-        <p class="muted">
-          WAF++ defines principles, reference models, and controls — regardless of whether you run AWS, Azure, GCP,
-          on-premises, or hybrid combinations.
-        </p>
-      </div>
-
-      <div class="card card-pad vision-card">
-        <div class="card-kicker">Governance</div>
-        <h3>Transparency by design</h3>
-        <p class="muted">
-          Decisions are discussed, documented, and versioned publicly (RFCs, reviews, roadmap).
-          This makes the framework auditable and community-ready.
-        </p>
-      </div>
+    <div class="vision-quote" style="margin-top:32px;">
+      <div class="vision-quote__line">&ldquo;Traceability instead of gut feeling. Criteria instead of buzzwords.&rdquo;</div>
+      <div class="vision-quote__meta">— WAF++ Principle</div>
     </div>
   </div>
 </section>
 
-<section class="section section--tight">
+
+<!-- ===================== MISSION ===================== -->
+<section class="section pillars-section" id="mission">
   <div class="container">
-    <div class="section-kicker">Vision</div>
-    <div class="section-title">Our Vision</div>
-    <p class="muted" style="max-width: 82ch; margin-top: 10px;">
-      Organizations should be able to evaluate cloud architectures in a multi-cloud reality — clearly, transparently,
-      and independently of marketing narratives. WAF++ provides a shared lens of pillars, criteria, and reference models.
-    </p>
+    <div class="section-header">
+      <div class="kicker">MISSION</div>
+      <h2>Our Mission</h2>
+      <p class="lead muted">Four concrete deliverables that turn the vision into engineering reality.</p>
+    </div>
 
-    <div class="vision-quote">
-      <div class="vision-quote__line">“Traceability instead of gut feeling. Criteria instead of buzzwords.”</div>
-      <div class="vision-quote__meta">– WAF++ Principle</div>
+    <div class="pillars-grid" style="margin-top:32px;">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="search" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Assessment</div>
+        <h3 class="pillar-card__title">A shared assessment model</h3>
+        <p class="pillar-card__desc">Guiding questions and criteria for architecture quality — including what evidence (artifacts, policies, ADRs, metrics) makes an answer robust.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Scoring</div>
+        <h3 class="pillar-card__title">Maturity &amp; scoring (transparent)</h3>
+        <p class="pillar-card__desc">A maturity and scoring model built step by step — not a black box, but transparent rules that teams can iteratively improve.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="layout-template" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Patterns</div>
+        <h3 class="pillar-card__title">Reference models &amp; patterns</h3>
+        <p class="pillar-card__desc">Reusable patterns, anti-patterns, and reference architectures — including trade-offs and operational considerations consolidated from real projects.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Governance</div>
+        <h3 class="pillar-card__title">Community &amp; governance</h3>
+        <p class="pillar-card__desc">Working Groups, Maintainers, and the TSC ensure quality and consistency. Decisions are transparent, documented, and publicly discussed.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ===================== POSITIONING ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-kicker">Mission</div>
-    <div class="section-title">Our Mission</div>
+    <div class="section-header">
+      <div class="kicker">POSITIONING</div>
+      <h2>How WAF++ positions itself</h2>
+      <p class="lead muted">WAF++ is not a replacement for provider frameworks — it is the neutral layer between them.</p>
+    </div>
 
-    <div class="grid-2" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <h3>1) A shared assessment model</h3>
-        <p class="muted">
-          We develop guiding questions and criteria for architecture quality — including guidance on what evidence
-          (artifacts, policies, ADRs, metrics) makes an answer “robust”.
-        </p>
+    <div class="why-grid" style="margin-top:32px;">
+
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">WAF++ vs. provider frameworks</h3>
+        <p class="why-card__desc">Provider frameworks are valuable — but often product-centric. WAF++ complements them with vendor-neutral criteria, governance, and sovereignty considerations.</p>
       </div>
 
-      <div class="card card-pad">
-        <h3>2) Maturity & scoring (transparent)</h3>
-        <p class="muted">
-          Step by step, we build a maturity and scoring model — no black box, but transparent rules
-          that teams can iteratively improve.
-        </p>
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="github" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">WAF++ &amp; CNCF alignment</h3>
+        <p class="why-card__desc">Governance and community structure are inspired by proven open-source models such as CNCF: Working Groups, RFCs, and radical transparency.</p>
       </div>
 
-      <div class="card card-pad">
-        <h3>3) Reference models & patterns</h3>
-        <p class="muted">
-          WAF++ consolidates reusable patterns, anti-patterns, and reference architectures — including trade-offs
-          and operational considerations.
-        </p>
+      <div class="why-card">
+        <div class="why-card__icon"><i data-lucide="clipboard-check" aria-hidden="true"></i></div>
+        <h3 class="why-card__title">WAF++ &amp; audits</h3>
+        <p class="why-card__desc">WAF++ is audit-friendly: criteria are documented, decisions traceable, and improvements can be versioned — making it compliance-ready by design.</p>
       </div>
 
-      <div class="card card-pad">
-        <h3>4) Community & governance</h3>
-        <p class="muted">
-          Working Groups, Maintainers, and the TSC ensure quality and consistency. Decisions are transparent,
-          documented, and publicly discussed.
-        </p>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="section section--tight">
+
+<!-- ===================== GUIDING PRINCIPLES ===================== -->
+<section class="section wafpass-section">
   <div class="container">
-    <div class="section-kicker">Positioning</div>
-    <div class="section-title">How WAF++ positions itself</div>
+    <div class="wafpass-grid">
 
-    <div class="grid-3" style="margin-top: 22px;">
-      <div class="card card-pad">
-        <h3>WAF++ vs. provider frameworks</h3>
-        <p class="muted">
-          Provider frameworks are valuable — but often product-centric. WAF++ complements them with vendor-neutral criteria,
-          governance, and sovereignty considerations.
-        </p>
-      </div>
+      <div>
+        <div class="kicker">PRINCIPLES</div>
+        <h2>Guiding principles</h2>
+        <p class="lead">Four non-negotiables that shape every decision in the WAF++ framework — from content to governance.</p>
 
-      <div class="card card-pad">
-        <h3>WAF++ & CNCF alignment</h3>
-        <p class="muted">
-          Governance and community structure are inspired by proven open-source models (e.g., CNCF):
-          Working Groups, RFCs, transparency.
-        </p>
-      </div>
-
-      <div class="card card-pad">
-        <h3>WAF++ & audits</h3>
-        <p class="muted">
-          WAF++ is audit-friendly: criteria are documented, decisions traceable,
-          and improvements can be versioned.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-kicker">Principles</div>
-    <div class="section-title">Guiding principles</div>
-
-    <div class="vision-principles" style="margin-top: 18px;">
-      <div class="vision-principle">
-        <div class="vision-principle__num">1</div>
-        <div>
-          <div class="vision-principle__title">Vendor-neutral & open</div>
-          <div class="muted">No product lock-in. Decisions are principle-based.</div>
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="{{ '/governance-community/' | relative_url }}">Governance &rarr;</a>
+          <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
         </div>
       </div>
 
-      <div class="vision-principle">
-        <div class="vision-principle__num">2</div>
-        <div>
-          <div class="vision-principle__title">Traceable</div>
-          <div class="muted">Criteria, evidence, trade-offs — documented and reproducible.</div>
+      <div>
+        <div class="card card-pad">
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="shield-check" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;">Vendor-neutral &amp; open</div>
+                <div class="muted" style="font-size:13px;">No product lock-in. Decisions are principle-based.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="git-branch" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;">Traceable</div>
+                <div class="muted" style="font-size:13px;">Criteria, evidence, trade-offs — documented and reproducible.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="wrench" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;">Practical</div>
+                <div class="muted" style="font-size:13px;">Experience from operations, projects, and audits matters.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 0;">
+              <div style="width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid rgba(128,128,128,.2);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand-500) 10%,transparent);">
+                <i data-lucide="eye" style="width:18px;height:18px;color:var(--brand-500);" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:14px;">Transparent governance</div>
+                <div class="muted" style="font-size:13px;">Public discussions and clear roles and decisions.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="vision-principle">
-        <div class="vision-principle__num">3</div>
-        <div>
-          <div class="vision-principle__title">Practical</div>
-          <div class="muted">Experience from operations, projects, and audits matters.</div>
-        </div>
-      </div>
-
-      <div class="vision-principle">
-        <div class="vision-principle__num">4</div>
-        <div>
-          <div class="vision-principle__title">Transparent governance</div>
-          <div class="muted">Public discussions and clear roles/decisions.</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="section section--tight">
+
+<!-- ===================== WHERE WE START ===================== -->
+<section class="section pillars-section">
   <div class="container">
-    <div class="section-kicker">Now</div>
-    <div class="section-title">Where we start</div>
-    <p class="muted" style="max-width: 80ch; margin-top: 10px;">
-      At project launch, Pillar 2 (Cost Optimization) and Pillar 7 (Sovereign) are the first “active” pillars.
-      In parallel, we are expanding governance, community processes, and roadmap rituals.
-    </p>
+    <div class="section-header">
+      <div class="kicker">NOW</div>
+      <h2>Where we start</h2>
+      <p class="lead muted">At project launch, Pillar 2 (Cost Optimization) and Pillar 7 (Sovereign) are the first active pillars. Governance, community processes, and roadmap rituals are being built in parallel.</p>
+    </div>
 
-    <div class="grid-3" style="margin-top: 18px;">
-      <div class="card card-pad">
-        <div class="card-kicker">Available</div>
-        <h3>Cost Optimization</h3>
-        <p class="muted">Make costs visible, increase efficiency, and allocate resources deliberately.</p>
-        <a class="btn btn-primary" href="{{ '/saeulen/' | relative_url }}">Go to pillar →</a>
+    <div class="pillars-grid" style="margin-top:32px;">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="dollar-sign" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Available</div>
+        <h3 class="pillar-card__title">Cost Optimization</h3>
+        <p class="pillar-card__desc">Make costs visible, increase efficiency, and allocate resources deliberately. The first fully documented pillar.</p>
+        <a class="btn btn-small" href="{{ '/saeulen/' | relative_url }}" style="margin-top:14px;">Go to pillar &rarr;</a>
       </div>
 
-      <div class="card card-pad">
-        <div class="card-kicker">Available</div>
-        <h3>Sovereign</h3>
-        <p class="muted">Digital sovereignty, data control, exit capability, and regulatory alignment.</p>
-        <a class="btn btn-primary" href="{{ '/saeulen/' | relative_url }}">Go to pillar →</a>
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="lock" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Available</div>
+        <h3 class="pillar-card__title">Sovereign</h3>
+        <p class="pillar-card__desc">Digital sovereignty, data control, exit capability, and regulatory alignment across cloud environments.</p>
+        <a class="btn btn-small" href="{{ '/saeulen/' | relative_url }}" style="margin-top:14px;">Go to pillar &rarr;</a>
       </div>
 
-      <div class="card card-pad">
-        <div class="card-kicker">Community</div>
-        <h3>Get involved</h3>
-        <p class="muted">Working Groups, reviews, use cases, sessions — we build in the open.</p>
-        <a class="btn" href="{{ '/governance-community/' | relative_url }}">How to join →</a>
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="heart-handshake" aria-hidden="true"></i></div>
+        <div class="pillar-card__kicker">Community</div>
+        <h3 class="pillar-card__title">Get involved</h3>
+        <p class="pillar-card__desc">Working Groups, reviews, use cases, sessions — we build in the open. No minimum contribution required.</p>
+        <a class="btn btn-small" href="{{ '/governance-community/' | relative_url }}" style="margin-top:14px;">How to join &rarr;</a>
       </div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ===================== CTA ===================== -->
 <section class="section">
-  <div class="container" style="text-align:center">
-    <h2>Help shape WAF++</h2>
-    <p class="muted" style="max-width: 64ch; margin: 0 auto 18px;">
-      Share use cases, provide feedback, or contribute in Working Groups — WAF++ thrives on real-world practice.
-    </p>
-    <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribute on GitHub →</a>
-    <a class="btn" style="margin-left: 10px;" href="{{ '/conferences/' | relative_url }}">Conferences →</a>
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">SHAPE THE FUTURE</div>
+      <h2>Help shape WAF++.</h2>
+      <p class="lead muted">Share use cases, provide feedback, or contribute in Working Groups — WAF++ thrives on real-world practice and community input.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
+        <a class="btn" href="{{ '/contributing/' | relative_url }}">How to contribute</a>
+        <a class="btn" href="{{ '/conferences/' | relative_url }}">Conferences</a>
+      </div>
+    </div>
   </div>
 </section>

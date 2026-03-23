@@ -5,291 +5,439 @@ ref: governance-community
 title: Governance & Community
 permalink: /de/governance-community/
 ---
-<!-- Hero -->
+
+<!-- ===================== HERO ===================== -->
 <section class="hero hero--page hero--centered">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> Open by Design</div>
-    <h1>Governance & Community</h1>
-    <p class="lead" style="max-width: 72ch;">
-      WAF++ ist ein community-getriebenes, vendor-neutrales Nonprofit-Projekt – mit klarer, transparenter Governance
-      in Anlehnung an etablierte Open-Source-Modelle (z. B. CNCF).
+  <div class="container" style="max-width: 800px;">
+    <div class="home-badge" style="display:inline-flex;">
+      <span class="home-badge__dot"></span>
+      Open by Design &middot; Community-getrieben
+    </div>
+    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
+      Governance &amp; <span class="text-gradient">Community</span>
+    </h1>
+    <p class="lead" style="max-width: 66ch; margin: 0 auto 32px;">
+      WAF++ ist eine community-getriebene, vendor-neutrale Initiative — mit klarer, transparenter Governance
+      angelehnt an etablierte Open-Source-Modelle wie CNCF. Jede Entscheidung ist nachvollziehbar. Jede Rolle hat eine Amtszeit.
     </p>
-  </div>
-</section>
-
-<!-- Governance at a glance -->
-<section class="section">
-  <div class="container">
-    <div class="section-kicker">Overview</div>
-    <div class="section-title">Governance auf einen Blick</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Entscheidungen werden nachvollziehbar über RFCs, Reviews und dokumentierte Abstimmungen getroffen.
-      Die Struktur ist bewusst schlank, aber skalierbar – passend für eine wachsende Community.
-    </p>
-
-    <div class="card card-pad" style="margin-top: 18px;">
-      <!-- Inline SVG governance diagram (keeps it website-only; no docs dependency) -->
-      <svg viewBox="0 0 1080 360" width="100%" height="auto" role="img" aria-label="WAF++ Governance Diagramm">
-        <defs>
-          <style>
-            .bx{fill:#ffffff;stroke:rgba(0,0,0,.10);stroke-width:2}
-            .tx{fill:#111;font:600 18px system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-            .sm{fill:rgba(0,0,0,.70);font:500 14px system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-            .ln{stroke:rgba(0,0,0,.18);stroke-width:2;fill:none}
-            .tag{fill:rgba(0,0,0,.06)}
-          </style>
-        </defs>
-
-        <!-- Top: TSC -->
-        <rect class="bx" x="410" y="28" rx="18" ry="18" width="260" height="88"/>
-        <text class="tx" x="540" y="64" text-anchor="middle">Technical Steering Committee</text>
-        <text class="sm" x="540" y="92" text-anchor="middle">Technische Ausrichtung • RFC Decisions</text>
-
-        <!-- Middle: Maintainers -->
-        <rect class="bx" x="140" y="154" rx="18" ry="18" width="320" height="92"/>
-        <text class="tx" x="300" y="190" text-anchor="middle">Maintainers</text>
-        <text class="sm" x="300" y="218" text-anchor="middle">Reviews • Qualität • Releases</text>
-
-        <!-- Middle: User Advisory Group -->
-        <rect class="bx" x="620" y="154" rx="18" ry="18" width="320" height="92"/>
-        <text class="tx" x="780" y="190" text-anchor="middle">User Advisory Group</text>
-        <text class="sm" x="780" y="218" text-anchor="middle">Praxisfeedback • Audit-Perspektive</text>
-
-        <!-- Bottom: Contributors + WGs -->
-        <rect class="bx" x="240" y="280" rx="18" ry="18" width="600" height="72"/>
-        <text class="tx" x="540" y="314" text-anchor="middle">Contributors & Working Groups</text>
-        <text class="sm" x="540" y="342" text-anchor="middle">Issues • PRs • WG-Arbeit • Proposals</text>
-
-        <!-- Lines -->
-        <path class="ln" d="M540 116 L300 154"/>
-        <path class="ln" d="M540 116 L780 154"/>
-        <path class="ln" d="M300 246 L540 280"/>
-        <path class="ln" d="M780 246 L540 280"/>
-
-        <!-- Small tags -->
-        <rect class="tag" x="436" y="120" rx="12" ry="12" width="208" height="26"/>
-        <text class="sm" x="540" y="139" text-anchor="middle">Transparenz: GitHub • RFCs • Notes</text>
-      </svg>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub &rarr;</a>
+      <a class="btn" href="{{ '/conferences/' | relative_url }}">Konferenzen</a>
+      <a class="btn" href="#mitmachen">Mitmachen</a>
     </div>
   </div>
 </section>
 
-<!-- Governance model -->
-<section class="section section--tight">
+
+<!-- ===================== PRINZIPIEN ===================== -->
+<section class="section why-section">
   <div class="container">
-    <div class="section-kicker">Governance</div>
-    <div class="section-title">Governance-Modell (CNCF-angelehnt)</div>
 
-    <div class="grid-3" style="margin-top: 24px;">
-      <div class="card card-pad">
-        <div class="card-kicker">TSC</div>
-        <h3>Technical Steering Committee</h3>
-        <p class="muted">Verantwortlich für technische Ausrichtung, Architekturentscheidungen und RFC-Freigaben.</p>
-      </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">Maintainers</div>
-        <h3>Maintainer-Team</h3>
-        <p class="muted">Pflegt zentrale Repositories, führt Reviews durch und stellt Konsistenz/Qualität sicher.</p>
-      </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">WG</div>
-        <h3>Working Groups</h3>
-        <p class="muted">Thematische Arbeitsgruppen (z. B. Säulen, Scoring, Controls). Arbeiten offen über Issues/RFCs.</p>
-      </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">Advisory</div>
-        <h3>User Advisory Group</h3>
-        <p class="muted">Bringt Praxisperspektive aus Projekten, Betrieb und Audits ein und priorisiert Relevanz.</p>
-      </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">Transparency</div>
-        <h3>Transparenz</h3>
-        <p class="muted">Roadmap, Diskussionen und Entscheidungen sind öffentlich nachvollziehbar dokumentiert.</p>
-      </div>
-
-      <div class="card card-pad">
-        <div class="card-kicker">RFC</div>
-        <h3>RFC-Prozess</h3>
-        <p class="muted">Draft → Community Review → Entscheidung → Umsetzung. Jede Entscheidung wird begründet.</p>
-      </div>
+    <div class="section-header">
+      <div class="kicker">PRINZIPIEN</div>
+      <h2>Gebaut zum Bleiben, offen von Anfang an</h2>
+      <p class="lead muted">Drei Prinzipien, die die Governance von WAF++ prägen — leichtgewichtig genug, um schnell zu sein; strukturiert genug, um zu skalieren.</p>
     </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-card__num">01</div>
+        <div class="why-card__title">RFC-getriebene Entscheidungen</div>
+        <p class="why-card__body">Jede wesentliche Änderung durchläuft einen Request for Comments — öffentlich ausgearbeitet, von der Community geprüft und mit Begründung entschieden. Keine stillen Updates, keine intransparenten Vendor-Entscheidungen. Die Geschichte ist die Governance.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num">02</div>
+        <div class="why-card__title">Transparent &amp; nachvollziehbar</div>
+        <p class="why-card__body">Roadmap, Diskussionen, Abstimmungen und Entscheidungen sind öffentlich auf GitHub dokumentiert. Jede Person kann die Begründung nachverfolgen, eine Entscheidung anfechten oder eine Alternative vorschlagen — immer mit demselben Prozess.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-card__num">03</div>
+        <div class="why-card__title">Vendor-neutral, immer</div>
+        <p class="why-card__body">Kein einzelnes Unternehmen kontrolliert WAF++. Governance-Rollen folgen dem Prinzip "aktive Contributor zuerst" und vendor-neutraler Balance. TSC-Zusammensetzung, Working-Group-Charters und Advisory Group setzen das strukturell um.</p>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
-<!-- Roles & expectations (foundation-ready rules) -->
+
+<!-- ===================== GOVERNANCE-STRUKTUR ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">STRUKTUR</div>
+      <h2>Governance auf einen Blick</h2>
+      <p class="lead muted">Bewusst schlank, aber skalierbar — für eine wachsende Community. Entscheidungen fließen durch RFCs, Reviews und dokumentierte Abstimmungen.</p>
+    </div>
+
+    <!-- Hierarchy diagram -->
+    <div class="card card-pad" style="margin-top:28px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;max-width:620px;margin:0 auto;">
+
+        <!-- TSC -->
+        <div style="padding:18px 28px;border:1px solid rgba(124,58,237,.28);background:rgba(124,58,237,.08);border-radius:12px;text-align:center;width:100%;">
+          <div style="font-weight:700;font-size:15px;">Technical Steering Committee</div>
+          <div class="muted" style="font-size:13px;margin-top:4px;">Technische Richtung &middot; RFC-Entscheidungen &middot; 12-Monats-Amtszeit</div>
+        </div>
+
+        <!-- Fork connector -->
+        <div style="display:grid;grid-template-columns:1fr 2px 1fr;width:60%;height:28px;">
+          <div style="border-right:1px solid rgba(128,128,128,.25);border-bottom:1px solid rgba(128,128,128,.25);height:18px;"></div>
+          <div style="background:rgba(128,128,128,.25);height:100%;width:100%;"></div>
+          <div style="border-left:1px solid rgba(128,128,128,.25);border-bottom:1px solid rgba(128,128,128,.25);height:18px;"></div>
+        </div>
+
+        <!-- Middle row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;">
+          <div style="padding:14px 16px;border:1px solid rgba(128,128,128,.2);border-radius:10px;text-align:center;">
+            <div style="font-weight:700;font-size:14px;">Maintainers</div>
+            <div class="muted" style="font-size:12px;margin-top:4px;">Reviews &middot; Qualität &middot; Releases</div>
+          </div>
+          <div style="padding:14px 16px;border:1px solid rgba(128,128,128,.2);border-radius:10px;text-align:center;">
+            <div style="font-weight:700;font-size:14px;">User Advisory Group</div>
+            <div class="muted" style="font-size:12px;margin-top:4px;">Praxisfeedback &middot; Audit-Perspektive</div>
+          </div>
+        </div>
+
+        <!-- Converge connector -->
+        <div style="display:grid;grid-template-columns:1fr 2px 1fr;width:60%;height:28px;">
+          <div style="border-right:1px solid rgba(128,128,128,.25);border-top:1px solid rgba(128,128,128,.25);height:18px;margin-top:10px;"></div>
+          <div style="background:rgba(128,128,128,.25);height:100%;width:100%;"></div>
+          <div style="border-left:1px solid rgba(128,128,128,.25);border-top:1px solid rgba(128,128,128,.25);height:18px;margin-top:10px;"></div>
+        </div>
+
+        <!-- Contributors -->
+        <div style="padding:16px 24px;border:1px solid rgba(128,128,128,.2);border-radius:10px;text-align:center;width:100%;">
+          <div style="font-weight:700;font-size:14px;">Contributors &amp; Working Groups</div>
+          <div class="muted" style="font-size:13px;margin-top:4px;">Issues &middot; PRs &middot; WG-Arbeit &middot; Vorschläge</div>
+        </div>
+
+        <!-- Transparency badge -->
+        <div style="margin-top:18px;">
+          <span class="muted" style="font-size:12px;padding:5px 16px;border:1px solid rgba(128,128,128,.15);border-radius:999px;display:inline-block;">
+            Transparenz: GitHub &middot; RFCs &middot; Meeting-Protokolle
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== GOVERNANCE-ROLLEN ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">GOVERNANCE</div>
+      <h2>Governance-Modell (CNCF-inspiriert)</h2>
+      <p class="lead muted">Sechs klar definierte Rollen und Mechanismen — jede mit eigenem Umfang, Verantwortung und Prozess.</p>
+    </div>
+
+    <div class="pillars-grid" style="grid-template-columns:repeat(3,1fr);">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="settings-2" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">TSC</div>
+        <div class="pillar-card__name">Technical Steering Committee</div>
+        <p class="pillar-card__desc">Verantwortlich für technische Richtung, Architekturentscheidungen und RFC-Genehmigungen. Gewählt aus aktiven Contributoren. 12-monatige, verlängerbare Amtszeiten.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Maintainers</div>
+        <div class="pillar-card__name">Maintainer-Team</div>
+        <p class="pillar-card__desc">Pflegt die Kern-Repositories, führt Reviews durch und gewährleistet Konsistenz und Qualität. Ernannt für 12 Monate, verlängerbar je nach Aktivität.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">WG</div>
+        <div class="pillar-card__name">Working Groups</div>
+        <p class="pillar-card__desc">Themenfokussierte Gruppen für Säulen, Scoring, Controls und Referenzarchitekturen. Arbeiten offen via GitHub Issues und RFCs. Jede Person kann eine WG vorschlagen.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Advisory</div>
+        <div class="pillar-card__name">User Advisory Group</div>
+        <p class="pillar-card__desc">Bringt Praxis-Perspektiven aus Projekten, Betrieb und Audits ein. Sorgt dafür, dass das Framework Produktionsrealität widerspiegelt — nicht nur Theorie.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="eye" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Transparenz</div>
+        <div class="pillar-card__name">Öffentlich by Default</div>
+        <p class="pillar-card__desc">Roadmap, Diskussionen, Abstimmungen und Entscheidungen sind öffentlich auf GitHub dokumentiert und nachvollziehbar. Keine privaten Entscheidungskanäle für Framework-Änderungen.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">RFC</div>
+        <div class="pillar-card__name">RFC-Prozess</div>
+        <p class="pillar-card__desc">Entwurf &rarr; Community-Review &rarr; Entscheidung &rarr; Umsetzung. Jede wesentliche Entscheidung ist begründet und mit dem Diskussions-Thread verknüpft.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== ROLLEN & REGELN ===================== -->
 <section class="section">
   <div class="container">
-    <div class="section-kicker">Rules</div>
-    <div class="section-title">Rollen, Terms & Expectations</div>
 
-    <div class="grid-3" style="margin-top: 24px;">
+    <div class="section-header">
+      <div class="kicker">REGELN</div>
+      <h2>Rollen, Amtszeiten &amp; Erwartungen</h2>
+      <p class="lead muted">Klare Regeln machen Governance fair und vorhersehbar. Hier steht genau, wie Entscheidungen getroffen werden und wie Rollen funktionieren.</p>
+    </div>
+
+    <div class="grid-3" style="margin-top:28px;">
+
       <div class="card card-pad">
         <div class="card-kicker">Maintainers</div>
-        <h3>Maintainer Terms</h3>
-        <p class="muted">
-          Maintainers werden für <strong>12 Monate</strong> ernannt (renewable). Eine Verlängerung erfolgt,
-          wenn Engagement und Review-Aktivität gegeben sind und keine begründeten Einwände vorliegen.
-        </p>
-        <p class="muted" style="margin-top: 10px;">
-          <strong>Inaktivität:</strong> Bei <strong>90 Tagen</strong> ohne Aktivität kann der Status auf „emeritus“ gesetzt werden
-          (nach Ping & transparenter Notiz). Reaktivierung ist jederzeit möglich.
-        </p>
+        <h3>Maintainer-Amtszeiten</h3>
+        <p class="muted">Ernannt für <strong>12 Monate</strong>, verlängerbar wenn Engagement und Review-Aktivität vorhanden sind und keine begründeten Einwände bestehen.</p>
+        <p class="muted" style="margin-top:10px;"><strong>Inaktivität:</strong> Nach <strong>90 Tagen</strong> ohne Aktivität kann der Status nach einer Anfrage auf "Emeritus" gesetzt werden. Reaktivierung ist jederzeit möglich.</p>
       </div>
 
       <div class="card card-pad">
         <div class="card-kicker">TSC</div>
-        <h3>TSC Terms</h3>
-        <p class="muted">
-          TSC-Mitglieder haben ebenfalls <strong>12 Monate</strong> Term (renewable). Zusammensetzung folgt dem Prinzip
-          „active contributors first“ und vendor-neutraler Balance. Rollen/Responsibilities sind öffentlich dokumentiert.
-        </p>
+        <h3>TSC-Amtszeiten</h3>
+        <p class="muted">TSC-Mitglieder haben <strong>12-monatige</strong> Amtszeiten, verlängerbar. Die Zusammensetzung folgt "aktive Contributor zuerst" und vendor-neutraler Balance. Rollen und Verantwortlichkeiten sind öffentlich dokumentiert.</p>
       </div>
 
       <div class="card card-pad">
         <div class="card-kicker">Working Groups</div>
-        <h3>Working Groups starten</h3>
-        <p class="muted">
-          Jede:r kann eine WG vorschlagen. Minimaler Inhalt: <strong>Charter</strong> (Ziel, Scope, Deliverables),
-          <strong>Lead(s)</strong>, Kommunikationskanal und ein <strong>Maintainer Sponsor</strong>.
-        </p>
-        <p class="muted" style="margin-top: 10px;">
-          WG-Outputs laufen als PRs/RFCs in die Haupt-Repos zurück.
-        </p>
+        <h3>Eine Working Group gründen</h3>
+        <p class="muted">Jede Person kann eine WG vorschlagen. Erforderlich: ein <strong>Charter</strong> (Ziel, Umfang, Deliverables), <strong>Lead(s)</strong>, ein Kommunikationskanal und ein <strong>Maintainer-Sponsor</strong>.</p>
+        <p class="muted" style="margin-top:10px;">WG-Ergebnisse fließen als PRs und RFCs in die Haupt-Repositories zurück.</p>
       </div>
 
       <div class="card card-pad">
-        <div class="card-kicker">Decisions</div>
+        <div class="card-kicker">Entscheidungen</div>
         <h3>Lazy Consensus</h3>
-        <p class="muted">
-          Für kleinere Änderungen gilt Lazy Consensus: Vorschlag wird öffentlich gepostet,
-          <strong>5 Werktage</strong> Review-Zeit. Keine begründeten Einwände → angenommen.
-        </p>
-        <p class="muted" style="margin-top: 10px;">
-          Ein „Block“ muss begründet sein und eine alternative Lösung/Anpassung vorschlagen.
-        </p>
+        <p class="muted">Für kleinere Änderungen: Ein Vorschlag wird öffentlich gepostet mit <strong>5 Werktagen</strong> für Review. Keine begründeten Einwände &rarr; angenommen.</p>
+        <p class="muted" style="margin-top:10px;">Ein "Veto" muss begründet sein und eine alternative Lösung oder Anpassung vorschlagen.</p>
       </div>
 
       <div class="card card-pad">
-        <div class="card-kicker">Voting</div>
-        <h3>Quorum & Abstimmungen</h3>
-        <p class="muted">
-          Für größere Entscheidungen (z. B. neue Säule, Breaking Changes, Charter-Änderungen) gilt Voting im TSC:
-        </p>
-        <ul class="list" style="margin-top: 12px;">
-          <li><strong>Quorum:</strong> mindestens <strong>60%</strong> der aktiven TSC-Mitglieder stimmen ab</li>
+        <div class="card-kicker">Abstimmung</div>
+        <h3>Quorum &amp; Abstimmung</h3>
+        <p class="muted">Für größere Entscheidungen (neue Säule, Breaking Changes, Charter-Änderungen) stimmt das TSC ab:</p>
+        <ul class="list" style="margin-top:12px;">
+          <li><strong>Quorum:</strong> mindestens <strong>60 %</strong> der aktiven TSC-Mitglieder</li>
           <li><strong>Mehrheit:</strong> einfache Mehrheit der abgegebenen Stimmen</li>
-          <li><strong>Minimum:</strong> mindestens <strong>3</strong> Stimmen, falls TSC klein ist</li>
-          <li><strong>Conflicts:</strong> bei Interessenkonflikt enthält man sich und wird nicht fürs Quorum gezählt</li>
+          <li><strong>Minimum:</strong> mindestens <strong>3</strong> Stimmen bei kleinem TSC</li>
+          <li><strong>Interessenskonflikte:</strong> Betroffene Mitglieder enthalten sich</li>
         </ul>
       </div>
 
       <div class="card card-pad">
-        <div class="card-kicker">Conduct</div>
+        <div class="card-kicker">Verhalten</div>
         <h3>Erwartungen</h3>
-        <p class="muted">
-          Vendor-neutral handeln, Community-Interessen priorisieren, Entscheidungen dokumentieren,
-          respektvoller Umgang (Code of Conduct) und Security-themen verantwortungsvoll melden.
-        </p>
+        <p class="muted">Vendor-neutral handeln, Community-Interessen priorisieren, Entscheidungen dokumentieren, respektvoll kommunizieren (Code of Conduct) und Sicherheitsthemen verantwortungsvoll über die definierten Kanäle melden.</p>
       </div>
+
     </div>
 
-    <div class="card card-pad" style="margin-top: 18px;">
-      <div class="card-kicker">Templates</div>
-      <h3>Was wird wo entschieden?</h3>
-      <p class="muted" style="max-width: 90ch;">
-        Damit Governance „auditierbar“ bleibt, nutzen wir wiederholbare Templates: RFCs für größere Änderungen,
-        ADRs/Notes für Architekturentscheidungen, Issues/PRs für Umsetzung. Jede Entscheidung referenziert die Diskussion.
-      </p>
-      <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">RFCs & Entscheidungen auf GitHub →</a>
+    <!-- Wo Entscheidungen getroffen werden -->
+    <div class="card card-pad" style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;">
+      <div>
+        <div class="card-kicker" style="margin-bottom:8px;">Templates</div>
+        <h3 style="margin:0 0 8px;">Wo werden Entscheidungen getroffen?</h3>
+        <p class="muted" style="margin:0;max-width:60ch;">RFCs für größere Änderungen &middot; ADRs und Protokolle für Architekturentscheidungen &middot; Issues und PRs für Umsetzung. Jede Entscheidung verweist auf die Diskussion, die zu ihr geführt hat.</p>
+      </div>
+      <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener" style="flex-shrink:0;">RFCs &amp; Entscheidungen auf GitHub &rarr;</a>
     </div>
+
   </div>
 </section>
 
-<!-- Community anchoring -->
-<section class="section section--tight">
+
+<!-- ===================== COMMUNITY ===================== -->
+<section class="section wafpass-section">
   <div class="container">
-    <div class="section-kicker">Community</div>
-    <div class="section-title">Community-Anbindung</div>
-    <p class="muted" style="max-width: 78ch; margin-top: 10px;">
-      Das Projekt startet im Rahmen der Cloud Native Conference und der bestehenden CCC-Community. Ziel ist es,
-      Erfahrung zu bündeln und öffentlich weiterzuentwickeln.
-    </p>
+    <div class="wafpass-grid">
 
-    <div class="grid-3" style="margin-top: 24px;">
-      <div class="card card-pad">
-        <h3>Sessions & BoFs</h3>
-        <p class="muted">Austausch auf Konferenzen – Talks, Panels und Birds-of-a-Feather Sessions.</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Workshops</h3>
-        <p class="muted">Gemeinsame Workshops zu Reifegradmodellen, Scoring und praxisnaher Umsetzung.</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Roadmap- & RFC-Sessions</h3>
-        <p class="muted">Öffentliche Sessions zur Roadmap und zu offenen RFC-Entwürfen.</p>
-      </div>
-    </div>
+      <!-- Copy side -->
+      <div>
+        <div class="kicker">COMMUNITY</div>
+        <h2>Wo die Community zusammenkommt</h2>
+        <p class="lead">Das Projekt entstand im Kontext der Cloud Native Conference und der bestehenden CCC-Community. Ziel: Praxiserfahrung bündeln und offen in der Öffentlichkeit weiterentwickeln.</p>
 
-    <div style="margin-top: 18px;">
-      <a class="btn btn-primary" href="/conferences/">Konferenzen ansehen →</a>
+        <div class="wafpass-features" style="margin-top:28px;">
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="mic" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Sessions &amp; BoFs</div>
+              <p class="wafpass-feat__desc">Austausch auf Konferenzen — Talks, Panels und Birds-of-a-Feather-Sessions, bei denen Engineers reale Herausforderungen und Muster teilen.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="pen-tool" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Workshops</div>
+              <p class="wafpass-feat__desc">Praxisnahe Workshops zu Reifegradmodellen, Scoring und Implementierung — Framework-Konzepte werden zu Engineering-Praxis.</p>
+            </div>
+          </div>
+
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="map" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Roadmap- &amp; RFC-Sessions</div>
+              <p class="wafpass-feat__desc">Öffentliche Sessions zur Roadmap und offenen RFC-Entwürfen — jede Person kann teilnehmen, kommentieren und mitgestalten, was als Nächstes gebaut wird.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-primary" href="{{ '/conferences/' | relative_url }}">Konferenzen ansehen &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Channels card -->
+      <div>
+        <div class="card card-pad">
+          <div class="card-kicker" style="margin-bottom:16px;">Community-Kanäle</div>
+
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="github" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">GitHub</div>
+                <div class="muted" style="font-size:12px;">Issues · PRs · RFCs · Discussions</div>
+              </div>
+              <a href="https://github.com/WAF2p" target="_blank" rel="noopener" style="margin-left:auto;font-size:12px;font-weight:600;color:var(--brand-500);">Öffnen &rarr;</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="message-square" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Slack</div>
+                <div class="muted" style="font-size:12px;">Community-Chat in Echtzeit</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
+              <i data-lucide="calendar" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">Konferenzen</div>
+                <div class="muted" style="font-size:12px;">Talks · Workshops · BoFs</div>
+              </div>
+              <a href="{{ '/conferences/' | relative_url }}" style="margin-left:auto;font-size:12px;font-weight:600;color:var(--brand-500);">Ansehen &rarr;</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
+              <i data-lucide="file-text" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
+              <div>
+                <div style="font-weight:600;font-size:14px;">RFC-Prozess</div>
+                <div class="muted" style="font-size:12px;">Entwurf · Review · Entscheiden · Umsetzen</div>
+              </div>
+              <a href="https://github.com/WAF2p" target="_blank" rel="noopener" style="margin-left:auto;font-size:12px;font-weight:600;color:var(--brand-500);">RFCs &rarr;</a>
+            </div>
+          </div>
+
+          <div class="muted" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(128,128,128,.15);font-size:12px;">
+            Alle Kanäle sind offen. Keine Einladung nötig, um mitzulesen. Beiträge auf jedem Level willkommen.
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- Get involved -->
-<section class="section" id="get-involved">
+
+<!-- ===================== MITMACHEN ===================== -->
+<section class="section pillars-section" id="mitmachen">
   <div class="container">
-    <div class="section-kicker">Mitmachen</div>
-    <div class="section-title">So kannst du dich einbringen</div>
 
-    <div class="grid-3" style="margin-top: 24px;">
-      <div class="card card-pad">
-        <h3>Use Cases teilen</h3>
-        <p class="muted">Welche Herausforderungen habt ihr in Cloud-Projekten? Welche Patterns funktionieren (nicht)?</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Fragen & Kriterien vorschlagen</h3>
-        <p class="muted">Input für Reifegradmodell und Fragebögen: was muss zwingend geprüft werden?</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Review & Feedback</h3>
-        <p class="muted">Review zu Architektur-Patterns und Referenzmodellen: Konsistenz, Praxisnähe, Tradeoffs.</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Dokumentation & Übersetzungen</h3>
-        <p class="muted">Inhalte verbessern, erweitern und in weitere Sprachen übertragen.</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Working Group beitreten</h3>
-        <p class="muted">Hilf bei Säulen, Scoring, Controls oder Referenzarchitekturen – transparent auf GitHub.</p>
-      </div>
-      <div class="card card-pad">
-        <h3>Speaker & Sessions</h3>
-        <p class="muted">Bring Themen in CFPs ein, halte Talks oder moderiere BoFs – Praxisbeispiele sind Gold.</p>
-      </div>
+    <div class="section-header">
+      <div class="kicker">MITMACHEN</div>
+      <h2>Wie du beitragen kannst</h2>
+      <p class="lead muted">Es gibt keine Mindestbeitragsgröße. Jeder geteilte Use Case, jedes gegebene Review, jeder kommentierte RFC bringt das Framework voran.</p>
     </div>
 
-    <div style="margin-top: 18px;">
-      <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">Jetzt beitragen →</a>
+    <div class="pillars-grid" style="grid-template-columns:repeat(3,1fr);">
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Teilen</div>
+        <div class="pillar-card__name">Use Cases teilen</div>
+        <p class="pillar-card__desc">Welche Herausforderungen begegnen dir in Cloud-Projekten? Welche Muster funktionieren — und welche nicht? Praxiserfahrung ist der wertvollste Input, den das Framework bekommen kann.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="list-checks" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Vorschlagen</div>
+        <div class="pillar-card__name">Kriterien &amp; Controls vorschlagen</div>
+        <p class="pillar-card__desc">Input für Reifegradmodelle und Fragebögen: Was muss immer geprüft werden? Neue Controls, Scoring-Kriterien und Assessment-Muster entstehen hier.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="search-check" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Reviewen</div>
+        <div class="pillar-card__name">Reviewen &amp; Feedback geben</div>
+        <p class="pillar-card__desc">Architekturmuster und Referenzmodelle auf Konsistenz, Praxistauglichkeit und Trade-offs prüfen. Offene RFCs brauchen immer durchdachte Engineering-Perspektiven.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="book-open" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Schreiben</div>
+        <div class="pillar-card__name">Dokumentation &amp; Übersetzungen</div>
+        <p class="pillar-card__desc">Inhalte verbessern, erweitern und in weitere Sprachen übersetzen. Gute Dokumentation ist die halbe Miete — und immer gefragt.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Bauen</div>
+        <div class="pillar-card__name">Working Group beitreten</div>
+        <p class="pillar-card__desc">An Säulen, Scoring, Controls oder Referenzarchitekturen mitarbeiten — transparent auf GitHub. Working Groups sind der Weg, wie das Framework in fokussierten, rechenschaftspflichtigen Sprints wächst.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-card__icon"><i data-lucide="presentation" aria-hidden="true"></i></div>
+        <div class="pillar-card__num">Sprechen</div>
+        <div class="pillar-card__name">Speaker &amp; Sessions</div>
+        <p class="pillar-card__desc">Themen zu CFPs einreichen, Talks halten oder BoFs auf Konferenzen moderieren. Öffentlich präsentierte Praxisbeispiele prägen das Framework mehr als jeder RFC allein.</p>
+      </div>
+
     </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">Auf GitHub beitragen &rarr;</a>
+    </div>
+
   </div>
 </section>
+
 
 {% include slack-cta-section.html %}
 
-<!-- Closing CTA -->
-<section class="section section--tight">
-  <div class="container" style="text-align:center">
-    <h2>Foundation-ready heißt: nachvollziehbar, fair, offen</h2>
-    <p class="muted" style="max-width:62ch;margin:0 auto 20px">
-      Governance ist gelebte Praxis. Wir halten Prozesse leichtgewichtig, aber klar – damit WAF++ mit der Community wachsen kann.
-    </p>
-    <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub →</a>
-    <a class="btn" style="margin-left: 10px;" href="/conferences/">Events →</a>
+
+<!-- ===================== CTA ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="home-cta">
+      <div class="kicker" style="margin-bottom:14px">FOUNDATION-READY</div>
+      <h2>Nachvollziehbar. Fair. Offen.</h2>
+      <p class="lead muted">Governance ist gelebte Praxis. Wir halten Prozesse leichtgewichtig, aber klar — damit WAF++ mit der Community wachsen kann, ohne Rechenschaftspflicht zu verlieren.</p>
+      <div class="home-cta-actions">
+        <a class="btn btn-primary" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub &rarr;</a>
+        <a class="btn" href="{{ '/conferences/' | relative_url }}">Events &amp; Konferenzen</a>
+        <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC-Prozess</a>
+      </div>
+    </div>
   </div>
 </section>
 
