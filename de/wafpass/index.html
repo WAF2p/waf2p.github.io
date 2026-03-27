@@ -323,6 +323,79 @@ permalink: /de/wafpass/
 </section>
 
 
+<!-- ===================== WEB-UI-DASHBOARD ===================== -->
+<section class="section wafpass-section" id="dashboard">
+  <div class="container">
+    <div class="wafpass-grid">
+
+      <!-- Copy side -->
+      <div>
+        <div class="kicker">WEB-UI-DASHBOARD</div>
+        <h2>Compliance-Ergebnisse im Browser</h2>
+        <p class="lead">WAFPass v0.2 kommt mit einer eingebauten Web-UI — <code>wafpass ui start</code> ausführen und ein lokales Dashboard aufrufen, das alle Control-Ergebnisse, den Compliance-Status und Control-Details direkt im Browser visualisiert.</p>
+
+        <div class="wafpass-features">
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="list-checks" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Vollständige Compliance-Übersicht</div>
+              <p class="wafpass-feat__desc">Alle Controls, Säulen und Ergebnisse in einer Ansicht — PASS, FAIL, SKIP und WAIVED mit Säulen-Aufschlüsselung und Drill-down-Details für jede Control.</p>
+            </div>
+          </div>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="map-pin" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Deployed Regions</div>
+              <p class="wafpass-feat__desc">Jedes Control-Ergebnis enthält die erkannte Deployment-Region — Datenresidenz und Sovereignty auf einen Blick, direkt im Dashboard sichtbar.</p>
+            </div>
+          </div>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="layout-template" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Mobil-responsiv</div>
+              <p class="wafpass-feat__desc">Vollständig responsives Theme — Compliance-Findings auf jedem Gerät prüfen, vom Laptop bis zum Smartphone, ohne Kontextverlust.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 26px;">
+          <a class="btn btn-primary" href="https://waf2p.dev/demo/" target="_blank" rel="noopener">Live-Demo ansehen →</a>
+          <a class="btn" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">Dashboard-Dokumentation</a>
+        </div>
+      </div>
+
+      <!-- Terminal side -->
+      <div class="wafpass-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="terminal-dot terminal-dot--red"></div>
+            <div class="terminal-dot terminal-dot--yellow"></div>
+            <div class="terminal-dot terminal-dot--green"></div>
+          </div>
+          <div class="terminal-title-bar">wafpass ui</div>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line">
+            <span class="t-prompt">$</span>
+            <span class="t-cmd">wafpass ui start</span>
+          </div>
+          <div class="t-blank"></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Loading controls from ./controls/</span></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Scanning IaC in ./infra/</span></div>
+          <div class="t-blank"></div>
+          <div class="t-line"><span class="t-icon">✓</span><span class="t-pass">Dashboard bereit</span></div>
+          <div class="t-line"><span class="t-desc">→ http://localhost:8080</span></div>
+          <div class="t-sep"></div>
+          <div class="t-line"><span class="t-desc" style="font-size:12px;color:rgba(255,255,255,.5);">47 Controls · 7 Säulen · eu-central-1</span></div>
+          <div class="t-line"><span class="t-desc" style="font-size:12px;color:rgba(255,255,255,.5);">32 PASS · 11 FAIL · 2 SKIP · 2 WAIVED</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 <!-- ===================== FEATURE GRID ===================== -->
 <section class="section">
   <div class="container">
@@ -370,6 +443,48 @@ permalink: /de/wafpass/
 </section>
 
 
+<!-- ===================== INTELLIGENCE-LAYER ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">INTELLIGENCE-LAYER</div>
+      <h2>Mehr als Pass und Fail</h2>
+      <p class="lead muted">WAFPass v0.2 ergänzt Control-Checks um tiefe Compliance-Intelligenz — Blast-Radius-Bewertung, Secret-Erkennung, automatisierte Fixes und Umweltauswirkungen in jedem Scan.</p>
+    </div>
+
+    <div class="grid grid-2">
+
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="refresh-cw" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Auto-Fix-Engine</h3>
+        <p class="muted">Für unterstützte Controls generiert WAFPass konkreten Remediation-Code — nicht nur Hinweistext. Automatische Fixes sind im Dashboard und CLI-Output sichtbar und reduzieren die Zeit von FAIL bis Merge.</p>
+      </div>
+
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="scan-search" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Secret-Scanner</h3>
+        <p class="muted">Erkennt exponierte Secrets in IaC-Konfigurationen — API-Keys, Tokens und Credentials, die in Ressourcendefinitionen oder Variable-Files stecken — mit umsetzbaren Remediation-Hinweisen für jeden Fund.</p>
+      </div>
+
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="activity" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Blast-Radius-Bewertung</h3>
+        <p class="muted">Jede Control trägt einen Blast-Radius-Score, der den potenziellen Ausfallimpakt quantifiziert. Teams können Remediation nach tatsächlichem Risikoexposure priorisieren — nicht nur nach Schweregrad.</p>
+      </div>
+
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="leaf" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Carbon-Footprint &amp; ESG</h3>
+        <p class="muted">Das ESG-Modul schätzt den CO₂-Einfluss jeder Cloud-Workload-Entscheidung. Pro Control erfasst und automatisch in PDF-Compliance-Reports integriert — Nachhaltigkeitsnachweis neben Security-Findings.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
 <!-- ===================== REQUIREMENTS + COMPLIANCE ===================== -->
 <section class="section pillars-section">
   <div class="container">
@@ -386,7 +501,7 @@ permalink: /de/wafpass/
             <div class="wafpass-feat__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
             <div>
               <div class="wafpass-feat__title">Python 3.10+</div>
-              <p class="wafpass-feat__desc">Installation mit <code>pip install -e .</code> oder <code>uv pip install -e .</code> (empfohlen). Keine Cloud-Abhängigkeiten — läuft überall, wo Python läuft.</p>
+              <p class="wafpass-feat__desc">Installation via <a href="https://github.com/WAF2p/pass/releases" target="_blank" rel="noopener">GitHub-Release-Artifact</a> (<code>pip install wafpass-*.whl</code>) oder aus dem Quellcode nach dem Klonen (<code>pip install -e .</code> / <code>uv pip install -e .</code>). Keine Cloud-Abhängigkeiten — läuft überall, wo Python läuft.</p>
             </div>
           </div>
           <div class="wafpass-feat">
@@ -405,7 +520,7 @@ permalink: /de/wafpass/
           </div>
         </div>
 
-        <p class="muted small" style="margin-top: 16px;">PyPI-Verfügbarkeit ist für das v1-Release geplant. Dem Projekt auf GitHub folgen für Updates.</p>
+        <p class="muted small" style="margin-top: 16px;">PyPI befindet sich in Vorbereitung und folgt. Bis dahin via <a href="https://github.com/WAF2p/pass/releases" target="_blank" rel="noopener">GitHub-Release-Artifact</a> oder aus dem Quellcode installieren.</p>
 
         <div class="hero-actions" style="margin-top: 20px;">
           <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">Vollständige Dokumentation</a>
