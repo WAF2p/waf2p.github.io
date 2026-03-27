@@ -3,8 +3,8 @@ name: Sebastian Meyer
 position: Bereichsleiter Agile Entwicklung
 image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/meyer-sebastian-web-0ce01114-1920w.jpg
 github: objectivex
-blurb: Begleitet Entwicklung mitlerweise
-social: Begleitet Entwicklung mittlerweile aus der Managementsicht und ein großes Interesse daran, nicht von einem Anbieter abhängig zu sein.
+blurb: Begleitet Entwicklung mittlerweile aus der Managementsicht und ein großes Interesse daran, nicht von einem Anbieter abhängig zu sein.
+social: 
 - name: Github
   link: https://github.com/objectivex/
   new_window: true
@@ -20,7 +20,7 @@ expertise:
 
 ---
 
-Sebastian Meyer ist verantwortlich für eine Entwicklungsbereich und hat über 10 Jahre Erfahrung in der Entwicklung für und der Nutzung von verteilten, skalierungsfähigen Systemen in Cloud und On-Premise Umgebungen.
+Sebastian Meyer ist verantwortlich für eine Entwicklungsbereich und hat über 10 Jahre Erfahrung in der Entwicklung und der Nutzung von verteilten, skalierungsfähigen Systemen in Cloud und On-Premise Umgebungen.
 
 ### Technische Expertise
 Sebastian verfügt über Kenntnisse und Erfahrungen in der Entwicklung von skalierbaren und entkoppelten Systemen. Er wirkt aus der strategischen Management-Rolle auf den Auf- und Ausbau von  Methoden und Tools für die Entwicklung von Anwendungslandschaften, deren Kopplung und den Betrieb.
