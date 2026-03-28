@@ -62,11 +62,15 @@ permalink: /changelog/
       <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
       <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
       <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
+      <input type="radio" name="cl-tab" id="cl-tab-dash" class="cl-radio">
+      <input type="radio" name="cl-tab" id="cl-tab-srv" class="cl-radio">
 
       <nav class="cl-tab-nav">
         <label for="cl-tab-fw">Framework</label>
         <label for="cl-tab-mkt">Marketing Site</label>
         <label for="cl-tab-pass">WAFPass</label>
+        <label for="cl-tab-dash">WAFPass Dashboard</label>
+        <label for="cl-tab-srv">WAFPass Server</label>
       </nav>
 
       <!-- Framework pane -->
@@ -159,6 +163,74 @@ permalink: /changelog/
 
         <p class="muted" style="font-size:0.85rem;margin-top:8px;">
           Full history: <a href="https://github.com/waf2p/pass/commits/main" target="_blank" rel="noopener">github.com/waf2p/pass</a>
+        </p>
+      </div>
+
+      <!-- WAFPass Dashboard pane -->
+      <div class="cl-pane" id="cl-pane-dash">
+
+        <div class="cl-notice">
+          <span style="font-size:1.1rem;">⚠️</span>
+          <div>
+            <strong>Public beta</strong> — WAFPass Dashboard is the React / Vite SPA companion to the WAFPass CLI.
+            It connects to wafpass-server and visualises control results, compliance state, exploit paths, and Terraform plan changes.
+          </div>
+        </div>
+
+        {% for group in site.data.changelog_wafpass_dashboard %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_en }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/wafpass-dashboard/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
+          Full history: <a href="https://github.com/waf2p/wafpass-dashboard/commits/main" target="_blank" rel="noopener">github.com/waf2p/wafpass-dashboard</a>
+        </p>
+      </div>
+
+      <!-- WAFPass Server pane -->
+      <div class="cl-pane" id="cl-pane-srv">
+
+        <div class="cl-notice">
+          <span style="font-size:1.1rem;">⚠️</span>
+          <div>
+            <strong>Public beta</strong> — WAFPass Server is the FastAPI / PostgreSQL persistence layer for the WAFPass stack.
+            It stores run results, control metadata, and Terraform plan changes, and exposes a REST API consumed by wafpass-dashboard.
+          </div>
+        </div>
+
+        {% for group in site.data.changelog_wafpass_server %}
+        <div class="cl-group">
+          <div class="cl-group-header">
+            <span class="cl-group-label">{{ group.group_en }}</span>
+            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
+            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
+          </div>
+          <div class="cl-entries">
+            {% for change in group.changes %}
+            <div class="cl-entry">
+              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
+              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/wafpass-server/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
+          Full history: <a href="https://github.com/waf2p/wafpass-server/commits/main" target="_blank" rel="noopener">github.com/waf2p/wafpass-server</a>
         </p>
       </div>
 
