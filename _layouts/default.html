@@ -40,7 +40,40 @@
       document.addEventListener("DOMContentLoaded", function () {
         if (window.lucide) { window.lucide.createIcons(); }
 
-        // Polyfill the 'github' icon (removed from Lucide - brand icons policy)
+        // Polyfill brand icons removed from Lucide
+        // LinkedIn
+        document.querySelectorAll('[data-lucide="linkedin"]').forEach(function(el) {
+          var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('width', '24');
+          svg.setAttribute('height', '24');
+          svg.setAttribute('viewBox', '0 0 24 24');
+          svg.setAttribute('fill', 'none');
+          svg.setAttribute('stroke', 'currentColor');
+          svg.setAttribute('stroke-width', '2');
+          svg.setAttribute('stroke-linecap', 'round');
+          svg.setAttribute('stroke-linejoin', 'round');
+          for (var i = 0; i < el.attributes.length; i++) {
+            var attr = el.attributes[i];
+            if (attr.name !== 'data-lucide') svg.setAttribute(attr.name, attr.value);
+          }
+          var p1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          p1.setAttribute('d', 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z');
+          var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('width', '4');
+          rect.setAttribute('height', '12');
+          rect.setAttribute('x', '2');
+          rect.setAttribute('y', '9');
+          var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          circle.setAttribute('cx', '4');
+          circle.setAttribute('cy', '4');
+          circle.setAttribute('r', '2');
+          svg.appendChild(p1);
+          svg.appendChild(rect);
+          svg.appendChild(circle);
+          if (el.parentNode) el.parentNode.replaceChild(svg, el);
+        });
+
+        // GitHub
         document.querySelectorAll('[data-lucide="github"]').forEach(function(el) {
           var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
           svg.setAttribute('width', '24');

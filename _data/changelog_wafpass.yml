@@ -5,6 +5,33 @@
 
 - group_en: "March 2026"
   group_de: "März 2026"
+  date: "2026-03-29"
+  beta: true
+  changes:
+    - type: new
+      text_en: "wafpass control — new subcommand group for authoring, validating, and managing WAF++ controls directly from the CLI"
+      text_de: "wafpass control — neue Subcommand-Gruppe zum Erstellen, Validieren und Verwalten von WAF++-Controls direkt aus dem CLI"
+    - type: new
+      text_en: "wafpass control generate — interactive 7-step wizard to author a new WAF++ control: describe the requirement, classify (pillar, severity, type), define checks, preview and edit (YAML + $EDITOR), validate, export (YAML control + Checkov Python stub), and optionally push to wafpass-server; also supports a non-interactive --non-interactive mode via JSON/YAML spec file"
+      text_de: "wafpass control generate — interaktiver 7-Schritte-Assistent zum Erstellen neuer WAF++-Controls: Anforderung beschreiben, klassifizieren (Pillar, Schweregrad, Typ), Checks definieren, Vorschau und Bearbeiten (YAML + $EDITOR), validieren, exportieren (YAML-Control + Checkov-Python-Stub) und optional an wafpass-server pushen; unterstützt auch den nicht-interaktiven Modus via JSON/YAML-Spec-Datei (--non-interactive)"
+    - type: new
+      text_en: "wafpass control validate — validate any YAML control file against the WizardControl Pydantic schema; reports id, pillar, and severity on success or detailed field-level errors on failure"
+      text_de: "wafpass control validate — beliebige YAML-Control-Datei gegen das WizardControl-Pydantic-Schema validieren; gibt bei Erfolg id, Pillar und Schweregrad aus, bei Fehler detaillierte Feldebenen-Fehler"
+    - type: new
+      text_en: "wafpass control list — list all controls found under a controls directory, rendered as a table with id, pillar, severity, and type"
+      text_de: "wafpass control list — alle Controls im Controls-Verzeichnis auflisten, als Tabelle mit id, Pillar, Schweregrad und Typ dargestellt"
+    - type: new
+      text_en: "wafpass control show — print the full YAML of a single control by ID"
+      text_de: "wafpass control show — vollständiges YAML eines einzelnen Controls anhand der ID ausgeben"
+    - type: new
+      text_en: "Checkov integration — controls can now target the 'checkov' engine; wafpass control generate exports a Python Checkov check stub alongside the YAML control file, enabling policy-as-code enforcement via Checkov pipelines"
+      text_de: "Checkov-Integration — Controls können jetzt den 'checkov'-Engine als Ziel angeben; wafpass control generate exportiert einen Python-Checkov-Check-Stub neben der YAML-Control-Datei und ermöglicht so Policy-as-Code-Durchsetzung über Checkov-Pipelines"
+    - type: new
+      text_en: "control_schema.py — Pydantic schema (WizardControl, WizardCheck) as single source of truth for validating wizard-generated controls; defines allowed pillars, severities, types, and engines (terraform, checkov, manual)"
+      text_de: "control_schema.py — Pydantic-Schema (WizardControl, WizardCheck) als Single Source of Truth für die Validierung wizard-generierter Controls; definiert erlaubte Pillars, Schweregrade, Typen und Engines (terraform, checkov, manual)"
+
+- group_en: "March 2026"
+  group_de: "März 2026"
   version: "v0.3.0"
   date: "2026-03-28"
   beta: true
