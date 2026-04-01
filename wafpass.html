@@ -15,7 +15,7 @@ permalink: /wafpass/
     <div>
       <div class="home-badge">
         <span class="home-badge__dot"></span>
-        WAF++ CLI &middot; Beta
+        WAF++ CLI &middot; v0.3.0 &middot; Beta
       </div>
       <h1 class="home-h1">Validate IaC.<br><span class="text-gradient">Ship with confidence.</span></h1>
       <p class="lead">WAFPass automatically checks your infrastructure-as-code against WAF++ controls — Terraform, AWS CDK, and more. Static analysis. No cloud credentials. No runtime state. Results in seconds.</p>
@@ -323,37 +323,165 @@ permalink: /wafpass/
 </section>
 
 
-<!-- ===================== WEB UI DASHBOARD ===================== -->
+<!-- ===================== ECOSYSTEM ===================== -->
+<section class="section pillars-section" id="ecosystem">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="kicker">THE WAFPASS ECOSYSTEM</div>
+      <h2>Three tools. One stack.</h2>
+      <p class="lead muted">WAFPass v0.3.0 introduced an architectural split. What started as a single CLI is now a modular ecosystem — each component has a clear, independent responsibility and can be deployed standalone or together.</p>
+    </div>
+
+    <div style="display:grid;gap:24px;margin-top:32px;">
+
+      <!-- wafpass CLI -->
+      <div class="card card-pad" style="display:grid;grid-template-columns:56px 1fr;gap:24px;align-items:flex-start;">
+        <div style="width:56px;height:56px;border-radius:14px;background:color-mix(in srgb,var(--brand-500) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--brand-500) 22%,var(--border));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="terminal" style="width:26px;height:26px;color:var(--brand-500);" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <h3 style="margin:0;">wafpass</h3>
+            <span style="font-size:12px;font-weight:700;padding:2px 9px;border-radius:5px;background:color-mix(in srgb,var(--brand-500) 15%,var(--surface));color:var(--brand-500);">CLI · Evaluation Engine</span>
+            <span style="font-size:12px;font-weight:600;color:var(--muted);">Python · Apache 2.0</span>
+          </div>
+          <p class="muted" style="margin:0 0 12px;">The core of the ecosystem. Parses IaC (Terraform, AWS CDK), evaluates YAML controls across all 7 WAF++ pillars, and produces structured results. Every other component in the stack consumes what the CLI produces. Runs entirely offline — no cloud credentials, no runtime state.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;">
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:var(--brand-500);" aria-hidden="true"></i>IaC parsing (HCL2, CDK synth output)</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:var(--brand-500);" aria-hidden="true"></i>20+ assertion operators</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:var(--brand-500);" aria-hidden="true"></i>Terraform plan dry-run analysis</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:var(--brand-500);" aria-hidden="true"></i>PDF reports, secret scanner, blast radius</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:var(--brand-500);" aria-hidden="true"></i>ESG / carbon footprint module</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:var(--brand-500);" aria-hidden="true"></i>CI/CD ready (GitHub Actions, GitLab CI)</span>
+          </div>
+          <div style="margin-top:14px;">
+            <a class="btn" href="https://github.com/waf2p/pass" target="_blank" rel="noopener">github.com/waf2p/pass</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- wafpass-dashboard -->
+      <div class="card card-pad" style="display:grid;grid-template-columns:56px 1fr;gap:24px;align-items:flex-start;">
+        <div style="width:56px;height:56px;border-radius:14px;background:color-mix(in srgb,#2563eb 12%,var(--surface));border:1px solid color-mix(in srgb,#2563eb 22%,var(--border));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="layout-dashboard" style="width:26px;height:26px;color:#2563eb;" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <h3 style="margin:0;">wafpass-dashboard</h3>
+            <span style="font-size:12px;font-weight:700;padding:2px 9px;border-radius:5px;background:color-mix(in srgb,#2563eb 15%,var(--surface));color:#2563eb;">React / Vite SPA</span>
+            <span style="font-size:12px;font-weight:600;color:var(--muted);">Docker + nginx · Apache 2.0</span>
+          </div>
+          <p class="muted" style="margin:0 0 12px;">The browser-based visualisation layer. Connects to wafpass-server and renders control results, compliance state, exploit paths, Terraform plan changes, and run history. Deployed as a self-contained Docker container served behind nginx — works standalone or as part of the full stack.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;">
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#2563eb;" aria-hidden="true"></i>10 dedicated pages (Dashboard, Compliance, Controls, Findings, Regions, Waivers, Sandbox, Settings, Exploit Paths, Run Scan)</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#2563eb;" aria-hidden="true"></i>Terraform plan changes visualisation</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#2563eb;" aria-hidden="true"></i>Compliance score timeline &amp; run comparison</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#2563eb;" aria-hidden="true"></i>Exploit path visualisation with severity badges</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#2563eb;" aria-hidden="true"></i>In-app changelog &amp; installation guide</span>
+          </div>
+          <div style="margin-top:14px;">
+            <a class="btn" href="https://github.com/waf2p/wafpass-dashboard" target="_blank" rel="noopener">github.com/waf2p/wafpass-dashboard</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- wafpass-server -->
+      <div class="card card-pad" style="display:grid;grid-template-columns:56px 1fr;gap:24px;align-items:flex-start;">
+        <div style="width:56px;height:56px;border-radius:14px;background:color-mix(in srgb,#16a34a 12%,var(--surface));border:1px solid color-mix(in srgb,#16a34a 22%,var(--border));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i data-lucide="database" style="width:26px;height:26px;color:#16a34a;" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <h3 style="margin:0;">wafpass-server</h3>
+            <span style="font-size:12px;font-weight:700;padding:2px 9px;border-radius:5px;background:color-mix(in srgb,#16a34a 15%,var(--surface));color:#16a34a;">FastAPI / PostgreSQL</span>
+            <span style="font-size:12px;font-weight:600;color:var(--muted);">Docker · Apache 2.0</span>
+          </div>
+          <p class="muted" style="margin:0 0 12px;">The persistence and API layer. Stores run results, control metadata, and Terraform plan changes in PostgreSQL. Exposes a typed REST API (with OpenAPI docs) consumed by wafpass-dashboard. Alembic migrations run automatically on container startup — no manual schema management required.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;">
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#16a34a;" aria-hidden="true"></i>Runs CRUD API with full run &amp; control metadata</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#16a34a;" aria-hidden="true"></i>Terraform plan changes schema &amp; REST endpoints</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#16a34a;" aria-hidden="true"></i>Alembic migrations — automatic on container start</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#16a34a;" aria-hidden="true"></i>OpenAPI docs at <code>/docs</code></span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><i data-lucide="check" style="width:13px;height:13px;color:#16a34a;" aria-hidden="true"></i>Production-ready Docker image with GitHub Actions release workflow</span>
+          </div>
+          <div style="margin-top:14px;">
+            <a class="btn" href="https://github.com/waf2p/wafpass-server" target="_blank" rel="noopener">github.com/waf2p/wafpass-server</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Architecture diagram (text) -->
+    <div class="card card-pad" style="margin-top:24px;text-align:center;">
+      <div class="card-kicker" style="margin-bottom:16px;">How the components connect</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;font-size:14px;font-weight:600;">
+        <div style="padding:10px 20px;border-radius:10px;background:color-mix(in srgb,var(--brand-500) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--brand-500) 22%,var(--border));">
+          <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;">Your IaC</div>
+          <div>Terraform / CDK</div>
+        </div>
+        <div style="padding:0 10px;color:var(--muted);">→</div>
+        <div style="padding:10px 20px;border-radius:10px;background:color-mix(in srgb,var(--brand-500) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--brand-500) 22%,var(--border));">
+          <div style="font-size:11px;font-weight:600;color:var(--brand-500);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;">CLI</div>
+          <div>wafpass</div>
+        </div>
+        <div style="padding:0 10px;color:var(--muted);">→</div>
+        <div style="padding:10px 20px;border-radius:10px;background:color-mix(in srgb,#16a34a 12%,var(--surface));border:1px solid color-mix(in srgb,#16a34a 22%,var(--border));">
+          <div style="font-size:11px;font-weight:600;color:#16a34a;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;">API</div>
+          <div>wafpass-server</div>
+        </div>
+        <div style="padding:0 10px;color:var(--muted);">→</div>
+        <div style="padding:10px 20px;border-radius:10px;background:color-mix(in srgb,#2563eb 12%,var(--surface));border:1px solid color-mix(in srgb,#2563eb 22%,var(--border));">
+          <div style="font-size:11px;font-weight:600;color:#2563eb;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;">UI</div>
+          <div>wafpass-dashboard</div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0;">Each component is independently deployable. Use just the CLI for CI/CD pipelines. Add the server and dashboard when you want persistent history and visual exploration.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== DASHBOARD & SERVER STACK ===================== -->
 <section class="section wafpass-section" id="dashboard">
   <div class="container">
     <div class="wafpass-grid">
 
       <!-- Copy side -->
       <div>
-        <div class="kicker">WEB UI DASHBOARD</div>
-        <h2>Compliance results in your browser</h2>
-        <p class="lead">WAFPass v0.2 ships with a built-in web UI — run <code>wafpass ui start</code> to launch a local dashboard that visualises all control results, compliance state, and per-control details without leaving your machine.</p>
+        <div class="kicker">DASHBOARD &amp; SERVER STACK</div>
+        <h2>Full-stack visualisation layer</h2>
+        <p class="lead">WAFPass v0.3.0 introduces a three-component architecture: the CLI remains the evaluation engine, <strong>wafpass-dashboard</strong> (React / Vite SPA, Docker + nginx) visualises results in the browser, and <strong>wafpass-server</strong> (FastAPI / PostgreSQL) persists runs, controls, and Terraform plan data via a REST API.</p>
 
         <div class="wafpass-features">
           <div class="wafpass-feat">
-            <div class="wafpass-feat__icon"><i data-lucide="list-checks" aria-hidden="true"></i></div>
+            <div class="wafpass-feat__icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></div>
             <div>
-              <div class="wafpass-feat__title">Full compliance overview</div>
-              <p class="wafpass-feat__desc">All controls, pillars, and outcomes in one view — PASS, FAIL, SKIP, and WAIVED with per-pillar breakdowns and drill-down detail for every control.</p>
+              <div class="wafpass-feat__title">10-page SPA</div>
+              <p class="wafpass-feat__desc">Dashboard, Compliance, Controls, Findings, Regions, Risk Acceptance (Waivers), Sandbox, Settings, Exploit Paths, and Run Scan — each a dedicated page with filtering, drill-down, and a compliance score timeline for run-over-run comparison.</p>
             </div>
           </div>
           <div class="wafpass-feat">
-            <div class="wafpass-feat__icon"><i data-lucide="map-pin" aria-hidden="true"></i></div>
+            <div class="wafpass-feat__icon"><i data-lucide="file-diff" aria-hidden="true"></i></div>
             <div>
-              <div class="wafpass-feat__title">Deployed regions</div>
-              <p class="wafpass-feat__desc">Each control result includes the detected deployed region — data residency and sovereignty visible at a glance, directly in the dashboard.</p>
+              <div class="wafpass-feat__title">Terraform plan changes page</div>
+              <p class="wafpass-feat__desc">Visualises resource-level changes from a Terraform plan dry-run before <code>terraform apply</code> — security, compliance, and blast-radius impact surfaced before any change lands in your environment.</p>
             </div>
           </div>
           <div class="wafpass-feat">
-            <div class="wafpass-feat__icon"><i data-lucide="layout-template" aria-hidden="true"></i></div>
+            <div class="wafpass-feat__icon"><i data-lucide="shield-alert" aria-hidden="true"></i></div>
             <div>
-              <div class="wafpass-feat__title">Mobile responsive</div>
-              <p class="wafpass-feat__desc">Fully responsive theme — review compliance findings on any device, from a laptop to a phone, without losing context.</p>
+              <div class="wafpass-feat__title">Exploit paths visualisation</div>
+              <p class="wafpass-feat__desc">Attack chains that lead to a failing control state are visualised with severity badges and direct remediation links — making the path from misconfiguration to exploit immediately actionable.</p>
+            </div>
+          </div>
+          <div class="wafpass-feat">
+            <div class="wafpass-feat__icon"><i data-lucide="database" aria-hidden="true"></i></div>
+            <div>
+              <div class="wafpass-feat__title">Persistent server layer</div>
+              <p class="wafpass-feat__desc">wafpass-server stores run results, control metadata, and Terraform plan changes in PostgreSQL via Alembic-managed migrations. Containerised with automatic migration on startup — ready for production deployment alongside the dashboard.</p>
             </div>
           </div>
         </div>
@@ -372,20 +500,22 @@ permalink: /wafpass/
             <div class="terminal-dot terminal-dot--yellow"></div>
             <div class="terminal-dot terminal-dot--green"></div>
           </div>
-          <div class="terminal-title-bar">wafpass ui</div>
+          <div class="terminal-title-bar">wafpass stack</div>
         </div>
         <div class="terminal-body">
           <div class="t-line">
             <span class="t-prompt">$</span>
-            <span class="t-cmd">wafpass ui start</span>
+            <span class="t-cmd">docker compose up -d</span>
           </div>
           <div class="t-blank"></div>
-          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Loading controls from ./controls/</span></div>
-          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Scanning IaC in ./infra/</span></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Starting wafpass-server ...</span></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Running Alembic migrations ...</span></div>
+          <div class="t-line"><span class="t-desc" style="color:rgba(255,255,255,.28);">Starting wafpass-dashboard ...</span></div>
           <div class="t-blank"></div>
-          <div class="t-line"><span class="t-icon">✓</span><span class="t-pass">Dashboard running</span></div>
-          <div class="t-line"><span class="t-desc">→ http://localhost:8080</span></div>
+          <div class="t-line"><span class="t-icon">✓</span><span class="t-pass">wafpass-server</span><span class="t-desc"> → http://localhost:8000</span></div>
+          <div class="t-line"><span class="t-icon">✓</span><span class="t-pass">wafpass-dashboard</span><span class="t-desc"> → http://localhost:3000</span></div>
           <div class="t-sep"></div>
+          <div class="t-line"><span class="t-desc" style="font-size:12px;color:rgba(255,255,255,.5);">API docs: http://localhost:8000/docs</span></div>
           <div class="t-line"><span class="t-desc" style="font-size:12px;color:rgba(255,255,255,.5);">47 controls · 7 pillars · eu-central-1</span></div>
           <div class="t-line"><span class="t-desc" style="font-size:12px;color:rgba(255,255,255,.5);">32 PASS · 11 FAIL · 2 SKIP · 2 WAIVED</span></div>
         </div>
@@ -437,6 +567,16 @@ permalink: /wafpass/
         <h3>PDF Compliance Reports</h3>
         <p class="muted">Generate a shareable PDF with <code>--output pdf</code>. Includes findings, severity, remediation, and a waived-controls table — ready for auditors, ADRs, or security reviews.</p>
       </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="tag" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Policy Version Tracking</h3>
+        <p class="muted">Each control carries a policy version field. WAFPass detects stale controls that are out of date against the current framework version — keeping your control library in sync as WAF++ evolves.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="settings-2" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Settings Persistence</h3>
+        <p class="muted">CLI and dashboard settings — API URL, report preferences, thresholds — are persisted across sessions. Configure once per environment and never repeat yourself between runs.</p>
+      </div>
     </div>
 
   </div>
@@ -450,10 +590,22 @@ permalink: /wafpass/
     <div class="section-header">
       <div class="kicker">INTELLIGENCE LAYER</div>
       <h2>Beyond pass and fail</h2>
-      <p class="lead muted">WAFPass v0.2 adds deep compliance intelligence on top of control checks — blast radius scoring, secret detection, automated fixes, and environmental impact embedded into every scan.</p>
+      <p class="lead muted">WAFPass v0.3.0 layers deep compliance intelligence on top of control checks — Terraform plan dry-run analysis, exploit path tracking, blast radius scoring, secret detection, automated fixes, policy version tracking, and environmental impact embedded into every scan.</p>
     </div>
 
-    <div class="grid grid-2">
+    <div class="grid grid-3">
+
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="file-diff" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Terraform Plan Analysis</h3>
+        <p class="muted">WAFPass parses Terraform plan output and evaluates the security, compliance, and blast-radius impact of pending changes — before <code>terraform apply</code> runs. Catch regressions in your plan, not your production environment.</p>
+      </div>
+
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="route" style="width:24px;height:24px;" aria-hidden="true"></i></div>
+        <h3>Exploit Path Analysis</h3>
+        <p class="muted">Controls can expose the full attack chain that leads to a failing state — not just a binary result. Exploit paths are visualised in the dashboard with severity badges and direct remediation links, making risk prioritisation concrete.</p>
+      </div>
 
       <div class="card card-pad">
         <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="refresh-cw" style="width:24px;height:24px;" aria-hidden="true"></i></div>
@@ -470,7 +622,7 @@ permalink: /wafpass/
       <div class="card card-pad">
         <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="activity" style="width:24px;height:24px;" aria-hidden="true"></i></div>
         <h3>Blast Radius Assessment</h3>
-        <p class="muted">Each control now carries a blast radius score quantifying the potential failure impact. Teams can prioritise remediation by actual risk exposure, not just control severity or category.</p>
+        <p class="muted">Each control carries a blast radius score quantifying the potential failure impact. Teams can prioritise remediation by actual risk exposure, not just control severity or category.</p>
       </div>
 
       <div class="card card-pad">
@@ -520,7 +672,7 @@ permalink: /wafpass/
           </div>
         </div>
 
-        <p class="muted small" style="margin-top: 16px;">PyPI is in preparation and will follow. For now, install via a <a href="https://github.com/WAF2p/pass/releases" target="_blank" rel="noopener">GitHub release artifact</a> or from source.</p>
+        <p class="muted small" style="margin-top: 16px;">PyPI will be available with v1.0. For now, install via a <a href="https://github.com/WAF2p/pass/releases" target="_blank" rel="noopener">GitHub release artifact</a> (latest: v0.3.0) or from source.</p>
 
         <div class="hero-actions" style="margin-top: 20px;">
           <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0/resources/wafpass.html' | relative_url }}">View full documentation</a>

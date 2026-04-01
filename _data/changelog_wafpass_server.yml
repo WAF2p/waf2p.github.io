@@ -3,6 +3,24 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "March 2026"
+  group_de: "März 2026"
+  date: "2026-03-29"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Controls REST API — new /controls router with POST (idempotent upsert by id), GET (list with pillar and severity filtering, paginated), and DELETE endpoints; allows custom controls authored via wafpass control generate to be stored and queried server-side"
+      text_de: "Controls REST API — neuer /controls-Router mit POST (idempotenter Upsert nach id), GET (Liste mit Pillar- und Schweregrad-Filter, paginiert) und DELETE-Endpunkten; ermöglicht die server-seitige Speicherung und Abfrage von über wafpass control generate erstellten Custom-Controls"
+    - type: new
+      text_en: "Control database model — new Control ORM model with fields for id, pillar, severity, type, description, checks (JSON), source, created_at, and updated_at"
+      text_de: "Control-Datenbankmodell — neues Control-ORM-Modell mit Feldern für id, Pillar, Schweregrad, Typ, Beschreibung, Checks (JSON), Quelle, created_at und updated_at"
+    - type: infra
+      text_en: "Alembic migration 0005_add_controls — adds the controls table to the PostgreSQL schema; applied automatically on container startup via the Docker entrypoint"
+      text_de: "Alembic-Migration 0005_add_controls — fügt die controls-Tabelle dem PostgreSQL-Schema hinzu; wird beim Container-Start automatisch über den Docker-Entrypoint angewendet"
+    - type: new
+      text_en: "ControlIn / ControlOut schemas — typed Pydantic request and response models for the controls API, with envelope wrapping consistent with the rest of the API surface"
+      text_de: "ControlIn / ControlOut Schemas — typisierte Pydantic Request- und Response-Modelle für die Controls-API, mit Envelope-Wrapping konsistent zur restlichen API-Oberfläche"
+
 - group_en: "March 2026 — Initial Release"
   group_de: "März 2026 — Erste Version"
   version: "v0.3.0"
