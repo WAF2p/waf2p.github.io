@@ -3,6 +3,31 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v0.4.0"
+  date: "2026-04-08"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Secret findings persistence — new secret_findings JSONB column on the Run model stores hardcoded credential findings produced by the wafpass secret scanner; Alembic migration 0006_add_secret_findings applies automatically on container start"
+      text_de: "Secret-Findings-Persistenz — neue secret_findings-JSONB-Spalte im Run-Modell speichert Hardcoded-Credential-Findings des wafpass Secret Scanners; Alembic-Migration 0006_add_secret_findings wird automatisch beim Container-Start angewendet"
+    - type: new
+      text_en: "Waivers REST API — new /waivers router with GET (list, project-filtered), PUT (idempotent upsert by control ID), and DELETE; waivers created locally in the dashboard are synced to the server when a connection is available"
+      text_de: "Waivers REST API — neuer /waivers-Router mit GET (Liste, projektgefiltert), PUT (idempotenter Upsert nach Control-ID) und DELETE; lokal im Dashboard erstellte Waivers werden mit dem Server synchronisiert, sobald eine Verbindung besteht"
+    - type: new
+      text_en: "Risk acceptances REST API — new /risks router with GET, PUT (upsert with approver, RFC, Jira link, risk level, residual risk, expiry), and DELETE; formally accepted risks are stored with full traceability metadata"
+      text_de: "Risk-Acceptances REST API — neuer /risks-Router mit GET, PUT (Upsert mit Genehmiger, RFC, Jira-Link, Risikolevel, Restrisiko, Ablaufdatum) und DELETE; formal akzeptierte Risiken werden mit vollständigen Rückverfolgbarkeits-Metadaten gespeichert"
+    - type: infra
+      text_en: "Alembic migration 0007_add_waivers_risks — adds waivers and risk_acceptances tables with fields for reason, owner, expires, project, approver, rfc, jira_link, risk_level, residual_risk, and accepted_at"
+      text_de: "Alembic-Migration 0007_add_waivers_risks — fügt waivers- und risk_acceptances-Tabellen mit Feldern für reason, owner, expires, project, approver, rfc, jira_link, risk_level, residual_risk und accepted_at hinzu"
+    - type: new
+      text_en: "Sandbox deep link support — sandbox endpoint enriched to support deep-linkable evaluation sessions; dashboard can generate a shareable URL for any sandbox run result"
+      text_de: "Sandbox-Deep-Link-Unterstützung — Sandbox-Endpunkt erweitert, um Deep-Links für Evaluierungssessions zu unterstützen; das Dashboard kann eine teilbare URL für jedes Sandbox-Run-Ergebnis generieren"
+    - type: docs
+      text_en: "TECH.md added — technical reference covering request lifecycle, database session management, JSONB storage strategy, ORM model design decisions, and migration history"
+      text_de: "TECH.md hinzugefügt — technische Referenz zu Request-Lifecycle, Datenbank-Session-Management, JSONB-Speicherstrategie, ORM-Modell-Designentscheidungen und Migrationshistorie"
+
 - group_en: "March 2026"
   group_de: "März 2026"
   date: "2026-03-29"

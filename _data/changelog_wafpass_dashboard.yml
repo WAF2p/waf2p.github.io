@@ -3,6 +3,64 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v0.4.0"
+  date: "2026-04-08"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Run comparison page (#/diff) — side-by-side finding-level diff between any two stored runs; highlights newly introduced, resolved, and unchanged findings across the run history"
+      text_de: "Run-Vergleichs-Seite (#/diff) — Finding-Level-Diff zwischen zwei beliebigen gespeicherten Runs nebeneinander; hebt neu eingeführte, gelöste und unveränderte Findings über die Run-Historie hervor"
+    - type: new
+      text_en: "Secret Scanner page (#/secrets) — dedicated view for hardcoded credential findings; results are persisted to wafpass-server and shown across sessions; findings include file path, line, secret type, and severity"
+      text_de: "Secret-Scanner-Seite (#/secrets) — dedizierte Ansicht für Hardcoded-Credential-Findings; Ergebnisse werden in wafpass-server gespeichert und sitzungsübergreifend angezeigt; Findings enthalten Dateipfad, Zeile, Secret-Typ und Schweregrad"
+    - type: new
+      text_en: "Module Scores page (#/modules) — per-Terraform-module pass rate breakdown; surfaces which modules contribute most to compliance failures and score regressions"
+      text_de: "Module-Scores-Seite (#/modules) — Pass-Rate-Aufschlüsselung pro Terraform-Modul; zeigt, welche Module am stärksten zu Compliance-Fehlern und Score-Regressionen beitragen"
+    - type: new
+      text_en: "Audit Log page (#/audit) — timestamped event log of all waiver and risk acceptance create/update/delete events; exportable as CSV or JSON; includes first-seen failure tracking per control"
+      text_de: "Audit-Log-Seite (#/audit) — zeitgestempeltes Ereignisprotokoll aller Waiver- und Risk-Acceptance-Erstell-/Aktualisierungs-/Löschereignisse; als CSV oder JSON exportierbar; enthält First-Seen-Failure-Tracking je Control"
+    - type: new
+      text_en: "Changes & Drift page enhancements (#/changes) — new drift detection view alongside the Terraform plan changes view; surfaces controls that changed status between runs without an explicit code change"
+      text_de: "Änderungs- & Drift-Seite erweitert (#/changes) — neue Drift-Erkennungsansicht neben der Terraform-Plan-Änderungsansicht; zeigt Controls, die zwischen Runs ihren Status geändert haben, ohne explizite Code-Änderung"
+    - type: new
+      text_en: "Gap Analysis page (#/gapanalysis) — regulator gap analysis showing the shortest path to full compliance for each supported regulatory framework (SOC2, ISO 27001, PCI-DSS, GDPR, BSI C5, HIPAA, NIS2)"
+      text_de: "Gap-Analysis-Seite (#/gapanalysis) — regulatorische Gap-Analyse mit dem kürzesten Weg zur vollständigen Compliance für jedes unterstützte regulatorische Rahmenwerk (SOC2, ISO 27001, PCI-DSS, DSGVO, BSI C5, HIPAA, NIS2)"
+    - type: new
+      text_en: "Cost Impact page (#/cost) — $/month impact estimate for failing WAF-COST controls; quantifies financial risk of each failing cost control so remediation can be prioritised by business impact"
+      text_de: "Kostenauswirkungs-Seite (#/cost) — $/Monat-Auswirkungsschätzung für fehlschlagende WAF-COST-Controls; quantifiziert das finanzielle Risiko jedes fehlschlagenden Cost-Controls, damit Remediation nach Business-Impact priorisiert werden kann"
+    - type: new
+      text_en: "Waivers page (#/waivers) with server persistence — waivers are stored in wafpass-server via the /waivers API; local waivers are automatically synced to the server when a connection is available (configurable in Settings)"
+      text_de: "Waivers-Seite (#/waivers) mit Server-Persistenz — Waivers werden über die /waivers-API in wafpass-server gespeichert; lokale Waivers werden automatisch mit dem Server synchronisiert, sobald eine Verbindung besteht (konfigurierbar in den Einstellungen)"
+    - type: new
+      text_en: "Risk Acceptance page (#/risk) — formally accept residual risks with approver sign-off, RFC reference, Jira link, risk level, and expiry date; stored in wafpass-server with full traceability"
+      text_de: "Risk-Acceptance-Seite (#/risk) — Restrisiken formal akzeptieren mit Genehmiger-Abzeichnung, RFC-Referenz, Jira-Link, Risikolevel und Ablaufdatum; wird in wafpass-server mit vollständiger Rückverfolgbarkeit gespeichert"
+    - type: new
+      text_en: "Evidence Package page (#/evidence) — generates a self-contained timestamped HTML audit report for auditors; includes passing controls with regulatory mapping, active waivers, risk acceptances, audit event log, and embedded JSON manifest; printable to PDF for submission"
+      text_de: "Evidence-Package-Seite (#/evidence) — erstellt einen eigenständigen zeitgestempelten HTML-Audit-Bericht für Auditoren; enthält bestandene Controls mit regulatorischem Mapping, aktive Waivers, Risk-Acceptances, Audit-Ereignisprotokoll und eingebettetes JSON-Manifest; für die Einreichung als PDF druckbar"
+    - type: new
+      text_en: "Persistent deep links — every page and run combination has a shareable URL; a Copy link button in the header copies the current deep link to clipboard"
+      text_de: "Persistente Deep-Links — jede Seite und Run-Kombination hat eine teilbare URL; ein Copy-Link-Schaltfläche in der Kopfzeile kopiert den aktuellen Deep-Link in die Zwischenablage"
+    - type: new
+      text_en: "Sandbox deep link — sandbox run results can be bookmarked and shared via a stable URL; result state is encoded in the URL for instant replay"
+      text_de: "Sandbox-Deep-Link — Sandbox-Run-Ergebnisse können als Lesezeichen gespeichert und über eine stabile URL geteilt werden; Ergebniszustand wird für sofortige Wiedergabe in der URL kodiert"
+    - type: new
+      text_en: "Findings bulk actions — select multiple findings with checkboxes to waive all selected (shared reason, owner, expiry) or export selection as CSV; per-filtered-view CSV export always available in the filter bar"
+      text_de: "Findings-Massenaktionen — mehrere Findings per Checkbox auswählen, um alle Ausgewählten zu waiven (gemeinsamer Grund, Eigentümer, Ablauf) oder als CSV zu exportieren; CSV-Export der gefilterten Ansicht immer in der Filterleiste verfügbar"
+    - type: improvement
+      text_en: "Settings: maturity level presets — five presets (L1 Foundational through L5 Excellence) configure active controls, pillars, and feature toggles; runtime server URL override stored in localStorage without rebuild"
+      text_de: "Einstellungen: Reifegradvoreinstellungen — fünf Voreinstellungen (L1 Foundational bis L5 Excellence) konfigurieren aktive Controls, Pillars und Feature-Toggles; Runtime-Server-URL-Überschreibung in localStorage ohne Neubau gespeichert"
+    - type: improvement
+      text_en: "Empty state guidance — all pages now show contextual guidance when no data is available, directing users to run a scan or configure the server connection"
+      text_de: "Leerstatusführung — alle Seiten zeigen jetzt kontextbezogene Hinweise, wenn keine Daten verfügbar sind, und leiten Benutzer zum Ausführen eines Scans oder zur Konfiguration der Serververbindung"
+    - type: fix
+      text_en: "Blast radius and dependency graph view corrected — rendering edge cases with circular dependencies and missing nodes resolved"
+      text_de: "Blast-Radius- und Abhängigkeitsgraph-Ansicht korrigiert — Rendering-Randfälle mit zirkulären Abhängigkeiten und fehlenden Knoten behoben"
+    - type: docs
+      text_en: "TECH.md added — documents routing implementation, page inventory, maturity level configuration, LocalStorage schema, and component contribution guidance"
+      text_de: "TECH.md hinzugefügt — dokumentiert Routing-Implementierung, Seiteninventar, Reifegradkonfiguration, LocalStorage-Schema und Komponentenbeitragshinweise"
+
 - group_en: "March 2026"
   group_de: "März 2026"
   date: "2026-03-29"
