@@ -1,0 +1,75 @@
+<!-- WAF++ 1.0 + WAFPass 1.0 Release Announcement Modal -->
+<dialog id="release-modal" class="release-modal" aria-labelledby="release-modal-title">
+  <div class="release-modal__backdrop" id="release-modal-backdrop"></div>
+  <div class="release-modal__panel" role="document">
+
+    <button class="release-modal__close" id="release-modal-close" aria-label="{% if lang == 'de' %}Schließen{% else %}Close announcement{% endif %}" type="button">
+      <i data-lucide="x" aria-hidden="true"></i>
+    </button>
+
+    <div class="release-modal__kicker">
+      {% if lang == 'de' %}KOMMT BALD &middot; 12. MAI 2026{% else %}COMING SOON &middot; 12 MAY 2026{% endif %}
+    </div>
+
+    <div class="release-modal__headline" id="release-modal-title">
+      WAF++ <span class="release-modal__v1">1.0</span>
+    </div>
+
+    <div class="release-modal__sub">
+      {% if lang == 'de' %}inkl. WAFPass 1.0{% else %}incl. WAFPass 1.0{% endif %}
+    </div>
+
+    <p class="release-modal__tagline">
+      {% if lang == 'de' %}
+        Die erste stabile Version des WAF++ Frameworks und der WAFPass CLI.
+      {% else %}
+        The first stable release of the WAF++ Framework and WAFPass CLI.
+      {% endif %}
+    </p>
+
+    <p class="release-modal__context">
+      {% if lang == 'de' %}
+        Veröffentlicht am Vorabend der
+        <a href="https://www.cloudnativeconference.de/" target="_blank" rel="noopener noreferrer" class="release-modal__conf-link">Cloud Native Conference DE</a>
+        &mdash; <strong>12. Mai 2026 &middot; 20:00 CEST</strong>
+      {% else %}
+        Launching on the pre-eve of
+        <a href="https://www.cloudnativeconference.de/" target="_blank" rel="noopener noreferrer" class="release-modal__conf-link">Cloud Native Conference DE</a>
+        &mdash; <strong>12 May 2026 &middot; 20:00 CEST</strong>
+      {% endif %}
+    </p>
+
+    <div class="release-modal__countdown" id="modal-countdown" aria-live="polite" aria-label="{% if lang == 'de' %}Countdown zur Veröffentlichung{% else %}Countdown to release{% endif %}">
+      <div class="release-modal__cd-unit">
+        <span class="release-modal__cd-num" id="modal-days">--</span>
+        <span class="release-modal__cd-label">{% if lang == 'de' %}Tage{% else %}Days{% endif %}</span>
+      </div>
+      <div class="release-modal__cd-sep" aria-hidden="true">:</div>
+      <div class="release-modal__cd-unit">
+        <span class="release-modal__cd-num" id="modal-hours">--</span>
+        <span class="release-modal__cd-label">{% if lang == 'de' %}Std.{% else %}Hours{% endif %}</span>
+      </div>
+      <div class="release-modal__cd-sep" aria-hidden="true">:</div>
+      <div class="release-modal__cd-unit">
+        <span class="release-modal__cd-num" id="modal-minutes">--</span>
+        <span class="release-modal__cd-label">Min</span>
+      </div>
+      <div class="release-modal__cd-sep" aria-hidden="true">:</div>
+      <div class="release-modal__cd-unit">
+        <span class="release-modal__cd-num" id="modal-seconds">--</span>
+        <span class="release-modal__cd-label">Sek</span>
+      </div>
+    </div>
+
+    <div class="release-modal__actions">
+      {% if lang == 'de' %}
+        <a href="{{ '/de/saeulen/' | relative_url }}" class="btn btn-primary">Framework erkunden &rarr;</a>
+        <button type="button" class="btn" id="release-modal-dismiss">Verstanden</button>
+      {% else %}
+        <a href="{{ '/saeulen/' | relative_url }}" class="btn btn-primary">Explore the Framework &rarr;</a>
+        <button type="button" class="btn" id="release-modal-dismiss">Got it</button>
+      {% endif %}
+    </div>
+
+  </div>
+</dialog>
