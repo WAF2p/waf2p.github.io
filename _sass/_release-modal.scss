@@ -1,0 +1,328 @@
+/* ============================================================
+   WAFPass 1.0 Release — Announcement modal + homepage counter
+   ============================================================ */
+
+/* ---------- Countdown bar (homepage) ---------- */
+.release-bar {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brand-500) 12%, var(--bg-soft)),
+    color-mix(in srgb, var(--accent-300) 10%, var(--bg-soft))
+  );
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0 32px;
+}
+
+.release-bar__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.release-bar__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand-500);
+}
+
+.release-bar__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-500);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-500) 22%, transparent);
+  animation: release-pulse 2s ease-in-out infinite;
+}
+
+.release-bar__title {
+  font-size: clamp(20px, 2.8vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.release-bar__title .v1 {
+  background: linear-gradient(90deg, var(--brand-500), var(--accent-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.release-bar__sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.release-bar__sub a {
+  color: var(--brand-500);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.release-bar__countdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.release-bar__cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 68px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.release-bar__cd-num {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.release-bar__cd-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.release-bar__cd-sep {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 18px;
+  line-height: 1;
+}
+
+.release-bar__launched {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand-500);
+}
+
+@media (max-width: 560px) {
+  .release-bar__cd-unit { min-width: 54px; padding: 8px 8px 6px; }
+  .release-bar__cd-sep { font-size: 22px; }
+}
+
+/* ---------- Modal overlay ---------- */
+.release-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.release-modal[open] {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Backdrop */
+.release-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 10, 18, .72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+/* Panel */
+.release-modal__panel {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 44px 40px 36px;
+  max-width: 520px;
+  width: calc(100% - 32px);
+  text-align: center;
+  background-image:
+    radial-gradient(600px 320px at 10% 0%, color-mix(in srgb, var(--brand-500) 14%, transparent), transparent 55%),
+    radial-gradient(500px 280px at 90% 10%, color-mix(in srgb, var(--accent-300) 10%, transparent), transparent 55%);
+}
+
+/* Close button */
+.release-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color .15s, background .15s;
+
+  svg { width: 16px; height: 16px; }
+
+  &:hover { color: var(--text); background: var(--surface-2); }
+}
+
+.release-modal__kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brand-500);
+  margin-bottom: 10px;
+}
+
+.release-modal__headline {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin: 0 0 12px;
+}
+
+.release-modal__v1 {
+  background: linear-gradient(90deg, var(--brand-500), var(--accent-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.release-modal__sub {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--muted);
+  margin: -6px 0 14px;
+}
+
+.release-modal__tagline {
+  font-size: 17px;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.release-modal__context {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 28px;
+  line-height: 1.6;
+
+  strong { color: var(--text); }
+}
+
+.release-modal__conf-link {
+  color: var(--brand-500);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Countdown inside modal */
+.release-modal__countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.release-modal__cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 10px 8px;
+}
+
+.release-modal__cd-num {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.release-modal__cd-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.release-modal__cd-sep {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 16px;
+  line-height: 1;
+}
+
+.release-modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .release-modal__panel { padding: 36px 20px 28px; }
+  .release-modal__cd-unit { min-width: 52px; }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes release-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .55; transform: scale(.85); }
+}
+
+/* ---------- Dark mode overrides ---------- */
+html[data-theme="dark"] {
+  .release-bar {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brand-500) 8%, var(--bg-soft)),
+      color-mix(in srgb, var(--accent-300) 6%, var(--bg-soft))
+    );
+  }
+}
