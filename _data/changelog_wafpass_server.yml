@@ -1,7 +1,30 @@
 # WAFPass Server changelog — data source for /changelog/ and /de/changelog/
 # wafpass-server is the FastAPI / PostgreSQL persistence layer for the WAFPass stack.
+# wafpass-server v1.0.0 released: 2026-05-12
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
+
+- group_en: "May 2026"
+  group_de: "Mai 2026"
+  version: "v1.0.0"
+  date: "2026-05-12"
+  beta: false
+  changes:
+    - type: new
+      text_en: "wafpass-server v1.0.0 — first stable release. Full authentication stack (local accounts, OIDC, SAML2, CI/CD API keys), complete role hierarchy (clevel → ciso → architect → engineer → admin), all 14 Alembic migrations included, and production-ready Docker image published."
+      text_de: "wafpass-server v1.0.0 — erste stabile Veröffentlichung. Vollständiger Authentifizierungs-Stack (lokale Accounts, OIDC, SAML2, CI/CD-API-Keys), vollständige Rollenhierarchie (clevel → ciso → architect → engineer → admin), alle 14 Alembic-Migrationen enthalten und produktionsreifes Docker-Image veröffentlicht."
+    - type: new
+      text_en: "Full SSO support — OIDC and SAML2 providers configurable via the sso_configs table (migration 0013); group-to-role mappings via group_role_mappings (migration 0014)"
+      text_de: "Vollständige SSO-Unterstützung — OIDC- und SAML2-Provider konfigurierbar über die sso_configs-Tabelle (Migration 0013); Gruppen-zu-Rollen-Mapping über group_role_mappings (Migration 0014)"
+    - type: new
+      text_en: "API key management with usage logging — api_keys (migration 0010) and api_key_usage_logs (migration 0011) enable CI/CD integrations with full audit trail"
+      text_de: "API-Key-Verwaltung mit Usage-Logging — api_keys (Migration 0010) und api_key_usage_logs (Migration 0011) ermöglichen CI/CD-Integrationen mit vollständiger Audit-Trail"
+    - type: new
+      text_en: "User audit log — user_audit_logs (migration 0012) records all user-visible state changes for compliance and traceability"
+      text_de: "Benutzer-Audit-Log — user_audit_logs (Migration 0012) protokolliert alle für den Benutzer sichtbaren Zustandsänderungen für Compliance und Rückverfolgbarkeit"
+    - type: improvement
+      text_en: "OpenAPI documentation stable at /api/docs — all endpoints documented, typed, and covered by integration tests"
+      text_de: "OpenAPI-Dokumentation stabil unter /api/docs — alle Endpunkte dokumentiert, typisiert und durch Integrationstests abgedeckt"
 
 - group_en: "April 2026"
   group_de: "April 2026"
