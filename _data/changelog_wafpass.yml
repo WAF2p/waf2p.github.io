@@ -3,6 +3,19 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "May 2026 — Control Pack & Localization"
+  group_de: "Mai 2026 — Control Pack & Lokalisierung"
+  version: "v1.0.0"
+  date: "2026-05-12"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Control pack management — `wafpass control pack init` and `wafpass control pack update` commands for versioned control snapshots; regulatory mapping stored in controls-releases directory"
+      text_de: "Control Pack Verwaltung — `wafpass control pack init`- und `wafpass control pack update`-Befehle für versionierte Control-Snapshots; regulatorisches Mapping im controls-releases-Verzeichnis gespeichert"
+    - type: new
+      text_en: "Internationalization support — complete i18n system with 6+ languages; English and German fully translated; framework for adding new languages"
+      text_de: "Internationalisierungsunterstützung — vollständiges i18n-System mit 6+ Sprachen; Englisch und Deutsch vollständig übersetzt; Framework zum Hinzufügen neuer Sprachen"
+
 - group_en: "May 2026"
   group_de: "Mai 2026"
   version: "v1.0.0"
@@ -24,6 +37,45 @@
     - type: docs
       text_en: "Published on PyPI as wafpass-core 1.0.0 — pip install wafpass-core installs the stable CLI and Python library"
       text_de: "Auf PyPI als wafpass-core 1.0.0 veröffentlicht — pip install wafpass-core installiert die stabile CLI und Python-Bibliothek"
+
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v1.0.0"
+  date: "2026-04-24"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Authentication module — `wafpass login` authenticates against wafpass-server and stores a bearer token; all subsequent CLI calls include it automatically; `wafpass auth status` shows the active session; `wafpass auth logout` clears stored credentials"
+      text_de: "Authentifizierungsmodul — `wafpass login` authentifiziert sich gegen wafpass-server und speichert einen Bearer-Token; alle nachfolgenden CLI-Aufrufe verwenden ihn automatisch; `wafpass auth status` zeigt die aktive Session; `wafpass auth logout` löscht gespeicherte Anmeldedaten"
+    - type: new
+      text_en: "Group role mapping support — `wafpass auth roles` lists roles assigned by the server; role-aware output adapts CLI messaging for team deployments"
+      text_de: "Gruppen-Rollen-Mapping — `wafpass auth roles` listet die vom Server zugewiesenen Rollen auf; rollengerechte CLI-Ausgabe passt Meldungen für Team-Deployments an"
+    - type: new
+      text_en: "API key bearer-token support — `--api-key` flag or `WAFPASS_API_KEY` environment variable injects the token into every server request; enables headless CI/CD runs without interactive login"
+      text_de: "API-Key Bearer-Token — `--api-key`-Flag oder `WAFPASS_API_KEY`-Umgebungsvariable fügt den Token in jede Server-Anfrage ein; ermöglicht headlose CI/CD-Läufe ohne interaktives Login"
+    - type: new
+      text_en: "`stage` field on run output — `--stage` CLI flag (dev / staging / prod / etc.) is recorded in `WafpassResultSchema` and persisted to wafpass-server; enables per-stage compliance comparisons"
+      text_de: "`stage`-Feld in der Run-Ausgabe — `--stage`-CLI-Flag (dev / staging / prod / etc.) wird in `WafpassResultSchema` gespeichert und an wafpass-server übermittelt; ermöglicht Compliance-Vergleiche je Stage"
+    - type: new
+      text_en: "Evidence lock with QR code — `wafpass evidence lock` cryptographically signs the current compliance evidence package and generates a QR code pointing to the immutable locked record on wafpass-server; enables offline verification of audit evidence"
+      text_de: "Evidence-Lock mit QR-Code — `wafpass evidence lock` signiert das aktuelle Compliance-Evidence-Paket kryptografisch und erstellt einen QR-Code, der auf den unveränderlichen gesperrten Eintrag in wafpass-server zeigt; ermöglicht Offline-Verifikation von Audit-Nachweisen"
+    - type: infra
+      text_en: "Pre-commit hooks — `hooks/install.sh` and `hooks/install.ps1` add commit-time checks for formatting, linting, and test gates; setup documented in README and TECH.md"
+      text_de: "Pre-Commit-Hooks — `hooks/install.sh` und `hooks/install.ps1` fügen Commit-Zeitprüfungen für Formatierung, Linting und Test-Gates hinzu; Einrichtung in README und TECH.md dokumentiert"
+
+- group_en: "April 2026 — v0.4.1"
+  group_de: "April 2026 — v0.4.1"
+  date: "2026-04-16"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Skipped controls overview — Terraform plugin now collects skipped controls and exposes them in run output; `WafpassResultSchema` includes a `skipped_controls` list with count and per-control skip reasons"
+      text_de: "Übersprungene Controls — Terraform-Plugin sammelt jetzt übersprungene Controls und stellt sie in der Run-Ausgabe bereit; `WafpassResultSchema` enthält eine `skipped_controls`-Liste mit Anzahl und control-spezifischen Skip-Gründen"
+      pr: 22
+    - type: docs
+      text_en: "Environment setup documentation — `.env.example` added to repository; TECH.md updated with environment variable reference and local setup guide"
+      text_de: "Umgebungseinrichtungsdokumentation — `.env.example` dem Repository hinzugefügt; TECH.md mit Umgebungsvariablen-Referenz und lokalem Einrichtungsleitfaden aktualisiert"
+      pr: 22
 
 - group_en: "April 2026"
   group_de: "April 2026"

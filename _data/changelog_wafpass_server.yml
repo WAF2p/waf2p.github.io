@@ -4,6 +4,19 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "May 2026 — Control Pack Management"
+  group_de: "Mai 2026 — Control Pack Verwaltung"
+  version: "v1.0.0"
+  date: "2026-05-12"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Versioned control snapshot system — `wafpass control pack init` and `wafpass control pack update` commands; snapshots stored in `controls-releases/` with version tags and regulatory mapping files"
+      text_de: "Versioniertes Control-Snapshot-System — `wafpass control pack init`- und `wafpass control pack update`-Befehle; Snapshots in `controls-releases/` mit Versions-Tags und regulatorischen Mapping-Dateien gespeichert"
+    - type: improvement
+      text_en: "Control update management — `wafpass control update` downloads and validates the latest control packs from the central registry; detects version drift between local controls and published packs"
+      text_de: "Control-Update-Verwaltung — `wafpass control update` lädt die neuesten Control-Packs aus dem zentralen Registry herunter und validiert sie; erkennt Versionsdrift zwischen lokalen Controls und veröffentlichten Packs"
+
 - group_en: "May 2026"
   group_de: "Mai 2026"
   version: "v1.0.0"
@@ -25,6 +38,81 @@
     - type: improvement
       text_en: "OpenAPI documentation stable at /api/docs — all endpoints documented, typed, and covered by integration tests"
       text_de: "OpenAPI-Dokumentation stabil unter /api/docs — alle Endpunkte dokumentiert, typisiert und durch Integrationstests abgedeckt"
+
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v1.0.0"
+  date: "2026-04-25"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Project Passport — `/api/projects` router with Alembic migrations 0016 (`add_project_passports`) and 0017 (`add_passport_image_url`); stores per-project maturity metadata and a custom passport image URL; returned via `PassportOut` schema"
+      text_de: "Project Passport — `/api/projects`-Router mit Alembic-Migrationen 0016 (`add_project_passports`) und 0017 (`add_passport_image_url`); speichert pro-Projekt-Reifegradmetadaten und eine individuelle Passport-Bild-URL; zurückgegeben über `PassportOut`-Schema"
+    - type: new
+      text_en: "Leaderboard, badges, and achievements — `/api/leaderboard`, `/api/badges`, `/api/achievements` routers; Alembic migration 0018 (`add_achievements`); achievement grants are ECDSA-signed for cryptographic verification; badge earn events are triggered by scan runs"
+      text_de: "Leaderboard, Badges und Achievements — `/api/leaderboard`-, `/api/badges`- und `/api/achievements`-Router; Alembic-Migration 0018 (`add_achievements`); Achievement-Grants werden ECDSA-signiert für kryptografische Verifikation; Badge-Earn-Events werden durch Scan-Läufe ausgelöst"
+    - type: infra
+      text_en: "Compliance audit event log — Alembic migration 0019 (`add_compliance_audit_events`) and `/api/compliance-audit` router; structured log of compliance-relevant state changes across waivers, risk acceptances, and run outcomes"
+      text_de: "Compliance-Audit-Ereignisprotokoll — Alembic-Migration 0019 (`add_compliance_audit_events`) und `/api/compliance-audit`-Router; strukturiertes Protokoll compliance-relevanter Zustandsänderungen bei Waivers, Risk-Acceptances und Run-Ergebnissen"
+    - type: infra
+      text_en: "Run findings table — Alembic migration 0023 (`run_findings_table`) splits per-finding records out of the run JSONB blob into a dedicated table; enables server-side filtering, pagination, and first-seen tracking"
+      text_de: "Run-Findings-Tabelle — Alembic-Migration 0023 (`run_findings_table`) lagert Finding-Datensätze aus dem Run-JSONB-Blob in eine dedizierte Tabelle aus; ermöglicht server-seitige Filterung, Paginierung und First-Seen-Tracking"
+    - type: infra
+      text_en: "Typed expiry dates — Alembic migration 0022 (`typed_expiry_dates`) converts all text expiry columns in waivers and risk_acceptances to `timestamptz` for reliable sorting and comparison"
+      text_de: "Typisierte Ablaufdaten — Alembic-Migration 0022 (`typed_expiry_dates`) konvertiert alle Text-Ablaufdatum-Spalten in waivers und risk_acceptances zu `timestamptz` für zuverlässige Sortierung und Vergleiche"
+    - type: infra
+      text_en: "Refresh token family — Alembic migration 0021 (`add_refresh_token_family`) adds family-based refresh token rotation to prevent token reuse attacks"
+      text_de: "Refresh-Token-Family — Alembic-Migration 0021 (`add_refresh_token_family`) fügt familienbasierte Refresh-Token-Rotation hinzu, um Token-Wiederverwendungsangriffe zu verhindern"
+    - type: infra
+      text_en: "Runs cursor index — Alembic migration 0020 (`add_runs_cursor_index`) adds a B-tree index on `(project, created_at)` for efficient cursor-based run history pagination"
+      text_de: "Runs-Cursor-Index — Alembic-Migration 0020 (`add_runs_cursor_index`) fügt einen B-Tree-Index auf `(project, created_at)` für effiziente cursor-basierte Run-Historie-Paginierung hinzu"
+    - type: infra
+      text_en: "Secret encryption at rest — `secret_enc.py` module encrypts all secret-class fields (OIDC client secrets, SAML private keys) using `WAFPASS_ENCRYPTION_KEY` before database writes; transparent decryption on read"
+      text_de: "Secret-Verschlüsselung im Ruhezustand — `secret_enc.py`-Modul verschlüsselt alle Secret-Klassen-Felder (OIDC-Client-Secrets, SAML-Private-Keys) mit `WAFPASS_ENCRYPTION_KEY` vor Datenbankschreibvorgängen; transparente Entschlüsselung beim Lesen"
+    - type: fix
+      text_en: "OIDC security hardening — `oidc_callback` now fetches the IdP JWKS endpoint and verifies the `id_token` signature; nonce is embedded in the signed state JWT and validated in the callback to prevent replay attacks; forged tokens return `sso_error=token_verification_failed`"
+      text_de: "OIDC-Sicherheitshärtung — `oidc_callback` ruft jetzt den IdP-JWKS-Endpunkt ab und verifiziert die `id_token`-Signatur; Nonce ist im signierten State-JWT eingebettet und wird im Callback validiert, um Replay-Angriffe zu verhindern; gefälschte Tokens geben `sso_error=token_verification_failed` zurück"
+    - type: fix
+      text_en: "JWT and encryption key startup validation — `Settings` model raises `ValueError` at startup if `WAFPASS_JWT_SECRET` is still the default value or `WAFPASS_ENCRYPTION_KEY` is unset in any non-local environment; local development is unaffected"
+      text_de: "JWT- und Encryption-Key-Startvalidierung — `Settings`-Modell wirft beim Start `ValueError`, wenn `WAFPASS_JWT_SECRET` noch den Standardwert hat oder `WAFPASS_ENCRYPTION_KEY` in nicht-lokalen Umgebungen nicht gesetzt ist; lokale Entwicklung ist nicht betroffen"
+
+- group_en: "April 2026 — Authorization & Scanning"
+  group_de: "April 2026 — Autorisierung & Scanning"
+  date: "2026-04-17"
+  beta: true
+  changes:
+    - type: new
+      text_en: "`/scans` REST endpoint — POST `/api/scans` triggers a wafpass scan remotely from the dashboard; accepts a project reference and returns a streaming run result; integrates with the Run Scan page in wafpass-dashboard"
+      text_de: "`/scans` REST-Endpunkt — POST `/api/scans` startet einen wafpass-Scan remote vom Dashboard aus; akzeptiert eine Projektreferenz und gibt ein gestreamtes Run-Ergebnis zurück; integriert mit der Run-Scan-Seite in wafpass-dashboard"
+    - type: new
+      text_en: "Authorization layer — JWT-based authentication added to all protected endpoints; `/api/auth/*` routes include login, logout, token refresh, and current-user; local-account provider ships in-box with `WAFPASS_JWT_SECRET` and `WAFPASS_ENV` config keys"
+      text_de: "Autorisierungsschicht — JWT-basierte Authentifizierung für alle geschützten Endpunkte hinzugefügt; `/api/auth/*`-Routen umfassen Login, Logout, Token-Refresh und Current-User; lokaler Account-Provider mit `WAFPASS_JWT_SECRET`- und `WAFPASS_ENV`-Konfigurationsschlüsseln enthalten"
+    - type: new
+      text_en: "Evidence REST API — `/api/evidence` router with Alembic migration 0015 (`add_evidence`); evidence packages are cryptographically locked with a SHA-256 fingerprint and QR-code URL; locked records are immutable"
+      text_de: "Evidence REST API — `/api/evidence`-Router mit Alembic-Migration 0015 (`add_evidence`); Evidence-Pakete werden kryptografisch mit SHA-256-Fingerprint und QR-Code-URL gesperrt; gesperrte Einträge sind unveränderlich"
+    - type: infra
+      text_en: "Stage field on runs — Alembic migration 0008 (`add_stage_to_runs`) adds a `stage` column to the runs table; `RunIn`/`RunOut` schemas and the runs router expose the field for per-stage compliance filtering"
+      text_de: "Stage-Feld bei Runs — Alembic-Migration 0008 (`add_stage_to_runs`) fügt eine `stage`-Spalte zur Runs-Tabelle hinzu; `RunIn`/`RunOut`-Schemas und der Runs-Router stellen das Feld für stage-spezifische Compliance-Filterung bereit"
+
+- group_en: "April 2026 — v0.4.2"
+  group_de: "April 2026 — v0.4.2"
+  date: "2026-04-16"
+  beta: true
+  changes:
+    - type: fix
+      text_en: "Skipped controls endpoint — server correctly exposes `skipped_controls` data from run JSONB to support the new Skipped Controls page in wafpass-dashboard"
+      text_de: "Skipped-Controls-Endpunkt — Server gibt `skipped_controls`-Daten aus dem Run-JSONB korrekt aus, um die neue Seite für übersprungene Controls in wafpass-dashboard zu unterstützen"
+      pr: 4
+
+- group_en: "April 2026 — v0.4.1"
+  group_de: "April 2026 — v0.4.1"
+  date: "2026-04-15"
+  beta: true
+  changes:
+    - type: fix
+      text_en: "Dependency correction — pyproject.toml dependency set corrected; removes version conflicts that prevented clean installation"
+      text_de: "Abhängigkeitskorrektur — pyproject.toml-Abhängigkeiten korrigiert; entfernt Versionskonflikte, die eine saubere Installation verhinderten"
+      pr: 2
 
 - group_en: "April 2026"
   group_de: "April 2026"

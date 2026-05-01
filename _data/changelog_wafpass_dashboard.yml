@@ -4,6 +4,25 @@
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
 
+- group_en: "May 2026 — Control Pack & Localization"
+  group_de: "Mai 2026 — Control Pack & Lokalisierung"
+  version: "v1.0.0"
+  date: "2026-05-12"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Control pack system integration — dashboard reflects versioned control snapshots from wafpass-server; control update notifications shown when local packs drift from published versions"
+      text_de: "Control-Pack-Systemintegration — Dashboard spiegelt versionierte Control-Snapshots von wafpass-server wider; Control-Update-Benachrichtigungen bei Versionsdrift von lokalen Packs"
+    - type: new
+      text_en: "Complete internationalization — full support for 6+ languages (en, de, fr, es, pt, br); all 58+ pages fully localized with translated UI strings, help text, and error messages"
+      text_de: "Vollständige Internationalisierung — volle Unterstützung für 6+ Sprachen (en, de, fr, es, pt, br); alle 58+ Seiten vollständig lokalisert mit übersetzten UI-Strings, Hilfetexten und Fehlermeldungen"
+    - type: new
+      text_en: "LANGUAGE.md documentation — complete i18n guide documenting translation workflow, adding new languages, and managing locale files"
+      text_de: "LANGUAGE.md-Dokumentation — vollständiger i18n-Leitfaden mit Dokumentation des Übersetzungsworkflows, Hinzufügen neuer Sprachen und Verwalten von Locale-Dateien"
+    - type: new
+      text_en: "i18n framework — `src/i18n/` directory with locale loaders, translation context, and language selector component; runtime language switching without page reload"
+      text_de: "i18n-Framework — `src/i18n/`-Verzeichnis mit Locale-Loadern, Übersetzungs-Kontext und Sprachauswahl-Komponente; Sprachumschaltung zur Laufzeit ohne Neuladen der Seite"
+
 - group_en: "May 2026"
   group_de: "Mai 2026"
   version: "v1.0.0"
@@ -25,6 +44,86 @@
     - type: new
       text_en: "Docker image published as waf2p/wafpass-dashboard:1.0.0 on Docker Hub — stable tag; deployable standalone (nginx) or as part of the full WAFPass stack"
       text_de: "Docker-Image als waf2p/wafpass-dashboard:1.0.0 auf Docker Hub veröffentlicht — stabiles Tag; als Standalone (nginx) oder als Teil des vollständigen WAFPass-Stacks deploybar"
+
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v1.0.0"
+  date: "2026-04-25"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Project Overview page (`#/projects`) — per-project compliance summary, run history, score timeline, and team member list"
+      text_de: "Projektübersichts-Seite (`#/projects`) — projektbezogene Compliance-Zusammenfassung, Run-Historie, Score-Timeline und Teammitgliederliste"
+    - type: new
+      text_en: "Passport Dashboard page (`#/passport`) — project maturity passport showing PASS score levels, active pillar coverage, regulatory badge grid, and a shareable passport image configured in wafpass-server"
+      text_de: "Passport-Dashboard-Seite (`#/passport`) — Projekt-Reifegradpass mit PASS-Score-Ebenen, aktiver Pillar-Abdeckung, regulatorischem Badge-Raster und einem in wafpass-server konfigurierbaren teilbaren Passport-Bild"
+    - type: new
+      text_en: "Leaderboard page (`#/leaderboard`) — team compliance leaderboard ranked by PASS score with score delta badges per member"
+      text_de: "Leaderboard-Seite (`#/leaderboard`) — Team-Compliance-Leaderboard nach PASS-Score geordnet mit Score-Delta-Badges je Mitglied"
+    - type: new
+      text_en: "Badges page (`#/badges`) — earned achievement badges per user; badge verification drawer shows the ECDSA-signed proof fetched from wafpass-server"
+      text_de: "Badges-Seite (`#/badges`) — verdiente Achievement-Badges je Nutzer; Badge-Verifikations-Drawer zeigt den von wafpass-server abgerufenen ECDSA-signierten Nachweis"
+    - type: improvement
+      text_en: "Evidence page overhaul — Evidence Package page redesigned to support the evidence lock flow; locked evidence records display a SHA-256 fingerprint and a QR code for offline audit verification"
+      text_de: "Evidence-Seite überarbeitet — Evidence-Package-Seite überarbeitet, um den Evidence-Lock-Flow zu unterstützen; gesperrte Evidence-Einträge zeigen einen SHA-256-Fingerprint und einen QR-Code zur Offline-Audit-Verifikation"
+    - type: infra
+      text_en: "Test suite introduced — `src/__tests__/api.test.ts`, `audit.test.ts`, and `useControlsCatalogue.test.ts` added; vitest configuration included; covers API helpers, audit utilities, and the controls catalogue hook"
+      text_de: "Test-Suite eingeführt — `src/__tests__/api.test.ts`, `audit.test.ts` und `useControlsCatalogue.test.ts` hinzugefügt; vitest-Konfiguration enthalten; deckt API-Helfer, Audit-Utilities und den Controls-Katalog-Hook ab"
+    - type: infra
+      text_en: "Sidebar component extracted — `src/components/Sidebar.tsx` replaces inline navigation in `App.tsx`; routing refactored for all new pages; navigation state managed via `AuthContext`"
+      text_de: "Sidebar-Komponente ausgelagert — `src/components/Sidebar.tsx` ersetzt die interne Navigation in `App.tsx`; Routing für alle neuen Seiten überarbeitet; Navigationszustand über `AuthContext` verwaltet"
+
+- group_en: "April 2026 — Authorization & User Management"
+  group_de: "April 2026 — Autorisierung & Benutzerverwaltung"
+  date: "2026-04-19"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Login page — `/login` route with JWT auth form; `AuthContext` manages token storage, refresh, and logout state across the entire SPA"
+      text_de: "Login-Seite — `/login`-Route mit JWT-Authentifizierungsformular; `AuthContext` verwaltet Token-Speicherung, Refresh und Logout-Zustand in der gesamten SPA"
+    - type: new
+      text_en: "User Management page (`#/users`) — list, invite, and remove users; assign roles per user within the configured role hierarchy (clevel → ciso → architect → engineer)"
+      text_de: "Benutzerverwaltungs-Seite (`#/users`) — Benutzer auflisten, einladen und entfernen; Rollen je Benutzer innerhalb der konfigurierten Rollenhierarchie (clevel → ciso → architect → engineer) zuweisen"
+    - type: new
+      text_en: "API Management page (`#/api-management`) — generate and revoke API keys for CI/CD integrations; view per-key usage log sourced from wafpass-server"
+      text_de: "API-Management-Seite (`#/api-management`) — API-Keys für CI/CD-Integrationen generieren und widerrufen; per-Key-Nutzungsprotokoll aus wafpass-server anzeigen"
+    - type: new
+      text_en: "SSO Settings page (`#/sso-settings`) — configure OIDC and SAML2 identity providers from within the dashboard; test-provider connectivity button sends a live validation request to wafpass-server"
+      text_de: "SSO-Einstellungs-Seite (`#/sso-settings`) — OIDC- und SAML2-Identity-Provider direkt im Dashboard konfigurieren; Test-Provider-Verbindungsschaltfläche sendet eine Live-Validierungsanfrage an wafpass-server"
+    - type: new
+      text_en: "Group Mappings page (`#/group-mappings`) — map IdP group claims to WAFPass roles per provider; create, edit, and delete mappings stored in wafpass-server"
+      text_de: "Gruppen-Mapping-Seite (`#/group-mappings`) — IdP-Gruppenansprüche je Provider auf WAFPass-Rollen abbilden; in wafpass-server gespeicherte Mappings erstellen, bearbeiten und löschen"
+
+- group_en: "April 2026 — Scanning & Stage"
+  group_de: "April 2026 — Scanning & Stage"
+  date: "2026-04-17"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Run Scan from UI — RunScanPage sends POST `/api/scans` to wafpass-server and streams the result into the dashboard; removes dependency on a local CLI installation for interactive scanning"
+      text_de: "Run Scan aus der UI — RunScanPage sendet POST `/api/scans` an wafpass-server und streamt das Ergebnis ins Dashboard; beseitigt die Abhängigkeit von einer lokalen CLI-Installation für interaktives Scanning"
+    - type: new
+      text_en: "Stage indicator on runs list — runs list now displays a deployment stage badge (dev / staging / prod) sourced from the `stage` field persisted per run"
+      text_de: "Stage-Anzeige in der Run-Liste — Runs-Liste zeigt jetzt ein Deployment-Stage-Badge (dev / staging / prod), das aus dem pro-Run gespeicherten `stage`-Feld stammt"
+    - type: improvement
+      text_en: "Access Roles page redesigned — RBAC scope annotations added per feature; page now reflects the full role hierarchy from wafpass-server"
+      text_de: "Access-Roles-Seite neu gestaltet — RBAC-Geltungsbereichsannotierungen je Funktion hinzugefügt; Seite spiegelt jetzt die vollständige Rollenhierarchie aus wafpass-server wider"
+    - type: improvement
+      text_en: "Dashboard page redesign — DashboardPage fully rebuilt with new KPI cards, compliance score ring, pillar-by-pillar breakdown, and improved run comparison view; CostImpactPage updated to match the new design system"
+      text_de: "Dashboard-Seite neu gestaltet — DashboardPage komplett neu aufgebaut mit neuen KPI-Karten, Compliance-Score-Ring, Pillar-für-Pillar-Aufschlüsselung und verbesserter Run-Vergleichsansicht; CostImpactPage an das neue Design-System angepasst"
+
+- group_en: "April 2026 — v0.4.1"
+  group_de: "April 2026 — v0.4.1"
+  date: "2026-04-16"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Skipped Controls page (`#/skipped`) — dedicated page listing all controls that were skipped in the latest run with skip reason and pillar breakdown"
+      text_de: "Skipped-Controls-Seite (`#/skipped`) — dedizierte Seite mit allen im letzten Run übersprungenen Controls mit Skip-Grund und Pillar-Aufschlüsselung"
+    - type: fix
+      text_en: "Issue #2 — run list rendering bug corrected; issue #3 — waiver expiry date display corrected"
+      text_de: "Issue #2 — Renderfehler in der Run-Liste korrigiert; Issue #3 — Anzeige des Waiver-Ablaufdatums korrigiert"
+      pr: 4
 
 - group_en: "April 2026"
   group_de: "April 2026"
