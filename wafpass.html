@@ -40,6 +40,18 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 .wp-feat-card .wp-feat-body { padding: 22px; flex: 1; }
 .wp-feat-card h3 { font-size: 17px; margin: 0 0 8px; }
 .wp-feat-card p  { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6; }
+
+/* Maturity journey full-width showcase */
+.wp-maturity-img { border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 16px 56px rgba(0,0,0,.22); border: 1px solid var(--border); }
+.wp-maturity-img img { width: 100%; display: block; }
+
+/* Lightbox */
+.wp-lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.88); cursor: zoom-out; align-items: center; justify-content: center; padding: 24px; }
+.wp-lightbox.open { display: flex; }
+.wp-lightbox img { max-width: min(1280px, 100%); max-height: calc(100svh - 48px); border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,.5); object-fit: contain; cursor: default; }
+.wp-lightbox-close { position: fixed; top: 16px; right: 20px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+.wp-lightbox-close:hover { background: rgba(255,255,255,.22); }
+.wp-zoomable { cursor: zoom-in !important; }
 </style>
 
 <!-- ===================== HERO ===================== -->
@@ -74,7 +86,7 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 
     <!-- Hero dashboard screenshot -->
     <div class="wp-hero-shot">
-      <img src="{{ 'assets/images/wafpass/Executive_Dashboard.png' | relative_url }}" alt="WAFPass Executive Dashboard — full compliance overview">
+      <img src="{{ 'assets/images/wafpass_1.0/global_operation_center_multi_color.png' | relative_url }}" alt="WAFPass Global Operations Center — multi-region compliance overview">
     </div>
   </div>
 </section>
@@ -127,8 +139,41 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 </section>
 
 
-<!-- ===================== FEATURE SHOWCASE — ALTERNATING SPLITS ===================== -->
+<!-- ===================== GLOBAL OPERATIONS CENTER ===================== -->
 <section class="section pillars-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker">GLOBAL OPERATIONS CENTER</div>
+      <h2>One pane of glass for every region.</h2>
+      <p class="lead">The Global Operations Center gives compliance leads and CISOs a real-time view of the entire compliance posture — across all projects, regions, and deployment stages.</p>
+    </div>
+
+    <div class="split">
+      <div class="split-copy">
+        <div class="section-kicker" style="margin-bottom: 10px;">MULTI-REGION VISIBILITY</div>
+        <h3>Drill from global heat-map to a single failing control.</h3>
+        <p>Color-coded region tiles instantly show where your infrastructure stands. A red tile means active findings — click to navigate directly to the failing controls, the project they belong to, and the engineer responsible.</p>
+        <p>Track deployment spread, sovereign boundaries, and cross-region compliance deltas — without switching between cloud consoles or manual spreadsheets.</p>
+        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="pill">Multi-region</span>
+          <span class="pill">Real-time status</span>
+          <span class="pill">CISO-ready</span>
+          <span class="pill">Sovereign boundaries</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="card" style="overflow: hidden; padding: 0;">
+          <img class="ss-light" src="{{ 'assets/images/wafpass_1.0/global_operation_center_bright.png' | relative_url }}" alt="Global Operations Center — light mode" style="width: 100%; display: block;">
+          <img class="ss-dark"  src="{{ 'assets/images/wafpass_1.0/global_operation_center_dark.png' | relative_url }}"  alt="Global Operations Center — dark mode"  style="width: 100%; display: block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== FEATURE SHOWCASE — ALTERNATING SPLITS ===================== -->
+<section class="section">
   <div class="container">
     <div class="section-header">
       <div class="section-kicker">FEATURES IN ACTION</div>
@@ -138,8 +183,28 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 
     <div class="wp-splits">
 
-      <!-- Secret Scanner -->
+      <!-- Run Dashboard -->
       <div class="split">
+        <div class="split-copy">
+          <div class="section-kicker" style="margin-bottom: 10px;">RUN DASHBOARD</div>
+          <h3>Every compliance run, tracked in real time.</h3>
+          <p>Every time WAFPass evaluates your infrastructure, a fully documented run is created — with timestamps, changed controls, pillar-level pass rates, and the team member who triggered it.</p>
+          <p>Compare runs side-by-side to catch regressions instantly. Each run links directly to the full passport for the evaluated project, so nothing slips through unnoticed.</p>
+          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="pill">Run history</span>
+            <span class="pill">Run comparison</span>
+            <span class="pill">Full audit trail</span>
+          </div>
+        </div>
+        <div class="split-visual">
+          <div class="card" style="overflow: hidden; padding: 0;">
+            <img src="{{ 'assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Run Dashboard showing compliance run history and pass rates" style="width: 100%; display: block;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Secret Scanner -->
+      <div class="split reverse">
         <div class="split-copy">
           <div class="section-kicker" style="margin-bottom: 10px;">SECRET SCANNER</div>
           <h3>Never ship a hardcoded credential.</h3>
@@ -153,54 +218,102 @@ html[data-theme="dark"] .ss-dark  { display: block; }
         </div>
         <div class="split-visual">
           <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass/Secret_Scanner.png' | relative_url }}" alt="Secret Scanner interface showing credential findings" style="width: 100%; display: block;">
+            <img src="{{ 'assets/images/wafpass_1.0/Secret_Scanner.png' | relative_url }}" alt="Secret Scanner interface showing credential findings" style="width: 100%; display: block;">
           </div>
         </div>
       </div>
 
-      <!-- Compliance Matrix -->
-      <div class="split reverse">
+      <!-- Evidence Locker -->
+      <div class="split">
         <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">COMPLIANCE MATRIX</div>
-          <h3>From FAIL to framework in one click.</h3>
-          <p>Controls are mapped to GDPR, BSI C5, ISO 27001, SOC 2, HIPAA, and NIS2. The matrix shows which controls cover which requirements — and where the gaps are.</p>
-          <p>Generate auditor-ready evidence packages that map directly to the certification frameworks your team needs.</p>
+          <div class="section-kicker" style="margin-bottom: 10px;">EVIDENCE LOCKER</div>
+          <h3>Audit evidence, generated automatically.</h3>
+          <p>Every compliance run produces evidence packages that map directly to your certification frameworks. The Evidence Locker organizes them by framework, control, and date — always up to date, always ready to share.</p>
+          <p>Share read-only evidence links with auditors without exporting anything manually. Packages include pass/fail summaries, waiver documentation, and timestamped screenshots.</p>
           <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="pill">GDPR</span>
-            <span class="pill">BSI C5</span>
-            <span class="pill">ISO 27001</span>
-            <span class="pill">SOC 2</span>
-            <span class="pill">HIPAA</span>
-            <span class="pill">NIS2</span>
+            <span class="pill">Framework-mapped</span>
+            <span class="pill">Auditor-ready</span>
+            <span class="pill">Auto-generated</span>
           </div>
         </div>
         <div class="split-visual">
           <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass/Compliance_Matrix.png' | relative_url }}" alt="Compliance Matrix showing control-to-framework mappings" style="width: 100%; display: block;">
+            <img src="{{ 'assets/images/wafpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Evidence Locker showing framework-mapped compliance packages" style="width: 100%; display: block;">
           </div>
         </div>
       </div>
 
-      <!-- Remediation Sprint -->
-      <div class="split">
+      <!-- Error Sprint Planning -->
+      <div class="split reverse">
         <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">REMEDIATION SPRINT</div>
+          <div class="section-kicker" style="margin-bottom: 10px;">ERROR SPRINT PLANNING</div>
           <h3>From finding to fix — faster.</h3>
-          <p>Every FAIL opens a prioritised remediation sprint view. Filter by pillar, severity, or blast radius. Auto-fix suggestions are generated for supported controls.</p>
-          <p>See the exact change needed, understand the blast radius before you merge, and close findings with full traceability back to the ticket.</p>
+          <p>Every FAIL opens a structured sprint plan. Findings are grouped by pillar and severity, auto-fix suggestions are generated for the most common patterns, and ownership is assigned in seconds.</p>
+          <p>Track progress as findings close. Each fix links back to the triggering run, the responsible team member, and the associated Jira or RFC ticket — nothing falls off the radar.</p>
           <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
             <span class="pill">Auto-fix suggestions</span>
-            <span class="pill">Blast radius</span>
+            <span class="pill">Sprint tracking</span>
             <span class="pill">Full traceability</span>
           </div>
         </div>
         <div class="split-visual">
           <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass/Remidiation_Sprint.png' | relative_url }}" alt="Remediation Sprint showing prioritised fix suggestions" style="width: 100%; display: block;">
+            <img src="{{ 'assets/images/wafpass_1.0/Error_Sprint_Planning.png' | relative_url }}" alt="Error Sprint Planning showing prioritised fix suggestions" style="width: 100%; display: block;">
           </div>
         </div>
       </div>
 
+      <!-- Pipeline Performance -->
+      <div class="split">
+        <div class="split-copy">
+          <div class="section-kicker" style="margin-bottom: 10px;">PIPELINE PERFORMANCE</div>
+          <h3>Compliance metrics that live in your pipeline.</h3>
+          <p>WAFPass tracks control pass rates across every CI/CD run. Trend lines per pillar show whether your compliance posture is improving or degrading — run after run, sprint after sprint.</p>
+          <p>Set threshold gates: a pipeline stage fails if a pillar drops below a configured pass-rate target. Every gate decision is logged and fully traceable back to the code change that caused it.</p>
+          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="pill">Pass-rate trending</span>
+            <span class="pill">Threshold gates</span>
+            <span class="pill">CI/CD native</span>
+          </div>
+        </div>
+        <div class="split-visual">
+          <div class="card" style="overflow: hidden; padding: 0;">
+            <img src="{{ 'assets/images/wafpass_1.0/Pipeline_Performance.png' | relative_url }}" alt="Pipeline Performance showing compliance trend lines across CI/CD runs" style="width: 100%; display: block;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== MATURITY JOURNEY ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker">MATURITY MODEL</div>
+      <h2>See where you are. Know where to go.</h2>
+      <p class="lead">The Maturity Journey maps your current compliance posture against the WAF++ maturity model — from baseline through to advanced governance. Each level shows what's implemented, what's missing, and what the next milestone looks like.</p>
+    </div>
+
+    <div class="split">
+      <div class="split-copy">
+        <div class="section-kicker" style="margin-bottom: 10px;">MATURITY JOURNEY</div>
+        <h3>Track your team's compliance progress over time.</h3>
+        <p>The Maturity Journey view visualizes your path from initial baseline controls to full governance maturity. Each stage is tied to specific WAF++ pillars, so you always know which controls to prioritize next.</p>
+        <p>Generate maturity reports for leadership or certification auditors that clearly show the arc of progress — not just a point-in-time snapshot, but a trajectory with milestones and dates.</p>
+        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="pill">Maturity levels</span>
+          <span class="pill">Progress tracking</span>
+          <span class="pill">Executive reporting</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="card" style="overflow: hidden; padding: 0;">
+          <img src="{{ 'assets/images/wafpass_1.0/Maturity_Journey.png' | relative_url }}" alt="Maturity Journey showing compliance progress across WAF++ levels" style="width: 100%; display: block;">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -218,31 +331,92 @@ html[data-theme="dark"] .ss-dark  { display: block; }
     <div class="grid-3">
       <div class="card wp-feat-card">
         <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass/Controls_Catalogue.png' | relative_url }}" alt="Controls Catalogue showing filterable WAF++ controls">
+          <img src="{{ 'assets/images/wafpass_1.0/Controls_Overview.png' | relative_url }}" alt="Controls Overview showing filterable WAF++ controls">
         </div>
         <div class="wp-feat-body">
-          <h3>Controls Catalogue</h3>
-          <p>Browse, filter, and author WAF++ controls. Export to YAML or Checkov. Custom controls work alongside framework controls — versioned and managed.</p>
+          <h3>Controls Overview</h3>
+          <p>Browse, filter, and search every WAF++ control by pillar, severity, and framework mapping. See exactly which controls cover which compliance requirements — at a glance.</p>
         </div>
       </div>
 
       <div class="card wp-feat-card">
         <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass/Module_Score_Breakdown.png' | relative_url }}" alt="Module Score Breakdown per Terraform module">
+          <img src="{{ 'assets/images/wafpass_1.0/Run_Module_Breakdown.png' | relative_url }}" alt="Run Module Breakdown per Terraform module">
         </div>
         <div class="wp-feat-body">
-          <h3>Module Score Breakdown</h3>
-          <p>Per-Terraform-module pass rate. See which modules drive the most failures — prioritise remediation by actual impact, not just control count.</p>
+          <h3>Module Breakdown</h3>
+          <p>Per-Terraform-module pass rate. See which modules drive the most failures — prioritise remediation by actual impact, not just control count or severity score.</p>
         </div>
       </div>
 
       <div class="card wp-feat-card">
         <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass/Access_Roles.png' | relative_url }}" alt="Access Roles and RBAC configuration">
+          <img src="{{ 'assets/images/wafpass_1.0/API_Key_Management.png' | relative_url }}" alt="API Key Management interface">
         </div>
         <div class="wp-feat-body">
-          <h3>Access Roles &amp; RBAC</h3>
-          <p>Role-based access from C-level to engineer. Define who can view, waive, or accept risk — and audit every action with full traceability.</p>
+          <h3>API Key Management</h3>
+          <p>Issue, rotate, and revoke API keys per project. Scope keys to read-only or read-write. Every key action is logged with the issuing user and timestamp.</p>
+        </div>
+      </div>
+
+      <div class="card wp-feat-card">
+        <div class="wp-feat-img">
+          <img src="{{ 'assets/images/wafpass_1.0/SSO_Settings.png' | relative_url }}" alt="SSO Settings showing identity provider configuration">
+        </div>
+        <div class="wp-feat-body">
+          <h3>SSO &amp; Identity</h3>
+          <p>SAML 2.0 and OIDC integration out of the box. Map identity provider groups to WAFPass roles automatically — no manual user provisioning required.</p>
+        </div>
+      </div>
+
+      <div class="card wp-feat-card">
+        <div class="wp-feat-img">
+          <img src="{{ 'assets/images/wafpass_1.0/Project_User_Mapping.png' | relative_url }}" alt="Project User Mapping showing role assignments">
+        </div>
+        <div class="wp-feat-body">
+          <h3>Project &amp; User Mapping</h3>
+          <p>Assign engineers to projects with fine-grained permissions. Visibility is scoped to what each role actually needs — no over-exposure of sensitive compliance data.</p>
+        </div>
+      </div>
+
+      <div class="card wp-feat-card">
+        <div class="wp-feat-img">
+          <img src="{{ 'assets/images/wafpass_1.0/Run_Check_Overview.png' | relative_url }}" alt="Run Check Overview showing individual control results">
+        </div>
+        <div class="wp-feat-body">
+          <h3>Run Check Overview</h3>
+          <p>Drill into the individual control results for any run. Filter by PASS, FAIL, SKIP, or WAIVED. Sort by pillar, severity, or blast radius and export for reporting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== RUN PASSPORT DETAILS ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker">COMPLIANCE PASSPORT</div>
+      <h2>A full compliance record for every project.</h2>
+      <p class="lead">Each project gets a Compliance Passport — a structured record of its current posture, historical runs, waiver log, and framework mappings. It's the single source of truth for auditors and your team.</p>
+    </div>
+
+    <div class="split reverse">
+      <div class="split-copy">
+        <div class="section-kicker" style="margin-bottom: 10px;">PASSPORT DETAILS</div>
+        <h3>One document. Every compliance fact.</h3>
+        <p>The Passport Details view consolidates every piece of evidence for a project into a single, exportable document — control results, waiver history, framework coverage, and risk acceptances with approver signatures.</p>
+        <p>Share a read-only passport link with certification auditors. Everything they need is in one place, structured exactly how frameworks require it. No manual assembly, no spreadsheets.</p>
+        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="pill">Exportable</span>
+          <span class="pill">Auditor links</span>
+          <span class="pill">Full control history</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="card" style="overflow: hidden; padding: 0;">
+          <img src="{{ 'assets/images/wafpass_1.0/Run_Passport_Details.png' | relative_url }}" alt="Run Passport Details showing full compliance record for a project" style="width: 100%; display: block;">
         </div>
       </div>
     </div>
@@ -251,7 +425,7 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 
 
 <!-- ===================== PASS MODEL ===================== -->
-<section class="section pillars-section" id="pass-model">
+<section class="section" id="pass-model">
   <div class="container">
     <div class="section-header">
       <div class="section-kicker">THE PASS MODEL</div>
@@ -261,7 +435,7 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 
     <div class="pass-model">
       <div class="pass-model__center">
-        <img src="{{ 'assets/images/wafpass/Project_Overview.png' | relative_url }}" alt="WAFPass Project Overview — PASS model visualization" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,148,255,0.15);">
+        <img src="{{ 'assets/images/wafpass_1.0/Controls_Overview.png' | relative_url }}" alt="WAFPass Controls Overview — PASS model visualization" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,148,255,0.15);">
       </div>
 
       <div class="pass-model__item pass-model__item--platform">
@@ -301,7 +475,7 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 
 
 <!-- ===================== INTELLIGENCE LAYER ===================== -->
-<section class="section">
+<section class="section pillars-section">
   <div class="container">
     <div class="section-header">
       <div class="section-kicker">INTELLIGENCE LAYER</div>
@@ -340,13 +514,23 @@ html[data-theme="dark"] .ss-dark  { display: block; }
         <h3>Waivers &amp; Risk Acceptance</h3>
         <p class="muted">Intentionally skip controls with written justification. Risk acceptances include approver, RFC/Jira links, expiry dates — fully traceable.</p>
       </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="arrow-up-circle" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
+        <h3>Controls Upgrade</h3>
+        <p class="muted">When new WAF++ controls ship, see exactly what changed, which controls are new, and what the posture impact will be — before you upgrade your control set.</p>
+      </div>
+      <div class="card card-pad">
+        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="map-pin" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
+        <h3>Deployed Region Map</h3>
+        <p class="muted">Track which cloud regions have active deployments, their compliance status, and which projects are mapped to each region — from a single operations view.</p>
+      </div>
     </div>
   </div>
 </section>
 
 
 <!-- ===================== ARCHITECTURE ===================== -->
-<section class="section pillars-section">
+<section class="section">
   <div class="container">
     <div class="section-header">
       <div class="section-kicker">ARCHITECTURE</div>
@@ -384,11 +568,76 @@ html[data-theme="dark"] .ss-dark  { display: block; }
         </div>
         <div>
           <div style="font-size: 30px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px;">8 Pillars</div>
-          <p class="muted" style="font-size: 13px; margin: 0;">SEC, COST, PERF, REL, OPS, SUS, SOV</p>
+          <p class="muted" style="font-size: 13px; margin: 0;">SEC, COST, PERF, REL, OPS, SUS, SOV, AGENTIC</p>
         </div>
         <div>
           <div style="font-size: 30px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px;">20+ Ops</div>
           <p class="muted" style="font-size: 13px; margin: 0;">Equals, not, exists, cidr, range, and more</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Implementation Overview -->
+    <div class="split reverse" style="margin-top: 64px;">
+      <div class="split-copy">
+        <div class="section-kicker" style="margin-bottom: 10px;">IMPLEMENTATION OVERVIEW</div>
+        <h3>Deploy in minutes, not days.</h3>
+        <p>The Implementation Overview walks through every step — from installing the CLI to connecting the server and spinning up the dashboard. Each component has a dedicated setup path for local, Docker, and Kubernetes deployments.</p>
+        <p>First-run detection guides new teams through project creation and initial control evaluation automatically. No blank-slate configuration required to get your first compliance run.</p>
+        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="pill">CLI · Docker · Kubernetes</span>
+          <span class="pill">First-run wizard</span>
+          <span class="pill">Step-by-step</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="card" style="overflow: hidden; padding: 0;">
+          <img src="{{ 'assets/images/wafpass_1.0/Implementation_Overview.png' | relative_url }}" alt="Implementation Overview showing deployment steps for CLI, server and dashboard" style="width: 100%; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Deployed Region Map -->
+    <div class="split" style="margin-top: 64px;">
+      <div class="split-copy">
+        <div class="section-kicker" style="margin-bottom: 10px;">DEPLOYED REGION MAP</div>
+        <h3>Your global infrastructure footprint, in one view.</h3>
+        <p>The Deployed Region Map shows every active cloud region where WAFPass-evaluated infrastructure lives. Compliance status, project count, and sovereignty zone are visible per region — without clicking into individual projects.</p>
+        <p>Ideal for cloud architects and compliance officers who need to understand where data is processed, stored, and evaluated, in relation to GDPR residency requirements or sovereign cloud constraints.</p>
+        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="pill">Region visibility</span>
+          <span class="pill">Data residency</span>
+          <span class="pill">Sovereign cloud</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="card" style="overflow: hidden; padding: 0;">
+          <img src="{{ 'assets/images/wafpass_1.0/Deployed_Region_Map.png' | relative_url }}" alt="Deployed Region Map showing active cloud regions and compliance status" style="width: 100%; display: block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CONTROLS UPGRADE ===================== -->
+<section class="section pillars-section">
+  <div class="container">
+    <div class="split reverse">
+      <div class="split-copy">
+        <div class="section-kicker" style="margin-bottom: 10px;">CONTROLS UPGRADE</div>
+        <h3>Upgrade your controls with confidence.</h3>
+        <p>When new WAF++ controls ship, the Controls Upgrade view shows exactly what's changed — new controls added, existing controls modified, and deprecated controls flagged. Preview the full posture impact before you apply the upgrade.</p>
+        <p>Upgrade incrementally or all-at-once. Rollback is always available, and every upgrade is logged with the user who applied it, the controls changed, and the resulting posture delta.</p>
+        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="pill">Preview impact</span>
+          <span class="pill">Incremental upgrade</span>
+          <span class="pill">Rollback support</span>
+        </div>
+      </div>
+      <div class="split-visual">
+        <div class="card" style="overflow: hidden; padding: 0;">
+          <img src="{{ 'assets/images/wafpass_1.0/Controls_Upgrade.png' | relative_url }}" alt="Controls Upgrade showing changed controls and posture impact preview" style="width: 100%; display: block;">
         </div>
       </div>
     </div>
@@ -423,3 +672,39 @@ html[data-theme="dark"] .ss-dark  { display: block; }
 </section>
 
 <script src="{{ '/assets/js/wafpass-download.js' | relative_url }}"></script>
+<script>
+(function () {
+  var lb = document.createElement('div');
+  lb.className = 'wp-lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.setAttribute('aria-label', 'Image preview');
+  lb.innerHTML = '<button class="wp-lightbox-close" aria-label="Close image">&times;</button><img alt="">';
+  document.body.appendChild(lb);
+
+  var lbImg   = lb.querySelector('img');
+  var lbClose = lb.querySelector('.wp-lightbox-close');
+
+  function openLB(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+  function closeLB() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLB(); });
+  lbClose.addEventListener('click', closeLB);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLB(); });
+
+  document.querySelectorAll('.split-visual .card img, .wp-feat-img img, .pass-model__center img').forEach(function (img) {
+    img.classList.add('wp-zoomable');
+    img.addEventListener('click', function () { openLB(img.src, img.alt); });
+  });
+}());
+</script>
