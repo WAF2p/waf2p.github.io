@@ -10,7 +10,7 @@
 
 (function () {
   const CONTROLS_API =
-    'https://api.github.com/repos/WAF2p/framework/contents/modules/controls/controls';
+    'https://api.github.com/repos/WAF2p/framework/contents/modules/controls/controls?ref=main-en';
   const ZIP_NAME = 'wafpp-controls.zip';
   const JSZIP_CDN =
     'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
