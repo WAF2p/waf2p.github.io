@@ -1,0 +1,192 @@
+.agentic-modal-open { overflow: hidden; }
+
+.agentic-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.agentic-modal[hidden] {
+  display: none;
+}
+
+.agentic-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 10, 18, .72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.agentic-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 36px 32px;
+  text-align: center;
+  background-image:
+    radial-gradient(600px 320px at 10% 0%, color-mix(in srgb, var(--accent-500) 14%, transparent), transparent 55%),
+    radial-gradient(500px 280px at 90% 10%, color-mix(in srgb, var(--accent-300) 10%, transparent), transparent 55%);
+}
+
+.agentic-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color .15s ease, background .15s ease;
+}
+
+.agentic-modal__close:hover,
+.agentic-modal__close:focus {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.agentic-modal__close svg,
+.agentic-modal__close i {
+  width: 16px;
+  height: 16px;
+}
+
+.agentic-modal__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-500);
+  margin-bottom: 14px;
+}
+
+.agentic-modal__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-500) 22%, transparent);
+  animation: agentic-pulse 2s ease-in-out infinite;
+}
+
+.agentic-modal__title {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+
+.agentic-modal__lead {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 26px;
+}
+
+.agentic-modal__list {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.agentic-modal__list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text);
+  padding: 10px 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.agentic-modal__list li svg,
+.agentic-modal__list li i {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-500);
+  flex-shrink: 0;
+}
+
+.agentic-modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.agentic-modal__actions .btn {
+  white-space: nowrap;
+}
+
+.agentic-modal__footer {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .agentic-modal {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .agentic-modal__panel {
+    padding: 32px 20px 24px;
+    max-height: calc(100vh - 24px);
+    border-radius: var(--radius-lg);
+  }
+
+  .agentic-modal__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .agentic-modal__actions .btn {
+    width: 100%;
+  }
+
+  .agentic-modal__list li {
+    font-size: 13px;
+  }
+}
+
+@keyframes agentic-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .55; transform: scale(.85); }
+}
+
+html[data-theme="dark"] .agentic-modal__panel {
+  background-image:
+    radial-gradient(600px 320px at 10% 0%, color-mix(in srgb, var(--accent-500) 10%, transparent), transparent 55%),
+    radial-gradient(500px 280px at 90% 10%, color-mix(in srgb, var(--accent-300) 6%, transparent), transparent 55%);
+}
