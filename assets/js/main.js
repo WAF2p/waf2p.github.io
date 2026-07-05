@@ -179,3 +179,55 @@
   });
 })();
 
+
+// Agentic launch modal — shown once per browser, closed via localStorage
+(function () {
+  const modal = document.getElementById('agentic-launch-modal');
+  if (!modal) return;
+
+  const storageKey = 'agentic-launch-modal-dismissed';
+  try {
+    if (localStorage.getItem(storageKey) === '1') return;
+  } catch (e) {
+    // storage unavailable; silently skip
+    return;
+  }
+
+  function showModal() {
+    modal.removeAttribute('hidden');
+    document.body.classList.add('agentic-modal-open');
+    // focus the close button for accessibility
+    const closeBtn = modal.querySelector('[data-agentic-close]');
+    if (closeBtn && closeBtn.focus) closeBtn.focus();
+  }
+
+  function dismissModal() {
+    modal.setAttribute('hidden', '');
+    document.body.classList.remove('agentic-modal-open');
+    try { localStorage.setItem(storageKey, '1'); } catch (e) {}
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-agentic-close]')) {
+      dismissModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
+      dismissModal();
+    }
+  });
+
+  // Show after a short delay so the page renders first
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(showModal, 600);
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    });
+  } else {
+    setTimeout(showModal, 600);
+    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+  }
+})();
+
