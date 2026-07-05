@@ -11,6 +11,8 @@
 (function () {
   const CONTROLS_API =
     'https://api.github.com/repos/WAF2p/framework/contents/modules/controls/controls?ref=main-en';
+  const RAW_BASE =
+    'https://raw.githubusercontent.com/WAF2p/framework/main-en/modules/controls/controls/';
   const ZIP_NAME = 'wafpp-controls.zip';
   const JSZIP_CDN =
     'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
@@ -50,8 +52,8 @@
     try {
       await loadScript(JSZIP_CDN);
 
-      // One API call to list files
-      var res = await fetch(CONTROLS_API);
+      // One API call to list files; cache-bust so new controls appear immediately
+      var res = await fetch(CONTROLS_API + '&_cb=' + Date.now(), { cache: 'no-store' });
       if (!res.ok) throw new Error('GitHub API returned ' + res.status);
       var entries = await res.json();
       var files = entries.filter(function (e) { return e.type === 'file'; });
@@ -61,10 +63,11 @@
       var zip = new JSZip();
       var folder = zip.folder('wafpp-controls');
 
-      // Fetch all files in parallel via raw (no rate limit)
+      // Fetch all files in parallel via raw (no rate limit), cache-busted by branch
       await Promise.all(
         files.map(function (f) {
-          return fetch(f.download_url)
+          var rawUrl = RAW_BASE + encodeURIComponent(f.name) + '?_cb=' + Date.now();
+          return fetch(rawUrl, { cache: 'no-store' })
             .then(function (r) {
               if (!r.ok) throw new Error('Failed to fetch ' + f.name);
               return r.text();
@@ -85,6 +88,8 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
+      // Show the user how many controls were packaged
+      btn.setAttribute('data-label-done', files.length + ' controls downloaded!');
       setState(btn, 'done', originalLabel);
     } catch (err) {
       console.error('[WAFPass] Controls download failed:', err);
