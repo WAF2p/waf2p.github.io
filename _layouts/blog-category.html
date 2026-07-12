@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+{% if page.lang == 'de' %}
+  {% assign t_back = "Zurück zum Blog" %}
+  {% assign t_badge = "Kategorie" %}
+  {% assign t_all_cats = "Alle Kategorien" %}
+  {% assign t_empty = "In dieser Kategorie gibt es noch keine Artikel." %}
+  {% assign cat_prefix = "/de/blog/category/" %}
+  {% assign blog_index = "/de/blog/" %}
+{% else %}
+  {% assign t_back = "Back to Blog" %}
+  {% assign t_badge = "Category" %}
+  {% assign t_all_cats = "All categories" %}
+  {% assign t_empty = "No articles in this category yet." %}
+  {% assign cat_prefix = "/blog/category/" %}
+  {% assign blog_index = "/blog/" %}
+{% endif %}
+
+<div class="page-radical blog-page">
+  <section class="blog-header">
+    <div class="container blog-header__inner">
+      <div class="blog-header__pills">
+        <span class="blog-header__pill">
+          <i data-lucide="folder-open" aria-hidden="true"></i> {{ t_badge }}
+        </span>
+      </div>
+      <h1 class="blog-header__title">{{ page.title }}</h1>
+      <p class="blog-header__lead">{{ page.description }}</p>
+
+      <div class="blog-cats" style="margin-top: 18px;">
+        <span class="blog-cats__label">{{ t_all_cats }}:</span>
+        {% assign all_cats = site.posts | where: 'lang', page.lang | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+        {% for c in all_cats %}
+          {% assign c_clean = c | strip %}
+          {% if c_clean != '' %}
+            {% assign c_slug = c_clean | slugify %}
+            {% assign c_url = cat_prefix | append: c_slug | append: '/' | relative_url %}
+            <a class="blog-cats__chip{% if c_clean == page.category %} is-active{% endif %}" href="{{ c_url }}">{{ c_clean | replace: '_', ' ' }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bento-section" style="padding-top: 0;">
+    <div class="container">
+      {% assign posts_in_cat = site.posts | where_exp: "p", "p.categories contains page.category" | where: "lang", page.lang %}
+      {% if posts_in_cat.size > 0 %}
+        <div class="blog-grid">
+          {% for post in posts_in_cat %}
+            {% include blog-card.html post=post %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-center" style="color: var(--radical-muted);">{{ t_empty }}</p>
+      {% endif %}
+
+      <div class="pagination modern" style="margin-top: 32px;">
+        <a class="btn-glass btn-glass--sm" href="{{ blog_index | relative_url }}">
+          <span aria-hidden="true">←</span> {{ t_back }}
+        </a>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </section>
+</div>

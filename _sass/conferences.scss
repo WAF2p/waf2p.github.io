@@ -1,130 +1,492 @@
-/* Conferences – fixes for card layout + keeps dark conference tiles */
+/* Conferences — Radical dark-first theme */
 
-.hero--fullwidth {
-  position: relative;
-  padding: 100px 0 80px;
-}
-
-.hero--fullwidth .hero__bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(1200px 600px at 15% 10%, rgba(74, 163, 255, 0.25), transparent 60%),
-              radial-gradient(900px 500px at 85% 15%, rgba(255, 206, 120, 0.20), transparent 55%),
-              linear-gradient(180deg, #f6f9fc 0%, #ffffff 70%);
-  z-index: -1;
-}
-
-.hero-actions--spaced {
-  margin-top: 28px;
+/* ── Stats band variant ───────────────────────────────────────────────── */
+.conference-stats {
   display: flex;
-  gap: 14px;
+  justify-content: center;
+  gap: 12px;
   flex-wrap: wrap;
+  margin-bottom: 32px;
 }
 
-/* Ensure grid is stable and cards don't overlap */
+.conference-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--radical-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--radical-muted);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px);
+
+  i { width: 14px; height: 14px; color: var(--brand-400); }
+}
+
+html[data-theme="light"] .conference-stat {
+  background: rgba(15,23,42,0.03);
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) .conference-stat { background: rgba(15,23,42,0.03); }
+}
+
+/* ── Conference grids ─────────────────────────────────────────────────── */
 .conference-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 18px;
+  gap: 20px;
+  margin-top: 28px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
   .conference-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .conference-grid { grid-template-columns: 1fr; }
 }
 
-/* Dark cards only for conferences list */
-.conference-card--dark {
-  background: #2f2f2f;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 24px;
-  padding: 18px 18px 16px;
-  box-shadow: 0 14px 35px rgba(0,0,0,0.18);
+.conference-grid--rows {
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* prevents logo overflow from “cutting” cards */
+  gap: 14px;
+  margin-top: 28px;
 }
 
-.conference-card--dark .conf-title,
-.conference-card--dark .conf-date,
-.conference-card--dark .conf-location,
-.conference-card--dark .conf-description,
-.conference-card--dark .conf-members h4 {
-  color: inherit;
+/* ── Conference card ──────────────────────────────────────────────────── */
+.conf-card {
+  border: 1px solid var(--radical-border);
+  border-radius: 22px;
+  padding: 22px;
+  background: var(--radical-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0,148,255,0.35);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.35), 0 0 40px var(--radical-glow);
+  }
 }
 
-.conference-card--dark .conf-description,
-.conference-card--dark .conf-date,
-.conference-card--dark .conf-location {
-  opacity: 0.92;
+.conf-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-/* Fix: logos were huge. Constrain and keep consistent height */
-.conf-image {
+.conf-card__logo {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border: 1px solid var(--radical-border);
+  border-radius: 12px;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  height: 76px;
-  margin-bottom: 12px;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  padding: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
-.conf-image img {
-  max-height: 76px;
-  max-width: 220px;
-  width: auto;
-  object-fit: contain;
+.conf-card__meta {
+  flex: 1;
+  min-width: 0;
 }
 
-/* Text rhythm */
-.conf-title { margin: 4px 0 10px; }
-.conf-date, .conf-location { margin: 2px 0; }
-.conf-description { margin: 10px 0 12px; }
-
-/* Button stays at bottom */
-.conf-link { margin-top: auto; }
-
-/* Members as small “chips” (simple + readable on dark cards) */
-.conf-members {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.12);
+.conf-card__name {
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--radical-text);
 }
 
-.conf-members h4 {
-  margin: 0 0 10px;
-  font-size: 0.95rem;
-  opacity: 0.9;
+.conf-card__date,
+.conf-card__location {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--radical-muted);
+  margin-top: 5px;
+
+  i { width: 12px; height: 12px; flex-shrink: 0; }
 }
 
-.member-grid {
+.conf-card__desc {
+  font-size: 0.88rem;
+  color: var(--radical-muted);
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.conf-card__topics {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
 }
 
+.conf-card__topic {
+  font-size: 0.8rem;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--radical-border);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--radical-muted);
+  background: rgba(255,255,255,0.02);
+
+  i {
+    width: 13px;
+    height: 13px;
+    color: var(--brand-400);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+}
+
+.conf-card__footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--radical-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.conf-card__members {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.conf-card__role {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,148,255,0.25);
+  color: var(--brand-400);
+  background: rgba(0,148,255,0.08);
+  margin-left: 4px;
+}
+
+/* ── Past conference row ────────────────────────────────────────────────── */
+.conf-row {
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  padding: 18px 20px;
+  background: var(--radical-surface);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0,148,255,0.3);
+    box-shadow: 0 16px 45px rgba(0,0,0,0.28), 0 0 25px var(--radical-glow);
+  }
+}
+
+.conf-row__logo {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid var(--radical-border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  padding: 6px;
+
+  img { width: 100%; height: 100%; object-fit: contain; }
+}
+
+.conf-row__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.conf-row__name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--radical-text);
+}
+
+.conf-row__sub {
+  display: flex;
+  gap: 14px;
+  margin-top: 3px;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: var(--radical-muted);
+
+  span { display: inline-flex; align-items: center; gap: 4px; }
+  i { width: 11px; height: 11px; }
+}
+
+.conf-row__desc {
+  font-size: 0.78rem;
+  color: var(--radical-muted);
+  margin: 4px 0 0;
+}
+
+.conf-row__members {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+/* ── Speakers grid ──────────────────────────────────────────────────────── */
+.speaker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+
+@media (max-width: 980px) {
+  .speaker-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .speaker-grid { grid-template-columns: 1fr; }
+}
+
+.speaker-card {
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  padding: 20px;
+  background: var(--radical-surface);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,148,255,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
+  }
+}
+
+.speaker-card__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.speaker-card__avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid var(--radical-border);
+}
+
+.speaker-card__name {
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.25;
+
+  a { color: var(--radical-text); text-decoration: none; }
+  a:hover { color: var(--brand-400); }
+}
+
+.speaker-card__role {
+  font-size: 0.8rem;
+  color: var(--radical-muted);
+  margin-top: 3px;
+}
+
+.speaker-card__bio {
+  font-size: 0.82rem;
+  color: var(--radical-muted);
+  line-height: 1.55;
+  margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.speaker-card__social {
+  display: flex;
+  gap: 10px;
+
+  a {
+    color: var(--radical-muted);
+    transition: color 0.15s ease;
+
+    &:hover { color: var(--brand-400); }
+  }
+}
+
+/* ── Empty state ───────────────────────────────────────────────────────── */
+.conf-empty {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--radical-border);
+  border-radius: 18px;
+  background: var(--radical-surface);
+
+  i { width: 36px; height: 36px; color: var(--brand-400); margin-bottom: 12px; }
+  p { font-size: 0.95rem; color: var(--radical-muted); margin: 0; }
+}
+
+/* ── Member chip (reused from staff pages) ──────────────────────────────── */
 .member-chip {
   display: inline-flex;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-  padding: 4px;
-  transition: transform .18s ease, background .18s ease, border-color .18s ease;
-}
+  border-radius: 999px;
+  border: 1px solid var(--radical-border);
+  background: rgba(255,255,255,0.04);
+  padding: 3px;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 
-.member-chip:hover {
-  transform: translateY(-1px);
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(255,255,255,0.22);
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(0,148,255,0.35);
+  }
 }
 
 .member-chip__avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   object-fit: cover;
   display: block;
+}
+
+/* ── Get involved cards ───────────────────────────────────────────────── */
+.conf-involve-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+@media (max-width: 980px) {
+  .conf-involve-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .conf-involve-grid { grid-template-columns: 1fr; }
+}
+
+.conf-involve-card {
+  border: 1px solid var(--radical-border);
+  border-radius: 22px;
+  padding: 28px 24px;
+  background: var(--radical-surface);
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,148,255,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
+  }
+}
+
+.conf-involve-card__icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 16px;
+  border: 1px solid var(--radical-border);
+  background: rgba(0,148,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i { width: 26px; height: 26px; color: var(--brand-400); }
+}
+
+.conf-involve-card__title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--radical-text);
+  margin: 0 0 10px;
+}
+
+.conf-involve-card__desc {
+  font-size: 0.85rem;
+  color: var(--radical-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Community formats row ────────────────────────────────────────────── */
+.conf-formats-row {
+  margin-top: 20px;
+  border: 1px solid var(--radical-border);
+  border-radius: 22px;
+  padding: 26px;
+  background: var(--radical-surface);
+}
+
+.conf-formats-row__title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--radical-muted);
+  margin-bottom: 22px;
+}
+
+.conf-formats-row__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 980px) {
+  .conf-formats-row__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .conf-formats-row__grid { grid-template-columns: 1fr; }
+}
+
+.conf-format-mini {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  i { width: 20px; height: 20px; color: var(--brand-400); flex-shrink: 0; margin-top: 1px; }
+}
+
+.conf-format-mini__title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--radical-text);
+}
+
+.conf-format-mini__desc {
+  font-size: 0.78rem;
+  color: var(--radical-muted);
+  margin-top: 2px;
+  line-height: 1.5;
+}
+
+.conf-formats-row__note {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--radical-border);
+  font-size: 0.8rem;
+  color: var(--radical-muted);
 }

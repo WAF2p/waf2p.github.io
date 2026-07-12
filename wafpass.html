@@ -3,709 +3,491 @@ layout: default
 lang: en
 ref: wafpass
 title: WAFPass – IaC Compliance, Visualized
-description: WAFPass 1.0 is your full-stack Infrastructure-as-Code compliance platform — CLI, dashboard, and server in one. Static analysis. No cloud access needed. GDPR, SOC 2, ISO 27001, BSI C5, HIPAA, NIS2 ready.
+description: WAFPass v1.1.0 is the open-source Infrastructure-as-Code compliance platform — CLI, dashboard, and server in one. Static analysis, 8 WAF++ pillars, 83+ controls. GDPR, SOC 2, ISO 27001, BSI C5, HIPAA, NIS2 ready.
 permalink: /wafpass/
 ---
 
-<style>
-/* WAFPass landing page — page-scoped styles */
-.wp-hero-shot {
-  position: relative;
-  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  overflow: hidden;
-  box-shadow: 0 -2px 0 0 rgba(0,148,255,.12), 0 24px 80px rgba(0,0,0,.28);
-  border: 1px solid rgba(255,255,255,.08);
-  border-bottom: none;
-  margin-top: 56px;
-}
-.wp-hero-shot img { width: 100%; display: block; }
+<div class="page-radical wafpass-page">
 
-/* Theme-responsive screenshots */
-.ss-light { display: block; }
-.ss-dark  { display: none; }
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) .ss-light { display: none; }
-  html:not([data-theme]) .ss-dark  { display: block; }
-}
-html[data-theme="dark"] .ss-light { display: none; }
-html[data-theme="dark"] .ss-dark  { display: block; }
-
-/* Spacer between feature splits */
-.wp-splits > * + * { margin-top: 80px; }
-
-/* Feature card with image top */
-.wp-feat-card { display: flex; flex-direction: column; overflow: hidden; }
-.wp-feat-card .wp-feat-img { overflow: hidden; border-bottom: 1px solid var(--border); aspect-ratio: 16/9; }
-.wp-feat-card .wp-feat-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.wp-feat-card .wp-feat-body { padding: 22px; flex: 1; }
-.wp-feat-card h3 { font-size: 17px; margin: 0 0 8px; }
-.wp-feat-card p  { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6; }
-
-/* Maturity journey full-width showcase */
-.wp-maturity-img { border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 16px 56px rgba(0,0,0,.22); border: 1px solid var(--border); }
-.wp-maturity-img img { width: 100%; display: block; }
-
-/* Lightbox */
-.wp-lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,.88); cursor: zoom-out; align-items: center; justify-content: center; padding: 24px; }
-.wp-lightbox.open { display: flex; }
-.wp-lightbox img { max-width: min(1280px, 100%); max-height: calc(100svh - 48px); border-radius: 12px; box-shadow: 0 32px 80px rgba(0,0,0,.5); object-fit: contain; cursor: default; }
-.wp-lightbox-close { position: fixed; top: 16px; right: 20px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; }
-.wp-lightbox-close:hover { background: rgba(255,255,255,.22); }
-.wp-zoomable { cursor: zoom-in !important; }
-</style>
-
-<!-- ===================== HERO ===================== -->
-<section class="hero hero--home" style="padding-bottom: 0;">
-  <div class="container" style="text-align: center;">
-    <div style="max-width: 820px; margin: 0 auto;">
-      <div class="home-badge">
-        <span class="home-badge__dot"></span>
-        v1.0.0 &middot; Stable &middot; General Availability
+  <!-- ===================== HERO ===================== -->
+  <section class="wafpass-hero" aria-label="WAFPass">
+    <div class="wafpass-hero__orb wafpass-hero__orb--blue" aria-hidden="true"></div>
+    <div class="wafpass-hero__orb wafpass-hero__orb--gold" aria-hidden="true"></div>
+    <div class="wafpass-hero__orb wafpass-hero__orb--purple" aria-hidden="true"></div>
+    <div class="container wafpass-hero__inner">
+      <div class="wafpass-hero__badge">
+        <span class="wafpass-hero__badge-dot"></span>
+        v1.1.0 &middot; Stable &middot; Open Source
       </div>
-      <h1 class="home-h1">Infrastructure compliance,<br><span class="text-gradient">fully visualized.</span></h1>
-      <p class="lead" style="max-width: 58ch; margin: 0 auto 28px;">WAFPass 1.0 is the complete compliance platform for modern infrastructure. Parse your IaC, evaluate controls, explore results in the browser, and generate auditor-ready reports — all in one integrated stack.</p>
-
-      <div class="hero-actions" style="justify-content: center; margin-bottom: 32px;">
-        <a class="btn btn-primary" href="{{ '/docs/wafpp/1.0.1-en/resources/wafpass.html' | relative_url }}">Get Started &rarr;</a>
-        <button class="btn" data-action="download-controls" data-label-loading="Preparing&hellip;" data-label-done="Downloaded!" data-label-error="Error &ndash; try again">Download Controls</button>
-        <a class="btn btn-ghost" href="https://github.com/waf2p/pass" target="_blank" rel="noopener">View on GitHub</a>
-        <a class="btn btn-ghost" href="https://waf2p.dev/demo/" target="_blank" rel="noopener">Live Demo</a>
+      <h1>Infrastructure Compliance,<br><span class="text-gradient-radical">fully visualized.</span></h1>
+      <p class="wafpass-hero__lead">
+        WAFPass is the open-source compliance platform for modern infrastructure. Parse Terraform and AWS CDK,
+        evaluate 83+ WAF++ controls across 8 pillars, explore results in the browser and generate auditor-ready
+        reports — all in one integrated stack. No cloud credentials required.
+      </p>
+      <div class="wafpass-hero__actions">
+        <a class="btn-glow" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass &rarr;</a>
+        <a class="btn-glass" href="#download-controls">
+          <i data-lucide="download" aria-hidden="true"></i> Download Controls
+        </a>
+        <a class="btn-glass" href="https://github.com/waf2p/pass" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn-glass" href="https://waf2p.dev/demo/" target="_blank" rel="noopener">Live Demo</a>
       </div>
+      <div class="wafpass-hero__compliance">
+        <span class="control-pill">GDPR</span>
+        <span class="control-pill">SOC 2</span>
+        <span class="control-pill">HIPAA</span>
+        <span class="control-pill">BSI C5</span>
+        <span class="control-pill">ISO 27001</span>
+        <span class="control-pill">NIS2</span>
+        <span class="control-pill">PCI DSS</span>
+        <span class="control-pill">ISO 27017</span>
+        <span class="control-pill">CSA STAR</span>
+        <span class="control-pill">CIS Controls</span>
+        <span class="control-pill">DORA</span>
+        <span class="control-pill">EUCS</span>
+        <span class="control-pill">NIST 800-53</span>
+        <span class="control-pill">COBIT</span>
+        <span class="control-pill control-pill--muted">+ more</span>
+      </div>
+    </div>
 
-      <div class="home-trust" style="align-items: center;">
-        <div class="home-trust__label">Compliance frameworks supported</div>
-        <div class="home-trust__pills" style="justify-content: center;">
-          <span class="home-trust__pill">GDPR</span>
-          <span class="home-trust__pill">BSI C5</span>
-          <span class="home-trust__pill">ISO 27001</span>
-          <span class="home-trust__pill">SOC 2</span>
-          <span class="home-trust__pill">HIPAA</span>
-          <span class="home-trust__pill">NIS2</span>
+    <div class="container">
+      <div class="wafpass-hero-shot">
+        <img src="{{ 'assets/images/wafpass_1.0/global_operation_center_multi_color.png' | relative_url }}" alt="WAFPass Global Operations Center — multi-region compliance overview">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section class="stats-band wafpass-stats" aria-label="Key numbers">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">v1.1.0</div>
+          <div class="stat-label">CLI release</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Pillars covered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">83+</div>
+          <div class="stat-label">Controls mapped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">22+</div>
+          <div class="stat-label">Dashboard views</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Hero dashboard screenshot -->
-    <div class="wp-hero-shot">
-      <img src="{{ 'assets/images/wafpass_1.0/global_operation_center_multi_color.png' | relative_url }}" alt="WAFPass Global Operations Center — multi-region compliance overview">
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== THREE-LAYER STACK ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">THE PLATFORM</div>
-      <h2>Three layers. One compliance workflow.</h2>
-      <p class="lead">WAFPass isn't just a CLI — it's a three-layer stack for engineering teams who need continuous compliance without compromising speed.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card card-pad">
-        <div style="margin-bottom: 14px; color: var(--brand-500);"><i data-lucide="terminal" style="width: 28px; height: 28px;" aria-hidden="true"></i></div>
-        <h3>CLI Engine</h3>
-        <p class="muted">The core evaluation engine. Parses Terraform, AWS CDK, and more. Runs in CI/CD pipelines. No cloud credentials needed.</p>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;">
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(0,148,255,0.1); border: 1px solid rgba(0,148,255,0.2); color: #0094ff; font-weight: 600;">Python</span>
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(0,148,255,0.1); border: 1px solid rgba(0,148,255,0.2); color: #0094ff; font-weight: 600;">PyPI</span>
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(0,148,255,0.1); border: 1px solid rgba(0,148,255,0.2); color: #0094ff; font-weight: 600;">Apache 2.0</span>
-        </div>
+  <!-- ===================== STACK ===================== -->
+  <section class="wafpass-stack-section" aria-label="WAFPass platform stack">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">The platform</div>
+        <h2 class="section-title-radical">Three layers. One compliance workflow.</h2>
+        <p class="section-lead-radical">WAFPass is more than a CLI — it is a three-layer stack for engineering teams that need continuous compliance without sacrificing speed.</p>
       </div>
 
-      <div class="card card-pad">
-        <div style="margin-bottom: 14px; color: #2563eb;"><i data-lucide="layout-dashboard" style="width: 28px; height: 28px;" aria-hidden="true"></i></div>
-        <h3>Dashboard</h3>
-        <p class="muted">22+ pages of visual exploration. Findings, drift, exploit paths, secret scanner results — explore everything and export evidence packages.</p>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;">
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2); color: #2563eb; font-weight: 600;">React</span>
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2); color: #2563eb; font-weight: 600;">Vite</span>
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2); color: #2563eb; font-weight: 600;">Docker</span>
+      <div class="wafpass-stack">
+        <div class="wafpass-stack__card wafpass-stack__card--cli">
+          <div class="wafpass-stack__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">wafpass CLI</div>
+          <p class="wafpass-stack__desc">Core evaluation engine. Parses Terraform and AWS CDK. Runs in CI/CD pipelines. No cloud credentials needed.</p>
+          <div class="wafpass-stack__tags">
+            <span class="control-pill">Python</span>
+            <span class="control-pill">PyPI: wafpass-core</span>
+            <span class="control-pill">Apache 2.0</span>
+          </div>
         </div>
-      </div>
 
-      <div class="card card-pad">
-        <div style="margin-bottom: 14px; color: #16a34a;"><i data-lucide="database" style="width: 28px; height: 28px;" aria-hidden="true"></i></div>
-        <h3>Server API</h3>
-        <p class="muted">FastAPI persistence layer. Stores runs, waivers, risk acceptances, secrets, and audit events. PostgreSQL with automatic migrations.</p>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;">
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.2); color: #16a34a; font-weight: 600;">FastAPI</span>
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.2); color: #16a34a; font-weight: 600;">PostgreSQL</span>
-          <span style="font-size: 11px; padding: 4px 10px; border-radius: 999px; background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.2); color: #16a34a; font-weight: 600;">Alembic</span>
+        <div class="wafpass-stack__card wafpass-stack__card--server">
+          <div class="wafpass-stack__icon"><i data-lucide="database" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">wafpass-server</div>
+          <p class="wafpass-stack__desc">FastAPI persistence layer. Stores runs, waivers, risk acceptances, secret findings and audit events. PostgreSQL with automatic migrations.</p>
+          <div class="wafpass-stack__tags">
+            <span class="control-pill">FastAPI</span>
+            <span class="control-pill">PostgreSQL</span>
+            <span class="control-pill">Alembic</span>
+          </div>
+        </div>
+
+        <div class="wafpass-stack__card wafpass-stack__card--dashboard">
+          <div class="wafpass-stack__icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">wafpass-dashboard</div>
+          <p class="wafpass-stack__desc">React web dashboard. 22+ pages of compliance exploration, auditor-ready evidence export and RBAC role management.</p>
+          <div class="wafpass-stack__tags">
+            <span class="control-pill">React</span>
+            <span class="control-pill">Vite</span>
+            <span class="control-pill">Docker</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ===================== GLOBAL OPERATIONS CENTER ===================== -->
-<section class="section pillars-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">GLOBAL OPERATIONS CENTER</div>
-      <h2>One pane of glass for every region.</h2>
-      <p class="lead">The Global Operations Center gives compliance leads and CISOs a real-time view of the entire compliance posture — across all projects, regions, and deployment stages.</p>
-    </div>
-
-    <div class="split">
-      <div class="split-copy">
-        <div class="section-kicker" style="margin-bottom: 10px;">MULTI-REGION VISIBILITY</div>
-        <h3>Drill from global heat-map to a single failing control.</h3>
-        <p>Color-coded region tiles instantly show where your infrastructure stands. A red tile means active findings — click to navigate directly to the failing controls, the project they belong to, and the engineer responsible.</p>
-        <p>Track deployment spread, sovereign boundaries, and cross-region compliance deltas — without switching between cloud consoles or manual spreadsheets.</p>
-        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <span class="pill">Multi-region</span>
-          <span class="pill">Real-time status</span>
-          <span class="pill">CISO-ready</span>
-          <span class="pill">Sovereign boundaries</span>
+  <!-- ===================== DOWNLOAD CONTROLS ===================== -->
+  <section class="wafpass-cta wafpass-download" id="download-controls" aria-label="Download controls">
+    <div class="container">
+      <div class="wafpass-cta__card">
+        <div class="kicker-radical">Controls library</div>
+        <h2 class="wafpass-cta__title">Take the controls with you.</h2>
+        <p class="wafpass-cta__lead">Download the full WAF++ controls catalog as YAML, or grab a Checkov-compatible policy bundle generated directly from the same source files.</p>
+        <div class="wafpass-cta__actions">
+          <button class="btn-glow" data-action="download-controls" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">
+            <i data-lucide="download" aria-hidden="true"></i> Download WAF++ controls
+          </button>
+          <button class="btn-glass" data-action="download-checkov" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">
+            <i data-lucide="file-code-2" aria-hidden="true"></i> Download Checkov policies
+          </button>
         </div>
-      </div>
-      <div class="split-visual">
-        <div class="card" style="overflow: hidden; padding: 0;">
-          <img class="ss-light" src="{{ 'assets/images/wafpass_1.0/global_operation_center_bright.png' | relative_url }}" alt="Global Operations Center — light mode" style="width: 100%; display: block;">
-          <img class="ss-dark"  src="{{ 'assets/images/wafpass_1.0/global_operation_center_dark.png' | relative_url }}"  alt="Global Operations Center — dark mode"  style="width: 100%; display: block;">
+        <p class="wafpass-download__note">The Checkov bundle is generated on demand from the same 83+ control definitions and includes one policy per automated check assertion.</p>
+        <div class="wafpass-download__soon">
+          <span class="wafpass-download__soon-label">More engine bundles:</span>
+          <span class="control-pill">TFLint <em>soon to be in</em></span>
+          <span class="control-pill">Terrascan <em>soon to be in</em></span>
+          <span class="control-pill">Open Policy Agent <em>soon to be in</em></span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- ===================== SHOWCASES ===================== -->
+  <section class="wafpass-showcase" aria-label="WAFPass features in action">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Features in action</div>
+        <h2 class="section-title-radical">Every view points to the next step.</h2>
+        <p class="section-lead-radical">WAFPass renders compliance data so the next action is obvious — whether you're a CISO looking for overview or an engineer fixing a FAIL.</p>
+      </div>
 
-<!-- ===================== FEATURE SHOWCASE — ALTERNATING SPLITS ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">FEATURES IN ACTION</div>
-      <h2>Every view tells you what to do next.</h2>
-      <p class="lead">WAFPass surfaces compliance data in ways that make the next action obvious — whether you're a CISO reviewing posture or an engineer fixing a FAIL.</p>
-    </div>
-
-    <div class="wp-splits">
-
-      <!-- Run Dashboard -->
       <div class="split">
-        <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">RUN DASHBOARD</div>
-          <h3>Every compliance run, tracked in real time.</h3>
-          <p>Every time WAFPass evaluates your infrastructure, a fully documented run is created — with timestamps, changed controls, pillar-level pass rates, and the team member who triggered it.</p>
-          <p>Compare runs side-by-side to catch regressions instantly. Each run links directly to the full passport for the evaluated project, so nothing slips through unnoticed.</p>
-          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="pill">Run history</span>
-            <span class="pill">Run comparison</span>
-            <span class="pill">Full audit trail</span>
+        <div class="wafpass-showcase__copy">
+          <div class="wafpass-showcase__kicker">Global Operations Center</div>
+          <div class="wafpass-showcase__title">One view across all regions.</div>
+          <p class="wafpass-showcase__body">Color-coded region tiles show instantly where the infrastructure stands. Red means active findings — one click leads to the failing controls, the owning project and the responsible engineer.</p>
+          <p class="wafpass-showcase__body">Track deployment distribution, sovereignty boundaries and cross-region compliance deltas without switching between cloud consoles or spreadsheets.</p>
+          <div class="wafpass-showcase__pills">
+            <span class="control-pill">Multi-region</span>
+            <span class="control-pill">Real-time status</span>
+            <span class="control-pill">Sovereignty boundaries</span>
           </div>
         </div>
-        <div class="split-visual">
-          <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Run Dashboard showing compliance run history and pass rates" style="width: 100%; display: block;">
-          </div>
+        <div class="wafpass-showcase__visual">
+          <img class="ss-light" src="{{ 'assets/images/wafpass_1.0/global_operation_center_bright.png' | relative_url }}" alt="Global Operations Center — light mode">
+          <img class="ss-dark" src="{{ 'assets/images/wafpass_1.0/global_operation_center_dark.png' | relative_url }}" alt="Global Operations Center — dark mode">
         </div>
       </div>
 
-      <!-- Secret Scanner -->
       <div class="split reverse">
-        <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">SECRET SCANNER</div>
-          <h3>Never ship a hardcoded credential.</h3>
-          <p>WAFPass scans every IaC file for hardcoded API keys, tokens, passwords, and certificates — before they reach your repository or your cloud.</p>
-          <p>Each finding includes the exact file path, line number, matched pattern, and remediation guidance. Built-in suppression with a full audit trail.</p>
-          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="pill">Regex patterns</span>
-            <span class="pill">File + line reference</span>
-            <span class="pill">Suppressions</span>
+        <div class="wafpass-showcase__copy">
+          <div class="wafpass-showcase__kicker">Run Dashboard</div>
+          <div class="wafpass-showcase__title">Every compliance run, tracked in real time.</div>
+          <p class="wafpass-showcase__body">Each WAFPass evaluation creates a fully documented run — timestamps, changed controls, pillar pass rates and the team member who triggered it.</p>
+          <p class="wafpass-showcase__body">Compare runs side-by-side to spot regressions instantly. Every run links to the full passport of the evaluated project so nothing goes unnoticed.</p>
+          <div class="wafpass-showcase__pills">
+            <span class="control-pill">Run history</span>
+            <span class="control-pill">Run comparison</span>
+            <span class="control-pill">Full audit trail</span>
           </div>
         </div>
-        <div class="split-visual">
-          <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass_1.0/Secret_Scanner.png' | relative_url }}" alt="Secret Scanner interface showing credential findings" style="width: 100%; display: block;">
-          </div>
+        <div class="wafpass-showcase__visual">
+          <img src="{{ 'assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Run Dashboard with compliance run history and pass rates">
         </div>
       </div>
 
-      <!-- Evidence Locker -->
       <div class="split">
-        <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">EVIDENCE LOCKER</div>
-          <h3>Audit evidence, generated automatically.</h3>
-          <p>Every compliance run produces evidence packages that map directly to your certification frameworks. The Evidence Locker organizes them by framework, control, and date — always up to date, always ready to share.</p>
-          <p>Share read-only evidence links with auditors without exporting anything manually. Packages include pass/fail summaries, waiver documentation, and timestamped screenshots.</p>
-          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="pill">Framework-mapped</span>
-            <span class="pill">Auditor-ready</span>
-            <span class="pill">Auto-generated</span>
+        <div class="wafpass-showcase__copy">
+          <div class="wafpass-showcase__kicker">Secret Scanner</div>
+          <div class="wafpass-showcase__title">No hardcoded credentials.</div>
+          <p class="wafpass-showcase__body">WAFPass scans every IaC file for hardcoded API keys, tokens, passwords and certificates — before they reach the repository or the cloud.</p>
+          <p class="wafpass-showcase__body">Every finding includes the exact file path, line number, matched pattern and remediation hint. Suppressions are tracked with a full audit trail.</p>
+          <div class="wafpass-showcase__pills">
+            <span class="control-pill">Regex patterns</span>
+            <span class="control-pill">File + line</span>
+            <span class="control-pill">Suppressions audited</span>
           </div>
         </div>
-        <div class="split-visual">
-          <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Evidence Locker showing framework-mapped compliance packages" style="width: 100%; display: block;">
-          </div>
+        <div class="wafpass-showcase__visual">
+          <img src="{{ 'assets/images/wafpass_1.0/Secret_Scanner.png' | relative_url }}" alt="Secret Scanner interface with credential findings">
         </div>
       </div>
 
-      <!-- Error Sprint Planning -->
       <div class="split reverse">
-        <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">ERROR SPRINT PLANNING</div>
-          <h3>From finding to fix — faster.</h3>
-          <p>Every FAIL opens a structured sprint plan. Findings are grouped by pillar and severity, auto-fix suggestions are generated for the most common patterns, and ownership is assigned in seconds.</p>
-          <p>Track progress as findings close. Each fix links back to the triggering run, the responsible team member, and the associated Jira or RFC ticket — nothing falls off the radar.</p>
-          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="pill">Auto-fix suggestions</span>
-            <span class="pill">Sprint tracking</span>
-            <span class="pill">Full traceability</span>
+        <div class="wafpass-showcase__copy">
+          <div class="wafpass-showcase__kicker">Evidence Locker</div>
+          <div class="wafpass-showcase__title">Audit evidence, generated automatically.</div>
+          <p class="wafpass-showcase__body">Every run produces evidence packages mapped directly to certification frameworks. The Evidence Locker organizes them by framework, control and date — always current, always shareable.</p>
+          <p class="wafpass-showcase__body">Share read-only evidence links with auditors without manual exports. Packages include pass/fail summaries, waiver documentation and time-stamped screenshots.</p>
+          <div class="wafpass-showcase__pills">
+            <span class="control-pill">Framework-mapped</span>
+            <span class="control-pill">Audit-ready</span>
+            <span class="control-pill">Auto-generated</span>
           </div>
         </div>
-        <div class="split-visual">
-          <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass_1.0/Error_Sprint_Planning.png' | relative_url }}" alt="Error Sprint Planning showing prioritised fix suggestions" style="width: 100%; display: block;">
-          </div>
+        <div class="wafpass-showcase__visual">
+          <img src="{{ 'assets/images/wafpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Evidence Locker with framework-mapped compliance packages">
         </div>
       </div>
 
-      <!-- Pipeline Performance -->
       <div class="split">
-        <div class="split-copy">
-          <div class="section-kicker" style="margin-bottom: 10px;">PIPELINE PERFORMANCE</div>
-          <h3>Compliance metrics that live in your pipeline.</h3>
-          <p>WAFPass tracks control pass rates across every CI/CD run. Trend lines per pillar show whether your compliance posture is improving or degrading — run after run, sprint after sprint.</p>
-          <p>Set threshold gates: a pipeline stage fails if a pillar drops below a configured pass-rate target. Every gate decision is logged and fully traceable back to the code change that caused it.</p>
-          <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="pill">Pass-rate trending</span>
-            <span class="pill">Threshold gates</span>
-            <span class="pill">CI/CD native</span>
+        <div class="wafpass-showcase__copy">
+          <div class="wafpass-showcase__kicker">Error Sprint Planning</div>
+          <div class="wafpass-showcase__title">From finding to fix — faster.</div>
+          <p class="wafpass-showcase__body">Every FAIL opens a structured sprint plan. Findings are grouped by pillar and severity, auto-fix suggestions are generated for common patterns and ownership is assigned in seconds.</p>
+          <p class="wafpass-showcase__body">Track progress as findings are closed. Every fix links back to the originating run, responsible team member and related Jira or RFC ticket.</p>
+          <div class="wafpass-showcase__pills">
+            <span class="control-pill">Auto-fix suggestions</span>
+            <span class="control-pill">Sprint tracking</span>
+            <span class="control-pill">Full traceability</span>
           </div>
         </div>
-        <div class="split-visual">
-          <div class="card" style="overflow: hidden; padding: 0;">
-            <img src="{{ 'assets/images/wafpass_1.0/Pipeline_Performance.png' | relative_url }}" alt="Pipeline Performance showing compliance trend lines across CI/CD runs" style="width: 100%; display: block;">
+        <div class="wafpass-showcase__visual">
+          <img src="{{ 'assets/images/wafpass_1.0/Error_Sprint_Planning.png' | relative_url }}" alt="Error Sprint Planning with prioritized fix suggestions">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURE GRID ===================== -->
+  <section class="wafpass-features" aria-label="More WAFPass features">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">More features</div>
+        <h2 class="section-title-radical">Built for every role in the team.</h2>
+        <p class="section-lead-radical">From the CISO who needs the executive view to the engineer who needs line-level details — WAFPass has a view for every stakeholder.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="wafpass-feat-card">
+          <div class="wafpass-feat-card__img">
+            <img src="{{ 'assets/images/wafpass_1.0/Controls_Overview.png' | relative_url }}" alt="Controls overview with filterable WAF++ controls">
+          </div>
+          <div class="wafpass-feat-card__body">
+            <h3>Controls overview</h3>
+            <p>Browse and filter every WAF++ control by pillar, severity and framework mapping. See at a glance which controls cover which compliance requirements.</p>
+          </div>
+        </div>
+
+        <div class="wafpass-feat-card">
+          <div class="wafpass-feat-card__img">
+            <img src="{{ 'assets/images/wafpass_1.0/Run_Module_Breakdown.png' | relative_url }}" alt="Run module breakdown per Terraform module">
+          </div>
+          <div class="wafpass-feat-card__body">
+            <h3>Module breakdown</h3>
+            <p>Pass rate per Terraform module. See which modules cause the most failures and prioritize remediation by real impact.</p>
+          </div>
+        </div>
+
+        <div class="wafpass-feat-card">
+          <div class="wafpass-feat-card__img">
+            <img src="{{ 'assets/images/wafpass_1.0/API_Key_Management.png' | relative_url }}" alt="API key management interface">
+          </div>
+          <div class="wafpass-feat-card__body">
+            <h3>API key management</h3>
+            <p>Issue, rotate and revoke API keys per project. Restrict keys to read or read-write access. Every key action is logged with issuing user and timestamp.</p>
+          </div>
+        </div>
+
+        <div class="wafpass-feat-card">
+          <div class="wafpass-feat-card__img">
+            <img src="{{ 'assets/images/wafpass_1.0/SSO_Settings.png' | relative_url }}" alt="SSO settings with identity provider configuration">
+          </div>
+          <div class="wafpass-feat-card__body">
+            <h3>SSO &amp; identity</h3>
+            <p>SAML 2.0 and OIDC integration out of the box. Map identity-provider groups to WAFPass roles automatically — no manual user provisioning required.</p>
+          </div>
+        </div>
+
+        <div class="wafpass-feat-card">
+          <div class="wafpass-feat-card__img">
+            <img src="{{ 'assets/images/wafpass_1.0/Project_User_Mapping.png' | relative_url }}" alt="Project user mapping with role assignments">
+          </div>
+          <div class="wafpass-feat-card__body">
+            <h3>Project &amp; user mapping</h3>
+            <p>Assign engineers to projects with fine-grained permissions. Visibility is scoped to what each role actually needs — no unnecessary exposure of sensitive compliance data.</p>
+          </div>
+        </div>
+
+        <div class="wafpass-feat-card">
+          <div class="wafpass-feat-card__img">
+            <img src="{{ 'assets/images/wafpass_1.0/Run_Check_Overview.png' | relative_url }}" alt="Run check overview with individual control results">
+          </div>
+          <div class="wafpass-feat-card__body">
+            <h3>Run check overview</h3>
+            <p>Break down individual control results for every run. Filter by PASS, FAIL, SKIP or WAIVED. Sort by pillar, severity or blast radius and export for reporting.</p>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ===================== MATURITY JOURNEY ===================== -->
-<section class="section pillars-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">MATURITY MODEL</div>
-      <h2>See where you are. Know where to go.</h2>
-      <p class="lead">The Maturity Journey maps your current compliance posture against the WAF++ maturity model — from baseline through to advanced governance. Each level shows what's implemented, what's missing, and what the next milestone looks like.</p>
-    </div>
-
-    <div class="split">
-      <div class="split-copy">
-        <div class="section-kicker" style="margin-bottom: 10px;">MATURITY JOURNEY</div>
-        <h3>Track your team's compliance progress over time.</h3>
-        <p>The Maturity Journey view visualizes your path from initial baseline controls to full governance maturity. Each stage is tied to specific WAF++ pillars, so you always know which controls to prioritize next.</p>
-        <p>Generate maturity reports for leadership or certification auditors that clearly show the arc of progress — not just a point-in-time snapshot, but a trajectory with milestones and dates.</p>
-        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <span class="pill">Maturity levels</span>
-          <span class="pill">Progress tracking</span>
-          <span class="pill">Executive reporting</span>
-        </div>
-      </div>
-      <div class="split-visual">
-        <div class="card" style="overflow: hidden; padding: 0;">
-          <img src="{{ 'assets/images/wafpass_1.0/Maturity_Journey.png' | relative_url }}" alt="Maturity Journey showing compliance progress across WAF++ levels" style="width: 100%; display: block;">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== MORE FEATURES — CARD GRID ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">MORE CAPABILITIES</div>
-      <h2>Built for every role on your team.</h2>
-      <p class="lead">From the CISO who needs the executive view to the engineer who needs the line-level detail — WAFPass has a view for every stakeholder.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card wp-feat-card">
-        <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass_1.0/Controls_Overview.png' | relative_url }}" alt="Controls Overview showing filterable WAF++ controls">
-        </div>
-        <div class="wp-feat-body">
-          <h3>Controls Overview</h3>
-          <p>Browse, filter, and search every WAF++ control by pillar, severity, and framework mapping. See exactly which controls cover which compliance requirements — at a glance.</p>
-        </div>
+  <!-- ===================== PASS MODEL ===================== -->
+  <section class="wafpass-pass-model" id="pass-model" aria-label="The PASS model">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">The PASS model</div>
+        <h2 class="section-title-radical">Four lenses. One compliance standard.</h2>
+        <p class="section-lead-radical">WAFPass evaluates your infrastructure through four complementary lenses — making compliance decisions traceable, repeatable and auditable.</p>
       </div>
 
-      <div class="card wp-feat-card">
-        <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass_1.0/Run_Module_Breakdown.png' | relative_url }}" alt="Run Module Breakdown per Terraform module">
+      <div class="wafpass-pass-grid">
+        <div class="wafpass-pass-card wafpass-pass-card--platform">
+          <div class="wafpass-pass-card__icon"><i data-lucide="server" aria-hidden="true"></i></div>
+          <div class="wafpass-pass-card__letter">P — Platform</div>
+          <div class="wafpass-pass-card__title">Base controls</div>
+          <p class="wafpass-pass-card__desc">Tagging strategies, resource configuration and account guardrails — evaluated automatically on every run.</p>
         </div>
-        <div class="wp-feat-body">
-          <h3>Module Breakdown</h3>
-          <p>Per-Terraform-module pass rate. See which modules drive the most failures — prioritise remediation by actual impact, not just control count or severity score.</p>
-        </div>
-      </div>
 
-      <div class="card wp-feat-card">
-        <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass_1.0/API_Key_Management.png' | relative_url }}" alt="API Key Management interface">
+        <div class="wafpass-pass-card wafpass-pass-card--strategy">
+          <div class="wafpass-pass-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+          <div class="wafpass-pass-card__letter">S — Strategy</div>
+          <div class="wafpass-pass-card__title">Governance as code</div>
+          <p class="wafpass-pass-card__desc">Policy enforcement as code — strategic decisions stay consistent across time and teams.</p>
         </div>
-        <div class="wp-feat-body">
-          <h3>API Key Management</h3>
-          <p>Issue, rotate, and revoke API keys per project. Scope keys to read-only or read-write. Every key action is logged with the issuing user and timestamp.</p>
-        </div>
-      </div>
 
-      <div class="card wp-feat-card">
-        <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass_1.0/SSO_Settings.png' | relative_url }}" alt="SSO Settings showing identity provider configuration">
+        <div class="wafpass-pass-card wafpass-pass-card--architecture">
+          <div class="wafpass-pass-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
+          <div class="wafpass-pass-card__letter">A — Architecture</div>
+          <div class="wafpass-pass-card__title">Network &amp; residency</div>
+          <p class="wafpass-pass-card__desc">Network topology, data residency and sovereignty — provider-neutral WAF++ controls for any cloud.</p>
         </div>
-        <div class="wp-feat-body">
-          <h3>SSO &amp; Identity</h3>
-          <p>SAML 2.0 and OIDC integration out of the box. Map identity provider groups to WAFPass roles automatically — no manual user provisioning required.</p>
-        </div>
-      </div>
 
-      <div class="card wp-feat-card">
-        <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass_1.0/Project_User_Mapping.png' | relative_url }}" alt="Project User Mapping showing role assignments">
-        </div>
-        <div class="wp-feat-body">
-          <h3>Project &amp; User Mapping</h3>
-          <p>Assign engineers to projects with fine-grained permissions. Visibility is scoped to what each role actually needs — no over-exposure of sensitive compliance data.</p>
-        </div>
-      </div>
-
-      <div class="card wp-feat-card">
-        <div class="wp-feat-img">
-          <img src="{{ 'assets/images/wafpass_1.0/Run_Check_Overview.png' | relative_url }}" alt="Run Check Overview showing individual control results">
-        </div>
-        <div class="wp-feat-body">
-          <h3>Run Check Overview</h3>
-          <p>Drill into the individual control results for any run. Filter by PASS, FAIL, SKIP, or WAIVED. Sort by pillar, severity, or blast radius and export for reporting.</p>
+        <div class="wafpass-pass-card wafpass-pass-card--standards">
+          <div class="wafpass-pass-card__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+          <div class="wafpass-pass-card__letter">S — Standards</div>
+          <div class="wafpass-pass-card__title">Zero-trust security</div>
+          <p class="wafpass-pass-card__desc">IAM least-privilege, encryption-at-rest and hardening controls — results are PASS, FAIL, SKIP or WAIVED.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- ===================== INTELLIGENCE LAYER ===================== -->
+  <section class="wafpass-showcase" aria-label="WAFPass intelligence layer">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Intelligence layer</div>
+        <h2 class="section-title-radical">More than pass and fail.</h2>
+        <p class="section-lead-radical">WAFPass augments control checks with deep compliance intelligence — making risk prioritization concrete and actionable.</p>
+      </div>
 
-<!-- ===================== RUN PASSPORT DETAILS ===================== -->
-<section class="section pillars-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">COMPLIANCE PASSPORT</div>
-      <h2>A full compliance record for every project.</h2>
-      <p class="lead">Each project gets a Compliance Passport — a structured record of its current posture, historical runs, waiver log, and framework mappings. It's the single source of truth for auditors and your team.</p>
-    </div>
-
-    <div class="split reverse">
-      <div class="split-copy">
-        <div class="section-kicker" style="margin-bottom: 10px;">PASSPORT DETAILS</div>
-        <h3>One document. Every compliance fact.</h3>
-        <p>The Passport Details view consolidates every piece of evidence for a project into a single, exportable document — control results, waiver history, framework coverage, and risk acceptances with approver signatures.</p>
-        <p>Share a read-only passport link with certification auditors. Everything they need is in one place, structured exactly how frameworks require it. No manual assembly, no spreadsheets.</p>
-        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <span class="pill">Exportable</span>
-          <span class="pill">Auditor links</span>
-          <span class="pill">Full control history</span>
+      <div class="wafpass-features wafpass-features--3">
+        <div class="wafpass-intel-card">
+          <div class="wafpass-intel-card__icon"><i data-lucide="file-diff" aria-hidden="true"></i></div>
+          <div class="wafpass-intel-card__title">Terraform plan analysis</div>
+          <p class="wafpass-intel-card__desc">Parse plan output and evaluate security, compliance and blast-radius impact of pending changes — before <code>terraform apply</code>.</p>
         </div>
-      </div>
-      <div class="split-visual">
-        <div class="card" style="overflow: hidden; padding: 0;">
-          <img src="{{ 'assets/images/wafpass_1.0/Run_Passport_Details.png' | relative_url }}" alt="Run Passport Details showing full compliance record for a project" style="width: 100%; display: block;">
+
+        <div class="wafpass-intel-card">
+          <div class="wafpass-intel-card__icon"><i data-lucide="route" aria-hidden="true"></i></div>
+          <div class="wafpass-intel-card__title">Exploit path analysis</div>
+          <p class="wafpass-intel-card__desc">Visualize attack chains that lead to failing controls. Severity badges and direct remediation links make risk prioritization concrete.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-<!-- ===================== PASS MODEL ===================== -->
-<section class="section" id="pass-model">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">THE PASS MODEL</div>
-      <h2>Four perspectives. One compliance standard.</h2>
-      <p class="lead">WAFPass evaluates your infrastructure through four complementary lenses — making compliance decisions traceable, repeatable, and auditable.</p>
-    </div>
-
-    <div class="pass-model">
-      <div class="pass-model__center">
-        <img src="{{ 'assets/images/wafpass_1.0/Controls_Overview.png' | relative_url }}" alt="WAFPass Controls Overview — PASS model visualization" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,148,255,0.15);">
-      </div>
-
-      <div class="pass-model__item pass-model__item--platform">
-        <h3>P &mdash; Platform</h3>
-        <p class="pass-bullets">
-          <strong>Baseline Controls</strong><br>
-          Tagging strategies, resource configuration, account-level guardrails — automatically evaluated on every run.
-        </p>
-      </div>
-
-      <div class="pass-model__item pass-model__item--strategy">
-        <h3>S &mdash; Strategy</h3>
-        <p class="pass-bullets">
-          <strong>Governance as Code</strong><br>
-          Policy enforcement as code — strategic decisions remain consistent over time and across teams.
-        </p>
-      </div>
-
-      <div class="pass-model__item pass-model__item--architecture">
-        <h3>A &mdash; Architecture</h3>
-        <p class="pass-bullets">
-          <strong>Network &amp; Residency</strong><br>
-          Network topology, data residency, sovereignty — provider-neutral WAF++ controls.
-        </p>
-      </div>
-
-      <div class="pass-model__item pass-model__item--standards">
-        <h3>S &mdash; Standards</h3>
-        <p class="pass-bullets">
-          <strong>Zero-Trust Security</strong><br>
-          IAM least-privilege, encryption-at-rest, hardening controls — outcomes: PASS, FAIL, SKIP, WAIVED.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== INTELLIGENCE LAYER ===================== -->
-<section class="section pillars-section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">INTELLIGENCE LAYER</div>
-      <h2>Beyond pass and fail.</h2>
-      <p class="lead">WAFPass layers deep compliance intelligence on top of control checks — making risk prioritisation concrete and actionable.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="file-diff" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Terraform Plan Analysis</h3>
-        <p class="muted">Parse plan output and evaluate security, compliance, and blast-radius impact of pending changes — before <code>terraform apply</code>.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="route" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Exploit Path Analysis</h3>
-        <p class="muted">Visualise attack chains that lead to failing controls. Severity badges and direct remediation links make risk prioritisation concrete.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="activity" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Blast Radius Assessment</h3>
-        <p class="muted">Each control carries a blast radius score quantifying potential failure impact. Prioritise remediation by actual risk exposure, not arbitrary severity.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="refresh-cw" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Drift Detection</h3>
-        <p class="muted">Controls that change status between runs without explicit code changes are surfaced instantly — caught before production drift becomes a problem.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="leaf" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Carbon Footprint &amp; ESG</h3>
-        <p class="muted">The ESG module estimates the carbon impact of each cloud workload decision. Tracked per control and included in PDF compliance reports.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="shield-alert" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Waivers &amp; Risk Acceptance</h3>
-        <p class="muted">Intentionally skip controls with written justification. Risk acceptances include approver, RFC/Jira links, expiry dates — fully traceable.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="arrow-up-circle" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Controls Upgrade</h3>
-        <p class="muted">When new WAF++ controls ship, see exactly what changed, which controls are new, and what the posture impact will be — before you upgrade your control set.</p>
-      </div>
-      <div class="card card-pad">
-        <div style="margin-bottom: 12px; color: var(--brand-500);"><i data-lucide="map-pin" style="width: 24px; height: 24px;" aria-hidden="true"></i></div>
-        <h3>Deployed Region Map</h3>
-        <p class="muted">Track which cloud regions have active deployments, their compliance status, and which projects are mapped to each region — from a single operations view.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== ARCHITECTURE ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-kicker">ARCHITECTURE</div>
-      <h2>How the components connect.</h2>
-      <p class="lead">Each component is independently deployable. Use just the CLI for CI/CD pipelines. Add server and dashboard when you need persistent history and visual exploration.</p>
-    </div>
-
-    <div class="card card-pad" style="text-align: center;">
-      <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; font-size: 14px; font-weight: 600; margin-bottom: 40px;">
-        <div style="padding: 18px 24px; border-radius: 14px; background: color-mix(in srgb, var(--brand-500) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--brand-500) 20%, var(--border));">
-          <div style="font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .08em;">Your IaC</div>
-          <div>Terraform / CDK</div>
+        <div class="wafpass-intel-card">
+          <div class="wafpass-intel-card__icon"><i data-lucide="activity" aria-hidden="true"></i></div>
+          <div class="wafpass-intel-card__title">Blast-radius scoring</div>
+          <p class="wafpass-intel-card__desc">Each control carries a blast-radius score that quantifies potential outage impact. Prioritize remediation by actual risk exposure.</p>
         </div>
-        <div style="padding: 0 14px; color: var(--muted); font-size: 20px; line-height: 1;">&rarr;</div>
-        <div style="padding: 18px 24px; border-radius: 14px; background: color-mix(in srgb, var(--brand-500) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--brand-500) 22%, var(--border));">
-          <div style="font-size: 10px; font-weight: 700; color: var(--brand-500); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .08em;">CLI</div>
-          <div>wafpass</div>
-        </div>
-        <div style="padding: 0 14px; color: var(--muted); font-size: 20px; line-height: 1;">&rarr;</div>
-        <div style="padding: 18px 24px; border-radius: 14px; background: color-mix(in srgb, #16a34a 10%, var(--surface)); border: 1px solid color-mix(in srgb, #16a34a 22%, var(--border));">
-          <div style="font-size: 10px; font-weight: 700; color: #16a34a; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .08em;">API</div>
-          <div>wafpass-server</div>
-        </div>
-        <div style="padding: 0 14px; color: var(--muted); font-size: 20px; line-height: 1;">&rarr;</div>
-        <div style="padding: 18px 24px; border-radius: 14px; background: color-mix(in srgb, #2563eb 10%, var(--surface)); border: 1px solid color-mix(in srgb, #2563eb 22%, var(--border));">
-          <div style="font-size: 10px; font-weight: 700; color: #2563eb; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .08em;">UI</div>
-          <div>wafpass-dashboard</div>
-        </div>
-      </div>
 
-      <div class="grid-3" style="max-width: 760px; margin: 0 auto; border-top: 1px solid var(--border); padding-top: 32px;">
-        <div>
-          <div style="font-size: 30px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px;">2 IaC</div>
-          <p class="muted" style="font-size: 13px; margin: 0;">Terraform, AWS CDK</p>
+        <div class="wafpass-intel-card">
+          <div class="wafpass-intel-card__icon"><i data-lucide="refresh-cw" aria-hidden="true"></i></div>
+          <div class="wafpass-intel-card__title">Drift detection</div>
+          <p class="wafpass-intel-card__desc">Controls that change status between runs without an explicit code change become immediately visible — caught before production drift happens.</p>
         </div>
-        <div>
-          <div style="font-size: 30px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px;">8 Pillars</div>
-          <p class="muted" style="font-size: 13px; margin: 0;">SEC, COST, PERF, REL, OPS, SUS, SOV, AGENTIC</p>
+
+        <div class="wafpass-intel-card">
+          <div class="wafpass-intel-card__icon"><i data-lucide="leaf" aria-hidden="true"></i></div>
+          <div class="wafpass-intel-card__title">Carbon footprint &amp; ESG</div>
+          <p class="wafpass-intel-card__desc">The ESG module estimates the CO₂ impact of every cloud workload decision. Captured per control and integrated automatically into PDF compliance reports.</p>
         </div>
-        <div>
-          <div style="font-size: 30px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 6px;">20+ Ops</div>
-          <p class="muted" style="font-size: 13px; margin: 0;">Equals, not, exists, cidr, range, and more</p>
+
+        <div class="wafpass-intel-card">
+          <div class="wafpass-intel-card__icon"><i data-lucide="shield-alert" aria-hidden="true"></i></div>
+          <div class="wafpass-intel-card__title">Waivers &amp; risk acceptance</div>
+          <p class="wafpass-intel-card__desc">Skip controls deliberately with written justification. Risk acceptances include approver, RFC/Jira link, expiry date — fully traceable.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Implementation Overview -->
-    <div class="split reverse" style="margin-top: 64px;">
-      <div class="split-copy">
-        <div class="section-kicker" style="margin-bottom: 10px;">IMPLEMENTATION OVERVIEW</div>
-        <h3>Deploy in minutes, not days.</h3>
-        <p>The Implementation Overview walks through every step — from installing the CLI to connecting the server and spinning up the dashboard. Each component has a dedicated setup path for local, Docker, and Kubernetes deployments.</p>
-        <p>First-run detection guides new teams through project creation and initial control evaluation automatically. No blank-slate configuration required to get your first compliance run.</p>
-        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <span class="pill">CLI · Docker · Kubernetes</span>
-          <span class="pill">First-run wizard</span>
-          <span class="pill">Step-by-step</span>
-        </div>
+  <!-- ===================== ARCHITECTURE ===================== -->
+  <section class="wafpass-architecture" aria-label="WAFPass architecture">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Architecture</div>
+        <h2 class="section-title-radical">How the components connect.</h2>
+        <p class="section-lead-radical">Each component is independently deployable. Use the CLI alone for CI/CD pipelines, then add server and dashboard when you need persistent history and visual exploration.</p>
       </div>
-      <div class="split-visual">
-        <div class="card" style="overflow: hidden; padding: 0;">
-          <img src="{{ 'assets/images/wafpass_1.0/Implementation_Overview.png' | relative_url }}" alt="Implementation Overview showing deployment steps for CLI, server and dashboard" style="width: 100%; display: block;">
-        </div>
-      </div>
-    </div>
 
-    <!-- Deployed Region Map -->
-    <div class="split" style="margin-top: 64px;">
-      <div class="split-copy">
-        <div class="section-kicker" style="margin-bottom: 10px;">DEPLOYED REGION MAP</div>
-        <h3>Your global infrastructure footprint, in one view.</h3>
-        <p>The Deployed Region Map shows every active cloud region where WAFPass-evaluated infrastructure lives. Compliance status, project count, and sovereignty zone are visible per region — without clicking into individual projects.</p>
-        <p>Ideal for cloud architects and compliance officers who need to understand where data is processed, stored, and evaluated, in relation to GDPR residency requirements or sovereign cloud constraints.</p>
-        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <span class="pill">Region visibility</span>
-          <span class="pill">Data residency</span>
-          <span class="pill">Sovereign cloud</span>
+      <div class="wafpass-flow">
+        <div class="wafpass-flow__node wafpass-flow__node--iac">
+          <div class="wafpass-flow__node-label">Your IaC</div>
+          <div class="wafpass-flow__node-name">Terraform / CDK</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--cli">
+          <div class="wafpass-flow__node-label">CLI</div>
+          <div class="wafpass-flow__node-name">wafpass</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--api">
+          <div class="wafpass-flow__node-label">API</div>
+          <div class="wafpass-flow__node-name">wafpass-server</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--ui">
+          <div class="wafpass-flow__node-label">UI</div>
+          <div class="wafpass-flow__node-name">wafpass-dashboard</div>
         </div>
       </div>
-      <div class="split-visual">
-        <div class="card" style="overflow: hidden; padding: 0;">
-          <img src="{{ 'assets/images/wafpass_1.0/Deployed_Region_Map.png' | relative_url }}" alt="Deployed Region Map showing active cloud regions and compliance status" style="width: 100%; display: block;">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-<!-- ===================== CONTROLS UPGRADE ===================== -->
-<section class="section pillars-section">
-  <div class="container">
-    <div class="split reverse">
-      <div class="split-copy">
-        <div class="section-kicker" style="margin-bottom: 10px;">CONTROLS UPGRADE</div>
-        <h3>Upgrade your controls with confidence.</h3>
-        <p>When new WAF++ controls ship, the Controls Upgrade view shows exactly what's changed — new controls added, existing controls modified, and deprecated controls flagged. Preview the full posture impact before you apply the upgrade.</p>
-        <p>Upgrade incrementally or all-at-once. Rollback is always available, and every upgrade is logged with the user who applied it, the controls changed, and the resulting posture delta.</p>
-        <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-          <span class="pill">Preview impact</span>
-          <span class="pill">Incremental upgrade</span>
-          <span class="pill">Rollback support</span>
+      <div class="wafpass-arch__stats">
+        <div class="wafpass-arch__stat">
+          <div class="wafpass-arch__stat-number">2 IaC</div>
+          <div class="wafpass-arch__stat-label">Terraform, AWS CDK</div>
         </div>
-      </div>
-      <div class="split-visual">
-        <div class="card" style="overflow: hidden; padding: 0;">
-          <img src="{{ 'assets/images/wafpass_1.0/Controls_Upgrade.png' | relative_url }}" alt="Controls Upgrade showing changed controls and posture impact preview" style="width: 100%; display: block;">
+        <div class="wafpass-arch__stat">
+          <div class="wafpass-arch__stat-number">8 Pillars</div>
+          <div class="wafpass-arch__stat-label">SEC, COST, PERF, REL, OPS, SUS, SOV, AGENTIC</div>
+        </div>
+        <div class="wafpass-arch__stat">
+          <div class="wafpass-arch__stat-number">20+ Ops</div>
+          <div class="wafpass-arch__stat-label">equals, not, exists, cidr, range and more</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ===================== CTA ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="cta" style="text-align: center;">
-      <div class="section-kicker" style="margin-bottom: 16px;">GET STARTED</div>
-      <h2>Ready to validate your infrastructure?</h2>
-      <p class="lead" style="max-width: 52ch; margin: 0 auto 28px;">Download the WAF++ controls, run WAFPass against your Terraform or CDK code, and get a full compliance report in minutes.</p>
-
-      <div class="hero-actions" style="justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 28px;">
-        <button class="btn btn-primary" data-action="download-controls" data-label-loading="Preparing&hellip;" data-label-done="Downloaded!" data-label-error="Error &ndash; try again">Download WAF++ Controls</button>
-        <a class="btn" href="{{ '/docs/wafpp/1.0.1-en/resources/wafpass.html' | relative_url }}">Read the Documentation</a>
-        <a class="btn btn-ghost" href="https://waf2p.dev/demo/" target="_blank" rel="noopener">View Live Demo</a>
-      </div>
-
-      <div class="home-cta-compliance" style="justify-content: center;">
-        <span class="pill">GDPR compliant</span>
-        <span class="pill">SOC 2 ready</span>
-        <span class="pill">HIPAA</span>
-        <span class="pill">BSI C5</span>
-        <span class="pill">ISO 27001</span>
-        <span class="pill">NIS2</span>
+  <!-- ===================== CTA ===================== -->
+  <section class="wafpass-cta" aria-label="Get started with WAFPass">
+    <div class="container">
+      <div class="wafpass-cta__card">
+        <div class="kicker-radical">Get started</div>
+        <h2 class="wafpass-cta__title">Ready to validate your infrastructure?</h2>
+        <p class="wafpass-cta__lead">Download the WAF++ controls, run WAFPass against your Terraform or CDK code, and get a full compliance report in minutes.</p>
+        <div class="wafpass-cta__actions">
+          <a class="btn-glow" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass &rarr;</a>
+          <a class="btn-glass" href="{{ '/docs/wafpp/1.0.1-en/resources/wafpass.html' | relative_url }}">Full documentation</a>
+          <a class="btn-glass" href="https://waf2p.dev/demo/" target="_blank" rel="noopener">Live demo</a>
+        </div>
+        <div class="wafpass-cta__compliance">
+          <span class="control-pill">GDPR</span>
+          <span class="control-pill">SOC 2</span>
+          <span class="control-pill">HIPAA</span>
+          <span class="control-pill">BSI C5</span>
+          <span class="control-pill">ISO 27001</span>
+          <span class="control-pill">NIS2</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<script src="{{ '/assets/js/wafpass-download.js' | relative_url }}?v=2"></script>
-<script>
-(function () {
-  var lb = document.createElement('div');
-  lb.className = 'wp-lightbox';
-  lb.setAttribute('role', 'dialog');
-  lb.setAttribute('aria-modal', 'true');
-  lb.setAttribute('aria-label', 'Image preview');
-  lb.innerHTML = '<button class="wp-lightbox-close" aria-label="Close image">&times;</button><img alt="">';
-  document.body.appendChild(lb);
+</div>
 
-  var lbImg   = lb.querySelector('img');
-  var lbClose = lb.querySelector('.wp-lightbox-close');
-
-  function openLB(src, alt) {
-    lbImg.src = src;
-    lbImg.alt = alt || '';
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lbClose.focus();
-  }
-  function closeLB() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-    lbImg.src = '';
-  }
-
-  lb.addEventListener('click', function (e) { if (e.target === lb) closeLB(); });
-  lbClose.addEventListener('click', closeLB);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLB(); });
-
-  document.querySelectorAll('.split-visual .card img, .wp-feat-img img, .pass-model__center img').forEach(function (img) {
-    img.classList.add('wp-zoomable');
-    img.addEventListener('click', function () { openLB(img.src, img.alt); });
-  });
-}());
-</script>
+<script src="{{ '/assets/js/wafpass-download.js' | relative_url }}" defer></script>

@@ -1,4 +1,5 @@
 {% include lang-vars.html %}
+{% assign comm = site.data.home_community[lang] | default: site.data.home_community.en %}
 {% assign repo = site.data.contributors_meta.repo | default: 'waf2p/waf2p.github.io' %}
 {% assign discussions = site.data.contributors_meta.discussions_url | default: 'https://github.com/waf2p/waf2p.github.io/discussions' %}
 {% assign community_count = site.data.contributors_meta.community_contributors | default: 1 %}
@@ -9,11 +10,11 @@
   <div class="container">
     <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;">
       <div>
-        <div class="kicker">COMMUNITY</div>
-        <h2 style="margin:6px 0 0;">{% if lang == 'de' %}Von der Community gebaut{% else %}Built by the community{% endif %}</h2>
+        <div class="kicker">{{ comm.kicker }}</div>
+        <h2 style="margin:6px 0 0;">{{ comm.heading }}</h2>
       </div>
       <div class="muted small">
-        — code contributors · {{ community_count }} community contributors
+        — {{ comm.meta_prefix }} · {{ community_count }} {{ comm.meta_suffix }}
       </div>
     </div>
 
@@ -28,7 +29,7 @@
             <img src="{{ member.image_path }}" alt="{{ member.name }}" style="width:34px; height:34px; border-radius:999px; object-fit:cover;">
             <div>
               <div style="font-weight:800;">{{ member.name }}</div>
-              <div class="muted small">Maintainer</div>
+              <div class="muted small">{{ comm.maintainer_label }}</div>
             </div>
           </a>
           {% endif %}
@@ -36,27 +37,27 @@
       </div>
 
       <div style="display:flex; justify-content:space-between; margin-top:18px;">
-        <div class="muted" style="font-weight:700;">{% if lang == 'de' %}Aktuelle GitHub-Mitwirkende{% else %}Recent GitHub contributors{% endif %}</div>
-        <div class="muted" id="github-contrib-status">{% if gh_contribs and gh_contribs.size > 0 %}&nbsp;{% else %}{% if lang == 'de' %}Laden...{% else %}Loading...{% endif %}{% endif %}</div>
+        <div class="muted" style="font-weight:700;">{{ comm.recent_contributors_label }}</div>
+        <div class="muted" id="github-contrib-status">{% if gh_contribs and gh_contribs.size > 0 %}&nbsp;{% else %}{{ comm.status_loading }}{% endif %}</div>
       </div>
 
       <div id="github-contributors" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
         {% if gh_contribs and gh_contribs.size > 0 %}
-          {% for c in gh_contribs limit:12 %}
-            <a href="{{ c.html_url }}" target="_blank" rel="noopener" style="display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid var(--border);background:var(--surface);">
-              <img src="{{ c.avatar_url }}" alt="{{ c.login }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+          {% for contrib in gh_contribs limit:12 %}
+            <a href="{{ contrib.html_url }}" target="_blank" rel="noopener" style="display:inline-flex;width:34px;height:34px;border-radius:999px;overflow:hidden;border:1px solid var(--border);background:var(--surface);">
+              <img src="{{ contrib.avatar_url }}" alt="{{ contrib.login }}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
             </a>
           {% endfor %}
         {% endif %}
       </div>
 
       <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="https://github.com/{{ repo }}" target="_blank">⭐ {% if lang == 'de' %}Auf GitHub staren{% else %}Star on GitHub{% endif %}</a>
-        <a class="btn" href="{% if lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">Governance & Community →</a>
-        <a class="btn" href="{{ discussions }}" target="_blank">{% if lang == 'de' %}Diskussionen beitreten →{% else %}Join discussions →{% endif %}</a>
+        <a class="btn btn-primary" href="https://github.com/{{ repo }}" target="_blank">⭐ {{ comm.buttons.star }}</a>
+        <a class="btn" href="{% if lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">{{ comm.buttons.governance }} →</a>
+        <a class="btn" href="{{ discussions }}" target="_blank">{{ comm.buttons.discussions }} →</a>
         <a class="btn" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">
           {% include slack-icon.html size=16 %}
-          {% if lang == 'de' %}Community Slack beitreten{% else %}Join Community Slack{% endif %}
+          {{ comm.buttons.slack }}
         </a>
       </div>
     </div>

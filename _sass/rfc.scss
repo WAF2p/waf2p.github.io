@@ -6,7 +6,7 @@
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
-  border-bottom: 2px solid var(--border);
+  border-bottom: 2px solid var(--radical-border);
   margin-bottom: 28px;
 
   label {
@@ -14,13 +14,13 @@
     cursor: pointer;
     font-weight: 600;
     font-size: 0.88rem;
-    color: var(--muted);
+    color: var(--radical-muted);
     border-bottom: 2px solid transparent;
     margin-bottom: -2px;
     transition: color 0.15s, border-color 0.15s;
     white-space: nowrap;
 
-    &:hover { color: var(--text); }
+    &:hover { color: var(--radical-text); }
   }
 }
 
@@ -37,88 +37,97 @@
 #rfc-all:checked   ~ #pane-all   { display: block; }
 #rfc-open:checked  ~ #pane-open  { display: block; }
 #rfc-draft:checked ~ #pane-draft { display: block; }
-#rfc-done:checked  ~ #pane-done  { display: block; }
+#rfc-done:checked  ~ #pane-done { display: block; }
 
 // ── Card ──────────────────────────────────────────────────────────────────
 
 .rfc-list { display: grid; gap: 14px; }
 
 .rfc-card {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-  background: var(--surface);
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  background: var(--radical-surface);
   display: grid;
-  gap: 10px;
+  gap: 12px;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 
-  &:hover { border-color: var(--brand-500); }
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0,148,255,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
+  }
 }
 
 .rfc-card-header {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .rfc-id {
-  font-family: monospace;
-  font-size: 0.8rem;
+  font-family: ui-monospace, "Cascadia Code", "Fira Code", Menlo, monospace;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--muted);
+  color: var(--radical-muted);
   flex-shrink: 0;
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 .rfc-title {
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.4;
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.35;
   flex: 1;
+  color: var(--radical-text);
 }
 
-.rfc-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.rfc-badges { display: flex; gap: 8px; flex-wrap: wrap; }
 
 // ── Status badges ─────────────────────────────────────────────────────────
 
 .rfc-status {
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: .05em;
-  padding: 3px 8px;
-  border-radius: 5px;
+  letter-spacing: .06em;
+  padding: 4px 10px;
+  border-radius: 999px;
   flex-shrink: 0;
+  border: 1px solid transparent;
 
-  &--draft       { background: color-mix(in srgb, #6b7280 18%, var(--surface)); color: color-mix(in srgb, #6b7280 85%, var(--text)); }
-  &--open        { background: color-mix(in srgb, #2563eb 18%, var(--surface)); color: color-mix(in srgb, #2563eb 85%, var(--text)); }
-  &--accepted    { background: color-mix(in srgb, #059669 18%, var(--surface)); color: color-mix(in srgb, #059669 85%, var(--text)); }
-  &--implemented { background: color-mix(in srgb, #16a34a 18%, var(--surface)); color: color-mix(in srgb, #16a34a 85%, var(--text)); }
-  &--rejected    { background: color-mix(in srgb, #dc2626 18%, var(--surface)); color: color-mix(in srgb, #dc2626 85%, var(--text)); }
-  &--withdrawn   { background: color-mix(in srgb, #9ca3af 18%, var(--surface)); color: color-mix(in srgb, #9ca3af 85%, var(--text)); }
+  &--draft       { background: rgba(107,114,128,0.12); color: #9ca3af; border-color: rgba(107,114,128,0.22); }
+  &--open        { background: rgba(37,99,235,0.12); color: #60a5fa; border-color: rgba(37,99,235,0.22); }
+  &--accepted    { background: rgba(5,150,105,0.12); color: #34d399; border-color: rgba(5,150,105,0.22); }
+  &--implemented { background: rgba(22,163,74,0.12); color: #4ade80; border-color: rgba(22,163,74,0.22); }
+  &--rejected    { background: rgba(220,38,38,0.12); color: #f87171; border-color: rgba(220,38,38,0.22); }
+  &--withdrawn   { background: rgba(156,163,175,0.12); color: #d1d5db; border-color: rgba(156,163,175,0.22); }
 }
 
 // ── Category badges ───────────────────────────────────────────────────────
 
 .rfc-cat {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: .04em;
-  padding: 3px 8px;
-  border-radius: 5px;
+  letter-spacing: .06em;
+  padding: 4px 10px;
+  border-radius: 999px;
   flex-shrink: 0;
+  border: 1px solid transparent;
 
-  &--framework  { background: color-mix(in srgb, #7c3aed 18%, var(--surface)); color: color-mix(in srgb, #7c3aed 85%, var(--text)); }
-  &--governance { background: color-mix(in srgb, #d97706 18%, var(--surface)); color: color-mix(in srgb, #d97706 85%, var(--text)); }
-  &--tooling    { background: color-mix(in srgb, #ea580c 18%, var(--surface)); color: color-mix(in srgb, #ea580c 85%, var(--text)); }
-  &--docs       { background: color-mix(in srgb, #0284c7 18%, var(--surface)); color: color-mix(in srgb, #0284c7 85%, var(--text)); }
+  &--framework  { background: rgba(124,58,237,0.12); color: #a78bfa; border-color: rgba(124,58,237,0.22); }
+  &--governance { background: rgba(217,119,6,0.12);  color: #fbbf24; border-color: rgba(217,119,6,0.22); }
+  &--tooling    { background: rgba(234,88,12,0.12);  color: #fb923c; border-color: rgba(234,88,12,0.22); }
+  &--docs       { background: rgba(2,132,199,0.12); color: #38bdf8; border-color: rgba(2,132,199,0.22); }
 }
 
 .rfc-summary {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.6;
+  font-size: 0.9rem;
+  color: var(--radical-muted);
+  line-height: 1.65;
+  margin: 0;
 }
 
 .rfc-meta {
@@ -126,73 +135,234 @@
   gap: 16px;
   flex-wrap: wrap;
   font-size: 0.78rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
+  color: var(--radical-muted);
+  border-top: 1px solid var(--radical-border);
+  padding-top: 12px;
 
-  span    { display: flex; gap: 4px; align-items: center; }
-  a       { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-  strong  { color: var(--text); }
+  span    { display: flex; gap: 5px; align-items: center; }
+  a       { color: var(--brand-400); text-decoration: none; font-weight: 700; }
+  a:hover { text-decoration: underline; }
+  strong  { color: var(--radical-text); font-weight: 700; }
 }
 
 // ── Stats bar ─────────────────────────────────────────────────────────────
 
 .rfc-stats {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 0;
-  flex-wrap: wrap;
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  background: var(--radical-surface);
+}
+
+@media (max-width: 760px) {
+  .rfc-stats { grid-template-columns: repeat(2, 1fr); }
 }
 
 .rfc-stat {
-  flex: 1 1 100px;
-  padding: 16px 20px;
+  padding: 20px 16px;
   text-align: center;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--radical-border);
 
   &:last-child { border-right: none; }
 }
 
+@media (max-width: 760px) {
+  .rfc-stat:nth-child(2n) { border-right: none; }
+  .rfc-stat:nth-child(1),
+  .rfc-stat:nth-child(2),
+  .rfc-stat:nth-child(3) { border-bottom: 1px solid var(--radical-border); }
+}
+
 .rfc-stat-num {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--brand-500);
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--brand-400) 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
 }
 
 .rfc-stat-label {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-top: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--radical-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
 }
 
 .rfc-empty {
   text-align: center;
-  padding: 40px 20px;
-  color: var(--muted);
-  font-size: 0.9rem;
+  padding: 48px 20px;
+  color: var(--radical-muted);
+  font-size: 0.95rem;
+  background: var(--radical-surface);
+  border: 1px dashed var(--radical-border);
+  border-radius: 18px;
 }
 
 // ── Submit CTA ────────────────────────────────────────────────────────────
 
 .rfc-submit {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-top: 28px;
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  padding: 28px 30px;
+  margin-top: 32px;
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  gap: 24px;
+  align-items: center;
   flex-wrap: wrap;
+  background: var(--radical-surface);
 }
 
 .rfc-submit-text {
   flex: 1;
-  min-width: 200px;
+  min-width: 220px;
 
-  h3 { margin: 0 0 6px; font-size: 1rem; }
-  p  { margin: 0; font-size: 0.88rem; color: var(--muted); }
+  h3 { margin: 0 0 8px; font-size: 1.1rem; color: var(--radical-text); }
+  p  { margin: 0; font-size: 0.9rem; color: var(--radical-muted); line-height: 1.6; }
+}
+
+// ── Process table ─────────────────────────────────────────────────────────
+
+.rfc-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  background: var(--radical-surface);
+}
+
+.rfc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+
+  th, td {
+    padding: 13px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--radical-border);
+  }
+
+  th {
+    font-weight: 800;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--radical-muted);
+    background: rgba(255,255,255,0.02);
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+}
+
+// ── Lifecycle flow ────────────────────────────────────────────────────────
+
+.rfc-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .rfc-flow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .rfc-flow__arrow { display: none; }
+}
+
+.rfc-flow__step {
+  text-align: center;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.rfc-flow__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--radical-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--radical-surface-2);
+  color: var(--brand-400);
+}
+
+.rfc-flow__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--radical-muted);
+  font-size: 22px;
+  padding: 0 8px;
+}
+
+.rfc-flow__label {
+  font-size: 0.78rem;
+  color: var(--radical-muted);
+  line-height: 1.5;
+  max-width: 170px;
+}
+
+// ── Writing guide cards ─────────────────────────────────────────────────
+
+.rfc-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .rfc-guide-grid { grid-template-columns: 1fr; }
+}
+
+.rfc-guide-card {
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  padding: 26px;
+  background: var(--radical-surface);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,148,255,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
+  }
+}
+
+.rfc-guide-card__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,148,255,0.08);
+  border: 1px solid rgba(0,148,255,0.18);
+  color: var(--brand-400);
+  margin-bottom: 18px;
+}
+
+.rfc-guide-card__title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--radical-text);
+  margin: 0 0 10px;
+}
+
+.rfc-guide-card__body {
+  font-size: 0.9rem;
+  color: var(--radical-muted);
+  line-height: 1.65;
+  margin: 0;
 }

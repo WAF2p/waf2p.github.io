@@ -3,215 +3,289 @@ layout: default
 lang: en
 ref: comparison
 title: Comparison
-description: Comparison of WAF++ with existing cloud frameworks — objective, without competitive bashing.
+description: Objective side-by-side comparison of WAF++ with AWS WA, Azure CAF, GCP Framework and CNCF — updated for v1.1, 8 pillars and 83+ controls.
 permalink: /comparison/
 ---
 
-<!-- ===================== HERO ===================== -->
-<section class="hero hero--page hero--centered">
-  <div class="container" style="max-width: 780px;">
-    <div class="home-badge" style="display:inline-flex;">
-      <span class="home-badge__dot"></span>
-      Comparison &middot; Objective
-    </div>
-    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
-      Framework <span class="text-gradient">Comparison</span>
-    </h1>
-    <p class="lead" style="max-width: 68ch; margin: 0 auto 32px;">
-      An objective comparison of key characteristics across cloud frameworks.
-      The goal is not competition, but context — WAF++ complements existing approaches
-      with governance, transparency, and a sovereign multi-cloud perspective.
-    </p>
-    <div class="hero-actions" style="justify-content:center;">
-      <a class="btn btn-primary" href="{{ '/why-not/' | relative_url }}">Why not X? &rarr;</a>
-      <a class="btn" href="{{ '/saeulen/' | relative_url }}">The 8 Pillars</a>
-      <a class="btn" href="{{ '/governance-community/' | relative_url }}">Governance</a>
-    </div>
-  </div>
-</section>
+<div class="page-radical comparison-page">
 
-
-<!-- ===================== WAF++ DIFFERENTIATORS ===================== -->
-<section class="section pillars-section">
-  <div class="container">
-
-    <div class="section-header">
-      <div class="kicker">UNIQUE TO WAF++</div>
-      <h2>Where WAF++ stands alone</h2>
-      <p class="lead muted">Three capabilities no other framework in this comparison covers fully — the reasons WAF++ exists alongside them, not instead of them.</p>
-    </div>
-
-    <div class="pillars-grid" style="grid-template-columns:repeat(3,1fr);">
-
-      <div class="pillar-card">
-        <div class="pillar-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
-        <div class="pillar-card__num">Only in WAF++</div>
-        <div class="pillar-card__name">Sovereignty as a first-class pillar</div>
-        <p class="pillar-card__desc">Data residency, vendor lock-in avoidance, and exit strategies are not an afterthought — Pillar 7 is sovereign by design. No other framework in this comparison treats this as a primary, scoreable concern.</p>
+  <!-- ===================== HERO ===================== -->
+  <section class="comparison-hero" aria-label="Framework comparison">
+    <div class="comparison-hero__orb comparison-hero__orb--blue" aria-hidden="true"></div>
+    <div class="comparison-hero__orb comparison-hero__orb--gold" aria-hidden="true"></div>
+    <div class="comparison-hero__orb comparison-hero__orb--purple" aria-hidden="true"></div>
+    <div class="container comparison-hero__inner">
+      <div class="comparison-hero__badge">
+        <span class="comparison-hero__badge-dot"></span>
+        Comparison &middot; Objective &middot; v1.1
       </div>
-
-      <div class="pillar-card">
-        <div class="pillar-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
-        <div class="pillar-card__num">Only in WAF++</div>
-        <div class="pillar-card__name">Full auditability via RFCs</div>
-        <p class="pillar-card__desc">Every framework decision goes through a documented RFC — traceable, challengeable, and versioned. Provider frameworks update silently. WAF++ requires evidence for every rule, making governance a transparent artifact.</p>
-      </div>
-
-      <div class="pillar-card">
-        <div class="pillar-card__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
-        <div class="pillar-card__num">Only in WAF++</div>
-        <div class="pillar-card__name">Neutral assessment + open governance</div>
-        <p class="pillar-card__desc">CNCF has open governance but no assessment framework. Provider frameworks have assessments but are vendor-bound. WAF++ is the only option with both — vendor-neutral scoring and community-driven TSC governance.</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===================== COMPARISON TABLE ===================== -->
-<section class="section">
-  <div class="container">
-
-    <div class="section-header">
-      <div class="kicker">AT A GLANCE</div>
-      <h2>Side-by-side comparison</h2>
-      <p class="lead muted">Seven criteria across five frameworks. WAF++ is highlighted — not to win, but to show where it uniquely adds value.</p>
-    </div>
-
-    <div class="comparison-table-wrap" style="margin-top: 28px;">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Criterion</th>
-            <th>WAF++</th>
-            <th>AWS WA</th>
-            <th>Azure CAF</th>
-            <th>GCP Framework</th>
-            <th>CNCF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Vendor-neutral</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-          </tr>
-          <tr>
-            <td>Governance model (TSC / Maintainers / WGs)</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-          </tr>
-          <tr>
-            <td>Assessment framework</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-          </tr>
-          <tr>
-            <td>Multi-cloud focus</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-          </tr>
-          <tr>
-            <td>Sovereignty &amp; exit capability as a pillar</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-          </tr>
-          <tr>
-            <td>Auditability &amp; traceability (evidence, RFCs)</td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-            <td><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial</td>
-          </tr>
-          <tr>
-            <td>Provider tooling as part of the framework</td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span></td>
-            <td><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Legend -->
-    <div class="comparison-legend card card-pad" style="margin-top:16px;">
-      <div class="legend-item"><span class="cmp cmp--yes"><i data-lucide="check-circle-2"></i></span> Yes / explicitly supported</div>
-      <div class="legend-item"><span class="cmp cmp--no"><i data-lucide="x-circle"></i></span> No / not a primary objective</div>
-      <div class="legend-item"><span class="cmp cmp--partial"><i data-lucide="minus-circle"></i></span> Partial / context-dependent</div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===================== HOW TO INTERPRET ===================== -->
-<section class="section why-section">
-  <div class="container">
-
-    <div class="section-header">
-      <div class="kicker">HOW TO READ THIS</div>
-      <h2>What does this mean in practice?</h2>
-      <p class="lead muted">The table shows capability coverage, not a winner. The right framework depends on your problem — here's how to pick.</p>
-    </div>
-
-    <div class="why-grid">
-
-      <div class="why-card">
-        <div class="why-card__num">01</div>
-        <div class="why-card__title">You need provider-specific implementation</div>
-        <p class="why-card__body">AWS WA, Azure CAF, and GCP Framework are the right choice for deep, service-aligned implementation guidance within a single provider. They know their products — use that. WAF++ is not a replacement for this.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card__num">02</div>
-        <div class="why-card__title">You need vendor-neutral decisions</div>
-        <p class="why-card__body">When architectural decisions span providers — or need to survive a future migration — WAF++ gives you the neutral lens. Principles, evidence, and traceable decisions that don't depend on which provider you're with today.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-card__num">03</div>
-        <div class="why-card__title">You value community &amp; standardization</div>
-        <p class="why-card__body">CNCF provides the ecosystem and best practices. WAF++ builds on that proximity and adds the missing piece: a structured assessment model with scoring, criteria, and a governance process that produces auditable evidence.</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===================== CTA ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="home-cta">
-      <div class="kicker" style="margin-bottom:14px">NEXT STEP</div>
-      <h2>Ready to go deeper?</h2>
-      <p class="lead muted">Read the full positioning context on the Why-not page — or jump straight into the 8 pillars to see what WAF++ covers in practice.</p>
-      <div class="home-cta-actions">
-        <a class="btn btn-primary" href="{{ '/why-not/' | relative_url }}">Why not X? &rarr;</a>
-        <a class="btn" href="{{ '/saeulen/' | relative_url }}">Explore the 8 Pillars</a>
-        <a class="btn" href="{{ '/docs/' | relative_url }}">Read the Docs</a>
+      <h1>Framework <span class="text-gradient-radical">Comparison</span></h1>
+      <p class="comparison-hero__lead">
+        An honest, capability-based look at how WAF++ fits next to AWS Well-Architected,
+        Azure CAF, the GCP Framework and CNCF. The goal is context, not competition:
+        each framework solves a different slice of the cloud puzzle.
+      </p>
+      <div class="comparison-hero__actions">
+        <a class="btn-glow" href="{{ '/why-not/' | relative_url }}">Why not X? &rarr;</a>
+        <a class="btn-glass" href="{{ '/saeulen/' | relative_url }}">Explore the 8 Pillars</a>
+        <a class="btn-glass" href="{{ '/controls/' | relative_url }}">83+ Controls</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section class="stats-band comparison-stats" aria-label="Key numbers">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Pillars</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">83+</div>
+          <div class="stat-label">Controls</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Frameworks mapped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Countries / regions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DIFFERENTIATORS ===================== -->
+  <section class="bento-section" aria-label="What makes WAF++ different">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Unique to WAF++</div>
+        <h2 class="section-title-radical">Where WAF++ stands apart</h2>
+        <p class="section-lead-radical">Six capabilities that no other framework in this comparison covers fully — the reasons WAF++ exists alongside them, not instead of them.</p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card bento-card--large bento-card--sovereign">
+          <div class="bento-card__glow" aria-hidden="true"></div>
+          <div class="bento-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
+          <div>
+            <div class="bento-card__name">Sovereignty as a first-class pillar <span class="bento-card__badge bento-card__badge--gold">Only WAF++</span></div>
+            <p class="bento-card__desc">Data residency, vendor lock-in avoidance and exit strategies are not an afterthought — Pillar 7 is sovereign by design and scoreable.</p>
+          </div>
+          <div class="bento-card__footer">
+            <span class="bento-mini-stat"><strong>50+</strong> mapped sovereignty frameworks</span>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card--agentic">
+          <div class="bento-card__glow" aria-hidden="true"></div>
+          <div class="bento-card__icon"><i data-lucide="cpu" aria-hidden="true"></i></div>
+          <div class="bento-card__name">Agentic controls <span class="bento-card__badge bento-card__badge--purple">New in v1.1</span></div>
+          <p class="bento-card__desc">Identity, governance, guardrails and observability for autonomous AI agents — covered by WAF-AGN-010 through WAF-AGN-100.</p>
+          <div class="bento-card__footer">
+            <span class="bento-mini-stat"><strong>10</strong> agentic controls</span>
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div class="bento-card__glow" aria-hidden="true"></div>
+          <div class="bento-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+          <div class="bento-card__name">Full auditability via RFCs</div>
+          <p class="bento-card__desc">Every rule and decision is traceable through a public RFC with evidence. Provider frameworks update silently; WAF++ requires justification.</p>
+        </div>
+
+        <div class="bento-card">
+          <div class="bento-card__glow" aria-hidden="true"></div>
+          <div class="bento-card__icon"><i data-lucide="scale" aria-hidden="true"></i></div>
+          <div class="bento-card__name">Neutral assessment + open governance</div>
+          <p class="bento-card__desc">CNCF has open governance but no assessment. Provider frameworks assess, but are vendor-bound. WAF++ is the only option with both.</p>
+        </div>
+
+        <div class="bento-card bento-card--wide">
+          <div class="bento-card__glow" aria-hidden="true"></div>
+          <div class="bento-card__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
+          <div class="bento-card__name">Open-source CLI: WAFPass v1.1.0</div>
+          <p class="bento-card__desc">Run assessments locally, export evidence and track posture over time. Apache 2.0 code, CC BY 4.0 docs, with Docker Compose in minutes.</p>
+          <div class="bento-card__footer">
+            <span class="bento-mini-stat"><strong>v1.1.0</strong> CLI release</span>
+            <span class="bento-mini-stat"><strong>15+</strong> region profiles</span>
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div class="bento-card__glow" aria-hidden="true"></div>
+          <div class="bento-card__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+          <div class="bento-card__name">83+ vendor-neutral controls</div>
+          <p class="bento-card__desc">Security, cost, operations, reliability, performance, sustainability, sovereign and agentic — all mapped across providers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPARISON TABLE ===================== -->
+  <section class="comparison-table-section" aria-label="Side-by-side comparison">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">At a glance</div>
+        <h2 class="section-title-radical">Side-by-side comparison</h2>
+        <p class="section-lead-radical">Ten criteria across five frameworks. WAF++ is highlighted to show where it uniquely adds value.</p>
+      </div>
+
+      <div class="comparison-table-radical-wrap">
+        <table class="comparison-table-radical">
+          <thead>
+            <tr>
+              <th>Criterion</th>
+              <th class="comparison-table-radical__waf">WAF++ v1.1</th>
+              <th>AWS WA</th>
+              <th>Azure CAF</th>
+              <th>GCP Framework</th>
+              <th>CNCF</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Vendor-neutral</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+            </tr>
+            <tr>
+              <td>Open governance (TSC / Maintainers / WGs)</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+            </tr>
+            <tr>
+              <td>Assessment framework &amp; scoring</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+            </tr>
+            <tr>
+              <td>Multi-cloud focus</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+            </tr>
+            <tr>
+              <td>Sovereignty &amp; exit capability as a pillar</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+            </tr>
+            <tr>
+              <td>Agentic AI controls (identity, guardrails, observability)</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+            </tr>
+            <tr>
+              <td>Auditability &amp; traceability (evidence, RFCs)</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+            </tr>
+            <tr>
+              <td>Open source &amp; open license</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Apache 2.0 + CC BY 4.0</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> Proprietary</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> Proprietary</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> Proprietary</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Open</span></td>
+            </tr>
+            <tr>
+              <td>CLI assessment tool</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> WAFPass v1.1.0</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Provider tools</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Advisor</span></td>
+              <td><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+            </tr>
+            <tr>
+              <td>Provider-specific implementation guidance</td>
+              <td class="comparison-table-radical__waf"><span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Cross-provider</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Deep</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Deep</span></td>
+              <td><span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Deep</span></td>
+              <td><span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="comparison-legend-radical">
+        <span class="cmp-radical cmp-radical--yes"><i data-lucide="check-circle-2"></i> Yes / explicit</span>
+        <span class="cmp-radical cmp-radical--partial"><i data-lucide="minus-circle"></i> Partial / context-dependent</span>
+        <span class="cmp-radical cmp-radical--no"><i data-lucide="x-circle"></i> No / not a primary objective</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VERDICT / HOW TO READ ===================== -->
+  <section class="comparison-verdict" aria-label="How to choose">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">How to read this</div>
+        <h2 class="section-title-radical">What does this mean in practice?</h2>
+        <p class="section-lead-radical">The table shows coverage, not a winner. Pick the right tool for the job — and let WAF++ handle the parts the others leave open.</p>
+      </div>
+
+      <div class="plus-grid">
+        <div class="plus-card">
+          <div class="plus-card__icon"><i data-lucide="server" aria-hidden="true"></i></div>
+          <div class="plus-card__num">01</div>
+          <div class="plus-card__title">You need provider-specific implementation</div>
+          <p class="plus-card__desc">AWS WA, Azure CAF and GCP Framework are the right choice for deep, service-aligned guidance within a single provider. They know their products — use that. WAF++ is not a replacement.</p>
+        </div>
+
+        <div class="plus-card plus-card--sovereign">
+          <div class="plus-card__icon"><i data-lucide="scale" aria-hidden="true"></i></div>
+          <div class="plus-card__num">02</div>
+          <div class="plus-card__title">You need vendor-neutral governance</div>
+          <p class="plus-card__desc">When architectural decisions span providers — or must survive a future migration — WAF++ gives you a neutral lens: principles, evidence and traceable decisions independent of today's provider.</p>
+        </div>
+
+        <div class="plus-card plus-card--agentic">
+          <div class="plus-card__icon"><i data-lucide="bot" aria-hidden="true"></i></div>
+          <div class="plus-card__num">03</div>
+          <div class="plus-card__title">You are adopting agentic AI</div>
+          <p class="plus-card__desc">Only WAF++ ships a dedicated agentic pillar with controls for identity, guardrails and observability. Use it alongside provider AI services to keep autonomy, compliance and accountability in check.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="comparison-cta" aria-label="Next steps">
+    <div class="container">
+      <div class="comparison-cta__card">
+        <div class="kicker-radical">Next step</div>
+        <h2 class="comparison-cta__title">Ready to go deeper?</h2>
+        <p class="comparison-cta__lead">Read the full positioning context, explore the 8 pillars or install WAFPass locally to run your first assessment.</p>
+        <div class="comparison-cta__actions">
+          <a class="btn-glow" href="{{ '/why-not/' | relative_url }}">Why not X? &rarr;</a>
+          <a class="btn-glass" href="{{ '/saeulen/' | relative_url }}">Explore the 8 Pillars</a>
+          <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

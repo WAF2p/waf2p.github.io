@@ -215,7 +215,7 @@ Das ist kein Einzelfall. Es ist das Muster. Ohne Inventar, ohne Controls und ohn
   <text x="550" y="368.5" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#86efac">Souverän — egal beim welchem Anbieter</text>
 
   <!-- Bottom statement -->
-  <rect x="16" y="412" width="868" height="24" rx="0 0 10 10" fill="#0b1020"/>
+  <rect x="16" y="412" width="868" height="24" rx="10" fill="#0b1020"/>
   <text x="450" y="428" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#60a5fa">Souveränität ist keine Frage des Anbieters. Es ist eine Frage der Sichtbarkeit.</text>
 </svg>
 <figcaption class="article-fig-cap">

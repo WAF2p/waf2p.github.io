@@ -1,19 +1,21 @@
-/* Vision page — radical remake */
+/* Use Cases page — radical remake */
 
-.bento-grid--3 {
+.use-cases-page {}
+
+/* ── Audience + scenario cards (shared component) ─────────────────────── */
+.uc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 @media (max-width: 980px) {
-  .bento-grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .uc-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .bento-grid--3 { grid-template-columns: 1fr; }
+  .uc-grid { grid-template-columns: 1fr; }
 }
 
-/* ── Vision cards ───────────────────────────────────────────────────────── */
-.vision-card {
+.uc-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,7 +24,6 @@
   border-radius: 22px;
   border: 1px solid var(--radical-border);
   background: var(--radical-surface);
-  color: inherit;
   overflow: hidden;
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 
@@ -45,20 +46,6 @@
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px var(--radical-glow);
     border-color: rgba(0, 148, 255, 0.35);
   }
-
-  &__glow {
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, var(--brand-500) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity .4s ease;
-    pointer-events: none;
-  }
-
-  &:hover &__glow { opacity: 0.06; }
 
   &__icon {
     position: relative;
@@ -86,7 +73,7 @@
 
   &__title {
     position: relative;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 800;
     letter-spacing: -0.01em;
     line-height: 1.25;
@@ -101,65 +88,10 @@
     color: var(--radical-muted);
     margin: 0;
   }
-
-  &__actions {
-    position: relative;
-    margin-top: auto;
-    padding-top: 16px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    border-top: 1px solid var(--radical-border);
-  }
 }
 
-/* ── Vision quote ───────────────────────────────────────────────────────── */
-.vision-quote {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 36px 40px;
-  border-radius: 24px;
-  background: var(--radical-surface);
-  border: 1px solid var(--radical-border);
-  text-align: center;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.28));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.7;
-    pointer-events: none;
-  }
-
-  &__line {
-    position: relative;
-    font-size: clamp(20px, 3vw, 28px);
-    font-weight: 800;
-    line-height: 1.35;
-    color: var(--radical-text);
-    margin: 0 0 14px;
-  }
-
-  &__meta {
-    position: relative;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--brand-400);
-  }
-}
-
-/* ── Guiding principles split ─────────────────────────────────────────── */
-.vision-principles-layout {
+/* ── Share use case split ────────────────────────────────────────────── */
+.uc-share-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
@@ -172,15 +104,15 @@
   }
 }
 @media (max-width: 860px) {
-  .vision-principles-layout { grid-template-columns: 1fr; }
+  .uc-share-layout { grid-template-columns: 1fr; }
 }
 
-.vision-principles {
+.uc-share-features {
   display: grid;
   gap: 14px;
 }
 
-.vision-principle {
+.uc-share-feature {
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 16px;
@@ -223,5 +155,100 @@
     line-height: 1.5;
     color: var(--radical-muted);
     margin: 0;
+
+    code {
+      font-size: 12px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--radical-surface-2);
+      color: var(--radical-text);
+      border: 1px solid var(--radical-border);
+    }
   }
+}
+
+.uc-good-case-card {
+  position: relative;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__kicker {
+    position: relative;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-400);
+    margin-bottom: 18px;
+  }
+
+  &__items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--radical-border);
+
+    &:last-child { border-bottom: none; }
+
+    i {
+      width: 20px;
+      height: 20px;
+      color: var(--brand-400);
+      flex-shrink: 0;
+    }
+  }
+
+  &__item-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--radical-text);
+  }
+
+  &__item-desc {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--radical-muted);
+  }
+
+  &__footer {
+    position: relative;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--radical-border);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--radical-muted);
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .uc-card { padding: 20px; }
+  .uc-share-feature,
+  .uc-good-case-card { padding: 18px; }
 }

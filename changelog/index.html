@@ -7,251 +7,163 @@ description: A public log of all significant changes to the WAF++ framework and 
 permalink: /changelog/
 ---
 
-<!-- ===================== HERO ===================== -->
-<section class="hero hero--page hero--centered">
-  <div class="container" style="max-width:800px;">
-    {% include breadcrumb-inline.html %}
-    {% include breadcrumb.html %}
+<div class="page-radical changelog-page">
 
-    <div class="home-badge" style="display:inline-flex;">
-      <span class="home-badge__dot"></span>
-      Transparency · History
-    </div>
-    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
-      <span class="text-gradient">Changelog</span>
-    </h1>
-    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
-      A transparent record of every significant change — each linked back to the RFC or PR that introduced it.
-    </p>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero--radical page-radical__hero">
+    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
 
-    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        Framework · Marketing · WAFPass
-      </span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="git-pull-request" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        Linked to PRs &amp; RFCs
-      </span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="eye" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        Fully public
-      </span>
-    </div>
+    <div class="container hero-radical-grid">
+      <div class="hero-radical-copy">
+        {% include breadcrumb-inline.html %}
+        {% include breadcrumb.html %}
 
-    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
-      <a class="btn btn-primary" href="#changelog-content">View changes &darr;</a>
-      <a class="btn" href="{{ '/roadmap/' | relative_url }}">Roadmap</a>
-      <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== CHANGELOG ===================== -->
-<section class="section" id="changelog-content">
-  <div class="container">
-
-    <div class="section-header">
-      <div class="kicker">CHANGELOG</div>
-      <h2>All changes</h2>
-      <p class="lead muted">Select a component to view its change history. Each entry references the PR or RFC where the decision was made.</p>
-    </div>
-
-    <div class="changelog-tabs" style="margin-top:32px;">
-      <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
-      <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
-      <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
-      <input type="radio" name="cl-tab" id="cl-tab-dash" class="cl-radio">
-      <input type="radio" name="cl-tab" id="cl-tab-srv" class="cl-radio">
-
-      <nav class="cl-tab-nav">
-        <label for="cl-tab-fw">Framework</label>
-        <label for="cl-tab-mkt">Marketing Site</label>
-        <label for="cl-tab-pass">WAFPass</label>
-        <label for="cl-tab-dash">WAFPass Dashboard</label>
-        <label for="cl-tab-srv">WAFPass Server</label>
-      </nav>
-
-      <!-- Framework pane -->
-      <div class="cl-pane" id="cl-pane-fw">
-
-        <div class="cl-notice" style="border-color:rgba(22,163,74,.35);background:color-mix(in srgb,#16a34a 8%,transparent);">
-          <span style="font-size:1.1rem;">🚀</span>
-          <div>
-            <strong>v1.0.0 released</strong> — WAF++ Framework v1.0.0 launched on <strong>12 May 2026</strong> on the pre-eve of Cloud Native Conference DE.
-            All eight pillars are stable, the controls library is locked, and the PASS scoring model is finalized. <strong>Agentic (Pillar 8)</strong> announced for v1.1.
-          </div>
+        <div class="hero-radical-badge">
+          <span class="hero-radical-badge__dot"></span>
+          Transparency · History
         </div>
 
-        {% for group in site.data.changelog_framework %}
-        <div class="cl-group">
-          <div class="cl-group-header">
-            <span class="cl-group-label">{{ group.group_en }}</span>
-            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
-            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
-          </div>
-          <div class="cl-entries">
-            {% for change in group.changes %}
-            <div class="cl-entry">
-              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
-              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/framework/pulls/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
+        <h1 class="hero-radical-h1">
+          <span class="text-gradient-radical">Changelog</span>
+        </h1>
 
-        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
-          Full history: <a href="https://github.com/waf2p/framework/commits/main" target="_blank" rel="noopener">github.com/waf2p/framework</a>
+        <p class="hero-radical-lead">
+          A transparent record of every significant change — each linked back to the RFC or PR that introduced it.
+        </p>
+
+        <div class="hero-radical-actions">
+          <a class="btn btn-glow" href="#changelog-content">View changes &darr;</a>
+          <a class="btn btn-glass" href="{{ '/roadmap/' | relative_url }}">Roadmap</a>
+          <a class="btn btn-glass" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="hero-radical-pills">
+          <span class="hero-radical-pill"><i data-lucide="layers" aria-hidden="true"></i> Framework · Marketing · WAFPass</span>
+          <span class="hero-radical-pill"><i data-lucide="git-pull-request" aria-hidden="true"></i> Linked to PRs &amp; RFCs</span>
+          <span class="hero-radical-pill"><i data-lucide="eye" aria-hidden="true"></i> Fully public</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CHANGELOG ===================== -->
+  <section class="bento-section" id="changelog-content">
+    <div class="container">
+
+      <div class="section-header-radical">
+        <div class="kicker-radical">Changelog</div>
+        <h2 class="section-title-radical">All changes</h2>
+        <p class="section-lead-radical">
+          Select a component to view its change history. Each entry references the PR or RFC where the decision was made.
         </p>
       </div>
 
-      <!-- Marketing site pane -->
-      <div class="cl-pane" id="cl-pane-mkt">
+      <div class="changelog-tabs">
+        <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
+        <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-dash" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-srv" class="cl-radio">
 
-        {% for group in site.data.changelog_marketing %}
-        <div class="cl-group">
-          <div class="cl-group-header">
-            <span class="cl-group-label">{{ group.group_en }}</span>
-            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
-          </div>
-          <div class="cl-entries">
-            {% for change in group.changes %}
-            <div class="cl-entry">
-              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
-              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/waf2p.github.io/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
+        <nav class="cl-tab-nav">
+          <label class="cl-tab-nav__item" for="cl-tab-fw">Framework</label>
+          <label class="cl-tab-nav__item" for="cl-tab-mkt">Marketing Site</label>
+          <label class="cl-tab-nav__item" for="cl-tab-pass">WAFPass</label>
+          <label class="cl-tab-nav__item" for="cl-tab-dash">WAFPass Dashboard</label>
+          <label class="cl-tab-nav__item" for="cl-tab-srv">WAFPass Server</label>
+        </nav>
 
-        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
-          Full history: <a href="https://github.com/waf2p/waf2p.github.io/commits/main" target="_blank" rel="noopener">github.com/waf2p/waf2p.github.io</a>
-        </p>
+        {% include changelog-pane.html
+          pane_id="cl-pane-fw"
+          data="changelog_framework"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/framework/pull/"
+          history_url="https://github.com/waf2p/framework/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/framework"
+          launch_title="v1.0.0 released"
+          launch_body="WAF++ Framework v1.0.0 launched on 12 May 2026 on the pre-eve of Cloud Native Conference DE. All eight pillars are stable, the controls library is locked, and the PASS scoring model is finalized. Agentic (Pillar 8) announced for v1.1."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-mkt"
+          data="changelog_marketing"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/waf2p.github.io/pull/"
+          history_url="https://github.com/waf2p/waf2p.github.io/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/waf2p.github.io"
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-pass"
+          data="changelog_wafpass"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/pass/pull/"
+          history_url="https://github.com/waf2p/pass/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/pass"
+          launch_title="v1.0.0 released"
+          launch_body="WAFPass v1.0.0 (wafpass-core) launched on 12 May 2026 alongside Framework v1.0.0. The CLI is stable, the Python library API is published on PyPI, and all 8 pillars are covered. Agentic (Pillar 8) announced for v1.1."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-dash"
+          data="changelog_wafpass_dashboard"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/wafpass-dashboard/pull/"
+          history_url="https://github.com/waf2p/wafpass-dashboard/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/wafpass-dashboard"
+          launch_title="v1.0.0 released"
+          launch_body="WAFPass Dashboard v1.0.0 is the stable React / Vite SPA companion to the WAFPass CLI. All 22+ pages are stable. Connects to wafpass-server and visualises compliance state, exploit paths, gap analysis, and audit evidence."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-srv"
+          data="changelog_wafpass_server"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/wafpass-server/pull/"
+          history_url="https://github.com/waf2p/wafpass-server/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/wafpass-server"
+          launch_title="v1.0.0 released"
+          launch_body="WAFPass Server v1.0.0 is the stable FastAPI / PostgreSQL persistence layer for the WAFPass stack. Full SSO (OIDC/SAML2), API key management, role-based access control, and all 14 database migrations ship with the stable Docker image."
+        %}
       </div>
 
-      <!-- WAFPass pane -->
-      <div class="cl-pane" id="cl-pane-pass">
+    </div>
+  </section>
 
-        <div class="cl-notice" style="border-color:rgba(22,163,74,.35);background:color-mix(in srgb,#16a34a 8%,transparent);">
-          <span style="font-size:1.1rem;">🚀</span>
-          <div>
-            <strong>v1.0.0 released</strong> — WAFPass v1.0.0 (wafpass-core) launched on <strong>12 May 2026</strong> alongside Framework v1.0.0.
-            The CLI is stable, the Python library API is published on PyPI, and all 8 pillars are covered. <strong>Agentic (Pillar 8)</strong> announced for v1.1.
-          </div>
-        </div>
 
-        {% for group in site.data.changelog_wafpass %}
-        <div class="cl-group">
-          <div class="cl-group-header">
-            <span class="cl-group-label">{{ group.group_en }}</span>
-            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
-            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
-          </div>
-          <div class="cl-entries">
-            {% for change in group.changes %}
-            <div class="cl-entry">
-              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
-              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/pass/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-
-        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
-          Full history: <a href="https://github.com/waf2p/pass/commits/main" target="_blank" rel="noopener">github.com/waf2p/pass</a>
-        </p>
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-radical">
+    <div class="cta-radical__glow" aria-hidden="true"></div>
+    <div class="container cta-radical__inner">
+      <div class="kicker-radical">Stay informed</div>
+      <h2 class="cta-radical__title">Never miss an update.</h2>
+      <p class="cta-radical__lead">
+        Subscribe to the RSS feed, watch the GitHub repository, or join Slack to get notified when new releases ship.
+      </p>
+      <div class="cta-radical__actions">
+        <a class="btn btn-glow" href="{{ '/stay-updated/' | relative_url }}">Stay updated &rarr;</a>
+        <a class="btn btn-glass" href="{{ '/roadmap/' | relative_url }}">Roadmap</a>
+        <a class="btn btn-glass" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
       </div>
-
-      <!-- WAFPass Dashboard pane -->
-      <div class="cl-pane" id="cl-pane-dash">
-
-        <div class="cl-notice" style="border-color:rgba(22,163,74,.35);background:color-mix(in srgb,#16a34a 8%,transparent);">
-          <span style="font-size:1.1rem;">🚀</span>
-          <div>
-            <strong>v1.0.0 released</strong> — WAFPass Dashboard v1.0.0 is the stable React / Vite SPA companion to the WAFPass CLI.
-            All 22+ pages are stable. Connects to wafpass-server and visualises compliance state, exploit paths, gap analysis, and audit evidence.
-          </div>
-        </div>
-
-        {% for group in site.data.changelog_wafpass_dashboard %}
-        <div class="cl-group">
-          <div class="cl-group-header">
-            <span class="cl-group-label">{{ group.group_en }}</span>
-            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
-            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
-          </div>
-          <div class="cl-entries">
-            {% for change in group.changes %}
-            <div class="cl-entry">
-              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
-              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/wafpass-dashboard/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-
-        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
-          Full history: <a href="https://github.com/waf2p/wafpass-dashboard/commits/main" target="_blank" rel="noopener">github.com/waf2p/wafpass-dashboard</a>
-        </p>
-      </div>
-
-      <!-- WAFPass Server pane -->
-      <div class="cl-pane" id="cl-pane-srv">
-
-        <div class="cl-notice" style="border-color:rgba(22,163,74,.35);background:color-mix(in srgb,#16a34a 8%,transparent);">
-          <span style="font-size:1.1rem;">🚀</span>
-          <div>
-            <strong>v1.0.0 released</strong> — WAFPass Server v1.0.0 is the stable FastAPI / PostgreSQL persistence layer for the WAFPass stack.
-            Full SSO (OIDC/SAML2), API key management, role-based access control, and all 14 database migrations ship with the stable Docker image.
-          </div>
-        </div>
-
-        {% for group in site.data.changelog_wafpass_server %}
-        <div class="cl-group">
-          <div class="cl-group-header">
-            <span class="cl-group-label">{{ group.group_en }}</span>
-            {% if group.version %}<span class="cl-version-badge">{{ group.version }}</span>{% endif %}
-            {% if group.beta %}<span class="cl-beta-badge">beta</span>{% endif %}
-          </div>
-          <div class="cl-entries">
-            {% for change in group.changes %}
-            <div class="cl-entry">
-              <span class="cl-type cl-type--{{ change.type }}">{{ change.type }}</span>
-              <span class="cl-text">{{ change.text_en }}{% if change.pr %} <a class="cl-pr" href="https://github.com/waf2p/wafpass-server/pull/{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>{% endif %}</span>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endfor %}
-
-        <p class="muted" style="font-size:0.85rem;margin-top:8px;">
-          Full history: <a href="https://github.com/waf2p/wafpass-server/commits/main" target="_blank" rel="noopener">github.com/waf2p/wafpass-server</a>
-        </p>
-      </div>
-
-    </div><!-- /.changelog-tabs -->
-
-  </div>
-</section>
-
-
-<!-- ===================== CTA ===================== -->
-<section class="section">
-  <div class="container">
-    <div class="home-cta">
-      <div class="kicker" style="margin-bottom:14px">STAY INFORMED</div>
-      <h2>Never miss an update.</h2>
-      <p class="lead muted">Subscribe to the RSS feed, watch the GitHub repository, or join Slack to get notified when new releases ship.</p>
-      <div class="home-cta-actions">
-        <a class="btn btn-primary" href="{{ '/stay-updated/' | relative_url }}">Stay updated &rarr;</a>
-        <a class="btn" href="{{ '/roadmap/' | relative_url }}">Roadmap</a>
-        <a class="btn" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
+      <div class="cta-radical__compliance">
+        <span class="cta-radical__pill"><i data-lucide="rss" aria-hidden="true"></i> RSS feed</span>
+        <span class="cta-radical__pill"><i data-lucide="bell" aria-hidden="true"></i> Release watch</span>
+        <span class="cta-radical__pill"><i data-lucide="message-circle" aria-hidden="true"></i> Community Slack</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</div>

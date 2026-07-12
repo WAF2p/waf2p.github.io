@@ -1,0 +1,297 @@
+/* Contributing page — radical remake */
+
+.contributing-page {}
+
+/* ── Ways to contribute cards (3×2 grid) ───────────────────────────────── */
+.contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 980px) {
+  .contrib-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .contrib-grid { grid-template-columns: 1fr; }
+}
+
+.contrib-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px;
+  border-radius: 22px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px var(--radical-glow);
+    border-color: rgba(0, 148, 255, 0.35);
+  }
+
+  &__icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 22px; height: 22px; }
+  }
+
+  &__kicker {
+    position: relative;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-400);
+  }
+
+  &__title {
+    position: relative;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--radical-text);
+    margin: 0;
+  }
+
+  &__desc {
+    position: relative;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--radical-muted);
+    margin: 0;
+  }
+}
+
+/* ── Getting started steps ───────────────────────────────────────────── */
+.contrib-steps {
+  display: grid;
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.contrib-step {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.40), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.22));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: rgba(0, 148, 255, 0.30);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25), 0 0 30px var(--radical-glow);
+  }
+
+  &__number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--brand-500);
+    position: relative;
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--radical-text);
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--radical-muted);
+    margin: 0;
+
+    a { color: var(--brand-400); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    code {
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: var(--radical-surface-2);
+      color: var(--radical-text);
+      border: 1px solid var(--radical-border);
+    }
+  }
+}
+
+/* ── Working group cards (3 columns) ─────────────────────────────────── */
+.contrib-wg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 980px) {
+  .contrib-wg-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .contrib-wg-grid { grid-template-columns: 1fr; }
+}
+
+/* ── RFC flow ─────────────────────────────────────────────────────────── */
+.contrib-rfc-flow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  padding: 18px 12px;
+  border-radius: 24px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.contrib-rfc-step {
+  position: relative;
+  text-align: center;
+  padding: 16px 18px;
+  min-width: 130px;
+
+  &__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    border: 2px solid var(--brand-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    background: rgba(0, 148, 255, 0.08);
+    color: var(--brand-400);
+
+    i { width: 22px; height: 22px; }
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--radical-text);
+  }
+
+  &__desc {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--radical-muted);
+    margin-top: 4px;
+    max-width: 130px;
+    margin-inline: auto;
+  }
+}
+
+.contrib-rfc-arrow {
+  font-size: 20px;
+  color: var(--radical-muted);
+  padding: 0 4px;
+}
+
+@media (max-width: 860px) {
+  .contrib-rfc-flow {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .contrib-rfc-step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    align-items: center;
+    text-align: left;
+    padding: 12px 16px;
+
+    &__icon { margin: 0; }
+    &__desc { max-width: none; margin-inline: 0; }
+  }
+
+  .contrib-rfc-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+    padding: 4px 0;
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .contrib-card { padding: 20px; }
+  .contrib-step { padding: 18px; }
+  .contrib-rfc-flow { padding: 14px; }
+}

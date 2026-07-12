@@ -7,72 +7,81 @@ description: Definitions of key terms used in the WAF++ framework — pillars, c
 permalink: /glossary/
 ---
 
+{% assign term_count = 34 %}
+{% assign letter_count = 14 %}
+
+<div class="page-radical glossary-page">
+
 <!-- ===================== HERO ===================== -->
-<section class="hero hero--page hero--centered">
-  <div class="container" style="max-width: 780px;">
-    <div class="home-badge" style="display:inline-flex;">
-      <span class="home-badge__dot"></span>
+<section class="hero--radical">
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+
+  <div class="container" style="position:relative;z-index:2;max-width:900px;text-align:center;">
+    <div class="hero-radical-badge" style="margin:0 auto 24px;">
+      <span class="hero-radical-badge__dot"></span>
       Reference &middot; Authoritative definitions
     </div>
-    <h1 class="home-h1" style="font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px;">
-      <span class="text-gradient">Glossary</span>
+
+    <h1 class="hero-radical-h1" style="font-size: clamp(44px, 7vw, 84px);">
+      <span class="text-gradient-radical">Glossary</span>
     </h1>
-    <p class="lead" style="max-width: 68ch; margin: 0 auto 28px;">
+    <p class="hero-radical-lead" style="max-width: 680px; margin: 0 auto 36px;">
       Definitions of key terms used across the WAF++ framework, scoring model, governance, and tooling.
       When in doubt, this is the authoritative source.
     </p>
 
-    <!-- Stats strip -->
-    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="book-open" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        28 terms
+    <div class="hero-radical-pills" style="justify-content:center; margin-bottom: 32px;">
+      <span class="hero-radical-pill">
+        <i data-lucide="book-open" aria-hidden="true"></i>
+        {{ term_count }} terms
       </span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="tag" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
+      <span class="hero-radical-pill">
+        <i data-lucide="tag" aria-hidden="true"></i>
         5 categories
       </span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        14 letters
+      <span class="hero-radical-pill">
+        <i data-lucide="layers" aria-hidden="true"></i>
+        {{ letter_count }} letters
       </span>
     </div>
 
-    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
-      <a class="btn btn-primary" href="{{ '/docs/' | relative_url }}">Full documentation &rarr;</a>
-      <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+    <div class="hero-radical-actions" style="justify-content:center;">
+      <a class="btn-glow" href="{{ '/docs/' | relative_url }}">Full documentation &rarr;</a>
+      <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
     </div>
   </div>
 </section>
 
 
 <!-- ===================== GLOSSARY ===================== -->
-<section class="section">
+<section class="bento-section">
   <div class="container">
 
-    <!-- Tag legend -->
-    <div class="card card-pad" style="margin-bottom:28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
-      <span class="muted" style="font-size:13px;font-weight:600;flex-shrink:0;">Term categories:</span>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <!-- Category legend -->
+    <div class="gl-legend">
+      <span class="gl-legend__label">Categories</span>
+      <span class="gl-legend__item">
         <span class="gl-tag gl-tag--framework">framework</span>
-        <span class="muted" style="font-size:12px;line-height:1.8;">pillars, controls, scoring model, assessments</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        pillars, controls, scoring, assessments
+      </span>
+      <span class="gl-legend__item">
         <span class="gl-tag gl-tag--governance">governance</span>
-        <span class="muted" style="font-size:12px;line-height:1.8;">roles, policies, licences, community</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        roles, policies, licences, community
+      </span>
+      <span class="gl-legend__item">
         <span class="gl-tag gl-tag--scoring">scoring</span>
-        <span class="muted" style="font-size:12px;line-height:1.8;">PASS model, tiers, scores</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        PASS model, tiers, scores
+      </span>
+      <span class="gl-legend__item">
         <span class="gl-tag gl-tag--process">process</span>
-        <span class="muted" style="font-size:12px;line-height:1.8;">RFC, decisions, contributions</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        RFC, decisions, contributions
+      </span>
+      <span class="gl-legend__item">
         <span class="gl-tag gl-tag--tooling">tooling</span>
-        <span class="muted" style="font-size:12px;line-height:1.8;">Antora, AsciiDoc, WAFPass CLI</span>
-      </div>
+        Antora, AsciiDoc, WAFPass CLI
+      </span>
     </div>
 
     <!-- Alpha nav -->
@@ -87,6 +96,12 @@ permalink: /glossary/
     <div class="gl-section" id="A">
       <div class="gl-letter">A</div>
       <div class="gl-list">
+
+        <div class="gl-entry" id="Agentic">
+          <div class="gl-term">Agentic <span class="gl-tag gl-tag--framework">framework</span></div>
+          <p class="gl-def">Relating to autonomous AI agents that plan, act, and interact with systems without direct human instruction. In WAF++, the Agentic pillar (Pillar 8) defines controls for governing these agents in production workloads.</p>
+          <p class="gl-also">See also: <a href="#Pillar">Pillar</a>, <a href="{{ '/saeulen/' | relative_url }}">The 8 pillars</a></p>
+        </div>
 
         <div class="gl-entry">
           <div class="gl-term">Antora <span class="gl-tag gl-tag--tooling">tooling</span></div>
@@ -113,7 +128,7 @@ permalink: /glossary/
       <div class="gl-letter">C</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Charter">
           <div class="gl-term">Charter <span class="gl-tag gl-tag--governance">governance</span></div>
           <p class="gl-def">A short document that defines the purpose, scope, deliverables, leads, and communication channel of a Working Group. A charter is required before a WG can be officially recognised.</p>
           <p class="gl-also">See also: <a href="#Working-Group">Working Group</a></p>
@@ -127,12 +142,12 @@ permalink: /glossary/
 
         <div class="gl-entry" id="Control-ID">
           <div class="gl-term">Control ID <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def">The unique identifier for a WAF++ control, following the pattern <code>WAF-[PILLAR]-[NUMBER]</code>. Example: <code>WAF-SOV-010</code> is the first control of the Sovereign pillar. The pillar abbreviation is a three-letter code (e.g. <code>SEC</code> for Security, <code>SOV</code> for Sovereign). Control IDs are stable — once published, they never change or get reused.</p>
+          <p class="gl-def">The unique identifier for a WAF++ control, following the pattern <code>WAF-[PILLAR]-[NUMBER]</code>. Example: <code>WAF-SOV-010</code> is the first control of the Sovereign pillar. The pillar abbreviation is a three-letter code (e.g. <code>SEC</code> for Security, <code>SOV</code> for Sovereign, <code>AGN</code> for Agentic). Control IDs are stable — once published, they never change or get reused.</p>
         </div>
 
         <div class="gl-entry" id="Controls-library">
           <div class="gl-term">Controls library <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def">The full collection of WAF++ controls, stored as structured YAML files in the <code>framework</code> repository under <code>modules/controls/</code>. Each file defines one control with its ID, pillar, title, description, assessment question, and rationale.</p>
+          <p class="gl-def">The full collection of WAF++ controls, stored as structured YAML files in the <code>framework</code> repository under <code>modules/controls/</code>. The library now spans 8 pillars with 83+ controls.</p>
         </div>
 
         <div class="gl-entry">
@@ -149,7 +164,7 @@ permalink: /glossary/
       <div class="gl-letter">D</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Dual-licence">
           <div class="gl-term">Dual-licence model <span class="gl-tag gl-tag--governance">governance</span></div>
           <p class="gl-def">WAF++ uses two licences: <strong>Apache License 2.0</strong> for code, tooling, and schemas; <strong>Creative Commons Attribution 4.0 (CC BY 4.0)</strong> for documentation and written content. This allows broad reuse while ensuring attribution. See the <a href="{{ '/legal/' | relative_url }}">Legal page</a> for details.</p>
         </div>
@@ -162,14 +177,14 @@ permalink: /glossary/
       <div class="gl-letter">F</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Finding">
           <div class="gl-term">Finding <span class="gl-tag gl-tag--framework">framework</span></div>
           <p class="gl-def">The result of evaluating one control against one workload. A finding is either <em>satisfied</em>, <em>not satisfied</em>, or <em>not applicable</em>. Findings are the raw output of an assessment, which are then aggregated into a PASS score.</p>
         </div>
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Foundation-ready">
           <div class="gl-term">Foundation-ready <span class="gl-tag gl-tag--governance">governance</span></div>
-          <p class="gl-def">A quality standard for the WAF++ governance model, indicating that the project's structure, policies, and transparency meet the requirements for donation to an open-source foundation (e.g. CNCF, Apache Software Foundation). Foundation-readiness is a stated goal for the WAF++ v1.0 release.</p>
+          <p class="gl-def">A quality standard for the WAF++ governance model, indicating that the project's structure, policies, and transparency meet the requirements for donation to an open-source foundation (e.g. CNCF, Apache Software Foundation). Foundation-readiness is a stated goal for the WAF++ v1.x releases.</p>
         </div>
 
       </div>
@@ -180,7 +195,7 @@ permalink: /glossary/
       <div class="gl-letter">G</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Governance">
           <div class="gl-term">Governance <span class="gl-tag gl-tag--governance">governance</span></div>
           <p class="gl-def">The set of rules, processes, and roles that determine how decisions are made in the WAF++ project. WAF++ governance is documented publicly and covers: RFC process, TSC composition and voting, maintainer terms, working group rules, and code of conduct enforcement.</p>
           <p class="gl-also">See also: <a href="#TSC">TSC</a>, <a href="#RFC">RFC</a>, <a href="{{ '/governance-community/' | relative_url }}">Governance &amp; Community page</a></p>
@@ -194,7 +209,7 @@ permalink: /glossary/
       <div class="gl-letter">I</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="IaC">
           <div class="gl-term">IaC — Infrastructure as Code <span class="gl-tag gl-tag--framework">framework</span></div>
           <p class="gl-def">The practice of managing and provisioning cloud infrastructure through machine-readable configuration files rather than manual processes. Relevant to multiple WAF++ pillars, particularly Operational Excellence and Security.</p>
         </div>
@@ -253,7 +268,7 @@ permalink: /glossary/
           <p class="gl-also">See also: <a href="#Control">Control</a>, <a href="{{ '/saeulen/' | relative_url }}">The 8 pillars</a></p>
         </div>
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Pillar-score">
           <div class="gl-term">Pillar score <span class="gl-tag gl-tag--scoring">scoring</span></div>
           <p class="gl-def">The PASS tier achieved for a single pillar, derived from the control satisfaction rate and any mandatory controls within that pillar. Pillar scores are aggregated into the overall PASS score.</p>
         </div>
@@ -291,9 +306,9 @@ permalink: /glossary/
           <p class="gl-also">See also: <a href="#PASS-model">PASS model</a></p>
         </div>
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Sovereign">
           <div class="gl-term">Sovereign pillar <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def">The 7th pillar of WAF++, covering data sovereignty, regulatory compliance, and jurisdictional control. Added in the v1.0 beta phase with 10 initial controls (WAF-SOV-010 through WAF-SOV-100). Particularly relevant for regulated industries and EU-based workloads.</p>
+          <p class="gl-def">The 7th pillar of WAF++, covering data sovereignty, regulatory compliance, and jurisdictional control. Added with 10 initial controls (<code>WAF-SOV-010</code> through <code>WAF-SOV-100</code>). Particularly relevant for regulated industries and EU-based workloads.</p>
         </div>
 
       </div>
@@ -318,7 +333,7 @@ permalink: /glossary/
       <div class="gl-letter">V</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="Vendor-neutral">
           <div class="gl-term">Vendor-neutral <span class="gl-tag gl-tag--framework">framework</span></div>
           <p class="gl-def">A core design principle of WAF++: the framework's pillars, controls, and scoring model apply equally to workloads on any cloud provider (AWS, Azure, GCP, and others). No control is provider-specific unless explicitly labelled. This enables consistent cross-provider assessments and prevents lock-in to any single vendor's review methodology.</p>
         </div>
@@ -331,9 +346,14 @@ permalink: /glossary/
       <div class="gl-letter">W</div>
       <div class="gl-list">
 
-        <div class="gl-entry">
+        <div class="gl-entry" id="WAFpp">
           <div class="gl-term">WAF++ <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def"><strong>Well-Architected Framework Plus Plus.</strong> An open-source, vendor-neutral framework for assessing and improving the quality of cloud workloads. WAF++ extends conventional well-architected reviews with a transparent, community-driven scoring model (PASS) and a machine-readable controls library across 8 pillars.</p>
+          <p class="gl-def"><strong>Well-Architected Framework Plus Plus.</strong> An open-source, vendor-neutral framework for assessing and improving the quality of cloud workloads. WAF++ extends conventional well-architected reviews with a transparent, community-driven scoring model (PASS) and a machine-readable controls library across 8 pillars and 83+ controls.</p>
+        </div>
+
+        <div class="gl-entry" id="WAFPass">
+          <div class="gl-term">WAFPass <span class="gl-tag gl-tag--tooling">tooling</span></div>
+          <p class="gl-def">The official WAF++ assessment tooling suite: CLI, server, dashboard, and web scorecard. WAFPass consumes the controls library, evaluates a workload, and produces a PASS score report. Current release: v1.1.0.</p>
         </div>
 
         <div class="gl-entry" id="Working-Group">
@@ -356,17 +376,20 @@ permalink: /glossary/
 
 
 <!-- ===================== CTA ===================== -->
-<section class="section">
+<section class="cta-radical">
+  <div class="cta-radical__glow" aria-hidden="true"></div>
   <div class="container">
-    <div class="home-cta">
-      <div class="kicker" style="margin-bottom:14px">SOMETHING MISSING?</div>
-      <h2>Term missing or unclear?</h2>
-      <p class="lead muted">Open a content issue on GitHub or suggest a definition in Slack. The glossary grows with the community — every addition makes the framework easier to use.</p>
-      <div class="home-cta-actions">
-        <a class="btn btn-primary" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">Open issue &rarr;</a>
-        <a class="btn" href="{{ '/docs/' | relative_url }}">Full documentation</a>
-        <a class="btn" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+    <div class="cta-radical__inner">
+      <div class="kicker-radical" style="margin-bottom:14px;">Something missing?</div>
+      <h2 class="cta-radical__title">Term missing or unclear?</h2>
+      <p class="cta-radical__lead">Open a content issue on GitHub or suggest a definition in Slack. The glossary grows with the community — every addition makes the framework easier to use.</p>
+      <div class="cta-radical__actions">
+        <a class="btn-glow" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">Open issue &rarr;</a>
+        <a class="btn-glass" href="{{ '/docs/' | relative_url }}">Full documentation</a>
+        <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
       </div>
     </div>
   </div>
 </section>
+
+</div>

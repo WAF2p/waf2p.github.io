@@ -1,40 +1,347 @@
-// ── Impressum / Legal grid ────────────────────────────────────────────────
+/* Impressum / Imprint page — radical remake */
 
-.impressum-grid {
+.imprint-page {}
+
+/* ── Layout: project info left, contact card right ──────────────────────── */
+.imp-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  align-items: stretch;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: start;
+
+  .section-header-radical {
+    text-align: left;
+    margin: 0 0 26px;
+    max-width: none;
+  }
+}
+@media (max-width: 900px) {
+  .imp-layout { grid-template-columns: 1fr; }
 }
 
-.impressum-card { height: 100%; }
+/* ── Project feature rows ──────────────────────────────────────────────── */
+.imp-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
-.impressum-kv {
-  margin-top: 14px;
+.imp-feature {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 20px 22px;
+  border-radius: 20px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 
-  .row {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.40), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.22));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 148, 255, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 0 30px var(--radical-glow);
+  }
+
+  &__icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
     display: flex;
-    gap: 10px;
-    padding: 8px 0;
-    border-top: 1px solid var(--border);
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 26px; height: 26px; }
   }
 
-  dt {
-    min-width: 108px;
+  &__title {
+    position: relative;
+    font-size: 15px;
     font-weight: 800;
+    color: var(--radical-text);
+    margin: 0 0 4px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover { text-decoration: underline; }
+    }
   }
 
-  dd {
+  &__desc {
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--radical-muted);
     margin: 0;
+  }
+}
+
+/* ── Responsible party / contact card ──────────────────────────────────── */
+.imp-contact {
+  position: relative;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__kicker {
+    position: relative;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-400);
+    margin-bottom: 4px;
+  }
+
+  &__note {
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--radical-muted);
+    margin-bottom: 18px;
+  }
+
+  &__items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__action {
+    position: relative;
+    margin-top: 22px;
+  }
+}
+
+.imp-contact-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--radical-border);
+
+  &:last-child { border-bottom: none; }
+
+  &__icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 20px; height: 20px; }
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     min-width: 0;
-    word-break: break-word;
-    overflow-wrap: anywhere;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--radical-text);
+  }
+
+  &__desc {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--radical-muted);
   }
 
   a {
-    word-break: break-word;
-    overflow-wrap: anywhere;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
   }
 }
 
+/* ── Legal notes cards ────────────────────────────────────────────────── */
+.imp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 760px) {
+  .imp-grid { grid-template-columns: 1fr; }
+}
+
+.imp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px;
+  border-radius: 22px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px var(--radical-glow);
+    border-color: rgba(0, 148, 255, 0.35);
+  }
+
+  &__icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 22px; height: 22px; }
+  }
+
+  &__title {
+    position: relative;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--radical-text);
+    margin: 0;
+  }
+
+  &__desc {
+    position: relative;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--radical-muted);
+    margin: 0;
+  }
+
+  &__section {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--radical-border);
+
+    &-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--radical-text);
+      margin-bottom: 6px;
+    }
+  }
+
+  &__licenses {
+    position: relative;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__license {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-400);
+      background: rgba(0, 148, 255, 0.08);
+      border: 1px solid rgba(0, 148, 255, 0.18);
+
+      i { width: 15px; height: 15px; }
+    }
+
+    &-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--radical-text);
+    }
+
+    &-desc {
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--radical-muted);
+    }
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .imp-contact,
+  .imp-card,
+  .imp-feature { padding: 20px; }
+  .imp-feature { grid-template-columns: 48px 1fr; }
+  .imp-feature__icon { width: 48px; height: 48px; }
+}

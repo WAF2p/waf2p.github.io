@@ -1,0 +1,48 @@
+<div class="cl-pane" id="{{ include.pane_id }}">
+  {% if include.launch_title %}
+  <article class="cl-release-card cl-release-card--success">
+    <div class="cl-release-card__icon cl-release-card__icon--success"><i data-lucide="rocket" aria-hidden="true"></i></div>
+    <div class="cl-release-card__content">
+      <div class="cl-release-card__title">{{ include.launch_title }}</div>
+      <p class="cl-release-card__text">{{ include.launch_body }}</p>
+    </div>
+  </article>
+  {% endif %}
+
+  <div class="cl-timeline">
+    {% for group in site.data[include.data] %}
+    <article class="cl-timeline__item">
+      <div class="cl-timeline__dot"></div>
+      <div class="cl-release-card">
+        <div class="cl-release-card__header">
+          <h3 class="cl-release-card__title">{{ group[include.group_key] }}</h3>
+          <div class="cl-release-card__meta">
+            {% if group.date %}<span class="cl-release-card__date">{{ group.date }}</span>{% endif %}
+            {% if group.version %}<span class="cl-release-card__version">{{ group.version }}</span>{% endif %}
+            {% if group.beta %}<span class="cl-release-card__beta">beta</span>{% endif %}
+          </div>
+        </div>
+        <div class="cl-release-card__body">
+          {% for change in group.changes %}
+          <div class="cl-change">
+            <span class="cl-change__type cl-change__type--{{ change.type }}">{{ change.type }}</span>
+            <span class="cl-change__text">
+              {{ change[include.text_key] }}
+              {% if change.pr %}
+              <a class="cl-change__pr" href="{{ include.pr_base_url }}{{ change.pr }}" target="_blank" rel="noopener">#{{ change.pr }}</a>
+              {% endif %}
+            </span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <p class="cl-history-link">
+    <i data-lucide="github" aria-hidden="true"></i>
+    {{ include.history_label }}
+    <a href="{{ include.history_url }}" target="_blank" rel="noopener">{{ include.history_link_text }}</a>
+  </p>
+</div>
