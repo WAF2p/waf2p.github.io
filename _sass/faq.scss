@@ -1,53 +1,253 @@
-/* FAQ accordion (matches card-based theme) */
+/* FAQ page — radical remake */
 
+.faq-page {
+  counter-reset: faq;
+}
+
+/* ── Accordion ─────────────────────────────────────────────────────────── */
 .faq-accordion {
   display: grid;
   gap: 14px;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .faq-item {
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
   overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.40), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.22));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: rgba(0, 148, 255, 0.30);
+  }
+
+  &[open] {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.30), 0 0 30px var(--radical-glow);
+    border-color: rgba(0, 148, 255, 0.35);
+
+    &::before { opacity: 0.85; }
+  }
 
   summary {
+    position: relative;
     list-style: none;
     cursor: pointer;
-    padding: 18px 20px;
-    font-weight: 700;
-    color: var(--text);
+    padding: 20px 22px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--radical-text);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
   }
 
   summary::-webkit-details-marker { display: none; }
 
   summary::after {
     content: "▾";
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
     font-weight: 800;
-    opacity: .65;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.10);
+    border: 1px solid rgba(0, 148, 255, 0.20);
     transform: rotate(0deg);
-    transition: transform .18s ease, opacity .18s ease;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
   }
 
   &[open] summary::after {
     transform: rotate(180deg);
-    opacity: .9;
+    background: rgba(0, 148, 255, 0.18);
   }
 
   .faq-answer {
-    padding: 0 18px 18px 18px;
-    color: var(--muted);
-    line-height: 1.55;
+    position: relative;
+    padding: 0 22px 22px;
+    color: var(--radical-muted);
+    font-size: 15px;
+    line-height: 1.6;
     max-width: 95ch;
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: var(--brand-400); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  }
+
+  .faq-answer__action {
+    margin-top: 16px;
   }
 }
 
+.faq-item__index {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--brand-400);
+  background: rgba(0, 148, 255, 0.10);
+  border: 1px solid rgba(0, 148, 255, 0.20);
+}
+
+/* ── Contact / quick-access split ─────────────────────────────────────── */
+.faq-contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+
+  .section-header-radical {
+    text-align: left;
+    margin: 0 0 26px;
+    max-width: none;
+  }
+}
+@media (max-width: 860px) {
+  .faq-contact-layout { grid-template-columns: 1fr; }
+}
+
+.faq-contact-features {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-contact-feature {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--radical-surface);
+  border: 1px solid var(--radical-border);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 148, 255, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 0 30px var(--radical-glow);
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 22px; height: 22px; }
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--radical-text);
+    margin-bottom: 4px;
+  }
+
+  &__desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--radical-muted);
+    margin: 0;
+  }
+}
+
+.faq-quick-links {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-quick-link {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--radical-surface);
+  border: 1px solid var(--radical-border);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 148, 255, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 0 30px var(--radical-glow);
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 22px; height: 22px; }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--radical-text);
+  }
+
+  &__desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--radical-muted);
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .faq-item summary { padding: 16px; }
-  .faq-item .faq-answer { padding: 0 16px 16px 16px; }
+  .faq-item .faq-answer { padding: 0 16px 16px; }
+  .faq-contact-feature,
+  .faq-quick-link { padding: 14px; }
 }

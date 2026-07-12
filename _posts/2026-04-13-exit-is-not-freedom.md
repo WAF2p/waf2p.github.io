@@ -209,7 +209,7 @@ That's not an isolated case. It's the pattern. Without inventory, without contro
   <text x="550" y="368.5" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#86efac">Sovereign — regardless of provider</text>
 
   <!-- Bottom statement -->
-  <rect x="16" y="412" width="868" height="24" rx="0 0 10 10" fill="#0b1020"/>
+  <rect x="16" y="412" width="868" height="24" rx="10" fill="#0b1020"/>
   <text x="450" y="428" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#60a5fa">Sovereignty is not a question of the provider. It is a question of visibility.</text>
 </svg>
 <figcaption class="article-fig-cap">

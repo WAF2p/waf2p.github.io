@@ -1,5 +1,6 @@
 {%- assign rfc = include.rfc -%}
 {%- assign lang = include.lang | default: "en" -%}
+{%- assign repo = rfc.repo | default: "framework" -%}
 {%- if lang == "de" -%}
   {%- assign rfc_title   = rfc.title_de -%}
   {%- assign rfc_summary = rfc.summary_de -%}
@@ -35,6 +36,6 @@
     {%- if rfc.decided %}<span><strong>{{ label_decided }}:</strong> {{ rfc.decided }}</span>{% endif -%}
     {%- if rfc.implemented %}<span><strong>{{ label_implemented }}:</strong> {{ rfc.implemented }}</span>{% endif -%}
     {%- if rfc.discussion %}<span><strong>{{ label_discussion }}:</strong> <a href="{{ rfc.discussion }}" target="_blank" rel="noopener">GitHub →</a></span>{% endif -%}
-    {%- if rfc.pr %}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/waf2p/framework/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{% endif -%}
+    {%- if rfc.pr %}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/WAF2p/{{ repo }}/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{% endif -%}
   </div>
 </div>

@@ -1,43 +1,61 @@
-// ── Changelog page ────────────────────────────────────────────────────────
+.changelog-page {
+  --cl-new: #16a34a;
+  --cl-improvement: #2563eb;
+  --cl-fix: #dc2626;
+  --cl-docs: #7c3aed;
+  --cl-infra: #6b7280;
+  --cl-breaking: #ea580c;
+}
 
+/* ── Hidden radio inputs ───────────────────────────────────────────────── */
 .cl-radio { display: none; }
 
+/* ── Tab navigation ────────────────────────────────────────────────────── */
 .cl-tab-nav {
   display: flex;
-  gap: 4px;
-  border-bottom: 2px solid var(--border);
-  margin-bottom: 28px;
+  gap: 8px;
+  padding: 6px;
+  margin-bottom: 36px;
+  border: 1px solid var(--radical-border);
+  border-radius: 999px;
+  background: var(--radical-surface);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
-
-  label {
-    padding: 10px 14px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--muted);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: color 0.15s, border-color 0.15s;
-    white-space: nowrap;
-    flex-shrink: 0;
-
-    &:hover { color: var(--text); }
-  }
 }
 
-.cl-pane { display: none; }
+.cl-tab-nav__item {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--radical-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    color: var(--radical-text);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
 
 #cl-tab-fw:checked   ~ .cl-tab-nav label[for="cl-tab-fw"],
 #cl-tab-mkt:checked  ~ .cl-tab-nav label[for="cl-tab-mkt"],
 #cl-tab-pass:checked ~ .cl-tab-nav label[for="cl-tab-pass"],
 #cl-tab-dash:checked ~ .cl-tab-nav label[for="cl-tab-dash"],
 #cl-tab-srv:checked  ~ .cl-tab-nav label[for="cl-tab-srv"] {
-  color: var(--brand-500);
-  border-bottom-color: var(--brand-500);
+  color: var(--brand-400);
+  background: rgba(0, 148, 255, 0.12);
+  border-color: rgba(0, 148, 255, 0.35);
+  box-shadow: 0 0 20px var(--radical-glow);
 }
+
+/* ── Pane visibility ─────────────────────────────────────────────────────── */
+.cl-pane { display: none; }
 
 #cl-tab-fw:checked   ~ #cl-pane-fw   { display: block; }
 #cl-tab-mkt:checked  ~ #cl-pane-mkt  { display: block; }
@@ -45,86 +63,238 @@
 #cl-tab-dash:checked ~ #cl-pane-dash { display: block; }
 #cl-tab-srv:checked  ~ #cl-pane-srv  { display: block; }
 
-.cl-group { margin-bottom: 36px; }
+/* ── Launch notice card ────────────────────────────────────────────────── */
+.cl-release-card {
+  border: 1px solid var(--radical-border);
+  border-radius: 20px;
+  padding: 22px 24px;
+  background: var(--radical-surface);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
-.cl-group-header {
+  &--success {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: rgba(22, 163, 74, 0.10);
+    border-color: rgba(22, 163, 74, 0.30);
+    margin-bottom: 32px;
+
+    .cl-release-card__icon--success {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(22, 163, 74, 0.35);
+      background: rgba(22, 163, 74, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i { width: 22px; height: 22px; color: #22c55e; }
+    }
+
+    .cl-release-card__title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #4ade80;
+      margin: 0 0 6px;
+    }
+
+    .cl-release-card__text {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--radical-muted);
+      margin: 0;
+    }
+  }
+}
+
+/* ── Timeline ──────────────────────────────────────────────────────────── */
+.cl-timeline {
+  position: relative;
+  padding-left: 28px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 7px;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--brand-500) 0%, #22d3ee 100%);
+  }
+}
+
+.cl-timeline__item {
+  position: relative;
+  margin-bottom: 28px;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+.cl-timeline__dot {
+  position: absolute;
+  top: 18px;
+  left: -28px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--radical-bg);
+  border: 2px solid var(--brand-500);
+  box-shadow: 0 0 0 3px rgba(0, 148, 255, 0.18);
+}
+
+.cl-timeline__item:first-child .cl-timeline__dot {
+  background: var(--brand-500);
+  box-shadow: 0 0 0 4px rgba(0, 148, 255, 0.22);
+}
+
+/* ── Release card header ───────────────────────────────────────────────── */
+.cl-release-card__header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 10px 14px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--radical-border);
 }
 
-.cl-group-label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--muted);
+.cl-release-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--radical-text);
 }
 
-.cl-version-badge {
-  font-size: 0.75rem;
-  font-weight: 700;
+.cl-release-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.cl-release-card__date {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--radical-muted);
+}
+
+.cl-release-card__version {
+  font-size: 11px;
+  font-weight: 800;
   padding: 3px 9px;
-  border-radius: 5px;
+  border-radius: 6px;
   background: var(--brand-500);
   color: #fff;
 }
 
-.cl-beta-badge {
-  font-size: 0.75rem;
-  font-weight: 600;
+.cl-release-card__beta {
+  font-size: 11px;
+  font-weight: 800;
   padding: 3px 9px;
-  border-radius: 5px;
-  background: color-mix(in srgb, #d97706 18%, var(--surface));
-  color: color-mix(in srgb, #d97706 85%, var(--text));
+  border-radius: 6px;
+  background: rgba(217, 119, 6, 0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(217, 119, 6, 0.30);
 }
 
-.cl-entries { display: grid; gap: 8px; }
-
-.cl-entry {
+/* ── Change rows ───────────────────────────────────────────────────────── */
+.cl-change {
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: var(--surface);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--radical-border);
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 }
 
-.cl-type {
+.cl-change__type {
   flex-shrink: 0;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: .05em;
-  padding: 2px 7px;
-  border-radius: 4px;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 6px;
   margin-top: 2px;
 
-  &--new         { background: color-mix(in srgb, #16a34a 18%, var(--surface)); color: color-mix(in srgb, #16a34a 85%, var(--text)); }
-  &--fix         { background: color-mix(in srgb, #dc2626 18%, var(--surface)); color: color-mix(in srgb, #dc2626 85%, var(--text)); }
-  &--improvement { background: color-mix(in srgb, #2563eb 18%, var(--surface)); color: color-mix(in srgb, #2563eb 85%, var(--text)); }
-  &--docs        { background: color-mix(in srgb, #7c3aed 18%, var(--surface)); color: color-mix(in srgb, #7c3aed 85%, var(--text)); }
-  &--infra       { background: color-mix(in srgb, #6b7280 18%, var(--surface)); color: color-mix(in srgb, #6b7280 85%, var(--text)); }
-  &--breaking    { background: color-mix(in srgb, #ea580c 18%, var(--surface)); color: color-mix(in srgb, #ea580c 85%, var(--text)); }
+  &--new         { background: color-mix(in srgb, var(--cl-new) 14%, var(--radical-surface)); color: color-mix(in srgb, var(--cl-new) 90%, var(--radical-text)); }
+  &--fix         { background: color-mix(in srgb, var(--cl-fix) 14%, var(--radical-surface)); color: color-mix(in srgb, var(--cl-fix) 90%, var(--radical-text)); }
+  &--improvement { background: color-mix(in srgb, var(--cl-improvement) 14%, var(--radical-surface)); color: color-mix(in srgb, var(--cl-improvement) 90%, var(--radical-text)); }
+  &--docs        { background: color-mix(in srgb, var(--cl-docs) 14%, var(--radical-surface)); color: color-mix(in srgb, var(--cl-docs) 90%, var(--radical-text)); }
+  &--infra       { background: color-mix(in srgb, var(--cl-infra) 14%, var(--radical-surface)); color: color-mix(in srgb, var(--cl-infra) 90%, var(--radical-text)); }
+  &--breaking    { background: color-mix(in srgb, var(--cl-breaking) 14%, var(--radical-surface)); color: color-mix(in srgb, var(--cl-breaking) 90%, var(--radical-text)); }
 }
 
-.cl-text { font-size: 0.92rem; line-height: 1.5; }
+.cl-change__text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--radical-text);
+}
 
-.cl-pr {
-  font-size: 0.8rem;
-  color: var(--muted);
+.cl-change__pr {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 700;
   margin-left: 6px;
+  color: var(--radical-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &::before { content: '#'; }
+
+  &:hover { color: var(--brand-400); }
 }
 
-.cl-notice {
+/* ── GitHub history link ───────────────────────────────────────────────── */
+.cl-history-link {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background: color-mix(in srgb, #d97706 12%, var(--surface));
-  border: 1px solid color-mix(in srgb, #d97706 30%, var(--border));
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 28px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
   font-size: 0.9rem;
+  color: var(--radical-muted);
+
+  i { width: 16px; height: 16px; }
+
+  a {
+    color: var(--brand-400);
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cl-timeline {
+    padding-left: 22px;
+
+    &::before { left: 5px; }
+  }
+
+  .cl-timeline__dot {
+    left: -22px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .cl-release-card { padding: 18px; }
+
+  .cl-release-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cl-release-card__meta { margin-left: 0; }
 }

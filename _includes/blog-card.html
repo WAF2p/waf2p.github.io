@@ -52,7 +52,7 @@
         <span class="muted small">•</span>
         <span class="post-cats">
           {% for c in post.categories %}
-            <a class="cat-badge" href="/blog/category/{{ c | slugify }}/">{{ c }}</a>
+            <a class="cat-badge" href="{% if post.lang == 'de' %}/de{% endif %}/blog/category/{{ c | slugify }}/">{{ c | replace: '_', ' ' }}</a>
           {% endfor %}
         </span>
       {% endif %}
@@ -67,7 +67,7 @@
     </p>
 
     <div class="post-card__actions">
-      <a class="btn btn-small" href="{% include relative-src.html src=post.url %}">
+      <a class="btn-glass btn-glass--sm" href="{% include relative-src.html src=post.url %}">
         {% if post.lang == 'de' %}Weiterlesen{% else %}Read more{% endif %}
       </a>
     </div>

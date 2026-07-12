@@ -1,47 +1,345 @@
-/* Roadmap page styling (aligned with theme variables) */
+/* Roadmap page — radical remake */
 
-.roadmap-grid {
+.roadmap-page {}
+
+/* ── Current status layout (copy left, tracker right) ─────────────────── */
+.rm-layout {
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  margin-top: 24px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: start;
+
+  .section-header-radical {
+    text-align: left;
+    margin: 0 0 26px;
+    max-width: none;
+  }
+}
+@media (max-width: 900px) {
+  .rm-layout { grid-template-columns: 1fr; }
 }
 
-.roadmap-card {
-  background: var(--surface);
-  color: var(--text);
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
+/* ── Status feature rows ──────────────────────────────────────────────── */
+.rm-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.roadmap-quarter {
-  font-weight: 800;
-  color: var(--brand-500);
-  margin-bottom: 8px;
-}
-
-.roadmap-2030 {
-  text-align: center;
-}
-
-.roadmap-arc {
+.rm-feature {
+  position: relative;
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  margin-top: 20px;
-}
-
-.roadmap-pill {
-  background: var(--surface-2);
-  color: var(--text);
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 20px 22px;
   border-radius: 20px;
-  padding: 22px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.40), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.22));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 148, 255, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 0 30px var(--radical-glow);
+  }
+
+  &__icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #16a34a;
+    background: rgba(22, 163, 74, 0.10);
+    border: 1px solid rgba(22, 163, 74, 0.22);
+
+    i { width: 26px; height: 26px; }
+  }
+
+  &__title {
+    position: relative;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--radical-text);
+    margin: 0 0 4px;
+  }
+
+  &__desc {
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--radical-muted);
+    margin: 0;
+
+    code {
+      font-size: 12px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--radical-surface-2);
+      color: var(--radical-text);
+      border: 1px solid var(--radical-border);
+    }
+
+    strong { color: var(--radical-text); }
+  }
 }
 
-.roadmap-pill h4 {
-  margin-bottom: 10px;
+/* ── Release tracker card ────────────────────────────────────────────── */
+.rm-tracker {
+  position: relative;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__kicker {
+    position: relative;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-400);
+    margin-bottom: 18px;
+  }
+
+  &__items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.rm-tracker-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--radical-border);
+
+  &:last-child { border-bottom: none; }
+
+  &__icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #16a34a;
+    background: rgba(22, 163, 74, 0.10);
+    border: 1px solid rgba(22, 163, 74, 0.22);
+
+    i { width: 20px; height: 20px; }
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--radical-text);
+  }
+
+  &__status {
+    font-size: 12px;
+    font-weight: 600;
+    color: #16a34a;
+  }
+
+  &__desc {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--radical-muted);
+  }
+
+  &__note {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--radical-muted);
+    margin-top: 4px;
+
+    i {
+      width: 14px;
+      height: 14px;
+      color: var(--brand-400);
+      display: inline-block;
+      vertical-align: text-bottom;
+      margin-right: 4px;
+    }
+
+    strong { color: var(--radical-text); }
+  }
+}
+
+/* ── Quarter + vision cards (shared) ──────────────────────────────────── */
+.rm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 760px) {
+  .rm-grid { grid-template-columns: 1fr; }
+}
+
+.rm-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 980px) {
+  .rm-grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .rm-grid--3 { grid-template-columns: 1fr; }
+}
+
+.rm-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px;
+  border-radius: 22px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(255, 207, 99, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px var(--radical-glow);
+    border-color: rgba(0, 148, 255, 0.35);
+  }
+
+  &__icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-400);
+    background: rgba(0, 148, 255, 0.08);
+    border: 1px solid rgba(0, 148, 255, 0.18);
+
+    i { width: 22px; height: 22px; }
+  }
+
+  &__kicker {
+    position: relative;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brand-400);
+  }
+
+  &__title {
+    position: relative;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--radical-text);
+    margin: 0;
+  }
+
+  &__desc {
+    position: relative;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--radical-muted);
+    margin: 0;
+  }
+
+  &__list {
+    position: relative;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--radical-muted);
+
+      i {
+        width: 12px;
+        height: 12px;
+        color: var(--brand-400);
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .rm-tracker,
+  .rm-card { padding: 20px; }
+  .rm-feature { grid-template-columns: 48px 1fr; }
+  .rm-feature__icon { width: 48px; height: 48px; }
 }

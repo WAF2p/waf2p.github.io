@@ -28,14 +28,15 @@
 #   implemented    — YYYY-MM-DD when merged/shipped (omit if not yet)
 #   discussion     — URL to GitHub Discussion (omit if none)
 #   pr             — PR number (omit if none)
+#   repo           — GitHub repo slug under WAF2p (default: framework)
 
 # ─── IMPLEMENTED ────────────────────────────────────────────────────────────
 
 - id: "RFC-0001"
   title_en: "Initial 7-pillar framework structure"
   title_de: "Initiale 7-Säulen-Framework-Struktur"
-  summary_en: "Establishes the core seven-pillar model as the foundational structure of WAF++, covering Security, Reliability, Performance Efficiency, Cost Optimisation, Operational Excellence, Sustainability, and Developer Experience."
-  summary_de: "Legt das grundlegende Sieben-Säulen-Modell als Basis von WAF++ fest: Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, Operationelle Exzellenz, Nachhaltigkeit und Developer Experience."
+  summary_en: "Establishes the core seven-pillar model as the foundational structure of WAF++, covering Security, Reliability, Performance Efficiency, Cost Optimisation, Operational Excellence, Sustainability, and Developer Experience. Extended to eight pillars by RFC-0012."
+  summary_de: "Legt das grundlegende Sieben-Säulen-Modell als Basis von WAF++ fest: Sicherheit, Zuverlässigkeit, Performance-Effizienz, Kostenoptimierung, Operationelle Exzellenz, Nachhaltigkeit und Developer Experience. Durch RFC-0012 auf acht Säulen erweitert."
   category: framework
   status: implemented
   author: "sascha-lewandowski"
@@ -58,10 +59,10 @@
   pr: 2
 
 - id: "RFC-0003"
-  title_en: "Pillar descriptions and key questions — all 7 pillars"
-  title_de: "Pillar-Beschreibungen und Kernfragen — alle 7 Säulen"
-  summary_en: "Adds the initial content definition for each of the 7 pillars: scope, rationale, and key assessment questions. Serves as the baseline for the controls library."
-  summary_de: "Fügt die initiale Inhaltsdefinition für jede der 7 Säulen hinzu: Scope, Begründung und Kernbewertungsfragen. Bildet die Basis für die Controls Library."
+  title_en: "Pillar descriptions and key questions — 7 pillars"
+  title_de: "Pillar-Beschreibungen und Kernfragen — 7 Säulen"
+  summary_en: "Adds the initial content definition for each of the 7 pillars: scope, rationale, and key assessment questions. Serves as the baseline for the controls library and was later extended to cover the 8th Agentic pillar (RFC-0012)."
+  summary_de: "Fügt die initiale Inhaltsdefinition für jede der 7 Säulen hinzu: Scope, Begründung und Kernbewertungsfragen. Bildet die Basis für die Controls Library und wurde später um die 8. Säule Agentic erweitert (RFC-0012)."
   category: framework
   status: implemented
   author: "sascha-lewandowski"
@@ -108,48 +109,139 @@
   decided: "2026-03-04"
   implemented: "2026-03-04"
 
-# ─── OPEN FOR REVIEW ────────────────────────────────────────────────────────
+- id: "RFC-0007"
+  title_en: "Governance refactor: modular best practices, case studies and navigation"
+  title_de: "Governance-Refactor: modulare Best Practices, Fallstudien und Navigation"
+  summary_en: "Restructures the Governance pillar (Pillar 7) into modular best-practice pages, adds case-study content, and updates the Antora navigation to improve discoverability and readability."
+  summary_de: "Strukturiert den Governance-Pillar (Säule 7) in modulare Best-Practice-Seiten um, ergänzt Fallstudien-Inhalte und aktualisiert die Antora-Navigation für bessere Auffindbarkeit und Lesbarkeit."
+  category: framework
+  status: implemented
+  author: "sascha-lewandowski"
+  opened: "2026-02-24"
+  decided: "2026-03-04"
+  implemented: "2026-03-04"
+  pr: 10
 
 - id: "RFC-0008"
   title_en: "Controls schema v1 — machine-readable YAML specification"
   title_de: "Controls-Schema v1 — maschinenlesbare YAML-Spezifikation"
-  summary_en: "Defines a formal JSON Schema for WAF++ controls YAML files, enabling consistent validation, tooling integration, and third-party consumption of the controls library."
-  summary_de: "Definiert ein formales JSON-Schema für WAF++-Controls-YAML-Dateien, das konsistente Validierung, Tool-Integration und die Nutzung der Controls Library durch Dritte ermöglicht."
+  summary_en: "Defines a formal schema for WAF++ controls YAML files, enabling consistent validation, tooling integration, and third-party consumption of the 83+ controls library. Shipped as part of the v1.0 release."
+  summary_de: "Definiert ein formales Schema für WAF++-Controls-YAML-Dateien, das konsistente Validierung, Tool-Integration und die Nutzung der 83+ Controls Library durch Dritte ermöglicht. Mit der v1.0-Release ausgeliefert."
   category: tooling
-  status: open
+  status: implemented
   author: "sascha-lewandowski"
   opened: "2026-03-10"
-  discussion: "https://github.com/orgs/WAF2p/discussions"
+  decided: "2026-05-12"
+  implemented: "2026-05-12"
 
 - id: "RFC-0009"
   title_en: "PASS scoring model — formal specification for v1.0"
   title_de: "PASS-Scoring-Modell — formale Spezifikation für v1.0"
-  summary_en: "Formalises the PASS scoring model as a normative specification: tier definitions, calculation rules, aggregation logic, and versioning contract. Required for v1.0 stability guarantee."
-  summary_de: "Formalisiert das PASS-Scoring-Modell als normative Spezifikation: Tier-Definitionen, Berechnungsregeln, Aggregationslogik und Versionierungsvertrag. Voraussetzung für die v1.0-Stabilitätsgarantie."
+  summary_en: "Formalises the PASS scoring model as a normative specification: tier definitions, calculation rules, aggregation logic, and versioning contract. Required for and shipped with the WAFPass CLI / Server v1.0.0 release."
+  summary_de: "Formalisiert das PASS-Scoring-Modell als normative Spezifikation: Tier-Definitionen, Berechnungsregeln, Aggregationslogik und Versionierungsvertrag. Voraussetzung für und ausgeliefert mit WAFPass CLI / Server v1.0.0."
   category: framework
-  status: open
+  status: implemented
   author: "t1murl"
   opened: "2026-03-08"
-  discussion: "https://github.com/orgs/WAF2p/discussions"
-
-# ─── DRAFT ──────────────────────────────────────────────────────────────────
+  decided: "2026-05-12"
+  implemented: "2026-05-12"
 
 - id: "RFC-0010"
   title_en: "Assessment tooling — CLI and scorecard approach"
   title_de: "Assessment-Tooling — CLI und Scorecard-Ansatz"
-  summary_en: "Defines the approach for official WAF++ assessment tooling: a CLI tool and/or web scorecard that consumes the controls library and produces a PASS score report."
-  summary_de: "Definiert den Ansatz für das offizielle WAF++-Assessment-Tooling: ein CLI-Tool und/oder Web-Scorecard, das die Controls Library nutzt und einen PASS-Score-Bericht erzeugt."
+  summary_en: "Defines the approach for official WAF++ assessment tooling: the WAFPass CLI, server, dashboard, and web scorecard that consume the controls library and produce a PASS score report. Shipped with WAFPass v1.0.0 and extended in v1.1.0."
+  summary_de: "Definiert den Ansatz für das offizielle WAF++-Assessment-Tooling: WAFPass CLI, Server, Dashboard und Web-Scorecard, die die Controls Library nutzen und einen PASS-Score-Bericht erzeugen. Mit WAFPass v1.0.0 ausgeliefert und in v1.1.0 erweitert."
+  category: tooling
+  status: implemented
+  author: "sascha-lewandowski"
+  opened: "2026-03-11"
+  decided: "2026-05-12"
+  implemented: "2026-05-12"
+
+- id: "RFC-0011"
+  title_en: "CI/CD pipeline for framework and tooling repositories"
+  title_de: "CI/CD-Pipeline für Framework- und Tooling-Repositories"
+  summary_en: "Introduces automated checks and release workflows for the framework, pass, wafpass-server, and wafpass-dashboard repositories: Antora build validation, controls YAML linting, release automation, and link checking on every pull request."
+  summary_de: "Führt automatisierte Checks und Release-Workflows für die Repositories framework, pass, wafpass-server und wafpass-dashboard ein: Antora-Build-Validierung, Controls-YAML-Linting, Release-Automatisierung und Link-Prüfung bei jedem Pull Request."
+  category: tooling
+  status: implemented
+  author: "t1murl"
+  opened: "2026-03-11"
+  decided: "2026-03-22"
+  implemented: "2026-03-22"
+
+- id: "RFC-0012"
+  title_en: "Agentic pillar as the 8th pillar"
+  title_de: "Agentic-Pillar als 8. Säule"
+  summary_en: "Adds the Agentic pillar (WAF-AGN) as the 8th pillar of WAF++, covering autonomous AI agent governance. Ships with 10 initial controls (WAF-AGN-010 through WAF-AGN-100), regulatory mappings, and English and German documentation. Brings the framework to 8 pillars and 83+ controls."
+  summary_de: "Fügt den Agentic-Pillar (WAF-AGN) als 8. Säule von WAF++ hinzu — Governance autonomer KI-Agenten. Liefert 10 initiale Controls (WAF-AGN-010 bis WAF-AGN-100), regulatorische Mappings sowie englische und deutsche Dokumentation. Erweitert das Framework auf 8 Säulen und 83+ Controls."
+  category: framework
+  status: implemented
+  author: "sascha-lewandowski"
+  opened: "2026-07-01"
+  decided: "2026-07-05"
+  implemented: "2026-07-05"
+  pr: 19
+
+- id: "RFC-0013"
+  title_en: "WAFPass support for Pillar-8 Agentic"
+  title_de: "WAFPass-Unterstützung für Säule-8 Agentic"
+  summary_en: "Extends WAFPass CLI, server, and dashboard to evaluate the Agentic pillar controls (WAF-AGN-*) as part of a full PASS assessment. Merged ahead of the WAFPass v1.1.0 release."
+  summary_de: "Erweitert WAFPass CLI, Server und Dashboard, um die Agentic-Pillar-Controls (WAF-AGN-*) im Rahmen einer vollständigen PASS-Bewertung auszuwerten. Vor der WAFPass-v1.1.0-Release gemergt."
+  category: tooling
+  status: implemented
+  author: "sascha-lewandowski"
+  opened: "2026-05-20"
+  decided: "2026-05-27"
+  implemented: "2026-05-27"
+  pr: 28
+  repo: pass
+
+- id: "RFC-0014"
+  title_en: "WAFPass CLI / Server / Dashboard v1.1.0 release"
+  title_de: "WAFPass CLI / Server / Dashboard v1.1.0-Release"
+  summary_en: "Releases WAFPass CLI v1.1.0, WAFPass Server v1.1.0, and WAFPass Dashboard v1.1.0 with Pillar-8 Agentic support, detection fixes, and SINA Cloud region detection. Aligned with framework v1.1 and the 83+ controls library."
+  summary_de: "Veröffentlicht WAFPass CLI v1.1.0, WAFPass Server v1.1.0 und WAFPass Dashboard v1.1.0 mit Unterstützung für Säule-8 Agentic, Korrekturen bei der Erkennung und SINA-Cloud-Region-Erkennung. Abgestimmt auf Framework v1.1 und die 83+ Controls Library."
+  category: tooling
+  status: implemented
+  author: "sascha-lewandowski"
+  opened: "2026-06-28"
+  decided: "2026-07-05"
+  implemented: "2026-07-05"
+  pr: 31
+  repo: pass
+
+# ─── OPEN FOR REVIEW ────────────────────────────────────────────────────────
+
+- id: "RFC-0015"
+  title_en: "Website radical redesign — apply dark-first theme to all public pages"
+  title_de: "Website-Radical-Redesign — dunkles Theme auf alle öffentlichen Seiten ausrollen"
+  summary_en: "Applies the radical dark-first design system to the remaining public pages (RFC tracker, team, roles, about, press, install) so the whole site uses one consistent visual language and accessibility patterns."
+  summary_de: "Rollt das radical dunkle Design-System auf die verbleibenden öffentlichen Seiten (RFC-Tracker, Team, Rollen, About, Press, Install) aus, sodass die gesamte Website eine konsistente visuelle Sprache und Barrierefreiheitsmuster verwendet."
+  category: docs
+  status: open
+  author: "sascha-lewandowski"
+  opened: "2026-07-06"
+  discussion: "https://github.com/orgs/WAF2p/discussions"
+
+# ─── DRAFT ──────────────────────────────────────────────────────────────────
+
+- id: "RFC-0016"
+  title_en: "Control-level remediation playbooks"
+  title_de: "Remediation-Playbooks auf Control-Ebene"
+  summary_en: "Standardises machine- and human-readable remediation guidance for every WAF++ control so operators can act on findings directly from a PASS report or dashboard."
+  summary_de: "Standardisiert maschinen- und menschenlesbare Remediation-Anleitungen für jeden WAF++-Control, damit Betriebsteams direkt aus einem PASS-Bericht oder Dashboard handeln können."
+  category: framework
+  status: draft
+  author: "sascha-lewandowski"
+  opened: "2026-07-08"
+
+- id: "RFC-0017"
+  title_en: "Multi-cloud provider expansion beyond AWS and SINA Cloud"
+  title_de: "Multi-Cloud-Provider-Erweiterung über AWS und SINA Cloud hinaus"
+  summary_en: "Defines how WAFPass detection and controls will be extended to cover Azure, GCP, and other cloud providers while keeping the framework cloud-agnostic."
+  summary_de: "Definiert, wie WAFPass-Erkennung und Controls um Azure, GCP und weitere Cloud-Provider erweitert werden, während das Framework cloud-agnostic bleibt."
   category: tooling
   status: draft
   author: "sascha-lewandowski"
-  opened: "2026-03-11"
-
-- id: "RFC-0011"
-  title_en: "CI/CD pipeline for framework repository"
-  title_de: "CI/CD-Pipeline für das Framework-Repository"
-  summary_en: "Introduces automated checks for the framework repository: Antora build validation, controls YAML linting, and link checking on every pull request."
-  summary_de: "Führt automatisierte Checks für das Framework-Repository ein: Antora-Build-Validierung, Controls-YAML-Linting und Link-Prüfung bei jedem Pull Request."
-  category: tooling
-  status: draft
-  author: "t1murl"
-  opened: "2026-03-11"
+  opened: "2026-07-08"

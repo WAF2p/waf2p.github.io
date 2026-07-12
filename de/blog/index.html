@@ -15,54 +15,48 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
 {% endfor %}
 {% assign unique_cats = all_cats | uniq %}
 
-<!-- ===================== HERO ===================== -->
-<section class="hero hero--page hero--centered">
-  <div class="container" style="max-width:800px;">
-    {% include breadcrumb-inline.html %}
-    {% include breadcrumb.html %}
+<div class="page-radical blog-page">
 
-    <div class="home-badge" style="display:inline-flex;">
-      <span class="home-badge__dot"></span>
-      Community · Einblicke
-    </div>
-    <h1 class="home-h1" style="font-size:clamp(2rem,5vw,3rem);margin-top:20px;">
-      <span class="text-gradient">Blog</span>
-    </h1>
-    <p class="lead" style="max-width:66ch;margin:0 auto 28px;">
-      {{ page.description }}
-    </p>
+<!-- ===================== COMPACT HEADER ===================== -->
+<section class="blog-header">
+  <div class="container">
+    <div class="blog-header__inner">
+      <div class="hero-radical-badge" style="margin-bottom: 16px;">
+        <span class="hero-radical-badge__dot"></span>
+        Community · Einblicke
+      </div>
 
-    <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="pen-line" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        Offen für Beiträge
-      </span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="globe" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        DE &amp; EN
-      </span>
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid rgba(128,128,128,.2);border-radius:999px;font-size:13px;">
-        <i data-lucide="layers" style="width:14px;height:14px;color:var(--brand-500);" aria-hidden="true"></i>
-        Cloud · Architektur · Governance
-      </span>
-    </div>
+      <h1 class="blog-header__title"><span class="text-gradient-radical">Blog</span></h1>
+      <p class="blog-header__lead">{{ page.description }}</p>
 
-    <div class="hero-actions" style="justify-content:center;margin-top:20px;">
-      <a class="btn btn-primary" href="#posts">Neueste Artikel &rarr;</a>
-      <a class="btn" href="#write-for-us">Beitrag einreichen</a>
+      <div class="blog-header__pills">
+        <span class="blog-header__pill">
+          <i data-lucide="pen-line" aria-hidden="true"></i>
+          Offen für Beiträge
+        </span>
+        <span class="blog-header__pill">
+          <i data-lucide="globe" aria-hidden="true"></i>
+          DE &amp; EN
+        </span>
+        <span class="blog-header__pill">
+          <i data-lucide="layers" aria-hidden="true"></i>
+          Cloud · Architektur · Governance
+        </span>
+      </div>
     </div>
   </div>
 </section>
 
 
-<!-- ===================== CATEGORY CHIPS ===================== -->
+<!-- ===================== KATEGORIEN ===================== -->
 {% if unique_cats.size > 0 %}
-<section class="section" style="padding-top:32px;padding-bottom:0;">
+<section class="bento-section" style="padding-top: 28px; padding-bottom: 0;">
   <div class="container">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <span class="muted" style="font-size:13px;margin-right:4px;">Nach Thema filtern:</span>
+    <div class="blog-cats">
+      <span class="blog-cats__label">Nach Thema filtern:</span>
       {% for c in unique_cats %}
-      <a class="cat-badge" href="{{ '/de/blog/category/' | append: c | slugify | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
+      {% assign c_slug = c | slugify %}
+      <a class="blog-cats__chip" href="{{ '/de/blog/category/' | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
       {% endfor %}
     </div>
   </div>
@@ -70,8 +64,8 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
 {% endif %}
 
 
-<!-- ===================== POSTS ===================== -->
-<section class="section" id="posts">
+<!-- ===================== ARTIKEL ===================== -->
+<section class="bento-section" id="posts">
   <div class="container">
     {% assign all_posts = paginator.posts | default: de_posts %}
     {% assign posts_list = all_posts | where: "lang", page.lang %}
@@ -84,7 +78,7 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
     {% if paginator and paginator.total_pages > 1 %}
     <div class="pagination modern">
       {% if paginator.previous_page %}
-      <a class="btn" href="{% include relative-src.html src=paginator.previous_page_path %}">
+      <a class="btn-glass" href="{% include relative-src.html src=paginator.previous_page_path %}">
         <span aria-hidden="true">&larr;</span> Neuere
       </a>
       {% else %}
@@ -94,7 +88,7 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
       <div class="muted small">Seite {{ paginator.page }} von {{ paginator.total_pages }}</div>
 
       {% if paginator.next_page %}
-      <a class="btn" href="{% include relative-src.html src=paginator.next_page_path %}">
+      <a class="btn-glass" href="{% include relative-src.html src=paginator.next_page_path %}">
         Ältere <span aria-hidden="true">&rarr;</span>
       </a>
       {% else %}
@@ -107,89 +101,75 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
 
 
 <!-- ===================== BEITRAG EINREICHEN ===================== -->
-<section class="section wafpass-section" id="write-for-us">
+<section class="bento-section" id="write-for-us" style="padding-top:0;">
   <div class="container">
-    <div class="wafpass-grid">
 
-      <div>
-        <div class="kicker">BEITRAG EINREICHEN</div>
-        <h2>Teile deine Perspektive</h2>
-        <p class="lead">Der WAF++-Blog ist community-geschrieben und open source. Wer in Cloud-Architektur, Platform Engineering oder Governance arbeitet — deine Erfahrung gehört hierher.</p>
-
-        <div class="wafpass-features" style="margin-top:28px;">
-
-          <div class="wafpass-feat">
-            <div class="wafpass-feat__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
-            <div>
-              <div class="wafpass-feat__title">Technische Artikel</div>
-              <p class="wafpass-feat__desc">Tiefe Einblicke in WAF++-Säulen, Cloud-Souveränität, Multi-Cloud-Muster oder Framework-Vergleiche — basierend auf echten Architekturentscheidungen.</p>
-            </div>
-          </div>
-
-          <div class="wafpass-feat">
-            <div class="wafpass-feat__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
-            <div>
-              <div class="wafpass-feat__title">Fallstudien &amp; Erfahrungsberichte</div>
-              <p class="wafpass-feat__desc">WAF++ in einem echten Projekt eingesetzt? Eine Bewertung durchgeführt? Eine Lücke in bestehenden Frameworks entdeckt? Schreib es auf — die Community lernt aus konkreten Beispielen.</p>
-            </div>
-          </div>
-
-          <div class="wafpass-feat">
-            <div class="wafpass-feat__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
-            <div>
-              <div class="wafpass-feat__title">Pull Request öffnen</div>
-              <p class="wafpass-feat__desc">Artikel liegen als Markdown im GitHub-Repository. Entwurf in einem Branch, PR öffnen — der redaktionelle Prozess ist vollständig transparent und community-reviewt.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="hero-actions" style="margin-top:26px;">
-          <a class="btn btn-primary" href="https://github.com/waf2p/" target="_blank" rel="noopener">Auf GitHub starten &rarr;</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="card card-pad">
-          <div class="card-kicker" style="margin-bottom:16px;">Wonach wir suchen</div>
-
-          <div style="display:flex;flex-direction:column;gap:0;">
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
-              <i data-lucide="shield" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
-              <div>
-                <div style="font-weight:600;font-size:14px;">Cloud-Souveränität &amp; Compliance</div>
-                <div class="muted" style="font-size:12px;">Regulatorische Anforderungen · Datensouveränität · Exit-Fähigkeit</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
-              <i data-lucide="layers" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
-              <div>
-                <div style="font-weight:600;font-size:14px;">Multi-Cloud &amp; Platform Engineering</div>
-                <div class="muted" style="font-size:12px;">IDP-Design · Golden Paths · Workload-Portabilität</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(128,128,128,.15);">
-              <i data-lucide="scale" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
-              <div>
-                <div style="font-weight:600;font-size:14px;">Governance &amp; offene Standards</div>
-                <div class="muted" style="font-size:12px;">Framework-Vergleiche · RFC-Prozess · Herstellerneutrale Kriterien</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;">
-              <i data-lucide="bar-chart-2" style="width:18px;height:18px;color:var(--brand-500);flex-shrink:0;" aria-hidden="true"></i>
-              <div>
-                <div style="font-weight:600;font-size:14px;">Architekturbewertungen</div>
-                <div class="muted" style="font-size:12px;">WAF++ in der Praxis · Scoring-Erfahrungen · Säulen im Detail</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="muted" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(128,128,128,.15);font-size:12px;">
-            Keine Mindestlänge oder Formatvorgaben. Ein kurzer Beitrag mit einer konkreten Erkenntnis ist wertvoller als ein langer ohne.
-          </div>
-        </div>
-      </div>
-
+    <div class="section-header-radical">
+      <div class="kicker-radical">Beitrag einreichen</div>
+      <h2 class="section-title-radical">Teile deine Perspektive</h2>
+      <p class="section-lead-radical">Der WAF++-Blog ist community-geschrieben und open source. Wer in Cloud-Architektur, Platform Engineering oder Governance arbeitet — deine Erfahrung gehört hierher.</p>
     </div>
+
+    <div class="conf-involve-grid">
+      <article class="conf-involve-card">
+        <div class="conf-involve-card__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <h3 class="conf-involve-card__title">Technische Artikel</h3>
+        <p class="conf-involve-card__desc">Tiefe Einblicke in WAF++-Säulen, Cloud-Souveränität, Multi-Cloud-Muster oder Framework-Vergleiche — basierend auf echten Architekturentscheidungen.</p>
+      </article>
+
+      <article class="conf-involve-card">
+        <div class="conf-involve-card__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
+        <h3 class="conf-involve-card__title">Fallstudien &amp; Erfahrungsberichte</h3>
+        <p class="conf-involve-card__desc">WAF++ in einem echten Projekt eingesetzt? Eine Bewertung durchgeführt? Eine Lücke in bestehenden Frameworks entdeckt? Schreib es auf — die Community lernt aus konkreten Beispielen.</p>
+      </article>
+
+      <article class="conf-involve-card">
+        <div class="conf-involve-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+        <h3 class="conf-involve-card__title">Pull Request öffnen</h3>
+        <p class="conf-involve-card__desc">Artikel liegen als Markdown im GitHub-Repository. Entwurf in einem Branch, PR öffnen — der redaktionelle Prozess ist vollständig transparent und community-reviewt.</p>
+      </article>
+    </div>
+
+    <div class="conf-formats-row" style="margin-top: 20px;">
+      <div class="conf-formats-row__title">Wonach wir suchen</div>
+      <div class="conf-formats-row__grid">
+        <div class="conf-format-mini">
+          <i data-lucide="shield" aria-hidden="true"></i>
+          <div>
+            <div class="conf-format-mini__title">Cloud-Souveränität &amp; Compliance</div>
+            <div class="conf-format-mini__desc">Regulatorische Anforderungen · Datensouveränität · Exit-Fähigkeit</div>
+          </div>
+        </div>
+        <div class="conf-format-mini">
+          <i data-lucide="layers" aria-hidden="true"></i>
+          <div>
+            <div class="conf-format-mini__title">Multi-Cloud &amp; Platform Engineering</div>
+            <div class="conf-format-mini__desc">IDP-Design · Golden Paths · Workload-Portabilität</div>
+          </div>
+        </div>
+        <div class="conf-format-mini">
+          <i data-lucide="scale" aria-hidden="true"></i>
+          <div>
+            <div class="conf-format-mini__title">Governance &amp; offene Standards</div>
+            <div class="conf-format-mini__desc">Framework-Vergleiche · RFC-Prozess · Herstellerneutrale Kriterien</div>
+          </div>
+        </div>
+        <div class="conf-format-mini">
+          <i data-lucide="bar-chart-2" aria-hidden="true"></i>
+          <div>
+            <div class="conf-format-mini__title">Architekturbewertungen</div>
+            <div class="conf-format-mini__desc">WAF++ in der Praxis · Scoring-Erfahrungen · Säulen im Detail</div>
+          </div>
+        </div>
+      </div>
+      <div class="conf-formats-row__note">Keine Mindestlänge oder Formatvorgaben. Ein kurzer Beitrag mit einer konkreten Erkenntnis ist wertvoller als ein langer ohne.</div>
+    </div>
+
+    <div style="text-align:center; margin-top: 32px;">
+      <a class="btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">Auf GitHub starten &rarr;</a>
+    </div>
+
   </div>
 </section>
+
+</div>

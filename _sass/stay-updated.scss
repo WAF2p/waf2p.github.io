@@ -1,38 +1,20 @@
-/* Legal page — radical remake */
+/* Stay Updated page — radical remake */
 
-.legal-page {}
+.stay-updated-page {}
 
-/* ── Layout: copy left, summary card right ────────────────────────────── */
-.legal-layout {
+/* ── Channel cards (subscription options) ───────────────────────────── */
+.su-channels {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 32px;
-  align-items: start;
-
-  .section-header-radical {
-    text-align: left;
-    margin: 0 0 26px;
-    max-width: none;
-  }
-}
-@media (max-width: 900px) {
-  .legal-layout { grid-template-columns: 1fr; }
-}
-
-/* ── License feature rows ─────────────────────────────────────────────── */
-.legal-features {
-  display: flex;
-  flex-direction: column;
   gap: 14px;
 }
 
-.legal-feature {
+.su-channel {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 16px;
-  align-items: start;
-  padding: 20px 22px;
+  grid-template-columns: 56px 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 22px 24px;
   border-radius: 20px;
   border: 1px solid var(--radical-border);
   background: var(--radical-surface);
@@ -74,25 +56,71 @@
     i { width: 26px; height: 26px; }
   }
 
-  &__title {
+  &__body {
     position: relative;
-    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 16px;
     font-weight: 800;
     color: var(--radical-text);
-    margin: 0 0 4px;
+    margin: 0;
   }
 
   &__desc {
-    position: relative;
     font-size: 13px;
     line-height: 1.5;
     color: var(--radical-muted);
     margin: 0;
+
+    code {
+      font-size: 12px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--radical-surface-2);
+      color: var(--radical-text);
+      border: 1px solid var(--radical-border);
+    }
+  }
+
+  &__action {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 56px 1fr;
+
+    &__action {
+      grid-column: 2;
+      justify-self: start;
+    }
   }
 }
 
-/* ── Summary card ─────────────────────────────────────────────────────── */
-.legal-summary {
+/* ── Layout: channels left, content preview right ───────────────────── */
+.su-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: start;
+
+  .section-header-radical {
+    text-align: left;
+    margin: 0 0 26px;
+    max-width: none;
+  }
+}
+@media (max-width: 900px) {
+  .su-layout { grid-template-columns: 1fr; }
+}
+
+/* ── What you'll hear about card ───────────────────────────────────── */
+.su-preview-card {
   position: relative;
   padding: 28px;
   border-radius: 24px;
@@ -130,78 +158,61 @@
     flex-direction: column;
     gap: 0;
   }
-}
 
-.legal-summary-item {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--radical-border);
-
-  &:last-child { border-bottom: none; }
-
-  &__icon {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 12px;
+  &__item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: var(--brand-400);
-    background: rgba(0, 148, 255, 0.08);
-    border: 1px solid rgba(0, 148, 255, 0.18);
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--radical-border);
 
-    i { width: 20px; height: 20px; }
+    &:last-child { border-bottom: none; }
+
+    i {
+      width: 20px;
+      height: 20px;
+      color: var(--brand-400);
+      flex-shrink: 0;
+    }
   }
 
-  &__body {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-
-  &__title {
+  &__item-title {
     font-size: 14px;
     font-weight: 800;
     color: var(--radical-text);
   }
 
-  &__desc {
+  &__item-desc {
     font-size: 12px;
     line-height: 1.45;
     color: var(--radical-muted);
   }
+
+  &__footer {
+    position: relative;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--radical-border);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--radical-muted);
+  }
 }
 
-/* ── License detail cards (Apache / CC BY) ─────────────────────────────── */
-.legal-grid {
+/* ── Recent updates cards (3 columns) ────────────────────────────────── */
+.su-updates-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-@media (max-width: 760px) {
-  .legal-grid { grid-template-columns: 1fr; }
-}
-
-.legal-grid--4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 @media (max-width: 980px) {
-  .legal-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .su-updates-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .legal-grid--4 { grid-template-columns: 1fr; }
+  .su-updates-grid { grid-template-columns: 1fr; }
 }
 
-.legal-card {
+.su-update-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -246,29 +257,12 @@
     border: 1px solid rgba(0, 148, 255, 0.18);
 
     i { width: 22px; height: 22px; }
-
-    &--green {
-      color: #16a34a;
-      background: rgba(22, 163, 74, 0.10);
-      border: 1px solid rgba(22, 163, 74, 0.22);
-    }
-  }
-
-  &__kicker {
-    position: relative;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--brand-400);
   }
 
   &__title {
     position: relative;
     font-size: 17px;
     font-weight: 800;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
     color: var(--radical-text);
     margin: 0;
   }
@@ -281,60 +275,17 @@
     margin: 0;
   }
 
-  &__list {
+  &__action {
     position: relative;
-    margin-top: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      line-height: 1.45;
-      color: var(--radical-muted);
-
-      i {
-        width: 15px;
-        height: 15px;
-        color: #16a34a;
-        flex-shrink: 0;
-        margin-top: 3px;
-      }
-    }
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--radical-border);
   }
-}
-
-.legal-highlight {
-  position: relative;
-  margin-top: 6px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  background: rgba(0, 148, 255, 0.08);
-  border: 1px solid rgba(0, 148, 255, 0.18);
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--radical-muted);
-
-  em { color: var(--radical-text); font-style: normal; }
-}
-
-/* ── Section action row ────────────────────────────────────────────────── */
-.legal-actions {
-  margin-top: 28px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
 }
 
 /* ── Responsive ───────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .legal-summary,
-  .legal-card,
-  .legal-feature { padding: 20px; }
-  .legal-feature { grid-template-columns: 48px 1fr; }
-  .legal-feature__icon { width: 48px; height: 48px; }
+  .su-channel { padding: 18px; }
+  .su-preview-card,
+  .su-update-card { padding: 20px; }
 }
