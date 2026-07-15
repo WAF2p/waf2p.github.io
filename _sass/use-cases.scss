@@ -47,6 +47,22 @@
     border-color: rgba(0, 148, 255, 0.35);
   }
 
+  &--link {
+    cursor: pointer;
+
+    &:hover .uc-card__cta {
+      color: var(--brand-400);
+    }
+  }
+
+  &__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    text-decoration: none;
+    border-radius: inherit;
+  }
+
   &__icon {
     position: relative;
     width: 48px;
@@ -87,6 +103,17 @@
     line-height: 1.55;
     color: var(--radical-muted);
     margin: 0;
+  }
+
+  &__cta {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--radical-muted);
+    transition: color .2s ease;
   }
 }
 
@@ -165,6 +192,145 @@
       border: 1px solid var(--radical-border);
     }
   }
+}
+
+.uc-grid--featured {
+  margin-top: 20px;
+}
+
+.uc-example-notice {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid var(--radical-border);
+  background: color-mix(in srgb, var(--radical-surface) 80%, transparent);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--radical-muted);
+
+  i {
+    width: 20px;
+    height: 20px;
+    color: var(--brand-400);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  a {
+    color: var(--brand-400);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  strong {
+    color: var(--radical-text);
+    font-weight: 700;
+  }
+}
+
+.uc-detail-page {}
+
+.uc-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--radical-muted);
+  text-decoration: none;
+  transition: color .2s ease;
+
+  &:hover {
+    color: var(--radical-text);
+  }
+
+  i {
+    width: 16px;
+    height: 16px;
+    transition: transform .2s ease;
+  }
+
+  &:hover i { transform: translateX(-3px); }
+}
+
+/* ── Use case detail visuals ───────────────────────────────────────────── */
+.uc-detail-visual {
+  padding: 0 0 40px;
+}
+
+.uc-detail-visual__frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px rgba(0, 148, 255, 0.12);
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.uc-detail-visual--fintech { box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px rgba(239, 68, 68, 0.12); }
+.uc-detail-visual--platform { box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px rgba(16, 185, 129, 0.12); }
+.uc-detail-visual--sustainability { box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px rgba(34, 197, 94, 0.14); }
+.uc-detail-visual--academic { box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 0 40px rgba(124, 58, 237, 0.14); }
+
+.uc-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .uc-detail-grid { grid-template-columns: 1fr; }
+}
+
+.uc-detail-block {
+  padding: 28px;
+  border-radius: 22px;
+  border: 1px solid var(--radical-border);
+  background: var(--radical-surface);
+
+  &__title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--radical-text);
+    margin: 0 0 12px;
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--radical-muted);
+    margin: 0;
+  }
+}
+
+.uc-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.uc-detail-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--radical-border);
+  background: color-mix(in srgb, var(--radical-surface) 70%, transparent);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--radical-muted);
 }
 
 .uc-good-case-card {
