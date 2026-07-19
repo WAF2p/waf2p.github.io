@@ -277,7 +277,7 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity .15s ease, visibility .15s ease;
-    transition-delay: .25s;
+    transition-delay: .35s;
     z-index: 90;
 }
 html[data-theme="light"] .waf-docs-header .nav-dropdown,
@@ -286,15 +286,17 @@ html[data-theme="light"] .waf-docs-header .nav-dropdown,
     border-color: rgba(15, 23, 42, .10);
     box-shadow: 0 18px 60px rgba(15, 23, 42, .14);
 }}
-/* Invisible hover bridge */
+/* Invisible hover bridge — catches the mouse moving across the 10px gap
+   between the nav label and the dropdown so the menu stays open. */
 .waf-docs-header .nav-group::after {
     content: '';
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    height: 14px;
-    pointer-events: none;
+    height: 22px;
+    pointer-events: auto;
+    z-index: 89;
 }
 .waf-docs-header .nav-group:hover .nav-dropdown,
 .waf-docs-header .nav-group:focus-within .nav-dropdown {

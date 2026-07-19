@@ -9,25 +9,36 @@ sitemap: false
 translation_notice: false
 ---
 
-<section class="hero">
-  <div class="container" style="display:flex; flex-direction:column; align-items:center; text-align:center; max-width:640px; margin:0 auto">
+<section class="hero hero--radical error-hero">
+  <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+  <div class="hero-noise" aria-hidden="true"></div>
 
-    <div class="pill pill--soft" style="margin-bottom:24px; font-size:13px; letter-spacing:.08em">
-      FEHLER 404
+  <div class="container error-hero__inner">
+    <div class="error-hero__badge">
+      <span class="error-hero__badge-dot" aria-hidden="true"></span>
+      Fehler 404
     </div>
 
-    <h1 style="font-size:clamp(36px,5.5vw,60px); line-height:1.08; margin:0 0 18px">
-      In der Architektur verirrt?
-    </h1>
+    <div class="error-hero__code" aria-hidden="true">
+      <span class="text-gradient-radical">404</span>
+    </div>
 
-    <p style="font-size:18px; color:var(--muted); margin:0 0 36px; max-width:480px">
-      Die gesuchte Seite existiert nicht — aber das WAF++ Framework ist noch da.
+    <h1 class="error-hero__title">Endpunkt nicht gefunden.</h1>
+
+    <p class="error-hero__lead">
+      Die gewünschte Seite existiert nicht oder wurde verschoben. Das WAF++ Framework läuft aber weiterhin.
     </p>
 
-    <div class="hero-actions" style="justify-content:center; flex-wrap:wrap">
-      <a class="btn btn-primary" href="/de/">Zur Startseite</a>
-      <a class="btn btn-ghost" href="/docs/">Zur Dokumentation</a>
+    <div class="error-hero__actions">
+      <a class="btn btn-glow" href="{{ '/de/' | relative_url }}">Zur Startseite</a>
+      <a class="btn btn-glass" href="{{ '/docs/' | relative_url }}">Zur Dokumentation</a>
     </div>
 
+    <div class="error-hero__pills">
+      <span class="hero-radical-pill"><i data-lucide="scale" aria-hidden="true"></i> Apache 2.0</span>
+      <span class="hero-radical-pill"><i data-lucide="shield-check" aria-hidden="true"></i> Security by Design</span>
+      <span class="hero-radical-pill"><i data-lucide="layout-grid" aria-hidden="true"></i> Architektur zuerst</span>
+    </div>
   </div>
 </section>
