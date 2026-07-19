@@ -1,88 +1,91 @@
-<header class="waf-header">
-  <div class="waf-header__inner">
-
-    <!-- Brand -->
-    <a class="waf-header__brand" href="{{{relativize site.url}}}">
-      <img class="waf-header__logoimg" src="{{{uiRootPath}}}/img/WAFpp_upscaled_1000.png" alt="WAF++" />
-      <span class="waf-header__wordmark">WAF++</span>
+<header class="site-header waf-docs-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <img src="{{{uiRootPath}}}/img/WAFpp_upscaled_1000.png" alt="WAF++">
+      <span>WAF++</span>
     </a>
 
-    <!-- Minimal Nav -->
-    <nav class="waf-header__nav" aria-label="Primary">
-      <a class="waf-header__link" href="{{{relativize site.url}}}/">Home</a>
-    </nav>
+    <button class="burger" id="nav-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-    <!-- Actions -->
-    <div class="waf-header__actions">
-
-      {{#if env.SITE_SEARCH_PROVIDER}}
-        <div class="navbar-item search hide-for-print waf-header__search">
-          <div id="search-field" class="field">
-            <input id="search-input" type="search" placeholder="Search the docs" aria-label="Search the docs">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <div class="nav-main">
+        <!-- Framework -->
+        <div class="nav-group" data-nav="framework">
+          <a class="nav-group-label" href="#" data-docs-link="framework/index.html">Framework</a>
+          <button class="nav-group-toggle" type="button" aria-expanded="false">
+            <span class="nav-group-toggle__label">Framework</span>
+          </button>
+          <div class="nav-dropdown" aria-label="Framework submenu">
+            <a class="nav-dropdown__link" href="#" data-docs-link="index.html" data-i18n="overview">Overview</a>
+            <a class="nav-dropdown__link" href="#" data-docs-link="pillars/index.html" data-i18n="pillars">The 8 pillars</a>
+            <a class="nav-dropdown__link" href="#" data-docs-link="architektur/index.html" data-i18n="architecture">Architecture</a>
+            <a class="nav-dropdown__link" href="#" data-docs-link="best-practises/index.html" data-i18n="best_practices">Best Practices</a>
+            <a class="nav-dropdown__link" href="#" data-docs-link="controls/index.html" data-i18n="controls">Controls</a>
           </div>
         </div>
-      {{/if}}
 
-      <!-- Language switcher - dynamically swaps language version in URL -->
-      <div class="waf-lang"
-           id="waf-lang-switcher"
-           aria-label="Language switcher"
-           data-de-url="{{{site.url}}}/wafpp/1.0-de/ROOT/index.html"
-           data-en-url="{{{site.url}}}/wafpp/1.0-en/ROOT/index.html">
-        <a class="waf-lang__btn{{#eq page.version 'en'}} is-active{{/eq}}"
-           id="waf-lang-btn-en"
-           href="#"
-           title="English"
-           lang="en">
-          <svg class="waf-lang__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="b"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#a)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#b)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>
-        </a>
-        <a class="waf-lang__btn{{#eq page.version 'de'}} is-active{{/eq}}"
-           id="waf-lang-btn-de"
-           href="#"
-           title="Deutsch"
-           lang="de">
-          <svg class="waf-lang__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3"><rect width="5" height="3" y="0" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
-        </a>
+        <!-- Practice -->
+        <div class="nav-group" data-nav="practice">
+          <a class="nav-group-label" href="#" data-docs-link="governance-community/index.html">Practice</a>
+          <button class="nav-group-toggle" type="button" aria-expanded="false">
+            <span class="nav-group-toggle__label">Practice</span>
+          </button>
+          <div class="nav-dropdown" aria-label="Practice submenu">
+            <a class="nav-dropdown__link" href="#" data-docs-link="governance-community/index.html" data-i18n="governance_community">Governance &amp; Community</a>
+            <a class="nav-dropdown__link" href="#" data-docs-link="resources/index.html" data-i18n="resources">Resources</a>
+            <a class="nav-dropdown__link" href="#" data-docs-link="roadmap/index.html" data-i18n="roadmap">Roadmap</a>
+          </div>
+        </div>
+
+        <!-- Project -->
+        <div class="nav-group" data-nav="project">
+          <a class="nav-group-label" href="/about/">Project</a>
+          <button class="nav-group-toggle" type="button" aria-expanded="false">
+            <span class="nav-group-toggle__label">Project</span>
+          </button>
+          <div class="nav-dropdown" aria-label="Project submenu">
+            <a class="nav-dropdown__link" href="/about/" data-i18n="about">About</a>
+            <a class="nav-dropdown__link" href="/vision/" data-i18n="vision">Vision</a>
+            <a class="nav-dropdown__link" href="/faq/" data-i18n="faq">FAQ</a>
+            <a class="nav-dropdown__link" href="/blog/" data-i18n="blog">Blog</a>
+          </div>
+        </div>
       </div>
-      <script>
-        (function () {
-          var switcher = document.getElementById('waf-lang-switcher');
-          if (!switcher) return;
 
-          var currentPath = window.location.pathname;
-          var siteUrl = switcher.dataset.deUrl.split('/wafpp')[0];
+      <!-- Docs sections injected here on mobile -->
+      <div class="nav-mobile-docs" aria-label="Documentation sections"></div>
 
-          // Determine current version (de or en)
-          var currentVersion = currentPath.includes('/1.0-de/') ? 'de' : 'en';
-          var nextVersion = currentVersion === 'de' ? 'en' : 'de';
+      <div class="cta-row">
+        <div class="docs-search-wrap">
+          {{#if env.SITE_SEARCH_PROVIDER}}
+          <div class="navbar-item search hide-for-print" id="docs-search">
+            <div id="search-field" class="field">
+              <input id="search-input" type="search" placeholder="Search the docs" aria-label="Search the docs">
+            </div>
+          </div>
+          {{/if}}
+        </div>
 
-          // Get the base path (e.g., /docs or empty)
-          var basePath = currentPath.split('/wafpp')[0];
+        <div class="lang-switch" aria-label="Language switch" id="waf-lang-switcher">
+          <a class="lang-flag" id="waf-lang-btn-en" href="#" title="English" aria-label="English"><span aria-hidden="true">🇬🇧</span></a>
+          <a class="lang-flag" id="waf-lang-btn-de" href="#" title="Deutsch" aria-label="Deutsch"><span aria-hidden="true">🇩🇪</span></a>
+        </div>
 
-          // Construct switched URL: base + /wafpp/1.0-{next}/ + current page path after ROOT/index.html
-          var pagePath = currentPath.split('index.html')[1] || '';
-          var switchedPath = basePath + '/wafpp/1.0-' + nextVersion + '/index.html' + pagePath;
+        <a class="theme-toggle slack-toggle" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="Join WAF++ Community on Slack" title="Join Community Slack">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127 127" width="18" height="18" role="img" aria-hidden="true" style="flex-shrink:0;display:inline-block;vertical-align:middle">
+            <path d="M27.2 80c0 7.3-5.9 13.2-13.2 13.2C6.7 93.2.8 87.3.8 80c0-7.3 5.9-13.2 13.2-13.2h13.2V80zm6.6 0c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2v33c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V80z" fill="#E01E5A"/>
+            <path d="M47 27c-7.3 0-13.2-5.9-13.2-13.2C33.8 6.5 39.7.6 47 .6c7.3 0 13.2 5.9 13.2 13.2V27H47zm0 6.7c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H14c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33z" fill="#36C5F0"/>
+            <path d="M99.9 46.9c0-7.3 5.9-13.2 13.2-13.2 7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H99.9V46.9zm-6.6 0c0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V13.8C66.9 6.5 72.8.6 80.1.6c7.3 0 13.2 5.9 13.2 13.2v33.1z" fill="#2EB67D"/>
+            <path d="M80.1 99.8c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2-7.3 0-13.2-5.9-13.2-13.2V99.8h13.2zm0-6.6c-7.3 0-13.2-5.9-13.2-13.2 0-7.3 5.9-13.2 13.2-13.2h33.1c7.3 0 13.2 5.9 13.2 13.2 0 7.3-5.9 13.2-13.2 13.2H80.1z" fill="#ECB22E"/>
+          </svg>
+        </a>
 
-          // Set href for both buttons
-          var btnEn = document.getElementById('waf-lang-btn-en');
-          var btnDe = document.getElementById('waf-lang-btn-de');
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Theme umschalten" aria-pressed="false"><i data-lucide="moon"></i></button>
 
-          if (btnEn) btnEn.href = switchedPath;
-          if (btnDe) btnDe.href = switchedPath;
-
-          // Mark active button based on current path
-          ['de', 'en'].forEach(function (lang) {
-            var btn = document.getElementById('waf-lang-btn-' + lang);
-            if (btn) {
-              btn.classList.toggle('is-active', currentVersion === lang);
-            }
-          });
-        })();
-      </script>
-
-      <!-- CTA -->
-      <a class="waf-cta" href="{{{relativize site.url}}}/">Back to WAF++ Homepage</a>
-    </div>
-
+        <a class="btn btn-primary" href="/" data-i18n="back_home">waf2p.dev</a>
+      </div>
+    </nav>
   </div>
 </header>

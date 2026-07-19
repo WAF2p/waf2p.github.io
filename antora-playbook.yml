@@ -1,6 +1,6 @@
 site:
   title: WAF++ Documentation
-  url: https://waf2p.dev
+  url: https://waf2p.dev/docs
   start_page: wafpp::index.adoc
 
 content:
@@ -19,6 +19,7 @@ antora:
     index_by_heading: true
     languages: [en, de]
     snippet_length: 150
+  - require: '@antora/pdf-extension'
 
 ui:
   bundle:
@@ -29,9 +30,12 @@ ui:
 asciidoc:
   extensions:
     - asciidoctor-kroki
+    - '@asciidoctor/tabs'
+    - asciidoctor-treeview
   attributes:
     page-pagination: ''
     source-language: asciidoc@
+    tabs-sync-option: ''
 
 output:
   clean: true
