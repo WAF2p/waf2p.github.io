@@ -1,0 +1,247 @@
+---
+layout: default
+lang: en
+ref: wafpass_action
+title: WAF++ PASS GitHub Action
+description: Run WAF++ PASS scans in GitHub Actions and push infrastructure compliance results to your WAFPass server.
+permalink: /wafpass-action/
+---
+
+<div class="page-radical wafpass-page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="wafpass-hero" aria-label="WAF++ PASS GitHub Action">
+    <div class="wafpass-hero__orb wafpass-hero__orb--blue" aria-hidden="true"></div>
+    <div class="wafpass-hero__orb wafpass-hero__orb--gold" aria-hidden="true"></div>
+    <div class="wafpass-hero__orb wafpass-hero__orb--purple" aria-hidden="true"></div>
+    <div class="container wafpass-hero__inner">
+      <div class="wafpass-hero__badge">
+        <span class="wafpass-hero__badge-dot"></span>
+        v0.1.1 &middot; Marketplace &middot; Open Source
+      </div>
+      <h1>Compliance checks in your<br><span class="text-gradient-radical">GitHub Actions.</span></h1>
+      <p class="wafpass-hero__lead">
+        Add WAF++ PASS to any workflow. Scan Terraform, Bicep, CDK, or Pulumi on every pull request and push,
+        then send the full result payload to your WAFPass server for dashboards, gap analysis, and audit evidence.
+      </p>
+      <div class="wafpass-hero__actions">
+        <a class="btn-glow" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">Get the action &rarr;</a>
+        <a class="btn-glass" href="https://github.com/WAF2p/wafpass-action" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass</a>
+      </div>
+      <div class="wafpass-hero__compliance">
+        <span class="control-pill">Terraform</span>
+        <span class="control-pill">Bicep</span>
+        <span class="control-pill">CDK</span>
+        <span class="control-pill">Pulumi</span>
+        <span class="control-pill">Bearer token</span>
+        <span class="control-pill">API key</span>
+        <span class="control-pill">Fail policies</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section class="stats-band wafpass-stats" aria-label="Key numbers">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">v0.1.1</div>
+          <div class="stat-label">Action release</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-label">IaC frameworks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Auth modes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Cloud credentials needed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FEATURES ===================== -->
+  <section class="bento-section" aria-label="Features">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Features</div>
+        <h2 class="section-title-radical">One step. Full visibility.</h2>
+        <p class="section-lead-radical">The action handles CLI installation, scanning, result upload, and policy enforcement so your team can focus on shipping.</p>
+      </div>
+
+      <div class="wafpass-stack">
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="download" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Auto-install CLI</div>
+          <p class="wafpass-stack__desc">Installs the latest <code>wafpass-core</code> from PyPI automatically, or override with a custom pip source or pre-installed binary.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="scan" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Multi-IaC scan</div>
+          <p class="wafpass-stack__desc">Scan Terraform, Bicep, CDK, or Pulumi files in a single step. Supports multiple paths and Terraform plan JSON for change overview.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="upload-cloud" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Push to server</div>
+          <p class="wafpass-stack__desc">Uploads the full <code>wafpass-result.json</code> payload to <code>POST /api/v1/runs</code> so dashboards and evidence packages stay current.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Policy gates</div>
+          <p class="wafpass-stack__desc">Configurable <code>fail_on</code> policies from <code>never</code> to <code>critical</code>. Fail the step after the result is safely stored on the server.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="key" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Flexible auth</div>
+          <p class="wafpass-stack__desc">Use a Bearer token for interactive users or an ingest API key for headless CI/CD runs. Both forwarded securely to the server.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">CI/CD metadata</div>
+          <p class="wafpass-stack__desc">Marks runs as <code>is_cicd: true</code> with <code>triggered_by: github-actions</code>, and passes branch, commit SHA, project, and stage automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== USAGE ===================== -->
+  <section class="bento-section" id="usage" style="padding-top:0;" aria-label="Usage">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Usage</div>
+        <h2 class="section-title-radical">Add it to any workflow.</h2>
+        <p class="section-lead-radical">Check out your repo, run the action, and surface compliance results where your team already works.</p>
+      </div>
+
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">.github/workflows/wafpass.yml</span>
+        </div>
+        {% raw %}<pre class="code-window__body"><code>name: WAF++ PASS Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  wafpass:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run WAF++ PASS
+        uses: WAF2p/wafpass-action@v0.1.1
+        with:
+          server_url: ${{ vars.WAFPASS_SERVER_URL }}
+          api_key: ${{ secrets.WAFPASS_API_KEY }}
+          scan_path: ./infra
+          iac_framework: terraform
+          project: ${{ github.repository }}
+          stage: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+          fail_on: high
+          upload_source: true</code></pre>{% endraw %}
+      </div>
+
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">Multi-cloud / monorepo example</span>
+        </div>
+        {% raw %}<pre class="code-window__body"><code>      - name: Run WAF++ PASS
+        uses: WAF2p/wafpass-action@v0.1.1
+        with:
+          server_url: ${{ vars.WAFPASS_SERVER_URL }}
+          api_key: ${{ secrets.WAFPASS_API_KEY }}
+          scan_path: ./aws ./azure ./gcp
+          iac_framework: terraform
+          project: ${{ github.repository }}
+          stage: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+          fail_on: high
+          upload_source: true</code></pre>{% endraw %}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== INPUTS / OUTPUTS ===================== -->
+  <section class="bento-section" style="padding-top:0;" aria-label="Inputs and outputs">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Reference</div>
+        <h2 class="section-title-radical">Inputs &amp; outputs</h2>
+        <p class="section-lead-radical">Everything the action accepts and returns, at a glance.</p>
+      </div>
+
+      <div class="rfc-table-wrap">
+        <table class="rfc-table">
+          <thead>
+            <tr><th>Input</th><th>Required</th><th>Default</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>server_url</code></td><td>yes</td><td>—</td><td>Base URL of the WAF++ server.</td></tr>
+            <tr><td><code>api_token</code></td><td>no</td><td>—</td><td>Bearer token. Provide either this or <code>api_key</code>.</td></tr>
+            <tr><td><code>api_key</code></td><td>no</td><td>—</td><td>Ingest API key (<code>X-Api-Key</code>).</td></tr>
+            <tr><td><code>scan_path</code></td><td>yes</td><td><code>.</code></td><td>Path(s) to scan. Separate multiple paths with spaces.</td></tr>
+            <tr><td><code>iac_framework</code></td><td>no</td><td><code>terraform</code></td><td>IaC plugin: <code>terraform</code>, <code>bicep</code>, <code>cdk</code>, <code>pulumi</code>.</td></tr>
+            <tr><td><code>stage</code></td><td>no</td><td>—</td><td>Deployment stage, e.g. <code>dev</code>, <code>staging</code>, <code>prod</code>.</td></tr>
+            <tr><td><code>project</code></td><td>no</td><td>repo name</td><td>Project / repo identifier.</td></tr>
+            <tr><td><code>fail_on</code></td><td>no</td><td><code>fail</code></td><td><code>fail</code>, <code>skip</code>, <code>any</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code>, <code>never</code>.</td></tr>
+            <tr><td><code>upload_source</code></td><td>no</td><td><code>false</code></td><td>Upload source files for dashboard diff previews.</td></tr>
+            <tr><td><code>fetch_controls</code></td><td>no</td><td><code>false</code></td><td>Clone controls from the framework repo before scanning.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rfc-table-wrap" style="margin-top:32px;">
+        <table class="rfc-table">
+          <thead>
+            <tr><th>Output</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>run_id</code></td><td>UUID of the created run on the WAF++ server.</td></tr>
+            <tr><td><code>score</code></td><td>Overall compliance score returned by the server.</td></tr>
+            <tr><td><code>findings_count</code></td><td>Number of findings in the scan result.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-radical">
+    <div class="cta-radical__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cta-radical__inner">
+        <div class="kicker-radical" style="margin-bottom:14px;">Ready to automate?</div>
+        <h2 class="cta-radical__title">Add WAF++ PASS to your pipeline.</h2>
+        <p class="cta-radical__lead">Install the action from the GitHub Marketplace, copy the workflow, and start surfacing infrastructure compliance on every PR.</p>
+        <div class="cta-radical__actions">
+          <a class="btn-glow" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">Get the action &rarr;</a>
+          <a class="btn-glass" href="{{ '/wafpass/' | relative_url }}">About WAFPass</a>
+          <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
