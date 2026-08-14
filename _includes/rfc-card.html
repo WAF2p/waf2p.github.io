@@ -10,6 +10,7 @@
   {%- assign label_implemented = "Umgesetzt" -%}
   {%- assign label_discussion = "Diskussion" -%}
   {%- assign label_pr = "PR" -%}
+  {%- assign label_commenters = "Kommentare" -%}
 {%- else -%}
   {%- assign rfc_title   = rfc.title_en -%}
   {%- assign rfc_summary = rfc.summary_en -%}
@@ -19,6 +20,7 @@
   {%- assign label_implemented = "Implemented" -%}
   {%- assign label_discussion = "Discussion" -%}
   {%- assign label_pr = "PR" -%}
+  {%- assign label_commenters = "Commenters" -%}
 {%- endif -%}
 <div class="rfc-card">
   <div class="rfc-card-header">
@@ -31,11 +33,34 @@
   </div>
   <p class="rfc-summary">{{ rfc_summary }}</p>
   <div class="rfc-meta">
-    <span><strong>{{ label_author }}:</strong> {{ rfc.author }}</span>
+    <span class="rfc-meta-author">
+      <strong>{{ label_author }}:</strong>
+      {%- if rfc.author_avatar -%}
+      <a href="{{ rfc.author_url | default: rfc.discussion }}" target="_blank" rel="noopener" class="rfc-avatar-link" title="{{ rfc.author }}">
+        <img class="rfc-avatar" src="{{ rfc.author_avatar }}" alt="{{ rfc.author }}" loading="lazy" width="22" height="22">
+      </a>
+      {%- endif -%}
+      {{ rfc.author }}
+    </span>
     <span><strong>{{ label_opened }}:</strong> {{ rfc.opened }}</span>
     {%- if rfc.decided %}<span><strong>{{ label_decided }}:</strong> {{ rfc.decided }}</span>{% endif -%}
     {%- if rfc.implemented %}<span><strong>{{ label_implemented }}:</strong> {{ rfc.implemented }}</span>{% endif -%}
     {%- if rfc.discussion %}<span><strong>{{ label_discussion }}:</strong> <a href="{{ rfc.discussion }}" target="_blank" rel="noopener">GitHub →</a></span>{% endif -%}
     {%- if rfc.pr %}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/WAF2p/{{ repo }}/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{% endif -%}
+    {%- if rfc.comment_count and rfc.comment_count > 0 -%}
+    <span class="rfc-meta-commenters">
+      <strong>{{ label_commenters }}:</strong>
+      <span class="rfc-commenter-stack">
+        {%- for c in rfc.commenters limit: 5 -%}
+        <a href="{{ c.html_url }}" target="_blank" rel="noopener" class="rfc-commenter-avatar" title="{{ c.login }}">
+          <img src="{{ c.avatar_url }}" alt="{{ c.login }}" loading="lazy" width="22" height="22">
+        </a>
+        {%- endfor -%}
+      </span>
+      {%- if rfc.comment_count > 5 -%}
+      <span class="rfc-commenter-more">+{{ rfc.comment_count | minus: 5 }}</span>
+      {%- endif -%}
+    </span>
+    {%- endif -%}
   </div>
 </div>
