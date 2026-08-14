@@ -7,13 +7,13 @@ description: All open, decided, and implemented Requests for Comments that shape
 permalink: /rfc/
 ---
 
-{% assign all_rfcs       = site.data.rfcs %}
-{% assign draft_rfcs     = site.data.rfcs | where: "status", "draft" %}
-{% assign open_rfcs      = site.data.rfcs | where: "status", "open" %}
-{% assign accepted_rfcs  = site.data.rfcs | where: "status", "accepted" %}
-{% assign impl_rfcs      = site.data.rfcs | where: "status", "implemented" %}
-{% assign rejected_rfcs  = site.data.rfcs | where: "status", "rejected" %}
-{% assign withdrawn_rfcs = site.data.rfcs | where: "status", "withdrawn" %}
+{% assign all_rfcs       = site.data.rfcs | concat: site.data.github_rfcs %}
+{% assign draft_rfcs     = all_rfcs | where: "status", "draft" %}
+{% assign open_rfcs      = all_rfcs | where: "status", "open" %}
+{% assign accepted_rfcs  = all_rfcs | where: "status", "accepted" %}
+{% assign impl_rfcs      = all_rfcs | where: "status", "implemented" %}
+{% assign rejected_rfcs  = all_rfcs | where: "status", "rejected" %}
+{% assign withdrawn_rfcs = all_rfcs | where: "status", "withdrawn" %}
 {% assign done_rfcs      = impl_rfcs | concat: accepted_rfcs | concat: rejected_rfcs | concat: withdrawn_rfcs %}
 {% assign active_rfcs    = open_rfcs | concat: draft_rfcs %}
 
@@ -104,63 +104,149 @@ permalink: /rfc/
       <p class="section-lead-radical">Filter by status, read the summaries, and follow the linked discussions and pull requests.</p>
     </div>
 
-    <div class="rfc-tabs">
-      <input type="radio" name="rfc-tab" id="rfc-all"   class="rfc-radio" checked>
-      <input type="radio" name="rfc-tab" id="rfc-open"  class="rfc-radio">
-      <input type="radio" name="rfc-tab" id="rfc-draft" class="rfc-radio">
-      <input type="radio" name="rfc-tab" id="rfc-done"  class="rfc-radio">
+    {% assign repo_list = "framework,pass,wafpass-action,wafpass-mcp" | split: "," %}
+    {% assign repo_labels = "WAF++ Framework,WAFPass,WAFPass Action,WAFPass MCP" | split: "," %}
 
-      <nav class="rfc-tab-nav">
-        <label for="rfc-all">All ({{ all_rfcs | size }})</label>
-        <label for="rfc-open">Open for review ({{ open_rfcs | size }})</label>
-        <label for="rfc-draft">Draft ({{ draft_rfcs | size }})</label>
-        <label for="rfc-done">Decided / implemented ({{ done_rfcs | size }})</label>
+    <div class="rfc-tabs rfc-tabs--two-tier">
+      <!-- Project row -->
+      <input type="radio" name="rfc-project" id="rfc-proj-all" class="rfc-radio" checked>
+      {% for repo in repo_list %}
+      <input type="radio" name="rfc-project" id="rfc-proj-{{ repo }}" class="rfc-radio">
+      {% endfor %}
+
+      <nav class="rfc-tab-nav rfc-tab-nav--projects">
+        <label for="rfc-proj-all">All projects ({{ all_rfcs | size }})</label>
+        {% for repo in repo_list %}
+        {% assign rfcs_for_repo = all_rfcs | where: "repo", repo %}
+        <label for="rfc-proj-{{ repo }}">{{ repo_labels[forloop.index0] }} ({{ rfcs_for_repo | size }})</label>
+        {% endfor %}
       </nav>
 
-      <!-- ALL -->
-      <div class="rfc-pane" id="pane-all">
+      <!-- Status row -->
+      <input type="radio" name="rfc-status" id="rfc-st-all"   class="rfc-radio" checked>
+      <input type="radio" name="rfc-status" id="rfc-st-open"  class="rfc-radio">
+      <input type="radio" name="rfc-status" id="rfc-st-draft" class="rfc-radio">
+      <input type="radio" name="rfc-status" id="rfc-st-done"  class="rfc-radio">
+
+      <nav class="rfc-tab-nav rfc-tab-nav--status">
+        <label for="rfc-st-all">All statuses</label>
+        <label for="rfc-st-open">Open for review ({{ open_rfcs | size }})</label>
+        <label for="rfc-st-draft">Draft ({{ draft_rfcs | size }})</label>
+        <label for="rfc-st-done">Decided / implemented ({{ done_rfcs | size }})</label>
+      </nav>
+
+      {% for repo in repo_list %}
+      {% assign repo_label = repo_labels[forloop.index0] %}
+
+      <!-- ALL statuses for {{ repo }} -->
+      <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--all">
+        {% assign project_rfcs = all_rfcs | where: "repo", repo %}
+        {% if project_rfcs.size > 0 %}
+        <h3 class="rfc-group-heading">{{ repo_label }}</h3>
         <div class="rfc-list">
-          {% for rfc in site.data.rfcs %}
+          {% for rfc in project_rfcs %}
           {% include rfc-card.html rfc=rfc lang="en" %}
           {% endfor %}
         </div>
-      </div>
-
-      <!-- OPEN -->
-      <div class="rfc-pane" id="pane-open">
-        {% if open_rfcs.size > 0 %}
-        <div class="rfc-list">
-          {% for rfc in site.data.rfcs %}{% if rfc.status == "open" %}
-          {% include rfc-card.html rfc=rfc lang="en" %}
-          {% endif %}{% endfor %}
-        </div>
         {% else %}
-        <div class="rfc-empty">No RFCs are currently open for review. Check back soon or <a href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">propose one on GitHub</a>.</div>
+        <div class="rfc-empty">No RFCs for {{ repo_label }}.</div>
         {% endif %}
       </div>
 
-      <!-- DRAFT -->
-      <div class="rfc-pane" id="pane-draft">
-        {% if draft_rfcs.size > 0 %}
+      <!-- OPEN for {{ repo }} -->
+      <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--open">
+        {% assign project_open = all_rfcs | where: "repo", repo | where: "status", "open" %}
+        {% if project_open.size > 0 %}
+        <h3 class="rfc-group-heading">{{ repo_label }} — Open for review</h3>
         <div class="rfc-list">
-          {% for rfc in site.data.rfcs %}{% if rfc.status == "draft" %}
+          {% for rfc in project_open %}
           {% include rfc-card.html rfc=rfc lang="en" %}
-          {% endif %}{% endfor %}
-        </div>
-        {% else %}
-        <div class="rfc-empty">No drafts at the moment.</div>
-        {% endif %}
-      </div>
-
-      <!-- DONE -->
-      <div class="rfc-pane" id="pane-done">
-        <div class="rfc-list">
-          {% for rfc in site.data.rfcs %}
-          {% unless rfc.status == "draft" or rfc.status == "open" %}
-          {% include rfc-card.html rfc=rfc lang="en" %}
-          {% endunless %}
           {% endfor %}
         </div>
+        {% else %}
+        <div class="rfc-empty">No open RFCs for {{ repo_label }}.</div>
+        {% endif %}
+      </div>
+
+      <!-- DRAFT for {{ repo }} -->
+      <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--draft">
+        {% assign project_draft = all_rfcs | where: "repo", repo | where: "status", "draft" %}
+        {% if project_draft.size > 0 %}
+        <h3 class="rfc-group-heading">{{ repo_label }} — Drafts</h3>
+        <div class="rfc-list">
+          {% for rfc in project_draft %}
+          {% include rfc-card.html rfc=rfc lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No drafts for {{ repo_label }}.</div>
+        {% endif %}
+      </div>
+
+      <!-- DONE for {{ repo }} -->
+      <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--done">
+        {% assign project_done = all_rfcs | where: "repo", repo | where_exp: "item", "item.status != 'open' and item.status != 'draft'" %}
+        {% if project_done.size > 0 %}
+        <h3 class="rfc-group-heading">{{ repo_label }} — Decided / implemented</h3>
+        <div class="rfc-list">
+          {% for rfc in project_done %}
+          {% include rfc-card.html rfc=rfc lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No decided or implemented RFCs for {{ repo_label }}.</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      <!-- ALL projects — by status -->
+      <div class="rfc-pane rfc-pane--all-projects rfc-pane--all">
+        {% for repo in repo_list %}
+        {% assign repo_label = repo_labels[forloop.index0] %}
+        {% assign project_rfcs = all_rfcs | where: "repo", repo %}
+        <h3 class="rfc-group-heading">{{ repo_label }}</h3>
+        <div class="rfc-list">
+          {% for rfc in project_rfcs %}
+          {% include rfc-card.html rfc=rfc lang="en" %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="rfc-pane rfc-pane--all-projects rfc-pane--open">
+        {% assign grouped_open = open_rfcs | group_by: "repo" %}
+        {% for group in grouped_open %}
+        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-server", "WAFPass Server" | replace: "wafpass-dashboard", "WAFPass Dashboard" | replace: "wafpass-action", "WAFPass Action" | replace: "wafpass-mcp", "WAFPass MCP" | replace: "pass", "WAFPass" | replace: "framework", "WAF++ Framework" }}</h3>
+        <div class="rfc-list">
+          {% for rfc in group.items %}
+          {% include rfc-card.html rfc=rfc lang="en" %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="rfc-pane rfc-pane--all-projects rfc-pane--draft">
+        {% assign grouped_draft = draft_rfcs | group_by: "repo" %}
+        {% for group in grouped_draft %}
+        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-server", "WAFPass Server" | replace: "wafpass-dashboard", "WAFPass Dashboard" | replace: "wafpass-action", "WAFPass Action" | replace: "wafpass-mcp", "WAFPass MCP" | replace: "pass", "WAFPass" | replace: "framework", "WAF++ Framework" }}</h3>
+        <div class="rfc-list">
+          {% for rfc in group.items %}
+          {% include rfc-card.html rfc=rfc lang="en" %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="rfc-pane rfc-pane--all-projects rfc-pane--done">
+        {% assign grouped_done = done_rfcs | group_by: "repo" %}
+        {% for group in grouped_done %}
+        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-server", "WAFPass Server" | replace: "wafpass-dashboard", "WAFPass Dashboard" | replace: "wafpass-action", "WAFPass Action" | replace: "wafpass-mcp", "WAFPass MCP" | replace: "pass", "WAFPass" | replace: "framework", "WAF++ Framework" }}</h3>
+        <div class="rfc-list">
+          {% for rfc in group.items %}
+          {% include rfc-card.html rfc=rfc lang="en" %}
+          {% endfor %}
+        </div>
+        {% endfor %}
       </div>
 
     </div><!-- /.rfc-tabs -->

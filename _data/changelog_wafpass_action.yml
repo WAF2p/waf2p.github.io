@@ -1,0 +1,39 @@
+# WAF++ PASS GitHub Action changelog — data source for /changelog/ and /de/changelog/
+# WAF++ PASS Action v0.1.1 released: 2026-08-14
+# Order: newest first. Add new groups at the top.
+# Types: new | improvement | fix | docs | infra | breaking
+
+- group_en: "August 2026 — v0.1.1"
+  group_de: "August 2026 — v0.1.1"
+  version: "v0.1.1"
+  date: "2026-08-14"
+  beta: true
+  changes:
+    - type: breaking
+      text_en: "API v1 endpoint migration — action now pushes results to the versioned `/api/v1/runs` endpoint; `server_url` must point to a server serving `/api/v1/*`"
+      text_de: "Migration zum API-v1-Endpunkt — Action sendet Ergebnisse jetzt an den versionierten Endpunkt `/api/v1/runs`; `server_url` muss auf einen Server zeigen, der `/api/v1/*` bereitstellt"
+    - type: new
+      text_en: "Fetch controls from framework repo — new `fetch_controls` input clones the WAF++ framework controls before scanning; `framework_repo` input selects the source repository"
+      text_de: "Controls aus Framework-Repo laden — neuer `fetch_controls`-Input klont die WAF++-Framework-Controls vor dem Scan; `framework_repo`-Input wählt die Quell-Repository"
+
+- group_en: "July 2026 — v0.1.0"
+  group_de: "Juli 2026 — v0.1.0"
+  version: "v0.1.0"
+  date: "2026-07-17"
+  beta: true
+  changes:
+    - type: new
+      text_en: "WAF++ PASS GitHub Action v0.1.0 — first release. Installs the `wafpass` CLI automatically, scans Terraform/Bicep/CDK/Pulumi IaC files, and pushes the full result payload to the WAF++ server"
+      text_de: "WAF++ PASS GitHub Action v0.1.0 — erste Veröffentlichung. Installiert die `wafpass`-CLI automatisch, scannt Terraform/Bicep/CDK/Pulumi-IaC-Dateien und übermittelt die vollständige Ergebnis-Payload an den WAF++-Server"
+    - type: new
+      text_en: "Authentication support — accepts either a Bearer token (`api_token`) or an ingestion API key (`api_key`) for headless CI/CD runs"
+      text_de: "Authentifizierungsunterstützung — akzeptiert entweder einen Bearer-Token (`api_token`) oder einen Ingestion-API-Key (`api_key`) für headlose CI/CD-Läufe"
+    - type: new
+      text_en: "Configurable failure policies — `fail_on` input supports `fail`, `skip`, `any`, `low`, `medium`, `high`, `critical`, and `never`"
+      text_de: "Konfigurierbare Fehlerpolitiken — `fail_on`-Input unterstützt `fail`, `skip`, `any`, `low`, `medium`, `high`, `critical` und `never`"
+    - type: new
+      text_en: "CI/CD metadata — runs are automatically marked with `is_cicd: true` and `triggered_by: github-actions`; `project`, `stage`, `branch`, and `git_sha` are passed through"
+      text_de: "CI/CD-Metadaten — Läufe werden automatisch mit `is_cicd: true` und `triggered_by: github-actions` markiert; `project`, `stage`, `branch` und `git_sha` werden durchgereicht"
+    - type: new
+      text_en: "Action outputs — returns `run_id`, `score`, and `findings_count` for downstream workflow steps"
+      text_de: "Action-Outputs — gibt `run_id`, `score` und `findings_count` für nachgelagerte Workflow-Schritte zurück"

@@ -1,0 +1,46 @@
+# WAF++ MCP Bridge changelog — data source for /changelog/ and /de/changelog/
+# wafpass-mcp is the Model Context Protocol bridge for WAFpass REST endpoints.
+# wafpass-mcp v0.1.2 released: 2026-08-14
+# Order: newest first. Add new groups at the top.
+# Types: new | improvement | fix | docs | infra | breaking
+
+- group_en: "August 2026 — v0.1.2"
+  group_de: "August 2026 — v0.1.2"
+  version: "v0.1.2"
+  date: "2026-08-14"
+  beta: true
+  changes:
+    - type: breaking
+      text_en: "API v1 endpoint migration — bridge upgraded to call the versioned `/api/v1/*` endpoints on wafpass-server"
+      text_de: "Migration zu API-v1-Endpunkten — Bridge auf die versionierten `/api/v1/*`-Endpunkte von wafpass-server aktualisiert"
+    - type: new
+      text_en: "Smoke tests and integration test coverage — added standalone smoke tests and integration tests for the SSE transport and tool proxying"
+      text_de: "Smoke-Tests und Integration-Test-Abdeckung — eigenständige Smoke-Tests und Integration-Tests für den SSE-Transport und Tool-Proxying hinzugefügt"
+    - type: improvement
+      text_en: "Translation for upstream error messages — server error payloads are translated into user-facing MCP error content"
+      text_de: "Übersetzung von Upstream-Fehlermeldungen — Server-Fehlerpayloads werden in nutzerfreundliche MCP-Fehlerinhalte übersetzt"
+    - type: improvement
+      text_en: "Stdio default for password fetch and token handling — password and token flows now use stdio by default for safer local and containerized deployments"
+      text_de: "Stdio-Default für Passwort- und Token-Handling — Passwort- und Token-Flows verwenden jetzt standardmäßig Stdio für sicherere lokale und containerisierte Deployments"
+
+- group_en: "July 2026 — v0.1.0"
+  group_de: "Juli 2026 — v0.1.0"
+  version: "v0.1.0"
+  date: "2026-07-29"
+  beta: true
+  changes:
+    - type: new
+      text_en: "WAF++ MCP Bridge v0.1.0 — first release. A Model Context Protocol server that exposes WAFpass REST endpoints as MCP tools for AI assistants"
+      text_de: "WAF++ MCP Bridge v0.1.0 — erste Veröffentlichung. Ein Model-Context-Protocol-Server, der WAFpass-REST-Endpunkte als MCP-Tools für KI-Assistenten bereitstellt"
+    - type: new
+      text_en: "SSE transport — exposes the MCP endpoint over Server-Sent Events on port 3001, compatible with Claude Desktop and other MCP clients"
+      text_de: "SSE-Transport — stellt den MCP-Endpunkt über Server-Sent Events auf Port 3001 bereit, kompatibel mit Claude Desktop und anderen MCP-Clients"
+    - type: new
+      text_en: "IdP-agnostic security model — trusts WAF++ access tokens issued by wafpass-server; forwards the original `Authorization` header so row-level authorization is preserved"
+      text_de: "IdP-agnostisches Sicherheitsmodell — vertraut WAF++-Access-Tokens, die von wafpass-server ausgestellt werden; leitet den originalen `Authorization`-Header weiter, damit zeilenbasierte Autorisierung erhalten bleibt"
+    - type: new
+      text_en: "Role-aware tool filtering — `tools/list` is filtered by the authenticated user's role; unauthorized tools are hidden from the AI client"
+      text_de: "Rollenbewusste Tool-Filterung — `tools/list` wird nach der Rolle des authentifizierten Nutzers gefiltert; unautorisierte Tools werden vor dem KI-Client verborgen"
+    - type: new
+      text_en: "OpenAPI-driven validation — tool arguments are validated against Pydantic models generated from the WAFpass OpenAPI spec"
+      text_de: "OpenAPI-gesteuerte Validierung — Tool-Argumente werden gegen Pydantic-Modelle validiert, die aus der WAFpass-OpenAPI-Spezifikation generiert werden"

@@ -40,7 +40,7 @@ permalink: /de/changelog/
         </div>
 
         <div class="hero-radical-pills">
-          <span class="hero-radical-pill"><i data-lucide="layers" aria-hidden="true"></i> Framework · Website · WAFPass</span>
+          <span class="hero-radical-pill"><i data-lucide="layers" aria-hidden="true"></i> Framework · Website · WAFPass · Action · MCP</span>
           <span class="hero-radical-pill"><i data-lucide="git-pull-request" aria-hidden="true"></i> Verknüpft mit PRs &amp; RFCs</span>
           <span class="hero-radical-pill"><i data-lucide="eye" aria-hidden="true"></i> Vollständig öffentlich</span>
         </div>
@@ -67,6 +67,8 @@ permalink: /de/changelog/
         <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
         <input type="radio" name="cl-tab" id="cl-tab-dash" class="cl-radio">
         <input type="radio" name="cl-tab" id="cl-tab-srv" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-act" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-mcp" class="cl-radio">
 
         <nav class="cl-tab-nav">
           <label class="cl-tab-nav__item" for="cl-tab-fw">Framework</label>
@@ -74,6 +76,8 @@ permalink: /de/changelog/
           <label class="cl-tab-nav__item" for="cl-tab-pass">WAFPass</label>
           <label class="cl-tab-nav__item" for="cl-tab-dash">WAFPass Dashboard</label>
           <label class="cl-tab-nav__item" for="cl-tab-srv">WAFPass Server</label>
+          <label class="cl-tab-nav__item" for="cl-tab-act">WAFPass Action</label>
+          <label class="cl-tab-nav__item" for="cl-tab-mcp">WAFPass MCP</label>
         </nav>
 
         {% include changelog-pane.html
@@ -137,6 +141,32 @@ permalink: /de/changelog/
           history_link_text="github.com/waf2p/wafpass-server"
           launch_title="v1.0.0 veröffentlicht"
           launch_body="WAFPass Server v1.0.0 ist die stabile FastAPI / PostgreSQL-Persistenzschicht des WAFPass-Stacks. Vollständiges SSO (OIDC/SAML2), API-Key-Verwaltung, rollenbasierte Zugriffskontrolle und alle 14 Datenbankmigrationen sind im stabilen Docker-Image enthalten."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-act"
+          data="changelog_wafpass_action"
+          group_key="group_de"
+          text_key="text_de"
+          pr_base_url="https://github.com/waf2p/wafpass-action/pull/"
+          history_url="https://github.com/waf2p/wafpass-action/commits/main"
+          history_label="Vollständiger Verlauf:"
+          history_link_text="github.com/waf2p/wafpass-action"
+          launch_title="v0.1.0 veröffentlicht"
+          launch_body="WAF++ PASS GitHub Action führt WAFPass-Scans in CI/CD aus und übermittelt die Ergebnisse an den WAFPass-Server. Unterstützt Terraform, Bicep, CDK und Pulumi sowie Bearer-Token- oder API-Key-Authentifizierung und konfigurierbare Fehlerpolitiken."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-mcp"
+          data="changelog_wafpass_mcp"
+          group_key="group_de"
+          text_key="text_de"
+          pr_base_url="https://github.com/waf2p/wafpass-mcp/pull/"
+          history_url="https://github.com/waf2p/wafpass-mcp/commits/main"
+          history_label="Vollständiger Verlauf:"
+          history_link_text="github.com/waf2p/wafpass-mcp"
+          launch_title="v0.1.0 veröffentlicht"
+          launch_body="WAF++ MCP Bridge stellt WAFpass-REST-Endpunkte als Model-Context-Protocol-Tools für KI-Assistenten bereit. Nutzt SSE-Transport, rollenbewusste Tool-Filterung und OpenAPI-gesteuerte Argumentenvalidierung."
         %}
       </div>
 
