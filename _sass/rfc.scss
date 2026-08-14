@@ -369,6 +369,124 @@
   p  { margin: 0; font-size: 0.9rem; color: var(--radical-muted); line-height: 1.6; }
 }
 
+// ── Code window (shared with marketing pages) ────────────────────────────
+
+.code-window {
+  border: 1px solid var(--radical-border);
+  border-radius: 18px;
+  background: var(--radical-surface-2);
+  overflow: hidden;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  position: relative;
+
+  & + .code-window { margin-top: 24px; }
+}
+
+.code-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--radical-border);
+  position: relative;
+}
+
+.code-window__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2);
+
+  &:nth-child(1) { background: #ff5f57; }
+  &:nth-child(2) { background: #febc2e; }
+  &:nth-child(3) { background: #28c840; }
+}
+
+.code-window__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--radical-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  max-width: calc(100% - 120px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.code-window__body {
+  margin: 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-family: ui-monospace, "Cascadia Code", "Fira Code", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--radical-text);
+  background: transparent;
+  tab-size: 2;
+
+  code {
+    display: block;
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+.code-window__copy {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--radical-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--radical-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+
+  &:hover {
+    color: var(--brand-400);
+    border-color: rgba(0, 148, 255, 0.35);
+    background: rgba(0, 148, 255, 0.08);
+  }
+
+  i { width: 14px; height: 14px; }
+
+  .copied-label {
+    display: none;
+  }
+
+  &.is-copied {
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.35);
+    background: rgba(74, 222, 128, 0.08);
+
+    .copy-label { display: none; }
+    .copied-label { display: inline; }
+  }
+}
+
+@media (max-width: 640px) {
+  .code-window__title { display: none; }
+  .code-window__body { padding: 14px 16px; font-size: 0.8rem; }
+}
+
 // ── Process table ─────────────────────────────────────────────────────────
 
 .rfc-table-wrap {
