@@ -1,0 +1,104 @@
+---
+layout: default
+lang: it
+ref: translations
+title: "Copertura della traduzione"
+description: "Panoramica delle pagine che esistono in una sola lingua."
+permalink: /it/translations/
+---
+{% include lang-vars.html %}
+
+<section class="hero hero--page hero--centered">
+  <div class="container">
+    <div class="badge"><span class="dot"></span>WAF++</div>
+    <h1>{{ i18n.common.translation_report_title }}</h1>
+    <p class="lead" style="max-width: 78ch;">
+      {{ i18n.common.translation_report_intro }}
+    </p>
+
+    <div class="hero-actions" style="margin-top: 22px; justify-content:center;">
+      {% for l in supported_langs %}
+        {% unless l == lang %}
+          {% if l == 'en' %}
+            {% assign trans_url = '/translations/' %}
+          {% else %}
+            {% assign trans_url = '/' | append: l | append: '/translations/' %}
+          {% endif %}
+          <a class="btn" href="{{ trans_url | relative_url }}">{{ site.data.i18n[l].lang_name }}</a>
+        {% endunless %}
+      {% endfor %}
+      <a class="btn" href="{{ lang_prefix | append: '/faq/' | relative_url }}">FAQ</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-kicker">Indice</div>
+    <div class="section-title">{{ i18n.common.translation_report_title }}</div>
+    <p class="muted" style="max-width: 90ch; margin-top: 10px;">
+      {{ i18n.common.translation_report_intro }}
+    </p>
+
+    {% assign pages_with_ref = site.pages | where_exp: "p", "p.ref" %}
+    {% assign refs = "" | split: "" %}
+
+    {% for p in pages_with_ref %}
+      {% if p.ref %}
+        {%- comment -%}IMPORTANTE: NON ordinare refs, perché alcune pagine potrebbero avere ref numerici (Integer)
+mentre altri hanno refs string, che rompe Liquid/Ruby smistamento.
+{%- endcomment -%}
+        {% assign refs = refs | push: p.ref %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign refs = refs | uniq %}
+    {% assign all_langs = "en de fr nl es it pl pt" | split: " " %}
+
+    <div class="card card-pad" style="margin-top: 18px;">
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+          <tr>
+            <th style="width: 16%;">{{ i18n.common.translation_report_ref | default: "Key" }}</th>
+            {% for l in all_langs %}
+            <th style="width: 10.5%;">{{ site.data.i18n[l].lang_name }}</th>
+            {% endfor %}
+          </tr>
+          </thead>
+          <tbody>
+          {% for r in refs %}
+          {% assign items = pages_with_ref | where: "ref", r %}
+
+          <tr>
+            <td><code>{{ r }}</code></td>
+
+            {% for l in all_langs %}
+              {% assign item = nil %}
+              {% for p in items %}
+                {% if p.lang == l %}
+                  {% assign item = p %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              <td>
+                {% if item %}
+                <a href="{{ item.url | relative_url }}">{{ item.title | default: item.name | default: item.url }}</a>
+                {% else %}
+                <span class="muted">—</span>
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="muted small" style="margin-top: 12px;">
+        {{ i18n.common.translation_report_tip | default: "Tip: ensure each page has ref: and lang: in front matter." }}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,250 @@
+---
+layout: default
+lang: nl
+ref: wafpass_mcp
+title: "WAF++ MCP-brug"
+description: "Sluit Claude Desktop en andere MCP-hosts aan op uw WAFPass backend via een beveiligde Model Context Protocol brug."
+permalink: /nl/wafpass-mcp/
+---
+
+<div class="page-radical wafpass-page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="wafpass-hero" aria-label="WAF++ MCP Bridge">
+    <div class="wafpass-hero__orb wafpass-hero__orb--blue" aria-hidden="true"></div>
+    <div class="wafpass-hero__orb wafpass-hero__orb--gold" aria-hidden="true"></div>
+    <div class="wafpass-hero__orb wafpass-hero__orb--purple" aria-hidden="true"></div>
+    <div class="container wafpass-hero__inner">
+      <div class="wafpass-hero__badge">
+        <span class="wafpass-hero__badge-dot"></span>v0.1.2 &middot; PyPI &middot; Bron openen
+</div>
+      <h1>Uw WAFPass gegevens,<br><span class="text-gradient-radical">binnen elke MCP host.</span></h1>
+      <p class="wafpass-hero__lead">WAF++ MCP Bridge stelt de WAFPass REST API bloot als Model Context Protocol tools voor AI assistenten. Vraag Claude om een lijst van Runs, Inspecteer bevindingen, of verken nalevingsdata </p>
+      <div class="wafpass-hero__actions">
+        <a class="btn-glow" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">Get from PyPI &rarr;</a>
+        <a class="btn-glass" href="https://github.com/WAF2p/wafpass-mcp" target="_blank" rel="noopener">Beeld op GitHub</a>
+        <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">WAFPass installeren</a>
+      </div>
+      <div class="wafpass-hero__compliance">
+        <span class="control-pill">MCP</span>
+        <span class="control-pill">SSE</span>
+        <span class="control-pill">stdio</span>
+        <span class="control-pill">OIDC-doorlaatbaarheid</span>
+        <span class="control-pill">Rolfiltering</span>
+        <span class="control-pill">OpenAPI gegenereerd</span>
+        <span class="control-pill">Token introspectie</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section class="stats-band wafpass-stats" aria-label="Key numbers">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">v0.1.2</div>
+          <div class="stat-label">PyPI release</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">113+</div>
+          <div class="stat-label">Aanwezig gereedschap</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Vervoer</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Extra referenties nodig</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FEATURES ===================== -->
+  <section class="bento-section" aria-label="Features">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Kenmerken</div>
+        <h2 class="section-title-radical">Een beveiligde brug, geen tweede auth systeem.</h2>
+        <p class="section-lead-radical">De brug gebruikt WAFPass identiteit, machtigingen en audit trails. Het valideert, proxies, en filtert nooit bewaart cloud geheimen of IdP wachtwoorden.</p>
+      </div>
+
+      <div class="wafpass-stack">
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">IdP-agnostisch</div>
+          <p class="wafpass-stack__desc">Geen directe Keycoak, Entra of Okta integratie. De brug vertrouwt tokens uitgegeven door<code>wafpass-server</code>, die al omgaan met OIDC en SAML stromen.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="scan" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Token introspectie</div>
+          <p class="wafpass-stack__desc">Elke nieuwe SSE verbinding is gevalideerd tegen<code>GET /auth/me</code>. Onmiddellijke intrekking detectie en geen JWT geheim delen vereist.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="eye-off" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Hulpmiddelen voor de minst bevoorrechten</div>
+          <p class="wafpass-stack__desc"><code>tools/list</code>wordt gefilterd door de rol van de geauthentiseerde gebruiker. Admin-only eindpunten blijven onzichtbaar voor ingenieurs, en rij-niveau auth van toepassing op elke backend call.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="repeat" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">Context propagation</div>
+          <p class="wafpass-stack__desc">Het origineel<code>Authorization: Bearer</code>header wordt doorgestuurd naar WAFPass op elk aangeprezen verzoek, het behoud van de gebruikersidentiteit en audittoeschrijving.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="file-json" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">OpenAPI gegenereerd</div>
+          <p class="wafpass-stack__desc">Bij het opstarten van de brug haalt<code>/openapi.json</code>en registreert veilige operaties als getypte MCP-tools met Pydantic-valideerde argumenten.</p>
+        </div>
+
+        <div class="wafpass-stack__card">
+          <div class="wafpass-stack__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
+          <div class="wafpass-stack__name">stdio of SSE</div>
+          <p class="wafpass-stack__desc">Start de brug als een lokaal stdio-proces voor Claude Desktop, of ontmasker het via HTTP/SSE voor externe MCP-hosts en browsergebaseerde clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== QUICK START ===================== -->
+  <section class="bento-section" id="quick-start" style="padding-top:0;" aria-label="Quick start">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Snel starten</div>
+        <h2 class="section-title-radical">Verbind Claude Desktop in minuten.</h2>
+        <p class="section-lead-radical">Installeer de brug, log één keer in en wijs Claude Desktop op het stdio commando. Geen certificaten, geen open poorten, geen extra auth.</p>
+      </div>
+
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">1. Installeren en configureren</span>
+        </div>
+        <pre class="code-window__body"><code>git clone https://github.com/WAF2p/wafpass-mcp.git
+cd wafpass-mcp
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+
+wafpass-mcp-configure
+# Enter WAFpass API URL, username and password</code></pre>
+      </div>
+
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">2. Claude Desktop config (stdio)</span>
+        </div>
+        <pre class="code-window__body"><code>{
+  "mcpServers": {
+    "wafpass": {
+      "command": "/path/to/wafpass-mcp/.venv/bin/wafpass-mcp-stdio"
+    }
+  }
+}</code></pre>
+      </div>
+
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">3. Docker Compose (alternatief)</span>
+        </div>
+        <pre class="code-window__body"><code># From the WAF++ repository root
+docker compose up -d wafpass-mcp
+
+# SSE endpoint: http://localhost:3001/sse
+# Override WAFPASS_TOKEN_MODE or WAFPASS_JWT_SECRET in .env</code></pre>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== ARCHITECTURE ===================== -->
+  <section class="bento-section" style="padding-top:0;" aria-label="Architecture">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">Bouwkunde</div>
+        <h2 class="section-title-radical">Hoe de brug past.</h2>
+        <p class="section-lead-radical">De gebruiker authenticeert via de upstream IdP, wisselt tokens uit met WAFPass, brengt dan dezelfde Bearer token naar de MCP host. De brug proxies verzoeken en filters tools per rol.</p>
+      </div>
+
+      <div class="wafpass-flow" style="margin-bottom:32px;">
+        <div class="wafpass-flow__node wafpass-flow__node--iac">
+          <div class="wafpass-flow__node-label">Gebruiker</div>
+          <div class="wafpass-flow__node-name">SSO-aanmelding</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--cli">
+          <div class="wafpass-flow__node-label">IDP</div>
+          <div class="wafpass-flow__node-name">Sleutelmantel / Entra</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--api">
+          <div class="wafpass-flow__node-label">WAFPass</div>
+          <div class="wafpass-flow__node-name">wafpass-server</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--ui">
+          <div class="wafpass-flow__node-label">AI client</div>
+          <div class="wafpass-flow__node-name">MCP-host</div>
+        </div>
+        <div class="wafpass-flow__arrow">&rarr;</div>
+        <div class="wafpass-flow__node wafpass-flow__node--api">
+          <div class="wafpass-flow__node-label">Brug</div>
+          <div class="wafpass-flow__node-name">wafpass-mcp</div>
+        </div>
+      </div>
+
+      <div class="rfc-table-wrap">
+        <table class="rfc-table">
+          <thead>
+            <tr><th>Variabele</th><th>Standaard</th><th>Omschrijving</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>WAFPASS_API_BASE_URL</code></td><td><code>http://localhost:8000</code></td><td>Opwaarts WAFpass API.</td></tr>
+            <tr><td><code>WAFPASS_TOKEN_MODE</code></td><td><code>introspection</code></td><td><code>introspection</code>of<code>jwt_secret</code>voor lokale HS256.</td></tr>
+            <tr><td><code>WAFPASS_JWT_SECRET</code></td><td>Wat?</td><td>Vereist voor<code>jwt_secret</code>modus; moet overeenkomen met backend.</td></tr>
+            <tr><td><code>WAFPASS_ACCESS_TOKEN</code></td><td>Wat?</td><td>WAF++ token voor stdio-modus; optioneel indien opgeslagen door helper instellen.</td></tr>
+            <tr><td><code>WAFPASS_REFRESH_TOKEN</code></td><td>Wat?</td><td>Vernieuw token voor automatische access-token vernieuwen in stdio-modus.</td></tr>
+            <tr><td><code>WAFPASS_REFRESH_THRESHOLD_SECONDS</code></td><td><code>300</code></td><td>Access token vernieuwen als het verloopt binnen deze vele seconden.</td></tr>
+            <tr><td><code>MCP_HOST</code></td><td><code>0.0.0.0</code></td><td>Brugbindhost in HTTP/SSE-modus.</td></tr>
+            <tr><td><code>MCP_PORT</code></td><td><code>3001</code></td><td>Brugbindpoort in HTTP/SSE-modus.</td></tr>
+            <tr><td><code>LOG_LEVEL</code></td><td><code>INFO</code></td><td>Logniveau.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-radical">
+    <div class="cta-radical__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cta-radical__inner">
+        <div class="kicker-radical" style="margin-bottom:14px;">Klaar om te verbinden?</div>
+        <h2 class="cta-radical__title">Laat AI-assistenten werken met uw nalevingsgegevens.</h2>
+        <p class="cta-radical__lead">Installeer de brug van PyPI of GitHub, sluit deze aan op Claude Desktop, en begin met het vragen van natuurlijke taal vragen over runs, bevindingen en controles.</p>
+        <div class="cta-radical__actions">
+          <a class="btn-glow" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">Get from PyPI &rarr;</a>
+          <a class="btn-glass" href="{{ '/wafpass/' | relative_url }}">Over WAFPass</a>
+          <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">WAFPass installeren</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

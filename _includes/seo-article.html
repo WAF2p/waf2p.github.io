@@ -2,9 +2,10 @@
 JSON-LD Article schema + BreadcrumbList for post pages.
 Placed in <body> via post layout — valid per schema.org spec.
 {%- endcomment -%}
+{%- include lang-vars.html -%}
 {%- assign _abs_base   = site.url | append: site.baseurl -%}
 {%- assign _abs_url    = _abs_base | append: page.url -%}
-{%- assign _art_desc   = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 -%}
+{%- assign _art_desc   = page.description | default: page.excerpt | default: i18n.site_description | default: site.description | strip_html | strip_newlines | truncate: 160 -%}
 {%- comment -%} Image: frontmatter image > first <img> in content > site logo {%- endcomment -%}
 {%- assign _art_first_img = nil -%}
 {%- if page.content contains '<img' -%}

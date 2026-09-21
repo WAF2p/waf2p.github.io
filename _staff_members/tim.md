@@ -5,6 +5,8 @@ image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/urlaub-tim-w
 github: t1murl
 blurb: Seine Leidenschaft ist es, Lösungen zu entwickeln, die es Entwicklern
   und (internen) Kunden ermöglichen, produktiver zu sein.
+blurb_en: His passion is developing solutions that enable developers and (internal)
+  customers to be more productive.
 social:
 - name: Github
   link: https://github.com/t1murl/

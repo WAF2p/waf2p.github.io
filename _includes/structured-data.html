@@ -5,7 +5,9 @@ Structured Data (JSON-LD)
 - FAQPage: faq page (from _data/faq)
 {%- endcomment -%}
 
+{%- include lang-vars.html -%}
 {%- assign abs_base = site.url | append: site.baseurl -%}
+{%- assign _org_desc = i18n.site_description | default: site.description -%}
 
 <script type="application/ld+json">
 {
@@ -13,7 +15,7 @@ Structured Data (JSON-LD)
   "@type": "Organization",
   "name": "{{ site.title | escape }}",
   "url": "{{ abs_base }}",
-  {%- if site.description %}"description": "{{ site.description | strip_newlines | escape }}",{%- endif -%}
+  {%- if _org_desc %}"description": "{{ _org_desc | strip_newlines | escape }}",{%- endif -%}
   {%- if site.logo %}"logo": "{{ abs_base }}{{ site.logo | relative_url }}",{%- endif -%}
   "sameAs": [
     "https://github.com/waf2p/"

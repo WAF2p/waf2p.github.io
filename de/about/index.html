@@ -133,11 +133,22 @@ lang: de
             <div class="person-card-radical__name">
               <a href="{{ '/de/staff_members/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a>
             </div>
-            <div class="person-card-radical__role">{{ person.position }}</div>
+            {% if lang == 'de' %}
+              {% assign person_position = person.position %}
+            {% else %}
+              {% assign person_position = person.position_en | default: person.position %}
+            {% endif %}
+            <div class="person-card-radical__role">{{ person_position }}</div>
           </div>
         </div>
-        {% if person.blurb %}
-        <p class="person-card-radical__bio">{{ person.blurb }}</p>
+        {% if lang == 'de' %}
+          {% assign person_blurb = person.blurb %}
+        {% else %}
+          {% assign person_blurb_key = 'blurb_' | append: lang %}
+          {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
+        {% endif %}
+        {% if person_blurb %}
+        <p class="person-card-radical__bio">{{ person_blurb }}</p>
         {% endif %}
         {% if person.social %}
         <div class="person-card-radical__social">
@@ -168,7 +179,13 @@ lang: de
     </div>
 
     <div class="team-grid">
-      {% for person in site.data.honoured_members %}
+      {% if lang == 'de' %}
+        {% assign honoured_members = site.data.honoured_members %}
+      {% else %}
+        {% assign honoured_data_key = 'honoured_members_' | append: lang %}
+        {% assign honoured_members = site.data[honoured_data_key] | default: site.data.honoured_members_en | default: site.data.honoured_members %}
+      {% endif %}
+      {% for person in honoured_members %}
       <article class="card-radical person-card-radical">
         <div class="person-card-radical__head">
           <img class="person-card-radical__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">
@@ -180,11 +197,22 @@ lang: de
               {{ person.name }}
               {% endif %}
             </div>
-            <div class="person-card-radical__role">{{ person.position }}</div>
+            {% if lang == 'de' %}
+              {% assign person_position = person.position %}
+            {% else %}
+              {% assign person_position = person.position_en | default: person.position %}
+            {% endif %}
+            <div class="person-card-radical__role">{{ person_position }}</div>
           </div>
         </div>
-        {% if person.blurb %}
-        <p class="person-card-radical__bio">{{ person.blurb }}</p>
+        {% if lang == 'de' %}
+          {% assign person_blurb = person.blurb %}
+        {% else %}
+          {% assign person_blurb_key = 'blurb_' | append: lang %}
+          {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
+        {% endif %}
+        {% if person_blurb %}
+        <p class="person-card-radical__bio">{{ person_blurb }}</p>
         {% endif %}
       </article>
       {% endfor %}

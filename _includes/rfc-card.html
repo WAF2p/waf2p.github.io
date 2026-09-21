@@ -1,52 +1,83 @@
 {%- assign rfc = include.rfc -%}
-{%- assign lang = include.lang | default: "en" -%}
+{%- assign lang = include.lang | default: page.lang | default: "en" -%}
 {%- assign repo = rfc.repo | default: "framework" -%}
-{%- if lang == "de" -%}
-  {%- assign rfc_title   = rfc.title_de -%}
-  {%- assign rfc_summary = rfc.summary_de -%}
-  {%- assign label_author = "Autor" -%}
-  {%- assign label_opened = "Eröffnet" -%}
-  {%- assign label_decided = "Entschieden" -%}
-  {%- assign label_implemented = "Umgesetzt" -%}
-  {%- assign label_discussion = "Diskussion" -%}
-  {%- assign label_pr = "PR" -%}
-  {%- assign label_commenters = "Kommentare" -%}
-{%- else -%}
-  {%- assign rfc_title   = rfc.title_en -%}
-  {%- assign rfc_summary = rfc.summary_en -%}
-  {%- assign label_author = "Author" -%}
-  {%- assign label_opened = "Opened" -%}
-  {%- assign label_decided = "Decided" -%}
-  {%- assign label_implemented = "Implemented" -%}
-  {%- assign label_discussion = "Discussion" -%}
-  {%- assign label_pr = "PR" -%}
-  {%- assign label_commenters = "Commenters" -%}
-{%- endif -%}
-<div class="rfc-card">
+{%- assign kind = rfc.kind | default: "rfc" -%}
+{%- assign decisions_repo = "https://github.com/WAF2p/decisions" -%}
+
+{%- assign title_key = 'title_' | append: lang -%}
+{%- assign summary_key = 'summary_' | append: lang -%}
+{%- assign rfc_title = rfc[title_key] | default: rfc.title_en | default: rfc.title -%}
+{%- assign rfc_summary = rfc[summary_key] | default: rfc.summary_en | default: rfc.summary -%}
+
+{%- assign label_author = i18n.common.rfc_label_author | default: "Author" -%}
+{%- assign label_opened = i18n.common.rfc_label_opened | default: "Opened" -%}
+{%- assign label_decided = i18n.common.rfc_label_decided | default: "Decided" -%}
+{%- assign label_implemented = i18n.common.rfc_label_implemented | default: "Implemented" -%}
+{%- assign label_discussion = i18n.common.rfc_label_discussion | default: "Discussion" -%}
+{%- assign label_record = i18n.common.rfc_label_record | default: "Record" -%}
+{%- assign label_pr = i18n.common.rfc_label_pr | default: "PR" -%}
+{%- assign label_commenters = i18n.common.rfc_label_commenters | default: "Commenters" -%}
+{%- assign label_date = i18n.common.rfc_label_date | default: "Date" -%}
+{%- assign label_kind_rfc = i18n.common.rfc_label_kind_rfc | default: "RFC" -%}
+{%- assign label_kind_adr = i18n.common.rfc_label_kind_adr | default: "ADR" -%}
+{%- assign label_repos = i18n.common.rfc_label_repos | default: "Repos" -%}
+{%- assign label_tags = i18n.common.rfc_label_tags | default: "Tags" -%}
+{%- assign label_issue = i18n.common.rfc_label_issue | default: "Issue" -%}
+
+{%- assign record_url = rfc.source_url | default: rfc.discussion -%}
+{%- unless record_url -%}
+  {%- if rfc.path -%}
+    {%- assign record_url = decisions_repo | append: "/blob/main/" | append: rfc.path -%}
+  {%- endif -%}
+{%- endunless -%}
+
+<div class="rfc-card rfc-card--{{ kind }}">
   <div class="rfc-card-header">
+    {%- if kind == "adr" -%}
+    <span class="rfc-kind rfc-kind--{{ kind }}">{{ label_kind_adr }}</span>
+    {%- else -%}
+    <span class="rfc-kind rfc-kind--{{ kind }}">{{ label_kind_rfc }}</span>
+    {%- endif -%}
     <span class="rfc-id">{{ rfc.id }}</span>
     <span class="rfc-title">{{ rfc_title }}</span>
   </div>
   <div class="rfc-badges">
     <span class="rfc-status rfc-status--{{ rfc.status }}">{{ rfc.status | replace: "_", " " }}</span>
+    {%- if rfc.category and rfc.category != "" -%}
     <span class="rfc-cat rfc-cat--{{ rfc.category }}">{{ rfc.category }}</span>
+    {%- endif -%}
+    {%- if rfc.tags and rfc.tags.size > 0 -%}
+      {%- for tag in rfc.tags -%}
+      <span class="rfc-tag">{{ tag }}</span>
+      {%- endfor -%}
+    {%- endif -%}
   </div>
   <p class="rfc-summary">{{ rfc_summary }}</p>
   <div class="rfc-meta">
     <span class="rfc-meta-author">
       <strong>{{ label_author }}:</strong>
       {%- if rfc.author_avatar -%}
-      <a href="{{ rfc.author_url | default: rfc.discussion }}" target="_blank" rel="noopener" class="rfc-avatar-link" title="{{ rfc.author }}">
+      <a href="{{ rfc.author_url | default: record_url }}" target="_blank" rel="noopener" class="rfc-avatar-link" title="{{ rfc.author }}">
         <img class="rfc-avatar" src="{{ rfc.author_avatar }}" alt="{{ rfc.author }}" loading="lazy" width="22" height="22">
       </a>
       {%- endif -%}
-      {{ rfc.author }}
+      &nbsp;{{ rfc.author }}
     </span>
-    <span><strong>{{ label_opened }}:</strong> {{ rfc.opened }}</span>
-    {%- if rfc.decided %}<span><strong>{{ label_decided }}:</strong> {{ rfc.decided }}</span>{% endif -%}
-    {%- if rfc.implemented %}<span><strong>{{ label_implemented }}:</strong> {{ rfc.implemented }}</span>{% endif -%}
-    {%- if rfc.discussion %}<span><strong>{{ label_discussion }}:</strong> <a href="{{ rfc.discussion }}" target="_blank" rel="noopener">GitHub →</a></span>{% endif -%}
-    {%- if rfc.pr %}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/WAF2p/{{ repo }}/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{% endif -%}
+    {%- if rfc.opened -%}<span><strong>{{ label_opened }}:</strong> {{ rfc.opened }}</span>{%- endif -%}
+    {%- if rfc.date -%}<span><strong>{{ label_date }}:</strong> {{ rfc.date }}</span>{%- endif -%}
+    {%- if rfc.decided -%}<span><strong>{{ label_decided }}:</strong> {{ rfc.decided }}</span>{%- endif -%}
+    {%- if rfc.implemented -%}<span><strong>{{ label_implemented }}:</strong> {{ rfc.implemented }}</span>{%- endif -%}
+    {%- if record_url -%}
+      {%- assign link_label = label_discussion -%}
+      {%- if kind == "adr" and rfc.source_url == nil and rfc.discussion == nil -%}
+        {%- assign link_label = label_record -%}
+      {%- endif -%}
+    <span><strong>{{ link_label }}:</strong> <a href="{{ record_url }}" target="_blank" rel="noopener">GitHub →</a></span>{%- endif -%}
+    {%- if rfc.pr -%}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/WAF2p/{{ repo }}/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{%- endif -%}
+    {%- if rfc.issue_number -%}<span><strong>{{ label_issue }}:</strong> <a href="{{ record_url }}" target="_blank" rel="noopener">#{{ rfc.issue_number }}</a></span>{%- endif -%}
+    {%- if rfc.repos and rfc.repos.size > 0 -%}
+    <span class="rfc-meta-repos"><strong>{{ label_repos }}:</strong> {{ rfc.repos | join: ", " }}</span>
+    {%- endif -%}
     {%- if rfc.comment_count and rfc.comment_count > 0 -%}
     <span class="rfc-meta-commenters">
       <strong>{{ label_commenters }}:</strong>

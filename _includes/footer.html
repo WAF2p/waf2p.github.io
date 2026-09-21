@@ -2,16 +2,29 @@
   {% include lang-vars.html %}
   <div class="container">
     <div class="footer-columns">
-      {% assign footer_data = site.data.footer_en %}
-      {% if lang == 'de' %}{% assign footer_data = site.data.footer_de %}{% endif %}
+      {% assign footer_key = 'footer_' | append: lang %}
+      {% assign footer_data = site.data[footer_key] %}
+      {% unless footer_data %}{% assign footer_data = site.data.footer_en %}{% endunless %}
       {% for column in footer_data %}
         <ul class="footer-links">
           {% for link in column.links %}
             {%- assign link_path = link.link -%}
+            {%- assign link_localized = true -%}
+            {%- if link.localized == false or link.no_lang_prefix == true -%}
+              {%- assign link_localized = false -%}
+            {%- endif -%}
             {%- if link_path contains '://' -%}
               {%- assign link_href = link_path -%}
             {%- else -%}
-              {%- assign link_href = lang_prefix | append: link_path -%}
+              {%- if link_localized -%}
+                {%- assign link_href = lang_prefix | append: link_path -%}
+              {%- else -%}
+                {%- assign link_href = link_path -%}
+              {%- endif -%}
+            {%- endif -%}
+            {%- comment -%}Blog is translated only for DE; other languages fall back to EN blog.{%- endcomment -%}
+            {%- if link.key == 'blog' and lang != 'de' -%}
+              {%- assign link_href = '/blog/' -%}
             {%- endif -%}
             <li>
               <a
@@ -19,8 +32,12 @@
                 {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
                 {% if link.social_icon %}class="social-link"{% endif %}
               >
+                {%- assign link_label = link.name -%}
+                {%- if link.key and i18n.nav[link.key] -%}
+                  {%- assign link_label = i18n.nav[link.key] -%}
+                {%- endif -%}
                 {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
-                {{ link.name }}
+                {{ link_label }}
               </a>
             </li>
           {% endfor %}

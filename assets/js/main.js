@@ -145,6 +145,20 @@
 })();
 
 
+(function () {
+  // Remember when a visitor explicitly picks a language via the switcher,
+  // so the auto-redirect does not override their choice on later visits.
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('[data-lang-option]');
+    if (!link) return;
+    try {
+      localStorage.setItem('lang-override', '1');
+      sessionStorage.setItem('lang-redirect-done', '1');
+    } catch (err) {}
+  });
+})();
+
+
 // Theme toggle (light/dark) with persistence
 (function () {
   const root = document.documentElement;
@@ -229,5 +243,47 @@
     setTimeout(showModal, 600);
     if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
   }
+})();
+
+
+// Language switch dropdown (enhances the CSS checkbox fallback)
+(function () {
+  const toggles = document.querySelectorAll('[data-lang-toggle]');
+  if (!toggles.length) return;
+
+  toggles.forEach(function (root) {
+    const check = root.querySelector('.lang-switch__check');
+    const trigger = root.querySelector('.lang-switch__trigger');
+    const menu = root.querySelector('.lang-switch__menu');
+    if (!check || !trigger || !menu) return;
+
+    function syncAria() {
+      trigger.setAttribute('aria-expanded', String(check.checked));
+    }
+
+    function close() {
+      check.checked = false;
+      syncAria();
+    }
+
+    check.addEventListener('change', syncAria);
+
+    // close when clicking a language option
+    menu.querySelectorAll('.lang-option').forEach(function (link) {
+      link.addEventListener('click', function () {
+        close();
+      });
+    });
+
+    // close when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) close();
+    });
+
+    // keyboard: close on Escape
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { close(); trigger.focus(); }
+    });
+  });
 })();
 

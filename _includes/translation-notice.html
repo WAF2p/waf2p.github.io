@@ -3,62 +3,86 @@
 {%- comment -%}
   Phase 3: Translation workflow helper
 
-  Shows a small notice when the current page has no counterpart in the other language.
+  Shows a small notice when the current page does not have a counterpart in every
+  supported language. With 8 languages this is intentionally conservative.
   - Uses page.ref for reliable pairing
   - Falls back to mirrored URL existence check
   - GitHub Pages safe (no plugins)
 {%- endcomment -%}
 
 {%- assign candidates = site.pages | concat: site.documents -%}
+{%- assign supported = "en de fr nl es it pl pt" | split: " " -%}
 
-{%- assign other_lang = 'de' -%}
-{%- if lang == 'de' -%}{%- assign other_lang = 'en' -%}{%- endif -%}
+{%- assign missing_langs = "" | split: "" -%}
 
-{%- assign has_other = false -%}
+{%- for l in supported -%}
+  {%- unless l == lang -%}
+    {%- assign has_counterpart = false -%}
 
-{%- if page.ref and page.ref != '' -%}
-  {%- assign other_page = candidates | where: 'ref', page.ref | where: 'lang', other_lang | first -%}
-  {%- if other_page and other_page.url -%}
-    {%- assign has_other = true -%}
-  {%- endif -%}
-{%- else -%}
-  {%- comment -%}Fallback: mirrored path existence{%- endcomment -%}
-  {%- assign path_no_prefix = page.url -%}
-  {%- if lang == 'de' -%}
-    {%- assign path_no_prefix = page.url | remove_first: '/de' -%}
-    {%- if path_no_prefix == '' -%}{%- assign path_no_prefix = '/' -%}{%- endif -%}
-  {%- endif -%}
-  {%- assign mirrored = path_no_prefix -%}
-  {%- if lang == 'en' -%}
-    {%- assign mirrored = '/de' | append: path_no_prefix -%}
-    {%- if path_no_prefix == '/' -%}{%- assign mirrored = '/de/' -%}{%- endif -%}
-  {%- endif -%}
-  {%- if lang == 'de' -%}
-    {%- assign mirrored = path_no_prefix -%}
-  {%- endif -%}
-  {%- assign mirrored_page = candidates | where: 'url', mirrored | first -%}
-  {%- if mirrored_page -%}{%- assign has_other = true -%}{%- endif -%}
-{%- endif -%}
+    {%- if page.ref and page.ref != '' -%}
+      {%- assign counterpart = candidates | where: 'ref', page.ref | where: 'lang', l | first -%}
+      {%- if counterpart and counterpart.url -%}
+        {%- assign has_counterpart = true -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- comment -%}Fallback: mirrored path existence{%- endcomment -%}
+      {%- assign path_no_prefix = page.url -%}
+      {%- if lang != 'en' -%}
+        {%- assign path_no_prefix = page.url | remove_first: lang_prefix -%}
+        {%- if path_no_prefix == '' -%}{%- assign path_no_prefix = '/' -%}{%- endif -%}
+      {%- endif -%}
+      {%- if l == 'en' -%}
+        {%- assign mirrored = path_no_prefix -%}
+      {%- else -%}
+        {%- assign mirrored = '/' | append: l | append: path_no_prefix -%}
+      {%- endif -%}
+      {%- assign mirrored_page = candidates | where: 'url', mirrored | first -%}
+      {%- if mirrored_page -%}{%- assign has_counterpart = true -%}{%- endif -%}
+    {%- endif -%}
+
+    {%- unless has_counterpart -%}
+      {%- comment -%}Count as missing only if an English page for this ref/path exists.
+        This prevents notices for intentionally single-language collections (e.g. blog).
+      {%- endcomment -%}
+      {%- assign english_exists = false -%}
+      {%- if page.ref and page.ref != '' -%}
+        {%- assign english_page = candidates | where: 'ref', page.ref | where: 'lang', 'en' | first -%}
+        {%- if english_page and english_page.url -%}{%- assign english_exists = true -%}{%- endif -%}
+      {%- else -%}
+        {%- assign path_no_prefix = page.url -%}
+        {%- if lang != 'en' -%}
+          {%- assign path_no_prefix = page.url | remove_first: lang_prefix -%}
+          {%- if path_no_prefix == '' -%}{%- assign path_no_prefix = '/' -%}{%- endif -%}
+        {%- endif -%}
+        {%- assign english_page = candidates | where: 'url', path_no_prefix | first -%}
+        {%- if english_page -%}{%- assign english_exists = true -%}{%- endif -%}
+      {%- endif -%}
+      {%- if english_exists -%}
+        {%- assign lang_name = site.data.i18n[l].lang_name | default: l | upcase -%}
+        {%- assign missing_langs = missing_langs | push: lang_name -%}
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endunless -%}
+{%- endfor -%}
 
 {%- comment -%}
   Optional opt-out per page: translation_notice: false
 {%- endcomment -%}
-{%- if page.translation_notice == false -%}{%- assign has_other = true -%}{%- endif -%}
+{%- if page.translation_notice == false -%}{%- assign missing_langs = "" | split: "" -%}{%- endif -%}
 
 {%- comment -%}
   Do not show translation notices on blog posts.
   Posts are often intentionally single-language, and the notice is visually noisy.
 {%- endcomment -%}
 {%- if page.layout == 'post' or page.collection == 'posts' -%}
-  {%- assign has_other = true -%}
+  {%- assign missing_langs = "" | split: "" -%}
 {%- endif -%}
 
-{%- if has_other == false -%}
-  <div class="translation-notice" role="note" aria-label="Translation status">
-    {%- if lang == 'en' -%}
-      {{ i18n.common.translation_missing_de | default: 'This page is not available in German yet.' }}
-    {%- else -%}
-      {{ i18n.common.translation_missing_en | default: 'Diese Seite ist noch nicht auf Englisch verfügbar.' }}
+{%- if missing_langs.size > 0 -%}
+  <div class="translation-notice" role="note" aria-label="{{ i18n.common.translation_report_title | default: 'Translation status' }}">
+    {{ i18n.common.translation_missing_generic | default: 'This page is not available in all languages yet.' }}
+    {%- if missing_langs.size <= 3 -%}
+      <span class="muted" style="margin-left: 4px;">({{ missing_langs | join: ', ' }})</span>
     {%- endif -%}
   </div>
 {%- endif -%}

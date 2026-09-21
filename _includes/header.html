@@ -1,16 +1,15 @@
 <header class="site-header">
   {% include lang-vars.html %}
   <div class="container header-inner">
-    <a class="brand" href="{{ (lang_prefix | append: '/') | relative_url }}">
-      <img src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="WAF++ Logo">
-      <span>{{ site.title }}</span>
+    <a class="brand" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'WAF++ Home' }}">
+      <img src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="WAF++">
     </a>
 
-    <button class="burger" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+    <button class="burger" id="nav-toggle" aria-label="{{ i18n.common.menu_open | default: 'Open menu' }}" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
-    <nav class="nav" aria-label="Hauptnavigation">
+    <nav class="nav" aria-label="{{ i18n.common.main_navigation | default: 'Main navigation' }}">
       {%- assign nav_items = site.data.navigation -%}
 
       {%- comment -%}
@@ -64,31 +63,74 @@
                 <button class="nav-group-toggle" type="button" aria-expanded="false" onclick="var d=this.parentNode.querySelector('.nav-dropdown'),o=d.style.display==='block';document.querySelectorAll('.nav-dropdown').forEach(function(x){x.style.display='none'});if(!o){d.style.display='block';this.setAttribute('aria-expanded','true');}else{this.setAttribute('aria-expanded','false');}">{{ item_label }}</button>
                 <div class="nav-dropdown" aria-label="{{ item_label }} submenu">
                   {% for child in item.children %}
-                    {%- assign child_path = child.link -%}
-                    {%- assign child_localized = item_localized -%}
-                    {%- if child.localized == false or child.no_lang_prefix == true -%}
-                      {%- assign child_localized = false -%}
-                    {%- endif -%}
-                    {%- if child_path contains '://' -%}
-                      {%- assign child_href = child_path -%}
-                    {%- else -%}
-                      {%- if child_localized -%}
-                        {%- assign child_href = lang_prefix | append: child_path -%}
-                      {%- else -%}
-                        {%- assign child_href = child_path -%}
+                    {%- if child.group -%}
+                      {%- assign group_label = child.group -%}
+                      {%- if child.group_key and i18n.nav[child.group_key] -%}
+                        {%- assign group_label = i18n.nav[child.group_key] -%}
                       {%- endif -%}
-                    {%- endif -%}
+                      <span class="nav-dropdown__group">{{ group_label }}</span>
+                      {% for subchild in child.items %}
+                        {%- assign child_path = subchild.link -%}
+                        {%- assign child_localized = item_localized -%}
+                        {%- if subchild.localized == false or subchild.no_lang_prefix == true -%}
+                          {%- assign child_localized = false -%}
+                        {%- endif -%}
+                        {%- if child_path contains '://' -%}
+                          {%- assign child_href = child_path -%}
+                        {%- else -%}
+                          {%- if child_localized -%}
+                            {%- assign child_href = lang_prefix | append: child_path -%}
+                          {%- else -%}
+                            {%- assign child_href = child_path -%}
+                          {%- endif -%}
+                        {%- endif -%}
+                        {%- comment -%}Blog is translated only for DE; other languages fall back to EN blog.{%- endcomment -%}
+                        {%- if subchild.key == 'blog' and lang != 'de' -%}
+                          {%- assign child_href = '/blog/' -%}
+                        {%- endif -%}
 
-                    {%- assign child_label = child.name -%}
-                    {%- if child.key and i18n.nav[child.key] -%}
-                      {%- assign child_label = i18n.nav[child.key] -%}
-                    {%- endif -%}
+                        {%- assign child_label = subchild.name -%}
+                        {%- if subchild.key and i18n.nav[subchild.key] -%}
+                          {%- assign child_label = i18n.nav[subchild.key] -%}
+                        {%- endif -%}
 
-                    {% assign child_active = false %}
-                    {%- if page.url == child_href or (child_href != home_href and page.url contains child_href) -%}
-                      {% assign child_active = true %}
+                        {% assign child_active = false %}
+                        {%- if page.url == child_href or (child_href != home_href and page.url contains child_href) -%}
+                          {% assign child_active = true %}
+                        {%- endif -%}
+                        <a class="nav-dropdown__link{% if child_active %} active{% endif %}" href="{{ child_href | relative_url }}">{{ child_label }}</a>
+                      {% endfor %}
+                    {%- else -%}
+                      {%- assign child_path = child.link -%}
+                      {%- assign child_localized = item_localized -%}
+                      {%- if child.localized == false or child.no_lang_prefix == true -%}
+                        {%- assign child_localized = false -%}
+                      {%- endif -%}
+                      {%- if child_path contains '://' -%}
+                        {%- assign child_href = child_path -%}
+                      {%- else -%}
+                        {%- if child_localized -%}
+                          {%- assign child_href = lang_prefix | append: child_path -%}
+                        {%- else -%}
+                          {%- assign child_href = child_path -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                      {%- comment -%}Blog is translated only for DE; other languages fall back to EN blog.{%- endcomment -%}
+                      {%- if child.key == 'blog' and lang != 'de' -%}
+                        {%- assign child_href = '/blog/' -%}
+                      {%- endif -%}
+
+                      {%- assign child_label = child.name -%}
+                      {%- if child.key and i18n.nav[child.key] -%}
+                        {%- assign child_label = i18n.nav[child.key] -%}
+                      {%- endif -%}
+
+                      {% assign child_active = false %}
+                      {%- if page.url == child_href or (child_href != home_href and page.url contains child_href) -%}
+                        {% assign child_active = true %}
+                      {%- endif -%}
+                      <a class="nav-dropdown__link{% if child_active %} active{% endif %}" href="{{ child_href | relative_url }}">{{ child_label }}</a>
                     {%- endif -%}
-                    <a class="nav-dropdown__link{% if child_active %} active{% endif %}" href="{{ child_href | relative_url }}">{{ child_label }}</a>
                   {% endfor %}
                 </div>
               </div>
@@ -101,8 +143,8 @@
 
       <div class="cta-row">
         {% include lang-switch.html %}
-        <a class="theme-toggle" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="Join WAF++ Community on Slack" title="Join Community Slack">{% include slack-icon.html size=18 %}</a>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Theme umschalten" aria-pressed="false"><i data-lucide="moon"></i></button>
+        <a class="theme-toggle" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="{{ i18n.common.join_slack | default: 'Join WAF++ Community on Slack' }}" title="{{ i18n.common.join_slack | default: 'Join Community Slack' }}">{% include slack-icon.html size=18 %}</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="{{ i18n.common.theme_toggle | default: 'Toggle theme' }}" aria-pressed="false"><i data-lucide="moon"></i></button>
 
         {% for item in nav_items %}
           {% if item.highlight %}
@@ -128,7 +170,8 @@
             {%- if item.key and i18n.nav[item.key] -%}
               {%- assign cta_label = i18n.nav[item.key] -%}
             {%- endif -%}
-            <a class="btn btn-primary{% if cta_active %} active{% endif %}" href="{{ cta_href | relative_url }}">{{ cta_label }}</a>
+            {%- assign cta_class = item.highlight_class | default: 'primary' -%}
+            <a class="btn btn-{{ cta_class }}{% if cta_active %} active{% endif %}" href="{{ cta_href | relative_url }}">{{ cta_label }}</a>
           {% endif %}
         {% endfor %}
       </div>

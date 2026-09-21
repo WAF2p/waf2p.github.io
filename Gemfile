@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.3'
+gem 'asciidoctor-pdf', '~> 2.3'
 gem "logger"
 gem "csv"
 gem "base64"

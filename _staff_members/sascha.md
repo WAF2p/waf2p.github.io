@@ -5,6 +5,8 @@ image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lewandowski-
 github: lewandos
 blurb: Mit einer umfassenden Erfahrung in der IT-Sicherheit trägt er maßgeblich zur
   Entwicklung innovativer Cloud-Lösungen bei.
+blurb_en: With extensive experience in IT security, he contributes significantly to
+  the development of innovative cloud solutions.
 social:
 - name: Github
   link: https://github.com/lewandos

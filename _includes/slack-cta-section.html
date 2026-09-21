@@ -9,23 +9,19 @@
             COMMUNITY SLACK
           </div>
           <h2 style="margin:8px 0 10px;">
-            {% if lang == 'de' %}Diskutiert mit uns auf Slack{% else %}Join the conversation on Slack{% endif %}
+            {{ i18n.common.slack_cta_title | default: "Join the conversation on Slack" }}
           </h2>
           <p class="lead" style="margin:0; max-width: 72ch;">
-            {% if lang == 'de' %}
-              Unser Slack-Workspace ist der Ort für Community-Austausch rund um WAF++ — für Fragen, Framework-Änderungen, Working-Group-Koordination und alles, was auf GitHub zu viel Platz wegnimmt.
-            {% else %}
-              Our Slack workspace is the place for community exchange around WAF++ — questions, framework changes, working group coordination, and everything that would clutter GitHub discussions.
-            {% endif %}
+            {{ i18n.common.slack_cta_lead | default: "Our Slack workspace is the place for community exchange around WAF++ — questions, framework changes, working group coordination, and everything that would clutter GitHub discussions." }}
           </p>
 
           <div class="hero-actions" style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
             <a class="btn btn-primary" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">
               {% include slack-icon.html size=16 %}
-              {% if lang == 'de' %}Slack beitreten{% else %}Join Slack{% endif %}
+              {{ i18n.common.slack_cta_join | default: "Join Slack" }}
             </a>
-            <a class="btn" href="{% if lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">
-              {% if lang == 'de' %}Governance & Community →{% else %}Governance & Community →{% endif %}
+            <a class="btn" href="{{ lang_prefix | append: '/governance-community/' | relative_url }}">
+              {{ i18n.common.slack_cta_governance | default: "Governance &amp; Community →" }}
             </a>
           </div>
         </div>
@@ -36,10 +32,10 @@
               <div class="icon-pill"><i data-lucide="message-circle" aria-hidden="true"></i></div>
               <div>
                 <div style="font-weight:900;">
-                  {% if lang == 'de' %}Community-Austausch{% else %}Community exchange{% endif %}
+                  {{ i18n.common.slack_cta_exchange_label | default: "Community exchange" }}
                 </div>
                 <div class="muted" style="margin-top:2px;">
-                  {% if lang == 'de' %}Fragen, Ideen &amp; Erfahrungen teilen{% else %}Questions, ideas &amp; experience sharing{% endif %}
+                  {{ i18n.common.slack_cta_exchange_desc | default: "Questions, ideas &amp; experience sharing" }}
                 </div>
               </div>
             </div>
@@ -50,10 +46,10 @@
               <div class="icon-pill"><i data-lucide="git-branch" aria-hidden="true"></i></div>
               <div>
                 <div style="font-weight:900;">
-                  {% if lang == 'de' %}Framework-Änderungen{% else %}Framework changes{% endif %}
+                  {{ i18n.common.slack_cta_changes_label | default: "Framework changes" }}
                 </div>
                 <div class="muted" style="margin-top:2px;">
-                  {% if lang == 'de' %}Frühe Diskussion vor RFCs &amp; PRs{% else %}Early discussion before RFCs &amp; PRs{% endif %}
+                  {{ i18n.common.slack_cta_changes_desc | default: "Early discussion before RFCs &amp; PRs" }}
                 </div>
               </div>
             </div>
@@ -64,10 +60,10 @@
               <div class="icon-pill"><i data-lucide="users" aria-hidden="true"></i></div>
               <div>
                 <div style="font-weight:900;">
-                  {% if lang == 'de' %}Working Groups{% else %}Working Groups{% endif %}
+                  {{ i18n.common.slack_cta_wg_label | default: "Working Groups" }}
                 </div>
                 <div class="muted" style="margin-top:2px;">
-                  {% if lang == 'de' %}Koordination &amp; schnelle Abstimmung{% else %}Coordination &amp; quick alignment{% endif %}
+                  {{ i18n.common.slack_cta_wg_desc | default: "Coordination &amp; quick alignment" }}
                 </div>
               </div>
             </div>

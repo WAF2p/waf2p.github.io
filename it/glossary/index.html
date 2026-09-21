@@ -1,0 +1,387 @@
+---
+layout: default
+lang: it
+ref: glossary
+title: "Glossario — WAF++"
+description: "Definizioni dei termini chiave utilizzati nel quadro WAF++ — pilastri, controlli, punteggio, governance e strumenti."
+permalink: /it/glossary/
+---
+
+{% assign term_count = 34 %}
+{% assign letter_count = 14 %}
+
+<div class="page-radical glossary-page">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero--radical">
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+
+  <div class="container" style="position:relative;z-index:2;max-width:900px;text-align:center;">
+    <div class="hero-radical-badge" style="margin:0 auto 24px;">
+      <span class="hero-radical-badge__dot"></span>Riferimento &middot; definizioni autorevoli
+</div>
+
+    <h1 class="hero-radical-h1" style="font-size: clamp(44px, 7vw, 84px);">
+      <span class="text-gradient-radical">Glossario</span>
+    </h1>
+    <p class="hero-radical-lead" style="max-width: 680px; margin: 0 auto 36px;">Definizioni di termini chiave utilizzati in tutto il framework WAF++, modello di punteggio, governance e tooling.
+Quando in dubbio, questa è la fonte autorevole.
+</p>
+
+    <div class="hero-radical-pills" style="justify-content:center; margin-bottom: 32px;">
+      <span class="hero-radical-pill">
+        <i data-lucide="book-open" aria-hidden="true"></i>
+        {{ term_count }}termini
+</span>
+      <span class="hero-radical-pill">
+        <i data-lucide="tag" aria-hidden="true"></i>5 categorie
+</span>
+      <span class="hero-radical-pill">
+        <i data-lucide="layers" aria-hidden="true"></i>
+        {{ letter_count }}lettere
+</span>
+    </div>
+
+    <div class="hero-radical-actions" style="justify-content:center;">
+      <a class="btn-glow" href="{{ '/docs/' | relative_url }}">Documentazione completa &rarr;</a>
+      <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">Tracker RFC</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== GLOSSARY ===================== -->
+<section class="bento-section">
+  <div class="container">
+
+    <!-- Category legend -->
+    <div class="gl-legend">
+      <span class="gl-legend__label">Categorie</span>
+      <span class="gl-legend__item">
+        <span class="gl-tag gl-tag--framework">quadro</span>pilastri, controlli, punteggio, valutazioni
+</span>
+      <span class="gl-legend__item">
+        <span class="gl-tag gl-tag--governance">governance</span>ruoli, politiche, licenze, comunità
+</span>
+      <span class="gl-legend__item">
+        <span class="gl-tag gl-tag--scoring">punteggio</span>PASS modello, livelli, punteggi
+</span>
+      <span class="gl-legend__item">
+        <span class="gl-tag gl-tag--process">processo</span>RFC, decisioni, contributi
+</span>
+      <span class="gl-legend__item">
+        <span class="gl-tag gl-tag--tooling">utensili</span>Antora, AsciiDoc, WAFPass CLI
+</span>
+    </div>
+
+    <!-- Alpha nav -->
+    <nav class="gl-alpha-nav" aria-label="Jump to letter">
+      <a href="#A">A</a><a href="#C">C</a><a href="#D">D</a><a href="#F">F</a>
+      <a href="#G">G</a><a href="#I">Io...</a><a href="#L">L</a><a href="#M">M</a>
+      <a href="#P">P</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
+      <a href="#V">V</a><a href="#W">#</a>
+    </nav>
+
+    <!-- A -->
+    <div class="gl-section" id="A">
+      <div class="gl-letter">A</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Agentic">
+          <div class="gl-term">Agente<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Rilascendo ad agenti AI autonomi che pianificano, agiscono e interagiscono con sistemi senza istruzioni umane dirette. Nel WAF++, il pilastro Agentic (Pillar 8) definisce i controlli per il controllo di questi agenti nei carichi di lavoro di produzione.</p>
+          <p class="gl-also">Vedi anche:<a href="#Pillar">Pillar</a>♪<a href="{{ '/saeulen/' | relative_url }}">Gli 8 pilastri</a></p>
+        </div>
+
+        <div class="gl-entry">
+          <div class="gl-term">Antora<span class="gl-tag gl-tag--tooling">utensili</span></div>
+          <p class="gl-def">Il generatore di siti statici utilizzato per costruire la documentazione WAF++ da fonti AsciiDoc. Antora gestisce la versione dei componenti, la navigazione e la pubblicazione — i documenti WAF++ vivono a<code>/docs/</code>e sono costruiti da<code>framework</code>repository.</p>
+          <p class="gl-also">Vedi anche:<a href="#AsciiDoc">Ascii!</a></p>
+        </div>
+
+        <div class="gl-entry" id="AsciiDoc">
+          <div class="gl-term">Ascii!<span class="gl-tag gl-tag--tooling">utensili</span></div>
+          <p class="gl-def">Il linguaggio di markup utilizzato per scrivere la documentazione del framework WAF++. Simile a Markdown ma con semantica più ricca per la documentazione strutturata. Tutti i file in<code>modules/ROOT/pages/</code>utilizzare AsciiDoc (<code>.adoc</code>estensione).</p>
+        </div>
+
+        <div class="gl-entry">
+          <div class="gl-term">Valutazione<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Una valutazione strutturata di un carico di lavoro cloud contro i controlli WAF++ su tutti i pilastri applicabili. L'output di una valutazione è un insieme di risultati per controllo e un punteggio PASS per pilastro e in aggregato.</p>
+          <p class="gl-also">Vedi anche:<a href="#Workload">Carico di lavoro</a>♪<a href="#PASS-model">Modello PASS</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- C -->
+    <div class="gl-section" id="C">
+      <div class="gl-letter">C</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Charter">
+          <div class="gl-term">Carta<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">Un breve documento che definisce lo scopo, il campo di applicazione, i portabili, i canali di comunicazione di un gruppo di lavoro. Una carta è richiesta prima che un WG possa essere ufficialmente riconosciuto.</p>
+          <p class="gl-also">Vedi anche:<a href="#Working-Group">Gruppo di lavoro</a></p>
+        </div>
+
+        <div class="gl-entry" id="Control">
+          <div class="gl-term">Controllo<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Un requisito specifico e testabile all'interno di un pilastro. Ogni controllo ha un ID unico, una descrizione, una domanda di valutazione, e una logica. I controlli sono l'unità atomica del framework WAF++ — un carico di lavoro o soddisfa un controllo o non lo fa.</p>
+          <p class="gl-also">Vedi anche:<a href="#Control-ID">ID controllo</a>♪<a href="#Pillar">Pillar</a>♪<a href="#Controls-library">Libreria di controlli</a></p>
+        </div>
+
+        <div class="gl-entry" id="Control-ID">
+          <div class="gl-term">ID controllo<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">L'identificatore unico per un WAF++ controllo, seguendo il modello<code>WAF-[PILLAR]-[NUMBER]</code>. Esempio:<code>WAF-SOV-010</code>è il primo controllo del pilastro sovrano. L'abbreviazione del pilastro è un codice a tre lettere (ad es.<code>SEC</code>per la sicurezza,<code>SOV</code>per Sovrano,<code>AGN</code>per l'agente. Gli ID di controllo sono stabili — una volta pubblicati, non cambiano mai o vengono riutilizzati.</p>
+        </div>
+
+        <div class="gl-entry" id="Controls-library">
+          <div class="gl-term">Libreria di controlli<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">La collezione completa dei controlli WAF++, memorizzati come file YAML strutturati nel<code>framework</code>repository sotto<code>modules/controls/</code>. La biblioteca ora abbraccia 8 pilastri con 83+ controlli.</p>
+        </div>
+
+        <div class="gl-entry">
+          <div class="gl-term">Contributatore<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">Chiunque presenti una richiesta pull, apre un problema, partecipa a una Discussione GitHub, propone un RFC, o altrimenti contribuisce a qualsiasi WAF++ repository. I contributori non hanno bisogno di autorizzazioni formali — qualsiasi utente GitHub può contribuire.</p>
+          <p class="gl-also">Vedi anche:<a href="#Maintainer">Maintainer</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- D -->
+    <div class="gl-section" id="D">
+      <div class="gl-letter">D</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Dual-licence">
+          <div class="gl-term">Modello dual-licence<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">WAF++ utilizza due licenze:<strong>Licenza Apache 2.0</strong>per codice, strumenti e schemi;<strong>Attribuzione 4.0 (CC BY 4.0)</strong>per la documentazione e il contenuto scritto. Questo permette un ampio riutilizzo assicurando l'attribuzione. Vedere la<a href="{{ '/legal/' | relative_url }}">Pagina legale</a>per i dettagli.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- F -->
+    <div class="gl-section" id="F">
+      <div class="gl-letter">F</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Finding">
+          <div class="gl-term">Trovare<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Il risultato della valutazione di un controllo contro un carico di lavoro. Un risultato è o<em>soddisfatto</em>♪<em>non soddisfatto</em>o<em>non applicabile</em>. I risultati sono l'output grezzo di una valutazione, che vengono poi aggregati in un punteggio PASS.</p>
+        </div>
+
+        <div class="gl-entry" id="Foundation-ready">
+          <div class="gl-term">Fondazione pronta<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">Uno standard di qualità per il modello di governance WAF++, che indica che la struttura, le politiche e la trasparenza del progetto soddisfano i requisiti per la donazione a una fondazione open source (ad es. CNCF, Apache Software Foundation). La disponibilità della Fondazione è un obiettivo dichiarato per il WAF++ v1.x releases.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- G -->
+    <div class="gl-section" id="G">
+      <div class="gl-letter">G</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Governance">
+          <div class="gl-term">Governance<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">L'insieme di regole, processi e ruoli che determinano come vengono prese le decisioni nel WAF++ progetto. La governance WAF++ è documentata pubblicamente e copre: processo RFC, composizione TSC e voto, termini manutentori, regole del gruppo di lavoro e codice di esecuzione della condotta.</p>
+          <p class="gl-also">Vedi anche:<a href="#TSC">TABELLA</a>♪<a href="#RFC">RFC</a>♪<a href="{{ '/governance-community/' | relative_url }}">Pagina Governance &amp; Community</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- I -->
+    <div class="gl-section" id="I">
+      <div class="gl-letter">Io...</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="IaC">
+          <div class="gl-term">IaC — Infrastrutture come codice<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">La pratica di gestire e fornire infrastrutture cloud attraverso file di configurazione leggibili in macchina piuttosto che processi manuali. Rilevante a più pilastri WAF++, in particolare Eccellenza Operativa e Sicurezza.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- L -->
+    <div class="gl-section" id="L">
+      <div class="gl-letter">L</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Lazy-consensus">
+          <div class="gl-term">Il consenso pigro<span class="gl-tag gl-tag--process">processo</span></div>
+          <p class="gl-def">Un leggero meccanismo decisionale utilizzato per cambiamenti non distruttivi o a rischio. Una proposta è posta pubblicamente con una finestra di revisione minima di 5 giorni lavorativi. Se non viene sollevata alcuna obiezione motivata, la proposta è considerata accettata. Per i cambiamenti principali, il voto TSC viene utilizzato invece.</p>
+          <p class="gl-also">Vedi anche:<a href="#TSC">TABELLA</a>♪<a href="#RFC">RFC</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- M -->
+    <div class="gl-section" id="M">
+      <div class="gl-letter">M</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Maintainer">
+          <div class="gl-term">Maintainer<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">Un collaboratore con unire autorizzazioni su uno o più repository WAF++. I manutentori esaminano le PR, approvano o rifiutano le RFC e sono responsabili della qualità e della direzione della loro area. I termini principali sono 12 mesi, rinnovabili. L'inattività per 90+ giorni può portare allo stato emerito.</p>
+          <p class="gl-also">Vedi anche:<a href="{{ '/roles/' | relative_url }}">Pagina dei membri e dei ruoli</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- P -->
+    <div class="gl-section" id="P">
+      <div class="gl-letter">P</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="PASS-model">
+          <div class="gl-term">Modello PASS<span class="gl-tag gl-tag--scoring">punteggio</span></div>
+          <p class="gl-def">Il modello di punteggio WAF++. PASS sta per i quattro livelli di successo:<strong>P</strong>Ioneer,<strong>A</strong>Avanzato,<strong>S</strong>olid,<strong>S</strong>Tarter. Ogni livello corrisponde ad un livello di soddisfazione di controllo all'interno di un pilastro. Il modello PASS è la specifica del punteggio normativo — vedi<a href="{{ '/wafpass/' | relative_url }}">Pagina WAFPass</a>per i dettagli.</p>
+          <p class="gl-also">Vedi anche:<a href="#PASS-score">Punteggio PASS</a>♪<a href="#Scoring-tier">Tier di punteggio</a></p>
+        </div>
+
+        <div class="gl-entry" id="PASS-score">
+          <div class="gl-term">Punteggio PASS<span class="gl-tag gl-tag--scoring">punteggio</span></div>
+          <p class="gl-def">Il risultato dell'applicazione del modello PASS a una valutazione. Un carico di lavoro riceve un punteggio per colonna e un punteggio complessivo aggregato. I punteggi sono espressi come livelli (Pioneer / Advanced / Solid / Starter), non percentuali, per riflettere la maturità qualitativa piuttosto che i tassi di passaggio crudi.</p>
+          <p class="gl-also">Vedi anche:<a href="#PASS-model">Modello PASS</a></p>
+        </div>
+
+        <div class="gl-entry" id="Pillar">
+          <div class="gl-term">Pillar<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Una delle otto dimensioni di valutazione del WAF++. Ogni pilastro raggruppa una serie di controlli che affrontano una specifica preoccupazione di qualità per i carichi di lavoro cloud. Gli otto pilastri sono: Sicurezza, Affidabilità, Efficienza delle Prestazioni, Ottimizzazione dei Costi, Eccellenza Operativa, Sostenibilità, Sovrana e Agentica.</p>
+          <p class="gl-also">Vedi anche:<a href="#Control">Controllo</a>♪<a href="{{ '/saeulen/' | relative_url }}">Gli 8 pilastri</a></p>
+        </div>
+
+        <div class="gl-entry" id="Pillar-score">
+          <div class="gl-term">Punteggio del pilastro<span class="gl-tag gl-tag--scoring">punteggio</span></div>
+          <p class="gl-def">Il livello PASS raggiunto per un unico pilastro, derivato dal tasso di soddisfazione del controllo e da eventuali controlli obbligatori all'interno di quel pilastro. I punteggi del pilastro sono aggregati nel punteggio PASS complessivo.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- R -->
+    <div class="gl-section" id="R">
+      <div class="gl-letter">R</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="RFC">
+          <div class="gl-term">RFC — Richiesta di commenti<span class="gl-tag gl-tag--process">processo</span></div>
+          <p class="gl-def">Una proposta pubblica per un cambiamento significativo nel quadro WAF++, governance, strumenti o modello di punteggio. RFC sono aperti come GitHub Discussions, recensito dalla comunità per un minimo di 5 giorni lavorativi, quindi deciso dal voto TSC o il consenso pigro. Ogni RFC riceve un ID sequenziale (RFC-NNNN) ed è tracciato sul<a href="{{ '/rfc/' | relative_url }}">Tracker RFC</a>.</p>
+          <p class="gl-also">Vedi anche:<a href="#RFC-lifecycle">ciclo di vita RFC</a>♪<a href="#Lazy-consensus">Il consenso pigro</a></p>
+        </div>
+
+        <div class="gl-entry" id="RFC-lifecycle">
+          <div class="gl-term">ciclo di vita RFC<span class="gl-tag gl-tag--process">processo</span></div>
+          <p class="gl-def">Gli stati definiti un RFC passa attraverso:<strong>Progetto</strong>(essere scritto) →<strong>aperto</strong>(aperta per la revisione della comunità) →<strong>accettato</strong>(decisione fatta: procedere) →<strong>implementato</strong>(spese e chiuse). Risultati alternativi:<strong>respinto</strong>o<strong>ritirato</strong>Tutti gli stati e le transizioni sono documentati pubblicamente.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- S -->
+    <div class="gl-section" id="S">
+      <div class="gl-letter">S</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Scoring-tier">
+          <div class="gl-term">Tier di punteggio<span class="gl-tag gl-tag--scoring">punteggio</span></div>
+          <p class="gl-def">Uno dei quattro livelli del modello PASS. In ordine decrescente:<strong>Pioneer</strong>(più alto)<strong>Avanzato</strong>♪<strong>Solido</strong>♪<strong>Avviamento</strong>(baseline). I livelli riflettono la larghezza e la profondità della soddisfazione del controllo, non solo il numero di controlli passati.</p>
+          <p class="gl-also">Vedi anche:<a href="#PASS-model">Modello PASS</a></p>
+        </div>
+
+        <div class="gl-entry" id="Sovereign">
+          <div class="gl-term">pilastro sovrano<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Il settimo pilastro del WAF++, che copre la sovranità dei dati, la conformità normativa e il controllo giurisdizionale. Aggiunto con 10 controlli iniziali (<code>WAF-SOV-010</code>attraverso<code>WAF-SOV-100</code>). Particolarmente rilevante per le industrie regolamentate e i carichi di lavoro basati sull'UE.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- T -->
+    <div class="gl-section" id="T">
+      <div class="gl-letter">T</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="TSC">
+          <div class="gl-term">TSC — Comitato direttivo tecnico<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">L'organo di governo del progetto WAF++. Il TSC è responsabile della direzione tecnica, delle decisioni RFC e degli appuntamenti manutentori. I membri servono termini rinnovabili di 12 mesi. La composizione TSC segue il principio di "contributori attivi prima" e l'equilibrio neutrale del fornitore. Tutte le decisioni TSC sono documentate pubblicamente.</p>
+          <p class="gl-also">Vedi anche:<a href="{{ '/governance-community/' | relative_url }}">Governance e Comunità</a>♪<a href="{{ '/roles/' | relative_url }}">Ruoli e Membri</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- V -->
+    <div class="gl-section" id="V">
+      <div class="gl-letter">V</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="Vendor-neutral">
+          <div class="gl-term">Fornitore-neutral<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">Un principio di progettazione fondamentale di WAF++: i pilastri, i controlli e il modello di punteggio si applicano ugualmente ai carichi di lavoro su qualsiasi provider cloud (AWS, Azure, GCP e altri). Nessun controllo è specifico per i fornitori se non esplicitamente etichettato. Ciò consente di effettuare valutazioni incrociate e di impedire il lock-in a qualsiasi metodo di revisione del singolo fornitore.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- W -->
+    <div class="gl-section" id="W">
+      <div class="gl-letter">#</div>
+      <div class="gl-list">
+
+        <div class="gl-entry" id="WAFpp">
+          <div class="gl-term">WAF++<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def"><strong>Quadro ben progettato Plus Plus.</strong>Un framework open source e neutral per la valutazione e il miglioramento della qualità dei carichi di lavoro cloud. WAF++ estende le revisioni ben strutturate convenzionali con un modello di punteggio trasparente e comunitario (PASS) e una libreria di controllo leggibile in macchina su 8 pilastri e 83+ controlli.</p>
+        </div>
+
+        <div class="gl-entry" id="WAFPass">
+          <div class="gl-term">WAFPass<span class="gl-tag gl-tag--tooling">utensili</span></div>
+          <p class="gl-def">La suite ufficiale per la valutazione WAF++: CLI, server, dashboard e scheda web. WAFPass consuma la libreria di controlli, valuta un carico di lavoro e produce un rapporto di punteggio PASS. Rilasciazione attuale: v1.1.0.</p>
+        </div>
+
+        <div class="gl-entry" id="Working-Group">
+          <div class="gl-term">Gruppo di lavoro (WG)<span class="gl-tag gl-tag--governance">governance</span></div>
+          <p class="gl-def">Un team di contributori focalizzato sull'argomento all'interno del WAF++. I gruppi di lavoro costruiscono parti specifiche del quadro — un pilastro, un componente utensile, un'architettura di riferimento — e producono output come PR e RFC. Qualsiasi collaboratore può proporre un WG con un charter, un lead e uno sponsor manutentore.</p>
+          <p class="gl-also">Vedi anche:<a href="#Charter">Carta</a>♪<a href="{{ '/contributing/' | relative_url }}">Contributo</a></p>
+        </div>
+
+        <div class="gl-entry" id="Workload">
+          <div class="gl-term">Carico di lavoro<span class="gl-tag gl-tag--framework">quadro</span></div>
+          <p class="gl-def">L'applicazione cloud, il servizio o il sistema vengono valutati con WAF++. Un carico di lavoro ha una portata definita (ad es. un microservizio, una piattaforma di dati, un intero prodotto) ed è valutato contro i controlli WAF++ applicabili. Lo scopo è definito prima di iniziare una valutazione.</p>
+          <p class="gl-also">Vedi anche:<a href="#Assessment">Valutazione</a></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== CTA ===================== -->
+<section class="cta-radical">
+  <div class="cta-radical__glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cta-radical__inner">
+      <div class="kicker-radical" style="margin-bottom:14px;">Manca qualcosa?</div>
+      <h2 class="cta-radical__title">Termine mancante o non chiaro?</h2>
+      <p class="cta-radical__lead">Aprire un problema di contenuti su GitHub o suggerire una definizione in Slack. Il glossario cresce con la comunità — ogni aggiunta rende il quadro più facile da usare.</p>
+      <div class="cta-radical__actions">
+        <a class="btn-glow" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">Problemi aperti &rarr;</a>
+        <a class="btn-glass" href="{{ '/docs/' | relative_url }}">Documentazione completa</a>
+        <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">Tracker RFC</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>

@@ -3,31 +3,32 @@
 
   Conventions:
   - English is default (no prefix)
-  - German lives under /de/
+  - Other languages live under /{lang}/
 
   Exposes:
-  - lang ("en"|"de")
-  - lang_prefix (""|"/de")
+  - lang ("en"|"de"|"fr"|"nl"|"es"|"it"|"pl"|"pt")
+  - lang_prefix (""|"/de"|"/fr"|...)
   - i18n (hash with translated UI strings)
 {%- endcomment -%}
+
+{%- assign supported_langs = "en|de|fr|nl|es|it|pl|pt" | split: "|" -%}
 
 {%- assign lang = page.lang | default: nil -%}
 
 {%- if lang == nil or lang == '' -%}
-  {%- if page.url and page.url != '' and page.url != '/' and page.url contains '/de/' -%}
-    {%- assign lang = 'de' -%}
-  {%- elsif page.url == '/de/' -%}
-    {%- assign lang = 'de' -%}
+  {%- assign url_parts = page.url | split: '/' -%}
+  {%- assign first_part = url_parts[1] | default: '' -%}
+  {%- if supported_langs contains first_part and first_part != 'en' -%}
+    {%- assign lang = first_part -%}
   {%- else -%}
     {%- assign lang = 'en' -%}
   {%- endif -%}
 {%- endif -%}
 
-{%- if lang == 'de' -%}
-  {%- assign lang_prefix = '/de' -%}
-{%- else -%}
+{%- if lang == 'en' -%}
   {%- assign lang_prefix = '' -%}
-  {%- assign lang = 'en' -%}
+{%- else -%}
+  {%- assign lang_prefix = '/' | append: lang -%}
 {%- endif -%}
 
 {%- assign i18n = site.data.i18n[lang] | default: site.data.i18n.en -%}

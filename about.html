@@ -168,7 +168,13 @@ permalink: /about/
     </div>
 
     <div class="team-grid">
-      {% for person in site.data.honoured_members %}
+      {% if lang == 'de' %}
+        {% assign honoured_members = site.data.honoured_members %}
+      {% else %}
+        {% assign honoured_data_key = 'honoured_members_' | append: lang %}
+        {% assign honoured_members = site.data[honoured_data_key] | default: site.data.honoured_members_en | default: site.data.honoured_members %}
+      {% endif %}
+      {% for person in honoured_members %}
       <article class="card-radical person-card-radical">
         <div class="person-card-radical__head">
           <img class="person-card-radical__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">

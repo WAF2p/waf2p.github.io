@@ -1,68 +1,98 @@
 {% include lang-vars.html %}
 
 {%- comment -%}
-  Flag language switch
+  Multi-language switch (8 languages)
 
   Priority:
   1) If pages provide a shared translation key (front matter: ref), switch to that exact page.
   2) Otherwise, mirror paths:
-     - /foo/    <-> /de/foo/
-     - /        <-> /de/
+     - /foo/    <-> /de/foo/ <-> /fr/foo/ ...
+     - /        <-> /de/     <-> /fr/     ...
   3) If the mirrored/target page does not exist, fall back to the target language home.
 
   GitHub Pages safe (no plugins) – we search in site.pages + site.documents.
 {%- endcomment -%}
 
 {%- assign candidates = site.pages | concat: site.documents -%}
+{%- assign supported_langs = "en|de|fr|nl|es|it|pl|pt" | split: "|" -%}
+{%- assign lang_flags = "🇬🇧|🇩🇪|🇫🇷|🇳🇱|🇪🇸|🇮🇹|🇵🇱|🇵🇹" | split: "|" -%}
+{%- assign lang_labels = "English|Deutsch|Français|Nederlands|Español|Italiano|Polski|Português" | split: "|" -%}
 
-{%- assign other_lang = 'de' -%}
-{%- if lang == 'de' -%}{%- assign other_lang = 'en' -%}{%- endif -%}
-
-{%- assign en_url = page.url -%}
-{%- assign de_url = page.url -%}
-
-{%- comment -%}1) ref-based mapping{%- endcomment -%}
 {%- assign current_ref = page.ref | default: nil -%}
-{%- assign other_page = nil -%}
-{%- if current_ref and current_ref != '' -%}
-  {%- assign other_page = candidates | where: 'ref', current_ref | where: 'lang', other_lang | first -%}
-  {%- if other_page and other_page.url -%}
-    {%- if other_lang == 'en' -%}
-      {%- assign en_url = other_page.url -%}
-      {%- assign de_url = page.url -%}
-    {%- else -%}
-      {%- assign de_url = other_page.url -%}
-      {%- assign en_url = page.url -%}
-    {%- endif -%}
-  {%- endif -%}
-{%- endif -%}
 
-{%- comment -%}2) mirrored mapping (only if ref-mapping did not override){%- endcomment -%}
-{%- if current_ref == nil or current_ref == '' or other_page == nil -%}
-  {%- assign path_no_prefix = page.url -%}
-  {%- if lang == 'de' -%}
-    {%- assign path_no_prefix = page.url | remove_first: '/de' -%}
-    {%- if path_no_prefix == '' -%}{%- assign path_no_prefix = '/' -%}{%- endif -%}
-  {%- endif -%}
+{%- capture switch_label -%}
+  {% if lang == 'de' %}Sprache: {{ i18n.lang_name | default: lang_labels[1] }}, weitere Sprachen anzeigen
+  {% elsif lang == 'fr' %}Langue : {{ i18n.lang_name | default: lang_labels[2] }}, afficher plus de langues
+  {% elsif lang == 'nl' %}Taal: {{ i18n.lang_name | default: lang_labels[3] }}, meer talen tonen
+  {% elsif lang == 'es' %}Idioma: {{ i18n.lang_name | default: lang_labels[4] }}, mostrar más idiomas
+  {% elsif lang == 'it' %}Lingua: {{ i18n.lang_name | default: lang_labels[5] }}, mostra più lingue
+  {% elsif lang == 'pl' %}Język: {{ i18n.lang_name | default: lang_labels[6] }}, pokaż więcej języków
+  {% elsif lang == 'pt' %}Idioma: {{ i18n.lang_name | default: lang_labels[7] }}, mostrar mais idiomas
+  {% else %}Language: {{ i18n.lang_name | default: lang_labels[0] }}, show more languages{% endif %}
+{%- endcapture -%}
 
-  {%- assign en_url = path_no_prefix -%}
-  {%- assign de_url = '/de' | append: path_no_prefix -%}
-  {%- if path_no_prefix == '/' -%}
-    {%- assign de_url = '/de/' -%}
-  {%- endif -%}
-{%- endif -%}
+<div class="lang-switch" aria-label="Language switch" data-lang-toggle>
+  <input type="checkbox" class="lang-switch__check" id="lang-switch-check" aria-hidden="true" tabindex="-1">
+  <label for="lang-switch-check" class="lang-switch__trigger" aria-haspopup="true" aria-expanded="false" aria-label="{{ switch_label | strip }}">
+    {%- for l in supported_langs -%}
+      {%- if l == lang -%}<span aria-hidden="true">{{ lang_flags[forloop.index0] }}</span>{%- endif -%}
+    {%- endfor -%}
+  </label>
+  <div class="lang-switch__menu" role="menu">
+    {%- for target_lang in supported_langs -%}
+      {%- assign flag = lang_flags[forloop.index0] -%}
+      {%- assign label = lang_labels[forloop.index0] -%}
 
-{%- comment -%}3) existence check + fallback{%- endcomment -%}
-{%- assign de_exists = candidates | where: 'url', de_url | first -%}
-{%- assign en_exists = candidates | where: 'url', en_url | first -%}
-{%- if de_url == '/de/' or de_exists -%}{%- else -%}{%- assign de_url = '/de/' -%}{%- endif -%}
-{%- if en_url == '/' or en_exists -%}{%- else -%}{%- assign en_url = '/' -%}{%- endif -%}
+      {%- comment -%}Build target URL{%- endcomment -%}
+      {%- assign target_page = nil -%}
+      {%- if current_ref and current_ref != '' -%}
+        {%- assign target_page = candidates | where: 'ref', current_ref | where: 'lang', target_lang | first -%}
+      {%- endif -%}
 
-<div class="lang-switch" aria-label="Language switch">
-  <a class="lang-flag{% if lang == 'en' %} is-active{% endif %}" href="{{ en_url | relative_url }}" title="English" aria-label="English">
-    <span aria-hidden="true">🇬🇧</span>
-  </a>
-  <a class="lang-flag{% if lang == 'de' %} is-active{% endif %}" href="{{ de_url | relative_url }}" title="Deutsch" aria-label="Deutsch">
-    <span aria-hidden="true">🇩🇪</span>
-  </a>
+      {%- if target_page and target_page.url -%}
+        {%- assign target_url = target_page.url -%}
+      {%- else -%}
+        {%- assign path_no_prefix = page.url -%}
+        {%- for sl in supported_langs -%}
+          {%- if sl != 'en' -%}
+            {%- assign prefix = '/' | append: sl -%}
+            {%- if path_no_prefix contains prefix -%}
+              {%- assign path_no_prefix = path_no_prefix | remove_first: prefix -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if path_no_prefix == '' -%}{%- assign path_no_prefix = '/' -%}{%- endif -%}
+
+        {%- if target_lang == 'en' -%}
+          {%- assign target_url = path_no_prefix -%}
+        {%- else -%}
+          {%- assign target_url = '/' | append: target_lang | append: path_no_prefix -%}
+          {%- if path_no_prefix == '/' -%}{%- assign target_url = '/' | append: target_lang | append: '/' -%}{%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- comment -%}Existence check. If the target page is missing, fall back to
+        the English equivalent when available; otherwise go to the target language home.
+      {%- endcomment -%}
+      {%- assign target_exists = candidates | where: 'url', target_url | first -%}
+      {%- if target_url == '/' or target_url == '/de/' or target_url == '/fr/' or target_url == '/nl/' or target_url == '/es/' or target_url == '/it/' or target_url == '/pl/' or target_url == '/pt/' -%}
+        {%- assign target_exists = true -%}
+      {%- endif -%}
+      {%- unless target_exists -%}
+        {%- assign english_url = path_no_prefix -%}
+        {%- assign english_exists = candidates | where: 'url', english_url | first -%}
+        {%- if english_exists -%}
+          {%- assign target_url = english_url -%}
+        {%- elsif target_lang == 'en' -%}
+          {%- assign target_url = '/' -%}
+        {%- else -%}
+          {%- assign target_url = '/' | append: target_lang | append: '/' -%}
+        {%- endif -%}
+      {%- endunless -%}
+
+      <a class="lang-option{% if target_lang == lang %} is-active{% endif %}" href="{{ target_url | relative_url }}" role="menuitem" lang="{{ target_lang }}" data-lang-option="{{ target_lang }}">
+        <span aria-hidden="true">{{ flag }}</span> {{ label }}
+      </a>
+    {%- endfor -%}
+  </div>
 </div>

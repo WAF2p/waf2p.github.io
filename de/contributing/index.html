@@ -184,6 +184,125 @@ permalink: /de/contributing/
   </section>
 
 
+  <!-- ===================== FEATURE LIFECYCLE ===================== -->
+  <section class="lifecycle-section" id="lifecycle">
+    <div class="container">
+      <div class="lifecycle-header">
+        <div class="kicker-radical">Verfügbarkeit</div>
+        <h2 class="section-title-radical">Feature-Lifecycle</h2>
+        <p class="section-lead-radical">
+          Jede WAF++-Fähigkeit durchläuft einen klaren Lifecycle. Jede Phase wird durch den RFC/ADR-Prozess
+          geprüft — damit Nutzer immer wissen, wie ausgereift eine Funktion ist und was vor der Einführung zu erwarten ist.
+        </p>
+      </div>
+
+      <div class="lifecycle-timeline">
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--closed-alpha">
+            <i data-lucide="lock" aria-hidden="true"></i>
+            Closed Alpha
+          </span>
+          <h3 class="lifecycle-card__title">Privat erproben</h3>
+          <p class="lifecycle-card__desc">
+            Eine kleine Gruppe von Early Adopters testet die Fähigkeit in kontrollierten Umgebungen.
+            API, Scoring-Modell oder CLI-Oberfläche sind absichtlich instabil und können sich jederzeit ändern.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">Wie sie entsteht</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>Draft- oder Open-RFC definiert das Experiment</li>
+              <li>Einladungsbasierter Early-Access-Kreis</li>
+              <li>Feedback treibt schnelle Iterationen an</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="{{ '/de/rfc/' | relative_url }}">
+            Draft-RFCs ansehen <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--alpha">
+            <i data-lucide="flask-conical" aria-hidden="true"></i>
+            Alpha
+          </span>
+          <h3 class="lifecycle-card__title">Öffentlich testen</h3>
+          <p class="lifecycle-card__desc">
+            Die Fähigkeit steht allen zur Verfügung, die sie ausprobieren möchten. Schnittstellen sind
+            weitgehend stabil, aber Breaking Changes sind auf Basis von Community-Feedback noch möglich.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">Wie sie entsteht</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>RFC mit Alpha-Scope akzeptiert</li>
+              <li>Öffentliche Docs und Release Notes verfügbar</li>
+              <li>GitHub Discussions sammeln Feedback</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">
+            Alpha-Diskussionen <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--beta">
+            <i data-lucide="gauge" aria-hidden="true"></i>
+            Beta
+          </span>
+          <h3 class="lifecycle-card__title">Produktiv nutzen</h3>
+          <p class="lifecycle-card__desc">
+            Die Fähigkeit ist feature-complete und für die dokumentierten Use Cases produktionsreif.
+            Kleine Anpassungen können noch passieren, aber Breaking Changes erfordern explizite Migrationshinweise.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">Wie sie entsteht</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>RFC akzeptiert und Implementierung gemergt</li>
+              <li>ADR dokumentiert die Produktionsreife-Kriterien</li>
+              <li>Security-, Performance- und Kompatibilitäts-Review bestanden</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="{{ '/de/rfc/' | relative_url }}">
+            Akzeptierte RFCs verfolgen <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--ga">
+            <i data-lucide="check-circle-2" aria-hidden="true"></i>
+            GA
+          </span>
+          <h3 class="lifecycle-card__title">General Availability</h3>
+          <p class="lifecycle-card__desc">
+            Die Fähigkeit wird vollständig unterstützt, ist durch die Stabilitätsrichtlinie abgedeckt und wird
+            allen Nutzern empfohlen. Updates bleiben abwärtskompatibel und haben klare Abschreibungsfenster.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">Wie sie entsteht</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>RFC-Status wechselt zu <em>implemented</em></li>
+              <li>Finale ADR besiegelt den stabilen Vertrag</li>
+              <li>Aufnahme in den offiziellen Release-Zug</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="{{ '/de/rfc/' | relative_url }}">
+            Umgesetzte RFCs ansehen <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+      </div>
+
+      <div class="lifecycle-note">
+        <p>
+          <strong>Jede Phase ist mit dem RFC/ADR-Prozess verknüpft.</strong>
+          Wenn ein RFC akzeptiert wird, öffnet sich das Alpha- oder Beta-Gate; wenn er als
+          <em>implemented</em> markiert ist, ist die Fähigkeit GA-reif. Den vollständigen Überblick gibt es im
+          <a href="{{ '/de/rfc/' | relative_url }}">RFC-Tracker</a> oder schlage die nächste Änderung in den
+          <a href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussions</a> vor.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ===================== RFC-PROZESS ===================== -->
   <section class="bento-section" id="rfc">
     <div class="container">

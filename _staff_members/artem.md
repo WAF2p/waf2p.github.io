@@ -5,6 +5,8 @@ image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lajko-artem-
 github: la-cc
 blurb: Er ist Autor von Implementing GitOps with Kubernetes, Mitgründer von connectii.io
   und arbeitet als IT-Freelancer für verschiedene Verlage.
+blurb_en: He is the author of Implementing GitOps with Kubernetes, co-founder of
+  connectii.io, and works as an IT freelancer for various publishers.
 social:
 - name: Github
   link: https://github.com/la-cc/

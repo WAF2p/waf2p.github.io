@@ -135,7 +135,7 @@ permalink: /contributing/
         <article class="contrib-step">
           <div class="contrib-step__number">3</div>
           <div class="contrib-step__body">
-            <h3 class="contrib-step__title">Fork → branch → PR</h3>
+            <h3 class="contrib-step__title">Fork &rarr; branch &rarr; PR</h3>
             <p class="contrib-step__desc">Fork the relevant repository, create a feature branch, and open a pull request. A maintainer will review it, give feedback, and guide you through the process.</p>
           </div>
         </article>
@@ -179,6 +179,125 @@ permalink: /contributing/
           <h3 class="contrib-card__title">Ship results</h3>
           <p class="contrib-card__desc">WG outputs flow back as PRs and RFCs. Every result is public, traceable, and citable — consistent with WAF++'s transparency principles.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FEATURE LIFECYCLE ===================== -->
+  <section class="lifecycle-section" id="lifecycle">
+    <div class="container">
+      <div class="lifecycle-header">
+        <div class="kicker-radical">Availability</div>
+        <h2 class="section-title-radical">Feature lifecycle</h2>
+        <p class="section-lead-radical">
+          Every WAF++ capability moves through a clear lifecycle. Each stage is gated by the RFC/ADR process,
+          so users always know how mature a feature is and what to expect before they adopt it.
+        </p>
+      </div>
+
+      <div class="lifecycle-timeline">
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--closed-alpha">
+            <i data-lucide="lock" aria-hidden="true"></i>
+            Closed Alpha
+          </span>
+          <h3 class="lifecycle-card__title">Explore privately</h3>
+          <p class="lifecycle-card__desc">
+            A small group of early adopters tests the capability in controlled environments. The API, scoring model,
+            or CLI surface is intentionally unstable and may change without notice.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">How it enters</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>Draft or open RFC defines the experiment</li>
+              <li>Invite-only early-access cohort</li>
+              <li>Feedback drives fast iteration</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="{{ '/rfc/' | relative_url }}">
+            See draft RFCs <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--alpha">
+            <i data-lucide="flask-conical" aria-hidden="true"></i>
+            Alpha
+          </span>
+          <h3 class="lifecycle-card__title">Test in the open</h3>
+          <p class="lifecycle-card__desc">
+            The capability is available to everyone who wants to try it. Interfaces are mostly stable, but
+            breaking changes are still possible based on community feedback.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">How it enters</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>RFC accepted with alpha scope</li>
+              <li>Public docs and release notes available</li>
+              <li>GitHub Discussions collect feedback</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">
+            Join alpha discussions <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--beta">
+            <i data-lucide="gauge" aria-hidden="true"></i>
+            Beta
+          </span>
+          <h3 class="lifecycle-card__title">Use in production</h3>
+          <p class="lifecycle-card__desc">
+            The capability is feature-complete and production-ready for the documented use cases.
+            Minor adjustments may still happen, but breaking changes require explicit migration guidance.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">How it enters</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>RFC accepted and implementation merged</li>
+              <li>ADR documents production-readiness criteria</li>
+              <li>Security, performance, and compatibility review passed</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="{{ '/rfc/' | relative_url }}">
+            Track accepted RFCs <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <article class="lifecycle-card">
+          <span class="lifecycle-card__badge lifecycle-card__badge--ga">
+            <i data-lucide="check-circle-2" aria-hidden="true"></i>
+            GA
+          </span>
+          <h3 class="lifecycle-card__title">General Availability</h3>
+          <p class="lifecycle-card__desc">
+            The capability is fully supported, covered by the stability policy, and recommended for all
+            users. It is maintained with backwards-compatible updates and clear deprecation windows.
+          </p>
+          <div class="lifecycle-card__rule">
+            <p class="lifecycle-card__rule-title">How it enters</p>
+            <ul class="lifecycle-card__rule-list">
+              <li>RFC status moves to <em>implemented</em></li>
+              <li>Final ADR ratifies the stable contract</li>
+              <li>Added to the official release train</li>
+            </ul>
+          </div>
+          <a class="lifecycle-card__link" href="{{ '/rfc/' | relative_url }}">
+            View implemented RFCs <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+      </div>
+
+      <div class="lifecycle-note">
+        <p>
+          <strong>Every stage is linked to the RFC/ADR process.</strong>
+          When an RFC is accepted it triggers the Alpha or Beta gate; when it is marked
+          <em>implemented</em> the capability becomes GA-ready. Follow the full picture on the
+          <a href="{{ '/rfc/' | relative_url }}">RFC tracker</a> or propose the next change in
+          <a href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussions</a>.
+        </p>
       </div>
     </div>
   </section>

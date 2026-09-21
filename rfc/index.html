@@ -3,19 +3,25 @@ layout: default
 lang: en
 ref: rfc_tracker
 title: RFC Tracker — WAF++
-description: All open, decided, and implemented Requests for Comments that shape the WAF++ framework, governance, and tooling.
+description: All open, decided, and implemented Requests for Comments and Architecture Decision Records that shape WAF++.
 permalink: /rfc/
 ---
 
-{% assign all_rfcs       = site.data.rfcs | concat: site.data.github_rfcs %}
-{% assign draft_rfcs     = all_rfcs | where: "status", "draft" %}
-{% assign open_rfcs      = all_rfcs | where: "status", "open" %}
+{% assign all_records  = site.data.decisions.records %}
+{% assign all_rfcs     = all_records | where: "kind", "rfc" %}
+{% assign all_adrs     = all_records | where: "kind", "adr" %}
+{% assign draft_rfcs   = all_rfcs | where: "status", "draft" %}
+{% assign open_rfcs    = all_rfcs | where: "status", "open" %}
 {% assign accepted_rfcs  = all_rfcs | where: "status", "accepted" %}
-{% assign impl_rfcs      = all_rfcs | where: "status", "implemented" %}
+{% assign impl_rfcs    = all_rfcs | where: "status", "implemented" %}
 {% assign rejected_rfcs  = all_rfcs | where: "status", "rejected" %}
 {% assign withdrawn_rfcs = all_rfcs | where: "status", "withdrawn" %}
-{% assign done_rfcs      = impl_rfcs | concat: accepted_rfcs | concat: rejected_rfcs | concat: withdrawn_rfcs %}
-{% assign active_rfcs    = open_rfcs | concat: draft_rfcs %}
+{% assign done_rfcs    = impl_rfcs | concat: accepted_rfcs | concat: rejected_rfcs | concat: withdrawn_rfcs %}
+{% assign active_rfcs  = open_rfcs | concat: draft_rfcs %}
+{% assign proposed_adrs = all_adrs | where: "status", "proposed" %}
+{% assign accepted_adrs = all_adrs | where: "status", "accepted" %}
+{% assign deprecated_adrs = all_adrs | where: "status", "deprecated" %}
+{% assign superseded_adrs = all_adrs | where: "status", "superseded" %}
 
 <div class="page-radical rfc-page">
 
@@ -35,8 +41,8 @@ permalink: /rfc/
       RFC <span class="text-gradient-radical">Tracker</span>
     </h1>
     <p class="hero-radical-lead" style="max-width: 680px; margin: 0 auto 36px;">
-      Every significant change to WAF++ starts with a public Request for Comments.
-      This page tracks every RFC — from first draft to merge — so every decision stays traceable.
+      Every significant change to WAF++ starts with a public Request for Comments or Architecture Decision Record.
+      This page tracks every decision — from first draft to merge — so nothing is hidden.
     </p>
     <div class="hero-radical-actions" style="justify-content:center;">
       <a class="btn-glow" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussions &rarr;</a>
@@ -55,7 +61,7 @@ permalink: /rfc/
       </span>
       <span class="hero-radical-pill">
         <i data-lucide="file-text" aria-hidden="true"></i>
-        {{ draft_rfcs | size }} drafts
+        {{ all_adrs | size }} ADRs
       </span>
     </div>
   </div>
@@ -67,28 +73,28 @@ permalink: /rfc/
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item">
+        <div class="stat-number">{{ all_records | size }}</div>
+        <div class="stat-label">Total decisions</div>
+      </div>
+      <div class="stat-item">
         <div class="stat-number">{{ all_rfcs | size }}</div>
-        <div class="stat-label">Total RFCs</div>
+        <div class="stat-label">RFCs</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">{{ open_rfcs | size }}</div>
         <div class="stat-label">Open for review</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">{{ draft_rfcs | size }}</div>
-        <div class="stat-label">Drafts</div>
-      </div>
-      <div class="stat-item">
         <div class="stat-number">{{ impl_rfcs | size }}</div>
         <div class="stat-label">Implemented</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">{{ accepted_rfcs | size }}</div>
-        <div class="stat-label">Accepted</div>
+        <div class="stat-number">{{ all_adrs | size }}</div>
+        <div class="stat-label">ADRs</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">{{ rejected_rfcs | size }}</div>
-        <div class="stat-label">Rejected</div>
+        <div class="stat-number">{{ accepted_adrs | size }}</div>
+        <div class="stat-label">Accepted ADRs</div>
       </div>
     </div>
   </div>
@@ -101,11 +107,11 @@ permalink: /rfc/
     <div class="section-header-radical">
       <div class="kicker-radical">Proposals</div>
       <h2 class="section-title-radical">All Requests for Comments</h2>
-      <p class="section-lead-radical">Filter by status, read the summaries, and follow the linked discussions and pull requests.</p>
+      <p class="section-lead-radical">Filter by project and status, read the summaries, and follow the linked discussions and pull requests.</p>
     </div>
 
-    {% assign repo_list = "framework,pass,wafpass-action,wafpass-mcp" | split: "," %}
-    {% assign repo_labels = "WAF++ Framework,WAFPass,WAFPass Action,WAFPass MCP" | split: "," %}
+    {% assign repo_list = "framework,wafpass-core,wafpass-server,wafpass-dashboard,wafpass-action,wafpass-mcp" | split: "," %}
+    {% assign repo_labels = "Framework,Core,Server,Dashboard,Action,MCP" | split: "," %}
 
     <div class="rfc-tabs rfc-tabs--two-tier">
       <!-- Project row -->
@@ -204,19 +210,21 @@ permalink: /rfc/
         {% for repo in repo_list %}
         {% assign repo_label = repo_labels[forloop.index0] %}
         {% assign project_rfcs = all_rfcs | where: "repo", repo %}
+        {% if project_rfcs.size > 0 %}
         <h3 class="rfc-group-heading">{{ repo_label }}</h3>
         <div class="rfc-list">
           {% for rfc in project_rfcs %}
           {% include rfc-card.html rfc=rfc lang="en" %}
           {% endfor %}
         </div>
+        {% endif %}
         {% endfor %}
       </div>
 
       <div class="rfc-pane rfc-pane--all-projects rfc-pane--open">
         {% assign grouped_open = open_rfcs | group_by: "repo" %}
         {% for group in grouped_open %}
-        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-server", "WAFPass Server" | replace: "wafpass-dashboard", "WAFPass Dashboard" | replace: "wafpass-action", "WAFPass Action" | replace: "wafpass-mcp", "WAFPass MCP" | replace: "pass", "WAFPass" | replace: "framework", "WAF++ Framework" }}</h3>
+        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-core", "Core" | replace: "wafpass-server", "Server" | replace: "wafpass-dashboard", "Dashboard" | replace: "wafpass-action", "Action" | replace: "wafpass-mcp", "MCP" | replace: "framework", "Framework" }}</h3>
         <div class="rfc-list">
           {% for rfc in group.items %}
           {% include rfc-card.html rfc=rfc lang="en" %}
@@ -228,7 +236,7 @@ permalink: /rfc/
       <div class="rfc-pane rfc-pane--all-projects rfc-pane--draft">
         {% assign grouped_draft = draft_rfcs | group_by: "repo" %}
         {% for group in grouped_draft %}
-        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-server", "WAFPass Server" | replace: "wafpass-dashboard", "WAFPass Dashboard" | replace: "wafpass-action", "WAFPass Action" | replace: "wafpass-mcp", "WAFPass MCP" | replace: "pass", "WAFPass" | replace: "framework", "WAF++ Framework" }}</h3>
+        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-core", "Core" | replace: "wafpass-server", "Server" | replace: "wafpass-dashboard", "Dashboard" | replace: "wafpass-action", "Action" | replace: "wafpass-mcp", "MCP" | replace: "framework", "Framework" }}</h3>
         <div class="rfc-list">
           {% for rfc in group.items %}
           {% include rfc-card.html rfc=rfc lang="en" %}
@@ -240,7 +248,7 @@ permalink: /rfc/
       <div class="rfc-pane rfc-pane--all-projects rfc-pane--done">
         {% assign grouped_done = done_rfcs | group_by: "repo" %}
         {% for group in grouped_done %}
-        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-server", "WAFPass Server" | replace: "wafpass-dashboard", "WAFPass Dashboard" | replace: "wafpass-action", "WAFPass Action" | replace: "wafpass-mcp", "WAFPass MCP" | replace: "pass", "WAFPass" | replace: "framework", "WAF++ Framework" }}</h3>
+        <h3 class="rfc-group-heading">{{ group.name | default: "framework" | replace: "wafpass-core", "Core" | replace: "wafpass-server", "Server" | replace: "wafpass-dashboard", "Dashboard" | replace: "wafpass-action", "Action" | replace: "wafpass-mcp", "MCP" | replace: "framework", "Framework" }}</h3>
         <div class="rfc-list">
           {% for rfc in group.items %}
           {% include rfc-card.html rfc=rfc lang="en" %}
@@ -263,6 +271,110 @@ permalink: /rfc/
       </div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ===================== ADR TRACKER ===================== -->
+<section class="bento-section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header-radical">
+      <div class="kicker-radical">Architecture</div>
+      <h2 class="section-title-radical">Architecture Decision Records</h2>
+      <p class="section-lead-radical">ADRs capture the structural and cross-cutting decisions that shape the WAF++ ecosystem, repositories, and contracts.</p>
+    </div>
+
+    <div class="rfc-tabs rfc-tabs--adr">
+      <input type="radio" name="adr-status" id="adr-st-all" class="rfc-radio" checked>
+      <input type="radio" name="adr-status" id="adr-st-proposed" class="rfc-radio">
+      <input type="radio" name="adr-status" id="adr-st-accepted" class="rfc-radio">
+      <input type="radio" name="adr-status" id="adr-st-deprecated" class="rfc-radio">
+      <input type="radio" name="adr-status" id="adr-st-superseded" class="rfc-radio">
+
+      <nav class="rfc-tab-nav rfc-tab-nav--status">
+        <label for="adr-st-all">All ({{ all_adrs | size }})</label>
+        <label for="adr-st-proposed">Proposed ({{ proposed_adrs | size }})</label>
+        <label for="adr-st-accepted">Accepted ({{ accepted_adrs | size }})</label>
+        <label for="adr-st-deprecated">Deprecated ({{ deprecated_adrs | size }})</label>
+        <label for="adr-st-superseded">Superseded ({{ superseded_adrs | size }})</label>
+      </nav>
+
+      <div class="rfc-pane adr-pane--all">
+        {% if all_adrs.size > 0 %}
+        <div class="rfc-list">
+          {% for adr in all_adrs %}
+          {% include rfc-card.html rfc=adr lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No Architecture Decision Records yet.</div>
+        {% endif %}
+      </div>
+
+      <div class="rfc-pane adr-pane--proposed">
+        {% if proposed_adrs.size > 0 %}
+        <div class="rfc-list">
+          {% for adr in proposed_adrs %}
+          {% include rfc-card.html rfc=adr lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No proposed ADRs.</div>
+        {% endif %}
+      </div>
+
+      <div class="rfc-pane adr-pane--accepted">
+        {% if accepted_adrs.size > 0 %}
+        <div class="rfc-list">
+          {% for adr in accepted_adrs %}
+          {% include rfc-card.html rfc=adr lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No accepted ADRs.</div>
+        {% endif %}
+      </div>
+
+      <div class="rfc-pane adr-pane--deprecated">
+        {% if deprecated_adrs.size > 0 %}
+        <div class="rfc-list">
+          {% for adr in deprecated_adrs %}
+          {% include rfc-card.html rfc=adr lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No deprecated ADRs.</div>
+        {% endif %}
+      </div>
+
+      <div class="rfc-pane adr-pane--superseded">
+        {% if superseded_adrs.size > 0 %}
+        <div class="rfc-list">
+          {% for adr in superseded_adrs %}
+          {% include rfc-card.html rfc=adr lang="en" %}
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="rfc-empty">No superseded ADRs.</div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== MACHINE-READABLE REGISTRY ===================== -->
+<section class="bento-section" style="padding-top:0;">
+  <div class="container">
+    <div class="rfc-registry">
+      <div class="rfc-registry__icon"><i data-lucide="download" aria-hidden="true"></i></div>
+      <div class="rfc-registry__body">
+        <h3>Machine-readable decision registry</h3>
+        <p>All RFCs and ADRs are also available as a single YAML file that tools, scripts, and downstream consumers can parse. The registry includes statuses, categories, repositories, tags, and direct links to every record.</p>
+      </div>
+      <a class="btn-glass" href="https://waf2p.dev/decisions/registry.yml" target="_blank" rel="noopener">Download registry.yml &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -422,20 +534,19 @@ permalink: /rfc/
         <div class="rfc-guide-card__icon">
           <i data-lucide="scale" style="width:22px;height:22px;" aria-hidden="true"></i>
         </div>
-        <h3 class="rfc-guide-card__title">Document trade-offs explicitly</h3>
-        <p class="rfc-guide-card__body">Every decision has costs. Name them. What gets worse? What are the alternatives you considered? An RFC that acknowledges trade-offs earns trust faster than one that only sells the upside.</p>
+        <h3 class="rfc-guide-card__title">Show trade-offs and alternatives</h3>
+        <p class="rfc-guide-card__body">A strong RFC explains what else was considered and why it was rejected. This saves review cycles and gives future maintainers context when the original author has moved on.</p>
       </div>
 
       <div class="rfc-guide-card">
         <div class="rfc-guide-card__icon">
-          <i data-lucide="git-pull-request" style="width:22px;height:22px;" aria-hidden="true"></i>
+          <i data-lucide="users" style="width:22px;height:22px;" aria-hidden="true"></i>
         </div>
-        <h3 class="rfc-guide-card__title">Link to evidence</h3>
-        <p class="rfc-guide-card__body">Point to real examples — issues, incidents, prior discussions, or production patterns. Evidence turns opinions into traceable facts and dramatically shortens the review cycle.</p>
+        <h3 class="rfc-guide-card__title">Be specific about impact</h3>
+        <p class="rfc-guide-card__body">Who is affected? Which repositories, files, or public contracts change? The clearer the scope, the faster the community can give useful feedback and a maintainer can make a decision.</p>
       </div>
 
     </div>
-
   </div>
 </section>
 
@@ -443,16 +554,15 @@ permalink: /rfc/
 <!-- ===================== CTA ===================== -->
 <section class="cta-radical">
   <div class="cta-radical__glow" aria-hidden="true"></div>
-  <div class="container">
-    <div class="cta-radical__inner">
-      <div class="kicker-radical" style="margin-bottom:14px;">Ready to contribute?</div>
-      <h2 class="cta-radical__title">Start an RFC today.</h2>
-      <p class="cta-radical__lead">Open a discussion on GitHub, follow the template, and let the process do the rest. No prior approval needed — just a clear problem statement.</p>
-      <div class="cta-radical__actions">
-        <a class="btn-glow" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">Open RFC on GitHub &rarr;</a>
-        <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Governance model</a>
-        <a class="btn-glass" href="{{ '/roles/' | relative_url }}">Who decides</a>
-      </div>
+  <div class="container cta-radical__inner">
+    <div class="kicker-radical">Ready to shape WAF++?</div>
+    <h2 class="cta-radical__title">Every decision starts with a conversation.</h2>
+    <p class="cta-radical__lead">
+      Pick an open RFC, share your perspective, or open a new one. The framework is built in public and every voice counts.
+    </p>
+    <div class="cta-radical__actions">
+      <a class="btn btn-glow btn-glow--lg" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">Open GitHub Discussions &rarr;</a>
+      <a class="btn btn-glass btn-glass--lg" href="{{ '/contributing/' | relative_url }}">How to contribute</a>
     </div>
   </div>
 </section>
