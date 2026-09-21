@@ -1,0 +1,195 @@
+---
+layout: default
+lang: pl
+ref: changelog
+title: "Changelog - WAF++"
+description: "Publiczny dziennik wszystkich istotnych zmian w ramach WAF++ i miejscu marketingu."
+permalink: /pl/changelog/
+---
+
+<div class="page-radical changelog-page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero--radical page-radical__hero">
+    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
+
+    <div class="container hero-radical-grid">
+      <div class="hero-radical-copy">
+        {% include breadcrumb-inline.html %}
+        {% include breadcrumb.html %}
+
+        <div class="hero-radical-badge">
+          <span class="hero-radical-badge__dot"></span>Przejrzystość · Historia
+</div>
+
+        <h1 class="hero-radical-h1">
+          <span class="text-gradient-radical">Changelog</span>
+        </h1>
+
+        <p class="hero-radical-lead">Przejrzysty zapis każdej istotnej zmiany - każda z nich jest powiązana z RFC lub PR, które ją wprowadziły.
+</p>
+
+        <div class="hero-radical-actions">
+          <a class="btn btn-glow" href="#changelog-content">Wyświetl zmiany &darr;</a>
+          <a class="btn btn-glass" href="{{ '/roadmap/' | relative_url }}">Plan działania</a>
+          <a class="btn btn-glass" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="hero-radical-pills">
+          <span class="hero-radical-pill"><i data-lucide="layers" aria-hidden="true"></i>Ramowe · Marketing · WAFPass · Działanie · MCP</span>
+          <span class="hero-radical-pill"><i data-lucide="git-pull-request" aria-hidden="true"></i>Powiązane z PRs i RFC</span>
+          <span class="hero-radical-pill"><i data-lucide="eye" aria-hidden="true"></i>W pełni publiczne</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CHANGELOG ===================== -->
+  <section class="bento-section" id="changelog-content">
+    <div class="container">
+
+      <div class="section-header-radical">
+        <div class="kicker-radical">Changelog</div>
+        <h2 class="section-title-radical">Wszystkie zmiany</h2>
+        <p class="section-lead-radical">Wybierz komponent, aby zobaczyć jego historię zmian. Każdy wpis odnosi się do PR lub RFC, w których decyzja została podjęta.
+</p>
+      </div>
+
+      <div class="changelog-tabs">
+        <input type="radio" name="cl-tab" id="cl-tab-fw" class="cl-radio" checked>
+        <input type="radio" name="cl-tab" id="cl-tab-mkt" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-pass" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-dash" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-srv" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-act" class="cl-radio">
+        <input type="radio" name="cl-tab" id="cl-tab-mcp" class="cl-radio">
+
+        <nav class="cl-tab-nav">
+          <label class="cl-tab-nav__item" for="cl-tab-fw">Ramy</label>
+          <label class="cl-tab-nav__item" for="cl-tab-mkt">Podmiot odpowiedzialny</label>
+          <label class="cl-tab-nav__item" for="cl-tab-pass">WAFPass</label>
+          <label class="cl-tab-nav__item" for="cl-tab-dash">Deska rozdzielcza WAFPass</label>
+          <label class="cl-tab-nav__item" for="cl-tab-srv">Serwer WAFPass</label>
+          <label class="cl-tab-nav__item" for="cl-tab-act">Działanie na rzecz przejścia na emeryturę</label>
+          <label class="cl-tab-nav__item" for="cl-tab-mcp">WAFPass MCP</label>
+        </nav>
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-fw"
+          data="changelog_framework"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/framework/pull/"
+          history_url="https://github.com/waf2p/framework/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/framework"
+          launch_title="v1.0.0 released"
+          launch_body="WAF++ Framework v1.0.0 launched on 12 May 2026 on the pre-eve of Cloud Native Conference DE. All eight pillars are stable, the controls library is locked, and the PASS scoring model is finalized. Agentic (Pillar 8) announced for v1.1."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-mkt"
+          data="changelog_marketing"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/waf2p.github.io/pull/"
+          history_url="https://github.com/waf2p/waf2p.github.io/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/waf2p.github.io"
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-pass"
+          data="changelog_wafpass"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/pass/pull/"
+          history_url="https://github.com/waf2p/pass/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/pass"
+          launch_title="v1.0.0 released"
+          launch_body="WAFPass v1.0.0 (wafpass-core) launched on 12 May 2026 alongside Framework v1.0.0. The CLI is stable, the Python library API is published on PyPI, and all 8 pillars are covered. Agentic (Pillar 8) announced for v1.1."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-dash"
+          data="changelog_wafpass_dashboard"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/wafpass-dashboard/pull/"
+          history_url="https://github.com/waf2p/wafpass-dashboard/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/wafpass-dashboard"
+          launch_title="v1.0.0 released"
+          launch_body="WAFPass Dashboard v1.0.0 is the stable React / Vite SPA companion to the WAFPass CLI. All 22+ pages are stable. Connects to wafpass-server and visualises compliance state, exploit paths, gap analysis, and audit evidence."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-srv"
+          data="changelog_wafpass_server"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/wafpass-server/pull/"
+          history_url="https://github.com/waf2p/wafpass-server/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/wafpass-server"
+          launch_title="v1.0.0 released"
+          launch_body="WAFPass Server v1.0.0 is the stable FastAPI / PostgreSQL persistence layer for the WAFPass stack. Full SSO (OIDC/SAML2), API key management, role-based access control, and all 14 database migrations ship with the stable Docker image."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-act"
+          data="changelog_wafpass_action"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/wafpass-action/pull/"
+          history_url="https://github.com/waf2p/wafpass-action/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/wafpass-action"
+          launch_title="v0.1.0 released"
+          launch_body="WAF++ PASS GitHub Action runs WAFPass scans in CI/CD and pushes results to the WAFPass server. Supports Terraform, Bicep, CDK, and Pulumi, with Bearer token or API key authentication and configurable fail-on policies."
+        %}
+
+        {% include changelog-pane.html
+          pane_id="cl-pane-mcp"
+          data="changelog_wafpass_mcp"
+          group_key="group_en"
+          text_key="text_en"
+          pr_base_url="https://github.com/waf2p/wafpass-mcp/pull/"
+          history_url="https://github.com/waf2p/wafpass-mcp/commits/main"
+          history_label="Full history:"
+          history_link_text="github.com/waf2p/wafpass-mcp"
+          launch_title="v0.1.0 released"
+          launch_body="WAF++ MCP Bridge exposes WAFpass REST endpoints as Model Context Protocol tools for AI assistants. Uses SSE transport, role-aware tool filtering, and OpenAPI-driven argument validation."
+        %}
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-radical">
+    <div class="cta-radical__glow" aria-hidden="true"></div>
+    <div class="container cta-radical__inner">
+      <div class="kicker-radical">Bądź poinformowany</div>
+      <h2 class="cta-radical__title">Nigdy nie przegap aktualizacji.</h2>
+      <p class="cta-radical__lead">Zapisz się do kanału RSS, obejrzyj repozytorium GitHub lub dołącz do Slacka, aby uzyskać informację o nowym statku.
+</p>
+      <div class="cta-radical__actions">
+        <a class="btn btn-glow" href="{{ '/stay-updated/' | relative_url }}">Bądź na bieżąco &rarr;</a>
+        <a class="btn btn-glass" href="{{ '/roadmap/' | relative_url }}">Plan działania</a>
+        <a class="btn btn-glass" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="cta-radical__compliance">
+        <span class="cta-radical__pill"><i data-lucide="rss" aria-hidden="true"></i>Pasza RSS</span>
+        <span class="cta-radical__pill"><i data-lucide="bell" aria-hidden="true"></i>Zegarek zwalniający</span>
+        <span class="cta-radical__pill"><i data-lucide="message-circle" aria-hidden="true"></i>Slack wspólnotowy</span>
+      </div>
+    </div>
+  </section>
+
+</div>

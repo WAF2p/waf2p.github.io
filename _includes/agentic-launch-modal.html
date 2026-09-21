@@ -1,24 +1,18 @@
 {% include lang-vars.html %}
 
-{%- if lang == 'de' -%}
-  {%- assign modal_title = "Säule 8 ist da: Agentic" -%}
-  {%- assign modal_lead = "WAF++ bekommt eine neue Säule — KI-unterstützte Architekturreviews, autonome Remediation und richtlinienbewusste Agents für sichere Cloud-Operationen." -%}
-  {%- assign cta_primary = "Agentic erkunden" -%}
-  {%- assign cta_primary_url = lang_prefix | append: '/pillars/agentic/' -%}
-  {%- assign cta_secondary = "Dokumentation lesen" -%}
-  {%- assign cta_secondary_url = '/docs/wafpp/1.0.1-de/pillar-agentic/index.html' -%}
-  {%- assign close_label = "Schließen" -%}
-  {%- assign footer_text = "Einmal pro Browser angezeigt. Du kannst den Launch jederzeit über den Changelog wiederfinden." -%}
-{%- else -%}
-  {%- assign modal_title = "Pillar 8 is here: Agentic" -%}
-  {%- assign modal_lead = "WAF++ now includes an eighth pillar — AI-assisted architecture reviews, autonomous remediation, and policy-aware agents for secure cloud operations." -%}
-  {%- assign cta_primary = "Explore Agentic" -%}
-  {%- assign cta_primary_url = lang_prefix | append: '/pillars/agentic/' -%}
-  {%- assign cta_secondary = "Read the docs" -%}
-  {%- assign cta_secondary_url = '/docs/wafpp/1.0.1-en/pillar-agentic/index.html' -%}
-  {%- assign close_label = "Close" -%}
-  {%- assign footer_text = "Shown once per browser. You can always revisit the launch via the changelog." -%}
-{%- endif -%}
+{%- assign modal_title = i18n.common.agentic_modal_title | default: "Pillar 8 is here: Agentic" -%}
+{%- assign modal_lead = i18n.common.agentic_modal_lead | default: "WAF++ now includes an eighth pillar — AI-assisted architecture reviews, autonomous remediation, and policy-aware agents for secure cloud operations." -%}
+{%- assign modal_badge = i18n.common.agentic_modal_badge | default: "New in WAF++ v1.1" -%}
+{%- assign modal_feature_1 = i18n.common.agentic_modal_feature_1 | default: "AI-assisted architecture reviews" -%}
+{%- assign modal_feature_2 = i18n.common.agentic_modal_feature_2 | default: "Policy-aware autonomous remediation" -%}
+{%- assign modal_feature_3 = i18n.common.agentic_modal_feature_3 | default: "Pull-request copilot for controls" -%}
+{%- assign modal_feature_4 = i18n.common.agentic_modal_feature_4 | default: "Continuous maturity scoring" -%}
+{%- assign cta_primary = i18n.common.agentic_modal_cta_primary | default: "Explore Agentic" -%}
+{%- assign cta_secondary = i18n.common.agentic_modal_cta_secondary | default: "Read the docs" -%}
+{%- assign close_label = i18n.common.agentic_modal_close | default: "Close" -%}
+{%- assign footer_text = i18n.common.agentic_modal_footer | default: "Shown once per browser. You can always revisit the launch via the changelog." -%}
+{%- assign cta_primary_url = lang_prefix | append: '/pillars/agentic/' -%}
+{%- assign cta_secondary_url = '/docs/wafpp/1.0.1-' | append: lang | append: '/pillar-agentic/index.html' -%}
 
 <div id="agentic-launch-modal" class="agentic-modal" role="dialog" aria-modal="true" aria-label="{{ modal_title | escape }}" hidden>
   <div class="agentic-modal__overlay" data-agentic-close></div>
@@ -29,7 +23,7 @@
 
     <div class="agentic-modal__badge">
       <span class="agentic-modal__dot"></span>
-      {%- if lang == 'de' -%}Neu in WAF++ v1.1{%- else -%}New in WAF++ v1.1{%- endif -%}
+      {{ modal_badge }}
     </div>
 
     <h2 class="agentic-modal__title">{{ modal_title }}</h2>
@@ -38,19 +32,19 @@
     <ul class="agentic-modal__list">
       <li>
         <i data-lucide="search" aria-hidden="true"></i>
-        <span>{%- if lang == 'de' -%}KI-unterstützte Architekturreviews{%- else -%}AI-assisted architecture reviews{%- endif -%}</span>
+        <span>{{ modal_feature_1 }}</span>
       </li>
       <li>
         <i data-lucide="shield-check" aria-hidden="true"></i>
-        <span>{%- if lang == 'de' -%}Richtlinienbewusste autonome Remediation{%- else -%}Policy-aware autonomous remediation{%- endif -%}</span>
+        <span>{{ modal_feature_2 }}</span>
       </li>
       <li>
         <i data-lucide="git-pull-request" aria-hidden="true"></i>
-        <span>{%- if lang == 'de' -%}Pull-Request-Copilot für Controls{%- else -%}Pull-request copilot for controls{%- endif -%}</span>
+        <span>{{ modal_feature_3 }}</span>
       </li>
       <li>
         <i data-lucide="bar-chart-3" aria-hidden="true"></i>
-        <span>{%- if lang == 'de' -%}Kontinuierliches Reifegrad-Scoring{%- else -%}Continuous maturity scoring{%- endif -%}</span>
+        <span>{{ modal_feature_4 }}</span>
       </li>
     </ul>
 

@@ -1,0 +1,48 @@
+<script>
+  (function () {
+    // Auto-redirect first-time visitors from the root English homepage to their
+    // browser language when a matching translation exists. Falls back to English.
+    // Respects an explicit manual override stored in localStorage.
+    var supported = ['en', 'de', 'fr', 'nl', 'es', 'it', 'pl', 'pt'];
+    var path = location.pathname.replace(/\/$/, '');
+    var search = location.search;
+    var hash = location.hash;
+
+    // Only run on the root English homepage (no language prefix yet).
+    if (path !== '' && path !== '/') return;
+
+    // Skip if the user has already chosen a language manually this session.
+    try {
+      if (sessionStorage.getItem('lang-redirect-done') === '1') return;
+      if (localStorage.getItem('lang-override') === '1') return;
+    } catch (e) {
+      // storage unavailable; continue without persistence
+    }
+
+    function pickLang() {
+      var navLangs = [];
+      if (navigator.languages && navigator.languages.length) {
+        navLangs = Array.prototype.slice.call(navigator.languages);
+      } else if (navigator.language) {
+        navLangs = [navigator.language];
+      }
+      for (var i = 0; i < navLangs.length; i++) {
+        var code = navLangs[i].toLowerCase().split('-')[0];
+        if (supported.indexOf(code) !== -1) {
+          return code;
+        }
+      }
+      return 'en';
+    }
+
+    var target = pickLang();
+    if (target === 'en') {
+      try { sessionStorage.setItem('lang-redirect-done', '1'); } catch (e) {}
+      return;
+    }
+
+    var targetUrl = '/' + target + '/' + search + hash;
+    try { sessionStorage.setItem('lang-redirect-done', '1'); } catch (e) {}
+    location.replace(targetUrl);
+  })();
+</script>

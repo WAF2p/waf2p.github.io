@@ -1,19 +1,73 @@
-/* Header */
+/* Header offset used to pull the first section under the floating nav */
+:root{
+  --header-offset: 92px;
+}
+@media (max-width: 860px){
+  :root{
+    --header-offset: 82px;
+  }
+}
+
+/* Header — floating island (global) */
 .site-header{
-  position:sticky;
-  top:0;
-  z-index:40;
+  position:fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1120px, calc(100% - 40px));
+  border-radius: 999px;
+  border: 1px solid var(--border);
   background: color-mix(in srgb, var(--bg) 78%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
+  z-index:40;
 }
+
+/* Reserve space for the fixed header so content never hides under it */
+body{
+  padding-top: var(--header-offset);
+}
+
+/* Pull the first content section up so its background reaches the top
+   behind the floating nav. Sections with generous top padding keep it;
+   compact heroes and plain docs pages get enough clearance below. */
+main > section:first-child,
+main > .translation-notice + section,
+main > div[class] > section:first-child,
+main > div[class] > .translation-notice + section,
+.page-radical > section:first-child,
+.page-radical > .translation-notice + section,
+.frontpage main > section:first-child,
+.frontpage main > .translation-notice + section,
+.content > section:first-child{
+  margin-top: calc(var(--header-offset) * -1);
+}
+
+/* Compact heroes / docs content need explicit clearance for the fixed nav */
+main > section.hero:first-child,
+main > .translation-notice + section.hero,
+main > div[class] > section.hero:first-child,
+.page-radical > section.hero:first-child,
+main > section.blog-header:first-child,
+main > .translation-notice + section.blog-header,
+main > div[class] > section.blog-header:first-child,
+.page-radical > section.blog-header:first-child,
+main > section.post-hero-radical:first-child,
+main > .translation-notice + section.post-hero-radical,
+main > div[class] > section.post-hero-radical:first-child,
+.page-radical > section.post-hero-radical:first-child,
+.content > section.page:first-child{
+  padding-top: var(--header-offset);
+}
+
 .header-inner{
-  display:flex;
+  display:grid;
+  grid-template-columns: auto 1fr auto;
   align-items:center;
-  justify-content:space-between;
   gap:18px;
-  padding:14px 0;
+  padding: 10px 18px;
 }
+.brand{justify-self:start;}
 .brand{
   display:flex;
   align-items:center;
@@ -24,9 +78,13 @@
 .brand img{width:34px; height:34px}
 
 .nav{
+  display:contents;
+}
+.nav-main{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:24px;
+  justify-self:center;
 }
 .nav a{
   font-size:14px;
@@ -39,32 +97,106 @@
   background: color-mix(in srgb, var(--brand-500) 12%, transparent);
   color: var(--text);
 }
-.nav .cta-row{display:flex; align-items:center; gap:10px}
+.cta-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  justify-self:end;
+}
 .nav .cta-row .btn{ border-radius: 6px; }
+.nav .cta-row .btn-warn:hover{
+  background: var(--warn-400);
+  color: var(--text) !important;
+}
+.nav .cta-row .btn-warn.active{
+  background: var(--warn-500);
+  color: var(--text) !important;
+}
 
-/* Language switch (flags) */
-.lang-switch{display:inline-flex; align-items:center; gap:8px}
-.lang-flag{
-  width:36px; height:36px;
+/* Language switch (single button with dropdown) */
+.lang-switch{position:relative; display:inline-flex; align-items:center;}
+.lang-switch__trigger{
+  height:36px;
   display:inline-flex;
   align-items:center;
-  justify-content:center;
+  gap:6px;
+  padding: 0 10px;
   border-radius: 6px;
   border:1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 70%, transparent);
   box-shadow: var(--shadow-sm);
-  padding:0;
+  font-size:14px;
+  color: var(--nav-link, var(--muted));
+  cursor:pointer;
 }
-.lang-flag:hover{background: color-mix(in srgb, var(--brand-500) 12%, transparent)}
-.lang-flag.is-active{outline: 2px solid color-mix(in srgb, var(--brand-500) 55%, transparent)}
+.lang-switch__trigger:hover{
+  background: color-mix(in srgb, var(--brand-500) 12%, transparent);
+  color: var(--nav-link-hover, var(--text));
+}
+.lang-switch__trigger i{width:14px; height:14px}
+.lang-switch__check{
+  position:absolute;
+  opacity:0;
+  width:0;
+  height:0;
+  pointer-events:none;
+}
+.lang-switch__menu{
+  position:absolute;
+  top: calc(100% + 6px);
+  right:0;
+  min-width: 140px;
+  display:none;
+  flex-direction:column;
+  gap:2px;
+  padding:6px;
+  border-radius: var(--radius-md);
+  border:1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+}
+.lang-switch__check:checked ~ .lang-switch__menu,
+.lang-switch__menu.is-open{display:flex;}
+.lang-option{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius: 6px;
+  font-size:13px;
+  color: var(--text);
+  text-decoration:none;
+}
+.lang-option:hover{background: color-mix(in srgb, var(--brand-500) 12%, transparent)}
+.lang-option.is-active{
+  background: color-mix(in srgb, var(--brand-500) 12%, transparent);
+  font-weight:700;
+}
 
 .burger{
   display:none;
-  width:42px; height:42px;
-  border-radius:6px;
+  width:40px; height:40px;
+  border-radius: 999px;
   border:1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 70%, transparent);
   box-shadow: var(--shadow-sm);
+  transition: background 0.2s ease;
+}
+.burger span{
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease;
+}
+body.nav-open .burger span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+body.nav-open .burger span:nth-child(2) {
+  opacity: 0;
+}
+body.nav-open .burger span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 
@@ -91,8 +223,13 @@
 }
 
 @media (max-width: 860px){
+  .header-inner{
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
   .burger { display: block; }
   .nav {
+    display: none;
     position: fixed;
     top: 68px;
     left: 12px;
@@ -100,7 +237,6 @@
     max-height: calc(100svh - 84px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    display: none;
     flex-direction: column;
     align-items: stretch;
     gap: 2px;
@@ -114,8 +250,15 @@
   body.nav-open .nav { display: flex; }
   .nav a { padding: 10px 12px; font-size: 15px; border-radius: 6px; }
 
+  .nav-main{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    justify-self: stretch;
+  }
+
   /* CTA row: icon controls on one line, docs button full-width below */
-  .nav .cta-row {
+  .cta-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -123,8 +266,9 @@
     padding-top: 10px;
     margin-top: 4px;
     border-top: 1px solid var(--border);
+    justify-self: stretch;
   }
-  .nav .cta-row .btn {
+  .cta-row .btn {
     flex: 1 0 100%;
     justify-content: center;
   }
@@ -259,10 +403,10 @@
 
 
 /* Header dropdown navigation (data-driven) */
-.nav .nav-main{
+.nav-main{
   display:flex;
   align-items:center;
-  gap: 6px;
+  gap: 24px;
 }
 
 .nav-group{
@@ -298,6 +442,23 @@ border: 1px solid var(--border);
 .nav-dropdown__link.active{
   background: color-mix(in srgb, var(--brand-500) 12%, transparent);
   color: var(--text);
+}
+
+.nav-dropdown__group{
+  display:block;
+  padding: 14px 12px 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-400);
+  border-top: 1px solid var(--border);
+  margin-top: 6px;
+}
+.nav-dropdown__group:first-of-type{
+  border-top: none;
+  margin-top: 0;
+  padding-top: 8px;
 }
 
 @media (min-width: 861px){
@@ -363,7 +524,7 @@ border: 1px solid var(--border);
 }
 
 @media (max-width: 860px){
-  .nav .nav-main{flex-direction:column; align-items:stretch}
+  .nav-main{flex-direction:column; align-items:stretch; gap:2px; justify-self:stretch}
   .nav-group{flex-direction:column; align-items:stretch}
   .nav-group-toggle{ display: flex; }
   /* hide the plain anchor that acts as group label on desktop */

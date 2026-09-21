@@ -73,7 +73,9 @@
 
 #rfc-proj-all:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-all"],
 #rfc-proj-framework:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-framework"],
-#rfc-proj-pass:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-pass"],
+#rfc-proj-wafpass-core:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-core"],
+#rfc-proj-wafpass-server:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-server"],
+#rfc-proj-wafpass-dashboard:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-dashboard"],
 #rfc-proj-wafpass-action:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-action"],
 #rfc-proj-wafpass-mcp:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-mcp"] {
   color: var(--brand-500);
@@ -101,10 +103,20 @@
 #rfc-proj-framework:checked ~ #rfc-st-draft:checked ~ .rfc-pane--framework.rfc-pane--draft,
 #rfc-proj-framework:checked ~ #rfc-st-done:checked  ~ .rfc-pane--framework.rfc-pane--done,
 
-#rfc-proj-pass:checked ~ #rfc-st-all:checked   ~ .rfc-pane--pass.rfc-pane--all,
-#rfc-proj-pass:checked ~ #rfc-st-open:checked  ~ .rfc-pane--pass.rfc-pane--open,
-#rfc-proj-pass:checked ~ #rfc-st-draft:checked ~ .rfc-pane--pass.rfc-pane--draft,
-#rfc-proj-pass:checked ~ #rfc-st-done:checked  ~ .rfc-pane--pass.rfc-pane--done,
+#rfc-proj-wafpass-core:checked ~ #rfc-st-all:checked   ~ .rfc-pane--wafpass-core.rfc-pane--all,
+#rfc-proj-wafpass-core:checked ~ #rfc-st-open:checked  ~ .rfc-pane--wafpass-core.rfc-pane--open,
+#rfc-proj-wafpass-core:checked ~ #rfc-st-draft:checked ~ .rfc-pane--wafpass-core.rfc-pane--draft,
+#rfc-proj-wafpass-core:checked ~ #rfc-st-done:checked  ~ .rfc-pane--wafpass-core.rfc-pane--done,
+
+#rfc-proj-wafpass-server:checked ~ #rfc-st-all:checked   ~ .rfc-pane--wafpass-server.rfc-pane--all,
+#rfc-proj-wafpass-server:checked ~ #rfc-st-open:checked  ~ .rfc-pane--wafpass-server.rfc-pane--open,
+#rfc-proj-wafpass-server:checked ~ #rfc-st-draft:checked ~ .rfc-pane--wafpass-server.rfc-pane--draft,
+#rfc-proj-wafpass-server:checked ~ #rfc-st-done:checked  ~ .rfc-pane--wafpass-server.rfc-pane--done,
+
+#rfc-proj-wafpass-dashboard:checked ~ #rfc-st-all:checked   ~ .rfc-pane--wafpass-dashboard.rfc-pane--all,
+#rfc-proj-wafpass-dashboard:checked ~ #rfc-st-open:checked  ~ .rfc-pane--wafpass-dashboard.rfc-pane--open,
+#rfc-proj-wafpass-dashboard:checked ~ #rfc-st-draft:checked ~ .rfc-pane--wafpass-dashboard.rfc-pane--draft,
+#rfc-proj-wafpass-dashboard:checked ~ #rfc-st-done:checked  ~ .rfc-pane--wafpass-dashboard.rfc-pane--done,
 
 #rfc-proj-wafpass-action:checked ~ #rfc-st-all:checked   ~ .rfc-pane--wafpass-action.rfc-pane--all,
 #rfc-proj-wafpass-action:checked ~ #rfc-st-open:checked  ~ .rfc-pane--wafpass-action.rfc-pane--open,
@@ -624,4 +636,165 @@
   color: var(--radical-muted);
   line-height: 1.65;
   margin: 0;
+}
+
+// ── Kind badge (RFC vs ADR) ───────────────────────────────────────────────
+
+.rfc-kind {
+  font-size: 0.62rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+
+  &--rfc {
+    background: rgba(0, 148, 255, 0.12);
+    color: var(--brand-400);
+    border-color: rgba(0, 148, 255, 0.25);
+  }
+
+  &--adr {
+    background: rgba(124, 58, 237, 0.12);
+    color: #a78bfa;
+    border-color: rgba(124, 58, 237, 0.25);
+  }
+}
+
+// ── ADR status badges ─────────────────────────────────────────────────────
+
+.rfc-status {
+  &--proposed   { background: rgba(217, 119, 6, 0.12); color: #fbbf24; border-color: rgba(217, 119, 6, 0.22); }
+  &--deprecated { background: rgba(107, 114, 128, 0.12); color: #9ca3af; border-color: rgba(107, 114, 128, 0.22); }
+  &--superseded { background: rgba(156, 163, 175, 0.12); color: #d1d5db; border-color: rgba(156, 163, 175, 0.22); }
+}
+
+// ── Tags ──────────────────────────────────────────────────────────────────
+
+.rfc-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--radical-border);
+  color: var(--radical-muted);
+}
+
+html[data-theme="light"] .rfc-tag {
+  background: rgba(15, 23, 42, 0.04);
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) .rfc-tag {
+    background: rgba(15, 23, 42, 0.04);
+  }
+}
+
+// ── ADR tabs ──────────────────────────────────────────────────────────────
+
+.rfc-tabs--adr {
+  .rfc-tab-nav--status {
+    margin-bottom: 28px;
+  }
+}
+
+#adr-st-all:checked ~ .rfc-tab-nav--status label[for="adr-st-all"],
+#adr-st-proposed:checked ~ .rfc-tab-nav--status label[for="adr-st-proposed"],
+#adr-st-accepted:checked ~ .rfc-tab-nav--status label[for="adr-st-accepted"],
+#adr-st-deprecated:checked ~ .rfc-tab-nav--status label[for="adr-st-deprecated"],
+#adr-st-superseded:checked ~ .rfc-tab-nav--status label[for="adr-st-superseded"] {
+  color: var(--brand-400);
+  background: rgba(0, 148, 255, 0.12);
+  border-color: rgba(0, 148, 255, 0.35);
+  box-shadow: 0 0 20px var(--radical-glow);
+}
+
+#adr-st-all:checked ~ .adr-pane--all,
+#adr-st-proposed:checked ~ .adr-pane--proposed,
+#adr-st-accepted:checked ~ .adr-pane--accepted,
+#adr-st-deprecated:checked ~ .adr-pane--deprecated,
+#adr-st-superseded:checked ~ .adr-pane--superseded {
+  display: block;
+}
+
+// ── Machine-readable registry banner ──────────────────────────────────────
+
+.rfc-registry {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 28px 30px;
+  border: 1px solid var(--radical-border);
+  border-radius: 22px;
+  background: var(--radical-surface);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(124, 58, 237, 0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.rfc-registry__icon {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 148, 255, 0.08);
+  border: 1px solid rgba(0, 148, 255, 0.18);
+  color: var(--brand-400);
+  flex-shrink: 0;
+
+  i { width: 24px; height: 24px; }
+}
+
+.rfc-registry__body {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    color: var(--radical-text);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--radical-muted);
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 640px) {
+  .rfc-registry {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+// ── Meta extras ───────────────────────────────────────────────────────────
+
+.rfc-meta-repos {
+  text-transform: none;
 }

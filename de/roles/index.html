@@ -73,7 +73,8 @@ permalink: /de/roles/
           {% endif %}
         </div>
         <div class="roles-directory__title">{{ role.title }}</div>
-        <p class="roles-directory__desc">{{ role.description }}</p>
+        {%- assign role_desc_key = 'description_' | append: lang -%}
+        <p class="roles-directory__desc">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
       </a>
       {% endfor %}
     </div>
@@ -99,7 +100,8 @@ permalink: /de/roles/
         {% endcase %}
       </div>
       <h2>{{ role.title }}</h2>
-      <p class="roles-detail__lead">{{ role.description }}</p>
+      {%- assign role_desc_key = 'description_' | append: lang -%}
+      <p class="roles-detail__lead">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
     </div>
 
     {% if role.members and role.members.size > 0 %}

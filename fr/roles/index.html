@@ -1,0 +1,191 @@
+---
+layout: default
+lang: fr
+ref: roles
+title: "Rôles et membres"
+description: "Tous les rôles de gouvernance dans WAF++ — responsabilités et membres assignés. TSC, Mainteneurs, chefs de groupe de travail, Groupe consultatif des utilisateurs et contributeurs."
+permalink: /fr/roles/
+---
+
+<div class="page-radical roles-page">
+
+<!-- ===================== HERO ===================== -->
+<section class="roles-hero">
+  <div class="roles-hero__orb roles-hero__orb--purple" aria-hidden="true"></div>
+  <div class="roles-hero__orb roles-hero__orb--blue" aria-hidden="true"></div>
+  <div class="roles-hero__orb roles-hero__orb--gold" aria-hidden="true"></div>
+
+  <div class="container roles-hero__inner">
+    <div class="roles-hero__badge">
+      <span class="roles-hero__badge-dot"></span>Gouvernance · Rôles &amp; Membres
+</div>
+    <h1>Rôles et <span class="text-gradient-radical">Membres</span></h1>
+    <p class="roles-hero__lead">Tous les rôles de gouvernance dans WAF++ — avec leurs responsabilités et les membres assignés.
+Les affectations de rôles sont maintenues par le projet et mises à jour à mesure que la collectivité grandit.
+</p>
+    <div class="roles-hero__actions">
+      <a class="btn-glow" href="{{ '/governance-community/' | relative_url }}">Gouvernance &rarr;</a>
+      <a class="btn-glass" href="#roles">Voir tous les rôles</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== ROLE DIRECTORY ===================== -->
+<section class="roles-section" id="roles">
+  <div class="container">
+
+    <div class="section-header-radical">
+      <div class="kicker-radical">RÉPERTOIRE</div>
+      <h2 class="section-title-radical">Tous les rôles en un coup d'oeil</h2>
+      <p class="section-lead-radical">Cinq rôles à l'échelle de la gouvernance, du maintien et de la collectivité, chacun ayant une portée, une responsabilité et un processus définis.</p>
+    </div>
+
+    {% assign roles = site.data.roles %}
+
+    <div class="roles-directory">
+      {% for role in roles %}
+      <a class="roles-directory__card
+        {% case role.id %}
+          {% when 'maintainers' %}roles-directory__card--maintainers
+          {% when 'wg-leads' %}roles-directory__card--wg
+          {% when 'user-advisory' %}roles-directory__card--advisory
+          {% when 'contributors' %}roles-directory__card--contributors
+        {% endcase %}"
+        href="#{{ role.id }}">
+        <div class="roles-directory__icon">
+          {% case role.id %}
+            {% when 'tsc' %}<i data-lucide="settings-2" aria-hidden="true"></i>
+            {% when 'maintainers' %}<i data-lucide="users" aria-hidden="true"></i>
+            {% when 'wg-leads' %}<i data-lucide="git-branch" aria-hidden="true"></i>
+            {% when 'user-advisory' %}<i data-lucide="message-circle" aria-hidden="true"></i>
+            {% when 'contributors' %}<i data-lucide="git-pull-request" aria-hidden="true"></i>
+            {% else %}<i data-lucide="circle" aria-hidden="true"></i>
+          {% endcase %}
+        </div>
+        <div class="roles-directory__num">
+          {% if role.members and role.members.size > 0 %}
+            {{ role.members.size }}membre{% if role.members.size != 1 %}s{% endif %}
+          {% else %}Ouvrir
+{% endif %}
+        </div>
+        <div class="roles-directory__title">{{ role.title }}</div>
+        {% assign role_desc_key = 'description_' | append: lang %}
+        {% assign role_desc = role[role_desc_key] | default: role.description_en | default: role.description %}
+        <p class="roles-directory__desc">{{ role_desc }}</p>
+      </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== ROLE DETAIL SECTIONS ===================== -->
+{% for role in site.data.roles %}
+<section class="roles-detail{% cycle '', ' roles-section--alt', '', ' roles-section--alt', '' %}" id="{{ role.id }}">
+  <div class="container">
+
+    <div class="roles-detail__header">
+      <div class="roles-detail__kicker">
+        {% case role.id %}
+          {% when 'tsc' %}GOUVERNANCE
+{% when 'maintainers' %}QUALITÉ
+{% when 'wg-leads' %}COORDINATION
+{% when 'user-advisory' %}COMMUNAUTÉ
+{% when 'contributors' %}OUVERT À TOUS
+{% else %}RÔLE
+{% endcase %}
+      </div>
+      <h2>{{ role.title }}</h2>
+      {% assign role_desc_key = 'description_' | append: lang %}
+      {% assign role_desc = role[role_desc_key] | default: role.description_en | default: role.description %}
+      <p class="roles-detail__lead">{{ role_desc }}</p>
+    </div>
+
+    {% if role.members and role.members.size > 0 %}
+      <div class="roles-people">
+        {% for m in role.members %}
+          {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
+          {%- assign person = site.staff_members | where: "url", member_url | first -%}
+          {% if person %}
+          <article class="roles-person">
+            <div class="roles-person__head">
+              <img class="roles-person__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
+              <div>
+                <div class="roles-person__name">
+                  <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
+                </div>
+                {% assign person_position = person.position %}
+                {% assign person_position_key = 'position_' | append: lang %}
+                {% assign person_position = person[person_position_key] | default: person.position_en | default: person.position %}
+                <div class="roles-person__role">{{ person_position }}</div>
+              </div>
+            </div>
+
+            {% assign person_blurb = person.blurb %}
+            {% assign person_blurb_key = 'blurb_' | append: lang %}
+            {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
+            {% if person_blurb %}
+            <p class="roles-person__bio">{{ person_blurb }}</p>
+            {% endif %}
+
+            {% if person.social %}
+            <div class="roles-person__social">
+              {% for link in person.social %}
+              <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+                 href="{% include relative-src.html src=link.link %}">
+                {% if link.social_icon %}
+                  {% include social-icon.html icon=link.social_icon %}
+                {% endif %}
+              </a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </article>
+          {% else %}
+          <div class="roles-person">
+            <div class="roles-person__name">Membre inconnu</div>
+            <p class="roles-person__bio"><strong>{{ m }}</strong>est référencé pour ce rôle, mais le profil des membres n'a pas été trouvé.</p>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="roles-empty">
+        <div class="roles-empty__body">
+          <div class="roles-empty__kicker">À venir</div>
+          <h3>Membres non encore affectés</h3>
+          <p>Ce rôle est défini et ouvert. Les membres seront annoncés à mesure que la communauté grandira. Intéressant ? Prenez contact avec GitHub.</p>
+        </div>
+        <a class="btn-glow" href="https://github.com/WAF2p" target="_blank" rel="noopener">Contribuer &rarr;</a>
+      </div>
+    {% endif %}
+
+    <div class="roles-detail__nav">
+      <a class="btn-glass" href="#roles">Tous les rôles</a>
+      <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Détails sur la gouvernance</a>
+    </div>
+
+  </div>
+</section>
+{% endfor %}
+
+
+<!-- ===================== CTA ===================== -->
+<section class="roles-cta">
+  <div class="container">
+    <div class="roles-cta__card">
+      <div class="kicker-radical" style="margin-bottom:14px;">ENTRÉE</div>
+      <h2 class="roles-cta__title">Vous voulez contribuer?</h2>
+      <p class="roles-cta__lead">Chaque rôle est ouvert aux contributeurs actifs. Lisez le modèle de gouvernance pour comprendre comment les rôles fonctionnent — puis venez sur GitHub.</p>
+      <div class="roles-cta__actions">
+        <a class="btn-glow" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub &rarr;</a>
+        <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Modèle de gouvernance</a>
+        <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">Processus RFC</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>

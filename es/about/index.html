@@ -1,0 +1,263 @@
+---
+layout: default
+ref: about
+title: "Sobre nosotros"
+description: "La gente detrás de WAF+"
+permalink: /es/about/
+lang: es
+---
+
+<main class="page-radical">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero--radical page-radical__hero">
+  <div class="hero-orb hero-orb--blue"></div>
+  <div class="hero-orb hero-orb--gold"></div>
+  <div class="hero-noise" aria-hidden="true"></div>
+
+  <div class="container hero-radical-grid">
+    <div class="hero-radical-copy">
+      {% include breadcrumb-inline.html %}
+      {% include breadcrumb.html %}
+
+      <div class="hero-radical-badge">
+        <span class="hero-radical-badge__dot"></span>WAF++ Comunidad
+</div>
+
+      <h1 class="hero-radical-h1">
+        <span class="text-gradient-radical">Sobre nosotros</span>
+      </h1>
+
+      <p class="hero-radical-lead">WAF++ es un marco comunitario y agnóstico construido a partir de la experiencia del mundo real. Creamos una base compartida para la adopción de nubes soberana, responsable y trazable —
+independiente de proveedores y más allá de narrativas de marketing.</p>
+
+      <div class="hero-radical-actions">
+        <a class="btn btn-glow" href="#team">Meet the team &rar;</a>
+        <a class="btn btn-glass" href="#mission">Nuestra misión</a>
+        <a class="btn btn-glass" href="#history">Historia</a>
+      </div>
+
+      <div class="hero-radical-pills">
+        <span class="hero-radical-pill"><i data-lucide="users" aria-hidden="true"></i>Comunidad impulsada</span>
+        <span class="hero-radical-pill"><i data-lucide="shield-check" aria-hidden="true"></i>Vendor neutro</span>
+        <span class="hero-radical-pill"><i data-lucide="lock-open" aria-hidden="true"></i>Fuente abierta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== MISSION ===================== -->
+<section class="page-radical__section" id="mission">
+  <div class="container">
+
+    <div class="section-header-radical">
+      <div class="kicker-radical">NUESTRA MISIÓN</div>
+      <h2 class="section-title-radical">Ingeniería-primera - no una colección de mejores prácticas.</h2>
+      <p class="section-lead-radical">Recopilamos experiencia de arquitectos, equipos de plataformas, especialistas en seguridad y cumplimiento en un marco abierto, transparente y neutral.</p>
+    </div>
+
+    <div class="bento-grid">
+
+      <div class="bento-card bento-card--static bento-card--large">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__icon"><i data-lucide="compass" aria-hidden="true"></i></div>
+        <div class="bento-card__name">Un objetivo compartido para las decisiones en la nube</div>
+        <p class="bento-card__desc">WAF++ convierte el consejo de nubes fragmentadas en un sistema coherente. Cada mapa de control a una verdadera pregunta arquitectónica para que los equipos puedan decidir con confianza.</p>
+        <div class="bento-card__footer">
+          <span class="bento-mini-stat"><strong>8</strong>pilares</span>
+          <span class="bento-mini-stat"><strong>83+</strong>controles</span>
+          <span class="bento-mini-stat"><strong>PASS</strong>Scoring</span>
+        </div>
+      </div>
+
+      <div class="bento-card bento-card--static bento-card--tall">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+        <div class="bento-card__name">Neutral y abierto</div>
+        <p class="bento-card__desc">Vendor-agnóstico, transparente y comunitario. Ninguna narrativa del vendedor define cómo es "bueno".</p>
+      </div>
+
+      <div class="bento-card bento-card--static bento-card--tall">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__icon"><i data-lucide="wrench" aria-hidden="true"></i></div>
+        <div class="bento-card__name">Práctica</div>
+        <p class="bento-card__desc">De proyectos reales, auditorías y experiencia operacional. Cada recomendación está escrita para ser utilizada, no admirada.</p>
+      </div>
+
+      <div class="bento-card bento-card--static">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+        <div class="bento-card__name">Traceable</div>
+        <p class="bento-card__desc">Estructura, responsabilidades y claridad de decisión.</p>
+      </div>
+
+      <div class="bento-card bento-card--static">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__icon"><i data-lucide="scale" aria-hidden="true"></i></div>
+        <div class="bento-card__name">Gobernanza abierta</div>
+        <p class="bento-card__desc">Todas las decisiones a través de RFCs públicas en GitHub Discussions.</p>
+      </div>
+
+    </div>
+
+    <div class="bento-cta">
+      <a class="btn btn-glass" href="{{ '/docs/' | relative_url }}">Lea los documentos &quot;rarr &quot;</a>
+      <a class="btn btn-glass" href="{{ '/conferences/' | relative_url }}">Conferencias</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== TEAM ===================== -->
+<section class="page-radical__section page-radical__section--alt" id="team">
+  <div class="container">
+    <div class="section-header-radical">
+      <div class="kicker-radical">TEAM</div>
+      <h2 class="section-title-radical">La gente detrás de WAF+</h2>
+      <p class="section-lead-radical">Arquitectos, ingenieros y especialistas en seguridad que convirtieron la experiencia del proyecto del mundo real en un marco abierto.</p>
+    </div>
+
+    <div class="team-grid">
+      {% for person in site.staff_members %}
+      {% if person.name and person.name != '' %}
+      <article class="card-radical person-card-radical">
+        <div class="person-card-radical__head">
+          <img class="person-card-radical__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">
+          <div>
+            <div class="person-card-radical__name">
+              <a href="{{ '/staff_members/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a>
+            </div>
+            {% assign person_position = person.position %}
+            {% assign person_position_key = 'position_' | append: lang %}
+            {% assign person_position = person[person_position_key] | default: person.position_en | default: person.position %}
+            <div class="person-card-radical__role">{{ person_position }}</div>
+          </div>
+        </div>
+        {% assign person_blurb = person.blurb %}
+        {% assign person_blurb_key = 'blurb_' | append: lang %}
+        {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
+        {% if person_blurb %}
+        <p class="person-card-radical__bio">{{ person_blurb }}</p>
+        {% endif %}
+        {% if person.social %}
+        <div class="person-card-radical__social">
+          {% for link in person.social %}
+          <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
+             href="{% include relative-src.html src=link.link %}"
+             aria-label="{{ link.social_icon }}">
+            {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== HONOURED MEMBERS ===================== -->
+<section class="page-radical__section">
+  <div class="container">
+    <div class="section-header-radical">
+      <div class="kicker-radical">HONOURED MEMBERS</div>
+      <h2 class="section-title-radical">Con nosotros desde el principio</h2>
+      <p class="section-lead-radical">Las personas que formaron WAF+ desde el principio y todavía nos apoyan hoy, sin estar activos en el equipo central.</p>
+    </div>
+
+    <div class="team-grid">
+      {% if lang == 'de' %}
+        {% assign honoured_members = site.data.honoured_members %}
+      {% else %}
+        {% assign honoured_data_key = 'honoured_members_' | append: lang %}
+        {% assign honoured_members = site.data[honoured_data_key] | default: site.data.honoured_members_en | default: site.data.honoured_members %}
+      {% endif %}
+      {% for person in honoured_members %}
+      <article class="card-radical person-card-radical">
+        <div class="person-card-radical__head">
+          <img class="person-card-radical__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">
+          <div>
+            <div class="person-card-radical__name">
+              {% if person.github and person.github != '' %}
+              <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
+              {% else %}
+              {{ person.name }}
+              {% endif %}
+            </div>
+            {% assign person_position = person.position %}
+            {% assign person_position_key = 'position_' | append: lang %}
+            {% assign person_position = person[person_position_key] | default: person.position_en | default: person.position %}
+            <div class="person-card-radical__role">{{ person_position }}</div>
+          </div>
+        </div>
+        {% assign person_blurb = person.blurb %}
+        {% assign person_blurb_key = 'blurb_' | append: lang %}
+        {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
+        {% if person_blurb %}
+        <p class="person-card-radical__bio">{{ person_blurb }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== HISTORY ===================== -->
+<section class="page-radical__section" id="history">
+  <div class="container">
+    <div class="section-header-radical">
+      <div class="kicker-radical">HISTORIA</div>
+      <h2 class="section-title-radical">Cómo WAF++ ha crecido</h2>
+      <p class="section-lead-radical">De los primeros bocetos a una comunidad próspera: WAF++ se construye iterativamente, formada por la realidad del proyecto, las discusiones y el impulso para que las decisiones de la nube sean rastreables.</p>
+    </div>
+
+    <div class="timeline-radical">
+      <article class="timeline-radical__item">
+        <div class="timeline-radical__dot"></div>
+        <div class="timeline-radical__title">Inicio: Aclarar el problema</div>
+        <p class="timeline-radical__text">Recopilamos preguntas comunes de los equipos de plataforma y arquitectura y las estructuramos en un objetivo compartido.</p>
+      </article>
+
+      <article class="timeline-radical__item">
+        <div class="timeline-radical__dot"></div>
+        <div class="timeline-radical__title">Estructura: Principios y obstáculos</div>
+        <p class="timeline-radical__text">La experiencia se convirtió en bloques de construcción repetibles: responsabilidades, caminos de decisión y madurez.</p>
+      </article>
+
+      <article class="timeline-radical__item">
+        <div class="timeline-radical__dot"></div>
+        <div class="timeline-radical__title">Comunidad: Revisión y retroalimentación</div>
+        <p class="timeline-radical__text">Mediante revisiones, talleres y conversaciones, se refinaba el contenido, centrándose en la neutralidad y la practicidad.</p>
+      </article>
+
+      <article class="timeline-radical__item">
+        <div class="timeline-radical__dot"></div>
+        <div class="timeline-radical__title">Hoy: Evolución continua</div>
+        <p class="timeline-radical__text">WAF++ se mantiene abierta: nuevas contribuciones, nuevas perspectivas, mejoras continuas — día a día transparentes y utilizables.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CTA ===================== -->
+<section class="cta-radical">
+  <div class="cta-radical__glow"></div>
+  <div class="container cta-radical__inner">
+    <div class="kicker-radical">Ingresos</div>
+    <h2 class="cta-radical__title">¿Quieres contribuir?</h2>
+    <p class="cta-radical__lead">WAF++ está abierto a cualquier persona que no sólo consume la realidad de la nube, pero ayuda a configurarla. Compartir experiencia, revisar contenido o co-crear nuevos bloques de construcción.</p>
+    <div class="cta-radical__actions">
+      <a class="btn btn-glow btn-glow--lg" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub &rar;</a>
+      <a class="btn btn-glass btn-glass--lg" href="{{ '/contributing/' | relative_url }}">Cómo contribuir</a>
+      <a class="btn btn-glass btn-glass--lg" href="{{ '/blog/' | relative_url }}">Blog</a>
+    </div>
+  </div>
+</section>
+
+</main>

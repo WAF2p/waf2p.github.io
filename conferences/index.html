@@ -93,7 +93,8 @@ description: Conferences where WAF++ is present — upcoming events, speakers, a
             <div class="conf-card__name">{{ conf.name }}</div>
             <div class="conf-card__date">
               <i data-lucide="calendar" aria-hidden="true"></i>
-              {{ conf.date_display }}
+              {% assign conf_date_key = 'date_display_' | append: lang %}
+              {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }}
             </div>
             <div class="conf-card__location">
               <i data-lucide="map-pin" aria-hidden="true"></i>
@@ -189,7 +190,8 @@ description: Conferences where WAF++ is present — upcoming events, speakers, a
           <div class="conf-row__sub">
             <span>
               <i data-lucide="calendar" aria-hidden="true"></i>
-              {{ conf.date_display }}
+              {% assign conf_date_key = 'date_display_' | append: lang %}
+              {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }}
             </span>
             <span>
               <i data-lucide="map-pin" aria-hidden="true"></i>
@@ -253,8 +255,10 @@ description: Conferences where WAF++ is present — upcoming events, speakers, a
               <div class="speaker-card__role">{{ person.position }}</div>
             </div>
           </div>
-          {% if person.blurb %}
-          <p class="speaker-card__bio">{{ person.blurb }}</p>
+          {% assign speaker_blurb_key = 'blurb_' | append: lang %}
+          {% assign speaker_blurb = person[speaker_blurb_key] | default: person.blurb_en | default: person.blurb %}
+          {% if speaker_blurb %}
+          <p class="speaker-card__bio">{{ speaker_blurb }}</p>
           {% endif %}
           {% if person.social %}
           <div class="speaker-card__social">

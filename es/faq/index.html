@@ -1,0 +1,170 @@
+---
+layout: default
+lang: es
+ref: faq
+title: "FAQ"
+description: "Preguntas frecuentes sobre WAF+ — corto, técnico y sin palabras de zumbido."
+permalink: /es/faq/
+---
+
+<main class="page-radical faq-page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero--radical page-radical__hero">
+    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
+
+    <div class="container hero-radical-grid">
+      <div class="hero-radical-copy">
+        {% include breadcrumb-inline.html %}
+        {% include breadcrumb.html %}
+
+        <div class="hero-radical-badge">
+          <span class="hero-radical-badge__dot"></span>Preguntas y respuestas
+</div>
+
+        <h1 class="hero-radical-h1">
+          <span class="text-gradient-radical">Preguntas frecuentes</span>
+        </h1>
+
+        <p class="hero-radical-lead">Las preguntas más importantes sobre WAF+ — respondieron concisamente y sin palabras de zumbido.
+Haga clic en una pregunta para revelar la respuesta.
+</p>
+
+        <div class="hero-radical-actions">
+          <a class="btn btn-glow" href="#faq-list">All questions &darr;</a>
+          <a class="btn btn-glass" href="{{ '/saeulen/' | relative_url }}">8 Pilares</a>
+          <a class="btn btn-glass" href="{{ '/governance-community/' | relative_url }}">Gobernanza</a>
+        </div>
+
+        <div class="hero-radical-pills">
+          <span class="hero-radical-pill"><i data-lucide="help-circle" aria-hidden="true"></i>15 preguntas respondidas</span>
+          <span class="hero-radical-pill"><i data-lucide="shield-check" aria-hidden="true"></i>Vendor neutro</span>
+          <span class="hero-radical-pill"><i data-lucide="book-open" aria-hidden="true"></i>Marco · Gobernanza · Pilares</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="bento-section" id="faq-list">
+    <div class="container">
+      <div class="section-header-radical">
+        <div class="kicker-radical">FAQ</div>
+        <h2 class="section-title-radical">Todas las preguntas</h2>
+        <p class="section-lead-radical">WAF++ es intencionadamente neutral de proveedores. Donde ayuda, conectamos con la gobernanza y las RFC en lugar de recetas duras.
+</p>
+      </div>
+
+      <div class="faq-accordion">
+        {% assign items = site.data.faq_en %}
+        {% for item in items %}
+        <details class="faq-item" {% if forloop.first %}open{% endif %}>
+          <summary>
+            <span class="faq-item__index">{{ forloop.index }}</span>
+            <span>{{ item.q }}</span>
+          </summary>
+          <div class="faq-answer">
+            {{ item.a }}
+            {% if item.link %}
+            <div class="faq-answer__action">
+              <a class="btn btn-glow" href="{{ item.link | relative_url }}">{{ item.link_label | default: 'Learn more →' }}</a>
+            </div>
+            {% endif %}
+          </div>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== STILL HAVE QUESTIONS ===================== -->
+  <section class="bento-section">
+    <div class="container">
+      <div class="faq-contact-layout">
+        <div class="faq-contact-copy">
+          <div class="section-header-radical">
+            <div class="kicker-radical">Participar</div>
+            <h2 class="section-title-radical">¿Todavía tienes preguntas?</h2>
+            <p class="section-lead-radical">WAF++ está construido en el abierto. Si su pregunta no es contestada aquí, abra una discusión de GitHub, proponga un RFC, o únase a un Grupo de Trabajo.</p>
+          </div>
+
+          <div class="faq-contact-features">
+            <article class="faq-contact-feature">
+              <div class="faq-contact-feature__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+              <div>
+                <div class="faq-contact-feature__title">Discusiones GitHub</div>
+                <p class="faq-contact-feature__desc">Pregunte cualquier cosa directamente en el repositorio — la comunidad y los usuarios responden.</p>
+              </div>
+            </article>
+
+            <article class="faq-contact-feature">
+              <div class="faq-contact-feature__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+              <div>
+                <div class="faq-contact-feature__title">Proponer un RFC</div>
+                <p class="faq-contact-feature__desc">¿Tiene una sugerencia o una brecha que vio? El proceso RFC está abierto a todos.</p>
+              </div>
+            </article>
+
+            <article class="faq-contact-feature">
+              <div class="faq-contact-feature__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+              <div>
+                <div class="faq-contact-feature__title">Grupos de Trabajo</div>
+                <p class="faq-contact-feature__desc">Únete a los grupos de trabajo específicos para dar forma al contenido, la gobernanza y la dirección.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="hero-radical-actions" style="justify-content: flex-start; margin-top: 26px;">
+            <a class="btn btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">Abrir una discusión &quot;</a>
+            <a class="btn btn-glass" href="{{ '/rfc/' | relative_url }}">Rastreador RFC</a>
+          </div>
+        </div>
+
+        <div class="faq-quick-links">
+          <div class="section-header-radical" style="text-align: left; margin: 0 0 18px;">
+            <div class="kicker-radical">Enlaces rápidos</div>
+          </div>
+
+          <a class="faq-quick-link" href="{{ '/saeulen/' | relative_url }}">
+            <div class="faq-quick-link__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+            <div class="faq-quick-link__body">
+              <div class="faq-quick-link__title">Los 8 Pilares</div>
+              <div class="faq-quick-link__desc">Estructura marco y visión general de los pilares.</div>
+            </div>
+          </a>
+
+          <a class="faq-quick-link" href="{{ '/governance-community/' | relative_url }}">
+            <div class="faq-quick-link__icon"><i data-lucide="shield" aria-hidden="true"></i></div>
+            <div class="faq-quick-link__body">
+              <div class="faq-quick-link__title">Gobernanza y Comunidad</div>
+              <div class="faq-quick-link__desc">TSC, Working Groups, and decision processes.</div>
+            </div>
+          </a>
+
+          <a class="faq-quick-link" href="{{ '/docs/' | relative_url }}">
+            <div class="faq-quick-link__icon"><i data-lucide="book-open" aria-hidden="true"></i></div>
+            <div class="faq-quick-link__body">
+              <div class="faq-quick-link__title">Documentación</div>
+              <div class="faq-quick-link__desc">Documentación y referencias del marco completo.</div>
+            </div>
+          </a>
+
+          <a class="faq-quick-link" href="{{ '/contributing/' | relative_url }}">
+            <div class="faq-quick-link__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+            <div class="faq-quick-link__body">
+              <div class="faq-quick-link__title">Contribución</div>
+              <div class="faq-quick-link__desc">Cómo involucrarse y contribuir a WAF++.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="{{ '/assets/js/faq-accordion.js' | relative_url }}" defer></script>

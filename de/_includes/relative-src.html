@@ -4,13 +4,25 @@
 {% assign is_external = false %}
 {% if protocol == 'http' or prefix2 == '//' %}{% assign is_external = true %}{% endif %}
 
-{% assign add_ded = false %}
-{% if page.url contains '/de/' and is_external == false %}
+{% assign current_lang = '' %}
+{% if page.url contains '/de/' %}{% assign current_lang = 'de' %}{% endif %}
+{% if page.url contains '/fr/' %}{% assign current_lang = 'fr' %}{% endif %}
+{% if page.url contains '/nl/' %}{% assign current_lang = 'nl' %}{% endif %}
+{% if page.url contains '/es/' %}{% assign current_lang = 'es' %}{% endif %}
+{% if page.url contains '/it/' %}{% assign current_lang = 'it' %}{% endif %}
+{% if page.url contains '/pl/' %}{% assign current_lang = 'pl' %}{% endif %}
+{% if page.url contains '/pt/' %}{% assign current_lang = 'pt' %}{% endif %}
+
+{% assign add_lang_prefix = '' %}
+{% if is_external == false and current_lang != '' %}
   {% if src | slice: 0, 1 == '/' %}
-    {% unless src contains '/docs/' or src contains '/assets/' or src contains '/css/' or src contains '/js/' or src contains '/de/' %}
-      {% assign add_ded = true %}
+    {% unless src contains '/docs/' or src contains '/assets/' or src contains '/css/' or src contains '/js/' %}
+      {% assign lang_prefix_path = '/' | append: current_lang | append: '/' %}
+      {% unless src contains lang_prefix_path %}
+        {% assign add_lang_prefix = '/' | append: current_lang %}
+      {% endunless %}
     {% endunless %}
   {% endif %}
 {% endif %}
 
-{% unless is_external %}{{ site.baseurl }}{% endunless %}{% if add_ded %}/de{% endif %}{{ src }}
+{% unless is_external %}{{ site.baseurl }}{% endunless %}{{ add_lang_prefix }}{{ src }}

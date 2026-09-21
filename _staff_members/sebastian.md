@@ -1,9 +1,12 @@
 ---
 name: Sebastian Meyer
 position: Bereichsleiter Agile Entwicklung
+position_en: Head of Agile Development
 image_path: https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/meyer-sebastian-web-0ce01114-1920w.jpg
 github: objectivex
 blurb: Begleitet Entwicklung mittlerweile aus der Managementsicht und ein großes Interesse daran, nicht von einem Anbieter abhängig zu sein.
+blurb_en: He now accompanies development from a management perspective and has a
+  strong interest in not being dependent on a single vendor.
 social: 
 - name: Github
   link: https://github.com/objectivex/

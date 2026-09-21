@@ -1,14 +1,12 @@
 <section class="section gov-contrib" aria-label="Contributors">
   <div class="container">
-    <div class="section-kicker">Community</div>
-    <div class="section-title">Contributors</div>
+    <div class="section-kicker">{{ i18n.common.contributors_kicker | default: "Community" }}</div>
+    <div class="section-title">{{ i18n.common.contributors_title | default: "Contributors" }}</div>
     <p class="muted" style="max-width: 90ch;">
-      WAF++ zählt Contributions nicht nur als Code. Reviews, RFC-Kommentare, Issue-Triage, Working Groups,
-      Dokumentation und Übersetzungen sind genauso wichtig. Daher kombinieren wir
-      <strong>GitHub Code Contributors (automatisch)</strong> mit <strong>Community Impact Contributors (kuratiert)</strong>.
+      {{ i18n.common.contributors_intro | default: "WAF++ counts contributions as more than code. Reviews, RFC comments, issue triage, working groups, documentation, and translations matter just as much. We combine **GitHub code contributors (automatic)** with **community impact contributors (curated)**." | markdownify }}
     </p>
 
-    <div class="section-title" style="font-size: 22px; margin-top: 18px;">Core Contributors</div>
+    <div class="section-title" style="font-size: 22px; margin-top: 18px;">{{ i18n.common.contributors_core_title | default: "Core Contributors" }}</div>
     <div class="gov-grid">
       {% for c in site.data.core_contributors %}
       <div class="gov-card">
@@ -27,8 +25,8 @@
       {% endfor %}
     </div>
 
-    <div class="section-title" style="font-size: 22px; margin-top: 22px;">Community Impact Contributors</div>
-    <div class="muted">Curated list for non-code contributions (comments, reviews, discussions, triage).</div>
+    <div class="section-title" style="font-size: 22px; margin-top: 22px;">{{ i18n.common.contributors_community_title | default: "Community Impact Contributors" }}</div>
+    <div class="muted">{{ i18n.common.contributors_community_sub | default: "Curated list for non-code contributions (comments, reviews, discussions, triage)." }}</div>
     <div class="gov-grid">
       {% for c in site.data.community_contributors %}
       <div class="gov-card">
@@ -65,14 +63,14 @@
       {% endfor %}
     </div>
 
-    <div class="section-title" style="font-size: 22px; margin-top: 22px;">All code contributors</div>
-    <div class="muted">Auto-loaded from GitHub · <span data-code-contrib-count>—</span> total</div>
-    <div class="pills" data-code-contributors><span class="muted">Loading…</span></div>
+    <div class="section-title" style="font-size: 22px; margin-top: 22px;">{{ i18n.common.contributors_all_title | default: "All code contributors" }}</div>
+    <div class="muted">{{ i18n.common.contributors_all_sub | default: "Auto-loaded from GitHub · <span data-code-contrib-count>—</span> total" }}</div>
+    <div class="pills" data-code-contributors><span class="muted">{{ i18n.common.loading | default: "Loading…" }}</span></div>
 
     <div class="hero-actions" style="margin-top: 18px;">
-      <a class="btn btn-primary" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing Guide →</a>
-      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener">Good first issues →</a>
-      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/discussions" target="_blank" rel="noopener">Discussions →</a>
+      <a class="btn btn-primary" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">{{ i18n.common.contributing_guide | default: "Contributing Guide" }} →</a>
+      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener">{{ i18n.common.good_first_issues | default: "Good first issues" }} →</a>
+      <a class="btn" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}/discussions" target="_blank" rel="noopener">{{ i18n.common.join_discussions | default: "Join discussions" }} →</a>
     </div>
   </div>
 

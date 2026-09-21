@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
+    {% include lang-redirect.html %}
     <script>
       (function () {
         try {
@@ -17,7 +18,7 @@
       })();
     </script>
 <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{{ page.description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+    <meta name="description" content="{{ page.description | default: i18n.site_description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 
     <link rel="stylesheet" href="{{ '/css/screen.css' | relative_url }}">
     <link rel="icon" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}">
@@ -26,7 +27,7 @@
     {% include seo-head.html %}
   </head>
 
-  <body>
+  <body{% if page.ref == 'home' %} class="frontpage"{% endif %}>
     {% include header.html %}
     <main>
       {% include translation-notice.html %}
