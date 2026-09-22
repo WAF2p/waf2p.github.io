@@ -142,9 +142,11 @@
       </div>
 
       <div class="cta-row">
-        {% include lang-switch.html %}
-        <a class="theme-toggle" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="{{ i18n.common.join_slack | default: 'Join WAF++ Community on Slack' }}" title="{{ i18n.common.join_slack | default: 'Join Community Slack' }}">{% include slack-icon.html size=18 %}</a>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="{{ i18n.common.theme_toggle | default: 'Toggle theme' }}" aria-pressed="false"><i data-lucide="moon"></i></button>
+        <div class="cta-row__toolbar">
+          {% include lang-switch.html %}
+          <a class="theme-toggle cta-row__icon" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="{{ i18n.common.join_slack | default: 'Join WAF++ Community on Slack' }}" title="{{ i18n.common.join_slack | default: 'Join Community Slack' }}">{% include slack-icon.html size=18 %}</a>
+          <button class="theme-toggle cta-row__icon" id="theme-toggle" type="button" aria-label="{{ i18n.common.theme_toggle | default: 'Toggle theme' }}" aria-pressed="false"><i data-lucide="moon"></i></button>
+        </div>
 
         {% for item in nav_items %}
           {% if item.highlight %}

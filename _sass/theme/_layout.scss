@@ -260,18 +260,87 @@ body.nav-open .burger span:nth-child(3) {
   /* CTA row: icon controls on one line, docs button full-width below */
   .cta-row {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 10px;
     padding-top: 10px;
     margin-top: 4px;
     border-top: 1px solid var(--border);
     justify-self: stretch;
   }
   .cta-row .btn {
-    flex: 1 0 100%;
     justify-content: center;
   }
+
+  /* Icon toolbar: centered row of equal 44×44 icon buttons */
+  .cta-row__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .cta-row__toolbar .theme-toggle,
+  .cta-row__toolbar .cta-row__icon,
+  .cta-row__toolbar > a.theme-toggle {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    box-sizing: border-box;
+    flex: 0 0 44px;
+  }
+  .cta-row__toolbar .theme-toggle i,
+  .cta-row__toolbar .theme-toggle svg,
+  .cta-row__toolbar > a.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Mobile language switcher: trigger is one icon in the centered toolbar;
+     the full flag menu wraps to a full-width second line below it. */
+  .cta-row__toolbar .lang-switch {
+    display: contents;
+  }
+  .cta-row__toolbar .lang-switch__trigger {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+    font-size: 20px;
+    flex: 0 0 44px;
+  }
+  .cta-row__toolbar .lang-switch__menu {
+    position: static;
+    display: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    flex-basis: 100%;
+    min-width: auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    z-index: auto;
+  }
+  .cta-row__toolbar .lang-switch__check:checked ~ .lang-switch__menu,
+  .cta-row__toolbar .lang-switch__menu.is-open {
+    display: flex;
+  }
+  .cta-row__toolbar .lang-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 44px;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    font-size: 20px;
+  }
+  .cta-row__toolbar .lang-option__label { display: none }
 }
 
 /* Footer */
