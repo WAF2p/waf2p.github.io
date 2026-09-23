@@ -4,7 +4,7 @@ lang: de
 ref: home
 title: WAF++ – Well Architected Framework
 image: /images/WAFpp_upscaled_1000.png
-description: Souveräne Cloud-Architekturen für eine Multi-Cloud-Realität — offen, transparent und community-getrieben.
+description: Scannen Sie Ihren Terraform-Code mit einem Befehl auf Cloud-Fehlkonfigurationen. Kein AWS-Konto, kein Setup — Ihr erstes WAFPass-Ergebnis in zwei Minuten.
 ---
 
 <!-- ===================== HERO ===================== -->
@@ -20,21 +20,20 @@ description: Souveräne Cloud-Architekturen für eine Multi-Cloud-Realität — 
         </div>
 
         <h1 class="hp-hero__title">
-          Cloud-Architekturen, die
-          <span class="hp-shimmer">souverän</span>,
-          <span class="hp-gradient">sicher</span>
-          und zukunftssicher sind.
+          Finden Sie Cloud-Fehlkonfigurationen in Ihrem Terraform
+          <span class="hp-gradient">bevor Sie deployen.</span>
         </h1>
 
         <p class="hp-hero__lead">
-          WAF++ ist der offene, herstellerneutrale Standard zum Entwerfen, Bewerten und Nachweisen von Cloud-Architekturqualität — über alle Anbieter hinweg. Ohne Lock-in, ohne Black-Box-Audits, ohne Marketing-Agenda.
+          WAFPass scannt Ihren Infrastructure-as-Code mit einem Befehl. Kein AWS-Konto, kein Setup, keine Cloud-Credentials — nur eine klare Liste dessen, was vor dem Produktiv-Deploy behoben werden muss.
         </p>
 
         <div class="hp-hero__actions">
           <a class="hp-btn hp-btn--primary" href="{{ '/de/wafpass-install/' | relative_url }}">
-            In 15 Minuten starten
+            Erste Datei scannen — kostenlos
             <span class="hp-btn__icon">{% include hp-icon.html name='arrow-up-right' %}</span>
           </a>
+          <a class="hp-btn hp-btn--ghost" href="{{ '/de/docs/' | relative_url }}">Dokumentation</a>
           <a class="hp-btn hp-btn--ghost" href="{{ '/de/use-cases/' | relative_url }}">Anwendungsfälle entdecken</a>
         </div>
 
@@ -85,6 +84,74 @@ description: Souveräne Cloud-Architekturen für eine Multi-Cloud-Realität — 
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+
+<!-- ===================== FIRST RESULT: 3 STEPS + TRUST BLOCK ===================== -->
+<section class="hp-section hp-first-result" id="first-result">
+  <div class="hp-container">
+
+    <div class="hp-section-head hp-reveal">
+      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Erstes Ergebnis in 2 Minuten</div>
+      <h2 class="hp-title">Drei Schritte zu Ihrem ersten Scan.</h2>
+    </div>
+
+    <div class="hp-first-result__grid">
+
+      <div class="hp-step-card hp-reveal">
+        <div class="hp-step-card__orb">01</div>
+        <div class="hp-step-card__title">CLI installieren</div>
+        <p class="hp-step-card__desc">Ein PyPI-Paket liefert die Static-Analysis-Engine.</p>
+        <div class="hp-step-card__code"><code>pip install wafpass-core</code></div>
+      </div>
+
+      <div class="hp-step-card hp-reveal hp-delay-1">
+        <div class="hp-step-card__orb">02</div>
+        <div class="hp-step-card__title">Ein Kommando ausführen</div>
+        <p class="hp-step-card__desc">Zeigen Sie WAFPass auf Ihren Terraform-Ordner und erhalten Sie eine JSON-Zusammenfassung.</p>
+        <div class="hp-step-card__code"><code>wafpass check . --output json | jq '.summary'</code></div>
+      </div>
+
+      <div class="hp-step-card hp-reveal hp-delay-2">
+        <div class="hp-step-card__orb">03</div>
+        <div class="hp-step-card__title">Sehen Sie, was falsch ist</div>
+        <p class="hp-step-card__desc">Eine klare Pass/Fail-Anzahl und Befunde pro Control zeigen genau, was behoben werden muss.</p>
+        <div class="hp-step-card__code hp-step-card__code--result">
+          <span class="hp-result__num hp-result__num--pass">81 passed</span>
+          <span class="hp-result__sep">·</span>
+          <span class="hp-result__num hp-result__num--fail">2 failed</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hp-trust-block hp-reveal">
+      <div class="hp-trust-block__copy">
+        <h3 class="hp-trust-block__title">So sieht ein erster Befund aus</h3>
+        <p class="hp-trust-block__lead">WAFPass markiert einen öffentlichen S3-Bucket und zeigt das genaue Control sowie die Behebung.</p>
+        <div class="hp-trust-block__finding">
+          <div class="hp-finding__header">
+            <span class="hp-finding__badge hp-finding__badge--fail">FAIL</span>
+            <span class="hp-finding__id">SEC-S3-001</span>
+          </div>
+          <p class="hp-finding__desc">S3-Bucket-Public-Access-Block ist deaktiviert. Öffentliche Buckets setzen Daten dem Internet aus.</p>
+        </div>
+      </div>
+
+      <div class="hp-trust-block__fix">
+        <div class="hp-fix__label">Fix-Snippet</div>
+        <pre class="hp-fix__code"><code>resource "aws_s3_bucket_public_access_block" "public" {
+  bucket                  = aws_s3_bucket.public.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}</code></pre>
+      </div>
+    </div>
+
   </div>
 </section>
 

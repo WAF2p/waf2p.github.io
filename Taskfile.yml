@@ -7,6 +7,10 @@ vars:
   # Can be overridden via environment variable: export LOCAL_FRAMEWORK_PATH=/custom/path
   LOCAL_FRAMEWORK_PATH:
     sh: echo "${LOCAL_FRAMEWORK_PATH:-../framework}"
+  # Port for the combined site server and docs server
+  # Can be overridden via environment variable: export WAFPASS_SITE_PORT=8001
+  WAFPASS_SITE_PORT:
+    sh: echo "${WAFPASS_SITE_PORT:-8000}"
 
 tasks:
   # Documentation tasks
@@ -27,8 +31,8 @@ tasks:
     deps:
       - docs:build:local
     cmds:
-      - echo "Documentation available at http://localhost:8000/docs/wafpp/1.0/"
-      - python3 -m http.server 8000 -d _site
+      - echo "Documentation available at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.0/"
+      - python3 -m http.server {{.WAFPASS_SITE_PORT}} -d _site
 
   docs:clean:
     desc: Clean Antora build artifacts and cache
@@ -66,12 +70,12 @@ tasks:
       - task: site:build
       - echo ""
       - echo "================================================"
-      - echo "Complete site available at http://localhost:8000/"
-      - echo "Marketing at http://localhost:8000/"
-      - echo "Documentation at http://localhost:8000/docs/wafpp/1.0/"
+      - echo "Complete site available at http://localhost:{{.WAFPASS_SITE_PORT}}/"
+      - echo "Marketing at http://localhost:{{.WAFPASS_SITE_PORT}}/"
+      - echo "Documentation at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.0/"
       - echo "================================================"
       - echo ""
-      - python3 -m http.server 8000 -d _site
+      - python3 -m http.server {{.WAFPASS_SITE_PORT}} -d _site
 
   site:clean:
     desc: Clean all build artifacts

@@ -2,8 +2,8 @@
 layout: default
 lang: en
 ref: wafpass-install
-title: Install WAFPass – Complete Installation Guide
-description: Complete installation guide for WAFPass CLI, Server, and Dashboard — Docker Compose, PyPI, and manual setup. WAF++ v1.1, 8 pillars, 83+ controls.
+title: Install WAFPass — First Scan in 2 Minutes
+description: Get your first WAFPass scan result in two minutes. Install the open-source CLI, download controls, and check your Terraform — no AWS account, no setup.
 permalink: /wafpass-install/
 ---
 
@@ -24,23 +24,16 @@ permalink: /wafpass-install/
 
     <div class="wafpass-install-hero__badge">
       <span class="wafpass-install-hero__badge-dot"></span>
-      Onboarding &middot; Your first check in 15 minutes
+      Quickstart · First scan in 2 minutes
     </div>
-    <h1>Get started with <span class="text-gradient-radical">WAFPass</span></h1>
+    <h1>Get your first WAFPass <span class="text-gradient-radical">scan result</span> today.</h1>
     <p class="wafpass-install-hero__lead">
-      Install the open-source WAF++ compliance stack and run your first assessment in five steps.
+      Install the open-source WAFPass CLI, download the WAF++ controls, and scan a sample Terraform file.
       No cloud credentials, no black box — just static analysis on your Infrastructure-as-Code.
     </p>
     <div class="wafpass-install-hero__actions">
-      <a class="btn-glow" href="#quickstart">Start the tutorial &rarr;</a>
-      <a class="btn-glass" href="#choose-path">Choose your path</a>
+      <a class="btn-glow" href="#quickstart-tabs">Start the 2-minute tutorial &rarr;</a>
       <a class="btn-glass" href="https://github.com/WAF2p/pass" target="_blank" rel="noopener">View on GitHub &nearr;</a>
-    </div>
-    <div class="wafpass-install-hero__nav">
-      <a class="wafpass-install-hero__chip" href="#quickstart"><i data-lucide="route" aria-hidden="true"></i> Onboarding</a>
-      <a class="wafpass-install-hero__chip" href="#docker-compose"><i data-lucide="container" aria-hidden="true"></i> Docker Compose</a>
-      <a class="wafpass-install-hero__chip" href="#individual"><i data-lucide="puzzle" aria-hidden="true"></i> Individual</a>
-      <a class="wafpass-install-hero__chip" href="#pre-commit"><i data-lucide="git-commit" aria-hidden="true"></i> Pre-commit</a>
     </div>
   </div>
 </section>
@@ -74,118 +67,116 @@ permalink: /wafpass-install/
 </section>
 
 
-<!-- ===================== ONBOARDING TRACKER ===================== -->
-<section class="wafpass-install-section" id="onboarding">
+<!-- ===================== ONE-LINER PITCH ===================== -->
+<section class="wafpass-install-section" id="quickstart-tabs">
   <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">RED THREAD</div>
-      <h2 class="section-title-radical">From zero to your first check in five steps.</h2>
-      <p class="section-lead-radical">Follow the numbered path below. Each step links to the matching section so you never lose orientation.</p>
-    </div>
-
-    <div class="onboarding-tracker" role="list">
-      <div class="onboarding-tracker__line" aria-hidden="true"></div>
-      <a class="onboarding-step is-current" href="#choose-path" role="listitem">
-        <span class="onboarding-step__num">1</span>
-        <span class="onboarding-step__title">Choose path</span>
-        <span class="onboarding-step__desc">Docker stack or CLI-only</span>
-      </a>
-      <a class="onboarding-step" href="#docker-compose" role="listitem">
-        <span class="onboarding-step__num">2</span>
-        <span class="onboarding-step__title">Install</span>
-        <span class="onboarding-step__desc">One command or one Compose file</span>
-      </a>
-      <a class="onboarding-step" href="#get-controls" role="listitem">
-        <span class="onboarding-step__num">3</span>
-        <span class="onboarding-step__title">Get controls</span>
-        <span class="onboarding-step__desc">Download the 83+ rule set</span>
-      </a>
-      <a class="onboarding-step" href="#run-first-check" role="listitem">
-        <span class="onboarding-step__num">4</span>
-        <span class="onboarding-step__title">Run check</span>
-        <span class="onboarding-step__desc">Point WAFPass at IaC</span>
-      </a>
-      <a class="onboarding-step" href="#see-results" role="listitem">
-        <span class="onboarding-step__num">5</span>
-        <span class="onboarding-step__title">See results</span>
-        <span class="onboarding-step__desc">CLI report or Dashboard</span>
-      </a>
+    <div class="installer-pitch">
+      <span class="installer-pitch__icon"><i data-lucide="zap" aria-hidden="true"></i></span>
+      <div class="installer-pitch__body">
+        <p><strong>Prefer a one-liner?</strong> The installer sets up the CLI and controls for you.</p>
+        <div class="installer-pitch__commands">
+          <div class="installer-pitch__command">
+            <span class="installer-pitch__os">
+              <i data-lucide="apple" aria-hidden="true"></i>
+              <i data-lucide="terminal" aria-hidden="true"></i>
+              macOS / Linux
+            </span>
+            <code>curl -fsSL https://waf2p.dev/install.sh | sh</code>
+          </div>
+          <div class="installer-pitch__command">
+            <span class="installer-pitch__os">
+              <svg class="installer-pitch__logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+              Windows
+            </span>
+            <code>irm https://waf2p.dev/install.ps1 | iex</code>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 
-<!-- ===================== QUICKSTART TUTORIAL ===================== -->
-<section class="wafpass-install-section wafpass-install-section--alt" id="quickstart">
+<!-- ===================== TABBED QUICKSTART ===================== -->
+<section class="wafpass-install-section wafpass-install-section--alt">
   <div class="container">
-    <div class="quickstart-card">
-      <h2 class="quickstart-card__title">Quick start: your first WAF++ check</h2>
-      <p class="quickstart-card__lead">This tutorial gives you a guaranteed result. You will install the WAFPass CLI, download the WAF++ controls, create a minimal Terraform file, and see WAFPass flag a real finding.</p>
+    <div class="section-header-radical">
+      <div class="kicker-radical">CHOOSE YOUR PATH</div>
+      <h2 class="section-title-radical">One clear path for every use case.</h2>
+      <p class="section-lead-radical">Start with the 2-minute CLI quickstart. Switch tabs when you are ready for the dashboard, CI, or manual setup.</p>
+    </div>
 
-      <div class="quickstart-steps">
-        <div class="quickstart-step" id="choose-path">
-          <span class="quickstart-step__num">1</span>
-          <div class="quickstart-step__body">
-            <h4>Choose your path</h4>
-            <p>For this tutorial you only need the CLI. If you already want the full dashboard + server, jump to <a href="#docker-compose">Docker Compose</a> after the first scan.</p>
-          </div>
-        </div>
+    <div class="install-tabs">
+      <input class="install-tabs__radio" type="radio" name="install-tabs" id="install-tab-cli" checked aria-hidden="true">
+      <input class="install-tabs__radio" type="radio" name="install-tabs" id="install-tab-docker" aria-hidden="true">
+      <input class="install-tabs__radio" type="radio" name="install-tabs" id="install-tab-ci" aria-hidden="true">
+      <input class="install-tabs__radio" type="radio" name="install-tabs" id="install-tab-advanced" aria-hidden="true">
 
-        <div class="quickstart-step" id="install-cli">
-          <span class="quickstart-step__num">2</span>
-          <div class="quickstart-step__body">
-            <h4>Install the CLI</h4>
-            <p>WAFPass is published to PyPI as <code>wafpass-core</code>. Python 3.11+ is recommended.</p>
-            <div class="terminal-mock">
-              <div class="terminal-header">
-                <div class="terminal-dots">
-                  <div class="terminal-dot terminal-dot--red"></div>
-                  <div class="terminal-dot terminal-dot--yellow"></div>
-                  <div class="terminal-dot terminal-dot--green"></div>
+      <div class="install-tabs__nav" role="tablist" aria-label="WAFPass install options">
+        <label class="install-tabs__item" for="install-tab-cli" role="tab" aria-selected="true" tabindex="0">
+          <i data-lucide="terminal" aria-hidden="true"></i> First result in 2 minutes
+        </label>
+        <label class="install-tabs__item" for="install-tab-docker" role="tab" aria-selected="false" tabindex="0">
+          <i data-lucide="container" aria-hidden="true"></i> Full dashboard locally
+        </label>
+        <label class="install-tabs__item" for="install-tab-ci" role="tab" aria-selected="false" tabindex="0">
+          <i data-lucide="git-commit" aria-hidden="true"></i> CI / pre-commit
+        </label>
+        <label class="install-tabs__item" for="install-tab-advanced" role="tab" aria-selected="false" tabindex="0">
+          <i data-lucide="settings" aria-hidden="true"></i> Advanced / manual
+        </label>
+      </div>
+
+      <!-- TAB 1: CLI QUICKSTART -->
+      <div class="install-tabs__pane" id="install-pane-cli">
+        <div class="quickstart-card quickstart-card--primary">
+          <h2 class="quickstart-card__title">Get your first result in 2 minutes</h2>
+          <p class="quickstart-card__lead">Follow the four steps below. Each command is designed to give you a guaranteed, readable result on your first try.</p>
+
+          <div class="quickstart-steps">
+            <div class="quickstart-step">
+              <span class="quickstart-step__num">1</span>
+              <div class="quickstart-step__body">
+                <h4>Install the CLI</h4>
+                <p>WAFPass is published to PyPI as <code>wafpass-core</code>. Python 3.11+ is recommended.</p>
+                <div class="terminal-mock">
+                  <div class="terminal-header">
+                    <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                    <div class="terminal-title-bar">bash</div>
+                  </div>
+                  <div class="terminal-body">
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install wafpass-core</span></div>
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass --version</span></div>
+                  </div>
                 </div>
-                <div class="terminal-title-bar">bash</div>
-              </div>
-              <div class="terminal-body">
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install wafpass-core</span></div>
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass --version</span></div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="quickstart-step" id="get-controls">
-          <span class="quickstart-step__num">3</span>
-          <div class="quickstart-step__body">
-            <h4>Get the controls</h4>
-            <p>Download the WAF++ controls catalog and extract it into a <code>controls/</code> folder next to where you run scans.</p>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0 14px;">
-              <button class="btn-glow" data-action="download-controls" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">
-                <i data-lucide="download" aria-hidden="true"></i> Download WAF++ controls
-              </button>
-            </div>
-            <div class="terminal-mock">
-              <div class="terminal-header">
-                <div class="terminal-dots">
-                  <div class="terminal-dot terminal-dot--red"></div>
-                  <div class="terminal-dot terminal-dot--yellow"></div>
-                  <div class="terminal-dot terminal-dot--green"></div>
+            <div class="quickstart-step">
+              <span class="quickstart-step__num">2</span>
+              <div class="quickstart-step__body">
+                <h4>Download the controls</h4>
+                <p>The WAF++ controls catalog contains the 83+ rules WAFPass uses to evaluate your code.</p>
+                <div class="terminal-mock">
+                  <div class="terminal-header">
+                    <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                    <div class="terminal-title-bar">bash</div>
+                  </div>
+                  <div class="terminal-body">
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/framework.git controls-src</span></div>
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp -r controls-src/modules/controls/controls ./controls</span></div>
+                  </div>
                 </div>
-                <div class="terminal-title-bar">bash</div>
-              </div>
-              <div class="terminal-body">
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">unzip wafpp-controls.zip -d controls/</span></div>
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">ls controls/ | head -5</span></div>
+                <p class="quickstart-step__note">Recommended: clone the controls repo. Alternative: download the controls zip from the <a href="{{ '/wafpass/' | relative_url }}">WAFPass page</a> and extract it to <code>controls/</code>.</p>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="quickstart-step" id="run-first-check">
-          <span class="quickstart-step__num">4</span>
-          <div class="quickstart-step__body">
-            <h4>Create a minimal Terraform file and scan it</h4>
-            <p>Save this deliberately imperfect example as <code>main.tf</code>. WAFPass should flag at least one security finding.</p>
-            <pre class="sample-code"><code>provider "aws" {
+            <div class="quickstart-step">
+              <span class="quickstart-step__num">3</span>
+              <div class="quickstart-step__body">
+                <h4>Save a sample Terraform file</h4>
+                <p>Create a minimal <code>main.tf</code>. This example deliberately leaves a public S3 bucket so WAFPass has something to flag.</p>
+                <pre class="sample-code"><code>provider "aws" {
   region = "eu-central-1"
 }
 
@@ -200,28 +191,26 @@ resource "aws_s3_bucket_public_access_block" "public" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }</code></pre>
-            <div class="terminal-mock">
-              <div class="terminal-header">
-                <div class="terminal-dots">
-                  <div class="terminal-dot terminal-dot--red"></div>
-                  <div class="terminal-dot terminal-dot--yellow"></div>
-                  <div class="terminal-dot terminal-dot--green"></div>
-                </div>
-                <div class="terminal-title-bar">bash</div>
-              </div>
-              <div class="terminal-body">
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass check . --output json | jq '.summary'</span></div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="quickstart-step" id="see-results">
-          <span class="quickstart-step__num">5</span>
-          <div class="quickstart-step__body">
-            <h4>See the results</h4>
-            <p>In the terminal you will see a summary like this — one FAIL for the public S3 bucket, grouped by pillar and control.</p>
-            <pre class="sample-code"><code>{
+            <div class="quickstart-step">
+              <span class="quickstart-step__num">4</span>
+              <div class="quickstart-step__body">
+                <h4>Run your first check</h4>
+                <p>Point WAFPass at the current directory and print the JSON summary.</p>
+                <div class="terminal-mock">
+                  <div class="terminal-header">
+                    <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                    <div class="terminal-title-bar">bash</div>
+                  </div>
+                  <div class="terminal-body">
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass check . --output json | jq '.summary'</span></div>
+                  </div>
+                </div>
+
+                <p style="margin-top: 18px;">You should see output like this:</p>
+                <pre class="sample-code"><code>{
   "total_controls": 83,
   "passed": 81,
   "failed": 2,
@@ -229,173 +218,86 @@ resource "aws_s3_bucket_public_access_block" "public" {
     "security": { "passed": 18, "failed": 2 }
   }
 }</code></pre>
-            <p>To explore findings visually, run the <a href="#docker-compose">Docker Compose stack</a> and push the JSON to <code>http://localhost:8000/runs</code>.</p>
+                <div class="summary-legend">
+                  <div class="summary-legend__item">
+                    <span class="summary-legend__dot summary-legend__dot--pass"></span>
+                    <strong>81 passed</strong> — resources met the control
+                  </div>
+                  <div class="summary-legend__item">
+                    <span class="summary-legend__dot summary-legend__dot--fail"></span>
+                    <strong>2 failed</strong> — resources violated a control (here, the public S3 bucket)
+                  </div>
+                  <div class="summary-legend__item">
+                    <span class="summary-legend__dot summary-legend__dot--total"></span>
+                    <strong>83 controls</strong> — total rules evaluated across 8 WAF++ pillars
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
+      <!-- TAB 2: DOCKER COMPOSE -->
+      <div class="install-tabs__pane" id="install-pane-docker" role="tabpanel" aria-labelledby="install-tab-docker">
+        <div class="quickstart-card">
+          <h2 class="quickstart-card__title">Run the full dashboard locally</h2>
+          <p class="quickstart-card__lead">The WAF2p/pass monorepo ships a unified <code>docker-compose.yml</code>. It brings up the CLI, server, dashboard, PostgreSQL, and Keycloak in one command.</p>
 
-<!-- ===================== CHOOSE YOUR PATH ===================== -->
-<section class="wafpass-install-section" id="choose-path-section">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">PICK YOUR PATH</div>
-      <h2 class="section-title-radical">Two ways to run WAFPass.</h2>
-      <p class="section-lead-radical">Start with the CLI for the fastest first scan, or deploy the full stack if you need persistence, history, and a visual dashboard.</p>
-    </div>
-
-    <div class="path-grid">
-      <a class="path-card" href="#docker-compose">
-        <span class="path-card__badge">Recommended</span>
-        <h3 class="path-card__title">Docker Compose stack</h3>
-        <p class="path-card__desc">CLI + Server + Dashboard + PostgreSQL + Keycloak in one command. Best for teams, auditors, and anyone who wants a persistent compliance history.</p>
-        <span class="btn-glass">Full stack setup &rarr;</span>
-      </a>
-
-      <a class="path-card" href="#individual">
-        <span class="path-card__badge" style="background: rgba(37, 99, 235, 0.12); color: #60a5fa; border-color: rgba(37, 99, 235, 0.22);">Fastest</span>
-        <h3 class="path-card__title">CLI only</h3>
-        <p class="path-card__desc">Install <code>wafpass-core</code> from PyPI and run checks directly in your terminal or CI pipeline. Add Server and Dashboard later when you need them.</p>
-        <span class="btn-glass">CLI setup &rarr;</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== COMPONENTS OVERVIEW ===================== -->
-<section class="wafpass-install-section">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">THE STACK</div>
-      <h2 class="section-title-radical">Three components. One compliance workflow.</h2>
-      <p class="section-lead-radical">Install just the CLI for CI/CD pipelines, or add the server and dashboard for persistent history and visual exploration.</p>
-    </div>
-
-    <div class="wafpass-install-stack">
-      <div class="wafpass-install-stack__card">
-        <div class="wafpass-install-stack__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
-        <div class="wafpass-install-stack__title">wafpass CLI</div>
-        <p class="wafpass-install-stack__desc">Core evaluation engine. Parses Terraform and AWS CDK, runs in any CI/CD pipeline. No cloud credentials needed.</p>
-        <span class="wafpass-install-stack__tag">PyPI: wafpass-core</span>
-      </div>
-
-      <div class="wafpass-install-stack__card wafpass-install-stack__card--server">
-        <div class="wafpass-install-stack__icon"><i data-lucide="database" aria-hidden="true"></i></div>
-        <div class="wafpass-install-stack__title">wafpass-server</div>
-        <p class="wafpass-install-stack__desc">FastAPI REST API with PostgreSQL. Stores runs, waivers, risk acceptances, secrets findings, and full audit events.</p>
-        <span class="wafpass-install-stack__tag">PyPI: wafpass-server</span>
-      </div>
-
-      <div class="wafpass-install-stack__card wafpass-install-stack__card--dashboard">
-        <div class="wafpass-install-stack__icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></div>
-        <div class="wafpass-install-stack__title">wafpass-dashboard</div>
-        <p class="wafpass-install-stack__desc">React web dashboard. 22+ pages of compliance exploration, auditor-ready evidence export, and RBAC role management.</p>
-        <span class="wafpass-install-stack__tag">React + Vite</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== OPTION A: DOCKER COMPOSE ===================== -->
-<section class="wafpass-install-section wafpass-install-section--alt" id="docker-compose">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">OPTION A — RECOMMENDED</div>
-      <h2 class="section-title-radical">Docker Compose: Full Stack</h2>
-      <p class="section-lead-radical">The WAF2p/pass monorepo ships a unified <code>docker-compose.yml</code>. Clone once, configure your <code>.env</code>, and bring up the entire stack in a single command.</p>
-    </div>
-
-    <div class="wafpass-install-card" style="margin-bottom: 28px;">
-      <div class="terminal-mock">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
+          <div class="terminal-mock">
+            <div class="terminal-header">
+              <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+              <div class="terminal-title-bar">bash</div>
+            </div>
+            <div class="terminal-body">
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/pass.git</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cd pass</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp .env.example .env</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd t-comment"># Edit .env — set POSTGRES_PASSWORD, WAFPASS_JWT_SECRET, etc.</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">docker compose up -d</span></div>
+            </div>
           </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/pass.git</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cd pass</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp .env.example .env</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd t-comment"># Edit .env — set POSTGRES_PASSWORD, WAFPASS_JWT_SECRET, etc.</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">docker compose up -d</span></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="wafpass-install-services" style="margin-bottom: 28px;">
-      <table>
-        <thead>
-          <tr>
-            <th>Service</th>
-            <th>URL</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>wafpass-dashboard</strong></td>
-            <td><code>http://localhost:3000</code></td>
-            <td style="color: var(--radical-muted);">React dashboard</td>
-          </tr>
-          <tr>
-            <td><strong>wafpass-server</strong></td>
-            <td><code>http://localhost:8000</code></td>
-            <td style="color: var(--radical-muted);">FastAPI REST API</td>
-          </tr>
-          <tr>
-            <td><strong>Keycloak (SSO)</strong></td>
-            <td><code>http://localhost:8080</code></td>
-            <td style="color: var(--radical-muted);">Identity provider (admin / admin)</td>
-          </tr>
-          <tr>
-            <td><strong>postgres</strong></td>
-            <td><code>localhost:5432</code></td>
-            <td style="color: var(--radical-muted);">PostgreSQL database</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="wafpass-install-card" style="margin-bottom: 28px;">
-      <p style="margin: 0 0 14px; font-weight: 700; font-size: 14px; color: var(--radical-muted);">Push your first scan result:</p>
-      <div class="terminal-mock">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
+          <div class="wafpass-install-services" style="margin: 28px 0;">
+            <table>
+              <thead>
+                <tr><th>Service</th><th>URL</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>wafpass-dashboard</strong></td><td><a href="http://localhost:3000"><code>http://localhost:3000</code></a></td><td style="color: var(--radical-muted);">React dashboard</td></tr>
+                <tr><td><strong>wafpass-server</strong></td><td><code>http://localhost:8000</code></td><td style="color: var(--radical-muted);">FastAPI REST API</td></tr>
+                <tr><td><strong>Keycloak (SSO)</strong></td><td><code>http://localhost:8080</code></td><td style="color: var(--radical-muted);">Identity provider (admin / admin)</td></tr>
+                <tr><td><strong>postgres</strong></td><td><code>localhost:5432</code></td><td style="color: var(--radical-muted);">PostgreSQL database</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass check ./infra/ --output json</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass check ./infra/ --output json | curl -s -X POST http://localhost:8000/runs \</span></div>
-          <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">  -H "Content-Type: application/json" -d @-</span></div>
-        </div>
-      </div>
-    </div>
 
-    <details class="wafpass-install-card">
-      <summary style="padding: 18px 22px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; list-style: none; border-bottom: 1px solid var(--radical-border);">
-        <i data-lucide="file-code" style="width: 18px; height: 18px; color: var(--radical-muted); flex-shrink: 0;" aria-hidden="true"></i>
-        View full docker-compose.yml
-        <i data-lucide="chevron-down" style="width: 16px; height: 16px; color: var(--radical-muted); margin-left: auto;" aria-hidden="true"></i>
-      </summary>
-      <div style="position: relative;">
-        <button onclick="wafpassCopyYaml(this)" style="position: absolute; top: 8px; right: 10px; z-index: 10; display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border-radius: 7px; border: 1px solid rgba(255,255,255,.18); background: rgba(12,19,34,.75); backdrop-filter: blur(4px); color: rgba(255,255,255,.75); font-size: 11px; font-family: inherit; cursor: pointer;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
-          Copy
-        </button>
-        <div class="terminal-mock yaml-hl" style="border-radius: 0; border: none; max-height: 480px; overflow-y: auto;">
-          <div class="terminal-body" style="padding: 16px 18px;">
-            <pre style="margin: 0; font-size: 12px; line-height: 1.65; white-space: pre;"><code class="language-yaml">services:
+          <p class="quickstart-card__lead">Once the containers are healthy, seed your first dashboard view with the demo command or by pushing a scan result:</p>
+          <div class="terminal-mock">
+            <div class="terminal-header">
+              <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+              <div class="terminal-title-bar">bash</div>
+            </div>
+            <div class="terminal-body">
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass demo            # creates sample data and opens the dashboard</span></div>
+              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">open http://localhost:3000</span></div>
+            </div>
+          </div>
+
+          <details class="wafpass-install-card" style="margin-top: 28px;">
+            <summary style="padding: 18px 22px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; list-style: none; border-bottom: 1px solid var(--radical-border);">
+              <i data-lucide="file-code" style="width: 18px; height: 18px; color: var(--radical-muted); flex-shrink: 0;" aria-hidden="true"></i>
+              View full docker-compose.yml
+              <i data-lucide="chevron-down" style="width: 16px; height: 16px; color: var(--radical-muted); margin-left: auto;" aria-hidden="true"></i>
+            </summary>
+            <div style="position: relative;">
+              <button onclick="wafpassCopyYaml(this)" style="position: absolute; top: 8px; right: 10px; z-index: 10; display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border-radius: 7px; border: 1px solid rgba(255,255,255,.18); background: rgba(12,19,34,.75); backdrop-filter: blur(4px); color: rgba(255,255,255,.75); font-size: 11px; font-family: inherit; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                Copy
+              </button>
+              <div class="terminal-mock yaml-hl" style="border-radius: 0; border: none; max-height: 480px; overflow-y: auto;">
+                <div class="terminal-body" style="padding: 16px 18px;">
+                  <pre style="margin: 0; font-size: 12px; line-height: 1.65; white-space: pre;"><code class="language-yaml">services:
 
   # ── PostgreSQL ────────────────────────────────────────────
   postgres:
@@ -480,6 +382,240 @@ resource "aws_s3_bucket_public_access_block" "public" {
 
 volumes:
   postgres_data:</code></pre>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- TAB 3: CI / PRE-COMMIT -->
+      <div class="install-tabs__pane" id="install-pane-ci" role="tabpanel" aria-labelledby="install-tab-ci">
+        <div class="quickstart-card">
+          <h2 class="quickstart-card__title">Add to CI / pre-commit</h2>
+          <p class="quickstart-card__lead">Block non-compliant infrastructure before it reaches your main branch. WAFPass runs entirely on the files in the repo, so CI checks are fast and require no cloud secrets.</p>
+
+          <div class="quickstart-step">
+            <span class="quickstart-step__num">1</span>
+            <div class="quickstart-step__body">
+              <h4>Install the pre-commit hook</h4>
+              <p>Run the install script from the WAFPass repository once per clone. After that, every <code>git commit</code> is checked automatically.</p>
+              <div class="terminal-mock">
+                <div class="terminal-header">
+                  <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                  <div class="terminal-title-bar">bash</div>
+                </div>
+                <div class="terminal-body">
+                  <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">bash hooks/install.sh   # macOS / Linux / Git Bash</span></div>
+                  <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">.\hooks\install.ps1    # Windows PowerShell</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quickstart-step">
+            <span class="quickstart-step__num">2</span>
+            <div class="quickstart-step__body">
+              <h4>Add WAFPass to GitHub Actions</h4>
+              <p>Use the official WAFPass GitHub Action to fail pulls that introduce misconfigurations. Works with public and private repositories.</p>
+              <p style="margin-top: 12px;"><a class="btn-glass" href="{{ '/wafpass-action/' | relative_url }}">Set up WAFPass Action &rarr;</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: ADVANCED / MANUAL -->
+      <div class="install-tabs__pane" id="install-pane-advanced" role="tabpanel" aria-labelledby="install-tab-advanced">
+        <div class="quickstart-card">
+          <h2 class="quickstart-card__title">Advanced / manual setup</h2>
+          <p class="quickstart-card__lead">Install only the components you need. Start with the CLI for CI/CD, then add the server and dashboard when you need persistence and visual exploration.</p>
+
+          <div class="wafpass-install-step">
+            <div class="wafpass-install-step__header">
+              <div class="wafpass-install-step__num">1</div>
+              <div>
+                <div class="wafpass-install-step__title">Install wafpass CLI</div>
+                <p class="wafpass-install-step__subtitle">Core evaluation engine — parse IaC, evaluate controls, generate reports</p>
+              </div>
+              <div style="margin-left: auto;"><i data-lucide="terminal" style="width: 22px; height: 22px; color: var(--brand-400);" aria-hidden="true"></i></div>
+            </div>
+
+            <p class="wafpass-install-step__label">From PyPI (recommended)</p>
+            <div class="terminal-mock" style="margin-bottom: 18px;">
+              <div class="terminal-header">
+                <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                <div class="terminal-title-bar">bash</div>
+              </div>
+              <div class="terminal-body">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install wafpass-core</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add wafpass-core  # recommended for Python projects</span></div>
+              </div>
+            </div>
+
+            <p class="wafpass-install-step__label">From source</p>
+            <div class="terminal-mock" style="margin-bottom: 18px;">
+              <div class="terminal-header">
+                <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                <div class="terminal-title-bar">bash</div>
+              </div>
+              <div class="terminal-body">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/pass.git</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cd pass</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv pip install -e .         # recommended</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install -e ".[pdf]"     # with PDF report support</span></div>
+              </div>
+            </div>
+
+            <p class="wafpass-install-step__label">macOS (Apple M-series)</p>
+            <div class="terminal-mock">
+              <div class="terminal-header">
+                <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                <div class="terminal-title-bar">bash</div>
+              </div>
+              <div class="terminal-body">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">brew install git python uv</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/pass.git && cd pass</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv pip install -e .</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass --version  # verify installation</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wafpass-install-step wafpass-install-step--server">
+            <div class="wafpass-install-step__header">
+              <div class="wafpass-install-step__num">2</div>
+              <div>
+                <div class="wafpass-install-step__title">Install wafpass-server</div>
+                <p class="wafpass-install-step__subtitle">FastAPI persistence layer — stores runs, waivers, secrets findings, and audit events</p>
+              </div>
+              <div style="margin-left: auto;"><i data-lucide="database" style="width: 22px; height: 22px; color: #22c55e;" aria-hidden="true"></i></div>
+            </div>
+
+            <p class="wafpass-install-step__label">From PyPI (recommended)</p>
+            <div class="terminal-mock" style="margin-bottom: 18px;">
+              <div class="terminal-header">
+                <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                <div class="terminal-title-bar">bash</div>
+              </div>
+              <div class="terminal-body">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install wafpass-server</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add wafpass-server  # recommended for Python projects</span></div>
+              </div>
+            </div>
+
+            <p class="wafpass-install-step__label">Configure &amp; start</p>
+            <div class="terminal-mock">
+              <div class="terminal-header">
+                <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                <div class="terminal-title-bar">bash</div>
+              </div>
+              <div class="terminal-body">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp .env.example .env  # set DATABASE_URL and JWT secret</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">alembic upgrade head  # apply database migrations</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uvicorn wafpass_server.main:app --reload --port 8000</span></div>
+              </div>
+            </div>
+            <p style="margin: 12px 0 0; font-size: 13px; color: var(--radical-muted);">API docs available at <code style="color: var(--brand-400);">http://localhost:8000/api/docs</code></p>
+          </div>
+
+          <div class="wafpass-install-step wafpass-install-step--dashboard">
+            <div class="wafpass-install-step__header">
+              <div class="wafpass-install-step__num">3</div>
+              <div>
+                <div class="wafpass-install-step__title">Install wafpass-dashboard</div>
+                <p class="wafpass-install-step__subtitle">React web dashboard — 22+ compliance views, evidence export, RBAC</p>
+              </div>
+              <div style="margin-left: auto;"><i data-lucide="layout-dashboard" style="width: 22px; height: 22px; color: #3b82f6;" aria-hidden="true"></i></div>
+            </div>
+
+            <div class="terminal-mock">
+              <div class="terminal-header">
+                <div class="terminal-dots"><div class="terminal-dot terminal-dot--red"></div><div class="terminal-dot terminal-dot--yellow"></div><div class="terminal-dot terminal-dot--green"></div></div>
+                <div class="terminal-title-bar">bash</div>
+              </div>
+              <div class="terminal-body">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/wafpass-dashboard.git</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cd wafpass-dashboard</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm install</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp .env.example .env.local  # set VITE_API_URL</span></div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run dev      # dev server at http://localhost:5173</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== TROUBLESHOOTING ===================== -->
+<section class="wafpass-install-section" id="troubleshooting">
+  <div class="container">
+    <div class="section-header-radical">
+      <div class="kicker-radical">TROUBLESHOOTING</div>
+      <h2 class="section-title-radical">Common issues &amp; fixes.</h2>
+      <p class="section-lead-radical">Quick answers if something does not work on the first try.</p>
+    </div>
+
+    <details class="wafpass-install-card">
+      <summary>
+        <i data-lucide="folder-x" aria-hidden="true"></i>
+        Controls not found
+        <i data-lucide="chevron-down" class="wafpass-install-card__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="wafpass-install-card__body">
+        <p>If <code>wafpass check</code> reports "controls directory not found", the CLI will display download instructions automatically. Make sure the <code>controls/</code> folder sits next to where you run scans.</p>
+      </div>
+    </details>
+
+    <details class="wafpass-install-card">
+      <summary>
+        <i data-lucide="plug" aria-hidden="true"></i>
+        Port already in use
+        <i data-lucide="chevron-down" class="wafpass-install-card__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="wafpass-install-card__body">
+        <p>Use a different port for the server or dashboard:</p>
+        <div class="terminal-mock">
+          <div class="terminal-body" style="padding: 10px 12px;">
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uvicorn wafpass_server.main:app --port 8001</span></div>
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run dev -- --port 5174</span></div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="wafpass-install-card">
+      <summary>
+        <i data-lucide="database-zap" aria-hidden="true"></i>
+        Database connection errors
+        <i data-lucide="chevron-down" class="wafpass-install-card__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="wafpass-install-card__body">
+        <p>Verify PostgreSQL is running and your <code>DATABASE_URL</code> is correct:</p>
+        <div class="terminal-mock">
+          <div class="terminal-body" style="padding: 10px 12px;">
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">psql $DATABASE_URL -c "SELECT 1"</span></div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="wafpass-install-card">
+      <summary>
+        <i data-lucide="box" aria-hidden="true"></i>
+        Docker build fails
+        <i data-lucide="chevron-down" class="wafpass-install-card__chevron" aria-hidden="true"></i>
+      </summary>
+      <div class="wafpass-install-card__body">
+        <p>Ensure all three repositories are cloned side-by-side in the same parent directory when building from source:</p>
+        <div class="terminal-mock">
+          <div class="terminal-body" style="padding: 10px 12px;">
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">ls -1</span></div>
+            <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">pass/</span></div>
+            <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">wafpass-server/</span></div>
+            <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">wafpass-dashboard/</span></div>
           </div>
         </div>
       </div>
@@ -487,341 +623,13 @@ volumes:
   </div>
 </section>
 
-<!-- ===================== OPTION B: INDIVIDUAL INSTALLATION ===================== -->
-<section class="wafpass-install-section" id="individual">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">OPTION B — FLEXIBLE</div>
-      <h2 class="section-title-radical">Install Components Individually</h2>
-      <p class="section-lead-radical">Install only what you need. Start with the CLI for immediate CI/CD integration, then add server and dashboard when you're ready for persistent history and visual compliance exploration.</p>
-    </div>
-
-    <!-- Step 1: CLI -->
-    <div class="wafpass-install-step">
-      <div class="wafpass-install-step__header">
-        <div class="wafpass-install-step__num">1</div>
-        <div>
-          <div class="wafpass-install-step__title">Install wafpass CLI</div>
-          <p class="wafpass-install-step__subtitle">The core evaluation engine — parse IaC, evaluate controls, generate reports</p>
-        </div>
-        <div style="margin-left: auto;"><i data-lucide="terminal" style="width: 22px; height: 22px; color: var(--brand-400);" aria-hidden="true"></i></div>
-      </div>
-
-      <p class="wafpass-install-step__label">From PyPI (recommended)</p>
-      <div class="terminal-mock" style="margin-bottom: 18px;">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
-          </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install wafpass-core</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add wafpass-core  # recommended for Python projects</span></div>
-        </div>
-      </div>
-
-      <p class="wafpass-install-step__label">From source</p>
-      <div class="terminal-mock" style="margin-bottom: 18px;">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
-          </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/pass.git</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cd pass</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv pip install -e .         # recommended</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install -e ".[pdf]"     # with PDF report support</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install -e ".[dev]"     # with dev dependencies</span></div>
-        </div>
-      </div>
-
-      <p class="wafpass-install-step__label">macOS (Apple M-series)</p>
-      <div class="terminal-mock">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
-          </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">brew install git python uv</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/pass.git && cd pass</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv pip install -e .</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass --version  # verify installation</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 2: Server -->
-    <div class="wafpass-install-step wafpass-install-step--server">
-      <div class="wafpass-install-step__header">
-        <div class="wafpass-install-step__num">2</div>
-        <div>
-          <div class="wafpass-install-step__title">Install wafpass-server</div>
-          <p class="wafpass-install-step__subtitle">FastAPI persistence layer — stores runs, waivers, secrets findings, and audit events</p>
-        </div>
-        <div style="margin-left: auto;"><i data-lucide="database" style="width: 22px; height: 22px; color: #22c55e;" aria-hidden="true"></i></div>
-      </div>
-
-      <p class="wafpass-install-step__label">From PyPI (recommended)</p>
-      <div class="terminal-mock" style="margin-bottom: 18px;">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
-          </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">pip install wafpass-server</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uv add wafpass-server  # recommended for Python projects</span></div>
-        </div>
-      </div>
-
-      <p class="wafpass-install-step__label">Configure &amp; start</p>
-      <div class="terminal-mock">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
-          </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp .env.example .env  # set DATABASE_URL and JWT secret</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">alembic upgrade head  # apply database migrations</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uvicorn wafpass_server.main:app --reload --port 8000</span></div>
-        </div>
-      </div>
-      <p style="margin: 12px 0 0; font-size: 13px; color: var(--radical-muted);">API docs available at <code style="color: var(--brand-400);">http://localhost:8000/api/docs</code></p>
-    </div>
-
-    <!-- Step 3: Dashboard -->
-    <div class="wafpass-install-step wafpass-install-step--dashboard">
-      <div class="wafpass-install-step__header">
-        <div class="wafpass-install-step__num">3</div>
-        <div>
-          <div class="wafpass-install-step__title">Install wafpass-dashboard</div>
-          <p class="wafpass-install-step__subtitle">React web dashboard — 22+ compliance views, evidence export, RBAC</p>
-        </div>
-        <div style="margin-left: auto;"><i data-lucide="layout-dashboard" style="width: 22px; height: 22px; color: #3b82f6;" aria-hidden="true"></i></div>
-      </div>
-
-      <div class="terminal-mock">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <div class="terminal-dot terminal-dot--red"></div>
-            <div class="terminal-dot terminal-dot--yellow"></div>
-            <div class="terminal-dot terminal-dot--green"></div>
-          </div>
-          <div class="terminal-title-bar">bash</div>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/wafpass-dashboard.git</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cd wafpass-dashboard</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm install</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp .env.example .env.local  # set VITE_API_URL</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run dev      # dev server at http://localhost:5173</span></div>
-          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run build    # production build</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PRE-COMMIT HOOK ===================== -->
-<section class="wafpass-install-section wafpass-install-section--alt" id="pre-commit">
-  <div class="container">
-    <div class="wafpass-install-split">
-      <div>
-        <div class="kicker-radical">PRE-COMMIT HOOK</div>
-        <h2 class="section-title-radical" style="margin-top: 10px;">Block non-compliant commits.</h2>
-        <p class="section-lead-radical">WAFPass ships a pre-commit hook that runs compliance checks before every <code style="color: var(--brand-400);">git commit</code>. Non-compliant commits are blocked automatically — no cloud call, no extra CI wait.</p>
-        <p style="color: var(--radical-muted); font-size: 15px; line-height: 1.6;">Works on macOS, Linux, and Windows (Git Bash / PowerShell).</p>
-      </div>
-      <div class="wafpass-install-card">
-        <p class="wafpass-install-step__label" style="margin-top: 0;">One-time setup</p>
-        <div class="terminal-mock">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <div class="terminal-dot terminal-dot--red"></div>
-              <div class="terminal-dot terminal-dot--yellow"></div>
-              <div class="terminal-dot terminal-dot--green"></div>
-            </div>
-            <div class="terminal-title-bar">bash</div>
-          </div>
-          <div class="terminal-body">
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">bash hooks/install.sh   # macOS / Linux / Git Bash</span></div>
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">.\hooks\install.ps1    # Windows PowerShell</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== POST-INSTALLATION ===================== -->
-<section class="wafpass-install-section" id="post-install">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">POST-INSTALLATION</div>
-      <h2 class="section-title-radical">Get up and running.</h2>
-      <p class="section-lead-radical">Download controls, run your first scan, and open the dashboard to explore your compliance posture.</p>
-    </div>
-
-    <div class="wafpass-install-grid">
-      <div class="wafpass-install-card">
-        <div class="wafpass-install-card__icon"><i data-lucide="download" aria-hidden="true"></i></div>
-        <div class="wafpass-install-card__title">1. Download Controls</div>
-        <p class="wafpass-install-card__text">WAF++ controls are published separately and downloaded on demand.</p>
-        <ol>
-          <li>Visit <a href="{{ '/wafpass/' | relative_url }}">waf2p.dev/wafpass/</a></li>
-          <li>Click <strong style="color: var(--radical-text);">Download Controls</strong></li>
-          <li>Extract to your controls directory</li>
-        </ol>
-        <div style="margin-top: 14px;">
-          <div class="terminal-mock">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <div class="terminal-dot terminal-dot--red"></div>
-                <div class="terminal-dot terminal-dot--yellow"></div>
-                <div class="terminal-dot terminal-dot--green"></div>
-              </div>
-              <div class="terminal-title-bar">bash</div>
-            </div>
-            <div class="terminal-body">
-              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/WAF2p/framework.git</span></div>
-              <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cp framework/modules/controls/controls/*.yml controls/</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wafpass-install-card">
-        <div class="wafpass-install-card__icon"><i data-lucide="scan-line" aria-hidden="true"></i></div>
-        <div class="wafpass-install-card__title">2. Run Your First Scan</div>
-        <p class="wafpass-install-card__text">Point WAFPass at your Terraform or CDK code and get a full compliance report.</p>
-        <div class="terminal-mock">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <div class="terminal-dot terminal-dot--red"></div>
-              <div class="terminal-dot terminal-dot--yellow"></div>
-              <div class="terminal-dot terminal-dot--green"></div>
-            </div>
-            <div class="terminal-title-bar">bash</div>
-          </div>
-          <div class="terminal-body">
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass check ./infra/</span></div>
-            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">wafpass check ./infra/ --output pdf \</span></div>
-            <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">  --pdf-out report.pdf</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wafpass-install-card">
-        <div class="wafpass-install-card__icon" style="color: #3b82f6; background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.18);"><i data-lucide="monitor" aria-hidden="true"></i></div>
-        <div class="wafpass-install-card__title">3. Open the Dashboard</div>
-        <p class="wafpass-install-card__text">Explore your compliance posture, manage waivers, and export evidence packages.</p>
-        <ol>
-          <li>Open <code>localhost:3000</code> (Docker) or <code>localhost:5173</code> (dev)</li>
-          <li>Login with admin credentials from your <code>.env</code></li>
-          <li>Explore findings, drift, and compliance matrix</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== TROUBLESHOOTING ===================== -->
-<section class="wafpass-install-section wafpass-install-section--alt" id="troubleshooting">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">TROUBLESHOOTING</div>
-      <h2 class="section-title-radical">Common issues &amp; fixes.</h2>
-      <p class="section-lead-radical">Quick answers to the most frequent setup problems.</p>
-    </div>
-
-    <div class="wafpass-install-grid wafpass-install-grid--2">
-      <div class="wafpass-install-card">
-        <div style="display: flex; gap: 12px; align-items: flex-start;">
-          <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(218,44,56,0.10); border: 1px solid rgba(218,44,56,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="folder-x" style="width: 16px; height: 16px; color: #da2c38;" aria-hidden="true"></i></div>
-          <div>
-            <h4 style="margin: 0 0 6px; font-size: 15px;">Controls not found</h4>
-            <p style="color: var(--radical-muted); font-size: 14px; margin: 0; line-height: 1.6;">If <code style="color: var(--brand-400);">wafpass check</code> reports "controls directory not found", the CLI will display download instructions automatically. Follow the <a href="#post-install" style="color: var(--brand-400);">post-installation</a> steps above.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="wafpass-install-card">
-        <div style="display: flex; gap: 12px; align-items: flex-start;">
-          <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(218,44,56,0.10); border: 1px solid rgba(218,44,56,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="plug" style="width: 16px; height: 16px; color: #da2c38;" aria-hidden="true"></i></div>
-          <div>
-            <h4 style="margin: 0 0 6px; font-size: 15px;">Port already in use</h4>
-            <p style="color: var(--radical-muted); font-size: 14px; margin: 0 0 10px; line-height: 1.6;">Use a different port for the server or dashboard:</p>
-            <div class="terminal-mock">
-              <div class="terminal-body" style="padding: 10px 12px;">
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">uvicorn wafpass_server.main:app --port 8001</span></div>
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run dev -- --port 5174</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wafpass-install-card">
-        <div style="display: flex; gap: 12px; align-items: flex-start;">
-          <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(218,44,56,0.10); border: 1px solid rgba(218,44,56,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="database-zap" style="width: 16px; height: 16px; color: #da2c38;" aria-hidden="true"></i></div>
-          <div>
-            <h4 style="margin: 0 0 6px; font-size: 15px;">Database connection errors</h4>
-            <p style="color: var(--radical-muted); font-size: 14px; margin: 0 0 10px; line-height: 1.6;">Verify PostgreSQL is running and your <code style="color: var(--brand-400);">DATABASE_URL</code> is correct:</p>
-            <div class="terminal-mock">
-              <div class="terminal-body" style="padding: 10px 12px;">
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">psql $DATABASE_URL -c "SELECT 1"</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="wafpass-install-card">
-        <div style="display: flex; gap: 12px; align-items: flex-start;">
-          <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(218,44,56,0.10); border: 1px solid rgba(218,44,56,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="box" style="width: 16px; height: 16px; color: #da2c38;" aria-hidden="true"></i></div>
-          <div>
-            <h4 style="margin: 0 0 6px; font-size: 15px;">Docker build fails</h4>
-            <p style="color: var(--radical-muted); font-size: 14px; margin: 0; line-height: 1.6;">Ensure all three repositories are cloned side-by-side in the same parent directory:</p>
-            <div class="terminal-mock" style="margin-top: 10px;">
-              <div class="terminal-body" style="padding: 10px 12px;">
-                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">ls -1</span></div>
-                <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">pass/</span></div>
-                <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">wafpass-server/</span></div>
-                <div class="t-line"><span class="t-prompt"> </span> <span class="t-cmd">wafpass-dashboard/</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== CTA / NEXT STEPS ===================== -->
 <section class="wafpass-install-cta onboarding-cta" id="continue">
   <div class="container">
     <div class="wafpass-install-cta__card">
-      <div class="kicker-radical">CONTINUE THE RED THREAD</div>
+      <div class="kicker-radical">CONTINUE</div>
       <h2 class="wafpass-install-cta__title">You ran your first check. What next?</h2>
-      <p class="wafpass-install-cta__lead">Pick the next step that matches your role: deepen the framework knowledge, wire WAFPass into CI/CD, or explore the full visual dashboard.</p>
+      <p class="wafpass-install-cta__lead">Pick the next step that matches your role: deepen framework knowledge, wire WAFPass into CI/CD, or explore the full visual dashboard.</p>
 
       <div class="onboarding-cta__grid">
         <a class="onboarding-cta__card" href="{{ '/saeulen/' | relative_url }}">
@@ -908,7 +716,24 @@ function wafpassCopyYaml(btn) {
 </script>
 <script src="{{ '/assets/js/wafpass-download.js' | relative_url }}" defer></script>
 <script>
+(function () {
+  // Keep install tab ARIA state in sync with the active CSS-only radio tab
+  var radios = document.querySelectorAll('.install-tabs__radio');
+  var labels = document.querySelectorAll('.install-tabs__item');
+  function updateTabs() {
+    radios.forEach(function (radio, i) {
+      if (labels[i]) {
+        labels[i].setAttribute('aria-selected', radio.checked ? 'true' : 'false');
+      }
+    });
+  }
+  radios.forEach(function (radio) {
+    radio.addEventListener('change', updateTabs);
+  });
+  updateTabs();
+
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
+})();
 </script>

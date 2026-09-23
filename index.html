@@ -4,7 +4,7 @@ lang: en
 ref: home
 title: Well Architected Framework ++
 image: /images/WAFpp_upscaled_1000.png
-description: Sovereign cloud architectures for a multi-cloud reality — open, transparent and community-driven.
+description: Scan your Terraform for cloud misconfigurations in one command. No AWS account, no setup — get your first WAFPass result in two minutes.
 ---
 
 <!-- ===================== HERO ===================== -->
@@ -20,21 +20,20 @@ description: Sovereign cloud architectures for a multi-cloud reality — open, t
         </div>
 
         <h1 class="hp-hero__title">
-          Cloud architecture that is
-          <span class="hp-shimmer">sovereign</span>,
-          <span class="hp-gradient">secure</span>,
-          and built to last.
+          Find cloud misconfigurations in your Terraform
+          <span class="hp-gradient">before you deploy.</span>
         </h1>
 
         <p class="hp-hero__lead">
-          WAF++ is the open, vendor-neutral standard for designing, scoring, and proving cloud architecture quality — across any provider. No lock-in, no black-box audits, no marketing agenda.
+          WAFPass scans your Infrastructure-as-Code in one command. No AWS account, no setup, no cloud credentials — just a clear list of what to fix before it reaches production.
         </p>
 
         <div class="hp-hero__actions">
           <a class="hp-btn hp-btn--primary" href="{{ '/wafpass-install/' | relative_url }}">
-            Get started in 15 minutes
+            Scan your first file — free
             <span class="hp-btn__icon">{% include hp-icon.html name='arrow-up-right' %}</span>
           </a>
+          <a class="hp-btn hp-btn--ghost" href="{{ '/docs/' | relative_url }}">Documentation</a>
           <a class="hp-btn hp-btn--ghost" href="{{ '/use-cases/' | relative_url }}">See how leaders use it</a>
         </div>
 
@@ -85,6 +84,74 @@ description: Sovereign cloud architectures for a multi-cloud reality — open, t
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+
+<!-- ===================== FIRST RESULT: 3 STEPS + TRUST BLOCK ===================== -->
+<section class="hp-section hp-first-result" id="first-result">
+  <div class="hp-container">
+
+    <div class="hp-section-head hp-reveal">
+      <div class="hp-kicker"><span class="hp-kicker__dot"></span>First result in 2 minutes</div>
+      <h2 class="hp-title">Three steps to your first scan.</h2>
+    </div>
+
+    <div class="hp-first-result__grid">
+
+      <div class="hp-step-card hp-reveal">
+        <div class="hp-step-card__orb">01</div>
+        <div class="hp-step-card__title">Install the CLI</div>
+        <p class="hp-step-card__desc">One PyPI package gives you the static-analysis engine.</p>
+        <div class="hp-step-card__code"><code>pip install wafpass-core</code></div>
+      </div>
+
+      <div class="hp-step-card hp-reveal hp-delay-1">
+        <div class="hp-step-card__orb">02</div>
+        <div class="hp-step-card__title">Run one command</div>
+        <p class="hp-step-card__desc">Point WAFPass at your Terraform folder and get a JSON summary.</p>
+        <div class="hp-step-card__code"><code>wafpass check . --output json | jq '.summary'</code></div>
+      </div>
+
+      <div class="hp-step-card hp-reveal hp-delay-2">
+        <div class="hp-step-card__orb">03</div>
+        <div class="hp-step-card__title">See what's wrong</div>
+        <p class="hp-step-card__desc">A clear pass/fail count and per-control findings tell you exactly what to fix.</p>
+        <div class="hp-step-card__code hp-step-card__code--result">
+          <span class="hp-result__num hp-result__num--pass">81 passed</span>
+          <span class="hp-result__sep">·</span>
+          <span class="hp-result__num hp-result__num--fail">2 failed</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hp-trust-block hp-reveal">
+      <div class="hp-trust-block__copy">
+        <h3 class="hp-trust-block__title">What a first finding looks like</h3>
+        <p class="hp-trust-block__lead">WAFPass flags a public S3 bucket and shows the exact control and the fix.</p>
+        <div class="hp-trust-block__finding">
+          <div class="hp-finding__header">
+            <span class="hp-finding__badge hp-finding__badge--fail">FAIL</span>
+            <span class="hp-finding__id">SEC-S3-001</span>
+          </div>
+          <p class="hp-finding__desc">S3 bucket public access block is disabled. Public buckets expose data to the internet.</p>
+        </div>
+      </div>
+
+      <div class="hp-trust-block__fix">
+        <div class="hp-fix__label">Fix snippet</div>
+        <pre class="hp-fix__code"><code>resource "aws_s3_bucket_public_access_block" "public" {
+  bucket                  = aws_s3_bucket.public.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}</code></pre>
+      </div>
+    </div>
+
   </div>
 </section>
 

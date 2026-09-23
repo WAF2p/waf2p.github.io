@@ -335,3 +335,271 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+// ── One-liner installer pitch ──────────────────────────────────────────────
+.installer-pitch {
+  --pitch-bg: var(--surface);
+  --pitch-border: var(--border);
+  --pitch-accent: var(--brand-500);
+  --pitch-text: var(--text);
+  --pitch-code-bg: var(--surface-2);
+  --pitch-code-border: var(--border);
+  --pitch-muted: var(--muted);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--pitch-border);
+  background: var(--pitch-bg);
+  color: var(--pitch-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+
+  p { margin: 0 0 12px; }
+  strong { color: var(--pitch-accent); font-weight: 600; }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.installer-pitch__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.installer-pitch__commands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.installer-pitch__command {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--pitch-code-bg);
+  border: 1px solid var(--pitch-code-border);
+  border-radius: 12px;
+  padding: 16px;
+  transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--pitch-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.82em;
+    color: var(--pitch-text);
+    white-space: nowrap;
+    background: color-mix(in srgb, var(--pitch-bg) 60%, transparent);
+    border: 1px solid var(--pitch-code-border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+}
+
+.installer-pitch__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--pitch-accent) 12%, transparent);
+  color: var(--pitch-accent);
+  border: 1px solid color-mix(in srgb, var(--pitch-accent) 30%, transparent);
+}
+
+.installer-pitch__os {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pitch-muted);
+  line-height: 1;
+
+  i, svg {
+    width: 16px;
+    height: 16px;
+    color: var(--pitch-accent);
+    flex-shrink: 0;
+  }
+
+  svg { display: block; }
+}
+
+// ── Install tabs (CSS-only radio buttons) ─────────────────────────────────
+.install-tabs {
+  position: relative;
+}
+
+.install-tabs__radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.install-tabs__nav {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  margin-bottom: 32px;
+  border: 1px solid var(--radical-border);
+  border-radius: 999px;
+  background: var(--radical-surface);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+
+  @media (max-width: 720px) {
+    border-radius: 18px;
+    flex-wrap: wrap;
+  }
+}
+
+.install-tabs__item {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--radical-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+
+  svg { width: 15px; height: 15px; }
+
+  &:hover {
+    color: var(--radical-text);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  @media (max-width: 720px) {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 140px;
+  }
+}
+
+#install-tab-cli:checked   ~ .install-tabs__nav label[for="install-tab-cli"],
+#install-tab-docker:checked ~ .install-tabs__nav label[for="install-tab-docker"],
+#install-tab-ci:checked    ~ .install-tabs__nav label[for="install-tab-ci"],
+#install-tab-advanced:checked ~ .install-tabs__nav label[for="install-tab-advanced"] {
+  color: var(--brand-400);
+  background: rgba(0, 148, 255, 0.12);
+  border-color: rgba(0, 148, 255, 0.35);
+  box-shadow: 0 0 20px var(--radical-glow);
+}
+
+.install-tabs__pane {
+  display: none;
+}
+
+#install-tab-cli:checked   ~ #install-pane-cli,
+#install-tab-docker:checked ~ #install-pane-docker,
+#install-tab-ci:checked    ~ #install-pane-ci,
+#install-tab-advanced:checked ~ #install-pane-advanced {
+  display: block;
+}
+
+// Primary quickstart card accent
+.quickstart-card--primary {
+  border-color: rgba(0, 148, 255, 0.25);
+  background: linear-gradient(135deg, var(--radical-surface) 0%, rgba(0, 148, 255, 0.04) 100%);
+}
+
+// Summary legend under first result
+.summary-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.summary-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--radical-muted);
+  line-height: 1.5;
+}
+
+.summary-legend__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.summary-legend__dot--pass { background: #22c55e; }
+.summary-legend__dot--fail { background: #f87171; }
+.summary-legend__dot--total { background: var(--brand-400); }
+
+.quickstart-step__note {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--radical-muted);
+  line-height: 1.5;
+
+  a { color: var(--brand-400); text-decoration: underline; text-underline-offset: 3px; }
+}
+
+// Troubleshooting details cards
+#troubleshooting .wafpass-install-card {
+  margin-bottom: 16px;
+
+  summary {
+    padding: 18px 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 15px;
+    list-style: none;
+    color: var(--radical-text);
+
+    &::-webkit-details-marker { display: none; }
+  }
+
+  .wafpass-install-card__chevron {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+
+  &[open] .wafpass-install-card__chevron {
+    transform: rotate(180deg);
+  }
+
+  .wafpass-install-card__body {
+    padding: 0 22px 18px 54px;
+    color: var(--radical-muted);
+    font-size: 14px;
+    line-height: 1.6;
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    .terminal-mock { margin-top: 12px; }
+  }
+}
