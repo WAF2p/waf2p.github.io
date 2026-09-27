@@ -77,6 +77,15 @@ main > div[class] > section.post-hero-radical:first-child,
 }
 .brand img{width:34px; height:34px}
 
+.mobile-brand-name{
+  display:none;
+  font-weight:800;
+  font-size:15px;
+  letter-spacing:.2px;
+  color: var(--text);
+  text-decoration:none;
+}
+
 .nav{
   display:contents;
 }
@@ -229,9 +238,12 @@ body.nav-open .burger span:nth-child(3) {
 
 @media (max-width: 860px){
   .header-inner{
-    grid-template-columns: auto auto;
+    display:flex;
     justify-content: space-between;
+    align-items:center;
+    gap:12px;
   }
+  .mobile-brand-name{ display:block; }
   .burger { display: block; }
   .nav {
     display: none;

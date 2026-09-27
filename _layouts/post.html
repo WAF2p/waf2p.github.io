@@ -51,6 +51,25 @@ layout: default
   {% assign t_blog_nav_label = "Blog Navigation" %}
   {% assign t_cat_prefix = "/de/blog/category/" %}
   {% assign t_blog_index = "/de/blog/" %}
+  {% assign t_kicker_blog = "Blog · Einblick" %}
+  {% assign t_written_by = "Geschrieben von" %}
+  {% assign t_prev_label = "Vorheriger Artikel" %}
+  {% assign t_next_label = "Nächster Artikel" %}
+{% elsif page.lang == 'nl' %}
+  {% assign t_date_format = "%d.%m.%Y" %}
+  {% assign t_min_read = "min. leestijd" %}
+  {% assign t_back = "Terug naar overzicht" %}
+  {% assign t_view_profile = "Bekijk profiel" %}
+  {% assign t_kicker_more = "Meer artikelen" %}
+  {% assign t_continue = "Verder lezen" %}
+  {% assign t_author_label = "Auteur" %}
+  {% assign t_blog_nav_label = "Blog Navigatie" %}
+  {% assign t_cat_prefix = "/nl/blog/category/" %}
+  {% assign t_blog_index = "/nl/blog/" %}
+  {% assign t_kicker_blog = "Blog · Inzicht" %}
+  {% assign t_written_by = "Geschreven door" %}
+  {% assign t_prev_label = "Vorig artikel" %}
+  {% assign t_next_label = "Volgend artikel" %}
 {% else %}
   {% assign t_date_format = "%d %b %Y" %}
   {% assign t_min_read = "min read" %}
@@ -62,100 +81,105 @@ layout: default
   {% assign t_blog_nav_label = "Blog Navigation" %}
   {% assign t_cat_prefix = "/blog/category/" %}
   {% assign t_blog_index = "/blog/" %}
+  {% assign t_kicker_blog = "Blog · Insight" %}
+  {% assign t_written_by = "Written by" %}
+  {% assign t_prev_label = "Previous article" %}
+  {% assign t_next_label = "Next article" %}
 {% endif %}
 
 <div class="page-radical blog-post-page">
 
-<!-- ===================== POST HERO WITH COVER ===================== -->
-<section class="post-hero-radical">
+<!-- ===================== EDITORIAL HERO ===================== -->
+<section class="post-hero-editorial">
   <div class="container">
-    <div class="post-hero-radical__meta">
-      <span class="post-hero-radical__pill">{{ page.date | date: t_date_format }}</span>
+    <div class="post-hero-editorial__kicker">
+      <span class="post-hero-editorial__kicker-dot"></span>
+      {{ t_kicker_blog }}
+    </div>
+
+    <h1 class="post-hero-editorial__title">{{ page.title }}</h1>
+
+    {% if page.description %}
+    <p class="post-hero-editorial__lead">{{ page.description }}</p>
+    {% endif %}
+
+    <div class="post-hero-editorial__meta">
+      <span class="post-hero-editorial__date">{{ page.date | date: t_date_format }}</span>
       {% if page.categories and page.categories.size > 0 %}
-        <span class="post-hero-radical__dot">·</span>
-        <span class="post-hero-radical__cats">
+        <span class="post-hero-editorial__sep">·</span>
+        <span class="post-hero-editorial__cats">
           {% for c in page.categories %}
             {% assign c_slug = c | slugify %}
-            <a class="post-hero-radical__cat" href="{{ t_cat_prefix | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
+            <a href="{{ t_cat_prefix | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
           {% endfor %}
         </span>
       {% endif %}
-      <span class="post-hero-radical__dot">·</span>
-      <span class="post-hero-radical__readtime">
+      <span class="post-hero-editorial__sep">·</span>
+      <span class="post-hero-editorial__readtime">
         <i data-lucide="clock" aria-hidden="true"></i>
         {{ read_time }} {{ t_min_read }}
       </span>
     </div>
 
-    <h1 class="post-hero-radical__title">{{ page.title }}</h1>
-
-    {% if page.description %}
-    <p class="post-hero-radical__lead">{{ page.description }}</p>
-    {% endif %}
-
     {% if author %}
-    <div class="post-hero-radical__byline">
-      <div class="post-hero-radical__avatar">
-        <img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
-      </div>
-      <div>
-        <div class="post-hero-radical__byline-name">{{ author.name }}</div>
-        {% if author.position %}<div class="post-hero-radical__byline-role">{{ author.position }}</div>{% endif %}
-      </div>
-    </div>
-    {% endif %}
-
-    {% if cover_image %}
-    <div class="post-hero-radical__cover">
-      <img src="{% include relative-src.html src=cover_image %}" alt="{{ page.title }}">
-    </div>
+    <a class="post-hero-editorial__byline" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}" aria-label="{{ t_written_by }} {{ author.name }}">
+      <img class="post-hero-editorial__avatar" src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
+      <span class="post-hero-editorial__byline-text">
+        <span class="post-hero-editorial__byline-label">{{ t_written_by }}</span>
+        <span class="post-hero-editorial__byline-name">{{ author.name }}</span>
+        {% if author.position %}<span class="post-hero-editorial__byline-role">{{ author.position }}</span>{% endif %}
+      </span>
+    </a>
     {% endif %}
   </div>
 </section>
 
 
-<!-- ===================== POST BODY ===================== -->
-<section class="post-body-radical">
+<!-- ===================== HERO COVER BANNER ===================== -->
+{% if cover_image %}
+<section class="post-cover-banner">
   <div class="container">
-    <article class="prose-radical">
+    <div class="post-cover-banner__frame">
+      <img src="{% include relative-src.html src=cover_image %}" alt="{{ page.title }}">
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+<!-- ===================== ARTICLE BODY ===================== -->
+<section class="post-body-editorial">
+  <div class="container">
+    <article class="prose-editorial">
       {{ rendered_content }}
     </article>
 
-    <!-- Author card -->
     {% if author %}
-    <section class="author-card-radical" aria-label="{{ t_author_label }}">
-      <div class="author-card-radical__avatar">
-        <img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
+    <!-- Author band -->
+    <div class="author-band" aria-label="{{ t_author_label }}">
+      <img class="author-band__avatar" src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
+      <div class="author-band__content">
+        <div class="author-band__name">{{ author.name }}</div>
+        {% if author.position %}<div class="author-band__role">{{ author.position }}</div>{% endif %}
+        {% if author.blurb %}<p class="author-band__blurb">{{ author.blurb }}</p>{% endif %}
       </div>
-      <div class="author-card-radical__content">
-        <div class="author-card-radical__name">{{ author.name }}</div>
-        {% if author.position %}<div class="author-card-radical__role">{{ author.position }}</div>{% endif %}
-        {% if author.expertise %}
-        <div class="author-card-radical__tags">
-          {% for e in author.expertise %}
-          <span class="author-card-radical__tag">{{ e }}</span>
+      <div class="author-band__actions">
+        {% if author.social %}
+        <div class="author-band__social">
+          {% for link in author.social %}
+          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+            {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+          </a>
           {% endfor %}
         </div>
         {% endif %}
-        {% if author.blurb %}<p class="author-card-radical__blurb">{{ author.blurb }}</p>{% endif %}
-        <div class="author-card-radical__actions">
-          {% if author.social %}
-          <div class="author-card-radical__social">
-            {% for link in author.social %}
-            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
-              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
-            </a>
-            {% endfor %}
-          </div>
-          {% endif %}
-          <a class="btn-glass btn-glass--sm" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}">{{ t_view_profile }} &rarr;</a>
-        </div>
+        <a class="btn-glass btn-glass--sm" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}">{{ t_view_profile }} &rarr;</a>
       </div>
-    </section>
+    </div>
     {% endif %}
 
     <!-- Post nav -->
-    <nav class="post-nav-radical" aria-label="{{ t_blog_nav_label }}">
+    <nav class="post-nav-editorial" aria-label="{{ t_blog_nav_label }}">
       {% assign prev_post = nil %}
       {% assign next_post = nil %}
       {% assign found = false %}
@@ -171,21 +195,23 @@ layout: default
       {% endfor %}
 
       {% if prev_post %}
-      <a class="btn-glass btn-glass--sm" href="{% include relative-src.html src=prev_post.url %}">
-        <span aria-hidden="true">←</span> {{ prev_post.title | truncate: 40 }}
+      <a class="post-nav-editorial__link post-nav-editorial__link--prev" href="{% include relative-src.html src=prev_post.url %}">
+        <span class="post-nav-editorial__link-label"><span aria-hidden="true">←</span> {{ t_prev_label }}</span>
+        <span class="post-nav-editorial__link-title">{{ prev_post.title | truncate: 55 }}</span>
       </a>
       {% else %}
-      <span></span>
+      <span class="post-nav-editorial__spacer"></span>
       {% endif %}
 
       <a class="btn-glow btn-glow--sm" href="{{ t_blog_index | relative_url }}">{{ t_back }}</a>
 
       {% if next_post %}
-      <a class="btn-glass btn-glass--sm" href="{% include relative-src.html src=next_post.url %}">
-        {{ next_post.title | truncate: 40 }} <span aria-hidden="true">→</span>
+      <a class="post-nav-editorial__link post-nav-editorial__link--next" href="{% include relative-src.html src=next_post.url %}">
+        <span class="post-nav-editorial__link-label">{{ t_next_label }} <span aria-hidden="true">→</span></span>
+        <span class="post-nav-editorial__link-title">{{ next_post.title | truncate: 55 }}</span>
       </a>
       {% else %}
-      <span></span>
+      <span class="post-nav-editorial__spacer"></span>
       {% endif %}
     </nav>
 
@@ -204,7 +230,12 @@ layout: default
         (d.head || d.body).appendChild(s);
       })();
     </script>
-    <noscript>{% if page.lang == 'de' %}Bitte JavaScript aktivieren, um Kommentare zu sehen.{% else %}Please enable JavaScript to view the comments powered by Disqus.{% endif %}</noscript>
+    <noscript>
+      {% if page.lang == 'de' %}Bitte JavaScript aktivieren, um Kommentare zu sehen.
+      {% elsif page.lang == 'nl' %}Schakel JavaScript in om opmerkingen te bekijken.
+      {% else %}Please enable JavaScript to view the comments powered by Disqus.
+      {% endif %}
+    </noscript>
     {% endif %}
   </div>
 </section>
@@ -220,7 +251,7 @@ layout: default
 {% endfor %}
 {% assign more_posts = other_posts | slice: 0, 3 %}
 {% if more_posts.size > 0 %}
-<section class="bento-section" style="padding-top:0;">
+<section class="more-articles-radical">
   <div class="container">
     <div class="section-header-radical">
       <div class="kicker-radical">{{ t_kicker_more }}</div>

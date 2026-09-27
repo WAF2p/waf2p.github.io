@@ -7,6 +7,7 @@ categories:
   - cloud
   - best_practices
 author_staff_member: sascha
+image: /assets/images/articles/cloud_native_conference_waf2p.png
 ---
 
 Great ideas rarely happen when you plan them — most of the time they emerge somewhere between a dead battery, an overheating laptop, and a drink you didn't really need. That's exactly how it was on the eve of Cloud Native Conference 2025.
@@ -26,7 +27,7 @@ In that moment, WAF++ was born — maybe not the name yet, but definitely the id
 The next day, Cloud Native Conference 2025 kicked off. We played Mario Kart, attended a lot of talks — including our own — and worked through security topics and sovereignty discussions… but the word we'd been missing the night before never really came up, because it simply didn't exist yet.
 Each of us had our own presentation, all technically solid, but the issue of the missing framework wouldn't let us go.
 
-![Sebastian and Sascha playing Mario Kart at CNC 2025](https://public.picdrop.com/preview/t/gniVRmWL5iCYFyTnlrtW_1600.jpg "Sebastian and Sascha playing Mario Kart")
+![Sebastian and Sascha playing Mario Kart at CNC 2025](/assets/images/articles/cloud_native_conference_waf2p.png "Sebastian and Sascha playing Mario Kart")
 *(C) by [Manuel Emme Fotografie](https://www.manuelemme.com/ "Manuel Emme Fotografie") / Vogel IT / Cloud Native Conference*
 
 That evening, at the CNC party, the conversations continued. My company even picked up a Rockstar Award for an architecture implementation — which didn't make the evening any less nerdy. We stood there, between music, networking, and bad lighting, and kept talking about how the cloud world needs exactly this kind of framework.
