@@ -1,0 +1,159 @@
+/* ============================================================
+   WAF++ MCP Bridge page — v2
+   Built on theme/_design-language.scss. Eleventh consumer of the
+   shared .dl-* system, and the last EN page using the old
+   .wafpass-hero/.wafpass-stats/.wafpass-stack/.wafpass-flow/
+   .control-pill family — all of which stay untouched in
+   home.scss (still used by the de/es/fr/… language variants,
+   out of scope here).
+
+   .code-window and .rfc-table/.rfc-table-wrap are reused as-is,
+   already modernized onto dl-tokens by earlier redesigns, and
+   marked data-ui in the HTML (attribute only) so the three real
+   quick-start terminals and the one real env-var table count as
+   this page's interface fragments, same approach as
+   /wafpass-action/.
+
+   Scope: /wafpass-mcp/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.wfpm-page { background: var(--dl-ground); }
+.wfpm-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.wfpm-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.wfpm-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 17ch;
+}
+
+.wfpm-hero__lead { @include dl-lead; max-width: 62ch; }
+.wfpm-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+.wfpm-hero__row { @include dl-quiet-row; margin-top: 32px; }
+
+/* ---------- stats ---------- */
+
+.wfpm-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.wfpm-section-head { max-width: 62ch; }
+
+/* ---------- features ---------- */
+
+.wfpm-grid {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .wfpm-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .wfpm-grid { grid-template-columns: 1fr; }
+}
+
+.wfpm-card { @include dl-card; padding: clamp(24px, 3vw, 30px); }
+.wfpm-card__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.wfpm-card__desc {
+  font-size: var(--dl-size-body);
+  line-height: 1.55;
+  color: var(--dl-muted);
+  margin: 0;
+
+  code {
+    font-family: var(--dl-font-mono);
+    font-size: 0.8125rem;
+    background: var(--dl-surface-2);
+    color: var(--dl-ink);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+}
+
+/* ---------- quick start: three real terminals ---------- */
+
+.wfpm-steps { margin-top: clamp(48px, 6vw, 72px); display: flex; flex-direction: column; gap: clamp(24px, 3vw, 32px); }
+
+/* ---------- architecture: a five-node pipeline ---------- */
+
+.wfpm-pipeline {
+  margin-top: clamp(48px, 6vw, 72px);
+  margin-bottom: clamp(40px, 5vw, 56px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.wfpm-pipeline__node {
+  flex: 1 1 130px;
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  padding: clamp(18px, 2.2vw, 22px);
+  text-align: center;
+}
+.wfpm-pipeline__label { font-size: 0.8125rem; color: var(--dl-muted); }
+.wfpm-pipeline__name { margin-top: 4px; font-family: var(--dl-font-display); font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); }
+
+.wfpm-pipeline__arrow {
+  flex: none;
+  padding: 0 clamp(2px, 1vw, 10px);
+  color: var(--dl-muted);
+  font-size: 1.125rem;
+}
+@media (max-width: 760px) {
+  .wfpm-pipeline { flex-direction: column; align-items: stretch; }
+  .wfpm-pipeline__node { flex: none; }
+  .wfpm-pipeline__arrow { align-self: center; transform: rotate(90deg); padding: 4px 0; }
+}
+
+/* ---------- CTA ---------- */
+
+.wfpm-cta { padding: clamp(40px, 6vw, 72px); text-align: center; }
+.wfpm-cta .dl-heading { max-width: none; color: var(--dl-ground); }
+.wfpm-cta .dl-lead { max-width: 56ch; margin-inline: auto; color: var(--dl-ground-2); }
+.wfpm-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+
+.wfpm-cta-section {
+  background: var(--dl-ink);
+  .dl-heading, .dl-lead { color: var(--dl-ground); }
+  .wf6-btn--pill {
+    color: var(--dl-ground);
+    border-color: color-mix(in srgb, var(--dl-ground) 25%, transparent);
+    .wf6-btn__arrow {
+      border-color: var(--dl-accent);
+      color: var(--dl-accent);
+    }
+    &:hover, &:focus {
+      border-color: var(--dl-accent);
+      color: var(--dl-accent);
+      .wf6-btn__arrow {
+        background: var(--dl-accent);
+        color: var(--dl-ground);
+      }
+    }
+  }
+  .wf6-btn--line {
+    color: var(--dl-ground);
+    border-color: color-mix(in srgb, var(--dl-ground) 30%, transparent);
+    &:hover, &:focus {
+      background: color-mix(in srgb, var(--dl-ground) 12%, transparent);
+      border-color: color-mix(in srgb, var(--dl-ground) 50%, transparent);
+    }
+  }
+}

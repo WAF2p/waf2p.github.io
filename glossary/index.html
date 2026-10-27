@@ -10,87 +10,108 @@ permalink: /glossary/
 {% assign term_count = 34 %}
 {% assign letter_count = 14 %}
 
-<div class="page-radical glossary-page">
+<div class="gl2-page">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero--radical">
-  <div class="hero-noise" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="gl2-hero">
+  <div class="dl-wrap">
+    <div class="gl2-hero__grid">
+      <div class="dl-rise">
+        <h1 class="gl2-hero__title">Glossary.</h1>
+        <p class="gl2-hero__lead">Definitions of the terms used across the WAF++ framework, scoring model, governance, and tooling. When in doubt, this is the authoritative source.</p>
+        <div class="gl2-hero__actions">
+          <a class="wf6-btn wf6-btn--pill" href="{{ '/docs/' | relative_url }}">
+            Full documentation
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+        </div>
+      </div>
 
-  <div class="container" style="position:relative;z-index:2;max-width:900px;text-align:center;">
-    <div class="hero-radical-badge" style="margin:0 auto 24px;">
-      <span class="hero-radical-badge__dot"></span>
-      Reference &middot; Authoritative definitions
-    </div>
-
-    <h1 class="hero-radical-h1" style="font-size: clamp(44px, 7vw, 84px);">
-      <span class="text-gradient-radical">Glossary</span>
-    </h1>
-    <p class="hero-radical-lead" style="max-width: 680px; margin: 0 auto 36px;">
-      Definitions of key terms used across the WAF++ framework, scoring model, governance, and tooling.
-      When in doubt, this is the authoritative source.
-    </p>
-
-    <div class="hero-radical-pills" style="justify-content:center; margin-bottom: 32px;">
-      <span class="hero-radical-pill">
-        <i data-lucide="book-open" aria-hidden="true"></i>
-        {{ term_count }} terms
-      </span>
-      <span class="hero-radical-pill">
-        <i data-lucide="tag" aria-hidden="true"></i>
-        5 categories
-      </span>
-      <span class="hero-radical-pill">
-        <i data-lucide="layers" aria-hidden="true"></i>
-        {{ letter_count }} letters
-      </span>
-    </div>
-
-    <div class="hero-radical-actions" style="justify-content:center;">
-      <a class="btn-glow" href="{{ '/docs/' | relative_url }}">Full documentation &rarr;</a>
-      <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+      <div class="dl-rise dl-d2">
+        <button class="dl-shot" type="button" aria-label="View the WAF++ controls catalogue, larger">
+          <img src="{{ '/assets/images/wafpass/Controls_Catalogue.png' | relative_url }}" alt="WAF++ controls catalogue listing every control by ID, pillar, severity and type">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Stats -->
+<section class="gl2-stats">
+  <div class="dl-wrap">
+    <div class="gl2-stats__grid dl-rise">
+      <div class="dl-stat"><div class="dl-stat__num">{{ term_count }}</div><div class="dl-stat__label">Terms</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">5</div><div class="dl-stat__label">Categories</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ letter_count }}</div><div class="dl-stat__label">Letters</div></div>
+    </div>
+  </div>
+</section>
 
-<!-- ===================== GLOSSARY ===================== -->
-<section class="bento-section">
-  <div class="container">
-
-    <!-- Category legend -->
-    <div class="gl-legend">
-      <span class="gl-legend__label">Categories</span>
-      <span class="gl-legend__item">
-        <span class="gl-tag gl-tag--framework">framework</span>
-        pillars, controls, scoring, assessments
-      </span>
-      <span class="gl-legend__item">
-        <span class="gl-tag gl-tag--governance">governance</span>
-        roles, policies, licences, community
-      </span>
-      <span class="gl-legend__item">
-        <span class="gl-tag gl-tag--scoring">scoring</span>
-        PASS model, tiers, scores
-      </span>
-      <span class="gl-legend__item">
-        <span class="gl-tag gl-tag--process">process</span>
-        RFC, decisions, contributions
-      </span>
-      <span class="gl-legend__item">
-        <span class="gl-tag gl-tag--tooling">tooling</span>
-        Antora, AsciiDoc, WAFPass CLI
-      </span>
+<!-- Categories -->
+<section class="dl-section" id="categories">
+  <div class="dl-wrap">
+    <div class="gl2-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">Five categories.</h2>
+        <p class="dl-lead">Every term below is tagged with the part of WAF++ it belongs to.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="View the module score breakdown, larger">
+        <img src="{{ '/assets/images/wafpass/Module_Score_Breakdown.png' | relative_url }}" alt="WAF++ module score breakdown showing scores and findings for each pillar">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
     </div>
 
-    <!-- Alpha nav -->
-    <nav class="gl-alpha-nav" aria-label="Jump to letter">
+    <div class="gl2-legend dl-rise">
+      <div class="gl2-legend__row">
+        <span class="gl2-legend__name">Framework</span>
+        <span class="gl2-legend__desc">pillars, controls, scoring, assessments</span>
+      </div>
+      <div class="gl2-legend__row">
+        <span class="gl2-legend__name">Governance</span>
+        <span class="gl2-legend__desc">roles, policies, licences, community</span>
+      </div>
+      <div class="gl2-legend__row">
+        <span class="gl2-legend__name">Scoring</span>
+        <span class="gl2-legend__desc">PASS model, tiers, scores</span>
+      </div>
+      <div class="gl2-legend__row">
+        <span class="gl2-legend__name">Process</span>
+        <span class="gl2-legend__desc">RFC, decisions, contributions</span>
+      </div>
+      <div class="gl2-legend__row">
+        <span class="gl2-legend__name">Tooling</span>
+        <span class="gl2-legend__desc">Antora, AsciiDoc, WAFPass CLI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- All terms -->
+<section class="dl-section dl-section--alt" id="terms">
+  <div class="dl-wrap">
+    <div class="gl2-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">All {{ term_count }} terms, A to Z.</h2>
+        <p class="dl-lead">Jump to a letter, or read straight through.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="View the compliance matrix, larger">
+        <img src="{{ '/assets/images/wafpass/Compliance_Matrix.png' | relative_url }}" alt="WAF++ compliance matrix mapping pillar coverage and pass rates to regulatory frameworks">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+
+    <nav class="gl2-alpha-nav dl-rise" aria-label="Jump to letter">
       <a href="#A">A</a><a href="#C">C</a><a href="#D">D</a><a href="#F">F</a>
       <a href="#G">G</a><a href="#I">I</a><a href="#L">L</a><a href="#M">M</a>
       <a href="#P">P</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
       <a href="#V">V</a><a href="#W">W</a>
     </nav>
+
+    <div class="gl-entries">
 
     <!-- A -->
     <div class="gl-section" id="A">
@@ -147,7 +168,7 @@ permalink: /glossary/
 
         <div class="gl-entry" id="Controls-library">
           <div class="gl-term">Controls library <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def">The full collection of WAF++ controls, stored as structured YAML files in the <code>framework</code> repository under <code>modules/controls/</code>. The library now spans 8 pillars with 83+ controls.</p>
+          <p class="gl-def">The full collection of WAF++ controls, stored as structured YAML files in the <code>framework</code> repository under <code>modules/controls/</code>. The library now spans 8 pillars with 100+ controls.</p>
         </div>
 
         <div class="gl-entry">
@@ -348,7 +369,7 @@ permalink: /glossary/
 
         <div class="gl-entry" id="WAFpp">
           <div class="gl-term">WAF++ <span class="gl-tag gl-tag--framework">framework</span></div>
-          <p class="gl-def"><strong>Well-Architected Framework Plus Plus.</strong> An open-source, vendor-neutral framework for assessing and improving the quality of cloud workloads. WAF++ extends conventional well-architected reviews with a transparent, community-driven scoring model (PASS) and a machine-readable controls library across 8 pillars and 83+ controls.</p>
+          <p class="gl-def"><strong>Well-Architected Framework Plus Plus.</strong> An open-source, vendor-neutral framework for assessing and improving the quality of cloud workloads. WAF++ extends conventional well-architected reviews with a transparent, community-driven scoring model (PASS) and a machine-readable controls library across 8 pillars and 100+ controls.</p>
         </div>
 
         <div class="gl-entry" id="WAFPass">
@@ -371,25 +392,104 @@ permalink: /glossary/
       </div>
     </div>
 
+    </div>
   </div>
 </section>
 
+<!-- CTA -->
+<section class="dl-section gl2-cta-section">
+  <div class="dl-wrap">
+    <div class="gl2-cta">
+      <div class="dl-rise">
+        <h2 class="dl-heading">Term missing or unclear?</h2>
+        <p class="dl-lead">Open a content issue on GitHub or suggest a definition in Slack. The glossary grows with the community, every addition makes the framework easier to use.</p>
+        <div class="gl2-cta__actions">
+          <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">
+            Open issue
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/docs/' | relative_url }}">Full documentation</a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+        </div>
+      </div>
 
-<!-- ===================== CTA ===================== -->
-<section class="cta-radical">
-  <div class="cta-radical__glow" aria-hidden="true"></div>
-  <div class="container">
-    <div class="cta-radical__inner">
-      <div class="kicker-radical" style="margin-bottom:14px;">Something missing?</div>
-      <h2 class="cta-radical__title">Term missing or unclear?</h2>
-      <p class="cta-radical__lead">Open a content issue on GitHub or suggest a definition in Slack. The glossary grows with the community — every addition makes the framework easier to use.</p>
-      <div class="cta-radical__actions">
-        <a class="btn-glow" href="https://github.com/waf2p/waf2p.github.io/issues/new?template=content_issue.md" target="_blank" rel="noopener">Open issue &rarr;</a>
-        <a class="btn-glass" href="{{ '/docs/' | relative_url }}">Full documentation</a>
-        <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+      <div class="dl-rise dl-d2">
+        <button class="dl-shot" type="button" aria-label="View the WAF++ evidence locker, larger">
+          <img src="{{ '/assets/images/wafpass_1.0/Evidence_Locker.png' | relative_url }}" alt="WAF++ evidence locker showing a locked, hash-verified audit package with QR code">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
       </div>
     </div>
   </div>
 </section>
 
 </div>
+
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="gl2-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  var lightbox = document.getElementById('gl2-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
+
+    function openLightbox(trigger) {
+      var imgs = trigger.querySelectorAll('img');
+      var source = null;
+      for (var i = 0; i < imgs.length; i++) {
+        if (getComputedStyle(imgs[i]).display !== 'none') { source = imgs[i]; break; }
+      }
+      if (!source) return;
+      lastTrigger = trigger;
+      lbImg.src = source.src;
+      lbImg.alt = source.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.gl2-page').classList.add('gl2-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.gl2-page').classList.remove('gl2-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

@@ -1,0 +1,75 @@
+/* ============================================================
+   WAF++ 404 page — v2
+   Built on theme/_design-language.scss. Fresh .err2- prefix:
+   the existing .error-hero class family in errors.scss stays
+   untouched — it still renders the language-variant 404 pages
+   (de/es/fr/it/nl/pl/pt), out of scope here.
+
+   Scope: 404.html (EN) only. Nav and footer untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.err2-page { background: var(--dl-ground); }
+
+.err2-hero {
+  min-height: calc(100vh - var(--header-offset, 92px));
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.err2-hero__inner { text-align: center; }
+
+.err2-hero__code {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(5rem, 3rem + 10vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--dl-surface-2);
+}
+
+.err2-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--dl-ink);
+  margin: 8px 0 0;
+}
+
+.err2-hero__lead {
+  @include dl-lead;
+  max-width: 48ch;
+  margin-inline: auto;
+  margin-top: 16px;
+}
+
+.err2-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.err2-hero__pills {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.err2-pill {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: var(--dl-muted);
+  background: var(--dl-surface-2);
+}

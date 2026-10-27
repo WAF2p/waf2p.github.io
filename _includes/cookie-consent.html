@@ -1,0 +1,101 @@
+{% include lang-vars.html %}
+
+<div id="cookie-consent" class="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cookie-title" hidden>
+  <div class="cookie-consent__overlay" data-cookie-close></div>
+  <div class="cookie-consent__card">
+    <div class="cookie-consent__header">
+      <h2 id="cookie-title" class="cookie-consent__title">{{ i18n.cookies.title | default: 'Cookie settings' }}</h2>
+      <button type="button" class="cookie-consent__close" data-cookie-close aria-label="{{ i18n.cookies.close | default: 'Close cookie settings' }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="cookie-consent__body">
+      <p class="cookie-consent__intro">
+        {{ i18n.cookies.intro | default: 'We use cookies to keep the site working and, with your consent, to understand how visitors use it. You can change your choices at any time via the floating cookie button.' }}
+      </p>
+
+      <div class="cookie-consent__options">
+        <label class="cookie-consent__option cookie-consent__option--locked">
+          <span class="cookie-consent__switch">
+            <input type="checkbox" checked disabled aria-checked="true">
+            <span class="cookie-consent__slider"></span>
+          </span>
+          <span class="cookie-consent__label">
+            <strong>{{ i18n.cookies.necessary_label | default: 'Necessary' }}</strong>
+            <small>{{ i18n.cookies.necessary_desc | default: 'Required for the site to function. Cannot be disabled.' }}</small>
+            {% assign necessary_details = i18n.cookies.necessary_details | default: 'Keeps cookie choices, theme, language, navigation state and security tokens.' %}
+            {% if necessary_details != '' %}
+            <span class="cookie-consent__detail">{{ necessary_details }}</span>
+            {% endif %}
+          </span>
+        </label>
+
+        <label class="cookie-consent__option">
+          <span class="cookie-consent__switch">
+            <input type="checkbox" id="cookie-analytics" data-cookie-category="analytics">
+            <span class="cookie-consent__slider"></span>
+          </span>
+          <span class="cookie-consent__label">
+            <strong>{{ i18n.cookies.analytics_label | default: 'Analytics' }}</strong>
+            <small>{{ i18n.cookies.analytics_desc | default: 'Helps us improve the site by collecting anonymous usage data.' }}</small>
+            {% assign analytics_details = i18n.cookies.analytics_details | default: 'Counts page views, referrers and feature usage without personal identifiers.' %}
+            {% if analytics_details != '' %}
+            <span class="cookie-consent__detail">{{ analytics_details }}</span>
+            {% endif %}
+          </span>
+        </label>
+
+        <label class="cookie-consent__option">
+          <span class="cookie-consent__switch">
+            <input type="checkbox" id="cookie-functional" data-cookie-category="functional">
+            <span class="cookie-consent__slider"></span>
+          </span>
+          <span class="cookie-consent__label">
+            <strong>{{ i18n.cookies.functional_label | default: 'Functional' }}</strong>
+            <small>{{ i18n.cookies.functional_desc | default: 'Remembers your preferences, such as language and theme.' }}</small>
+            {% assign functional_details = i18n.cookies.functional_details | default: 'Stores expanded sections, form drafts, accessibility choices and similar convenience settings.' %}
+            {% if functional_details != '' %}
+            <span class="cookie-consent__detail">{{ functional_details }}</span>
+            {% endif %}
+          </span>
+        </label>
+
+        <label class="cookie-consent__option">
+          <span class="cookie-consent__switch">
+            <input type="checkbox" id="cookie-marketing" data-cookie-category="marketing">
+            <span class="cookie-consent__slider"></span>
+          </span>
+          <span class="cookie-consent__label">
+            <strong>{{ i18n.cookies.marketing_label | default: 'Marketing' }}</strong>
+            <small>{{ i18n.cookies.marketing_desc | default: 'Used to measure the success of our outreach.' }}</small>
+            {% assign marketing_details = i18n.cookies.marketing_details | default: 'Tracks campaign links, social referrals and newsletter sign-up attribution.' %}
+            {% if marketing_details != '' %}
+            <span class="cookie-consent__detail">{{ marketing_details }}</span>
+            {% endif %}
+          </span>
+        </label>
+      </div>
+
+      <p class="cookie-consent__legal">
+        <a href="{{ lang_prefix | append: '/legal/' | relative_url }}">{{ i18n.cookies.privacy_link | default: 'Privacy policy' }}</a>
+      </p>
+    </div>
+
+    <div class="cookie-consent__actions">
+      <button type="button" class="cookie-consent__btn cookie-consent__btn--secondary" data-cookie-reject>
+        {{ i18n.cookies.reject | default: 'Necessary only' }}
+      </button>
+      <button type="button" class="cookie-consent__btn cookie-consent__btn--secondary" data-cookie-save>
+        {{ i18n.cookies.save | default: 'Save preferences' }}
+      </button>
+      <button type="button" class="cookie-consent__btn cookie-consent__btn--primary" data-cookie-accept>
+        {{ i18n.cookies.accept | default: 'Accept all' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="cookie-consent__trigger" id="cookie-trigger" aria-label="{{ i18n.cookies.open | default: 'Open cookie settings' }}" title="{{ i18n.cookies.open | default: 'Open cookie settings' }}">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
+</button>

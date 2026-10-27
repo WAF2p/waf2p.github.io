@@ -1,0 +1,477 @@
+/* ============================================================
+   WAF++ Design Language
+   ============================================================
+   Formalized from the homepage redesign (2026-10). This is the
+   house style for any FUTURE page redesign on this site. It is
+   not yet applied retroactively to existing pages — the
+   homepage (home-v5.scss) is currently the only consumer, via
+   the mixins below, so adopting this file changes nothing about
+   how the homepage already looks.
+
+   ---- The rules this encodes ----
+   These came out of an anti-slop design review (the
+   design-taste-frontend skill) and are why the homepage looks
+   the way it does. Keep following them on anything new:
+     - No eyebrow/kicker labels above headings.
+     - No gradients — not on backgrounds, buttons, or text.
+     - No box-shadow on anything at rest. Shadows are only for
+       things that truly float: an open lightbox, a dialog.
+     - No hairline dividers used as decoration. Separate surfaces
+       with a tone step (--dl-surface vs --dl-ground) or with
+       space, never a 1px line.
+     - One button shape, one corner radius (--dl-radius), used
+       everywhere.
+     - Five type sizes — display, heading, lead, body, small —
+       nothing in between. Fluid via clamp(), not breakpoint steps.
+     - Real content only: real product screenshots, real numbers,
+       real people. No stock photography, no placeholder copy,
+       no fabricated testimonials.
+     - Fully theme-reactive. Every color role below is already
+       light/dark aware (inherited from the site's own --bg /
+       --surface / --text tokens in theme/_base.scss) — never
+       hardcode a hex color in a new page; use the roles.
+
+   ---- How to use this on a new page ----
+   1. Give the page's <body> (or a wrapping section) whatever
+      class you're scoping styles under — the tokens here are
+      global (:root), so no wrapper class is required for them.
+   2. Reach for the .dl-* classes directly for anything generic:
+        .dl-section / .dl-section--alt   section padding rhythm
+        .dl-heading / .dl-lead           section title + intro
+        .dl-btn + .dl-btn--primary/--line   the one button shape
+        .dl-link                         underlined text link
+        .dl-card                         a flat, borderless surface
+        .dl-shot (+ .dl-shot__zoom)      a clickable real screenshot
+        .dl-lightbox (+ JS, see below)   the "view larger" modal
+        .dl-rise (+ JS, see below)       scroll-reveal animation
+   3. For anything page-specific (a hero grid, an alternating
+      feature layout, a stats band) write new page-scoped classes
+      the way home-v5.scss does — those compositions are NOT
+      part of this shared file, only the primitives are.
+   4. The lightbox and scroll-reveal need a little JS. Copy the
+      two IIFEs from the bottom of index.html's <script> block
+      (the `.wf-rise` observer and the `.wf-lightbox` handler) —
+      they're written generically against class names, so for a
+      new page either reuse the `wf-` names verbatim or do a
+      find-and-replace to `dl-`.
+   ============================================================ */
+
+:root {
+  /* ---------- color roles ----------
+     These alias the site's existing theme-reactive tokens
+     (defined in theme/_base.scss) — they already flip for
+     light/dark via html[data-theme] / prefers-color-scheme.
+     Use the role names below rather than --bg/--text directly,
+     so it reads as design intent, not a raw variable.
+  */
+  --dl-ground: var(--bg);            /* page background */
+  --dl-surface: var(--surface);      /* a raised/contrasting panel */
+  --dl-surface-2: var(--surface-2);  /* a second, subtler panel tone */
+  --dl-ink: var(--text);             /* running text, headings */
+  --dl-muted: var(--muted);          /* secondary text */
+  --dl-border: var(--border);        /* real tables/inputs ONLY — never a decorative rule */
+  --dl-accent: var(--brand-500);     /* the one accent — use once per screen */
+  --dl-gold: var(--accent-300);      /* reserved: the Sovereign pillar */
+  --dl-purple: var(--accent-500);    /* reserved: the Agentic pillar */
+
+  /* ---------- type ----------
+     League Spartan for display/heading, Plus Jakarta Sans for
+     anything read as a sentence. Five sizes, fluid via clamp().
+     Fonts are loaded locally from assets/fonts/ (no external CDN).
+  */
+  --dl-font-display: 'League Spartan', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --dl-font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --dl-font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; /* real code only */
+
+  --dl-size-display: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);    /* one hero statement per page */
+  --dl-size-heading: clamp(1.75rem, 1.35rem + 1.8vw, 2.75rem); /* section titles */
+  --dl-size-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);     /* supporting sentence under a heading */
+  --dl-size-body: 1rem;       /* running text */
+  --dl-size-small: 0.875rem; /* captions, meta facts — never smaller than 13px */
+
+  /* ---------- space & shape ---------- */
+  --dl-radius: 16px;                         /* cards, screenshot frames, surfaces */
+  --dl-radius-lg: 30px;                      /* large media/hero frames */
+  --dl-radius-pill: 999px;                    /* the one button shape: fully rounded pills */
+  --dl-margin: clamp(20px, 5vw, 64px);       /* page gutter */
+  --dl-max: 1360px;                          /* content measure */
+}
+
+/* NOTE: fonts are loaded locally from assets/fonts/ via
+   _sass/theme/_fonts.scss. Do not add Google Fonts @imports here. */
+
+/* ============================================================
+   Mixins — the implementation each .dl-* class (and the
+   homepage's own .wf-* classes) is built from. Defined once so
+   there is a single source of truth; nothing here is duplicated.
+   ============================================================ */
+
+@mixin dl-wrap {
+  width: min(var(--dl-max), 100% - (var(--dl-margin) * 2));
+  margin-inline: auto;
+}
+
+@mixin dl-section {
+  padding-block: clamp(72px, 9vw, 128px);
+}
+
+@mixin dl-section-alt {
+  background: var(--dl-surface-2);
+}
+
+@mixin dl-heading {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: var(--dl-size-heading);
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+@mixin dl-lead {
+  font-size: var(--dl-size-lead);
+  line-height: 1.6;
+  color: var(--dl-muted);
+  max-width: 56ch;
+  margin: 16px 0 0;
+}
+
+@mixin dl-btn-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 26px;
+  border-radius: var(--dl-radius-pill);
+  font-family: var(--dl-font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+@mixin dl-btn-primary {
+  background: color-mix(in srgb, var(--dl-accent) 80%, black);
+  color: #fff;
+  &:hover { background: color-mix(in srgb, var(--dl-accent) 65%, black); }
+}
+
+@mixin dl-btn-line {
+  background: transparent;
+  border-color: var(--dl-border);
+  color: var(--dl-ink);
+  &:hover { border-color: var(--dl-ink); }
+}
+
+@mixin dl-link {
+  color: var(--dl-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--dl-border);
+  text-underline-offset: 3px;
+  &:hover { text-decoration-color: currentColor; }
+}
+
+@mixin dl-card {
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  /* no border, no shadow — a surface is defined by its fill */
+}
+
+/* A real screenshot, clickable to open the lightbox. Markup is a
+   <button type="button"> wrapping an <img> (and optionally a
+   second <img class="ss-dark"> for a light/dark pair) plus a
+   <span class="…__zoom"> icon — see index.html's feature shots
+   for the exact pattern. */
+@mixin dl-shot-base {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: var(--dl-surface-2);
+  border-radius: var(--dl-radius);
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  font: inherit;
+  text-align: left;
+
+  img { display: block; width: 100%; height: auto; pointer-events: none; }
+}
+
+@mixin dl-shot-theme-pair($scope) {
+  #{$scope} .ss-dark { display: none; }
+  html[data-theme="dark"] #{$scope} .ss-light { display: none; }
+  html[data-theme="dark"] #{$scope} .ss-dark { display: block; }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme]) #{$scope} .ss-light { display: none; }
+    html:not([data-theme]) #{$scope} .ss-dark { display: block; }
+  }
+}
+
+@mixin dl-shot-zoom-icon {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--dl-ground);
+  color: var(--dl-ink);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  svg { width: 17px; height: 17px; }
+}
+
+@mixin dl-shot-focus-and-hover($zoom-selector) {
+  &:hover #{$zoom-selector},
+  &:focus-visible #{$zoom-selector} { opacity: 1; transform: none; }
+  &:focus-visible { outline: 2px solid var(--dl-accent); outline-offset: 2px; }
+}
+
+/* Scroll-reveal: fade + rise, once, via IntersectionObserver.
+   Pair with the .is-visible toggle in the page's JS (see the
+   usage note at the top of this file). */
+@mixin dl-rise {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(.22,.8,.26,1), transform 0.7s cubic-bezier(.22,.8,.26,1);
+  &.is-visible { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="rise"] { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* The lightbox modal itself: one per page, placed once near the
+   end of <body>. See index.html for the exact markup (a
+   role="dialog" wrapper with a close button and a single <img>
+   the JS repoints on each click). */
+@mixin dl-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 6vw, 72px);
+  background: rgba(5, 6, 10, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+
+  &.is-open { opacity: 1; visibility: visible; }
+}
+
+@mixin dl-lightbox-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--dl-radius);
+}
+
+@mixin dl-lightbox-close {
+  position: fixed;
+  top: clamp(16px, 3vw, 28px);
+  right: clamp(16px, 3vw, 28px);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dl-surface);
+  color: var(--dl-ink);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  svg { width: 18px; height: 18px; }
+}
+
+/* A flat stat band: N equal items, big number over a small label.
+   No card chrome — the numbers carry it. */
+@mixin dl-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@mixin dl-stat {
+  padding: clamp(28px, 4vw, 40px) 0;
+}
+
+@mixin dl-stat-num {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  letter-spacing: -0.02em;
+  color: var(--dl-ink);
+}
+
+@mixin dl-stat-label {
+  margin-top: 6px;
+  font-size: var(--dl-size-small);
+  color: var(--dl-muted);
+}
+
+/* A flat, two-column list row: a name on the left, a short
+   description/value on the right, separated by a tone step
+   (the panel's own fill) rather than a border. Built for things
+   like a pillar list or a country-by-country breakdown. */
+@mixin dl-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(14px, 2vw, 20px);
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin dl-list-row {
+  padding: clamp(24px, 3vw, 30px) clamp(22px, 3vw, 30px);
+  background: var(--dl-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+}
+
+/* A quiet, wrapping row of plain-text names (compliance
+   frameworks, partner names, …) — texture, not badges. */
+@mixin dl-quiet-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px 36px;
+}
+
+@mixin dl-quiet-row-intro {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--dl-ink);
+  flex: none;
+}
+
+@mixin dl-quiet-row-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 30px;
+  flex: 1;
+}
+
+@mixin dl-quiet-row-name {
+  font-family: var(--dl-font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--dl-muted);
+  white-space: nowrap;
+}
+
+/* A section's heading/lead, paired with a real supporting
+   screenshot alongside it — for sections that have a subject
+   worth showing, without making every section a two-column
+   feature split. */
+@mixin dl-section-head-split {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  max-width: none;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin dl-section-shot {
+  max-width: 420px;
+
+  @media (max-width: 760px) {
+    max-width: none;
+  }
+}
+
+/* A small, neutral identifier chip — for real codes (a control
+   ID, a SKU), set in the text face's monospace. Never used as a
+   decorative badge for plain words; those get dl-quiet-row-name
+   instead. */
+@mixin dl-chip {
+  display: inline-block;
+  font-family: var(--dl-font-mono);
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
+  background: var(--dl-surface-2);
+  border-radius: 4px;
+  padding: 4px 9px;
+}
+
+/* ============================================================
+   Public classes — use these directly on any new page.
+   ============================================================ */
+
+.dl-wrap { @include dl-wrap; }
+.dl-section { @include dl-section; }
+.dl-section--alt { @include dl-section-alt; }
+.dl-heading { @include dl-heading; }
+.dl-lead { @include dl-lead; }
+
+.dl-btn { @include dl-btn-base; }
+.dl-btn--primary { @include dl-btn-primary; }
+.dl-btn--line { @include dl-btn-line; }
+
+a.dl-link { @include dl-link; }
+
+.dl-card { @include dl-card; }
+
+.dl-shot {
+  @include dl-shot-base;
+  @include dl-shot-focus-and-hover('.dl-shot__zoom');
+}
+@include dl-shot-theme-pair('.dl-shot');
+.dl-shot__zoom { @include dl-shot-zoom-icon; }
+
+.dl-rise { @include dl-rise; }
+.dl-rise.dl-d1 { transition-delay: 90ms; }
+.dl-rise.dl-d2 { transition-delay: 170ms; }
+.dl-rise.dl-d3 { transition-delay: 250ms; }
+
+.dl-lightbox { @include dl-lightbox; }
+.dl-lightbox__img { @include dl-lightbox-img; }
+.dl-lightbox__close { @include dl-lightbox-close; }
+
+.dl-stats__grid { @include dl-stats-grid; }
+.dl-stat { @include dl-stat; }
+.dl-stat__num { @include dl-stat-num; }
+.dl-stat__label { @include dl-stat-label; }
+
+.dl-list__grid { @include dl-list-grid; }
+.dl-list__row { @include dl-list-row; }
+
+.dl-quiet-row { @include dl-quiet-row; }
+.dl-quiet-row__intro { @include dl-quiet-row-intro; }
+.dl-quiet-row__names { @include dl-quiet-row-names; }
+.dl-quiet-row__name { @include dl-quiet-row-name; }
+
+.dl-chip { @include dl-chip; }
+
+.dl-section-head--split { @include dl-section-head-split; }
+.dl-section-shot { @include dl-section-shot; }

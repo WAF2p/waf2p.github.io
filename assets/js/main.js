@@ -194,58 +194,6 @@
 })();
 
 
-// Agentic launch modal — shown once per browser, closed via localStorage
-(function () {
-  const modal = document.getElementById('agentic-launch-modal');
-  if (!modal) return;
-
-  const storageKey = 'agentic-launch-modal-dismissed';
-  try {
-    if (localStorage.getItem(storageKey) === '1') return;
-  } catch (e) {
-    // storage unavailable; silently skip
-    return;
-  }
-
-  function showModal() {
-    modal.removeAttribute('hidden');
-    document.body.classList.add('agentic-modal-open');
-    // focus the close button for accessibility
-    const closeBtn = modal.querySelector('[data-agentic-close]');
-    if (closeBtn && closeBtn.focus) closeBtn.focus();
-  }
-
-  function dismissModal() {
-    modal.setAttribute('hidden', '');
-    document.body.classList.remove('agentic-modal-open');
-    try { localStorage.setItem(storageKey, '1'); } catch (e) {}
-  }
-
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-agentic-close]')) {
-      dismissModal();
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
-      dismissModal();
-    }
-  });
-
-  // Show after a short delay so the page renders first
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      setTimeout(showModal, 600);
-      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-    });
-  } else {
-    setTimeout(showModal, 600);
-    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-  }
-})();
-
-
 // Language switch dropdown (enhances the CSS checkbox fallback)
 (function () {
   const toggles = document.querySelectorAll('[data-lang-toggle]');
@@ -284,6 +232,142 @@
     root.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { close(); trigger.focus(); }
     });
+  });
+})();
+
+
+// Cookie consent modal
+(function () {
+  const STORAGE_KEY = 'wafpp-cookie-consent';
+  const modal = document.getElementById('cookie-consent');
+  const trigger = document.getElementById('cookie-trigger');
+  if (!modal || !trigger) return;
+
+  const closeButtons = modal.querySelectorAll('[data-cookie-close]');
+  const acceptBtn = modal.querySelector('[data-cookie-accept]');
+  const rejectBtn = modal.querySelector('[data-cookie-reject]');
+  const saveBtn = modal.querySelector('[data-cookie-save]');
+  const toggles = modal.querySelectorAll('[data-cookie-category]');
+
+  const categories = ['analytics', 'functional', 'marketing'];
+
+  function getConsent() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  }
+
+  function setConsent(consent) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    } catch (e) {}
+    applyConsent(consent);
+  }
+
+  function applyConsent(consent) {
+    // Dispatch a small event other scripts can listen to
+    try {
+      window.dispatchEvent(new CustomEvent('wafpp:consent', { detail: consent }));
+    } catch (e) {}
+
+    // Functional cookies are already handled by localStorage itself;
+    // here we just expose a global helper for ad-hoc checks.
+    window.wafppConsent = consent;
+  }
+
+  function buildConsent(values) {
+    const out = { necessary: true, version: 1, updated: new Date().toISOString() };
+    categories.forEach(function (c) { out[c] = !!values[c]; });
+    return out;
+  }
+
+  function refreshIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      try { window.lucide.createIcons(); } catch (e) {}
+    }
+  }
+
+  function openModal() {
+    modal.hidden = false;
+    // force reflow
+    void modal.offsetWidth;
+    modal.classList.add('is-open');
+    refreshIcons();
+    const firstFocus = modal.querySelector('button, input');
+    if (firstFocus) firstFocus.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    setTimeout(function () { modal.hidden = true; }, 250);
+  }
+
+  function populateToggles(consent) {
+    toggles.forEach(function (input) {
+      const cat = input.dataset.cookieCategory;
+      input.checked = !!(consent && consent[cat]);
+    });
+  }
+
+  function acceptAll() {
+    const values = {};
+    categories.forEach(function (c) { values[c] = true; });
+    setConsent(buildConsent(values));
+    closeModal();
+  }
+
+  function rejectNonEssential() {
+    const values = {};
+    categories.forEach(function (c) { values[c] = false; });
+    setConsent(buildConsent(values));
+    closeModal();
+  }
+
+  function savePreferences() {
+    const values = {};
+    toggles.forEach(function (input) {
+      values[input.dataset.cookieCategory] = input.checked;
+    });
+    setConsent(buildConsent(values));
+    closeModal();
+  }
+
+  function updateTriggerState() {
+    if (getConsent()) {
+      trigger.classList.remove('is-pending');
+    } else {
+      trigger.classList.add('is-pending');
+    }
+  }
+
+  // Open modal automatically on first visit
+  const existing = getConsent();
+  if (existing) {
+    applyConsent(existing);
+    populateToggles(existing);
+  } else {
+    openModal();
+  }
+  updateTriggerState();
+
+  // Trigger button reopens settings
+  trigger.addEventListener('click', function () {
+    populateToggles(getConsent());
+    openModal();
+  });
+
+  closeButtons.forEach(function (btn) { btn.addEventListener('click', closeModal); });
+  if (acceptBtn) acceptBtn.addEventListener('click', function () { acceptAll(); updateTriggerState(); });
+  if (rejectBtn) rejectBtn.addEventListener('click', function () { rejectNonEssential(); updateTriggerState(); });
+  if (saveBtn) saveBtn.addEventListener('click', function () { savePreferences(); updateTriggerState(); });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
   });
 })();
 

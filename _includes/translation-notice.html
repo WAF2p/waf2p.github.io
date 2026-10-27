@@ -78,6 +78,13 @@
   {%- assign missing_langs = "" | split: "" -%}
 {%- endif -%}
 
+{%- comment -%}
+  Do not show translation notices on staff member profile pages.
+{%- endcomment -%}
+{%- if page.layout == 'staff_member_page' or page.ref contains 'staff_members' or page.member_id -%}
+  {%- assign missing_langs = "" | split: "" -%}
+{%- endif -%}
+
 {%- if missing_langs.size > 0 -%}
   <div class="translation-notice" role="note" aria-label="{{ i18n.common.translation_report_title | default: 'Translation status' }}">
     {{ i18n.common.translation_missing_generic | default: 'This page is not available in all languages yet.' }}

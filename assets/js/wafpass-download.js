@@ -20,10 +20,8 @@
   const ZIP_NAME = 'wafpp-controls.zip';
   const CHECKOV_ZIP_NAME = 'wafpp-checkov-policies.zip';
   const CHECKOV_FOLDER = 'wafpp-checkov-policies';
-  const JSZIP_CDN =
-    'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
-  const JSYAML_CDN =
-    'https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js';
+  const JSZIP_SRC = '/assets/js/vendor/jszip.min.js';
+  const JSYAML_SRC = '/assets/js/vendor/js-yaml.min.js';
 
   // Map WAF++ assertion operators to Checkov attribute operators.
   // `needsValue` controls whether a `value` field is written.
@@ -195,7 +193,7 @@
     setState(btn, 'loading', originalLabel);
 
     try {
-      await loadScript(JSZIP_CDN);
+      await loadScript(JSZIP_SRC);
 
       // One API call to list files; cache-bust so new controls appear immediately
       var res = await fetch(CONTROLS_API + '&_cb=' + Date.now(), { cache: 'no-store' });
@@ -249,7 +247,7 @@
     setState(btn, 'loading', originalLabel);
 
     try {
-      await Promise.all([loadScript(JSZIP_CDN), loadScript(JSYAML_CDN)]);
+      await Promise.all([loadScript(JSZIP_SRC), loadScript(JSYAML_SRC)]);
 
       var res = await fetch(CONTROLS_API + '&_cb=' + Date.now(), { cache: 'no-store' });
       if (!res.ok) throw new Error('GitHub API returned ' + res.status);

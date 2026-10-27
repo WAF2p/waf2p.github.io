@@ -1,0 +1,381 @@
+/* ============================================================
+   WAF++ "Install WAFPass" quickstart page — v2
+   Built on theme/_design-language.scss. Ninth consumer of the
+   shared .dl-* system. All classes are a fresh .wfpi-* prefix;
+   the old .wafpass-install-*, .terminal-mock, .install-tabs,
+   .quickstart-*, .onboarding-cta family stays in home.scss,
+   unused by anything else, exactly as this page left it.
+
+   This page's real content is itself the "picture": terminal
+   command blocks and a YAML viewer, marked [data-ui] so they
+   keep real chrome (a border, in this one case) the way an
+   actual terminal window does, and count toward the real-
+   picture floor as interface fragments — no screenshots needed
+   for an install guide.
+
+   Scope: /wafpass-install/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.wfpi-page { background: var(--dl-ground); }
+.wfpi-page main { overflow-x: clip; }
+
+/* ---------- breadcrumb ---------- */
+
+.wfpi-crumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: var(--dl-size-small);
+  color: var(--dl-muted);
+  margin-bottom: 20px;
+
+  a { color: var(--dl-muted); text-decoration: none; }
+  a:hover { color: var(--dl-ink); }
+}
+
+/* ---------- hero ---------- */
+
+.wfpi-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.wfpi-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.48fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .wfpi-hero__grid { grid-template-columns: 1fr; }
+}
+
+.wfpi-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 12ch;
+}
+
+.wfpi-hero__lead { @include dl-lead; max-width: 46ch; }
+.wfpi-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats (five real values) ---------- */
+
+.wfpi-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+.wfpi-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .wfpi-stats__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .wfpi-stats__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- section head ---------- */
+
+.wfpi-section-head:not(.dl-section-head--split) { max-width: 62ch; }
+
+/* ---------- one-liner pitch ---------- */
+
+.wfpi-pitch { @include dl-card; padding: clamp(28px, 4vw, 36px); }
+.wfpi-pitch__lead { font-size: var(--dl-size-body); color: var(--dl-ink); margin: 0 0 18px; }
+.wfpi-pitch__lead strong { font-weight: 600; }
+
+.wfpi-pitch__row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .wfpi-pitch__row { grid-template-columns: 1fr; }
+}
+
+.wfpi-pitch__os { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--dl-muted); margin-bottom: 8px; }
+
+/* ---------- tabs ---------- */
+
+.wfpi-tab-radio { display: none; }
+
+.wfpi-tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: clamp(40px, 5vw, 56px);
+  margin-bottom: 32px;
+
+  label {
+    padding: 10px 18px;
+    cursor: pointer;
+    font-family: var(--dl-font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--dl-muted);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    &:hover { color: var(--dl-ink); }
+  }
+}
+
+#wfpi-tab-cli:checked      ~ .wfpi-tab-nav label[for="wfpi-tab-cli"],
+#wfpi-tab-docker:checked   ~ .wfpi-tab-nav label[for="wfpi-tab-docker"],
+#wfpi-tab-ci:checked       ~ .wfpi-tab-nav label[for="wfpi-tab-ci"],
+#wfpi-tab-advanced:checked ~ .wfpi-tab-nav label[for="wfpi-tab-advanced"] {
+  color: var(--dl-ink);
+  border-bottom-color: var(--dl-accent);
+}
+
+.wfpi-tab-pane { display: none; }
+
+#wfpi-tab-cli:checked      ~ #wfpi-pane-cli,
+#wfpi-tab-docker:checked   ~ #wfpi-pane-docker,
+#wfpi-tab-ci:checked       ~ #wfpi-pane-ci,
+#wfpi-tab-advanced:checked ~ #wfpi-pane-advanced {
+  display: block;
+}
+
+.wfpi-pane__title { font-family: var(--dl-font-display); font-weight: 600; font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem); color: var(--dl-ink); margin: 0 0 10px; }
+.wfpi-pane__lead { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0 0 clamp(32px, 4vw, 44px); max-width: 68ch; }
+
+/* ---------- numbered steps ---------- */
+
+.wfpi-steps { display: flex; flex-direction: column; gap: clamp(36px, 4.5vw, 48px); }
+
+.wfpi-step { display: grid; grid-template-columns: 34px 1fr; gap: 18px; }
+
+.wfpi-step__num {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--dl-accent);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--dl-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.wfpi-step__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.125rem; color: var(--dl-ink); margin: 0 0 8px; }
+.wfpi-step__text { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0 0 16px; }
+.wfpi-step__note { margin-top: 12px; font-size: 0.875rem; color: var(--dl-muted); }
+.wfpi-step__note a { @include dl-link; font-weight: 600; }
+.wfpi-step__label { font-size: 0.8125rem; font-weight: 600; color: var(--dl-ink); margin: 18px 0 8px; }
+.wfpi-step__label:first-of-type { margin-top: 0; }
+
+/* ---------- terminal mock: a real interface fragment ---------- */
+
+.wfpi-term[data-ui] {
+  background: #0d1117;
+  border-radius: var(--dl-radius);
+  overflow: hidden;
+  margin-top: 14px;
+}
+
+.wfpi-term__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.wfpi-term__dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.wfpi-term__dot--r { background: #ff5f57; }
+.wfpi-term__dot--y { background: #febc2e; }
+.wfpi-term__dot--g { background: #28c840; }
+.wfpi-term__bar-title { margin-left: 8px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); }
+
+.wfpi-term[data-ui] .wfpi-term__code { display: block; padding: 16px 18px; font-family: var(--dl-font-mono); font-size: 0.8125rem; line-height: 1.8; background: none; }
+.wfpi-term__line { white-space: pre-wrap; word-break: break-word; }
+.wfpi-term__prompt { color: rgba(255, 255, 255, 0.35); margin-right: 8px; }
+.wfpi-term__cmd { color: rgba(255, 255, 255, 0.92); }
+.wfpi-term__cmd--comment { color: rgba(255, 255, 255, 0.4); }
+
+/* ---------- sample code (real code, <pre><code>, no data-ui needed) ---------- */
+
+.wfpi-code {
+  margin: 14px 0 0;
+  padding: 16px 18px;
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  overflow-x: auto;
+
+  code {
+    font-family: var(--dl-font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--dl-ink);
+    background: none;
+  }
+}
+
+/* ---------- summary legend ---------- */
+
+.wfpi-legend { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; }
+.wfpi-legend__item { font-size: 0.875rem; color: var(--dl-muted); }
+.wfpi-legend__item strong { font-weight: 600; }
+.wfpi-legend--pass strong { color: #1d9a5c; }
+.wfpi-legend--fail strong { color: #e5484d; }
+.wfpi-legend--total strong { color: var(--dl-ink); }
+
+/* ---------- services table (docker tab) ---------- */
+
+.wfpi-table-wrap { margin: 24px 0; overflow-x: auto; border-radius: var(--dl-radius); background: var(--dl-surface); }
+.wfpi-table { width: 100%; border-collapse: collapse; font-family: var(--dl-font-body); font-size: 0.9375rem; }
+.wfpi-table th, .wfpi-table td { padding: 12px 16px; text-align: left; color: var(--dl-ink); border-bottom: 1px solid var(--dl-border); }
+.wfpi-table th { font-family: var(--dl-font-display); font-weight: 600; font-size: var(--dl-size-small); color: var(--dl-muted); }
+.wfpi-table tbody tr:last-child td { border-bottom: none; }
+.wfpi-table td code { font-family: var(--dl-font-mono); font-size: 0.8125rem; color: var(--dl-ink); }
+.wfpi-table td a { @include dl-link; }
+.wfpi-table__desc { color: var(--dl-muted); }
+
+/* ---------- YAML viewer ---------- */
+
+.wfpi-yaml { margin-top: 28px; }
+
+.wfpi-yaml__summary {
+  @include dl-card;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--dl-ink);
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+}
+.wfpi-yaml__chevron { margin-left: auto; color: var(--dl-muted); transition: transform 0.2s ease; flex: none; }
+.wfpi-yaml[open] .wfpi-yaml__chevron { transform: rotate(180deg); }
+
+.wfpi-yaml__frame { position: relative; margin-top: 2px; }
+
+.wfpi-yaml__body[data-ui] {
+  background: #0d1117;
+  border-radius: var(--dl-radius);
+  max-height: 480px;
+  overflow: auto;
+}
+.wfpi-yaml__body pre { margin: 0; padding: 18px 20px; font-size: 0.75rem; line-height: 1.7; }
+.wfpi-yaml__body code { font-family: var(--dl-font-mono); background: none; }
+
+.wfpi-yaml__copy {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--dl-font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover { background: rgba(255, 255, 255, 0.18); }
+  &.is-copied { color: #4ade80; background: rgba(74, 222, 128, 0.14); }
+}
+
+/* ---------- troubleshooting accordion ---------- */
+
+.wfpi-faq { display: flex; flex-direction: column; gap: 10px; margin-top: clamp(40px, 5vw, 56px); }
+
+.wfpi-faq__item { @include dl-card; overflow: hidden; }
+
+.wfpi-faq__summary {
+  padding: 18px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--dl-ink);
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+}
+.wfpi-faq__chevron { margin-left: auto; color: var(--dl-muted); transition: transform 0.2s ease; flex: none; }
+.wfpi-faq__item[open] .wfpi-faq__chevron { transform: rotate(180deg); }
+
+.wfpi-faq__body { padding: 0 22px 20px; font-size: 0.9375rem; line-height: 1.6; color: var(--dl-muted); }
+.wfpi-faq__body p { margin: 0 0 10px; }
+.wfpi-faq__body p:last-child { margin-bottom: 0; }
+.wfpi-faq__body code { font-family: var(--dl-font-mono); font-size: 0.8125rem; background: var(--dl-surface-2); color: var(--dl-ink); padding: 2px 6px; border-radius: 4px; }
+
+/* ---------- what next ---------- */
+
+.wfpi-next {
+  margin-top: clamp(40px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+@media (max-width: 860px) {
+  .wfpi-next { grid-template-columns: 1fr; }
+}
+
+.wfpi-next__card { @include dl-card; padding: clamp(26px, 3vw, 32px); display: block; text-decoration: none; }
+.wfpi-next__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.wfpi-next__desc { font-size: 0.9375rem; line-height: 1.55; color: var(--dl-muted); margin: 0 0 14px; }
+.wfpi-next__link { font-size: 0.875rem; font-weight: 600; color: var(--dl-ink); }
+.wfpi-next__card:hover .wfpi-next__link { color: var(--dl-accent); }
+
+/* ---------- CTA ---------- */
+
+.wfpi-cta { @include dl-card; padding: clamp(40px, 6vw, 64px); }
+.wfpi-cta .dl-heading { max-width: 42ch; }
+.wfpi-cta .dl-lead { max-width: 60ch; }
+
+/* Dark flush continuation of the final CTA band into the frontpage footer. */
+.wfpi-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+
+.wfpi-cta-section .wfpi-cta {
+  background: transparent;
+}
+
+.wfpi-cta-section .dl-heading { color: #fff; }
+.wfpi-cta-section .dl-lead  { color: rgba(255, 255, 255, 0.72); }
+
+.wfpi-cta-section .wfpi-next__card {
+  background: rgba(255, 255, 255, 0.06);
+}
+.wfpi-cta-section .wfpi-next__card:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+.wfpi-cta-section .wfpi-next__title { color: #fff; }
+.wfpi-cta-section .wfpi-next__desc  { color: rgba(255, 255, 255, 0.72); }
+.wfpi-cta-section .wfpi-next__link   { color: #fff; }
+.wfpi-cta-section .wfpi-next__card:hover .wfpi-next__link { color: var(--wf6-accent); }
+
+/* ---------- lightbox: uses the shared .dl-shot / .dl-lightbox classes directly ---------- */
+
+.wfpi-page.wfpi-lightbox-open,
+.wfpi-page.wfpi-lightbox-open main { overflow: hidden; }

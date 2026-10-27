@@ -24,7 +24,7 @@ Antora (Dokumentation)
 
 Kombinierte Ausgabe: _site/
   ├── / (Jekyll-Inhalte: Homepage, Blog, Team)
-  └── /docs/wafpp/1.0/ (Antora-Dokumentation)
+  └── /docs/wafpp/1.1.0/ (Antora-Dokumentation)
 ```
 
 ---
@@ -363,7 +363,7 @@ Für lokale Entwicklung:
 
 ```bash
 # Überprüfe ob Antora-Output existiert
-ls -la _site/docs/wafpp/1.0/
+ls -la _site/docs/wafpp/1.1.0/
 
 # Falls nicht, baue Antora neu
 task docs:build:local
@@ -374,7 +374,7 @@ task docs:build:local
 Nach erfolgreichem Deployment:
 
 - **Homepage**: https://waf2p.dev/
-- **Dokumentation**: https://waf2p.dev/docs/wafpp/1.0/
+- **Dokumentation**: https://waf2p.dev/docs/wafpp/1.1.0/
 - **Blog**: https://waf2p.dev/blog/
 
 ### Entwickler-Guidelines

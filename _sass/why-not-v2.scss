@@ -1,0 +1,179 @@
+/* ============================================================
+   WAF++ "Why not X?" page — v2
+   Built on theme/_design-language.scss. Fifth consumer of the
+   shared .dl-* system (after the homepage, /controls/, /saeulen/
+   and /comparison/). This page's one real idea — WAF++ as an
+   overlay, not a replacement — becomes its own device: a literal
+   stacked diagram, the layer WAF++ adds sitting over the
+   frameworks it works alongside.
+
+   Scope: /why-not/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.wn-page { background: var(--dl-ground); }
+.wn-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.wn-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.wn-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.48fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .wn-hero__grid { grid-template-columns: 1fr; }
+}
+
+.wn-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 7ch;
+}
+
+.wn-hero__lead { @include dl-lead; max-width: 42ch; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); }
+.wn-hero__actions { margin-top: 40px; }
+.wn-hero__row { @include dl-quiet-row; margin-top: 30px; }
+
+/* ---------- stats ---------- */
+
+.wn-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.wn-section-head:not(.dl-section-head--split) { max-width: 62ch; }
+
+/* ---------- the three signals — full-width rows ---------- */
+
+.wn-signals {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vw, 14px);
+}
+
+.wn-signal {
+  padding-block: clamp(20px, 2.5vw, 26px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  gap: clamp(16px, 3vw, 40px);
+  align-items: baseline;
+}
+@media (max-width: 760px) {
+  .wn-signal { grid-template-columns: 1fr; gap: 8px; }
+}
+
+.wn-signal__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.1875rem; color: var(--dl-ink); margin: 0; }
+.wn-signal__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+/* ---------- overlay, not a replacement ---------- */
+
+.wn-overlay__grid {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .wn-overlay__grid { grid-template-columns: 1fr; }
+}
+
+.wn-features { margin-top: clamp(28px, 4vw, 40px); display: flex; flex-direction: column; gap: clamp(22px, 3vw, 28px); }
+.wn-feature__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 6px; }
+.wn-feature__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+/* ---------- the stack diagram — this page's real content ---------- */
+
+.wn-stack {
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  padding: clamp(28px, 4vw, 40px);
+}
+
+.wn-stack__label { font-size: var(--dl-size-small); color: var(--dl-muted); margin-bottom: 16px; }
+
+.wn-stack__top {
+  background: color-mix(in srgb, var(--dl-accent) 12%, var(--dl-surface-2));
+  border-radius: var(--dl-radius);
+  padding: clamp(18px, 2.5vw, 24px) clamp(20px, 3vw, 26px);
+}
+.wn-stack__top-name { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.1875rem; color: var(--dl-ink); }
+.wn-stack__top-meta { margin-top: 4px; font-size: 0.8125rem; color: var(--dl-muted); }
+
+.wn-stack__arrow {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
+  padding: 14px 0;
+}
+
+.wn-stack__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media (max-width: 520px) {
+  .wn-stack__row { grid-template-columns: 1fr 1fr; }
+}
+
+.wn-stack__item {
+  background: var(--dl-surface-2);
+  border-radius: var(--dl-radius);
+  padding: 14px 14px;
+  text-align: center;
+}
+.wn-stack__item-name { font-family: var(--dl-font-display); font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); }
+.wn-stack__item-desc { margin-top: 2px; font-size: 0.8125rem; color: var(--dl-muted); }
+
+.wn-stack__note {
+  margin-top: clamp(20px, 3vw, 26px);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--dl-muted);
+}
+
+/* ---------- alternatives + how to combine, merged into one rich card grid ---------- */
+
+.wn-alts {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .wn-alts { grid-template-columns: 1fr; }
+}
+
+.wn-alt { @include dl-card; padding: clamp(28px, 3.5vw, 36px); display: flex; flex-direction: column; gap: 14px; }
+.wn-alt__group { font-size: var(--dl-size-small); color: var(--dl-muted); }
+.wn-alt__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.1875rem; color: var(--dl-ink); margin: 0; }
+.wn-alt__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+.wn-alt__note { padding-top: 14px; }
+.wn-alt__note-label { font-size: 0.8125rem; font-weight: 600; color: var(--dl-ink); }
+.wn-alt__note-text { margin-top: 4px; font-size: 0.9375rem; line-height: 1.55; color: var(--dl-muted); }
+
+/* ---------- CTA ---------- */
+
+.wn-cta { @include dl-card; padding: clamp(40px, 6vw, 72px); text-align: center; }
+.wn-cta .dl-heading { max-width: none; }
+.wn-cta .dl-lead { max-width: 56ch; margin-inline: auto; }
+.wn-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+/* ---------- lightbox: uses the shared .dl-shot / .dl-lightbox classes directly ---------- */
+
+.wn-page.wn-lightbox-open,
+.wn-page.wn-lightbox-open main { overflow: hidden; }

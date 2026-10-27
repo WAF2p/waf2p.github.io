@@ -1,4 +1,14 @@
-// ── RFC Tracker ────────────────────────────────────────────────────────────
+// ── RFC Tracker — component library (tabs, cards, table, flow) ─────────────
+// Restyled onto theme/_design-language.scss. The CSS-only filter below
+// (radio inputs + :checked ~ sibling selectors) is the real mechanism the
+// page's tabs run on — every selector chain here is preserved exactly as
+// rfc/index.html (and its de/es/fr/it/nl/pl/pt siblings, which share the
+// same markup and the rfc-card.html include) expects it. Only the
+// declarations were reskinned. (.code-window*, formerly also defined in
+// this file, moved to its own code-window.scss — it isn't RFC-specific,
+// wafpass-mcp.html and wafpass-action.html use it too.)
+
+@use "theme/design-language" as *;
 
 .rfc-radio { display: none; }
 
@@ -6,68 +16,36 @@
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
-  border-bottom: 2px solid var(--radical-border);
   margin-bottom: 28px;
+  padding-bottom: 6px;
 
   label {
-    padding: 9px 16px;
+    padding: 10px 16px;
     cursor: pointer;
+    font-family: var(--dl-font-body);
     font-weight: 600;
-    font-size: 0.88rem;
-    color: var(--radical-muted);
+    font-size: 0.875rem;
+    color: var(--dl-muted);
     border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
+    transition: color 0.15s ease, border-color 0.15s ease;
     white-space: nowrap;
 
-    &:hover { color: var(--radical-text); }
+    &:hover { color: var(--dl-ink); }
   }
 }
 
 .rfc-tabs--two-tier {
   .rfc-tab-nav {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 
-    &--projects {
-      border-bottom-color: var(--radical-border);
-    }
-
-    &--status {
-      border-bottom: none;
-      background: var(--radical-surface);
-      border-radius: 999px;
-      padding: 6px;
-      gap: 6px;
-      margin-bottom: 28px;
-
-      label {
-        border-bottom: none;
-        margin-bottom: 0;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        padding: 8px 14px;
-        font-size: 0.8rem;
-
-        &:hover { background: rgba(255, 255, 255, 0.04); }
-      }
+    &--status label {
+      font-size: 0.8125rem;
     }
   }
 }
 
 .rfc-pane { display: none; }
-
-#rfc-all:checked   ~ .rfc-tab-nav label[for="rfc-all"],
-#rfc-open:checked  ~ .rfc-tab-nav label[for="rfc-open"],
-#rfc-draft:checked ~ .rfc-tab-nav label[for="rfc-draft"],
-#rfc-done:checked  ~ .rfc-tab-nav label[for="rfc-done"] {
-  color: var(--brand-500);
-  border-bottom-color: var(--brand-500);
-}
-
-#rfc-all:checked   ~ #pane-all   { display: block; }
-#rfc-open:checked  ~ #pane-open  { display: block; }
-#rfc-draft:checked ~ #pane-draft { display: block; }
-#rfc-done:checked  ~ #pane-done { display: block; }
 
 /* ── Two-tier project/status filter ─────────────────────────────────────── */
 
@@ -78,18 +56,16 @@
 #rfc-proj-wafpass-dashboard:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-dashboard"],
 #rfc-proj-wafpass-action:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-action"],
 #rfc-proj-wafpass-mcp:checked ~ .rfc-tab-nav--projects label[for="rfc-proj-wafpass-mcp"] {
-  color: var(--brand-500);
-  border-bottom-color: var(--brand-500);
+  color: var(--dl-ink);
+  border-bottom-color: var(--dl-accent);
 }
 
 #rfc-st-all:checked ~ .rfc-tab-nav--status label[for="rfc-st-all"],
 #rfc-st-open:checked ~ .rfc-tab-nav--status label[for="rfc-st-open"],
 #rfc-st-draft:checked ~ .rfc-tab-nav--status label[for="rfc-st-draft"],
 #rfc-st-done:checked ~ .rfc-tab-nav--status label[for="rfc-st-done"] {
-  color: var(--brand-400);
-  background: rgba(0, 148, 255, 0.12);
-  border-color: rgba(0, 148, 255, 0.35);
-  box-shadow: 0 0 20px var(--radical-glow);
+  color: var(--dl-ink);
+  border-bottom-color: var(--dl-accent);
 }
 
 /* Project + status combinations */
@@ -132,35 +108,24 @@
 
 // ── Card ──────────────────────────────────────────────────────────────────
 
-.rfc-list { display: grid; gap: 14px; }
+.rfc-list { display: grid; gap: 12px; }
 
 .rfc-group-heading {
-  font-size: 0.85rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--radical-muted);
+  font-family: var(--dl-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dl-ink);
   margin: 32px 0 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--radical-border);
 
   &:first-child { margin-top: 0; }
 }
 
 .rfc-card {
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
+  border-radius: var(--dl-radius);
   padding: 22px 24px;
-  background: var(--radical-surface);
+  background: var(--dl-surface);
   display: grid;
   gap: 12px;
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    border-color: rgba(0,148,255,0.35);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
-  }
 }
 
 .rfc-card-header {
@@ -170,83 +135,70 @@
   flex-wrap: wrap;
 }
 
-.rfc-id {
-  font-family: ui-monospace, "Cascadia Code", "Fira Code", Menlo, monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--radical-muted);
+code.rfc-id {
+  font-family: var(--dl-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--dl-muted);
   flex-shrink: 0;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .rfc-title {
-  font-weight: 800;
-  font-size: 1.05rem;
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
   line-height: 1.35;
   flex: 1;
-  color: var(--radical-text);
+  color: var(--dl-ink);
 }
 
-.rfc-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.rfc-badges { display: flex; gap: 4px 14px; flex-wrap: wrap; align-items: center; }
 
-// ── Status badges ─────────────────────────────────────────────────────────
+// ── Status text ───────────────────────────────────────────────────────────
 
 .rfc-status {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  flex-shrink: 0;
-  border: 1px solid transparent;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: capitalize;
 
-  &--draft       { background: rgba(107,114,128,0.12); color: #9ca3af; border-color: rgba(107,114,128,0.22); }
-  &--open        { background: rgba(37,99,235,0.12); color: #60a5fa; border-color: rgba(37,99,235,0.22); }
-  &--accepted    { background: rgba(5,150,105,0.12); color: #34d399; border-color: rgba(5,150,105,0.22); }
-  &--implemented { background: rgba(22,163,74,0.12); color: #4ade80; border-color: rgba(22,163,74,0.22); }
-  &--rejected    { background: rgba(220,38,38,0.12); color: #f87171; border-color: rgba(220,38,38,0.22); }
-  &--withdrawn   { background: rgba(156,163,175,0.12); color: #d1d5db; border-color: rgba(156,163,175,0.22); }
+  &--draft       { color: var(--dl-muted); }
+  &--open        { color: var(--dl-accent); }
+  &--accepted    { color: #1d9a5c; }
+  &--implemented { color: #1d9a5c; }
+  &--rejected    { color: #e5484d; }
+  &--withdrawn   { color: var(--dl-muted); }
+  &--proposed    { color: var(--dl-accent); }
+  &--deprecated  { color: var(--dl-muted); }
+  &--superseded  { color: var(--dl-muted); }
 }
 
-// ── Category badges ───────────────────────────────────────────────────────
+// ── Category text ─────────────────────────────────────────────────────────
 
 .rfc-cat {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  flex-shrink: 0;
-  border: 1px solid transparent;
-
-  &--framework  { background: rgba(124,58,237,0.12); color: #a78bfa; border-color: rgba(124,58,237,0.22); }
-  &--governance { background: rgba(217,119,6,0.12);  color: #fbbf24; border-color: rgba(217,119,6,0.22); }
-  &--tooling    { background: rgba(234,88,12,0.12);  color: #fb923c; border-color: rgba(234,88,12,0.22); }
-  &--docs       { background: rgba(2,132,199,0.12); color: #38bdf8; border-color: rgba(2,132,199,0.22); }
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
+  text-transform: capitalize;
 }
 
 .rfc-summary {
-  font-size: 0.9rem;
-  color: var(--radical-muted);
-  line-height: 1.65;
+  font-size: var(--dl-size-body);
+  color: var(--dl-muted);
+  line-height: 1.6;
   margin: 0;
 }
 
 .rfc-meta {
   display: flex;
-  gap: 16px;
+  gap: 8px 18px;
   flex-wrap: wrap;
-  font-size: 0.78rem;
-  color: var(--radical-muted);
-  border-top: 1px solid var(--radical-border);
-  padding-top: 12px;
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
 
   span    { display: flex; gap: 5px; align-items: center; }
-  a       { color: var(--brand-400); text-decoration: none; font-weight: 700; }
-  a:hover { text-decoration: underline; }
-  strong  { color: var(--radical-text); font-weight: 700; }
+  a       { color: var(--dl-ink); text-decoration: underline; text-decoration-color: var(--dl-border); text-underline-offset: 2px; font-weight: 600; }
+  a:hover { text-decoration-color: currentColor; }
+  strong  { color: var(--dl-ink); font-weight: 600; }
 }
 
 .rfc-avatar,
@@ -255,8 +207,7 @@
   height: 22px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--radical-border);
-  background: var(--radical-surface-2);
+  background: var(--dl-surface-2);
 }
 
 .rfc-avatar-link,
@@ -273,23 +224,17 @@
 
   .rfc-commenter-avatar {
     margin-left: -8px;
-    transition: transform 0.15s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      z-index: 2;
-    }
 
     img {
-      box-shadow: 0 0 0 2px var(--radical-surface);
+      border: 2px solid var(--dl-surface);
     }
   }
 }
 
 .rfc-commenter-more {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--radical-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--dl-muted);
   margin-left: 4px;
 }
 
@@ -298,234 +243,62 @@
   gap: 7px;
 }
 
-// ── Stats bar ─────────────────────────────────────────────────────────────
-
-.rfc-stats {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
-  overflow: hidden;
-  margin-bottom: 32px;
-  background: var(--radical-surface);
-}
-
-@media (max-width: 760px) {
-  .rfc-stats { grid-template-columns: repeat(2, 1fr); }
-}
-
-.rfc-stat {
-  padding: 20px 16px;
-  text-align: center;
-  border-right: 1px solid var(--radical-border);
-
-  &:last-child { border-right: none; }
-}
-
-@media (max-width: 760px) {
-  .rfc-stat:nth-child(2n) { border-right: none; }
-  .rfc-stat:nth-child(1),
-  .rfc-stat:nth-child(2),
-  .rfc-stat:nth-child(3) { border-bottom: 1px solid var(--radical-border); }
-}
-
-.rfc-stat-num {
-  font-size: 2rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--brand-400) 0%, #22d3ee 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-
-.rfc-stat-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--radical-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 6px;
-}
-
 .rfc-empty {
   text-align: center;
   padding: 48px 20px;
-  color: var(--radical-muted);
-  font-size: 0.95rem;
-  background: var(--radical-surface);
-  border: 1px dashed var(--radical-border);
-  border-radius: 18px;
+  color: var(--dl-muted);
+  font-size: var(--dl-size-body);
+  background: var(--dl-surface-2);
+  border-radius: var(--dl-radius);
 }
 
 // ── Submit CTA ────────────────────────────────────────────────────────────
 
 .rfc-submit {
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
+  border-radius: var(--dl-radius);
   padding: 28px 30px;
   margin-top: 32px;
   display: flex;
   gap: 24px;
   align-items: center;
   flex-wrap: wrap;
-  background: var(--radical-surface);
+  background: var(--dl-surface);
 }
 
 .rfc-submit-text {
   flex: 1;
   min-width: 220px;
 
-  h3 { margin: 0 0 8px; font-size: 1.1rem; color: var(--radical-text); }
-  p  { margin: 0; font-size: 0.9rem; color: var(--radical-muted); line-height: 1.6; }
-}
-
-// ── Code window (shared with marketing pages) ────────────────────────────
-
-.code-window {
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
-  background: var(--radical-surface-2);
-  overflow: hidden;
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  position: relative;
-
-  & + .code-window { margin-top: 24px; }
-}
-
-.code-window__bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--radical-border);
-  position: relative;
-}
-
-.code-window__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2);
-
-  &:nth-child(1) { background: #ff5f57; }
-  &:nth-child(2) { background: #febc2e; }
-  &:nth-child(3) { background: #28c840; }
-}
-
-.code-window__title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--radical-muted);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  max-width: calc(100% - 120px);
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.code-window__body {
-  margin: 0;
-  padding: 18px 20px;
-  overflow-x: auto;
-  font-family: ui-monospace, "Cascadia Code", "Fira Code", "SF Mono", Menlo, Consolas, monospace;
-  font-size: 0.85rem;
-  line-height: 1.65;
-  color: var(--radical-text);
-  background: transparent;
-  tab-size: 2;
-
-  code {
-    display: block;
-    background: transparent;
-    padding: 0;
-    color: inherit;
-    font-size: inherit;
-    line-height: inherit;
-  }
-}
-
-.code-window__copy {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 30px;
-  padding: 0 10px;
-  border-radius: 8px;
-  border: 1px solid var(--radical-border);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--radical-muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: color .15s ease, border-color .15s ease, background .15s ease;
-
-  &:hover {
-    color: var(--brand-400);
-    border-color: rgba(0, 148, 255, 0.35);
-    background: rgba(0, 148, 255, 0.08);
-  }
-
-  i { width: 14px; height: 14px; }
-
-  .copied-label {
-    display: none;
-  }
-
-  &.is-copied {
-    color: #4ade80;
-    border-color: rgba(74, 222, 128, 0.35);
-    background: rgba(74, 222, 128, 0.08);
-
-    .copy-label { display: none; }
-    .copied-label { display: inline; }
-  }
-}
-
-@media (max-width: 640px) {
-  .code-window__title { display: none; }
-  .code-window__body { padding: 14px 16px; font-size: 0.8rem; }
+  h3 { margin: 0 0 8px; font-family: var(--dl-font-display); font-weight: 600; font-size: 1.1875rem; color: var(--dl-ink); }
+  p  { margin: 0; max-width: 60ch; font-size: var(--dl-size-body); color: var(--dl-muted); line-height: 1.6; }
 }
 
 // ── Process table ─────────────────────────────────────────────────────────
 
 .rfc-table-wrap {
   overflow-x: auto;
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
-  background: var(--radical-surface);
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface);
 }
 
 .rfc-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-family: var(--dl-font-body);
+  font-size: 0.9375rem;
 
   th, td {
-    padding: 13px 16px;
+    padding: 14px 18px;
     text-align: left;
-    border-bottom: 1px solid var(--radical-border);
+    color: var(--dl-ink);
+    border-bottom: 1px solid var(--dl-border);
   }
 
   th {
-    font-weight: 800;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--radical-muted);
-    background: rgba(255,255,255,0.02);
+    font-family: var(--dl-font-display);
+    font-weight: 600;
+    font-size: var(--dl-size-small);
+    color: var(--dl-muted);
   }
 
   tbody tr:last-child td { border-bottom: none; }
@@ -537,52 +310,48 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
   gap: 0;
-  align-items: stretch;
+  align-items: start;
 }
 
 @media (max-width: 860px) {
   .rfc-flow {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
   }
   .rfc-flow__arrow { display: none; }
 }
 
 .rfc-flow__step {
   text-align: center;
-  padding: 24px 12px;
+  padding: 8px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.rfc-flow__icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1px solid var(--radical-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--radical-surface-2);
-  color: var(--brand-400);
-}
-
 .rfc-flow__arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--radical-muted);
-  font-size: 22px;
+  color: var(--dl-muted);
+  font-size: 20px;
   padding: 0 8px;
 }
 
 .rfc-flow__label {
-  font-size: 0.78rem;
-  color: var(--radical-muted);
+  font-size: 0.875rem;
+  color: var(--dl-muted);
   line-height: 1.5;
-  max-width: 170px;
+  max-width: 180px;
+}
+
+.rfc-flow__note {
+  margin-top: 24px;
+  padding-top: 20px;
+  font-size: var(--dl-size-small);
+  color: var(--dl-muted);
+  text-align: center;
 }
 
 // ── Writing guide cards ─────────────────────────────────────────────────
@@ -598,101 +367,53 @@
 }
 
 .rfc-guide-card {
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
-  padding: 26px;
-  background: var(--radical-surface);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0,148,255,0.35);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
-  }
-}
-
-.rfc-guide-card__icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,148,255,0.08);
-  border: 1px solid rgba(0,148,255,0.18);
-  color: var(--brand-400);
-  margin-bottom: 18px;
+  border-radius: var(--dl-radius);
+  padding: 28px;
+  background: var(--dl-surface);
 }
 
 .rfc-guide-card__title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--radical-text);
+  font-family: var(--dl-font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--dl-ink);
   margin: 0 0 10px;
 }
 
 .rfc-guide-card__body {
-  font-size: 0.9rem;
-  color: var(--radical-muted);
-  line-height: 1.65;
+  font-size: 0.9375rem;
+  color: var(--dl-muted);
+  line-height: 1.6;
   margin: 0;
 }
 
 // ── Kind badge (RFC vs ADR) ───────────────────────────────────────────────
 
 .rfc-kind {
-  font-size: 0.62rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 4px;
   flex-shrink: 0;
-  border: 1px solid transparent;
 
   &--rfc {
-    background: rgba(0, 148, 255, 0.12);
-    color: var(--brand-400);
-    border-color: rgba(0, 148, 255, 0.25);
+    background: color-mix(in srgb, var(--dl-accent) 14%, var(--dl-surface-2));
+    color: var(--dl-accent);
   }
 
   &--adr {
-    background: rgba(124, 58, 237, 0.12);
-    color: #a78bfa;
-    border-color: rgba(124, 58, 237, 0.25);
+    background: color-mix(in srgb, var(--dl-purple) 16%, var(--dl-surface-2));
+    color: var(--dl-purple);
   }
-}
-
-// ── ADR status badges ─────────────────────────────────────────────────────
-
-.rfc-status {
-  &--proposed   { background: rgba(217, 119, 6, 0.12); color: #fbbf24; border-color: rgba(217, 119, 6, 0.22); }
-  &--deprecated { background: rgba(107, 114, 128, 0.12); color: #9ca3af; border-color: rgba(107, 114, 128, 0.22); }
-  &--superseded { background: rgba(156, 163, 175, 0.12); color: #d1d5db; border-color: rgba(156, 163, 175, 0.22); }
 }
 
 // ── Tags ──────────────────────────────────────────────────────────────────
 
 .rfc-tag {
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 3px 8px;
-  border-radius: 999px;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--radical-border);
-  color: var(--radical-muted);
-}
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
 
-html[data-theme="light"] .rfc-tag {
-  background: rgba(15, 23, 42, 0.04);
-}
-@media (prefers-color-scheme: light) {
-  html:not([data-theme]) .rfc-tag {
-    background: rgba(15, 23, 42, 0.04);
-  }
+  &::before { content: "· "; }
 }
 
 // ── ADR tabs ──────────────────────────────────────────────────────────────
@@ -708,10 +429,8 @@ html[data-theme="light"] .rfc-tag {
 #adr-st-accepted:checked ~ .rfc-tab-nav--status label[for="adr-st-accepted"],
 #adr-st-deprecated:checked ~ .rfc-tab-nav--status label[for="adr-st-deprecated"],
 #adr-st-superseded:checked ~ .rfc-tab-nav--status label[for="adr-st-superseded"] {
-  color: var(--brand-400);
-  background: rgba(0, 148, 255, 0.12);
-  border-color: rgba(0, 148, 255, 0.35);
-  box-shadow: 0 0 20px var(--radical-glow);
+  color: var(--dl-ink);
+  border-bottom-color: var(--dl-accent);
 }
 
 #adr-st-all:checked ~ .adr-pane--all,
@@ -730,58 +449,27 @@ html[data-theme="light"] .rfc-tag {
   align-items: center;
   flex-wrap: wrap;
   padding: 28px 30px;
-  border: 1px solid var(--radical-border);
-  border-radius: 22px;
-  background: var(--radical-surface);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 22px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(0, 148, 255, 0.45), transparent 40%, transparent 60%, rgba(124, 58, 237, 0.25));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.6;
-    pointer-events: none;
-  }
-}
-
-.rfc-registry__icon {
-  position: relative;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 148, 255, 0.08);
-  border: 1px solid rgba(0, 148, 255, 0.18);
-  color: var(--brand-400);
-  flex-shrink: 0;
-
-  i { width: 24px; height: 24px; }
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface);
 }
 
 .rfc-registry__body {
-  position: relative;
   flex: 1;
   min-width: 220px;
 
   h3 {
     margin: 0 0 8px;
-    font-size: 1.1rem;
-    color: var(--radical-text);
+    font-family: var(--dl-font-display);
+    font-weight: 600;
+    font-size: 1.1875rem;
+    color: var(--dl-ink);
   }
 
   p {
     margin: 0;
-    font-size: 0.9rem;
-    color: var(--radical-muted);
+    max-width: 60ch;
+    font-size: var(--dl-size-body);
+    color: var(--dl-muted);
     line-height: 1.6;
   }
 }

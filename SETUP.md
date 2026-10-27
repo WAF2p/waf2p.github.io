@@ -101,7 +101,7 @@ task site:serve
 
 Access the site at:
 - **Marketing pages**: http://localhost:8000/
-- **Documentation**: http://localhost:8000/docs/wafpp/1.0/
+- **Documentation**: http://localhost:8000/docs/wafpp/1.1.0/
 
 ### Jekyll Only (Marketing Pages)
 
@@ -197,7 +197,7 @@ task site:build
 
 - Read the full **[README.md](README.md)** for detailed documentation
 - Review **[AGENTS.md](AGENTS.md)** for agentic coding assistant guidelines
-- Check the **[WAF++ Framework documentation](https://waf2p.dev/docs/wafpp/1.0/)**
+- Check the **[WAF++ Framework documentation](https://waf2p.dev/docs/wafpp/1.1.0/)**
 - Join the WAF++ community discussions
 
 ## Getting Help

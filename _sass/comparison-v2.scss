@@ -1,0 +1,196 @@
+/* ============================================================
+   WAF++ Comparison page — v2
+   Built on theme/_design-language.scss. Fourth consumer of the
+   shared .dl-* system (after the homepage, /controls/ and
+   /saeulen/). The page's one real piece of content a screenshot
+   can't replace — a literal side-by-side table — carries the
+   section, so this page intentionally has no hero image and no
+   .dl-shot anywhere.
+
+   Scope: /comparison/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.cmp-page { background: var(--dl-ground); }
+.cmp-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.cmp-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.cmp-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.48fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .cmp-hero__grid { grid-template-columns: 1fr; }
+}
+
+.cmp-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 13ch;
+}
+
+.cmp-hero__lead { @include dl-lead; max-width: 46ch; }
+.cmp-hero__actions { margin-top: 40px; }
+.cmp-hero__row { @include dl-quiet-row; margin-top: 30px; }
+
+/* ---------- stats ---------- */
+
+.cmp-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.cmp-section-head:not(.dl-section-head--split) { max-width: 62ch; }
+
+/* ---------- the two spotlights — wide stacked strips, not cards ---------- */
+
+.cmp-spotlights {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 20px);
+}
+
+.cmp-spotlight {
+  border-radius: var(--dl-radius);
+  padding: clamp(28px, 4vw, 40px) clamp(32px, 4vw, 44px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cmp-spotlight--gold { background: color-mix(in srgb, var(--dl-gold) 14%, var(--dl-surface)); }
+.cmp-spotlight--purple { background: color-mix(in srgb, var(--dl-purple) 12%, var(--dl-surface)); }
+
+.cmp-spotlight__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.75rem; color: var(--dl-ink); margin: 0 0 10px; }
+.cmp-spotlight__tag { font-size: 0.8125rem; font-weight: 500; margin-left: 10px; color: var(--dl-muted); }
+.cmp-spotlight__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; max-width: 52ch; }
+
+.cmp-spotlight__text { flex: 1 1 320px; }
+
+.cmp-spotlight__stat {
+  font-size: 0.9375rem;
+  color: var(--dl-muted);
+  white-space: nowrap;
+  text-align: right;
+  flex: none;
+}
+.cmp-spotlight__stat strong { font-family: var(--dl-font-display); font-size: 1.375rem; color: var(--dl-ink); display: block; }
+
+@media (max-width: 760px) {
+  .cmp-spotlight { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- the other four traits — a light two-up grid ---------- */
+
+.cmp-traits {
+  margin-top: clamp(16px, 2vw, 20px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 20px);
+}
+@media (max-width: 760px) {
+  .cmp-traits { grid-template-columns: 1fr; }
+}
+
+.cmp-trait { @include dl-card; padding: clamp(26px, 3vw, 34px); }
+.cmp-trait__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.cmp-trait__desc { font-size: 0.9375rem; line-height: 1.55; color: var(--dl-muted); margin: 0; }
+.cmp-trait__meta { margin-top: 10px; font-size: 0.8125rem; color: var(--dl-muted); }
+
+/* ---------- the comparison table itself — this page's real content ---------- */
+
+.cmp-table-wrap {
+  margin-top: clamp(40px, 5vw, 56px);
+  overflow-x: auto;
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface);
+}
+
+.cmp-table {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+}
+
+.cmp-table th,
+.cmp-table td {
+  padding: 16px 22px;
+  text-align: left;
+  font-family: var(--dl-font-body);
+  font-size: 0.9375rem;
+  color: var(--dl-ink);
+  border-bottom: 1px solid var(--dl-border);
+  white-space: nowrap;
+}
+
+.cmp-table thead th {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: var(--dl-size-small);
+  color: var(--dl-muted);
+}
+
+.cmp-table tbody td:first-child {
+  color: var(--dl-muted);
+  white-space: normal;
+  min-width: 260px;
+}
+
+.cmp-table tbody tr:last-child td { border-bottom: none; }
+
+.cmp-table__waf { background: color-mix(in srgb, var(--dl-accent) 9%, transparent); font-weight: 600; }
+
+.cmp-yes { color: #1d9a5c; font-weight: 600; }
+.cmp-no { color: #e5484d; }
+.cmp-partial { color: var(--dl-muted); }
+
+.cmp-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 32px;
+  margin-top: clamp(24px, 3vw, 32px);
+  font-size: var(--dl-size-small);
+  color: var(--dl-muted);
+}
+
+/* ---------- verdict / how to read ---------- */
+
+.cmp-verdicts {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(32px, 4vw, 48px);
+}
+@media (max-width: 860px) {
+  .cmp-verdicts { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 48px); }
+}
+
+.cmp-verdict__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.1875rem; color: var(--dl-ink); margin: 0 0 10px; }
+.cmp-verdict__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+/* ---------- CTA ---------- */
+
+.cmp-cta { @include dl-card; padding: clamp(40px, 6vw, 72px); text-align: center; }
+.cmp-cta .dl-heading { max-width: none; }
+.cmp-cta .dl-lead { max-width: 56ch; margin-inline: auto; }
+.cmp-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+/* ---------- lightbox: uses the shared .dl-shot / .dl-lightbox classes directly ---------- */
+
+.cmp-page.cmp-lightbox-open,
+.cmp-page.cmp-lightbox-open main { overflow: hidden; }

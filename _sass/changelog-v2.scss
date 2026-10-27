@@ -1,0 +1,239 @@
+/* ============================================================
+   WAF++ Changelog page — v2
+   Built on theme/_design-language.scss. Fresh .chg- prefix and
+   fresh tab ids: the existing .cl-pane, .cl-timeline,
+   .cl-release-card class family (in changelog.scss, driven by
+   the original _includes/changelog-pane.html) stays untouched —
+   it still renders the language-variant changelog pages
+   (de/es/fr/it/nl/pl/pt). This page uses its own
+   _includes/changelog-pane-v2.html with new ids, so the two
+   radio-driven tab mechanisms never collide.
+
+   Scope: changelog/index.html (EN) only. Nav/footer untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.chg-page { background: var(--dl-ground); }
+.chg-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.chg-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.chg-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+.chg-hero__lead { @include dl-lead; max-width: 58ch; }
+.chg-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats ---------- */
+
+.chg-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.chg-section-head { max-width: 62ch; }
+
+/* ---------- tabs ---------- */
+
+.chg-radio { display: none; }
+
+.chg-tabs { margin-top: clamp(40px, 5vw, 56px); }
+
+.chg-tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  border-bottom: 2px solid var(--dl-border);
+  margin-bottom: clamp(32px, 4vw, 44px);
+}
+
+.chg-tab-nav__item {
+  flex: none;
+  padding: 12px 0;
+  margin-bottom: -2px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--dl-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.chg-tab-nav__item:hover { color: var(--dl-ink); }
+
+@each $id in fw, mkt, pass, dash, srv, act, mcp {
+  ##{"chg-tab-" + $id}:checked ~ .chg-tab-nav label[for="chg-tab-#{$id}"] {
+    color: var(--dl-ink);
+    border-bottom-color: var(--dl-ink);
+  }
+  ##{"chg-tab-" + $id}:checked ~ ##{"chg-pane-" + $id} {
+    display: block;
+  }
+}
+
+.chg-pane { display: none; }
+
+/* ---------- launch banner ---------- */
+
+.chg-launch {
+  @include dl-card;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: clamp(20px, 2.5vw, 26px);
+  margin-bottom: clamp(32px, 4vw, 44px);
+}
+.chg-launch__icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--dl-surface-2);
+  color: var(--dl-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chg-launch__icon svg { width: 20px; height: 20px; }
+.chg-launch__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin-bottom: 6px; }
+.chg-launch__text { font-size: 0.9375rem; line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+/* ---------- timeline ---------- */
+
+.chg-timeline { display: flex; flex-direction: column; gap: clamp(32px, 4vw, 44px); }
+
+.chg-group__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--dl-border);
+  margin-bottom: 16px;
+}
+.chg-group__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0; }
+.chg-group__meta { display: flex; align-items: center; gap: 10px; font-size: 0.8125rem; color: var(--dl-muted); }
+.chg-group__version { font-family: var(--dl-font-mono); color: var(--dl-ink); } // taste-skill-ignore: a real version string, the same dl-chip "real codes" exception already used sitewide
+.chg-group__beta { padding: 3px 10px; border-radius: 999px; background: var(--dl-surface-2); font-size: 0.8125rem; font-weight: 600; color: var(--dl-muted); }
+
+.chg-group__changes { display: flex; flex-direction: column; gap: 4px; }
+
+.chg-change { display: flex; gap: 10px; align-items: baseline; padding: 8px 0; }
+
+.chg-change__type {
+  flex: none;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  color: var(--dl-ink);
+  background: var(--dl-surface-2);
+  text-transform: capitalize;
+}
+
+.chg-change__text { font-size: var(--dl-size-body); line-height: 1.55; color: var(--dl-muted); max-width: 58ch; min-width: 0; }
+
+.chg-change__pr {
+  margin-left: 4px;
+  color: var(--dl-muted);
+  text-decoration: none;
+  font-family: var(--dl-font-mono); // taste-skill-ignore: a real PR number, the same dl-chip "real codes" exception already used sitewide
+  font-size: 0.8125rem;
+}
+.chg-change__pr:hover { color: var(--dl-ink); text-decoration: underline; }
+
+/* Type colours read fine on their light-mode tint but the same
+   saturated hue sits too close to the pill's own dark-tinted
+   background once the page switches to dark mode — lighten them
+   relative to their own base colour (same approach used for the
+   contributing page's lifecycle badges). */
+.chg-change__type--new { color: #15803d; background: color-mix(in srgb, #22c55e 16%, transparent); }
+.chg-change__type--improvement { color: #0369a1; background: color-mix(in srgb, #0ea5e9 14%, transparent); }
+.chg-change__type--fix { color: #b45309; background: color-mix(in srgb, #f59e0b 16%, transparent); }
+.chg-change__type--infra { color: var(--accent-500); background: color-mix(in srgb, var(--accent-500) 14%, transparent); }
+.chg-change__type--breaking { color: var(--danger-500); background: color-mix(in srgb, var(--danger-500) 14%, transparent); }
+.chg-change__type--docs { color: var(--dl-muted); background: var(--dl-surface-2); }
+
+@mixin chg-type-dark-theme {
+  .chg-change__type--new { color: color-mix(in srgb, #22c55e 65%, white); }
+  .chg-change__type--improvement { color: color-mix(in srgb, #0ea5e9 70%, white); }
+  .chg-change__type--fix { color: color-mix(in srgb, #f59e0b 70%, white); }
+  .chg-change__type--infra { color: color-mix(in srgb, var(--accent-500) 60%, white); }
+  .chg-change__type--breaking { color: color-mix(in srgb, var(--danger-500) 65%, white); }
+}
+html[data-theme="dark"] { @include chg-type-dark-theme; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) { @include chg-type-dark-theme; }
+}
+
+/* ---------- history link ---------- */
+
+.chg-history {
+  margin-top: clamp(32px, 4vw, 44px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--dl-muted);
+}
+.chg-history svg { width: 16px; height: 16px; }
+.chg-history a { color: var(--dl-ink); text-decoration: underline; text-decoration-color: var(--dl-border); }
+.chg-history a:hover { text-decoration-color: currentColor; }
+
+/* ---------- CTA ---------- */
+
+.chg-cta { @include dl-card; padding: clamp(40px, 6vw, 72px); text-align: center; }
+.chg-cta .dl-heading { max-width: none; }
+.chg-cta .dl-lead { max-width: 56ch; margin-inline: auto; }
+.chg-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+.chg-cta__notes { margin-top: 28px; display: flex; gap: 10px 24px; justify-content: center; flex-wrap: wrap; }
+.chg-cta__note { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; color: var(--dl-muted); }
+.chg-cta__note svg { width: 15px; height: 15px; }
+
+.chg-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+.chg-cta { background: transparent; }
+.chg-cta-section .chg-cta .dl-heading { color: #fff; }
+.chg-cta-section .chg-cta .dl-lead { color: rgba(255, 255, 255, 0.72); }
+
+.chg-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.chg-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.chg-cta-section .wf6-btn--pill:hover,
+.chg-cta-section .wf6-btn--pill:focus {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.chg-cta-section .wf6-btn--pill:hover .wf6-btn__arrow,
+.chg-cta-section .wf6-btn--pill:focus .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+.chg-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.chg-cta-section .wf6-btn--line:hover,
+.chg-cta-section .wf6-btn--line:focus {
+  border-color: #fff;
+  color: #fff;
+}

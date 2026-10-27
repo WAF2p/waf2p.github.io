@@ -1,0 +1,257 @@
+/* ============================================================
+   WAF++ Conferences page — v2
+   Built on theme/_design-language.scss. All classes are a fresh
+   .cfp-* prefix: the existing .conf-card/.conference-grid/
+   .speaker-card/.member-chip family in conferences.scss stays
+   untouched, because it's shared with a DIFFERENT real
+   consumer — staff member profile pages render their own
+   "speaking at" list through _includes/conference-card.html,
+   using the same .conf-card class with a slightly different
+   internal structure. Restyling it here would have silently
+   changed those pages too.
+
+   Scope: /conferences/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.cfp-page { background: var(--dl-ground); }
+.cfp-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.cfp-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.cfp-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+.cfp-hero__lead { @include dl-lead; max-width: 58ch; }
+.cfp-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats ---------- */
+
+.cfp-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.cfp-section-head { max-width: 62ch; }
+
+/* ---------- upcoming: rich two-up list ---------- */
+
+.cfp-events {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+@media (max-width: 860px) {
+  .cfp-events { grid-template-columns: 1fr; }
+}
+
+.cfp-event { @include dl-card; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+
+.cfp-event__banner {
+  background: #fff;
+  padding: clamp(28px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+.cfp-event__banner img { max-width: 72%; max-height: 72px; object-fit: contain; }
+
+/* Some conference logos are only published as a light/white variant,
+   meant for a dark navbar. Flagged in the data (logo_dark_bg: true)
+   instead of guessing from the image itself. Fixed, not theme-reactive:
+   it must stay dark regardless of the site's own light/dark toggle,
+   the same way the default banner stays fixed white either way. */
+.cfp-event__banner--dark { background: #0b1020; }
+
+.cfp-event__body { flex: 1; padding: clamp(24px, 3vw, 30px); display: flex; flex-direction: column; gap: 14px; }
+
+.cfp-event__name { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.125rem; color: var(--dl-ink); margin: 0; }
+.cfp-event__sub { margin-top: 3px; font-size: 0.8125rem; color: var(--dl-muted); }
+
+.cfp-event__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+.cfp-event__topics { display: flex; flex-direction: column; gap: 4px; }
+.cfp-event__topic { font-size: 0.8125rem; font-style: italic; color: var(--dl-muted); }
+
+.cfp-event__footer { margin-top: auto; padding-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.cfp-event__members { display: flex; align-items: center; gap: 8px; }
+.cfp-event__avatars { display: flex; }
+.cfp-event__avatars a {
+  margin-left: -8px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--dl-surface);
+}
+.cfp-event__avatars a:first-child { margin-left: 0; }
+.cfp-event__avatars img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cfp-event__role { font-size: 0.8125rem; color: var(--dl-muted); }
+
+/* ---------- past: a quiet list ---------- */
+
+.cfp-past { margin-top: clamp(48px, 6vw, 72px); display: flex; flex-direction: column; gap: clamp(14px, 2vw, 18px); }
+
+.cfp-past__row {
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  padding: clamp(20px, 2.5vw, 26px);
+  display: grid;
+  grid-template-columns: 148px 1fr auto;
+  gap: clamp(20px, 2.5vw, 28px);
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .cfp-past__row { grid-template-columns: 1fr; }
+}
+
+.cfp-past__logo {
+  width: 148px;
+  height: 104px;
+  border-radius: var(--dl-radius);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(12px, 1.5vw, 18px);
+}
+.cfp-past__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.cfp-past__logo--dark { background: #0b1020; }
+
+.cfp-past__name { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); }
+.cfp-past__sub { margin-top: 2px; font-size: 0.8125rem; color: var(--dl-muted); }
+.cfp-past__desc { margin-top: 8px; font-size: var(--dl-size-body); line-height: 1.55; color: var(--dl-muted); max-width: 68ch; }
+
+.cfp-past__link { flex: none; }
+
+/* ---------- speakers ---------- */
+
+.cfp-speakers {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .cfp-speakers { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .cfp-speakers { grid-template-columns: 1fr; }
+}
+
+.cfp-speaker__photo { width: 100%; aspect-ratio: 1; border-radius: var(--dl-radius); overflow: hidden; background: var(--dl-surface-2); }
+.cfp-speaker__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.cfp-speaker__name { margin-top: 14px; font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); }
+.cfp-speaker__name a { color: inherit; text-decoration: none; }
+.cfp-speaker__name a:hover { text-decoration: underline; text-decoration-color: var(--dl-border); }
+.cfp-speaker__role { margin-top: 2px; font-size: 0.8125rem; color: var(--dl-muted); }
+.cfp-speaker__bio { margin-top: 10px; font-size: 0.875rem; line-height: 1.55; color: var(--dl-muted); }
+
+.cfp-speaker__social { margin-top: 12px; display: flex; gap: 12px; }
+.cfp-speaker__social a { color: var(--dl-muted); display: inline-flex; }
+.cfp-speaker__social a:hover { color: var(--dl-ink); }
+.cfp-speaker__social svg { width: 18px; height: 18px; }
+
+/* ---------- get involved ---------- */
+
+.cfp-involve {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+@media (max-width: 860px) {
+  .cfp-involve { grid-template-columns: 1fr; }
+}
+
+.cfp-involve__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.125rem; color: var(--dl-ink); margin: 0 0 10px; }
+.cfp-involve__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+.cfp-formats {
+  margin-top: clamp(40px, 5vw, 56px);
+  padding-top: clamp(32px, 4vw, 44px);
+}
+.cfp-formats__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); margin: 0 0 20px; }
+
+.cfp-formats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+@media (max-width: 860px) {
+  .cfp-formats__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .cfp-formats__grid { grid-template-columns: 1fr; }
+}
+
+.cfp-format__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); margin: 0 0 4px; }
+.cfp-format__desc { font-size: 0.8125rem; color: var(--dl-muted); }
+
+.cfp-formats__note { margin-top: clamp(28px, 3.5vw, 36px); font-size: 0.875rem; color: var(--dl-muted); text-align: center; }
+.cfp-formats__cta { margin-top: 20px; text-align: center; }
+
+/* ---------- CTA ---------- */
+
+.cfp-cta { padding: clamp(40px, 6vw, 72px); text-align: center; }
+.cfp-cta .dl-heading { max-width: none; color: var(--dl-ground); }
+.cfp-cta .dl-lead { max-width: 56ch; margin-inline: auto; color: var(--dl-ground-2); }
+.cfp-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+
+.cfp-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+
+.cfp-cta-section .cfp-cta {
+  background: transparent;
+}
+
+.cfp-cta-section .cfp-cta .dl-heading { color: #fff; }
+.cfp-cta-section .cfp-cta .dl-lead  { color: rgba(255, 255, 255, 0.72); }
+
+.cfp-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.cfp-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.cfp-cta-section .wf6-btn--pill:hover,
+.cfp-cta-section .wf6-btn--pill:focus {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.cfp-cta-section .wf6-btn--pill:hover .wf6-btn__arrow,
+.cfp-cta-section .wf6-btn--pill:focus .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+
+.cfp-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.cfp-cta-section .wf6-btn--line:hover,
+.cfp-cta-section .wf6-btn--line:focus {
+  border-color: #fff;
+  color: #fff;
+}

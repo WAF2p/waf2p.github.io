@@ -7,10 +7,10 @@ content:
   sources:
   # German content (version: de) — working branch
   - url: ../framework
-    branches: main-de
+    branches: feat/upgrade-de
   # English content (version: en)
   - url: ../framework-en
-    branches: main-en
+    branches: feat/upgrade
 
 antora:
   extensions:
@@ -19,7 +19,10 @@ antora:
     index_by_heading: true
     languages: [en, de]
     snippet_length: 150
-  - require: '@antora/pdf-extension'
+  # PDF extension disabled in local dev playbook because it produces hundreds
+  # of non-fatal warnings about table cells / heading sequences in the aggregate
+  # PDF. It remains enabled in antora-playbook.yml for production builds.
+  # - require: '@antora/pdf-extension'
 
 ui:
   bundle:

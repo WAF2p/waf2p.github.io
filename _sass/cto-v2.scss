@@ -1,0 +1,259 @@
+/* ============================================================
+   WAF++ CTO landing page — v2
+   Built on theme/_design-language.scss. Fresh .cto2- prefix:
+   the existing .home-hero-grid/.home-badge/.home-h1/.home-trust/
+   .hero-stats-card/.hero-kpi-grid/.wafpass-grid/.wafpass-feat/
+   .pillar-card class families used by the legacy cto.scss stay
+   untouched — they still render the language-variant CTO pages
+   (de/es/fr/it/nl/pl/pt), and .pillar-card/.wafpass-feat also
+   still render saeulen/controls/why-not/wafpass language variants,
+   out of scope here.
+
+   Scope: cto/index.html (EN) only. Nav and footer untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.cto2-page { background: var(--dl-ground); }
+.cto2-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.cto2-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.cto2-hero__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: center;
+}
+@media (max-width: 960px) {
+  .cto2-hero__grid { grid-template-columns: 1fr; }
+}
+
+.cto2-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+.cto2-hero__lead { @include dl-lead; max-width: 56ch; }
+.cto2-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+
+.cto2-hero__trust { margin-top: 36px; }
+.cto2-hero__trust .dl-quiet-row__intro { font-size: 0.875rem; font-weight: 600; }
+.cto2-hero__trust .dl-quiet-row__name { font-size: 0.9375rem; }
+
+/* KPI card */
+.cto2-kpi { @include dl-card; padding: clamp(28px, 3vw, 36px); }
+.cto2-kpi__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 20px; }
+
+.cto2-kpi__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.cto2-kpi__num { font-family: var(--dl-font-display); font-weight: 600; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -0.02em; color: var(--dl-ink); }
+.cto2-kpi__label { margin-top: 6px; font-size: 0.8125rem; line-height: 1.4; color: var(--dl-muted); }
+
+/* ---------- section head ---------- */
+
+.cto2-section-head { max-width: 66ch; }
+
+/* ---------- plain icon+text grid (the challenge) ---------- */
+
+.cto2-grid-3 {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(32px, 4vw, 44px) clamp(28px, 3vw, 40px);
+}
+@media (max-width: 860px) {
+  .cto2-grid-3 { grid-template-columns: 1fr; }
+}
+
+.cto2-item__icon { color: var(--dl-ink); margin-bottom: 16px; }
+.cto2-item__icon svg { width: 24px; height: 24px; stroke-width: 1.5; }
+.cto2-item__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.cto2-item__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+/* ---------- "what is WAF++" split layout ---------- */
+
+.cto2-split {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .cto2-split { grid-template-columns: 1fr; }
+}
+
+.cto2-copy p { font-size: var(--dl-size-body); line-height: 1.7; color: var(--dl-muted); max-width: 64ch; margin: 0 0 18px; }
+.cto2-copy strong { color: var(--dl-ink); }
+
+.cto2-quote {
+  margin: 28px 0;
+  padding: clamp(20px, 2.5vw, 26px) clamp(22px, 3vw, 28px);
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+}
+.cto2-quote p { font-size: 1.0625rem; line-height: 1.6; color: var(--dl-ink); font-style: italic; margin: 0 0 10px; max-width: none; }
+.cto2-quote cite { font-size: 0.8125rem; font-weight: 600; color: var(--dl-muted); font-style: normal; }
+
+.cto2-feats { display: flex; flex-direction: column; gap: clamp(22px, 3vw, 28px); margin-top: 32px; }
+.cto2-feat { display: flex; gap: 14px; align-items: flex-start; }
+.cto2-feat__icon { flex: none; color: var(--dl-ink); margin-top: 2px; }
+.cto2-feat__icon svg { width: 20px; height: 20px; stroke-width: 1.5; }
+.cto2-feat__title { font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); margin-bottom: 4px; }
+.cto2-feat__desc { font-size: 0.875rem; line-height: 1.55; color: var(--dl-muted); margin: 0; max-width: 56ch; }
+
+/* pillar quick-list card */
+.cto2-pillars { @include dl-card; padding: clamp(24px, 3vw, 28px); }
+.cto2-pillars__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 18px; }
+
+.cto2-pillars__list { display: flex; flex-direction: column; gap: 8px; }
+.cto2-pillars__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: calc(var(--dl-radius) - 1px);
+  background: var(--dl-surface-2);
+  color: var(--dl-ink);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.cto2-pillars__row:hover { background: color-mix(in srgb, var(--dl-surface-2) 60%, var(--dl-ink) 8%); }
+.cto2-pillars__row svg { width: 16px; height: 16px; flex: none; stroke-width: 1.5; }
+.cto2-pillars__tag { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--dl-muted); }
+
+.cto2-pillars__dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.cto2-pillars__dot--gold { background: var(--dl-gold); }
+.cto2-pillars__dot--purple { background: var(--dl-purple); }
+
+/* ---------- survey ---------- */
+
+.cto2-survey { max-width: 680px; margin-inline: auto; text-align: center; }
+.cto2-survey .dl-heading { max-width: none; }
+.cto2-survey .dl-lead { max-width: 56ch; margin-inline: auto; }
+.cto2-survey__note { margin: 18px auto 0; font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); max-width: 56ch; }
+
+.cto2-survey__notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0 8px;
+  padding: 12px 18px;
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface-2);
+  font-size: 0.8125rem;
+  color: var(--dl-ink);
+  text-align: left;
+}
+.cto2-survey__notice svg { width: 16px; height: 16px; flex: none; color: var(--dl-muted); }
+.cto2-survey__notice a { color: var(--dl-ink); text-decoration: underline; text-decoration-color: var(--dl-border); }
+
+.cto2-survey__action { margin-top: 24px; }
+.cto2-survey__fine { margin-top: 16px; font-size: 0.8125rem; color: var(--dl-muted); }
+
+/* ---------- 4-up tooling grid ---------- */
+
+.cto2-grid-4 {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(32px, 4vw, 44px) clamp(24px, 3vw, 32px);
+}
+@media (max-width: 980px) {
+  .cto2-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .cto2-grid-4 { grid-template-columns: 1fr; }
+}
+
+.cto2-tooling-action { margin-top: clamp(28px, 3.5vw, 36px); text-align: center; }
+
+/* ---------- CTA ---------- */
+
+.cto2-cta-section { padding-top: 96px; padding-bottom: 96px; margin-bottom: 96px; }
+
+.cto2-cta {
+  background: var(--wf6-ink);
+  color: #fff;
+  border-radius: var(--dl-radius);
+  padding: clamp(40px, 6vw, 72px);
+  text-align: center;
+}
+
+.cto2-cta .dl-heading {
+  max-width: none;
+  color: #fff;
+}
+
+.cto2-cta .dl-lead {
+  max-width: 56ch;
+  margin-inline: auto;
+  color: rgba(255,255,255,0.72);
+}
+
+.cto2-cta__kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+
+.cto2-cta__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.cto2-cta__fine { margin-top: 24px; font-size: 0.8125rem; color: rgba(255,255,255,0.72); }
+.cto2-cta__fine a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.35); }
+
+.cto2-cta .wf6-btn--pill {
+  background: var(--dl-accent);
+  border-color: var(--dl-accent);
+  color: #fff;
+}
+
+.cto2-cta .wf6-btn--pill .wf6-btn__arrow {
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+
+.cto2-cta .wf6-btn--pill:hover {
+  background: color-mix(in srgb, var(--dl-accent) 85%, black);
+  border-color: color-mix(in srgb, var(--dl-accent) 85%, black);
+  color: #fff;
+}
+
+.cto2-cta .wf6-btn--pill:hover .wf6-btn__arrow {
+  background: #fff;
+  border-color: #fff;
+  color: var(--dl-accent);
+}
+
+.cto2-cta .wf6-btn--line {
+  background: transparent;
+  border-color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.72);
+}
+
+.cto2-cta .wf6-btn--line:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: #fff;
+  color: #fff;
+}

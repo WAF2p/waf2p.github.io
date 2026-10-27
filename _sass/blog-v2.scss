@@ -1,0 +1,233 @@
+/* ============================================================
+   WAF++ Blog — v2
+   Built on theme/_design-language.scss. Fresh .blg- and .bpc-
+   prefixes: the existing .blog-header/.blog-cats/.blog-grid/
+   .post-card family in blog.scss stays untouched, because
+   _layouts/archive.html and _layouts/staff_member_page.html
+   render their own post grids through the ORIGINAL
+   _includes/blog-card.html, using those exact classes.
+
+   Scope: blog/index.html + _layouts/blog-category.html (the
+   two pages that share this listing chrome). The card component
+   here (.bpc-*) is also used by _layouts/post.html, in its
+   more-articles section — see post-v2.scss. Nav and footer are
+   untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.blg-page { background: var(--dl-ground); }
+.blg-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.blg-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(40px, 6vw, 64px);
+}
+
+.blg-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+.blg-hero__lead { @include dl-lead; max-width: 60ch; }
+.blg-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats ---------- */
+
+.blg-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.blg-section-head { max-width: 62ch; }
+
+/* ---------- topic filter row ---------- */
+
+.blg-filters__names a {
+  color: var(--dl-muted);
+  text-decoration: none;
+}
+.blg-filters__names a:hover { color: var(--dl-ink); }
+.blg-filters__names a.is-active { color: var(--dl-ink); }
+
+/* ---------- posts grid ---------- */
+
+.blg-grid {
+  margin-top: clamp(40px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(28px, 3vw, 36px);
+}
+@media (max-width: 760px) {
+  .blg-grid { grid-template-columns: 1fr; }
+}
+
+.blg-empty {
+  margin-top: clamp(40px, 5vw, 56px);
+  padding: clamp(48px, 6vw, 72px) 0;
+  text-align: center;
+  color: var(--dl-muted);
+  font-size: 1rem;
+}
+
+/* ---------- pagination ---------- */
+
+.blg-pager {
+  margin-top: clamp(56px, 7vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.blg-pager__status { font-size: 0.8125rem; color: var(--dl-muted); }
+.blg-pager__links { display: flex; gap: 12px; }
+.blg-pager__spacer { flex: none; width: 1px; }
+
+/* ---------- write for us ---------- */
+
+.blg-write { @include dl-section-alt; }
+
+.blg-write__grid {
+  margin-top: clamp(32px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+@media (max-width: 860px) {
+  .blg-write__grid { grid-template-columns: 1fr; }
+}
+
+.blg-write__card { display: flex; flex-direction: column; }
+
+.blg-write__icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--dl-surface-2);
+  color: var(--dl-ink);
+  margin-bottom: 16px;
+}
+.blg-write__icon svg,
+.blg-write__icon i { width: 20px; height: 20px; }
+
+.blg-write__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.blg-write__desc { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+.blg-write__formats {
+  margin-top: clamp(56px, 7vw, 76px);
+}
+.blg-write__formats-title { font-family: var(--dl-font-display); font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); margin: 0 0 20px; }
+
+.blg-write__formats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.5vw, 26px);
+}
+@media (max-width: 860px) {
+  .blg-write__formats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .blg-write__formats-grid { grid-template-columns: 1fr; }
+}
+
+.blg-format { display: flex; gap: 12px; align-items: flex-start; }
+.blg-format svg,
+.blg-format i { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--dl-muted); }
+.blg-format__title { font-weight: 600; font-size: 0.875rem; color: var(--dl-ink); margin: 0 0 4px; }
+.blg-format__desc { font-size: 0.8125rem; color: var(--dl-muted); }
+
+.blg-write__note { margin-top: clamp(28px, 3.5vw, 36px); font-size: 0.875rem; color: var(--dl-muted); text-align: center; }
+.blg-write__cta { margin-top: 20px; text-align: center; }
+
+/* ============================================================
+   Shared post-preview card — used by blog/index.html,
+   _layouts/blog-category.html and _layouts/post.html's
+   "more articles" section. NOT .post-card: that class stays
+   wired to the original blog-card.html for archive.html and
+   staff_member_page.html.
+   ============================================================ */
+
+.bpc-card { @include dl-card; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+
+.bpc-card__media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--dl-surface-2);
+}
+.bpc-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(.22,.8,.26,1);
+}
+.bpc-card__media:hover img { transform: scale(1.045); }
+
+.bpc-card__body { flex: 1; padding: clamp(20px, 2.5vw, 26px); display: flex; flex-direction: column; gap: 10px; }
+
+.bpc-card__meta {
+  display: flex;
+  gap: 6px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--dl-muted);
+}
+
+.bpc-card__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.1875rem; line-height: 1.32; margin: 0; }
+.bpc-card__title a { color: var(--dl-ink); text-decoration: none; }
+.bpc-card__title a:hover { text-decoration: underline; text-decoration-color: var(--dl-border); }
+
+.bpc-card__excerpt { flex: 1; font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+.bpc-card__link { margin-top: 2px; font-size: 0.875rem; font-weight: 600; color: var(--dl-ink); text-decoration: none; }
+.bpc-card__link:hover { text-decoration: underline; text-decoration-color: var(--dl-border); }
+
+/* ---------- final CTA ---------- */
+
+.blg-cta { padding: clamp(40px, 6vw, 72px); text-align: center; }
+.blg-cta .dl-heading { max-width: none; color: #fff; }
+.blg-cta .dl-lead { max-width: 56ch; margin-inline: auto; color: rgba(255, 255, 255, 0.72); }
+.blg-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+
+.blg-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+.blg-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.blg-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.blg-cta-section .wf6-btn--pill:hover,
+.blg-cta-section .wf6-btn--pill:focus {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.blg-cta-section .wf6-btn--pill:hover .wf6-btn__arrow,
+.blg-cta-section .wf6-btn--pill:focus .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+.blg-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.blg-cta-section .wf6-btn--line:hover,
+.blg-cta-section .wf6-btn--line:focus {
+  border-color: #fff;
+  color: #fff;
+}

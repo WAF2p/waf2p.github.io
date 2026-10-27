@@ -31,7 +31,7 @@ tasks:
     deps:
       - docs:build:local
     cmds:
-      - echo "Documentation available at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.0/"
+      - echo "Documentation available at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.1.0/"
       - python3 -m http.server {{.WAFPASS_SITE_PORT}} -d _site
 
   docs:clean:
@@ -72,7 +72,7 @@ tasks:
       - echo "================================================"
       - echo "Complete site available at http://localhost:{{.WAFPASS_SITE_PORT}}/"
       - echo "Marketing at http://localhost:{{.WAFPASS_SITE_PORT}}/"
-      - echo "Documentation at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.0/"
+      - echo "Documentation at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.1.0/"
       - echo "================================================"
       - echo ""
       - python3 -m http.server {{.WAFPASS_SITE_PORT}} -d _site
@@ -115,10 +115,11 @@ tasks:
 
   # Dependency management
   deps:install:
-    desc: Install all dependencies (Ruby + Node.js)
+    desc: Install all dependencies (Ruby + Node.js) and copy local fonts/icons
     cmds:
       - bundle install
       - npm install
+      - npm run copy-assets
 
   deps:update:
     desc: Update all dependencies

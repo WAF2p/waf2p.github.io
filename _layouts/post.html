@@ -87,47 +87,36 @@ layout: default
   {% assign t_next_label = "Next article" %}
 {% endif %}
 
-<div class="page-radical blog-post-page">
+<div class="pst-page">
 
 <!-- ===================== EDITORIAL HERO ===================== -->
-<section class="post-hero-editorial">
-  <div class="container">
-    <div class="post-hero-editorial__kicker">
-      <span class="post-hero-editorial__kicker-dot"></span>
-      {{ t_kicker_blog }}
-    </div>
+<section class="pst-hero">
+  <div class="dl-wrap">
+    <h1 class="pst-hero__title dl-rise">{{ page.title }}</h1>
 
-    <h1 class="post-hero-editorial__title">{{ page.title }}</h1>
+    <div class="pst-hero__meta dl-rise dl-d1">
+      <span>{{ page.date | date: t_date_format }}</span>
+      {% if page.categories and page.categories.size > 0 %}
+        <span class="pst-hero__meta-sep">·</span>
+        {% for c in page.categories %}
+          {% assign c_slug = c | slugify %}
+          <a href="{{ t_cat_prefix | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>{% unless forloop.last %}<span class="pst-hero__meta-sep">,</span>{% endunless %}
+        {% endfor %}
+      {% endif %}
+      <span class="pst-hero__meta-sep">·</span>
+      <span>{{ read_time }} {{ t_min_read }}</span>
+    </div>
 
     {% if page.description %}
-    <p class="post-hero-editorial__lead">{{ page.description }}</p>
+    <p class="pst-hero__lead dl-rise dl-d2">{{ page.description }}</p>
     {% endif %}
 
-    <div class="post-hero-editorial__meta">
-      <span class="post-hero-editorial__date">{{ page.date | date: t_date_format }}</span>
-      {% if page.categories and page.categories.size > 0 %}
-        <span class="post-hero-editorial__sep">·</span>
-        <span class="post-hero-editorial__cats">
-          {% for c in page.categories %}
-            {% assign c_slug = c | slugify %}
-            <a href="{{ t_cat_prefix | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
-          {% endfor %}
-        </span>
-      {% endif %}
-      <span class="post-hero-editorial__sep">·</span>
-      <span class="post-hero-editorial__readtime">
-        <i data-lucide="clock" aria-hidden="true"></i>
-        {{ read_time }} {{ t_min_read }}
-      </span>
-    </div>
-
     {% if author %}
-    <a class="post-hero-editorial__byline" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}" aria-label="{{ t_written_by }} {{ author.name }}">
-      <img class="post-hero-editorial__avatar" src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
-      <span class="post-hero-editorial__byline-text">
-        <span class="post-hero-editorial__byline-label">{{ t_written_by }}</span>
-        <span class="post-hero-editorial__byline-name">{{ author.name }}</span>
-        {% if author.position %}<span class="post-hero-editorial__byline-role">{{ author.position }}</span>{% endif %}
+    <a class="pst-hero__byline dl-rise dl-d3" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}" aria-label="{{ t_written_by }} {{ author.name }}">
+      <span class="pst-hero__avatar"><img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}"></span>
+      <span>
+        <span class="pst-hero__byline-name">{{ t_written_by }} {{ author.name }}</span>
+        {% if author.position %}<br><span class="pst-hero__byline-role">{{ author.position }}</span>{% endif %}
       </span>
     </a>
     {% endif %}
@@ -137,9 +126,9 @@ layout: default
 
 <!-- ===================== HERO COVER BANNER ===================== -->
 {% if cover_image %}
-<section class="post-cover-banner">
-  <div class="container">
-    <div class="post-cover-banner__frame">
+<section>
+  <div class="dl-wrap">
+    <div class="pst-cover dl-rise">
       <img src="{% include relative-src.html src=cover_image %}" alt="{{ page.title }}">
     </div>
   </div>
@@ -148,38 +137,38 @@ layout: default
 
 
 <!-- ===================== ARTICLE BODY ===================== -->
-<section class="post-body-editorial">
-  <div class="container">
-    <article class="prose-editorial">
+<section class="pst-body">
+  <div class="dl-wrap">
+    <article class="pst-prose">
       {{ rendered_content }}
     </article>
 
     {% if author %}
     <!-- Author band -->
-    <div class="author-band" aria-label="{{ t_author_label }}">
-      <img class="author-band__avatar" src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}">
-      <div class="author-band__content">
-        <div class="author-band__name">{{ author.name }}</div>
-        {% if author.position %}<div class="author-band__role">{{ author.position }}</div>{% endif %}
-        {% if author.blurb %}<p class="author-band__blurb">{{ author.blurb }}</p>{% endif %}
-      </div>
-      <div class="author-band__actions">
-        {% if author.social %}
-        <div class="author-band__social">
-          {% for link in author.social %}
-          <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
-            {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
-          </a>
-          {% endfor %}
+    <div class="pst-author dl-rise" aria-label="{{ t_author_label }}">
+      <div class="pst-author__avatar"><img src="{% include relative-src.html src=author.image_path %}" alt="{{ author.name }}"></div>
+      <div>
+        <div class="pst-author__name">{{ author.name }}</div>
+        {% if author.position %}<div class="pst-author__role">{{ author.position }}</div>{% endif %}
+        {% if author.blurb %}<p class="pst-author__blurb">{{ author.blurb }}</p>{% endif %}
+        <div class="pst-author__actions">
+          {% if author.social %}
+          <div class="pst-author__social">
+            {% for link in author.social %}
+            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <a class="wf6-btn wf6-btn--line" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}">{{ t_view_profile }}</a>
         </div>
-        {% endif %}
-        <a class="btn-glass btn-glass--sm" href="{{ '/staff_members/' | append: author.slug | append: '/' | relative_url }}">{{ t_view_profile }} &rarr;</a>
       </div>
     </div>
     {% endif %}
 
     <!-- Post nav -->
-    <nav class="post-nav-editorial" aria-label="{{ t_blog_nav_label }}">
+    <nav class="pst-nav dl-rise" aria-label="{{ t_blog_nav_label }}">
       {% assign prev_post = nil %}
       {% assign next_post = nil %}
       {% assign found = false %}
@@ -195,23 +184,23 @@ layout: default
       {% endfor %}
 
       {% if prev_post %}
-      <a class="post-nav-editorial__link post-nav-editorial__link--prev" href="{% include relative-src.html src=prev_post.url %}">
-        <span class="post-nav-editorial__link-label"><span aria-hidden="true">←</span> {{ t_prev_label }}</span>
-        <span class="post-nav-editorial__link-title">{{ prev_post.title | truncate: 55 }}</span>
+      <a class="pst-nav__link pst-nav__link--prev" href="{% include relative-src.html src=prev_post.url %}">
+        <div class="pst-nav__label">← {{ t_prev_label }}</div>
+        <div class="pst-nav__title">{{ prev_post.title | truncate: 55 }}</div>
       </a>
       {% else %}
-      <span class="post-nav-editorial__spacer"></span>
+      <span></span>
       {% endif %}
 
-      <a class="btn-glow btn-glow--sm" href="{{ t_blog_index | relative_url }}">{{ t_back }}</a>
+      <a class="wf6-btn wf6-btn--line pst-nav__back" href="{{ t_blog_index | relative_url }}">{{ t_back }}</a>
 
       {% if next_post %}
-      <a class="post-nav-editorial__link post-nav-editorial__link--next" href="{% include relative-src.html src=next_post.url %}">
-        <span class="post-nav-editorial__link-label">{{ t_next_label }} <span aria-hidden="true">→</span></span>
-        <span class="post-nav-editorial__link-title">{{ next_post.title | truncate: 55 }}</span>
+      <a class="pst-nav__link pst-nav__link--next" href="{% include relative-src.html src=next_post.url %}">
+        <div class="pst-nav__label">{{ t_next_label }} →</div>
+        <div class="pst-nav__title">{{ next_post.title | truncate: 55 }}</div>
       </a>
       {% else %}
-      <span class="post-nav-editorial__spacer"></span>
+      <span></span>
       {% endif %}
     </nav>
 
@@ -249,23 +238,89 @@ layout: default
     {% assign other_posts = other_posts | push: p %}
   {% endunless %}
 {% endfor %}
-{% assign more_posts = other_posts | slice: 0, 3 %}
+{% assign more_posts = other_posts | slice: 0, 6 %}
 {% if more_posts.size > 0 %}
-<section class="more-articles-radical">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">{{ t_kicker_more }}</div>
-      <h2 class="section-title-radical">{{ t_continue }}</h2>
+<section class="pst-more">
+  <div class="dl-wrap">
+    <div class="pst-more__head dl-rise">
+      <h2 class="dl-heading">{{ t_continue }}</h2>
+      <div class="pst-slider__controls">
+        <button type="button" class="pst-slider__btn" data-slider-prev aria-label="{{ t_prev_label }}">‹</button>
+        <button type="button" class="pst-slider__btn" data-slider-next aria-label="{{ t_next_label }}">›</button>
+      </div>
     </div>
-    <div class="blog-grid" style="margin-top: 28px;">
-      {% for post in more_posts %}
-      {% include blog-card.html post=post %}
-      {% endfor %}
+    <div class="pst-slider">
+      <div class="pst-slider__track" data-slider-track>
+        {% for post in more_posts %}
+        {% include blog-card-v2.html post=post %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
 {% endif %}
 
+<!-- CTA -->
+<section class="dl-section pst-cta-section">
+  <div class="dl-wrap">
+    <div class="pst-cta dl-rise">
+      <h2 class="dl-heading">Keep reading.</h2>
+      <p class="dl-lead">Browse the full blog, follow updates, or contribute your own perspective. WAF++ is built in public.</p>
+      <div class="pst-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ t_blog_index | relative_url }}">
+          All articles
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/changelog/' | relative_url }}">Changelog</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+
+(function () {
+  document.querySelectorAll('.pst-more').forEach(function (section) {
+    var track = section.querySelector('[data-slider-track]');
+    var prevBtn = section.querySelector('[data-slider-prev]');
+    var nextBtn = section.querySelector('[data-slider-next]');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function step() {
+      var card = track.querySelector('.bpc-card');
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 24;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+    }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth - 1;
+      prevBtn.disabled = track.scrollLeft <= 0;
+      nextBtn.disabled = track.scrollLeft >= max;
+    }
+    prevBtn.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    nextBtn.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+})();
+</script>
 
 {% include seo-article.html %}

@@ -7,167 +7,169 @@ description: Frequently asked questions about WAF++ — short, technical, and wi
 permalink: /faq/
 ---
 
-<main class="page-radical faq-page">
+{% assign items = site.data.faq_en %}
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<div class="fq-page">
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+<!-- Hero -->
+<section class="fq-hero">
+  <div class="dl-wrap">
+    <h1 class="fq-hero__title dl-rise">Frequently Asked Questions.</h1>
+    <p class="fq-hero__lead dl-rise dl-d1">The most important questions about WAF++ — answered concisely and without buzzwords. Click a question to reveal the answer.</p>
+    <div class="fq-hero__actions dl-rise dl-d2">
+      <a class="wf6-btn wf6-btn--pill" href="#faq-list">All questions
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+          </svg>
+        </span>
+      </a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/saeulen/' | relative_url }}">8 Pillars</a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/governance-community/' | relative_url }}">Governance</a>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-radical-badge">
-          <span class="hero-radical-badge__dot"></span>
-          Questions &amp; Answers
+<!-- Stats -->
+<section class="fq-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat dl-rise"><div class="dl-stat__num">{{ items.size }}</div><div class="dl-stat__label">Questions answered</div></div>
+      <div class="dl-stat dl-rise dl-d1"><div class="dl-stat__num">Neutral</div><div class="dl-stat__label">Vendor-independent</div></div>
+      <div class="dl-stat dl-rise dl-d2"><div class="dl-stat__num">No</div><div class="dl-stat__label">Buzzwords</div></div>
+      <div class="dl-stat dl-rise dl-d3"><div class="dl-stat__num">Open</div><div class="dl-stat__label">Governed via RFCs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="dl-section" id="faq-list">
+  <div class="dl-wrap">
+    <div class="fq-section-head dl-rise">
+      <h2 class="dl-heading">All questions.</h2>
+      <p class="dl-lead">WAF++ is intentionally vendor-neutral. Where it helps, we link to governance and RFCs instead of hard prescriptions.</p>
+    </div>
+
+    <div class="fq-accordion dl-rise">
+      {% for item in items %}
+      <details class="fq-item" name="fq-accordion" {% if forloop.first %}open{% endif %}>
+        <summary class="fq-item__summary">
+          <span class="fq-item__q">{{ item.q }}</span>
+          <span class="fq-item__chevron"><i data-lucide="chevron-down" aria-hidden="true"></i></span>
+        </summary>
+        <div class="fq-item__answer">
+          {{ item.a | markdownify }}
+          {% if item.link %}
+          <div class="fq-item__action">
+            <a class="wf6-btn wf6-btn--line" href="{{ item.link | relative_url }}">{{ item.link_label | default: 'Learn more' }}</a>
+          </div>
+          {% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Still have questions -->
+<section class="dl-section--alt fq-cta-section">
+  <div class="dl-wrap">
+    <div class="fq-contact-layout dl-rise">
+      <div>
+        <div class="fq-section-head">
+          <h2 class="dl-heading">Still have questions?</h2>
+          <p class="dl-lead">WAF++ is built in the open. If your question isn't answered here, open a GitHub discussion, propose an RFC, or join a Working Group.</p>
         </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Frequently Asked Questions</span>
-        </h1>
+        <div class="fq-features">
+          <div class="fq-feature">
+            <div class="fq-feature__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+            <div>
+              <div class="fq-feature__title">GitHub Discussions</div>
+              <p class="fq-feature__desc">Ask anything directly in the repository — the community and maintainers respond.</p>
+            </div>
+          </div>
 
-        <p class="hero-radical-lead">
-          The most important questions about WAF++ — answered concisely and without buzzwords.
-          Click a question to reveal the answer.
-        </p>
+          <div class="fq-feature">
+            <div class="fq-feature__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+            <div>
+              <div class="fq-feature__title">Propose an RFC</div>
+              <p class="fq-feature__desc">Have a suggestion or a gap you spotted? The RFC process is open to everyone.</p>
+            </div>
+          </div>
 
-        <div class="hero-radical-actions">
-          <a class="btn btn-glow" href="#faq-list">All questions &darr;</a>
-          <a class="btn btn-glass" href="{{ '/saeulen/' | relative_url }}">8 Pillars</a>
-          <a class="btn btn-glass" href="{{ '/governance-community/' | relative_url }}">Governance</a>
+          <div class="fq-feature">
+            <div class="fq-feature__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+            <div>
+              <div class="fq-feature__title">Working Groups</div>
+              <p class="fq-feature__desc">Join the pillar-specific working groups to shape content, governance, and direction.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-radical-pills">
-          <span class="hero-radical-pill"><i data-lucide="help-circle" aria-hidden="true"></i> 15 questions answered</span>
-          <span class="hero-radical-pill"><i data-lucide="shield-check" aria-hidden="true"></i> Vendor-neutral</span>
-          <span class="hero-radical-pill"><i data-lucide="book-open" aria-hidden="true"></i> Framework · Governance · Pillars</span>
+        <div class="fq-contact__actions">
+          <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/" target="_blank" rel="noopener">Open a discussion
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+              </svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
         </div>
+      </div>
+
+      <div class="fq-links">
+        <a class="fq-link" href="{{ '/saeulen/' | relative_url }}">
+          <div class="fq-link__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+          <div>
+            <div class="fq-link__title">The 8 Pillars</div>
+            <div class="fq-link__desc">Framework structure and pillar overview.</div>
+          </div>
+        </a>
+
+        <a class="fq-link" href="{{ '/governance-community/' | relative_url }}">
+          <div class="fq-link__icon"><i data-lucide="shield" aria-hidden="true"></i></div>
+          <div>
+            <div class="fq-link__title">Governance &amp; Community</div>
+            <div class="fq-link__desc">TSC, Working Groups, and decision processes.</div>
+          </div>
+        </a>
+
+        <a class="fq-link" href="{{ '/docs/' | relative_url }}">
+          <div class="fq-link__icon"><i data-lucide="book-open" aria-hidden="true"></i></div>
+          <div>
+            <div class="fq-link__title">Documentation</div>
+            <div class="fq-link__desc">Full framework documentation and references.</div>
+          </div>
+        </a>
+
+        <a class="fq-link" href="{{ '/contributing/' | relative_url }}">
+          <div class="fq-link__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+          <div>
+            <div class="fq-link__title">Contributing</div>
+            <div class="fq-link__desc">How to get involved and contribute to WAF++.</div>
+          </div>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+</div>
 
-  <!-- ===================== FAQ ===================== -->
-  <section class="bento-section" id="faq-list">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">FAQ</div>
-        <h2 class="section-title-radical">All questions</h2>
-        <p class="section-lead-radical">
-          WAF++ is intentionally vendor-neutral. Where it helps, we link to governance and RFCs instead of hard prescriptions.
-        </p>
-      </div>
-
-      <div class="faq-accordion">
-        {% assign items = site.data.faq_en %}
-        {% for item in items %}
-        <details class="faq-item" {% if forloop.first %}open{% endif %}>
-          <summary>
-            <span class="faq-item__index">{{ forloop.index }}</span>
-            <span>{{ item.q }}</span>
-          </summary>
-          <div class="faq-answer">
-            {{ item.a }}
-            {% if item.link %}
-            <div class="faq-answer__action">
-              <a class="btn btn-glow" href="{{ item.link | relative_url }}">{{ item.link_label | default: 'Learn more →' }}</a>
-            </div>
-            {% endif %}
-          </div>
-        </details>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== STILL HAVE QUESTIONS ===================== -->
-  <section class="bento-section">
-    <div class="container">
-      <div class="faq-contact-layout">
-        <div class="faq-contact-copy">
-          <div class="section-header-radical">
-            <div class="kicker-radical">Get involved</div>
-            <h2 class="section-title-radical">Still have questions?</h2>
-            <p class="section-lead-radical">WAF++ is built in the open. If your question isn't answered here, open a GitHub discussion, propose an RFC, or join a Working Group.</p>
-          </div>
-
-          <div class="faq-contact-features">
-            <article class="faq-contact-feature">
-              <div class="faq-contact-feature__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
-              <div>
-                <div class="faq-contact-feature__title">GitHub Discussions</div>
-                <p class="faq-contact-feature__desc">Ask anything directly in the repository — the community and maintainers respond.</p>
-              </div>
-            </article>
-
-            <article class="faq-contact-feature">
-              <div class="faq-contact-feature__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
-              <div>
-                <div class="faq-contact-feature__title">Propose an RFC</div>
-                <p class="faq-contact-feature__desc">Have a suggestion or a gap you spotted? The RFC process is open to everyone.</p>
-              </div>
-            </article>
-
-            <article class="faq-contact-feature">
-              <div class="faq-contact-feature__icon"><i data-lucide="users" aria-hidden="true"></i></div>
-              <div>
-                <div class="faq-contact-feature__title">Working Groups</div>
-                <p class="faq-contact-feature__desc">Join the pillar-specific working groups to shape content, governance, and direction.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="hero-radical-actions" style="justify-content: flex-start; margin-top: 26px;">
-            <a class="btn btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">Open a discussion &rarr;</a>
-            <a class="btn btn-glass" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
-          </div>
-        </div>
-
-        <div class="faq-quick-links">
-          <div class="section-header-radical" style="text-align: left; margin: 0 0 18px;">
-            <div class="kicker-radical">Quick links</div>
-          </div>
-
-          <a class="faq-quick-link" href="{{ '/saeulen/' | relative_url }}">
-            <div class="faq-quick-link__icon"><i data-lucide="layers" aria-hidden="true"></i></div>
-            <div class="faq-quick-link__body">
-              <div class="faq-quick-link__title">The 8 Pillars</div>
-              <div class="faq-quick-link__desc">Framework structure and pillar overview.</div>
-            </div>
-          </a>
-
-          <a class="faq-quick-link" href="{{ '/governance-community/' | relative_url }}">
-            <div class="faq-quick-link__icon"><i data-lucide="shield" aria-hidden="true"></i></div>
-            <div class="faq-quick-link__body">
-              <div class="faq-quick-link__title">Governance &amp; Community</div>
-              <div class="faq-quick-link__desc">TSC, Working Groups, and decision processes.</div>
-            </div>
-          </a>
-
-          <a class="faq-quick-link" href="{{ '/docs/' | relative_url }}">
-            <div class="faq-quick-link__icon"><i data-lucide="book-open" aria-hidden="true"></i></div>
-            <div class="faq-quick-link__body">
-              <div class="faq-quick-link__title">Documentation</div>
-              <div class="faq-quick-link__desc">Full framework documentation and references.</div>
-            </div>
-          </a>
-
-          <a class="faq-quick-link" href="{{ '/contributing/' | relative_url }}">
-            <div class="faq-quick-link__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
-            <div class="faq-quick-link__body">
-              <div class="faq-quick-link__title">Contributing</div>
-              <div class="faq-quick-link__desc">How to get involved and contribute to WAF++.</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<script src="{{ '/assets/js/faq-accordion.js' | relative_url }}" defer></script>
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

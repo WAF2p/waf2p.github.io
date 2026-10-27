@@ -7,89 +7,152 @@ title: Fintech compliance review · WAF++ Use Cases
 description: How a regulated fintech used WAF++ to map cloud controls to DSGVO, BSI C5, and NIS2 before an audit.
 ---
 
-<main class="page-radical use-case-detail-page use-case-detail-page--fintech">
+<div class="ucd-page">
 
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="ucd-hero">
+  <div class="dl-wrap">
+    <nav class="dl-rise" aria-label="Breadcrumb"><a class="ucd-back" href="{{ '/use-cases/' | relative_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i> Back to use cases</a></nav>
+    <h1 class="ucd-hero__title dl-rise dl-d1">Fintech compliance review.</h1>
+    <p class="ucd-hero__lead dl-rise dl-d2">A regulated fintech uses WAF++ to map cloud controls to DSGVO, BSI C5, and NIS2, then closes Sovereign and Security gaps before an audit.</p>
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+    <div class="ucd-shot dl-rise dl-d3">
+      <button class="dl-shot" type="button" aria-label="View the compliance matrix screenshot, larger">
+        <img src="{{ '/assets/images/wafpass/Compliance_Matrix.png' | relative_url }}" alt="WAFPass compliance matrix screenshot for the fintech use case">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-        <a class="uc-detail-back" href="{{ '/use-cases/' | relative_url }}">
-          <i data-lucide="arrow-left" aria-hidden="true"></i> Back to use cases
-        </a>
+<!-- Context / Approach / Outcome -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="ucd-grid dl-rise">
+      <div>
+        <h2 class="ucd-block__title">Context</h2>
+        <p class="ucd-block__text">The company is a German payment services provider moving its core workload from a managed data centre to a multi-cloud setup. Regulators require documented evidence for data residency, encryption, access control, and incident response. The team needs a vendor-neutral way to structure the review and track gaps.</p>
+      </div>
 
-        <div class="hero-radical-badge" style="margin-top: 18px;">
-          <span class="hero-radical-badge__dot"></span>
-          Financial Services
-        </div>
+      <div>
+        <h2 class="ucd-block__title">Approach</h2>
+        <p class="ucd-block__text">They run a WAF++ assessment focused on the Security, Sovereign, and Operational Excellence pillars. Each control is mapped to the relevant regulation, and missing evidence is recorded as a PASS score gap. The Security and Sovereign pillars receive extra weight because they are audit-relevant.</p>
+      </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Fintech compliance review</span>
-        </h1>
-
-        <p class="hero-radical-lead">
-          A regulated fintech uses WAF++ to map cloud controls to DSGVO, BSI C5, and NIS2,
-          then closes Sovereign and Security gaps before an audit.
-        </p>
+      <div>
+        <h2 class="ucd-block__title">Outcome</h2>
+        <p class="ucd-block__text">The team produces an audit-ready report with control mappings, evidence links, and a remediation backlog. PASS scores improve from 54 to 78 over two sprints, and the external audit finds no critical findings related to cloud controls.</p>
       </div>
     </div>
-  </section>
 
-  <section class="uc-detail-visual">
-    <div class="container">
-      <div class="uc-detail-visual__frame uc-detail-visual--fintech">
-        <img src="/assets/images/wafpass/Compliance_Matrix.png" alt="WAFPass compliance matrix screenshot for the fintech use case">
+    <div class="ucd-tags dl-rise">
+      <span class="ucd-tag">Security</span>
+      <span class="ucd-tag">Sovereign</span>
+      <span class="ucd-tag">Operational Excellence</span>
+      <span class="ucd-tag">DSGVO</span>
+      <span class="ucd-tag">BSI C5</span>
+      <span class="ucd-tag">NIS2</span>
+    </div>
+  </div>
+</section>
+
+<!-- Supporting screenshots -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="uc2-section-head dl-rise">
+      <h2 class="dl-heading">From the assessment.</h2>
+      <p class="dl-lead">Real WAFPass views used to build this review.</p>
+    </div>
+
+    <div class="ucd-gallery dl-rise">
+      <div>
+        <button class="dl-shot" type="button" aria-label="View the access roles screenshot, larger">
+          <img src="{{ '/assets/images/wafpass/Access_Roles.png' | relative_url }}" alt="WAFPass access roles screen used to evidence access control">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Access control evidence</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="View the secret scanner screenshot, larger">
+          <img src="{{ '/assets/images/wafpass/Secret_Scanner.png' | relative_url }}" alt="WAFPass secret scanner screen used to evidence encryption and secrets handling">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Secret &amp; encryption scanning</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="View the executive dashboard screenshot, larger">
+          <img src="{{ '/assets/images/wafpass/Executive_Dashboard.png' | relative_url }}" alt="WAFPass executive dashboard screen tracking the PASS score improvement">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Audit-ready PASS tracking</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bento-section">
-    <div class="container">
-      <div class="uc-detail-grid">
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Context</h2>
-          <p class="uc-detail-block__text">
-            The company is a German payment services provider moving its core workload from a managed
-            data centre to a multi-cloud setup. Regulators require documented evidence for data residency,
-            encryption, access control, and incident response. The team needs a vendor-neutral way to
-            structure the review and track gaps.
-          </p>
-        </article>
+</div>
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Approach</h2>
-          <p class="uc-detail-block__text">
-            They run a WAF++ assessment focused on the Security, Sovereign, and Operational Excellence
-            pillars. Each control is mapped to the relevant regulation, and missing evidence is recorded
-            as a PASS score gap. The Security and Sovereign pillars receive extra weight because they
-            are audit-relevant.
-          </p>
-        </article>
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="ucd-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Outcome</h2>
-          <p class="uc-detail-block__text">
-            The team produces an audit-ready report with control mappings, evidence links, and a
-            remediation backlog. PASS scores improve from 54 to 78 over two sprints, and the external
-            audit finds no critical findings related to cloud controls.
-          </p>
-        </article>
-      </div>
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 
-      <div class="uc-detail-tags">
-        <span class="uc-detail-tag">Security</span>
-        <span class="uc-detail-tag">Sovereign</span>
-        <span class="uc-detail-tag">Operational Excellence</span>
-        <span class="uc-detail-tag">DSGVO</span>
-        <span class="uc-detail-tag">BSI C5</span>
-        <span class="uc-detail-tag">NIS2</span>
-      </div>
-    </div>
-  </section>
+  var lightbox = document.getElementById('ucd-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
 
-</main>
+    function openLightbox(trigger) {
+      var img = trigger.querySelector('img');
+      if (!img) return;
+      lastTrigger = trigger;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.ucd-page').classList.add('ucd-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.ucd-page').classList.remove('ucd-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

@@ -1,0 +1,127 @@
+/* ============================================================
+   WAF++ RFC Tracker page — v2
+   Built on theme/_design-language.scss. Sixth consumer of the
+   shared .dl-* system. The RFC/ADR tab-and-card component
+   library lives in rfc.scss (restyled onto the same tokens but
+   kept as one file since its CSS-only filtering logic is
+   selector-sensitive); this file is just the page's own chrome:
+   hero, stats, section heads and CTA.
+
+   Scope: /rfc/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.rfc2-page { background: var(--dl-ground); }
+.rfc2-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.rfc2-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.rfc2-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.48fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .rfc2-hero__grid { grid-template-columns: 1fr; }
+}
+
+.rfc2-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 11ch;
+}
+
+.rfc2-hero__lead { @include dl-lead; max-width: 46ch; }
+.rfc2-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats (six values, not the usual four) ---------- */
+
+.rfc2-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+.rfc2-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .rfc2-stats__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .rfc2-stats__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- section head ---------- */
+
+.rfc2-section-head:not(.dl-section-head--split) { max-width: 62ch; }
+
+/* ---------- CTA ---------- */
+
+.rfc2-cta { @include dl-card; padding: clamp(40px, 6vw, 72px); text-align: center; }
+.rfc2-cta .dl-heading { max-width: none; }
+.rfc2-cta .dl-lead { max-width: 56ch; margin-inline: auto; }
+.rfc2-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+/* Dark flush continuation of the final CTA band into the frontpage footer. */
+.rfc2-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+
+.rfc2-cta-section .rfc2-cta {
+  background: transparent;
+}
+
+.rfc2-cta-section .rfc2-cta .dl-heading { color: #fff; }
+.rfc2-cta-section .rfc2-cta .dl-lead  { color: rgba(255, 255, 255, 0.72); }
+
+.rfc2-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.rfc2-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.rfc2-cta-section .wf6-btn--pill:hover {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.rfc2-cta-section .wf6-btn--pill:hover .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+
+.rfc2-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.rfc2-cta-section .wf6-btn--line:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ---------- submit CTA actions ---------- */
+
+.rfc-submit__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ---------- lightbox: uses the shared .dl-shot / .dl-lightbox classes directly ---------- */
+
+.rfc2-page.rfc2-lightbox-open,
+.rfc2-page.rfc2-lightbox-open main { overflow: hidden; }

@@ -1,0 +1,59 @@
+{% assign post = include.post %}
+
+{%- comment -%}
+  Same preview-image inference as the original blog-card.html (first
+  image in the rendered content, falling back to the site logo) — this
+  include is a fresh v2 just for blog/index.html, blog-category.html
+  and post.html's "more articles", so the original stays untouched for
+  archive.html and staff_member_page.html, which still use it as-is.
+{%- endcomment -%}
+
+{% assign preview = '' %}
+{% assign content_raw = post.content | strip %}
+
+{%- assign html_split = content_raw | split: '<img' -%}
+{%- if html_split.size > 1 -%}
+  {%- assign img_chunk = html_split[1] -%}
+  {%- assign src_split = img_chunk | split: 'src="' -%}
+  {%- if src_split.size > 1 -%}
+    {%- assign src_rest = src_split[1] -%}
+    {%- assign src = src_rest | split: '"' | first -%}
+    {%- assign preview = src -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if preview == '' -%}
+  {%- assign bang_split = content_raw | split: '![' -%}
+  {%- if bang_split.size > 1 -%}
+    {%- assign after = bang_split[1] -%}
+    {%- assign url_part = after | split: '](' | last -%}
+    {%- assign url_raw = url_part | split: ')' | first -%}
+    {%- assign preview = url_raw | split: ' ' | first -%}
+  {%- endif -%}
+{%- endif -%}
+
+{% if preview == '' %}
+  {% assign preview = '/images/WAFpp_upscaled_1000.png' %}
+{% endif %}
+
+<article class="bpc-card dl-rise">
+  <a class="bpc-card__media" href="{% include relative-src.html src=post.url %}">
+    <img src="{{ preview }}" alt="" loading="lazy">
+  </a>
+
+  <div class="bpc-card__body">
+    <div class="bpc-card__meta">
+      <span>{{ post.date | date: "%d %b %Y" }}</span>
+      {% if post.categories and post.categories.size > 0 %}
+        {% assign c0 = post.categories | first %}
+        <span>· {{ c0 | replace: '_', ' ' }}</span>
+      {% endif %}
+    </div>
+
+    <h3 class="bpc-card__title"><a href="{% include relative-src.html src=post.url %}">{{ post.title }}</a></h3>
+
+    <p class="bpc-card__excerpt">{{ post.excerpt | strip_html | strip | truncate: 150 }}</p>
+
+    <a class="bpc-card__link" href="{% include relative-src.html src=post.url %}">{{ i18n.common.read_more | default: "Read more" }} →</a>
+  </div>
+</article>

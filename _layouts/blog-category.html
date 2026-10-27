@@ -4,66 +4,95 @@ layout: default
 
 {% if page.lang == 'de' %}
   {% assign t_back = "Zurück zum Blog" %}
-  {% assign t_badge = "Kategorie" %}
   {% assign t_all_cats = "Alle Kategorien" %}
   {% assign t_empty = "In dieser Kategorie gibt es noch keine Artikel." %}
   {% assign cat_prefix = "/de/blog/category/" %}
   {% assign blog_index = "/de/blog/" %}
 {% else %}
   {% assign t_back = "Back to Blog" %}
-  {% assign t_badge = "Category" %}
   {% assign t_all_cats = "All categories" %}
   {% assign t_empty = "No articles in this category yet." %}
   {% assign cat_prefix = "/blog/category/" %}
   {% assign blog_index = "/blog/" %}
 {% endif %}
 
-<div class="page-radical blog-page">
-  <section class="blog-header">
-    <div class="container blog-header__inner">
-      <div class="blog-header__pills">
-        <span class="blog-header__pill">
-          <i data-lucide="folder-open" aria-hidden="true"></i> {{ t_badge }}
-        </span>
-      </div>
-      <h1 class="blog-header__title">{{ page.title }}</h1>
-      <p class="blog-header__lead">{{ page.description }}</p>
+<div class="blg-page">
 
-      <div class="blog-cats" style="margin-top: 18px;">
-        <span class="blog-cats__label">{{ t_all_cats }}:</span>
-        {% assign all_cats = site.posts | where: 'lang', page.lang | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
-        {% for c in all_cats %}
-          {% assign c_clean = c | strip %}
-          {% if c_clean != '' %}
-            {% assign c_slug = c_clean | slugify %}
-            {% assign c_url = cat_prefix | append: c_slug | append: '/' | relative_url %}
-            <a class="blog-cats__chip{% if c_clean == page.category %} is-active{% endif %}" href="{{ c_url }}">{{ c_clean | replace: '_', ' ' }}</a>
-          {% endif %}
-        {% endfor %}
+  <section class="blg-hero">
+    <div class="dl-wrap">
+      <h1 class="blg-hero__title dl-rise">{{ page.title }}</h1>
+      <p class="blg-hero__lead dl-rise dl-d1">{{ page.description }}</p>
+    </div>
+  </section>
+
+  <section class="dl-section" style="padding-top: 0;">
+    <div class="dl-wrap">
+
+      {% assign all_cats = site.posts | where: 'lang', page.lang | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+      <div class="dl-quiet-row blg-filters dl-rise dl-d2">
+        <span class="dl-quiet-row__intro">{{ t_all_cats }}:</span>
+        <div class="dl-quiet-row__names blg-filters__names">
+          {% for c in all_cats %}
+            {% assign c_clean = c | strip %}
+            {% if c_clean != '' %}
+              {% assign c_slug = c_clean | slugify %}
+              {% assign c_url = cat_prefix | append: c_slug | append: '/' | relative_url %}
+              <a class="{% if c_clean == page.category %}is-active{% endif %}" href="{{ c_url }}">{{ c_clean | replace: '_', ' ' }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% assign posts_in_cat = site.posts | where_exp: "p", "p.categories contains page.category" | where: "lang", page.lang %}
+      {% if posts_in_cat.size > 0 %}
+        <div class="blg-grid">
+          {% for post in posts_in_cat %}
+            {% include blog-card-v2.html post=post %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="blg-empty">{{ t_empty }}</p>
+      {% endif %}
+
+      <div class="blg-pager dl-rise">
+        <a class="wf6-btn wf6-btn--line" href="{{ blog_index | relative_url }}">{{ t_back }}</a>
       </div>
     </div>
   </section>
 
-  <section class="bento-section" style="padding-top: 0;">
-    <div class="container">
-      {% assign posts_in_cat = site.posts | where_exp: "p", "p.categories contains page.category" | where: "lang", page.lang %}
-      {% if posts_in_cat.size > 0 %}
-        <div class="blog-grid">
-          {% for post in posts_in_cat %}
-            {% include blog-card.html post=post %}
-          {% endfor %}
+  <!-- CTA -->
+  <section class="dl-section blg-cta-section">
+    <div class="dl-wrap">
+      <div class="blg-cta dl-rise">
+        <h2 class="dl-heading">Explore more.</h2>
+        <p class="dl-lead">Browse all articles, follow the changelog, or join the RFC process. The WAF++ blog is open source and community-written.</p>
+        <div class="blg-cta__actions">
+          <a class="wf6-btn wf6-btn--pill" href="{{ blog_index | relative_url }}">
+            All articles
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/changelog/' | relative_url }}">Changelog</a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
         </div>
-      {% else %}
-        <p class="text-center" style="color: var(--radical-muted);">{{ t_empty }}</p>
-      {% endif %}
-
-      <div class="pagination modern" style="margin-top: 32px;">
-        <a class="btn-glass btn-glass--sm" href="{{ blog_index | relative_url }}">
-          <span aria-hidden="true">←</span> {{ t_back }}
-        </a>
-        <span></span>
-        <span></span>
       </div>
     </div>
   </section>
 </div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

@@ -1,0 +1,267 @@
+/* ============================================================
+   WAF++ About page — v2
+   Built on theme/_design-language.scss. Fresh .abt- prefix:
+   the existing .team-grid, .person-card-radical and
+   .timeline-radical class family (defined in home.scss and
+   staff.scss but only ever consumed by about.html) stays
+   untouched — it still renders the language-variant about
+   pages (de/es/fr/it/nl/pl/pt), out of scope here. .bento-grid
+   and .bento-card are NOT touched at all: they're a shared
+   component used on 20+ other pages across the site.
+
+   Scope: about.html (EN) only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.abt-page { background: var(--dl-ground); }
+.abt-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.abt-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.abt-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+.abt-hero__lead { @include dl-lead; max-width: 60ch; }
+.abt-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats ---------- */
+
+.abt-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.abt-section-head { max-width: 62ch; }
+
+/* ---------- mission (bento) ---------- */
+
+.abt-mission {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.5vw, 28px);
+}
+@media (max-width: 980px) {
+  .abt-mission { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .abt-mission { grid-template-columns: 1fr; }
+}
+
+.abt-mission__card { @include dl-card; padding: clamp(24px, 3vw, 30px); display: flex; flex-direction: column; }
+.abt-mission__card--lead { grid-column: span 2; }
+@media (max-width: 980px) {
+  .abt-mission__card--lead { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .abt-mission__card--lead { grid-column: span 1; }
+}
+
+.abt-mission__icon { color: var(--dl-ink); margin-bottom: 16px; }
+.abt-mission__icon svg { width: 26px; height: 26px; stroke-width: 1.5; }
+.abt-mission__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.abt-mission__desc { font-size: 0.9375rem; line-height: 1.6; color: var(--dl-muted); margin: 0; flex: 1; }
+
+.abt-mission__stats { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 20px; }
+.abt-mission__stat { font-size: 0.8125rem; color: var(--dl-muted); }
+.abt-mission__stat strong { font-family: var(--dl-font-display); font-weight: 600; color: var(--dl-ink); }
+
+.abt-mission__cta { margin-top: clamp(28px, 3.5vw, 36px); margin-bottom: clamp(12px, 2vw, 20px); display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ---------- team ---------- */
+
+.abt-team {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .abt-team { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .abt-team { grid-template-columns: 1fr; }
+}
+
+.abt-person__photo { width: 100%; aspect-ratio: 1; border-radius: var(--dl-radius); overflow: hidden; background: var(--dl-surface-2); }
+.abt-person__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.abt-person__name { margin-top: 14px; font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); }
+.abt-person__name a { color: inherit; text-decoration: none; }
+.abt-person__name a:hover { text-decoration: underline; text-decoration-color: var(--dl-border); }
+.abt-person__role { margin-top: 2px; font-size: 0.8125rem; color: var(--dl-muted); }
+.abt-person__bio { margin-top: 10px; font-size: 0.875rem; line-height: 1.55; color: var(--dl-muted); }
+
+.abt-person__social { margin-top: 10px; display: flex; gap: 12px; }
+.abt-person__social a { color: var(--dl-muted); display: inline-flex; }
+.abt-person__social a:hover { color: var(--dl-ink); }
+.abt-person__social svg { width: 17px; height: 17px; }
+
+/* ---------- honoured members ---------- */
+
+.abt-honoured {
+  margin-top: clamp(32px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.abt-honoured__row {
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  padding: clamp(18px, 2.5vw, 22px) clamp(20px, 2.5vw, 26px);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+@media (max-width: 560px) {
+  .abt-honoured__row { flex-direction: column; align-items: flex-start; }
+}
+
+.abt-honoured__photo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex: none; background: var(--dl-surface-2); }
+.abt-honoured__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.abt-honoured__name { font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); }
+.abt-honoured__name a { color: inherit; text-decoration: none; }
+.abt-honoured__name a:hover { text-decoration: underline; }
+.abt-honoured__role { font-size: 0.8125rem; color: var(--dl-muted); margin-top: 1px; }
+.abt-honoured__bio { margin-top: 4px; font-size: 0.875rem; line-height: 1.5; color: var(--dl-muted); max-width: 64ch; }
+
+/* ---------- history ---------- */
+
+.abt-history-section { padding-block: clamp(96px, 12vw, 160px); }
+
+.abt-history {
+  position: relative;
+  margin-top: clamp(80px, 10vw, 120px);
+  margin-bottom: clamp(48px, 7vw, 80px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 32px);
+}
+
+.abt-history__track {
+  position: absolute;
+  left: 23px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--dl-border);
+  border-radius: 2px;
+}
+@media (max-width: 560px) {
+  .abt-history__track { left: 15px; }
+}
+
+.abt-history__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: clamp(18px, 3vw, 28px);
+  align-items: start;
+}
+@media (max-width: 560px) {
+  .abt-history__item { grid-template-columns: 32px 1fr; gap: 14px; }
+}
+
+.abt-history__marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-top: 18px;
+}
+
+.abt-history__dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dl-accent);
+  border: 3px solid var(--dl-surface-2);
+  flex: none;
+}
+.abt-history__dot::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid var(--dl-border);
+  pointer-events: none;
+}
+
+.abt-history__number {
+  font-family: var(--dl-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--dl-muted);
+}
+@media (max-width: 560px) {
+  .abt-history__number { display: none; }
+}
+
+.abt-history__card {
+  background: var(--dl-surface);
+  border: 1px solid var(--dl-border);
+  border-radius: var(--dl-radius);
+  padding: clamp(28px, 3.5vw, 38px) clamp(22px, 3vw, 30px);
+}
+
+.abt-history__title { font-family: var(--dl-font-display); font-weight: 600; font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem); color: var(--dl-ink); margin: 0 0 8px; }
+.abt-history__text { font-size: var(--dl-size-body); line-height: 1.6; color: var(--dl-muted); margin: 0; }
+
+/* ---------- CTA ---------- */
+
+.abt-cta { @include dl-card; padding: clamp(40px, 6vw, 72px); text-align: center; }
+.abt-cta .dl-heading { max-width: none; }
+.abt-cta .dl-lead { max-width: 56ch; margin-inline: auto; }
+.abt-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+
+.abt-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+.abt-cta { background: transparent; }
+.abt-cta .dl-heading { color: #fff; }
+.abt-cta .dl-lead { color: rgba(255, 255, 255, 0.72); }
+.abt-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.abt-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.abt-cta-section .wf6-btn--pill:hover,
+.abt-cta-section .wf6-btn--pill:focus {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.abt-cta-section .wf6-btn--pill:hover .wf6-btn__arrow,
+.abt-cta-section .wf6-btn--pill:focus .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+.abt-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.abt-cta-section .wf6-btn--line:hover,
+.abt-cta-section .wf6-btn--line:focus {
+  border-color: #fff;
+  color: #fff;
+}

@@ -1,0 +1,151 @@
+/* ============================================================
+   WAF++ PASS GitHub Action page — v2
+   Built on theme/_design-language.scss. Tenth consumer of the
+   shared .dl-* system. All classes are a fresh .wfpa-* prefix;
+   the old .wafpass-hero/.wafpass-stats/.wafpass-stack family
+   and .control-pill stay in home.scss, still used by
+   wafpass-mcp.html (not in scope here) exactly as this page
+   left them.
+
+   .code-window (code-window.scss) and .rfc-table/.rfc-table-wrap
+   (rfc.scss) are reused as-is: both were already modernized onto
+   dl-tokens during earlier redesigns, so this page inherits that
+   work for free. They're marked data-ui in the HTML (attribute
+   only, no CSS changes here) so the two real workflow examples
+   and two real reference tables count as this page's interface
+   fragments, same as a screenshot would, on a page with no
+   dashboard UI of its own to show.
+
+   Scope: /wafpass-action/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.wfpa-page { background: var(--dl-ground); }
+.wfpa-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.wfpa-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.wfpa-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 16ch;
+}
+
+.wfpa-hero__lead { @include dl-lead; max-width: 62ch; }
+.wfpa-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+.wfpa-hero__row { @include dl-quiet-row; margin-top: 32px; }
+
+/* ---------- stats ---------- */
+
+.wfpa-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+/* ---------- section head ---------- */
+
+.wfpa-section-head { max-width: 62ch; }
+
+/* ---------- features ---------- */
+
+.wfpa-grid {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+@media (max-width: 900px) {
+  .wfpa-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .wfpa-grid { grid-template-columns: 1fr; }
+}
+
+.wfpa-card { @include dl-card; padding: clamp(24px, 3vw, 30px); }
+.wfpa-card__title { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); margin: 0 0 8px; }
+.wfpa-card__desc {
+  font-size: var(--dl-size-body);
+  line-height: 1.55;
+  color: var(--dl-muted);
+  margin: 0;
+
+  code {
+    font-family: var(--dl-font-mono);
+    font-size: 0.8125rem;
+    background: var(--dl-surface-2);
+    color: var(--dl-ink);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+}
+
+/* ---------- usage: two real workflow examples ---------- */
+
+.wfpa-usage { margin-top: clamp(48px, 6vw, 72px); display: flex; flex-direction: column; gap: clamp(24px, 3vw, 32px); }
+
+/* ---------- inputs / outputs tables ---------- */
+
+.wfpa-tables { margin-top: clamp(48px, 6vw, 72px); display: flex; flex-direction: column; gap: clamp(32px, 4vw, 44px); }
+.wfpa-tables__label { font-family: var(--dl-font-display); font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); margin: 0 0 14px; }
+
+/* The inputs table has a long Description column; force horizontal
+   scroll at narrow widths instead of squeezing every cell onto many
+   wrapped lines (the shared .rfc-table has no min-width of its own,
+   since the RFC page's own tables are short enough not to need one). */
+.wfpa-tables .rfc-table { min-width: 640px; }
+
+.wfpa-required { font-weight: 600; color: #1d9a5c; }
+
+/* ---------- CTA ---------- */
+
+.wfpa-cta { @include dl-card; padding: clamp(40px, 6vw, 72px); text-align: center; }
+.wfpa-cta .dl-heading { max-width: none; }
+.wfpa-cta .dl-lead { max-width: 56ch; margin-inline: auto; }
+.wfpa-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+/* Dark flush continuation of the final CTA band into the frontpage footer. */
+.wfpa-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+
+.wfpa-cta-section .wfpa-cta {
+  background: transparent;
+}
+
+.wfpa-cta-section .dl-heading { color: #fff; }
+.wfpa-cta-section .dl-lead  { color: rgba(255, 255, 255, 0.72); }
+
+.wfpa-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.wfpa-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.wfpa-cta-section .wf6-btn--pill:hover {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.wfpa-cta-section .wf6-btn--pill:hover .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+
+.wfpa-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.wfpa-cta-section .wf6-btn--line:hover {
+  border-color: #fff;
+  color: #fff;
+}

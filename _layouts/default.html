@@ -27,16 +27,16 @@
     {% include seo-head.html %}
   </head>
 
-  <body{% if page.ref == 'home' %} class="frontpage"{% endif %}>
+  <body{% if page.ref == 'home' or page.ref == 'saeulen' or page.ref == 'controls' or page.ref == 'comparison' or page.ref == 'why-not' or page.ref == 'rfc' or page.ref == 'glossary' or page.ref == 'wafpass' or page.ref == 'wafpass-install' or page.ref == 'wafpass_action' or page.ref == 'wafpass_mcp' or page.ref == 'conferences' or page.ref == 'blog' or page.ref contains 'blog/category' or page.layout == 'post' or page.ref == 'contributing' or page.ref == 'about' or page.ref == 'vision' or page.ref == 'roadmap' or page.ref == 'cto' or page.ref == 'legal' or page.ref == 'changelog' or page.ref == 'faq' or page.ref == 'press' or page.ref == 'code_of_conduct' or page.ref == 'governance-community' or page.ref == 'roles' or page.ref == 'use_cases' or page.ref == 'stay_updated' or page.ref == 'impressum' or page.ref == '404' or page.layout == 'staff_member_page' %} class="frontpage"{% endif %}>
     {% include header.html %}
     <main>
       {% include translation-notice.html %}
       {{ content }}
     </main>
     {% include footer.html %}
-    {% include agentic-launch-modal.html %}
+    {% include cookie-consent.html %}
     <!-- Icons (Lucide) -->
-    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="{{ '/assets/js/lucide.min.js' | relative_url }}"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (window.lucide) { window.lucide.createIcons(); }

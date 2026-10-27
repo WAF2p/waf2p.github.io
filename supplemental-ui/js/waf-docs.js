@@ -111,7 +111,7 @@
     const path = window.location.pathname;
     const match = path.match(/\/docs\/wafpp\/([^/]+)/);
     // If not on a docs page, try to infer language from the path; default to English.
-    const fallbackVersion = path.includes('-de') ? '1.0.2-de' : '1.0.2-en';
+    const fallbackVersion = path.includes('-de') ? '1.1.0-de' : '1.1.0-en';
     const currentVersion = match ? match[1] : fallbackVersion;
     const isDe = currentVersion.includes('-de');
     const nextVersion = isDe
@@ -254,6 +254,133 @@
         document.body.classList.remove('nav-open');
         closeAllGroups();
         burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // Cookie consent modal
+  (function () {
+    const STORAGE_KEY = 'wafpp-cookie-consent';
+    const modal = document.getElementById('cookie-consent');
+    const trigger = document.getElementById('cookie-trigger');
+    if (!modal || !trigger) return;
+
+    const closeButtons = modal.querySelectorAll('[data-cookie-close]');
+    const acceptBtn = modal.querySelector('[data-cookie-accept]');
+    const rejectBtn = modal.querySelector('[data-cookie-reject]');
+    const saveBtn = modal.querySelector('[data-cookie-save]');
+    const toggles = modal.querySelectorAll('[data-cookie-category]');
+
+    const categories = ['analytics', 'functional', 'marketing'];
+
+    function getConsent() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return null;
+    }
+
+    function setConsent(consent) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+      } catch (e) {}
+      applyConsent(consent);
+    }
+
+    function applyConsent(consent) {
+      try {
+        window.dispatchEvent(new CustomEvent('wafpp:consent', { detail: consent }));
+      } catch (e) {}
+      window.wafppConsent = consent;
+    }
+
+    function buildConsent(values) {
+      const out = { necessary: true, version: 1, updated: new Date().toISOString() };
+      categories.forEach(function (c) { out[c] = !!values[c]; });
+      return out;
+    }
+
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        try { window.lucide.createIcons(); } catch (e) {}
+      }
+    }
+
+    function openModal() {
+      modal.hidden = false;
+      void modal.offsetWidth;
+      modal.classList.add('is-open');
+      refreshIcons();
+      const firstFocus = modal.querySelector('button, input');
+      if (firstFocus) firstFocus.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      setTimeout(function () { modal.hidden = true; }, 250);
+    }
+
+    function populateToggles(consent) {
+      toggles.forEach(function (input) {
+        const cat = input.dataset.cookieCategory;
+        input.checked = !!(consent && consent[cat]);
+      });
+    }
+
+    function acceptAll() {
+      const values = {};
+      categories.forEach(function (c) { values[c] = true; });
+      setConsent(buildConsent(values));
+      closeModal();
+    }
+
+    function rejectNonEssential() {
+      const values = {};
+      categories.forEach(function (c) { values[c] = false; });
+      setConsent(buildConsent(values));
+      closeModal();
+    }
+
+    function savePreferences() {
+      const values = {};
+      toggles.forEach(function (input) {
+        values[input.dataset.cookieCategory] = input.checked;
+      });
+      setConsent(buildConsent(values));
+      closeModal();
+    }
+
+    function updateTriggerState() {
+      if (getConsent()) {
+        trigger.classList.remove('is-pending');
+      } else {
+        trigger.classList.add('is-pending');
+      }
+    }
+
+    const existing = getConsent();
+    if (existing) {
+      applyConsent(existing);
+      populateToggles(existing);
+    } else {
+      openModal();
+    }
+    updateTriggerState();
+
+    trigger.addEventListener('click', function () {
+      populateToggles(getConsent());
+      openModal();
+    });
+
+    closeButtons.forEach(function (btn) { btn.addEventListener('click', closeModal); });
+    if (acceptBtn) acceptBtn.addEventListener('click', function () { acceptAll(); updateTriggerState(); });
+    if (rejectBtn) rejectBtn.addEventListener('click', function () { rejectNonEssential(); updateTriggerState(); });
+    if (saveBtn) saveBtn.addEventListener('click', function () { savePreferences(); updateTriggerState(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
       }
     });
   })();

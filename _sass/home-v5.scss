@@ -1,0 +1,302 @@
+/* ============================================================
+   WAF++ Frontpage v5 — clean enterprise / automotive register
+   Scope: pages with <body class="frontpage">
+
+   References: sap.com, volkswagen.de — structured, bright-capable,
+   confident, built from the real product (WAFPass screenshots),
+   not stock photography. Fully theme-reactive: uses the site's
+   existing --bg/--surface/--text tokens, so light mode is genuinely
+   bright and dark mode is genuinely dark, matching the header toggle.
+
+   Replaces home-v4.scss (kept, unused, for reference) in
+   css/screen.scss's import list. Header and footer are untouched.
+
+   This is the first (and so far only) consumer of the shared
+   design language in theme/_design-language.scss — the generic
+   building blocks below (buttons, screenshot/lightbox, section
+   rhythm, headings, motion) are thin aliases onto that file's
+   mixins, so there is one source of truth for the values.
+   Everything past the "shared" block is homepage-specific
+   composition (hero grid, feature alternation, etc.) and stays
+   here rather than in the shared file.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+/* Fonts are loaded locally via _sass/theme/_fonts.scss — no external imports. */
+
+.frontpage {
+  /* Local aliases onto the shared --dl-* tokens. Kept so the rest
+     of this file (and index.html) doesn't need to change; the
+     values themselves live in theme/_design-language.scss. */
+  --wf-font-body: var(--dl-font-body);
+  --wf-font-display: var(--dl-font-display);
+  --wf-font-mono: var(--dl-font-mono);
+
+  --wf-bg: var(--dl-ground);
+  --wf-surface: var(--dl-surface);
+  --wf-surface-2: var(--dl-surface-2);
+  --wf-text: var(--dl-ink);
+  --wf-muted: var(--dl-muted);
+  --wf-border: var(--dl-border);
+
+  --wf-accent: var(--dl-accent);
+  --wf-gold: var(--dl-gold);
+  --wf-purple: var(--dl-purple);
+
+  --wf-size-display: clamp(2.25rem, 1.4rem + 3vw, 3.4rem); /* homepage hero only goes to 3.4rem, not the shared 4.5rem cap — see note at .wf-hero__title */
+  --wf-size-heading: var(--dl-size-heading);
+  --wf-size-lead: var(--dl-size-lead);
+  --wf-size-body: var(--dl-size-body);
+  --wf-size-small: var(--dl-size-small);
+
+  --wf-radius: var(--dl-radius);
+  --wf-margin: var(--dl-margin);
+  --wf-max: var(--dl-max);
+
+  background: var(--wf-bg);
+  color: var(--wf-text);
+}
+
+.frontpage main { background: var(--wf-bg); overflow-x: clip; }
+
+/* ---------- shared (aliases onto theme/_design-language.scss) ---------- */
+
+.wf-wrap { @include dl-wrap; }
+
+.wf-section { @include dl-section; }
+.wf-section--alt { @include dl-section-alt; }
+
+.wf-section-head { max-width: 62ch; }
+
+.wf-heading { @include dl-heading; }
+.wf-lead { @include dl-lead; }
+
+.wf-btn { @include dl-btn-base; }
+.wf-btn--primary { @include dl-btn-primary; }
+.wf-btn--line { @include dl-btn-line; }
+
+a.wf-link { @include dl-link; }
+
+code, pre { font-family: var(--wf-font-mono); }
+
+/* real product screenshots — theme-reactive frame, square-ish corners.
+   These are <button> elements (clickable, open the lightbox), reset to
+   look like the plain image frames they used to be. */
+.wf-shot {
+  @include dl-shot-base;
+  @include dl-shot-focus-and-hover('.wf-shot__zoom');
+}
+@include dl-shot-theme-pair('.wf-shot');
+.wf-shot__zoom { @include dl-shot-zoom-icon; }
+
+/* ---------- motion ---------- */
+
+.wf-rise { @include dl-rise; }
+.wf-rise.wf-d1 { transition-delay: 90ms; }
+.wf-rise.wf-d2 { transition-delay: 170ms; }
+.wf-rise.wf-d3 { transition-delay: 250ms; }
+
+/* ============================================================
+   HERO — statement left, real dashboard right
+   ============================================================ */
+
+.wf-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(64px, 9vw, 120px);
+}
+
+.wf-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.36fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.wf-hero__title {
+  font-family: var(--wf-font-display);
+  font-weight: 600;
+  font-size: var(--wf-size-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--wf-text);
+  margin: 0;
+}
+
+.wf-hero__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.wf-hero__actions .wf-btn { padding: 0 18px; white-space: nowrap; }
+
+.wf-hero__facts { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 26px; font-size: var(--wf-size-small); color: var(--wf-muted); }
+
+.wf-hero__quickstart {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-family: var(--wf-font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--wf-text);
+  text-decoration: none;
+}
+.wf-hero__quickstart svg { width: 16px; height: 16px; color: var(--wf-accent); transition: transform 0.2s ease; }
+.wf-hero__quickstart:hover { color: var(--wf-accent); }
+.wf-hero__quickstart:hover svg { transform: translateX(3px); }
+
+.wf-hero__shot { box-shadow: none; }
+
+@media (max-width: 900px) {
+  .wf-hero__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+
+.wf-stats__grid { @include dl-stats-grid; }
+.wf-stat { @include dl-stat; }
+.wf-stat__num { @include dl-stat-num; }
+.wf-stat__label { @include dl-stat-label; }
+
+/* ============================================================
+   FEATURES — alternating real screenshot + copy
+   ============================================================ */
+
+.wf-features__list { display: flex; flex-direction: column; gap: clamp(72px, 9vw, 120px); margin-top: clamp(56px, 7vw, 96px); }
+
+.wf-feature {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.wf-feature--reverse { grid-template-columns: 0.9fr 1.1fr; }
+.wf-feature--reverse .wf-feature__copy { order: 2; }
+.wf-feature--reverse .wf-feature__shot { order: 1; }
+
+.wf-feature__title { font-family: var(--wf-font-display); font-weight: 600; font-size: 1.625rem; color: var(--wf-text); margin: 0 0 12px; }
+.wf-feature__desc { font-size: var(--wf-size-body); line-height: 1.65; color: var(--wf-muted); max-width: 46ch; }
+.wf-feature__meta { margin-top: 16px; display: flex; gap: 20px; flex-wrap: wrap; font-size: var(--wf-size-small); }
+.wf-feature__meta strong { color: var(--wf-accent); }
+
+@media (max-width: 860px) {
+  .wf-feature, .wf-feature--reverse { grid-template-columns: 1fr; }
+  .wf-feature--reverse .wf-feature__copy { order: 1; }
+  .wf-feature--reverse .wf-feature__shot { order: 2; }
+}
+
+/* ============================================================
+   PILLARS — clean typographic list, not icon cards
+   ============================================================ */
+
+.wf-pillars__grid { margin-top: clamp(48px, 6vw, 72px); @include dl-list-grid; }
+.wf-pillar { @include dl-list-row; }
+
+.wf-pillar__name { font-family: var(--wf-font-display); font-weight: 600; font-size: 1.125rem; color: var(--wf-text); }
+.wf-pillar__name .wf-pillar__tag { font-family: var(--wf-font-body); font-weight: 500; font-size: 0.8125rem; color: var(--wf-accent); margin-left: 10px; }
+.wf-pillar__desc { font-size: 0.9375rem; color: var(--wf-muted); text-align: right; max-width: 28ch; }
+
+@media (max-width: 760px) {
+  .wf-pillar__desc { text-align: left; }
+}
+
+/* ============================================================
+   PROOF — one quiet row
+   ============================================================ */
+
+.wf-proof__row { @include dl-quiet-row; }
+.wf-proof__intro { @include dl-quiet-row-intro; }
+.wf-proof__names { @include dl-quiet-row-names; }
+.wf-proof__name { @include dl-quiet-row-name; }
+
+/* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+
+.wf-how__layout {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.wf-how__list { display: flex; flex-direction: column; gap: clamp(36px, 4.5vw, 52px); }
+
+.wf-how__step { display: flex; gap: 20px; }
+.wf-how__num { font-family: var(--wf-font-body); font-weight: 700; font-size: 0.9375rem; color: var(--wf-accent); flex: none; width: 6ch; padding-top: 4px; }
+.wf-how__body h3 { font-family: var(--wf-font-display); font-weight: 600; font-size: 1.1875rem; color: var(--wf-text); margin: 0 0 8px; }
+.wf-how__body p { font-size: var(--wf-size-body); line-height: 1.6; color: var(--wf-muted); margin: 0; max-width: 46ch; }
+.wf-how__body code { background: var(--wf-surface-2); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+
+@media (max-width: 860px) {
+  .wf-how__layout { grid-template-columns: 1fr; }
+}
+
+/* ---------- community (shared include) — left visually as-is ---------- */
+
+.frontpage #community { padding-block: clamp(64px, 8vw, 100px); }
+.frontpage #community .kicker { display: none; }
+.frontpage #community .card { box-shadow: none; border-color: var(--wf-border); }
+
+/* ============================================================
+   TEAM — four real people, plain grid
+   ============================================================ */
+
+.wf-team__grid {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 36px);
+}
+
+.wf-member__photo { aspect-ratio: 1 / 1; overflow: hidden; background: var(--wf-surface-2); }
+.wf-member__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wf-member__name { margin-top: 16px; font-family: var(--wf-font-display); font-weight: 600; font-size: 1rem; color: var(--wf-text); }
+.wf-member__role { margin-top: 2px; font-size: 0.8125rem; color: var(--wf-muted); }
+.wf-member__fact { margin-top: 10px; font-size: 0.875rem; line-height: 1.55; color: var(--wf-muted); }
+
+@media (max-width: 760px) {
+  .wf-team__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+
+.wf-cta__card {
+  background: var(--wf-surface);
+  border-radius: var(--wf-radius);
+  padding: clamp(40px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(32px, 4vw, 56px);
+  align-items: center;
+}
+
+.wf-cta__title { font-family: var(--wf-font-display); font-weight: 600; font-size: clamp(1.75rem, 1.3rem + 2vw, 2.5rem); color: var(--wf-text); margin: 0; }
+.wf-cta__actions { margin-top: 24px; }
+
+.wf-cta__quickstart-box {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--wf-bg); border-radius: var(--wf-radius);
+  padding: 14px 16px;
+}
+.wf-cta__quickstart-box code { font-size: 13px; overflow-x: auto; white-space: nowrap; color: var(--wf-text); }
+.wf-cta__quickstart-copy { flex: none; background: var(--wf-surface-2); border: none; color: var(--wf-muted); border-radius: 4px; padding: 6px 10px; font-size: 13px; cursor: pointer; }
+.wf-cta__quickstart-copy.is-copied { color: var(--wf-accent); border-color: var(--wf-accent); }
+.wf-cta__quickstart-label { font-size: var(--wf-size-small); color: var(--wf-muted); margin-bottom: 10px; }
+
+@media (max-width: 860px) {
+  .wf-cta__card { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   LIGHTBOX — screenshots open larger on click
+   ============================================================ */
+
+.frontpage.wf-lightbox-open,
+.frontpage.wf-lightbox-open main { overflow: hidden; }
+
+.wf-lightbox { @include dl-lightbox; }
+.wf-lightbox__img { @include dl-lightbox-img; }
+.wf-lightbox__close { @include dl-lightbox-close; }

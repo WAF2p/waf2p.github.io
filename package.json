@@ -4,11 +4,12 @@
   "description": "WAF++ Website with Antora Documentation",
   "scripts": {
     "fetch-rfcs": "node scripts/fetch-rfcs.mjs",
-    "prejekyll:build": "npm run fetch-rfcs",
+    "copy-assets": "node scripts/copy-local-assets.js",
+    "prejekyll:build": "npm run fetch-rfcs && npm run copy-assets",
     "docs:build": "antora antora-playbook.yml",
     "docs:build:local": "antora antora-playbook-local.yml",
     "docs:serve": "antora antora-playbook-local.yml && python3 -m http.server 8000 -d _site",
-    "site:build": "npm run fetch-rfcs && bundle exec jekyll build && npm run docs:build:local"
+    "site:build": "npm run fetch-rfcs && npm run copy-assets && bundle exec jekyll build && npm run docs:build:local"
   },
   "keywords": [
     "waf",
@@ -29,6 +30,13 @@
     "lunr-languages": "^1.14.0"
   },
   "dependencies": {
+    "@fontsource/league-spartan": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@highlightjs/cdn-assets": "^11.12.0",
+    "highlight.js": "^11.12.0",
+    "js-yaml": "^5.5.0",
+    "jszip": "^3.10.2",
+    "lucide": "^1.59.0",
     "playwright": "^1.63.0"
   }
 }

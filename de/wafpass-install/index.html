@@ -646,7 +646,7 @@ volumes:
           <span class="onboarding-cta__link">Action einrichten &rarr;</span>
         </a>
 
-        <a class="onboarding-cta__card" href="{{ '/docs/wafpp/1.0.1-de/resources/wafpass.html' | relative_url }}">
+        <a class="onboarding-cta__card" href="{{ '/docs/wafpp/1.1.0-de/resources/wafpass.html' | relative_url }}">
           <span class="onboarding-cta__num">03</span>
           <h4>Dokumentation lesen</h4>
           <p>CLI-Referenz, Server-API, Konfiguration und erweiterte Nutzung.</p>
@@ -697,21 +697,21 @@ function wafpassCopyYaml(btn) {
   }
 }
 </script>
+<script src="{{ '/assets/js/vendor/highlight.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/vendor/highlight-yaml.min.js' | relative_url }}" defer></script>
 <script>
 (function () {
-  var s = document.createElement('script');
-  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js';
-  s.onload = function () {
-    var y = document.createElement('script');
-    y.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/yaml.min.js';
-    y.onload = function () {
-      document.querySelectorAll('.yaml-hl code').forEach(function (el) {
-        hljs.highlightElement(el);
-      });
-    };
-    document.head.appendChild(y);
-  };
-  document.head.appendChild(s);
+  function initHighlight() {
+    if (typeof hljs === 'undefined') return;
+    document.querySelectorAll('.yaml-hl code').forEach(function (el) {
+      hljs.highlightElement(el);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHighlight);
+  } else {
+    initHighlight();
+  }
 })();
 </script>
 <script src="{{ '/assets/js/wafpass-download.js' | relative_url }}" defer></script>

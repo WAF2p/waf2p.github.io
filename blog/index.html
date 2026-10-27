@@ -15,161 +15,200 @@ description: Updates, insights, and new content around WAF++.
 {% endfor %}
 {% assign unique_cats = all_cats | uniq %}
 
-<div class="page-radical blog-page">
+<div class="blg-page">
 
-<!-- ===================== COMPACT HEADER ===================== -->
-<section class="blog-header">
-  <div class="container">
-    <div class="blog-header__inner">
-      <div class="hero-radical-badge" style="margin-bottom: 16px;">
-        <span class="hero-radical-badge__dot"></span>
-        Community · Insights
-      </div>
-
-      <h1 class="blog-header__title"><span class="text-gradient-radical">Blog</span></h1>
-      <p class="blog-header__lead">{{ page.description }}</p>
-
-      <div class="blog-header__pills">
-        <span class="blog-header__pill">
-          <i data-lucide="pen-line" aria-hidden="true"></i>
-          Open for contributions
+<!-- Hero -->
+<section class="blg-hero">
+  <div class="dl-wrap">
+    <h1 class="blg-hero__title dl-rise">Blog.</h1>
+    <p class="blg-hero__lead dl-rise dl-d1">{{ page.description }}</p>
+    <div class="blg-hero__actions dl-rise dl-d2">
+      <a class="wf6-btn wf6-btn--pill" href="#posts">
+        Latest articles
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
         </span>
-        <span class="blog-header__pill">
-          <i data-lucide="globe" aria-hidden="true"></i>
-          EN &amp; DE
-        </span>
-        <span class="blog-header__pill">
-          <i data-lucide="layers" aria-hidden="true"></i>
-          Cloud · Architecture · Governance
-        </span>
-      </div>
+      </a>
+      <a class="wf6-btn wf6-btn--line" href="#write-for-us">Write for us</a>
     </div>
   </div>
 </section>
 
-
-<!-- ===================== CATEGORIES ===================== -->
-{% if unique_cats.size > 0 %}
-<section class="bento-section" style="padding-top: 28px; padding-bottom: 0;">
-  <div class="container">
-    <div class="blog-cats">
-      <span class="blog-cats__label">Browse by topic:</span>
-      {% for c in unique_cats %}
-      {% assign c_slug = c | slugify %}
-      <a class="blog-cats__chip" href="{{ '/blog/category/' | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
-      {% endfor %}
+<!-- Stats -->
+<section class="blg-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid dl-rise">
+      <div class="dl-stat"><div class="dl-stat__num">{{ en_posts.size }}</div><div class="dl-stat__label">Articles published</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ unique_cats.size }}</div><div class="dl-stat__label">Topics covered</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">EN &amp; DE</div><div class="dl-stat__label">Languages</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">Open</div><div class="dl-stat__label">Written on GitHub</div></div>
     </div>
   </div>
 </section>
-{% endif %}
 
+<!-- Posts -->
+<section class="dl-section" id="posts">
+  <div class="dl-wrap">
+    <div class="blg-section-head dl-rise">
+      <h2 class="dl-heading">Latest articles.</h2>
+      <p class="dl-lead">Writing from the people building WAF++ — architecture, governance, and the occasional opinion.</p>
+    </div>
 
-<!-- ===================== POSTS ===================== -->
-<section class="bento-section" id="posts">
-  <div class="container">
+    {% if unique_cats.size > 0 %}
+    <div class="dl-quiet-row blg-filters dl-rise" style="margin-top: 28px;">
+      <span class="dl-quiet-row__intro">Browse by topic:</span>
+      <div class="dl-quiet-row__names blg-filters__names">
+        {% for c in unique_cats %}
+        {% assign c_slug = c | slugify %}
+        <a href="{{ '/blog/category/' | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
     {% assign all_posts = paginator.posts | default: en_posts %}
     {% assign posts_list = all_posts | where: "lang", page.lang %}
-    <div class="blog-grid">
+
+    {% if posts_list.size > 0 %}
+    <div class="blg-grid">
       {% for post in posts_list %}
-      {% include blog-card.html post=post %}
+      {% include blog-card-v2.html post=post %}
       {% endfor %}
     </div>
+    {% else %}
+    <p class="blg-empty">No articles yet — be the first to write one.</p>
+    {% endif %}
 
     {% if paginator and paginator.total_pages > 1 %}
-    <div class="pagination modern">
+    <div class="blg-pager dl-rise">
       {% if paginator.previous_page %}
-      <a class="btn-glass" href="{% include relative-src.html src=paginator.previous_page_path %}">
-        <span aria-hidden="true">&larr;</span> Newer
-      </a>
+      <a class="wf6-btn wf6-btn--line" href="{% include relative-src.html src=paginator.previous_page_path %}">Newer</a>
       {% else %}
-      <span></span>
+      <span class="blg-pager__spacer"></span>
       {% endif %}
 
-      <div class="muted small">Page {{ paginator.page }} of {{ paginator.total_pages }}</div>
+      <div class="blg-pager__status">Page {{ paginator.page }} of {{ paginator.total_pages }}</div>
 
       {% if paginator.next_page %}
-      <a class="btn-glass" href="{% include relative-src.html src=paginator.next_page_path %}">
-        Older <span aria-hidden="true">&rarr;</span>
-      </a>
+      <a class="wf6-btn wf6-btn--line" href="{% include relative-src.html src=paginator.next_page_path %}">Older</a>
       {% else %}
-      <span></span>
+      <span class="blg-pager__spacer"></span>
       {% endif %}
     </div>
     {% endif %}
   </div>
 </section>
 
+<!-- Write for us -->
+<section class="blg-write" id="write-for-us">
+  <div class="dl-wrap">
 
-<!-- ===================== WRITE FOR US ===================== -->
-<section class="bento-section blog-write" id="write-for-us">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">Write for us</div>
-      <h2 class="section-title-radical">Share your perspective</h2>
-      <p class="section-lead-radical">The WAF++ blog is community-written and open source. If you work in cloud architecture, platform engineering, or governance — your experience belongs here.</p>
+    <div class="blg-section-head dl-rise">
+      <h2 class="dl-heading">Share your perspective.</h2>
+      <p class="dl-lead">The WAF++ blog is community-written and open source. If you work in cloud architecture, platform engineering, or governance — your experience belongs here.</p>
     </div>
 
-    <div class="blog-write__grid">
-      <article class="blog-write-card">
-        <div class="blog-write-card__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
-        <h3 class="blog-write-card__title">Technical articles</h3>
-        <p class="blog-write-card__desc">Deep dives into WAF++ pillars, cloud sovereignty, multi-cloud patterns, or framework comparisons — grounded in real engineering decisions.</p>
+    <div class="blg-write__grid">
+      <article class="blg-write__card dl-rise">
+        <div class="blg-write__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <h3 class="blg-write__title">Technical articles</h3>
+        <p class="blg-write__desc">Deep dives into WAF++ pillars, cloud sovereignty, multi-cloud patterns, or framework comparisons — grounded in real engineering decisions.</p>
       </article>
 
-      <article class="blog-write-card">
-        <div class="blog-write-card__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
-        <h3 class="blog-write-card__title">Case studies &amp; experiences</h3>
-        <p class="blog-write-card__desc">Applied WAF++ in a real project? Ran an assessment? Encountered a gap in existing frameworks? Write it up — the community learns from concrete examples.</p>
+      <article class="blg-write__card dl-rise dl-d1">
+        <div class="blg-write__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
+        <h3 class="blg-write__title">Case studies &amp; experiences</h3>
+        <p class="blg-write__desc">Applied WAF++ in a real project? Ran an assessment? Encountered a gap in existing frameworks? Write it up — the community learns from concrete examples.</p>
       </article>
 
-      <article class="blog-write-card">
-        <div class="blog-write-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
-        <h3 class="blog-write-card__title">Open a PR</h3>
-        <p class="blog-write-card__desc">Posts live in the GitHub repo as Markdown. Draft in a branch, open a PR — the editorial process is fully transparent and community-reviewed.</p>
+      <article class="blg-write__card dl-rise dl-d2">
+        <div class="blg-write__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+        <h3 class="blg-write__title">Open a PR</h3>
+        <p class="blg-write__desc">Posts live in the GitHub repo as Markdown. Draft in a branch, open a PR — the editorial process is fully transparent and community-reviewed.</p>
       </article>
     </div>
 
-    <div class="blog-write-formats">
-      <div class="blog-write-formats__title">What we're looking for</div>
-      <div class="blog-write-formats__grid">
-        <div class="blog-write-format">
+    <div class="blg-write__formats dl-rise">
+      <div class="blg-write__formats-title">What we're looking for</div>
+      <div class="blg-write__formats-grid">
+        <div class="blg-format">
           <i data-lucide="shield" aria-hidden="true"></i>
           <div>
-            <div class="blog-write-format__title">Cloud sovereignty &amp; compliance</div>
-            <div class="blog-write-format__desc">Regulatory requirements · Data residency · Exit capability</div>
+            <div class="blg-format__title">Cloud sovereignty &amp; compliance</div>
+            <div class="blg-format__desc">Regulatory requirements · Data residency · Exit capability</div>
           </div>
         </div>
-        <div class="blog-write-format">
+        <div class="blg-format">
           <i data-lucide="layers" aria-hidden="true"></i>
           <div>
-            <div class="blog-write-format__title">Multi-cloud &amp; platform engineering</div>
-            <div class="blog-write-format__desc">IDP design · Golden paths · Workload portability</div>
+            <div class="blg-format__title">Multi-cloud &amp; platform engineering</div>
+            <div class="blg-format__desc">IDP design · Golden paths · Workload portability</div>
           </div>
         </div>
-        <div class="blog-write-format">
+        <div class="blg-format">
           <i data-lucide="scale" aria-hidden="true"></i>
           <div>
-            <div class="blog-write-format__title">Governance &amp; open standards</div>
-            <div class="blog-write-format__desc">Framework comparisons · RFC process · Vendor-neutral criteria</div>
+            <div class="blg-format__title">Governance &amp; open standards</div>
+            <div class="blg-format__desc">Framework comparisons · RFC process · Vendor-neutral criteria</div>
           </div>
         </div>
-        <div class="blog-write-format">
+        <div class="blg-format">
           <i data-lucide="bar-chart-2" aria-hidden="true"></i>
           <div>
-            <div class="blog-write-format__title">Architecture assessments</div>
-            <div class="blog-write-format__desc">WAF++ in practice · Scoring experiences · Pillar deep dives</div>
+            <div class="blg-format__title">Architecture assessments</div>
+            <div class="blg-format__desc">WAF++ in practice · Scoring experiences · Pillar deep dives</div>
           </div>
         </div>
       </div>
-      <div class="blog-write-formats__note">No minimum length or format requirements. A short post with a concrete insight is more valuable than a long one without one.</div>
+      <div class="blg-write__note">No minimum length or format requirements. A short post with a concrete insight is more valuable than a long one without one.</div>
     </div>
 
-    <div style="text-align:center; margin-top: 32px;">
-      <a class="btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">Start on GitHub &rarr;</a>
+    <div class="blg-write__cta dl-rise">
+      <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+        Start on GitHub
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </a>
     </div>
 
   </div>
 </section>
 
+<!-- CTA -->
+<section class="dl-section blg-cta-section">
+  <div class="dl-wrap">
+    <div class="blg-cta dl-rise">
+      <h2 class="dl-heading">Stay in the loop.</h2>
+      <p class="dl-lead">Follow the blog, the changelog, or the RFC tracker. WAF++ is built in public and every update is shared with the community.</p>
+      <div class="blg-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/changelog/' | relative_url }}">
+          Changelog
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/rfc/' | relative_url }}">RFC tracker</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/stay-updated/' | relative_url }}">Subscribe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

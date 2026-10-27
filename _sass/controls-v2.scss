@@ -1,0 +1,313 @@
+/* ============================================================
+   WAF++ Controls page — v2 (finished)
+   Scope: /controls/ and its localized variants.
+
+   The controls HTML already uses the same wf6-* class family as
+   the homepage (home-v6.scss). home-v6.scss covers the hero,
+   sections, stats, proof row, CTA and shared components, but it
+   does not know about controls-specific compositions: the country
+   bar chart, the frameworks grid, the pillar cards with control
+   chips, or the WAFPass summary card.
+
+   This file fills those gaps and scopes everything under
+   .ctrl-page so it cannot leak to the homepage or other pages.
+
+   It also relies on the body having the .frontpage class (set in
+   _layouts/default.html for page.ref == 'controls') so the shared
+   footer is rendered as a flush dark continuation of the final CTA
+   band — no white bar above the footer.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.ctrl-page { background: var(--dl-ground); }
+.ctrl-page main { overflow-x: clip; }
+
+/* ---------- hero tweaks ---------- */
+
+.ctrl-page .wf6-hero__facts {
+  gap: 10px 28px;
+}
+
+.ctrl-page .wf6-hero__fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--dl-size-small);
+  color: var(--dl-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ctrl-page .wf6-hero__fact:hover {
+  color: var(--dl-accent);
+}
+
+/* ---------- section head + split shot ---------- */
+
+.ctrl-page .wf6-section-head {
+  max-width: 62ch;
+}
+
+.ctrl-page .wf6-section-head--split {
+  @include dl-section-head-split;
+}
+
+.ctrl-page .wf6-section-shot {
+  max-width: 420px;
+  margin-left: auto;
+}
+
+@media (max-width: 760px) {
+  .ctrl-page .wf6-section-shot {
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+/* ---------- country coverage bar chart ---------- */
+
+.ctrl-page .wf6-bars {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ctrl-page .wf6-bar {
+  display: grid;
+  grid-template-columns: 200px 1fr 42px;
+  grid-template-areas: "label track value";
+  align-items: center;
+  gap: 18px;
+}
+
+.ctrl-page .wf6-bar__label {
+  grid-area: label;
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--dl-ink);
+}
+
+.ctrl-page .wf6-bar__flag {
+  margin-right: 8px;
+}
+
+.ctrl-page .wf6-bar__track {
+  grid-area: track;
+  height: 26px;
+  background: var(--dl-surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ctrl-page .wf6-bar__fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--dl-border);
+  transition: width 0.8s cubic-bezier(0.22, 0.8, 0.26, 1);
+}
+
+.ctrl-page .wf6-bar__fill.is-top {
+  background: var(--dl-accent);
+}
+
+.ctrl-page .wf6-bar__value {
+  grid-area: value;
+  font-weight: 600;
+  color: var(--dl-ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 760px) {
+  .ctrl-page .wf6-bar {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "label value" "track track";
+    gap: 6px 12px;
+  }
+  .ctrl-page .wf6-bar__track {
+    margin-top: 2px;
+  }
+}
+
+/* ---------- frameworks grid ---------- */
+
+.ctrl-page .wf6-fw__grid {
+  margin-top: clamp(48px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(32px, 4vw, 48px) clamp(40px, 6vw, 72px);
+}
+
+@media (max-width: 760px) {
+  .ctrl-page .wf6-fw__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vw, 40px);
+  }
+}
+
+.ctrl-page .wf6-fw__name {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--dl-ink);
+  margin: 0 0 10px;
+}
+
+.ctrl-page .wf6-fw__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 16px;
+}
+
+.ctrl-page .wf6-fw__list span {
+  font-size: 0.9375rem;
+  color: var(--dl-muted);
+}
+
+/* ---------- controls by pillar — card variant ---------- */
+
+.ctrl-page .wf6-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 56px);
+  margin-top: clamp(48px, 6vw, 72px);
+}
+
+.ctrl-page .wf6-pillar {
+  @include dl-card;
+  padding: clamp(28px, 4vw, 36px);
+  text-align: left;
+  display: block;
+}
+
+.ctrl-page .wf6-pillar--gold {
+  background: color-mix(in srgb, var(--dl-gold) 10%, var(--dl-surface));
+}
+
+.ctrl-page .wf6-pillar--purple {
+  background: color-mix(in srgb, var(--dl-purple) 9%, var(--dl-surface));
+}
+
+.ctrl-page .wf6-pillar__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ctrl-page .wf6-pillar__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--dl-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ctrl-page .wf6-pillar__title i {
+  width: 22px;
+  height: 22px;
+  color: var(--dl-accent);
+  flex: none;
+}
+
+.ctrl-page .wf6-pillar__tag {
+  font-family: var(--dl-font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--dl-accent);
+  margin-left: 10px;
+}
+
+.ctrl-page .wf6-pillar__meta {
+  margin-top: 4px;
+  font-size: 0.875rem;
+  color: var(--dl-muted);
+}
+
+.ctrl-page .wf6-pillar__actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex: none;
+}
+
+.ctrl-page .wf6-pillar__actions a {
+  @include dl-link;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+
+.ctrl-page .wf6-pillar__actions a svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ctrl-page .wf6-pillar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ctrl-page .wf6-pillar__chips span {
+  @include dl-chip;
+}
+
+/* ---------- WAFPass summary card ---------- */
+
+.ctrl-page .wf6-summary {
+  @include dl-card;
+  padding: clamp(32px, 4vw, 44px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(24px, 4vw, 40px);
+  flex-wrap: wrap;
+}
+
+.ctrl-page .wf6-summary__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.1875rem;
+  color: var(--dl-ink);
+  margin: 0 0 8px;
+}
+
+.ctrl-page .wf6-summary__text {
+  font-size: var(--dl-size-body);
+  line-height: 1.6;
+  color: var(--dl-muted);
+  max-width: 48ch;
+  margin: 0;
+}
+
+.ctrl-page .wf6-summary__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ctrl-page .wf6-summary__legend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.ctrl-page .wf6-summary__legend span:nth-child(1) { color: #1d9a5c; }
+.ctrl-page .wf6-summary__legend span:nth-child(2) { color: #e5484d; }
+.ctrl-page .wf6-summary__legend span:nth-child(3) { color: var(--dl-muted); }
+
+/* ---------- lightbox overflow lock scoped to this page ---------- */
+
+.ctrl-page.wf6-lightbox-open,
+.ctrl-page.wf6-lightbox-open main { overflow: hidden; }

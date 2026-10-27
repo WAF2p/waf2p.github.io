@@ -1,0 +1,340 @@
+/* ============================================================
+   WAF++ Blog post (article detail) — v2
+   Built on theme/_design-language.scss. Fresh .pst-* prefix:
+   the existing .post-hero-editorial/.prose-editorial/
+   .author-band/.post-nav-editorial family in blog.scss stays
+   in the file but is no longer referenced by _layouts/post.html
+   after this redesign — nothing else in the site uses it.
+
+   Scope: _layouts/post.html only (shared across en/de/nl posts).
+   Per-post embedded <style> blocks (e.g. .article-fig figures in
+   some articles) are untouched and keep working — they're scoped
+   to their own classes and the site's theme CSS variables, not
+   to anything renamed here. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.pst-page { background: var(--dl-ground); }
+.pst-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.pst-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 44px));
+  padding-bottom: clamp(32px, 4vw, 44px);
+}
+
+.pst-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
+  margin-bottom: 18px;
+}
+.pst-hero__meta a { color: inherit; text-decoration: none; }
+.pst-hero__meta a:hover { color: var(--dl-ink); }
+.pst-hero__meta-sep { opacity: 0.5; }
+
+.pst-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--dl-ink);
+  margin: 0;
+  max-width: 24ch;
+}
+
+.pst-hero__lead { @include dl-lead; max-width: 62ch; margin-top: 18px; }
+
+.pst-hero__byline {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.pst-hero__avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: none;
+  background: var(--dl-surface-2);
+}
+.pst-hero__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pst-hero__byline-name { font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); }
+.pst-hero__byline-role { font-size: 0.8125rem; color: var(--dl-muted); }
+.pst-hero__byline:hover .pst-hero__byline-name { text-decoration: underline; text-decoration-color: var(--dl-border); }
+
+/* ---------- cover banner ---------- */
+
+.pst-cover {
+  margin-top: clamp(28px, 4vw, 40px);
+  border-radius: var(--dl-radius);
+  overflow: hidden;
+  background: var(--dl-surface-2);
+}
+.pst-cover img { width: 100%; height: auto; max-height: 520px; object-fit: cover; display: block; }
+
+/* ---------- article body / prose ---------- */
+
+.pst-body { padding-block: clamp(40px, 6vw, 64px); }
+
+.pst-prose {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(62ch, 100%) minmax(0, 1fr);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--dl-ink);
+}
+
+.pst-prose > * { grid-column: 2; }
+
+/* Real data-viz figures authored in the article body (see e.g.
+   _posts/2026-04-13-exit-is-not-freedom.md) are wider than a
+   comfortable reading measure — give them the full column instead
+   of squeezing a wide diagram into the text's narrow line length. */
+.pst-prose > figure.article-fig,
+.pst-prose > figure {
+  grid-column: 1 / 4;
+  width: 100%;
+  max-width: 1040px;
+  justify-self: center;
+}
+
+.pst-prose > *:first-child { margin-top: 0; }
+
+.pst-prose p { margin: 0 0 1.3em; }
+.pst-prose p:empty { display: none; }
+
+.pst-prose h2 {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--dl-ink);
+  margin: 2em 0 0.7em;
+}
+.pst-prose h3 {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.1875rem;
+  color: var(--dl-ink);
+  margin: 1.8em 0 0.6em;
+}
+
+.pst-prose ul,
+.pst-prose ol { margin: 0 0 1.3em; padding-left: 1.3em; }
+.pst-prose li { margin-bottom: 0.5em; line-height: 1.65; }
+.pst-prose li::marker { color: var(--dl-muted); }
+
+.pst-prose img {
+  max-width: 100%;
+  border-radius: var(--dl-radius);
+  margin: 1.6em 0;
+  display: block;
+}
+
+.pst-prose figure { margin: 2em 0; }
+.pst-prose figcaption { font-size: 0.8125rem; color: var(--dl-muted); margin-top: 10px; }
+
+.pst-prose blockquote {
+  margin: 1.8em 0;
+  padding: 4px 0 4px 22px;
+  border-left: 3px solid var(--dl-accent, var(--dl-ink));
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--dl-ink);
+}
+.pst-prose blockquote p:last-child { margin-bottom: 0; }
+
+.pst-prose a { color: var(--dl-ink); text-decoration: underline; text-decoration-color: var(--dl-border); text-decoration-thickness: 1px; }
+.pst-prose a:hover { text-decoration-color: currentColor; }
+
+.pst-prose code {
+  font-family: var(--dl-font-mono);
+  font-size: 0.875em;
+  background: var(--dl-surface-2);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.pst-prose pre {
+  background: var(--dl-surface-2);
+  border-radius: var(--dl-radius);
+  padding: clamp(16px, 2vw, 22px);
+  overflow-x: auto;
+  margin: 1.6em 0;
+}
+.pst-prose pre code { background: none; padding: 0; }
+
+.pst-prose hr {
+  border: none;
+  margin: 2.4em 0;
+  text-align: center;
+  &::after {
+    content: "···";
+    color: var(--dl-muted);
+    font-size: 1.125rem;
+    letter-spacing: 0.5em;
+  }
+}
+
+.pst-prose table { width: 100%; border-collapse: collapse; margin: 1.8em 0; font-size: 0.9375rem; }
+.pst-prose th,
+.pst-prose td { padding: 10px 14px; border-bottom: 1px solid var(--dl-border); text-align: left; }
+.pst-prose th { font-weight: 600; color: var(--dl-ink); }
+.pst-prose td { color: var(--dl-muted); }
+
+/* ---------- author band ---------- */
+
+.pst-author {
+  @include dl-card;
+  margin-top: clamp(40px, 5vw, 56px);
+  display: flex;
+  gap: clamp(18px, 2.5vw, 24px);
+  align-items: flex-start;
+  max-width: 760px;
+  margin-inline: auto;
+}
+@media (max-width: 560px) {
+  .pst-author { flex-direction: column; }
+}
+
+.pst-author__avatar { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex: none; background: var(--dl-surface-2); }
+.pst-author__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.pst-author__name { font-family: var(--dl-font-display); font-weight: 600; font-size: 1.0625rem; color: var(--dl-ink); }
+.pst-author__role { margin-top: 2px; font-size: 0.8125rem; color: var(--dl-muted); }
+.pst-author__blurb { margin-top: 10px; font-size: 0.9375rem; line-height: 1.6; color: var(--dl-muted); }
+
+.pst-author__actions { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.pst-author__social { display: flex; gap: 12px; }
+.pst-author__social a { color: var(--dl-muted); display: inline-flex; }
+.pst-author__social a:hover { color: var(--dl-ink); }
+.pst-author__social svg { width: 18px; height: 18px; }
+
+/* ---------- post nav ---------- */
+
+.pst-nav {
+  margin-top: clamp(40px, 5vw, 56px);
+  max-width: 760px;
+  margin-inline: auto;
+  background: var(--dl-surface);
+  border-radius: var(--dl-radius);
+  padding: clamp(22px, 3vw, 30px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .pst-nav { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+}
+
+.pst-nav__link { text-decoration: none; }
+.pst-nav__link--next { grid-column: 3; text-align: right; }
+@media (max-width: 640px) {
+  .pst-nav__link--next { grid-column: 1; text-align: center; order: 3; }
+  .pst-nav__link--prev { order: 1; }
+  .pst-nav__back { order: 2; }
+}
+
+.pst-nav__label { font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dl-muted); }
+.pst-nav__title { margin-top: 4px; font-weight: 600; font-size: 0.9375rem; color: var(--dl-ink); }
+.pst-nav__link:hover .pst-nav__title { text-decoration: underline; text-decoration-color: var(--dl-border); }
+
+.pst-nav__back { grid-column: 2; align-self: center; }
+
+/* ---------- more articles (slider) ---------- */
+
+.pst-more { @include dl-section-alt; }
+
+.pst-more__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pst-slider__controls { display: flex; gap: 10px; flex: none; }
+
+.pst-slider__btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--dl-border);
+  background: transparent;
+  color: var(--dl-ink);
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.pst-slider__btn:hover:not(:disabled) { background: var(--dl-surface); }
+.pst-slider__btn:disabled { opacity: 0.3; cursor: default; }
+
+.pst-slider { margin-top: clamp(24px, 3vw, 32px); }
+
+.pst-slider__track {
+  display: flex;
+  gap: clamp(20px, 2.5vw, 28px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  margin: 0 -4px;
+  padding-inline: 4px;
+}
+.pst-slider__track::-webkit-scrollbar { display: none; }
+
+.pst-slider__track .bpc-card {
+  flex: 0 0 clamp(260px, 32vw, 336px);
+  scroll-snap-align: start;
+}
+
+/* ---------- final CTA ---------- */
+
+.pst-cta { padding: clamp(40px, 6vw, 72px); text-align: center; }
+.pst-cta .dl-heading { max-width: none; color: #fff; }
+.pst-cta .dl-lead { max-width: 56ch; margin-inline: auto; color: rgba(255, 255, 255, 0.72); }
+.pst-cta__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+
+.pst-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
+}
+.pst-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.pst-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.pst-cta-section .wf6-btn--pill:hover,
+.pst-cta-section .wf6-btn--pill:focus {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.pst-cta-section .wf6-btn--pill:hover .wf6-btn__arrow,
+.pst-cta-section .wf6-btn--pill:focus .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+.pst-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.pst-cta-section .wf6-btn--line:hover,
+.pst-cta-section .wf6-btn--line:focus {
+  border-color: #fff;
+  color: #fff;
+}

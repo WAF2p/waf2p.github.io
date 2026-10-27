@@ -1,154 +1,249 @@
-// ── Glossary page — Radical theme ──────────────────────────────────────────
+/* ============================================================
+   WAF++ Glossary page — v2
+   Built on theme/_design-language.scss. Seventh consumer of the
+   shared .dl-* system. Unlike every other redesigned page, this
+   one carries no cards at all: 34 real definitions read better
+   as a plain, borderless dictionary than as a stack of boxes —
+   so the composition itself is the differentiator this time.
 
-.gl-alpha-nav {
+   The 34 individual .gl-entry blocks in glossary/index.html keep
+   their existing markup verbatim (gl-section/gl-letter/gl-list/
+   gl-entry/gl-term/gl-tag/gl-def/gl-also) — only restyled here.
+   .gl2-* classes below are the new page chrome (hero, stats,
+   legend, alpha nav, CTA).
+
+   Scope: /glossary/ only. Nav and footer are untouched.
+   ============================================================ */
+
+@use "theme/design-language" as *;
+
+.gl2-page { background: var(--dl-ground); }
+.gl2-page main { overflow-x: clip; }
+
+/* ---------- hero ---------- */
+
+.gl2-hero {
+  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.gl2-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.48fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .gl2-hero__grid { grid-template-columns: 1fr; }
+}
+
+.gl2-hero__title {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--dl-ink);
+  margin: 0;
+}
+
+.gl2-hero__lead { @include dl-lead; max-width: 46ch; }
+.gl2-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+/* ---------- stats (three real counts) ---------- */
+
+.gl2-stats { @include dl-section-alt; padding-block: clamp(32px, 5vw, 56px); }
+
+.gl2-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+}
+@media (max-width: 560px) {
+  .gl2-stats__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- section head ---------- */
+
+.gl2-section-head:not(.dl-section-head--split) { max-width: 62ch; }
+
+/* ---------- category legend — a quiet list, not coloured pills ---------- */
+
+.gl2-legend {
+  margin-top: clamp(40px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2.5vw, 24px) clamp(32px, 4vw, 56px);
+}
+@media (max-width: 700px) {
+  .gl2-legend { grid-template-columns: 1fr; }
+}
+
+.gl2-legend__row {
   display: flex;
-  gap: 6px;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.gl2-legend__name {
+  flex: none;
+  min-width: 7.5em;
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--dl-ink);
+}
+
+.gl2-legend__desc {
+  font-size: 0.9375rem;
+  color: var(--dl-muted);
+}
+
+/* ---------- alpha nav — a plain row of letters, not a button grid ---------- */
+
+.gl2-alpha-nav {
+  margin-top: clamp(32px, 4vw, 44px);
+  display: flex;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  gap: 4px 18px;
 
   a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 800;
-    border: 1px solid var(--radical-border);
-    color: var(--radical-muted);
-    background: var(--radical-surface);
+    font-family: var(--dl-font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--dl-muted);
     text-decoration: none;
-    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
 
-    &:hover,
-    &.active {
-      background: rgba(0,148,255,0.12);
-      color: var(--brand-400);
-      border-color: rgba(0,148,255,0.35);
-      transform: translateY(-2px);
-    }
+    &:hover { color: var(--dl-ink); }
   }
 }
 
+/* ---------- letter groups and entries — the dictionary itself ---------- */
+
+.gl-entries { margin-top: clamp(48px, 6vw, 72px); }
+
 .gl-section {
-  margin-bottom: 44px;
-  scroll-margin-top: 90px;
+  margin-bottom: clamp(40px, 5vw, 56px);
+  scroll-margin-top: 110px;
 }
 
 .gl-letter {
-  font-size: 1.25rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--brand-400) 0%, #22d3ee 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  border-bottom: 2px solid rgba(0,148,255,0.35);
-  padding-bottom: 8px;
-  margin-bottom: 20px;
-  display: inline-block;
-  letter-spacing: -0.02em;
+  font-family: var(--dl-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dl-ink);
+  margin-bottom: 18px;
+  display: block;
 }
 
-.gl-list { display: grid; gap: 14px; }
+.gl-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 3vw, 28px);
+}
 
 .gl-entry {
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
-  padding: 22px 24px;
-  background: var(--radical-surface);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    border-color: rgba(0,148,255,0.35);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 30px var(--radical-glow);
-  }
+  max-width: 62ch;
 }
 
 .gl-term {
-  font-weight: 800;
-  font-size: 1.05rem;
-  margin-bottom: 10px;
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  margin-bottom: 6px;
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: baseline;
   flex-wrap: wrap;
-  color: var(--radical-text);
+  color: var(--dl-ink);
 }
 
 .gl-tag {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-
-  &--framework  { background: rgba(124,58,237,0.12); color: #a78bfa; border-color: rgba(124,58,237,0.22); }
-  &--governance { background: rgba(217,119,6,0.12);  color: #fbbf24; border-color: rgba(217,119,6,0.22); }
-  &--tooling    { background: rgba(234,88,12,0.12);  color: #fb923c; border-color: rgba(234,88,12,0.22); }
-  &--scoring    { background: rgba(37,99,235,0.12); color: #60a5fa; border-color: rgba(37,99,235,0.22); }
-  &--process    { background: rgba(5,150,105,0.12); color: #34d399; border-color: rgba(5,150,105,0.22); }
+  font-family: var(--dl-font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--dl-muted);
+  text-transform: capitalize;
 }
 
 .gl-def {
-  font-size: 0.9rem;
-  color: var(--radical-muted);
-  line-height: 1.65;
+  font-size: var(--dl-size-body);
+  color: var(--dl-muted);
+  line-height: 1.6;
   margin: 0;
 
   code {
-    font-family: ui-monospace, "Cascadia Code", "Fira Code", Menlo, monospace;
-    font-size: 0.82rem;
-    background: rgba(0,148,255,0.08);
-    color: var(--brand-400);
+    font-family: var(--dl-font-mono);
+    font-size: 0.8125rem;
+    background: var(--dl-surface-2);
+    color: var(--dl-ink);
     padding: 2px 6px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
 }
 
 .gl-also {
-  font-size: 0.82rem;
-  color: var(--radical-muted);
-  margin: 10px 0 0;
+  font-size: 0.875rem;
+  color: var(--dl-muted);
+  margin: 8px 0 0;
 
-  a {
-    color: var(--brand-400);
-    font-weight: 700;
-    text-decoration: none;
-
-    &:hover { text-decoration: underline; }
-  }
+  a { @include dl-link; font-weight: 600; }
 }
 
-// ── Category legend bar ────────────────────────────────────────────────────
+/* ---------- CTA ---------- */
 
-.gl-legend {
-  display: flex;
-  flex-wrap: wrap;
+.gl2-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(32px, 5vw, 64px);
   align-items: center;
-  gap: 16px;
-  padding: 18px 22px;
-  border: 1px solid var(--radical-border);
-  border-radius: 18px;
-  background: var(--radical-surface);
-  margin-bottom: 32px;
+}
+@media (max-width: 860px) {
+  .gl2-cta { grid-template-columns: 1fr; }
 }
 
-.gl-legend__label {
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--radical-muted);
+.gl2-cta__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+
+/* Dark flush continuation of the final CTA band into the frontpage footer. */
+.gl2-cta-section {
+  background: var(--wf6-ink);
+  color: #fff;
 }
 
-.gl-legend__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: var(--radical-muted);
+.gl2-cta-section .gl2-cta {
+  width: 100%;
 }
+
+.gl2-cta-section .dl-heading { color: #fff; }
+.gl2-cta-section .dl-lead  { color: rgba(255, 255, 255, 0.72); }
+
+.gl2-cta-section .wf6-btn--pill {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.gl2-cta-section .wf6-btn--pill .wf6-btn__arrow {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.gl2-cta-section .wf6-btn--pill:hover {
+  border-color: var(--wf6-accent);
+  color: var(--wf6-accent);
+}
+.gl2-cta-section .wf6-btn--pill:hover .wf6-btn__arrow {
+  background: var(--wf6-accent);
+  color: #fff;
+}
+
+.gl2-cta-section .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.gl2-cta-section .wf6-btn--line:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ---------- lightbox: uses the shared .dl-shot / .dl-lightbox classes directly ---------- */
+
+.gl2-page.gl2-lightbox-open,
+.gl2-page.gl2-lightbox-open main { overflow: hidden; }

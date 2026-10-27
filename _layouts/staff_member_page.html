@@ -4,14 +4,11 @@ layout: default
 {% assign member = site.staff_members | where: "slug", page.member_id | first %}
 
 {% if member == nil %}
-<div class="page-radical staff-member-page-radical">
-  <section class="staff-hero-island staff-hero-island--solo">
-    <div class="container">
-      <div class="staff-island-card staff-island-card--centered">
-        <div class="staff-island-card__kicker">Profile</div>
-        <h1>Person not found</h1>
-        <p class="staff-island-card__lead">The requested profile page does not exist.</p>
-      </div>
+<div class="rls-page">
+  <section class="rls-hero">
+    <div class="dl-wrap">
+      <div class="rls-hero__title dl-rise">Profile not found.</div>
+      <p class="rls-hero__lead dl-rise dl-d1">The requested profile page does not exist.</p>
     </div>
   </section>
 </div>
@@ -86,46 +83,42 @@ layout: default
 {% assign t_blog_lead = t_blog_lead | replace: "%name%", member.name %}
 {% assign t_conf_lead = t_conf_lead | replace: "%name%", member.name %}
 
-<div class="page-radical staff-member-page-radical">
+<div class="sm2-page">
 
-<!-- ===================== HERO ISLAND ===================== -->
-<section class="staff-hero-island">
-  <div class="container">
-    <div class="staff-island-card staff-island-card--hero">
-      <div class="staff-hero-island__avatar-col">
-        <div class="staff-hero-island__avatar-wrap">
-          <img class="staff-hero-island__avatar" src="{{ member.image_path | default: '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="{{ member.name }}" loading="lazy">
+<!-- Hero -->
+<section class="sm2-hero">
+  <div class="dl-wrap">
+    <div class="sm2-hero__card dl-rise">
+      <div class="sm2-hero__avatar-col">
+        <div class="sm2-hero__avatar-wrap">
+          <img class="sm2-hero__avatar" src="{{ member.image_path | default: '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="{{ member.name }}" loading="lazy">
         </div>
-        <div class="staff-hero-island__avatar-meta">
-          <div class="staff-hero-island__avatar-name">{{ member.name }}</div>
-          {% if member.position %}<div class="staff-hero-island__avatar-role">{{ member.position }}</div>{% endif %}
-          {% if member.github %}<div class="staff-hero-island__avatar-handle">@{{ member.github }}</div>{% endif %}
+        <div class="sm2-hero__avatar-meta">
+          <div class="sm2-hero__avatar-name">{{ member.name }}</div>
+          {% if member.position %}<div class="sm2-hero__avatar-role">{{ member.position }}</div>{% endif %}
+          {% if member.github %}<div class="sm2-hero__avatar-handle">@{{ member.github }}</div>{% endif %}
         </div>
       </div>
 
-      <div class="staff-hero-island__copy-col">
-        <div class="staff-island-card__kicker">
-          <span class="staff-island-card__kicker-dot"></span>
-          {{ t_team_profile }}
-        </div>
-
-        <h1>{{ member.name }}</h1>
-        {% if member.position %}<div class="staff-hero-island__role">{{ member.position }}</div>{% endif %}
-        {% if member.blurb %}<p class="staff-hero-island__blurb">{{ member.blurb }}</p>{% endif %}
+      <div class="sm2-hero__copy-col">
+        <div class="sm2-hero__kicker">{{ t_team_profile }}</div>
+        <h1 class="sm2-hero__title">{{ member.name }}</h1>
+        {% if member.position %}<p class="sm2-hero__role">{{ member.position }}</p>{% endif %}
+        {% if member.blurb %}<p class="sm2-hero__blurb">{{ member.blurb }}</p>{% endif %}
 
         {% if member.expertise %}
-        <div class="staff-hero-island__expertise">
-          <span class="staff-hero-island__expertise-label">{{ t_expertise_label }}</span>
+        <div class="sm2-hero__expertise">
+          <span class="sm2-hero__expertise-label">{{ t_expertise_label }}</span>
           {% for e in member.expertise %}
-          <span class="staff-hero-island__chip">{{ e }}</span>
+          <span class="sm2-hero__chip">{{ e }}</span>
           {% endfor %}
         </div>
         {% endif %}
 
         {% if member.social or member.github %}
-        <div class="staff-hero-island__actions">
+        <div class="sm2-hero__actions">
           {% if member.github %}
-          <a class="staff-social-link" href="https://github.com/{{ member.github }}" target="_blank" rel="noopener" aria-label="GitHub">
+          <a class="wf6-btn wf6-btn--line" href="https://github.com/{{ member.github }}" target="_blank" rel="noopener" aria-label="GitHub">
             <span data-lucide="github" aria-hidden="true"></span>
             <span>GitHub</span>
           </a>
@@ -134,7 +127,7 @@ layout: default
           {% for s in member.social %}
           {% assign s_name_downcase = s.name | downcase %}
           {% if s_name_downcase == 'github' and member.github %}{% continue %}{% endif %}
-          <a class="staff-social-link" href="{{ s.link }}" {% if s.new_window %}target="_blank" rel="noopener"{% endif %} aria-label="{{ t_social_aria | replace: '%name%', member.name | replace: '%network%', s.name }}">
+          <a class="wf6-btn wf6-btn--line" href="{{ s.link }}" {% if s.new_window %}target="_blank" rel="noopener"{% endif %} aria-label="{{ t_social_aria | replace: '%name%', member.name | replace: '%network%', s.name }}">
             {% if s.social_icon %}
               {% include social-icon.html icon=s.social_icon %}
             {% else %}
@@ -151,17 +144,14 @@ layout: default
   </div>
 </section>
 
-
-<!-- ===================== BIO ISLAND ===================== -->
-<section class="staff-section-island">
-  <div class="container">
-    <div class="staff-island-card">
-      <div class="staff-island-card__header">
-        <div class="staff-island-card__kicker">{{ t_about_kicker }}</div>
-        <h2>{{ t_about_title }}</h2>
+<!-- Bio -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="sm2-card dl-rise">
+      <div class="sm2-card__header">
+        <h2 class="dl-heading">{{ t_about_title }}</h2>
       </div>
-
-      <div class="staff-island-card__prose staff-prose">
+      <div class="sm2-prose">
         {% if member.content and member.content != "" %}
           {{ member.content }}
         {% elsif member.blurb %}
@@ -174,17 +164,15 @@ layout: default
   </div>
 </section>
 
-
-<!-- ===================== POSTS ISLAND ===================== -->
+<!-- Posts -->
 {% assign authored_posts = site.posts | where: "author_staff_member", page.member_id %}
 {% if authored_posts and authored_posts.size > 0 %}
-<section class="staff-section-island">
-  <div class="container">
-    <div class="staff-island-card">
-      <div class="staff-island-card__header">
-        <div class="staff-island-card__kicker">{{ t_blog_kicker }}</div>
-        <h2>{{ t_blog_title }}</h2>
-        <p class="staff-island-card__lead">{{ t_blog_lead }}</p>
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="sm2-card dl-rise">
+      <div class="sm2-card__header">
+        <h2 class="dl-heading">{{ t_blog_title }}</h2>
+        <p class="dl-lead">{{ t_blog_lead }}</p>
       </div>
 
       <div class="blog-grid">
@@ -193,9 +181,9 @@ layout: default
         {% endfor %}
       </div>
 
-      <div class="staff-island-card__footer">
-        <a class="staff-text-link" href="{% if page.lang == 'de' %}{{ '/de/blog/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/blog/' | relative_url }}{% else %}{{ '/blog/' | relative_url }}{% endif %}">
-          {{ t_blog_all }} &rarr;
+      <div class="sm2-card__footer">
+        <a class="wf6-btn wf6-btn--line" href="{% if page.lang == 'de' %}{{ '/de/blog/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/blog/' | relative_url }}{% else %}{{ '/blog/' | relative_url }}{% endif %}">
+          {{ t_blog_all }}
         </a>
       </div>
     </div>
@@ -203,8 +191,7 @@ layout: default
 </section>
 {% endif %}
 
-
-<!-- ===================== CONFERENCES ISLAND ===================== -->
+<!-- Conferences -->
 {% assign all_confs = site.data.conferences | default: empty %}
 {% assign now_ts = site.time | date: "%s" %}
 {% assign upcoming = "" | split: "" %}
@@ -231,17 +218,16 @@ layout: default
 {% endfor %}
 
 {% if upcoming.size > 0 or past.size > 0 %}
-<section class="staff-section-island">
-  <div class="container">
-    <div class="staff-island-card">
-      <div class="staff-island-card__header">
-        <div class="staff-island-card__kicker">{{ t_conf_kicker }}</div>
-        <h2>{{ t_conf_title }}</h2>
-        <p class="staff-island-card__lead">{{ t_conf_lead }}</p>
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="sm2-card dl-rise">
+      <div class="sm2-card__header">
+        <h2 class="dl-heading">{{ t_conf_title }}</h2>
+        <p class="dl-lead">{{ t_conf_lead }}</p>
       </div>
 
       {% if upcoming.size > 0 %}
-      <h3 class="staff-island-card__subhead">{{ t_upcoming }}</h3>
+      <h3 class="sm2-card__subhead">{{ t_upcoming }}</h3>
       <div class="conf-grid" style="margin-bottom: 32px;">
         {% for c in upcoming %}
           {% include conference-card.html conf=c %}
@@ -250,7 +236,7 @@ layout: default
       {% endif %}
 
       {% if past.size > 0 %}
-      <h3 class="staff-island-card__subhead">{{ t_past }}</h3>
+      <h3 class="sm2-card__subhead">{{ t_past }}</h3>
       <div class="conf-grid">
         {% for c in past %}
           {% include conference-card.html conf=c %}
@@ -262,22 +248,26 @@ layout: default
 </section>
 {% endif %}
 
-
-<!-- ===================== CTA ISLAND ===================== -->
-<section class="staff-cta-island">
-  <div class="container">
-    <div class="staff-island-card staff-island-card--cta">
-      <div class="staff-island-card__kicker">{{ t_cta_kicker }}</div>
-      <h2>{{ t_cta_title }}</h2>
-      <p class="staff-island-card__lead">{{ t_cta_lead }}</p>
-      <div class="staff-island-card__actions">
-        <a class="btn-glow" href="{% if page.lang == 'de' %}{{ '/de/roles/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/roles/' | relative_url }}{% else %}{{ '/roles/' | relative_url }}{% endif %}">
-          {{ t_cta_roles }} &rarr;
+<!-- CTA -->
+<section class="dl-section sm2-cta-section">
+  <div class="dl-wrap">
+    <div class="sm2-cta dl-rise">
+      <div class="sm2-cta__kicker">{{ t_cta_kicker }}</div>
+      <h2 class="dl-heading">{{ t_cta_title }}</h2>
+      <p class="dl-lead">{{ t_cta_lead }}</p>
+      <div class="sm2-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{% if page.lang == 'de' %}{{ '/de/roles/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/roles/' | relative_url }}{% else %}{{ '/roles/' | relative_url }}{% endif %}">
+          {{ t_cta_roles }}
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+            </svg>
+          </span>
         </a>
-        <a class="staff-text-link" href="{% if page.lang == 'de' %}{{ '/de/about/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/about/' | relative_url }}{% else %}{{ '/about/' | relative_url }}{% endif %}">
+        <a class="wf6-btn wf6-btn--line" href="{% if page.lang == 'de' %}{{ '/de/about/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/about/' | relative_url }}{% else %}{{ '/about/' | relative_url }}{% endif %}">
           {{ t_cta_about }}
         </a>
-        <a class="staff-text-link" href="{% if page.lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">
+        <a class="wf6-btn wf6-btn--line" href="{% if page.lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">
           {{ t_cta_governance }}
         </a>
       </div>
@@ -287,3 +277,19 @@ layout: default
 
 </div>
 {% endif %}
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
