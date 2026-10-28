@@ -1,277 +1,268 @@
 ---
 layout: default
-ref: about
-title: Über uns
-description: Die Köpfe hinter WAF++
-permalink: /de/about/
 lang: de
+ref: about
+title: "Über uns"
+description: "Die Menschen hinter WAF++"
+permalink: /de/about/
 ---
 
-<main class="page-radical">
+<div class="abt-page">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero--radical page-radical__hero">
-  <div class="hero-orb hero-orb--blue"></div>
-  <div class="hero-orb hero-orb--gold"></div>
-  <div class="hero-noise" aria-hidden="true"></div>
-
-  <div class="container hero-radical-grid">
-    <div class="hero-radical-copy">
-      {% include breadcrumb-inline.html %}
-      {% include breadcrumb.html %}
-
-      <div class="hero-radical-badge">
-        <span class="hero-radical-badge__dot"></span>
-        WAF++ Community
-      </div>
-
-      <h1 class="hero-radical-h1">
-        <span class="text-gradient-radical">Über uns</span>
-      </h1>
-
-      <p class="hero-radical-lead">
-        WAF++ ist ein community-getriebenes, cloud-agnostisches Framework aus der Praxis.
-        Wir schaffen eine gemeinsame Grundlage für souveräne, verantwortungsvolle und nachvollziehbare Cloud-Nutzung —
-        unabhängig von Anbietern und jenseits von Marketing-Narrativen.
-      </p>
-
-      <div class="hero-radical-actions">
-        <a class="btn btn-glow" href="#team">Das Team &rarr;</a>
-        <a class="btn btn-glass" href="#mission">Unsere Mission</a>
-        <a class="btn btn-glass" href="#history">Geschichte</a>
-      </div>
-
-      <div class="hero-radical-pills">
-        <span class="hero-radical-pill"><i data-lucide="users" aria-hidden="true"></i> Community-getrieben</span>
-        <span class="hero-radical-pill"><i data-lucide="shield-check" aria-hidden="true"></i> Anbieterneutral</span>
-        <span class="hero-radical-pill"><i data-lucide="lock-open" aria-hidden="true"></i> Open Source</span>
+<!-- Hero -->
+<section class="abt-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="abt-hero__title">Über uns.</h1>
+      <p class="abt-hero__lead">WAF++ ist ein Community-getriebenes, cloud-agnostisches Framework, entstanden aus Praxiserfahrung. Wir schaffen eine gemeinsame Grundlage für eine souveräne, verantwortungsvolle und nachvollziehbare Cloud-Nutzung — unabhängig von Anbietern und jenseits von Marketing-Narrativen.</p>
+      <div class="abt-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="#team">
+          Das Team kennenlernen
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="#mission">Unsere Mission</a>
+        <a class="wf6-btn wf6-btn--line" href="#history">Geschichte</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Stats -->
+<section class="abt-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">{{ site.staff_members | where_exp: 'p', "p.name != nil" | size }}</div><div class="dl-stat__label">Kernteam</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">8</div><div class="dl-stat__label">Säulen</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">100+</div><div class="dl-stat__label">Controls</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">Offen</div><div class="dl-stat__label">Governance über RFCs</div></div>
+    </div>
+  </div>
+</section>
 
-<!-- ===================== MISSION ===================== -->
-<section class="page-radical__section" id="mission">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">UNSERE MISSION</div>
-      <h2 class="section-title-radical">Engineering-first statt Best-Practice-Sammlung.</h2>
-      <p class="section-lead-radical">Wir vereinen Erfahrungen von Architekt:innen, Plattform-Teams, Security- und Compliance-Spezialist:innen in einem offenen, transparenten und neutralen Rahmen.</p>
+<!-- Mission -->
+<section class="dl-section" id="mission">
+  <div class="dl-wrap">
+    <div class="abt-section-head dl-rise">
+      <h2 class="dl-heading">Engineering-first — keine Sammlung von Best Practices.</h2>
+      <p class="dl-lead">Wir bündeln die Erfahrung von Architekten, Plattformteams sowie Security- und Compliance-Fachleuten in einem offenen, transparenten und neutralen Framework.</p>
     </div>
 
-    <div class="bento-grid">
-
-      <div class="bento-card bento-card--static bento-card--large">
-        <div class="bento-card__glow"></div>
-        <div class="bento-card__icon"><i data-lucide="compass" aria-hidden="true"></i></div>
-        <div class="bento-card__name">Ein gemeinsames Raster für Cloud-Entscheidungen</div>
-        <p class="bento-card__desc">WAF++ verwandelt fragmentierte Cloud-Empfehlungen in ein kohärentes System. Jeder Control beantwortet eine echte Architekturfrage, damit Teams mit Sicherheit entscheiden können.</p>
-        <div class="bento-card__footer">
-          <span class="bento-mini-stat"><strong>8</strong> Säulen</span>
-          <span class="bento-mini-stat"><strong>83+</strong> Controls</span>
-          <span class="bento-mini-stat"><strong>PASS</strong> Scoring</span>
+    <div class="abt-mission dl-rise">
+      <div class="abt-mission__card abt-mission__card--lead">
+        <div class="abt-mission__icon"><i data-lucide="compass" aria-hidden="true"></i></div>
+        <h3 class="abt-mission__title">Eine gemeinsame Linse für Cloud-Entscheidungen</h3>
+        <p class="abt-mission__desc">WAF++ macht aus zersplitterten Cloud-Empfehlungen ein stimmiges System. Jeder Control bildet eine echte Architekturfrage ab, damit Teams mit Zuversicht entscheiden können.</p>
+        <div class="abt-mission__stats">
+          <span class="abt-mission__stat"><strong>8</strong> Säulen</span>
+          <span class="abt-mission__stat"><strong>100+</strong> Controls</span>
+          <span class="abt-mission__stat"><strong>PASS</strong> Scoring</span>
         </div>
       </div>
 
-      <div class="bento-card bento-card--static bento-card--tall">
-        <div class="bento-card__glow"></div>
-        <div class="bento-card__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
-        <div class="bento-card__name">Neutral &amp; offen</div>
-        <p class="bento-card__desc">Vendor-agnostisch, transparent und community-getrieben. Kein Anbieter bestimmt, was „gut“ bedeutet.</p>
+      <div class="abt-mission__card">
+        <div class="abt-mission__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+        <h3 class="abt-mission__title">Neutral &amp; offen</h3>
+        <p class="abt-mission__desc">Anbieterunabhängig, transparent und Community-getrieben. Kein Anbieter-Narrativ legt fest, was „gut“ bedeutet.</p>
       </div>
 
-      <div class="bento-card bento-card--static bento-card--tall">
-        <div class="bento-card__glow"></div>
-        <div class="bento-card__icon"><i data-lucide="wrench" aria-hidden="true"></i></div>
-        <div class="bento-card__name">Praxisnah</div>
-        <p class="bento-card__desc">Aus echten Projekten, Audits und Betriebserfahrung. Jede Empfehlung ist zum Nutzen geschrieben, nicht zum Bewundern.</p>
+      <div class="abt-mission__card">
+        <div class="abt-mission__icon"><i data-lucide="wrench" aria-hidden="true"></i></div>
+        <h3 class="abt-mission__title">Praxisnah</h3>
+        <p class="abt-mission__desc">Aus echten Projekten, Audits und Betriebserfahrung. Jede Empfehlung ist zum Anwenden geschrieben, nicht zum Bewundern.</p>
       </div>
 
-      <div class="bento-card bento-card--static">
-        <div class="bento-card__glow"></div>
-        <div class="bento-card__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
-        <div class="bento-card__name">Nachvollziehbar</div>
-        <p class="bento-card__desc">Struktur, Verantwortlichkeiten und Entscheidungsklarheit.</p>
+      <div class="abt-mission__card">
+        <div class="abt-mission__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
+        <h3 class="abt-mission__title">Nachvollziehbar</h3>
+        <p class="abt-mission__desc">Struktur, Verantwortlichkeiten und klare Entscheidungen.</p>
       </div>
 
-      <div class="bento-card bento-card--static">
-        <div class="bento-card__glow"></div>
-        <div class="bento-card__icon"><i data-lucide="scale" aria-hidden="true"></i></div>
-        <div class="bento-card__name">Offene Governance</div>
-        <p class="bento-card__desc">Alle Entscheidungen über öffentliche RFCs in GitHub Discussions.</p>
+      <div class="abt-mission__card">
+        <div class="abt-mission__icon"><i data-lucide="scale" aria-hidden="true"></i></div>
+        <h3 class="abt-mission__title">Offene Governance</h3>
+        <p class="abt-mission__desc">Alle Entscheidungen über öffentliche RFCs in GitHub Discussions.</p>
       </div>
-
     </div>
 
-    <div class="bento-cta">
-      <a class="btn btn-glass" href="{{ '/docs/' | relative_url }}">Zur Dokumentation &rarr;</a>
-      <a class="btn btn-glass" href="{{ '/de/conferences/' | relative_url }}">Konferenzen</a>
+    <div class="abt-mission__cta dl-rise">
+      <a class="wf6-btn wf6-btn--line" href="{{ '/docs/' | relative_url }}">Doku lesen</a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/de/conferences/' | relative_url }}">Konferenzen</a>
     </div>
-
   </div>
 </section>
 
-
-<!-- ===================== TEAM ===================== -->
-<section class="page-radical__section page-radical__section--alt" id="team">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">TEAM</div>
-      <h2 class="section-title-radical">Die Köpfe hinter WAF++</h2>
-      <p class="section-lead-radical">Architekt:innen, Engineers und Security-Spezialist:innen, die echte Projekterfahrung in ein offenes Framework überführt haben.</p>
+<!-- Team -->
+<section class="dl-section--alt" id="team">
+  <div class="dl-wrap">
+    <div class="abt-section-head dl-rise">
+      <h2 class="dl-heading">Die Menschen hinter WAF++.</h2>
+      <p class="dl-lead">Architekten, Engineers und Security-Fachleute, die Erfahrungen aus echten Projekten in ein offenes Framework überführt haben.</p>
     </div>
 
-    <div class="team-grid">
+    <div class="abt-team dl-rise">
       {% for person in site.staff_members %}
       {% if person.name and person.name != '' %}
-      <article class="card-radical person-card-radical">
-        <div class="person-card-radical__head">
-          <img class="person-card-radical__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">
-          <div>
-            <div class="person-card-radical__name">
-              <a href="{{ '/de/staff_members/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a>
-            </div>
-            {% if lang == 'de' %}
-              {% assign person_position = person.position %}
-            {% else %}
-              {% assign person_position = person.position_en | default: person.position %}
-            {% endif %}
-            <div class="person-card-radical__role">{{ person_position }}</div>
+      <div class="abt-person">
+        <div class="abt-person__photo">
+          <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" loading="lazy">
+        </div>
+        <div>
+          <div class="abt-person__name"><a href="{{ '/de/staff_members/' | append: person.slug | append: '/' | relative_url }}">{{ person.name }}</a></div>
+          <div class="abt-person__role">{{ person.position }}</div>
+          {% if person.blurb %}
+          <p class="abt-person__bio">{{ person.blurb }}</p>
+          {% endif %}
+          {% if person.social %}
+          <div class="abt-person__social">
+            {% for link in person.social %}
+            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}" aria-label="{{ link.social_icon }}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
           </div>
+          {% endif %}
         </div>
-        {% if lang == 'de' %}
-          {% assign person_blurb = person.blurb %}
-        {% else %}
-          {% assign person_blurb_key = 'blurb_' | append: lang %}
-          {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
-        {% endif %}
-        {% if person_blurb %}
-        <p class="person-card-radical__bio">{{ person_blurb }}</p>
-        {% endif %}
-        {% if person.social %}
-        <div class="person-card-radical__social">
-          {% for link in person.social %}
-          <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
-             href="{% include relative-src.html src=link.link %}"
-             aria-label="{{ link.social_icon }}">
-            {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
-          </a>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </article>
+      </div>
       {% endif %}
       {% endfor %}
     </div>
   </div>
 </section>
 
-
-<!-- ===================== HONOURED MEMBERS ===================== -->
-<section class="page-radical__section">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">HONOURED MEMBERS</div>
-      <h2 class="section-title-radical">Von Anfang an dabei</h2>
-      <p class="section-lead-radical">Menschen, die WAF++ von Beginn an geprägt haben und uns bis heute begleiten — ohne aktuell im Core-Team aktiv zu sein.</p>
+<!-- Honoured members -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="abt-section-head dl-rise">
+      <h2 class="dl-heading">Von Anfang an dabei.</h2>
+      <p class="dl-lead">Menschen, die WAF++ von Beginn an geprägt haben und uns bis heute unterstützen — ohne derzeit im Kernteam aktiv zu sein.</p>
     </div>
 
-    <div class="team-grid">
-      {% if lang == 'de' %}
-        {% assign honoured_members = site.data.honoured_members %}
-      {% else %}
-        {% assign honoured_data_key = 'honoured_members_' | append: lang %}
-        {% assign honoured_members = site.data[honoured_data_key] | default: site.data.honoured_members_en | default: site.data.honoured_members %}
-      {% endif %}
+    {% if lang == 'de' %}
+      {% assign honoured_members = site.data.honoured_members %}
+    {% else %}
+      {% assign honoured_data_key = 'honoured_members_' | append: lang %}
+      {% assign honoured_members = site.data[honoured_data_key] | default: site.data.honoured_members_en | default: site.data.honoured_members %}
+    {% endif %}
+
+    <div class="abt-honoured dl-rise">
       {% for person in honoured_members %}
-      <article class="card-radical person-card-radical">
-        <div class="person-card-radical__head">
-          <img class="person-card-radical__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">
-          <div>
-            <div class="person-card-radical__name">
-              {% if person.github and person.github != '' %}
-              <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
-              {% else %}
-              {{ person.name }}
-              {% endif %}
-            </div>
-            {% if lang == 'de' %}
-              {% assign person_position = person.position %}
-            {% else %}
-              {% assign person_position = person.position_en | default: person.position %}
-            {% endif %}
-            <div class="person-card-radical__role">{{ person_position }}</div>
-          </div>
+      <div class="abt-honoured__row">
+        <div class="abt-honoured__photo">
+          <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" loading="lazy">
         </div>
-        {% if lang == 'de' %}
-          {% assign person_blurb = person.blurb %}
-        {% else %}
-          {% assign person_blurb_key = 'blurb_' | append: lang %}
-          {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
-        {% endif %}
-        {% if person_blurb %}
-        <p class="person-card-radical__bio">{{ person_blurb }}</p>
-        {% endif %}
-      </article>
+        <div>
+          <div class="abt-honoured__name">
+            {% if person.github and person.github != '' %}
+            <a target="_blank" rel="noopener" href="https://github.com/{{ person.github }}">{{ person.name }}</a>
+            {% else %}
+            {{ person.name }}
+            {% endif %}
+          </div>
+          <div class="abt-honoured__role">{{ person.position }}</div>
+          {% if person.blurb %}
+          <p class="abt-honoured__bio">{{ person.blurb }}</p>
+          {% endif %}
+        </div>
+      </div>
       {% endfor %}
     </div>
   </div>
 </section>
 
-
-<!-- ===================== GESCHICHTE ===================== -->
-<section class="page-radical__section" id="history">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">GESCHICHTE</div>
-      <h2 class="section-title-radical">Wie WAF++ gewachsen ist</h2>
-      <p class="section-lead-radical">Von den ersten Skizzen bis zur lebendigen Community: WAF++ entsteht iterativ — aus Projektrealität, Diskussionen und dem Willen, Cloud-Entscheidungen nachvollziehbar zu machen.</p>
+<!-- History -->
+<section class="dl-section--alt abt-history-section" id="history">
+  <div class="dl-wrap">
+    <div class="abt-section-head dl-rise">
+      <h2 class="dl-heading">Wie WAF++ gewachsen ist.</h2>
+      <p class="dl-lead">Von den ersten Skizzen zu einer lebendigen Community: WAF++ entsteht iterativ — geprägt von Projektrealität, Diskussionen und dem Anspruch, Cloud-Entscheidungen nachvollziehbar zu machen.</p>
     </div>
 
-    <div class="timeline-radical">
-      <article class="timeline-radical__item">
-        <div class="timeline-radical__dot"></div>
-        <div class="timeline-radical__title">Start: Problem klären</div>
-        <p class="timeline-radical__text">Wir haben typische Fragen aus Plattform- und Architektur-Teams gesammelt und in ein gemeinsames Raster gebracht.</p>
-      </article>
+    <div class="abt-history dl-rise">
+      <div class="abt-history__track" aria-hidden="true"></div>
 
-      <article class="timeline-radical__item">
-        <div class="timeline-radical__dot"></div>
-        <div class="timeline-radical__title">Struktur: Prinzipien &amp; Leitplanken</div>
-        <p class="timeline-radical__text">Aus Erfahrungswerten wurden wiederholbare Bausteine: Verantwortlichkeiten, Entscheidungswege und Reifegrad.</p>
-      </article>
+      <div class="abt-history__item">
+        <div class="abt-history__marker">
+          <span class="abt-history__dot" aria-hidden="true"></span>
+          <span class="abt-history__number">01</span>
+        </div>
+        <div class="abt-history__card">
+          <h3 class="abt-history__title">Start: Das Problem klären</h3>
+          <p class="abt-history__text">Wir haben typische Fragen von Plattform- und Architekturteams gesammelt und in eine gemeinsame Linse strukturiert.</p>
+        </div>
+      </div>
 
-      <article class="timeline-radical__item">
-        <div class="timeline-radical__dot"></div>
-        <div class="timeline-radical__title">Community: Review &amp; Feedback</div>
-        <p class="timeline-radical__text">In Reviews, Workshops und Gesprächen wurden Inhalte geschärft — mit Fokus auf Neutralität und Praxisnähe.</p>
-      </article>
+      <div class="abt-history__item">
+        <div class="abt-history__marker">
+          <span class="abt-history__dot" aria-hidden="true"></span>
+          <span class="abt-history__number">02</span>
+        </div>
+        <div class="abt-history__card">
+          <h3 class="abt-history__title">Struktur: Prinzipien &amp; Leitplanken</h3>
+          <p class="abt-history__text">Erfahrung wurde zu wiederholbaren Bausteinen: Verantwortlichkeiten, Entscheidungswege und Reifegrad.</p>
+        </div>
+      </div>
 
-      <article class="timeline-radical__item">
-        <div class="timeline-radical__dot"></div>
-        <div class="timeline-radical__title">Heute: Weiterentwicklung</div>
-        <p class="timeline-radical__text">WAF++ bleibt offen: neue Beiträge, neue Perspektiven, kontinuierliche Verbesserungen — transparent im Alltag nutzbar.</p>
-      </article>
+      <div class="abt-history__item">
+        <div class="abt-history__marker">
+          <span class="abt-history__dot" aria-hidden="true"></span>
+          <span class="abt-history__number">03</span>
+        </div>
+        <div class="abt-history__card">
+          <h3 class="abt-history__title">Community: Review &amp; Feedback</h3>
+          <p class="abt-history__text">In Reviews, Workshops und Gesprächen wurden die Inhalte geschärft — mit Fokus auf Neutralität und Praxistauglichkeit.</p>
+        </div>
+      </div>
+
+      <div class="abt-history__item">
+        <div class="abt-history__marker">
+          <span class="abt-history__dot" aria-hidden="true"></span>
+          <span class="abt-history__number">04</span>
+        </div>
+        <div class="abt-history__card">
+          <h3 class="abt-history__title">Heute: Kontinuierliche Weiterentwicklung</h3>
+          <p class="abt-history__text">WAF++ bleibt offen: neue Beiträge, neue Perspektiven, stetige Verbesserungen — transparent und im Alltag nutzbar.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-
-<!-- ===================== CTA ===================== -->
-<section class="cta-radical">
-  <div class="cta-radical__glow"></div>
-  <div class="container cta-radical__inner">
-    <div class="kicker-radical">MITMACHEN</div>
-    <h2 class="cta-radical__title">Mitmachen?</h2>
-    <p class="cta-radical__lead">WAF++ ist offen für alle, die Cloud-Realität nicht nur konsumieren, sondern aktiv mitgestalten wollen. Egal ob du Erfahrungen teilen, Inhalte reviewen oder neue Bausteine mitentwickeln möchtest — dein Beitrag zählt.</p>
-    <div class="cta-radical__actions">
-      <a class="btn btn-glow btn-glow--lg" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub &rarr;</a>
-      <a class="btn btn-glass btn-glass--lg" href="{{ '/de/contributing/' | relative_url }}">So kannst du mitmachen</a>
-      <a class="btn btn-glass btn-glass--lg" href="{{ '/de/blog/' | relative_url }}">Blog</a>
+<!-- CTA -->
+<section class="dl-section abt-cta-section">
+  <div class="dl-wrap">
+    <div class="abt-cta dl-rise">
+      <h2 class="dl-heading">Möchten Sie beitragen?</h2>
+      <p class="dl-lead">WAF++ steht allen offen, die Cloud-Realität nicht nur konsumieren, sondern mitgestalten wollen. Teilen Sie Erfahrungen, reviewen Sie Inhalte oder entwickeln Sie neue Bausteine mit.</p>
+      <div class="abt-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+          GitHub
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/contributing/' | relative_url }}">So tragen Sie bei</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/blog/' | relative_url }}">Blog</a>
+      </div>
     </div>
   </div>
 </section>
 
-</main>
+</div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

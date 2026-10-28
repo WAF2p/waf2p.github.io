@@ -2,578 +2,598 @@
 layout: default
 lang: pt
 ref: controls
-title: "Controls Showcase — Cobertura por país e regulamentação"
+title: "Catálogo de controles – Cobertura por país e regulação"
 permalink: /pt/controls/
 ---
 
-<div class="page-radical controls-page">
+<div class="ctrl-page">
 
-<!-- Hero -->
-<section class="controls-hero">
-  <div class="controls-hero__orb controls-hero__orb--blue" aria-hidden="true"></div>
-  <div class="controls-hero__orb controls-hero__orb--gold" aria-hidden="true"></div>
-  <div class="controls-hero__orb controls-hero__orb--purple" aria-hidden="true"></div>
+<!-- ===================== HERO ===================== -->
+<section class="wf6-hero">
+  <div class="wf6-wrap">
+    <div class="wf6-hero__grid">
+      <div class="wf6-hero__body wf6-rise">
+        <h1 class="wf6-hero__title">Cada controle, mapeado.</h1>
+        <p class="wf6-hero__lead">Uma visão completa dos controles do WAF++, organizados por país, framework regulatório e pilar. Valide sua infraestrutura com mais de 100 controles em 8 pilares.</p>
+        <div class="wf6-hero__actions">
+          <a class="wf6-btn wf6-btn--pill" href="#country">
+            Por país
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="#framework">Por framework</a>
+          <a class="wf6-btn wf6-btn--line" href="#controls">Por pilar</a>
+        </div>
+        <div class="wf6-hero__facts">
+          <span>8 pilares · mais de 100 controles</span>
+          <span>Análise estática</span>
+          <span>Apache 2.0 · Open source</span>
+        </div>
+      </div>
 
-  <div class="container controls-hero__inner">
-    <div class="controls-hero__badge">
-      <span class="controls-hero__badge-dot"></span>Framework &middot; Controla a Visão Geral
-</div>
-    <h1>Controlos<span class="text-gradient-radical">Apresentar</span></h1>
-    <p class="controls-hero__lead">Uma visão abrangente de todos os controles WAF++, organizados por país e cobertura do quadro regulatório. Valide sua infraestrutura contra 83+ controles em 8 pilares.
-</p>
-    <div class="controls-hero__nav">
-      <a class="controls-hero__chip" href="#country">
-        <i data-lucide="globe" aria-hidden="true"></i>Por País
-</a>
-      <a class="controls-hero__chip" href="#framework">
-        <i data-lucide="file-text" aria-hidden="true"></i>Por quadro
-</a>
-      <a class="controls-hero__chip" href="#controls">
-        <i data-lucide="list" aria-hidden="true"></i>Por Pilar
-</a>
+      <button class="wf6-hero__shot wf6-shot wf6-rise wf6-d1" type="button" aria-label="Ampliar o catálogo de controles do WAF++">
+        <img src="{{ '/assets/images/wafpass/Controls_Catalogue.png' | relative_url }}" alt="Catálogo de controles do WAF++ com cada controle por ID, pilar, severidade e tipo" loading="eager">
+        <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- Stats -->
-<section class="controls-stats">
-  <div class="container stats-grid">
-    <div class="stat-item">
-      <div class="stat-number" data-count="8">8</div>
-      <div class="stat-label">Pilares</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" data-count="83" data-suffix="+">83+</div>
-      <div class="stat-label">Controlos</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" data-count="50" data-suffix="+">50+</div>
-      <div class="stat-label">Quadros de conformidade</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" data-count="15" data-suffix="+">15+</div>
-      <div class="stat-label">Países Regiões do &amp;</div>
+
+
+<!-- ===================== STATS ===================== -->
+<section class="wf6-section wf6-section--alt">
+  <div class="wf6-wrap">
+    <div class="wf6-stats__grid wf6-rise">
+      <div class="wf6-stat"><div class="wf6-stat__num">8</div><div class="wf6-stat__label">Pilares</div></div>
+      <div class="wf6-stat"><div class="wf6-stat__num">100+</div><div class="wf6-stat__label">Controles</div></div>
+      <div class="wf6-stat"><div class="wf6-stat__num">50+</div><div class="wf6-stat__label">Frameworks de conformidade</div></div>
+      <div class="wf6-stat"><div class="wf6-stat__num">15+</div><div class="wf6-stat__label">Países e regiões</div></div>
     </div>
   </div>
 </section>
 
-<!-- Country Coverage -->
-<section class="controls-section" id="country">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">COBERTURA DO PAÍS</div>
-      <h2 class="section-title-radical">Controles por País / Região</h2>
-      <p class="section-lead-radical">Os controles WAF++ suportam o cumprimento de regulamentos em várias jurisdições em todo o mundo.</p>
-    </div>
 
-    <div class="country-grid">
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Alemanha (DE)</div>
-            <div class="country-card__frameworks">BSI C5, BSI C3A, IT-Grundschutz, DORA, NIS2, GDPR</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>29 controlos</strong>mapeado para BSI C3A, DORA, NIS2, GDPR</div>
-      </div>
 
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">França (FR)</div>
-            <div class="country-card__frameworks">ANSSI SecNumCloud, GDPR, DORA, NIS2, EUCS</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>14 controlos</strong>mapeado para ANSSI, DORA, NIS2, GDPR</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Áustria (AT)</div>
-            <div class="country-card__frameworks">BSI C5, GDPR, DORA, NIS2</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>25 controlos</strong>mapeado para BSI C5, DORA, NIS2, GDPR</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Suíça (CH)</div>
-            <div class="country-card__frameworks">BSI C5, GDPR, DPDP Act</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>3 controlos</strong>mapeado para DPPD Act, GDPR</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Países Baixos</div>
-            <div class="country-card__frameworks">BIO, GDPR, DORA, NIS2</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>14 controlos</strong>mapeado para BIO, DORA, NIS2, GDPR</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Reino Unido</div>
-            <div class="country-card__frameworks">UK GDPR, UK NCSC CAF, UK Cyber Essentials, NIS2</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>14 controlos</strong>mapeado para o RGPD do Reino Unido, NCSC, Cyber Essentials, NIS2</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Estados Unidos (EUA)</div>
-            <div class="country-card__frameworks">NIST SP 800-53, FDRAMP, CMMC 2.0, HIPAA, CCPA, SOC 2, PCI DSS</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>15 controlos</strong>mapeado para NIST, FedRAMP, CMMC 2.0, HIPAA, PCI DSS</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Austrália</div>
-            <div class="country-card__frameworks">ASD Essential 8, IRAP</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>13 controlos</strong>mapeado para ASD Essential 8, IRAP</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Canadá</div>
-            <div class="country-card__frameworks">PIPEDA</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>3 controlos</strong>mapeado para PIPEDA</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Singapura</div>
-            <div class="country-card__frameworks">PDPA SG</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>2 controlos</strong>mapeado para PDPA SG</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Índia</div>
-            <div class="country-card__frameworks">MEITY CSMP, DPDP Act</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>3 controlos</strong>mapeado para MEITY CSMP, DPDP Act</div>
-      </div>
-
-      <div class="card-radical country-card">
-        <div class="country-card__head">
-          <span class="country-card__flag">□</span>
-          <div>
-            <div class="country-card__name">Brasil</div>
-            <div class="country-card__frameworks">LGPD</div>
-          </div>
-        </div>
-        <div class="country-card__count"><strong>3 controlos</strong>mapeado para LGPD</div>
-      </div>
-    </div>
-
-    <div class="card-radical" style="margin-top:24px;">
-      <div class="card-radical__header">
-        <div class="card-radical__icon"><i data-lucide="map-pin" aria-hidden="true"></i></div>
-        <div class="card-radical__title">Principais quadros regionais</div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
-        <span class="control-pill">GDPR (UE/EEE)</span>
-        <span class="control-pill">NIS2 (UE)</span>
-        <span class="control-pill">DORA (Financeiro da UE)</span>
-        <span class="control-pill">BSI C5/C3A (Alemanha)</span>
-        <span class="control-pill">ANSSI (França)</span>
-        <span class="control-pill">RGPD/NCSC (Reino Unido)</span>
-        <span class="control-pill">NIST/FedRAMP (EUA)</span>
-        <span class="control-pill">ASD Essential 8 (Austrália)</span>
-        <span class="control-pill">PIPEDA (Canadá)</span>
-        <span class="control-pill">PDPA (Singapura)</span>
-        <span class="control-pill">Lei DPDP (Índia)</span>
-        <span class="control-pill">LGPD (Brasil)</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Frameworks -->
-<section class="controls-section page-radical__section--alt" id="framework">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">QUADROS REGULAMENTARES</div>
-      <h2 class="section-title-radical">Todos os Quadros de Conformidade Suportados</h2>
-      <p class="section-lead-radical">WAF++ mapeia controles para quadros regulatórios em domínios de segurança, conformidade e governança.</p>
-    </div>
-
-    <div class="framework-grid">
-      <div class="framework-card">
-        <div class="framework-card__header">
-          <i data-lucide="globe" aria-hidden="true"></i>
-          <h3 class="framework-card__title">Normas internacionais</h3>
-        </div>
-        <ul>
-          <li><a href="#WAF-SEC-010">ISO 27001:2022</a></li>
-          <li><a href="#WAF-SEC-010">ISO 27017 (Segurança em nuvem)</a></li>
-          <li><a href="#WAF-SEC-030">ISO 27018 (Protecção PII)</a></li>
-          <li><a href="#WAF-SEC-010">Controlos CIS v8</a></li>
-          <li><a href="#WAF-SEC-010">CSA STAR</a></li>
-          <li><a href="#WAF-SEC-010">COBIT 2019</a></li>
-        </ul>
-      </div>
-
-      <div class="framework-card framework-card--eu">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">Quadros europeus</h3>
-        </div>
-        <ul>
-          <li><a href="#WAF-SEC-010">GDPR</a></li>
-          <li><a href="#WAF-SEC-010">NIS2</a></li>
-          <li><a href="#WAF-SEC-010">DORA</a></li>
-          <li><a href="#WAF-SEC-010">EUCS (ENISA)</a></li>
-          <li><a href="#WAF-SEC-010">BSI C5:2020</a></li>
-          <li><a href="#WAF-SOV-010">BSI C3A:2026</a></li>
-          <li><a href="#WAF-SEC-030">ANSSI SecNumCloud</a></li>
-        </ul>
-      </div>
-
-      <div class="framework-card framework-card--uk">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">Reino Unido</h3>
-        </div>
-        <ul>
-          <li><a href="#WAF-SEC-010">RGPD do Reino Unido</a></li>
-          <li><a href="#WAF-SEC-010">Reino Unido NCSC CAF</a></li>
-          <li><a href="#WAF-SEC-010">Materiais Cibernéticos do Reino Unido</a></li>
-        </ul>
-      </div>
-
-      <div class="framework-card framework-card--us">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">Estados Unidos</h3>
-        </div>
-        <ul>
-          <li><a href="#WAF-SEC-010">NIST SP 800- 53</a></li>
-          <li><a href="#WAF-SEC-010">FedRAMP</a></li>
-          <li><a href="#WAF-SEC-030">CMMC 2.0</a></li>
-          <li><a href="#WAF-SEC-030">HIPAA</a></li>
-          <li><a href="#WAF-SEC-010">CCPA</a></li>
-          <li><a href="#WAF-SEC-010">SOC 2 Tipo II</a></li>
-          <li><a href="#WAF-SEC-010">PCI DSS v4.0</a></li>
-        </ul>
-      </div>
-
-      <div class="framework-card framework-card--apac">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">Ásia- Pacífico</h3>
-        </div>
-        <ul>
-          <li><a href="#WAF-SEC-010">PDPA SG (Singapura)</a></li>
-          <li><a href="#WAF-SEC-010">MEITY CSMP (Índia)</a></li>
-          <li><a href="#WAF-SEC-010">Lei DPDP (Índia)</a></li>
-        </ul>
-      </div>
-
-      <div class="framework-card framework-card--industry">
-        <div class="framework-card__header">
-          <i data-lucide="briefcase" aria-hidden="true"></i>
-          <h3 class="framework-card__title">Indústria Específica</h3>
-        </div>
-        <ul>
-          <li><a href="#WAF-COST-010">Fundação FinOps</a></li>
-          <li><a href="#WAF-OPS-010">ISO/IEC 20000- 1</a></li>
-          <li><a href="#WAF-OPS-010">ITIL 4</a></li>
-          <li><a href="#WAF-PERF-010">ISO/IEC 25010</a></li>
-          <li><a href="#WAF-PERF-030">TOGAF</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="framework-grid" style="margin-top:20px;">
-      <div class="framework-card">
-        <div class="framework-card__header">
-          <i data-lucide="cloud" aria-hidden="true"></i>
-          <h3 class="framework-card__title">Frameworks de nuvem</h3>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <span class="control-pill">AWS bem arquitetado</span>
-          <span class="control-pill">Azure bem arquitetado</span>
-          <span class="control-pill">Google Cloud Framework</span>
-        </div>
-      </div>
-
-      <div class="framework-card framework-card--eu">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">Alemanha Específica</h3>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <span class="control-pill">BSI C5:2020</span>
-          <span class="control-pill">BSI C3A:2026</span>
-          <span class="control-pill">IT- Grundschutz</span>
-          <span class="control-pill">DORA</span>
-          <span class="control-pill">NIS2</span>
-        </div>
-      </div>
-
-      <div class="framework-card framework-card--eu">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">França Específica</h3>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <span class="control-pill">ANSSI SecNumCloud</span>
-          <span class="control-pill">GDPR</span>
-          <span class="control-pill">DORA</span>
-          <span class="control-pill">EUCS</span>
-        </div>
-      </div>
-
-      <div class="framework-card framework-card--eu">
-        <div class="framework-card__header">
-          <span>□</span>
-          <h3 class="framework-card__title">Suíça Específica</h3>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <span class="control-pill">BSI C5:2020</span>
-          <span class="control-pill">GDPR</span>
-          <span class="control-pill">Lei DPDP</span>
-        </div>
-      </div>
-    </div>
-
-    <p class="section-lead-radical" style="text-align:center;margin-top:32px;margin-bottom:0;">Total: 50+ quadros regulamentares apoiados</p>
-  </div>
-</section>
-
-<!-- Controls by Pillar -->
-<section class="controls-section" id="controls">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">CONTROLOS</div>
-      <h2 class="section-title-radical">Controles por Pilar</h2>
-      <p class="section-lead-radical">83+ controles em 8 pilares. Cada controle inclui verificações legíveis por máquina para validação automatizada.</p>
-    </div>
-
-    <div class="controls-pillar-grid">
-      <div class="control-pillar-card control-pillar-card--security" id="WAF-SEC">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="shield" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Segurança (WAF-SEC)</div>
-            <div class="control-pillar-card__meta">13 controles &middot; Crítico, Alta gravidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-SEC-010</span><span class="control-pill">WAF-SEC- 020</span><span class="control-pill">WAF-SEC-030</span><span class="control-pill">WAF-SEC-040</span><span class="control-pill">WAF-SEC-050</span><span class="control-pill">WAF-SEC-060</span><span class="control-pill">WAF-SEC-070</span><span class="control-pill">WAF-SEC- 080</span><span class="control-pill">WAF-SEC-090</span><span class="control-pill">WAF-SEC-100</span><span class="control-pill">WAF-SEC-110</span><span class="control-pill">WAF-SEC-120</span><span class="control-pill">WAF-SEC-130</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillars/security/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--cost" id="WAF-COST">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="trending-down" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Otimização dos custos (WAF-COST)</div>
-            <div class="control-pillar-card__meta">10 controles &middot; Alta, Média gravidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-COST-010</span><span class="control-pill">WAF-COST-020</span><span class="control-pill">WAF-COST-030</span><span class="control-pill">WAF-COST-040</span><span class="control-pill">WAF-COST-050</span><span class="control-pill">WAF-COST-060</span><span class="control-pill">WAF-COST-070</span><span class="control-pill">WAF-COST-080</span><span class="control-pill">WAF-COST-090</span><span class="control-pill">WAF-COST-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillars/costs/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--ops" id="WAF-OPS">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="settings-2" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Excelência Operacional (WAF-OPS)</div>
-            <div class="control-pillar-card__meta">10 controles &middot; Alta, Média gravidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-OPS-010</span><span class="control-pill">WAF-OPS-020</span><span class="control-pill">WAF-OPS-030</span><span class="control-pill">WAF-OPS-040</span><span class="control-pill">WAF-OPS-050</span><span class="control-pill">WAF-OPS-060</span><span class="control-pill">WAF-OPS-070</span><span class="control-pill">WAF-OPS-080</span><span class="control-pill">WAF-OPS-090</span><span class="control-pill">WAF-OPS-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillars/operational-excellence/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--reliability" id="WAF-REL">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="activity" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Confiabilidade (WAF-REL)</div>
-            <div class="control-pillar-card__meta">10 controles &middot; Crítico, Alta gravidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-REL-010</span><span class="control-pill">WAF- REL- 020</span><span class="control-pill">WAF- REL- 030</span><span class="control-pill">WAF- REL- 040</span><span class="control-pill">WAF- REL- 050</span><span class="control-pill">WAF- REL- 060</span><span class="control-pill">WAF- REL- 070</span><span class="control-pill">WAF- REL- 080</span><span class="control-pill">WAF- REL- 090</span><span class="control-pill">WAF-REL-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillars/reliability/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--performance" id="WAF-PERF">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="zap" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Eficiência de desempenho (WAF-PERF)</div>
-            <div class="control-pillar-card__meta">10 controla a gravidade média do &middot;</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-PERF-010</span><span class="control-pill">WAF-PERF- 020</span><span class="control-pill">WAF-PERF-030</span><span class="control-pill">WAF-PERF- 040</span><span class="control-pill">WAF-PERF-050</span><span class="control-pill">WAF-PERF-060</span><span class="control-pill">WAF-PERF-070</span><span class="control-pill">WAF-PERF- 080</span><span class="control-pill">WAF-PERF-090</span><span class="control-pill">WAF-PERF-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillars/performance-efficiency/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--sovereign" id="WAF-SOV">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Soberano (WAF-SOV)</div>
-            <div class="control-pillar-card__meta">10 controles &middot; Crítico, Alta gravidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-SOV-010</span><span class="control-pill">WAF- SOV- 020</span><span class="control-pill">WAF-SOV-030</span><span class="control-pill">WAF- SOV- 040</span><span class="control-pill">WAF-SOV-050</span><span class="control-pill">WAF-SOV-060</span><span class="control-pill">WAF-SOV-070</span><span class="control-pill">WAF- SOV- 080</span><span class="control-pill">WAF-SOV-090</span><span class="control-pill">WAF-SOV-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillar-sovereign/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--sustainability" id="WAF-SUS">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="leaf" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Sustentabilidade (WAF-SUS)</div>
-            <div class="control-pillar-card__meta">10 controles &middot; Alta, Média gravidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-SUS-010</span><span class="control-pill">WAF-SUS- 020</span><span class="control-pill">WAF-SUS-030</span><span class="control-pill">WAF-SUS-040</span><span class="control-pill">WAF-SUS-050</span><span class="control-pill">WAF-SUS-060</span><span class="control-pill">WAF-SUS-070</span><span class="control-pill">WAF-SUS- 080</span><span class="control-pill">WAF-SUS-090</span><span class="control-pill">WAF-SUS-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/docs/wafpp/1.1.0-en/pillars/sustainability/' | relative_url }}">Explorar o &rarr;</a>
-        </div>
-      </div>
-
-      <div class="control-pillar-card control-pillar-card--agentic" id="WAF-AGN">
-        <div class="control-pillar-card__head">
-          <div class="control-pillar-card__icon"><i data-lucide="cpu" aria-hidden="true"></i></div>
-          <div>
-            <div class="control-pillar-card__title">Agentic (WAF-AGN)</div>
-            <div class="control-pillar-card__meta">10 controles &middot; Identidade de alta gravidade &middot;, governança, guardrails, observabilidade</div>
-          </div>
-        </div>
-        <div class="control-pillar-card__pills">
-          <span class="control-pill">WAF-AGN-010</span><span class="control-pill">WAF-AGN-020</span><span class="control-pill">WAF-AGN-030</span><span class="control-pill">WAF-AGN-040</span><span class="control-pill">WAF-AGN-050</span><span class="control-pill">WAF-AGN-060</span><span class="control-pill">WAF-AGN-070</span><span class="control-pill">WAF-AGN-080</span><span class="control-pill">WAF-AGN-090</span><span class="control-pill">WAF-AGN-100</span>
-        </div>
-        <div class="control-pillar-card__actions">
-          <a class="btn btn-glow" href="{{ '/pillars/agentic/' | relative_url }}">Explorar o &rarr;</a>
-          <a class="btn btn-glass" href="{{ '/docs/wafpp/1.1.0-en/pillars/agentic/' | relative_url }}">Docs</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WAFPass summary -->
-<section class="controls-summary">
-  <div class="container">
-    <div class="card-radical" style="display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;">
+<!-- ===================== COUNTRY COVERAGE ===================== -->
+<section class="wf6-section" id="country">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-section-head--split wf6-rise">
       <div>
-        <div class="card-radical__header" style="margin-bottom:10px;">
-          <div class="card-radical__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
-          <div class="card-radical__title">WAFPass &middot; Ferramenta CLI &middot; v1. 1. 0</div>
-        </div>
-        <p class="card-radical__text" style="max-width:52ch;">Controles automatizados para cada pilar — Terraform, CDK e muito mais. Análise estática, sem credenciais na nuvem, resulta em segundos.</p>
+        <h2 class="wf6-heading">Controles por país e região.</h2>
+        <p class="wf6-lead">Os controles do WAF++ apoiam a conformidade com regulações de várias jurisdições no mundo todo.</p>
       </div>
-      <div style="display:flex;gap:12px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
-        <div style="display:flex;flex-direction:column;gap:5px;">
-          <span class="control-pill" style="color:#22c55e;border-color:rgba(34,197,94,0.25);">↔ PASS</span>
-          <span class="control-pill" style="color:#ef4444;border-color:rgba(239,68,68,0.25);">FALHA</span>
-          <span class="control-pill" style="color:var(--radical-muted);">– SKIP</span>
-        </div>
-        <button class="btn btn-glow" data-action="download-controls" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">
-          <i data-lucide="download" aria-hidden="true"></i>Download Controls
-</button>
-        <a class="btn btn-glass" href="{{ '/wafpass/' | relative_url }}">Saiba mais sobre o WAFPass &rarr;</a>
+      <button class="wf6-section-shot wf6-shot" type="button" aria-label="Ampliar o mapa de regiões implantadas">
+        <img src="{{ '/assets/images/wafpass_1.0/Deployed_Region_Map.png' | relative_url }}" alt="Mapa de regiões implantadas do WAF++ com cargas de trabalho por provedor e país" loading="lazy">
+        <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+
+    <div class="wf6-bars wf6-rise">
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇩🇪</span>Alemanha</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill is-top" style="width:100%"></div></div>
+        <div class="wf6-bar__value">29</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇦🇹</span>Áustria</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:86%"></div></div>
+        <div class="wf6-bar__value">25</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇺🇸</span>Estados Unidos</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:52%"></div></div>
+        <div class="wf6-bar__value">15</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇫🇷</span>França</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:48%"></div></div>
+        <div class="wf6-bar__value">14</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇳🇱</span>Países Baixos</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:48%"></div></div>
+        <div class="wf6-bar__value">14</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇬🇧</span>Reino Unido</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:48%"></div></div>
+        <div class="wf6-bar__value">14</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇦🇺</span>Austrália</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:45%"></div></div>
+        <div class="wf6-bar__value">13</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇨🇭</span>Suíça</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:10%"></div></div>
+        <div class="wf6-bar__value">3</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇨🇦</span>Canadá</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:10%"></div></div>
+        <div class="wf6-bar__value">3</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇮🇳</span>Índia</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:10%"></div></div>
+        <div class="wf6-bar__value">3</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇧🇷</span>Brasil</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:10%"></div></div>
+        <div class="wf6-bar__value">3</div>
+      </div>
+      <div class="wf6-bar">
+        <div class="wf6-bar__label"><span class="wf6-bar__flag">🇸🇬</span>Singapura</div>
+        <div class="wf6-bar__track"><div class="wf6-bar__fill" style="width:7%"></div></div>
+        <div class="wf6-bar__value">2</div>
+      </div>
+    </div>
+
+    <div class="wf6-proof__row wf6-rise">
+      <span class="wf6-proof__intro">Principais frameworks regionais</span>
+      <div class="wf6-proof__names">
+        <span class="wf6-proof__name">RGPD (UE/EEE)</span>
+        <span class="wf6-proof__name">NIS2 (UE)</span>
+        <span class="wf6-proof__name">DORA (setor financeiro da UE)</span>
+        <span class="wf6-proof__name">BSI C5/C3A (Alemanha)</span>
+        <span class="wf6-proof__name">ANSSI (França)</span>
+        <span class="wf6-proof__name">UK GDPR/NCSC (Reino Unido)</span>
+        <span class="wf6-proof__name">NIST/FedRAMP (EUA)</span>
+        <span class="wf6-proof__name">ASD Essential 8 (Austrália)</span>
+        <span class="wf6-proof__name">PIPEDA (Canadá)</span>
+        <span class="wf6-proof__name">PDPA (Singapura)</span>
+        <span class="wf6-proof__name">DPDP Act (Índia)</span>
+        <span class="wf6-proof__name">LGPD (Brasil)</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="controls-cta">
-  <div class="container">
-    <div class="controls-cta__card">
-      <div class="kicker-radical">COMEÇAR</div>
-      <h2 class="controls-cta__title">Pronto para validar sua infraestrutura?</h2>
-      <p class="controls-cta__lead">Mergulhe na documentação, valide sua infraestrutura com o WAFPass ou junte-se à comunidade para contribuir com controles.</p>
-      <div class="controls-cta__actions">
-        <a class="btn btn-glow btn-glow--lg" href="{{ '/docs/wafpp/1.1.0-en/' | relative_url }}">Ler a Documentação &rarr;</a>
-        <a class="btn btn-glass btn-glass--lg" href="{{ '/wafpass/' | relative_url }}">Tente WAFPass</a>
-        <a class="btn btn-glass btn-glass--lg" href="{{ '/governance-community/' | relative_url }}">Juntar-se à Comunidade</a>
+
+
+<!-- ===================== FRAMEWORKS ===================== -->
+<section class="wf6-section wf6-section--alt" id="framework">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-section-head--split wf6-rise">
+      <div>
+        <h2 class="wf6-heading">Frameworks de conformidade.</h2>
+        <p class="wf6-lead">O WAF++ mapeia controles para frameworks regulatórios nos domínios de segurança, conformidade e governança.</p>
       </div>
-      <div class="controls-cta__compliance">
-        <span class="controls-cta__pill">GDPR</span>
-        <span class="controls-cta__pill">SOC 2</span>
-        <span class="controls-cta__pill">HIPAA</span>
-        <span class="controls-cta__pill">BSI C5</span>
-        <span class="controls-cta__pill">ISO 27001</span>
-        <span class="controls-cta__pill">NIS2</span>
+      <button class="wf6-section-shot wf6-shot" type="button" aria-label="Ampliar a matriz de conformidade">
+        <img src="{{ '/assets/images/wafpass/Compliance_Matrix.png' | relative_url }}" alt="Matriz de conformidade do WAF++ que relaciona a cobertura dos pilares e as taxas de aprovação a frameworks regulatórios" loading="lazy">
+        <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+
+    <div class="wf6-fw__grid wf6-rise">
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Padrões internacionais</h3>
+        <div class="wf6-fw__list">
+          <span>ISO 27001:2022</span>
+          <span>ISO 27017</span>
+          <span>ISO 27018</span>
+          <span>CIS Controls v8</span>
+          <span>CSA STAR</span>
+          <span>COBIT 2019</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Frameworks europeus</h3>
+        <div class="wf6-fw__list">
+          <span>RGPD</span>
+          <span>NIS2</span>
+          <span>DORA</span>
+          <span>EUCS (ENISA)</span>
+          <span>BSI C5:2020</span>
+          <span>BSI C3A:2026</span>
+          <span>ANSSI SecNumCloud</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Reino Unido</h3>
+        <div class="wf6-fw__list">
+          <span>UK GDPR</span>
+          <span>UK NCSC CAF</span>
+          <span>UK Cyber Essentials</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Estados Unidos</h3>
+        <div class="wf6-fw__list">
+          <span>NIST SP 800-53</span>
+          <span>FedRAMP</span>
+          <span>CMMC 2.0</span>
+          <span>HIPAA</span>
+          <span>CCPA</span>
+          <span>SOC 2 Type II</span>
+          <span>PCI DSS v4.0</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Ásia-Pacífico</h3>
+        <div class="wf6-fw__list">
+          <span>PDPA SG</span>
+          <span>MEITY CSMP</span>
+          <span>DPDP Act</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Específicos do setor</h3>
+        <div class="wf6-fw__list">
+          <span>FinOps Foundation</span>
+          <span>ISO/IEC 20000-1</span>
+          <span>ITIL 4</span>
+          <span>ISO/IEC 25010</span>
+          <span>TOGAF</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Frameworks de nuvem</h3>
+        <div class="wf6-fw__list">
+          <span>AWS Well-Architected</span>
+          <span>Azure Well-Architected</span>
+          <span>Google Cloud Framework</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Específicos da Alemanha</h3>
+        <div class="wf6-fw__list">
+          <span>BSI C5:2020</span>
+          <span>BSI C3A:2026</span>
+          <span>IT-Grundschutz</span>
+          <span>DORA</span>
+          <span>NIS2</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Específicos da França</h3>
+        <div class="wf6-fw__list">
+          <span>ANSSI SecNumCloud</span>
+          <span>RGPD</span>
+          <span>DORA</span>
+          <span>EUCS</span>
+        </div>
+      </div>
+      <div class="wf6-fw__group">
+        <h3 class="wf6-fw__name">Específicos da Suíça</h3>
+        <div class="wf6-fw__list">
+          <span>BSI C5:2020</span>
+          <span>RGPD</span>
+          <span>DPDP Act</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="wf6-lead wf6-center wf6-rise">Total: mais de 50 frameworks regulatórios suportados.</p>
+  </div>
+</section>
+
+
+
+<!-- ===================== CONTROLS BY PILLAR ===================== -->
+<section class="wf6-section" id="controls">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-section-head--split wf6-rise">
+      <div>
+        <h2 class="wf6-heading">Controles por pilar.</h2>
+        <p class="wf6-lead">Cada controle inclui uma verificação legível por máquina para validação automatizada.</p>
+      </div>
+      <button class="wf6-section-shot wf6-shot" type="button" aria-label="Ampliar o detalhamento de pontuação por módulo">
+        <img src="{{ '/assets/images/wafpass/Module_Score_Breakdown.png' | relative_url }}" alt="Detalhamento de pontuação do WAF++ por módulo com pontuações e constatações de cada pilar" loading="lazy">
+        <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+
+    <div class="wf6-pillars">
+
+      <div class="wf6-pillar wf6-rise" id="WAF-SEC">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="shield"></i>Segurança <span class="wf6-pillar__tag">WAF-SEC</span></div>
+          <div class="wf6-pillar__meta">13 controles · severidade Critical, High</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-SEC-010</span>
+          <span>WAF-SEC-020</span>
+          <span>WAF-SEC-030</span>
+          <span>WAF-SEC-040</span>
+          <span>WAF-SEC-050</span>
+          <span>WAF-SEC-060</span>
+          <span>WAF-SEC-070</span>
+          <span>WAF-SEC-080</span>
+          <span>WAF-SEC-090</span>
+          <span>WAF-SEC-100</span>
+          <span>WAF-SEC-110</span>
+          <span>WAF-SEC-120</span>
+          <span>WAF-SEC-130</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/security/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-rise" id="WAF-COST">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="trending-down"></i>Otimização de custos <span class="wf6-pillar__tag">WAF-COST</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade High, Medium</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-COST-010</span>
+          <span>WAF-COST-020</span>
+          <span>WAF-COST-030</span>
+          <span>WAF-COST-040</span>
+          <span>WAF-COST-050</span>
+          <span>WAF-COST-060</span>
+          <span>WAF-COST-070</span>
+          <span>WAF-COST-080</span>
+          <span>WAF-COST-090</span>
+          <span>WAF-COST-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/costs/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-rise" id="WAF-OPS">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="settings-2"></i>Excelência operacional <span class="wf6-pillar__tag">WAF-OPS</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade High, Medium</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-OPS-010</span>
+          <span>WAF-OPS-020</span>
+          <span>WAF-OPS-030</span>
+          <span>WAF-OPS-040</span>
+          <span>WAF-OPS-050</span>
+          <span>WAF-OPS-060</span>
+          <span>WAF-OPS-070</span>
+          <span>WAF-OPS-080</span>
+          <span>WAF-OPS-090</span>
+          <span>WAF-OPS-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/operational-excellence/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-rise" id="WAF-REL">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="activity"></i>Confiabilidade <span class="wf6-pillar__tag">WAF-REL</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade Critical, High</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-REL-010</span>
+          <span>WAF-REL-020</span>
+          <span>WAF-REL-030</span>
+          <span>WAF-REL-040</span>
+          <span>WAF-REL-050</span>
+          <span>WAF-REL-060</span>
+          <span>WAF-REL-070</span>
+          <span>WAF-REL-080</span>
+          <span>WAF-REL-090</span>
+          <span>WAF-REL-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/reliability/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-rise" id="WAF-PERF">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="zap"></i>Eficiência de desempenho <span class="wf6-pillar__tag">WAF-PERF</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade Medium</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-PERF-010</span>
+          <span>WAF-PERF-020</span>
+          <span>WAF-PERF-030</span>
+          <span>WAF-PERF-040</span>
+          <span>WAF-PERF-050</span>
+          <span>WAF-PERF-060</span>
+          <span>WAF-PERF-070</span>
+          <span>WAF-PERF-080</span>
+          <span>WAF-PERF-090</span>
+          <span>WAF-PERF-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/performance-efficiency/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-pillar--gold wf6-rise" id="WAF-SOV">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="flag"></i>Soberania <span class="wf6-pillar__tag">WAF-SOV · exclusivo do WAF++</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade Critical, High</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-SOV-010</span>
+          <span>WAF-SOV-020</span>
+          <span>WAF-SOV-030</span>
+          <span>WAF-SOV-040</span>
+          <span>WAF-SOV-050</span>
+          <span>WAF-SOV-060</span>
+          <span>WAF-SOV-070</span>
+          <span>WAF-SOV-080</span>
+          <span>WAF-SOV-090</span>
+          <span>WAF-SOV-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillar-sovereign/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-rise" id="WAF-SUS">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="leaf"></i>Sustentabilidade <span class="wf6-pillar__tag">WAF-SUS</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade High, Medium</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-SUS-010</span>
+          <span>WAF-SUS-020</span>
+          <span>WAF-SUS-030</span>
+          <span>WAF-SUS-040</span>
+          <span>WAF-SUS-050</span>
+          <span>WAF-SUS-060</span>
+          <span>WAF-SUS-070</span>
+          <span>WAF-SUS-080</span>
+          <span>WAF-SUS-090</span>
+          <span>WAF-SUS-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/sustainability/' | relative_url }}">Explorar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+      <div class="wf6-pillar wf6-pillar--purple wf6-rise" id="WAF-AGN">
+        <div class="wf6-pillar__head">
+          <div class="wf6-pillar__title"><i data-lucide="bot"></i>Agêntico <span class="wf6-pillar__tag">WAF-AGN · novo na v1.1</span></div>
+          <div class="wf6-pillar__meta">10 controles · severidade High · Identidade, governança, guardrails, observabilidade</div>
+        </div>
+        <div class="wf6-pillar__chips">
+          <span>WAF-AGN-010</span>
+          <span>WAF-AGN-020</span>
+          <span>WAF-AGN-030</span>
+          <span>WAF-AGN-040</span>
+          <span>WAF-AGN-050</span>
+          <span>WAF-AGN-060</span>
+          <span>WAF-AGN-070</span>
+          <span>WAF-AGN-080</span>
+          <span>WAF-AGN-090</span>
+          <span>WAF-AGN-100</span>
+        </div>
+        <div class="wf6-pillar__actions">
+          <a class="wf6-arrow" href="{{ '/pt/pillars/agentic/' | relative_url }}">Visão geral <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+          <a class="wf6-arrow" href="{{ '/docs/wafpp/1.1.0-en/pillars/agentic/' | relative_url }}">Docs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===================== WAFPass SUMMARY ===================== -->
+<section class="wf6-section wf6-section--alt">
+  <div class="wf6-wrap">
+    <div class="wf6-summary wf6-rise">
+      <div class="wf6-summary__body">
+        <div class="wf6-summary__title">WAFPass · ferramenta CLI · v1.1.0</div>
+        <p class="wf6-summary__text">Verificações automatizadas para cada pilar: Terraform, CDK e mais. Análise estática, sem credenciais de nuvem, resultados em segundos.</p>
+      </div>
+      <div class="wf6-summary__actions">
+        <div class="wf6-summary__legend">
+          <span>PASS</span>
+          <span>FAIL</span>
+          <span>SKIP</span>
+        </div>
+        <button class="wf6-btn wf6-btn--pill" type="button" data-action="download-controls" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">
+          Baixar os controles
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </button>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/wafpass/' | relative_url }}">Conhecer o WAFPass</a>
       </div>
     </div>
   </div>
 </section>
+
+
+
+<!-- ===================== CTA ===================== -->
+<section class="wf6-section wf6-section--dark wf6-cta" id="get-started">
+  <div class="wf6-wrap">
+    <div class="wf6-rise">
+      <h2 class="wf6-cta__title">Valide sua infraestrutura.</h2>
+      <p class="wf6-cta__lead">Mergulhe na documentação, valide sua infraestrutura com o WAFPass ou junte-se à comunidade para contribuir com controles.</p>
+      <div class="wf6-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/pt/wafpass-install/' | relative_url }}">
+          Instalar o WAFPass
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/docs/wafpp/1.1.0-en/' | relative_url }}">Ler a documentação</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/governance-community/' | relative_url }}">Juntar-se à comunidade</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 </div>
+
+
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="wf6-lightbox" id="wf6-lightbox" role="dialog" aria-modal="true" aria-label="Captura ampliada" data-lightbox>
+  <button class="wf6-lightbox__close" type="button" data-lightbox-close aria-label="Fechar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="wf6-lightbox__img" data-lightbox-img src="" alt="">
+</div>
+
+
 
 <script src="{{ '/assets/js/wafpass-download.js' | relative_url }}" defer></script>
 
 <script>
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
+(function () {
+  var page = document.querySelector('.ctrl-page');
+  var reveals = document.querySelectorAll('.wf6-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
+
+  var lightbox = document.getElementById('wf6-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
+
+    function openLightbox(trigger) {
+      var img = trigger.querySelector('img');
+      if (!img) return;
+      lastTrigger = trigger;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lightbox.classList.add('is-open');
+      if (page) page.classList.add('wf6-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      if (page) page.classList.remove('wf6-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.wf6-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
 </script>

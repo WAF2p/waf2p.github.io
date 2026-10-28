@@ -2,199 +2,192 @@
 layout: default
 lang: fr
 ref: stay_updated
-title: "Restez à jour — WAF++"
-description: "Suivez les communiqués du cadre WAF++, les billets de blog et les actualités communautaires. Abonnez-vous via RSS, Slack ou GitHub."
+title: "Restez informé — WAF++"
+description: "Suivez les versions du framework WAF++, les articles du blog et l'actualité de la communauté. Abonnez-vous par RSS, Slack ou GitHub."
 permalink: /fr/stay-updated/
 ---
 
-<main class="page-radical stay-updated-page">
+<div class="su2-page">
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="su2-hero">
+  <div class="dl-wrap">
+    <h1 class="su2-hero__title dl-rise">Restez informé.</h1>
+    <p class="su2-hero__lead dl-rise dl-d1">WAF++ avance vite. Suivez le projet via le canal de votre choix (flux RSS, communauté Slack ou GitHub) et ne manquez aucune version, RFC ou discussion communautaire.</p>
+    <div class="su2-hero__actions dl-rise dl-d2">
+      <a class="wf6-btn wf6-btn--pill" href="#channels">
+        Canaux d'abonnement
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/fr/changelog/' | relative_url }}">Journal des modifications</a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/fr/roadmap/' | relative_url }}">Feuille de route</a>
+    </div>
+  </div>
+</section>
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+<!-- Stats -->
+<section class="su2-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat dl-rise"><div class="dl-stat__num">3</div><div class="dl-stat__label">Canaux gratuits</div></div>
+      <div class="dl-stat dl-rise dl-d1"><div class="dl-stat__num">Aucun</div><div class="dl-stat__label">compte requis pour le RSS</div></div>
+      <div class="dl-stat dl-rise dl-d2"><div class="dl-stat__num">Public</div><div class="dl-stat__label">Construit en public</div></div>
+      <div class="dl-stat dl-rise dl-d3"><div class="dl-stat__num">0</div><div class="dl-stat__label">Newsletter ou pistage</div></div>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-radical-badge">
-          <span class="hero-radical-badge__dot"></span>Suivre · Restez informé
+<!-- Channels + preview -->
+<section class="dl-section" id="channels">
+  <div class="dl-wrap">
+    <div class="su2-layout dl-rise">
+      <div>
+        <div class="su2-section-head">
+          <h2 class="dl-heading">Comment suivre WAF++.</h2>
+          <p class="dl-lead">Choisissez-en un ou les trois : chaque canal est gratuit et ouvert. Pas de newsletter, pas de pistage, pas de bruit.</p>
+        </div>
+
+        <div class="su2-channels">
+          <div class="su2-channel">
+            <div class="su2-channel__icon"><i data-lucide="rss" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="su2-channel__title">Flux RSS / Atom</h3>
+              <p class="su2-channel__desc">Abonnez-vous au flux RSS du blog et recevez les nouveaux articles directement dans votre lecteur. Sans compte, sans inscription.</p>
+              <a class="su2-item__link" href="/feed.xml">S'abonner au RSS →</a>
+            </div>
+          </div>
+
+          <div class="su2-channel">
+            <div class="su2-channel__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="su2-channel__title">Communauté Slack</h3>
+              <p class="su2-channel__desc">Rejoignez le Slack de WAF++. Retrouvez les annonces dans <code>#announcements</code>, discutez des versions dans <code>#general</code> et posez vos questions à tout moment.</p>
+              <a class="su2-item__link" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">Rejoindre Slack →</a>
+            </div>
+          </div>
+
+          <div class="su2-channel">
+            <div class="su2-channel__icon"><i data-lucide="github" aria-hidden="true"></i></div>
+            <div>
+              <h3 class="su2-channel__title">GitHub</h3>
+              <p class="su2-channel__desc">Suivez ou ajoutez une étoile au dépôt pour être averti des versions, issues et PR. Suivez les Discussions pour les RFC et les décisions de la communauté.</p>
+              <a class="su2-item__link" href="https://github.com/{{ site.data.github.org }}" target="_blank" rel="noopener">Suivre sur GitHub →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="su2-preview">
+        <div class="su2-preview__title">Ce dont vous serez informé</div>
+
+        <div class="su2-preview__item">
+          <div class="su2-preview__item-icon"><i data-lucide="package" aria-hidden="true"></i></div>
+          <div>
+            <div class="su2-preview__item-title">Versions et évolutions du framework</div>
+            <div class="su2-preview__item-desc">Mises à jour des piliers · Évolutions du scoring · Nouveaux contrôles</div>
+          </div>
+        </div>
+
+        <div class="su2-preview__item">
+          <div class="su2-preview__item-icon"><i data-lucide="message-square" aria-hidden="true"></i></div>
+          <div>
+            <div class="su2-preview__item-title">RFC et décisions communautaires</div>
+            <div class="su2-preview__item-desc">RFC ouvertes · Fils de discussion · Votes de gouvernance</div>
+          </div>
+        </div>
+
+        <div class="su2-preview__item">
+          <div class="su2-preview__item-icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+          <div>
+            <div class="su2-preview__item-title">Articles et analyses</div>
+            <div class="su2-preview__item-desc">Articles techniques · Études de cas · Retours d'expérience</div>
+          </div>
+        </div>
+
+        <div class="su2-preview__item">
+          <div class="su2-preview__item-icon"><i data-lucide="calendar" aria-hidden="true"></i></div>
+          <div>
+            <div class="su2-preview__item-title">Conférences et événements</div>
+            <div class="su2-preview__item-desc">Talks à venir · Ateliers · Rencontres communautaires</div>
+          </div>
+        </div>
+
+        <div class="su2-preview__footer">Pas de marketing, pas de newsletter. Uniquement de vraies nouvelles issues d'un vrai développement : tout est public et traçable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent updates -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="su2-section-head dl-rise">
+      <h2 class="dl-heading">Où vous tenir à jour.</h2>
+      <p class="dl-lead">Voyez ce qui a changé, ce qui arrive ensuite et ce que la communauté a écrit.</p>
+    </div>
+
+    <div class="su2-grid-3 dl-rise">
+      <div>
+        <div class="su2-item__icon"><i data-lucide="list" aria-hidden="true"></i></div>
+        <h3 class="su2-item__title">Journal des modifications</h3>
+        <p class="su2-item__desc">Historique complet des versions du framework, des mises à jour des piliers et des évolutions du modèle de scoring. Chaque entrée renvoie à la RFC qui l'a motivée.</p>
+        <a class="su2-item__link" href="{{ '/fr/changelog/' | relative_url }}">Voir le journal →</a>
+      </div>
+
+      <div>
+        <div class="su2-item__icon"><i data-lucide="map" aria-hidden="true"></i></div>
+        <h3 class="su2-item__title">Feuille de route</h3>
+        <p class="su2-item__desc">Ce qui est prévu, ce qui est en cours et ce qui est ouvert aux contributions. Influencez la suite en participant à la discussion.</p>
+        <a class="su2-item__link" href="{{ '/fr/roadmap/' | relative_url }}">Voir la feuille de route →</a>
+      </div>
+
+      <div>
+        <div class="su2-item__icon"><i data-lucide="pen-line" aria-hidden="true"></i></div>
+        <h3 class="su2-item__title">Blog</h3>
+        <p class="su2-item__desc">Articles techniques, retours d'expérience et analyses de la communauté. Du contenu pratique sur l'architecture cloud, pas du marketing.</p>
+        <a class="su2-item__link" href="{{ '/blog/' | relative_url }}">Lire le blog →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="su2-cta-section">
+  <div class="dl-wrap">
+    <div class="su2-cta dl-rise">
+      <div class="su2-cta__kicker">Participer</div>
+      <h2 class="dl-heading">Ne vous contentez pas de suivre : participez.</h2>
+      <p class="dl-lead">WAF++ est façonné par celles et ceux qui l'utilisent. Chaque RFC, chaque discussion, chaque contribution fait avancer le framework.</p>
+      <div class="su2-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/fr/contributing/' | relative_url }}">
+          Comment contribuer
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Rejoindre Slack</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/fr/rfc/' | relative_url }}">Suivi des RFC</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Restez à jour</span>
-        </h1>
-
-        <p class="hero-radical-lead">WAF++ se déplace rapidement. Suivez-le via votre canal préféré — Flux RSS, communauté Slack ou GitHub —
-et ne manquez jamais un communiqué, un RFC ou une discussion communautaire.
-</p>
-
-        <div class="hero-radical-actions">
-          <a class="btn btn-glow" href="#channels">Chaînes d'abonnement &rarr;</a>
-          <a class="btn btn-glass" href="{{ '/changelog/' | relative_url }}">Changer de journal</a>
-          <a class="btn btn-glass" href="{{ '/roadmap/' | relative_url }}">Feuille de route</a>
-        </div>
-
-        <div class="hero-radical-pills">
-          <span class="hero-radical-pill"><i data-lucide="rss" aria-hidden="true"></i>RSS · Slack · GitHub</span>
-          <span class="hero-radical-pill"><i data-lucide="lock-open" aria-hidden="true"></i>Aucun compte requis pour RSS</span>
-          <span class="hero-radical-pill"><i data-lucide="globe" aria-hidden="true"></i>Construit en public</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== CHANNELS + PREVIEW ===================== -->
-  <section class="bento-section" id="channels">
-    <div class="container">
-      <div class="su-layout">
-        <div>
-          <div class="section-header-radical">
-            <div class="kicker-radical">Canaux</div>
-            <h2 class="section-title-radical">Comment suivre WAF++</h2>
-            <p class="section-lead-radical">Choisissez un ou les trois, chaque canal est libre et ouvert. Pas de bulletins, pas de suivi, pas de bruit.</p>
-          </div>
-
-          <div class="su-channels">
-            <article class="su-channel">
-              <div class="su-channel__icon"><i data-lucide="rss" aria-hidden="true"></i></div>
-              <div class="su-channel__body">
-                <h3 class="su-channel__title">Flux RSS / Atom</h3>
-                <p class="su-channel__desc">Inscrivez-vous au flux RSS du blog et obtenez de nouveaux messages directement dans votre lecteur de flux. Pas de compte, pas d'inscription.</p>
-              </div>
-              <div class="su-channel__action">
-                <a href="/feed.xml" class="btn btn-glass btn-small">Abonnez-vous à RSS &rarr;</a>
-              </div>
-            </article>
-
-            <article class="su-channel">
-              <div class="su-channel__icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
-              <div class="su-channel__body">
-                <h3 class="su-channel__title">Communauté Slack</h3>
-                <p class="su-channel__desc">Rejoignez le WAF++ Casse-toi. Obtenez des annonces<code>#announcements</code>, discuter des libérations dans<code>#general</code>, et poser des questions à tout moment.</p>
-              </div>
-              <div class="su-channel__action">
-                <a href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" class="btn btn-glass btn-small">{% include slack-icon.html size=14 %}Rejoignez Slack &rarr;</a>
-              </div>
-            </article>
-
-            <article class="su-channel">
-              <div class="su-channel__icon"><i data-lucide="github" aria-hidden="true"></i></div>
-              <div class="su-channel__body">
-                <h3 class="su-channel__title">GitHub</h3>
-                <p class="su-channel__desc">Regardez ou regardez le dépôt pour obtenir des notifications pour les versions, les problèmes et les PR. Suivre les discussions sur les CRF et les décisions communautaires.</p>
-              </div>
-              <div class="su-channel__action">
-                <a href="https://github.com/waf2p/" target="_blank" rel="noopener" class="btn btn-glass btn-small">Regardez sur GitHub &rarr;</a>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="su-preview-card">
-          <div class="su-preview-card__kicker">Ce que vous entendrez</div>
-
-          <div class="su-preview-card__items">
-            <div class="su-preview-card__item">
-              <i data-lucide="package" aria-hidden="true"></i>
-              <div>
-                <div class="su-preview-card__item-title">Le cadre publie &amp; changements</div>
-                <div class="su-preview-card__item-desc">Mises à jour du pilier · Changements de notation · Ajouts de contrôles</div>
-              </div>
-            </div>
-
-            <div class="su-preview-card__item">
-              <i data-lucide="message-square" aria-hidden="true"></i>
-              <div>
-                <div class="su-preview-card__item-title">RFCs &amp; décisions communautaires</div>
-                <div class="su-preview-card__item-desc">Ouvrir les RFC · Discussions · Votes pour la gouvernance</div>
-              </div>
-            </div>
-
-            <div class="su-preview-card__item">
-              <i data-lucide="file-text" aria-hidden="true"></i>
-              <div>
-                <div class="su-preview-card__item-title">Articles de blog &amp; idées</div>
-                <div class="su-preview-card__item-desc">Postes techniques · Études de cas · Rapports d'expérience</div>
-              </div>
-            </div>
-
-            <div class="su-preview-card__item">
-              <i data-lucide="calendar" aria-hidden="true"></i>
-              <div>
-                <div class="su-preview-card__item-title">Conférences &amp; événements</div>
-                <div class="su-preview-card__item-desc">Conférences à venir · Ateliers · Rencontres communautaires</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="su-preview-card__footer">Pas de marketing, pas de newsletters. Seulement des mises à jour réelles du développement réel — tout est public et traçable.
-</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== RECENT UPDATES ===================== -->
-  <section class="bento-section">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Récent</div>
-        <h2 class="section-title-radical">Où rattraper</h2>
-        <p class="section-lead-radical">Voyez ce qui a changé, ce qui suit, et ce que la communauté a écrit.</p>
-      </div>
-
-      <div class="su-updates-grid">
-        <article class="su-update-card">
-          <div class="su-update-card__icon"><i data-lucide="list" aria-hidden="true"></i></div>
-          <h3 class="su-update-card__title">Changer de journal</h3>
-          <p class="su-update-card__desc">Historique complet des versions du cadre, des mises à jour du pilier et des changements de modèle de notation. Chaque entrée renvoie à la RFC qui l'a conduite.</p>
-          <div class="su-update-card__action">
-            <a class="btn btn-glass btn-small" href="{{ '/changelog/' | relative_url }}">Afficher le fichier de changement &rarr;</a>
-          </div>
-        </article>
-
-        <article class="su-update-card">
-          <div class="su-update-card__icon"><i data-lucide="map" aria-hidden="true"></i></div>
-          <h3 class="su-update-card__title">Feuille de route</h3>
-          <p class="su-update-card__desc">Ce qui est prévu, ce qui est en cours et ce qui est ouvert aux commentaires de la communauté. Formez ce qui se construit ensuite en rejoignant la discussion.</p>
-          <div class="su-update-card__action">
-            <a class="btn btn-glass btn-small" href="{{ '/roadmap/' | relative_url }}">Voir la feuille de route &rarr;</a>
-          </div>
-        </article>
-
-        <article class="su-update-card">
-          <div class="su-update-card__icon"><i data-lucide="pen-line" aria-hidden="true"></i></div>
-          <h3 class="su-update-card__title">Blog</h3>
-          <p class="su-update-card__desc">Articles techniques, rapports d'expérience et idées communautaires. Contenu pratique de l'architecture cloud — pas de marketing.</p>
-          <div class="su-update-card__action">
-            <a class="btn btn-glass btn-small" href="{{ '/blog/' | relative_url }}">Lire le blog &rarr;</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== CTA ===================== -->
-  <section class="cta-radical">
-    <div class="cta-radical__glow" aria-hidden="true"></div>
-    <div class="container cta-radical__inner">
-      <div class="kicker-radical">Rejoignez la conversation</div>
-      <h2 class="cta-radical__title">Ne suivez pas simplement — participez.</h2>
-      <p class="cta-radical__lead">WAF++ est façonné par les personnes qui l'utilisent. Chaque RFC, chaque discussion, chaque contribution fait avancer le cadre.
-</p>
-      <div class="cta-radical__actions">
-        <a class="btn btn-glow btn-glow--lg" href="{{ '/contributing/' | relative_url }}">Comment contribuer &rarr;</a>
-        <a class="btn btn-glass btn-glass--lg" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %}Rejoignez Slack</a>
-        <a class="btn btn-glass btn-glass--lg" href="{{ '/rfc/' | relative_url }}">Tracker RFC</a>
-      </div>
-    </div>
-  </section>
-
-</main>
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

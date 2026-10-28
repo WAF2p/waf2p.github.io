@@ -4,261 +4,196 @@ lang: it
 ref: conferences
 permalink: /it/conferences/
 title: "Conferenze — WAF++"
-description: "Conferenze in cui è presente il WAF++ — prossimi eventi, relatori, e come incontrare la comunità di persona."
+description: "Le conferenze in cui è presente WAF++: prossimi eventi, speaker e come incontrare la community di persona."
 ---
 
 {% assign today = 'now' | date: '%Y-%m-%d' %}
 {% assign upcoming = site.data.conferences | where_exp: "conf", "conf.start_date >= today" | sort: "start_date" %}
 {% assign past = site.data.conferences | where_exp: "conf", "conf.start_date < today" | sort: "start_date" | reverse %}
 {% assign speaker_names = "" | split: "|" %}
-{% for conf in upcoming %}
+{% for conf in site.data.conferences %}
   {% if conf.members %}
-    {% for member_info in conf.members %}
-      {% assign speaker_names = speaker_names | push: member_info.name %}
-    {% endfor %}
+    {% assign conf_member_names = conf.members | map: "name" %}
+    {% assign speaker_names = speaker_names | concat: conf_member_names %}
   {% endif %}
 {% endfor %}
 {% assign speaker_names = speaker_names | uniq %}
 
-<div class="page-radical conferences-page">
+<div class="cfp-page">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero--radical">
-  <div class="hero-noise" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-
-  <div class="container" style="position:relative;z-index:2;max-width:900px;text-align:center;">
-    <div class="hero-radical-badge" style="margin:0 auto 24px;">
-      <span class="hero-radical-badge__dot"></span>WAF++ Presence &middot; Incontriamoci di persona
-</div>
-
-    <h1 class="hero-radical-h1" style="font-size: clamp(44px, 7vw, 84px);">
-      <span class="text-gradient-radical">Conferenze</span>
-    </h1>
-    <p class="hero-radical-lead" style="max-width: 680px; margin: 0 auto 36px;">Dove si presenta il WAF++ — colloqui, workshop e sessioni Birds-of-a-Feather alla guida
-cloud conferenze native e sviluppatori. Vieni a trovarci.
-</p>
-
-    <div class="conference-stats" style="margin-bottom: 32px;">
-      <span class="conference-stat">
-        <i data-lucide="calendar" aria-hidden="true"></i>
-        {{ upcoming | size }}in arrivo
-</span>
-      <span class="conference-stat">
-        <i data-lucide="map-pin" aria-hidden="true"></i>EU &amp; USA
-</span>
-      <span class="conference-stat">
-        <i data-lucide="mic" aria-hidden="true"></i>Contatti · Workshops · BoFs
-</span>
-      <span class="conference-stat">
-        <i data-lucide="users" aria-hidden="true"></i>
-        {{ speaker_names | size }}altoparlanti
-</span>
-    </div>
-
-    <div class="hero-radical-actions" style="justify-content:center;">
-      <a class="btn-glow" href="#upcoming">prossimi eventi &rarr;</a>
-      <a class="btn-glass" href="#speakers">Altoparlanti</a>
-      <a class="btn-glass" href="#get-involved">Essere coinvolti</a>
+<!-- Hero -->
+<section class="cfp-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="cfp-hero__title">Conferenze.</h1>
+      <p class="cfp-hero__lead">Dove si trova WAF++: talk, workshop e sessioni Birds-of-a-Feather nelle principali conferenze cloud native e per sviluppatori. Vieni a trovarci.</p>
+      <div class="cfp-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="#upcoming">
+          Prossimi eventi
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="#speakers">Speaker</a>
+        <a class="wf6-btn wf6-btn--line" href="#get-involved">Partecipa</a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Stats -->
+<section class="cfp-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">{{ upcoming | size }}</div><div class="dl-stat__label">Prossimi eventi</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">UE e USA</div><div class="dl-stat__label">Dove siamo presenti</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">3</div><div class="dl-stat__label">Talk · Workshop · BoF</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ speaker_names | size }}</div><div class="dl-stat__label">Speaker</div></div>
+    </div>
+  </div>
+</section>
 
-<!-- ===================== UPCOMING CONFERENCES ===================== -->
-<section class="bento-section" id="upcoming">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">Prossimo</div>
-      <h2 class="section-title-radical">Le prossime conferenze con WAF++</h2>
-      <p class="section-lead-radical">Sessioni, workshop e incontri comunitari. Fare clic su una carta per saperne di più sull'evento.</p>
+<!-- Upcoming -->
+<section class="dl-section" id="upcoming">
+  <div class="dl-wrap">
+    <div class="cfp-section-head dl-rise">
+      <h2 class="dl-heading">Prossime conferenze.</h2>
+      <p class="dl-lead">Sessioni, workshop e incontri della community. Apri un evento per saperne di più.</p>
     </div>
 
     {% if upcoming.size > 0 %}
-    <div class="conference-grid">
+    <div class="cfp-events dl-rise">
       {% for conf in upcoming %}
-      <article class="conf-card">
-
-        <div class="conf-card__header">
-          <div class="conf-card__logo">
-            <img src="{{ conf.logo }}" alt="{{ conf.name }}" loading="lazy">
-          </div>
-          <div class="conf-card__meta">
-            <div class="conf-card__name">{{ conf.name }}</div>
-            <div class="conf-card__date">
-              <i data-lucide="calendar" aria-hidden="true"></i>
-              {% assign conf_date_key = 'date_display_' | append: lang %}
-              {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }}
-            </div>
-            <div class="conf-card__location">
-              <i data-lucide="map-pin" aria-hidden="true"></i>
-              {{ conf.location }}
-            </div>
-          </div>
+      <article class="cfp-event">
+        <div class="cfp-event__banner{% if conf.logo_dark_bg %} cfp-event__banner--dark{% endif %}">
+          <img src="{{ conf.logo }}" alt="{{ conf.name }}" loading="lazy">
         </div>
 
-        {% if conf.description %}
-        <p class="conf-card__desc">{{ conf.description }}</p>
-        {% endif %}
+        <div class="cfp-event__body">
+          <h3 class="cfp-event__name">{{ conf.name }}</h3>
+          <div class="cfp-event__sub">
+            {% assign conf_date_key = 'date_display_' | append: lang %}
+            {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }} · {{ conf.location }}
+          </div>
 
-        {% if conf.members %}
-        {% assign conf_topics = "" | split: "|" %}
-        {% for member_info in conf.members %}
-          {% if member_info.topic %}
-            {% assign conf_topics = conf_topics | push: member_info.topic %}
+          {% if conf.description %}
+          <p class="cfp-event__desc">{{ conf.description }}</p>
           {% endif %}
-        {% endfor %}
-        {% assign conf_topics = conf_topics | uniq %}
-        {% if conf_topics.size > 0 %}
-        <div class="conf-card__topics">
-          {% for topic in conf_topics %}
-          <div class="conf-card__topic">
-            <i data-lucide="message-square" aria-hidden="true"></i>
-            <span>&ldquo;{{ topic }}&rdquo;</span>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% endif %}
 
-        <div class="conf-card__footer">
           {% if conf.members %}
-          <div class="conf-card__members">
-            {% for member_info in conf.members %}
-              {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
-              {% assign member = site.staff_members | where: "url", author_id | first %}
-              {% if member %}
-              <a class="member-chip" href="{{ member.url | relative_url }}"
-                 title="{{ member_info.name }}{% if member_info.role %} · {{ member_info.role }}{% endif %}">
-                <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
-              </a>
-              {% endif %}
-            {% endfor %}
-            {% assign first_member = conf.members | first %}
-            {% if first_member.role %}
-            <span class="conf-card__role">{{ first_member.role }}</span>
+          {% assign conf_topics = "" | split: "|" %}
+          {% for member_info in conf.members %}
+            {% if member_info.topic %}
+              {% assign conf_topics = conf_topics | push: member_info.topic %}
             {% endif %}
+          {% endfor %}
+          {% assign conf_topics = conf_topics | uniq %}
+          {% if conf_topics.size > 0 %}
+          <div class="cfp-event__topics">
+            {% for topic in conf_topics %}
+            <div class="cfp-event__topic">«{{ topic }}»</div>
+            {% endfor %}
           </div>
-          {% else %}
-          <div></div>
+          {% endif %}
           {% endif %}
 
-          <a href="{{ conf.link }}" target="_blank" rel="noopener" class="btn-glass" style="font-size:13px;padding:8px 18px;white-space:nowrap;">Scopri di più &rarr;
-</a>
-        </div>
+          <div class="cfp-event__footer">
+            {% if conf.members %}
+            <div class="cfp-event__members">
+              <div class="cfp-event__avatars">
+                {% for member_info in conf.members %}
+                  {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
+                  {% assign member = site.staff_members | where: "url", author_id | first %}
+                  {% if member %}
+                  <a href="{{ member.url | relative_url }}" title="{{ member_info.name }}{% if member_info.role %} · {{ member_info.role }}{% endif %}">
+                    <img src="{{ member.image_path }}" alt="{{ member_info.name }}">
+                  </a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% assign first_member = conf.members | first %}
+              {% if first_member.role %}
+              <span class="cfp-event__role">{{ first_member.role }}</span>
+              {% endif %}
+            </div>
+            {% else %}
+            <div></div>
+            {% endif %}
 
+            <a href="{{ conf.link }}" target="_blank" rel="noopener" class="wf6-btn wf6-btn--line">Scopri di più</a>
+          </div>
+        </div>
       </article>
       {% endfor %}
     </div>
     {% else %}
-    <div class="conf-empty">
-      <i data-lucide="calendar" aria-hidden="true"></i>
-      <p>Non sono ancora in programma le prossime conferenze. Controlla presto.</p>
-    </div>
+    <p class="dl-lead dl-rise">Al momento non ci sono conferenze in programma. Torna a trovarci presto.</p>
     {% endif %}
-
   </div>
 </section>
 
-
-<!-- ===================== PAST CONFERENCES ===================== -->
+<!-- Past -->
 {% if past.size > 0 %}
-<section class="bento-section" style="padding-top:0;">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">Eventi passati</div>
-      <h2 class="section-title-radical">Dove WAF++ è stato</h2>
-      <p class="section-lead-radical">Conferenze precedenti dove WAF++ era presente — le radici della comunità.</p>
+<section class="dl-section dl-section--alt">
+  <div class="dl-wrap">
+    <div class="cfp-section-head dl-rise">
+      <h2 class="dl-heading">Dove è stato WAF++.</h2>
+      <p class="dl-lead">Le conferenze passate in cui WAF++ era presente: le radici della community.</p>
     </div>
 
-    <div class="conference-grid--rows">
+    <div class="cfp-past dl-rise">
       {% for conf in past %}
-      <div class="conf-row">
-        <div class="conf-row__logo">
+      <div class="cfp-past__row">
+        <div class="cfp-past__logo{% if conf.logo_dark_bg %} cfp-past__logo--dark{% endif %}">
           <img src="{{ conf.logo }}" alt="{{ conf.name }}" loading="lazy">
         </div>
-        <div class="conf-row__meta">
-          <div class="conf-row__name">{{ conf.name }}</div>
-          <div class="conf-row__sub">
-            <span>
-              <i data-lucide="calendar" aria-hidden="true"></i>
-              {% assign conf_date_key = 'date_display_' | append: lang %}
-              {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }}
-            </span>
-            <span>
-              <i data-lucide="map-pin" aria-hidden="true"></i>
-              {{ conf.location }}
-            </span>
+        <div>
+          <div class="cfp-past__name">{{ conf.name }}</div>
+          <div class="cfp-past__sub">
+            {% assign conf_date_key = 'date_display_' | append: lang %}
+            {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }} · {{ conf.location }}
           </div>
           {% if conf.description %}
-          <p class="conf-row__desc">{{ conf.description }}</p>
+          <p class="cfp-past__desc">{{ conf.description }}</p>
           {% endif %}
         </div>
-
-        {% if conf.members %}
-        <div class="conf-row__members">
-          {% for member_info in conf.members %}
-            {% assign author_id = member_info.name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
-            {% assign member = site.staff_members | where: "url", author_id | first %}
-            {% if member %}
-            <a class="member-chip" href="{{ member.url | relative_url }}" title="{{ member_info.name }}">
-              <img class="member-chip__avatar" src="{{ member.image_path }}" alt="{{ member_info.name }}">
-            </a>
-            {% endif %}
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        <a href="{{ conf.link }}" target="_blank" rel="noopener" class="btn-glass" style="font-size:12px;padding:7px 14px;flex-shrink:0;">Visualizza &gt;
-</a>
+        <a href="{{ conf.link }}" target="_blank" rel="noopener" class="wf6-btn wf6-btn--line cfp-past__link">Vedi</a>
       </div>
       {% endfor %}
     </div>
-
   </div>
 </section>
 {% endif %}
 
-
-<!-- ===================== SPEAKERS ===================== -->
-<section class="bento-section" id="speakers" style="padding-top:0;">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">Altoparlanti</div>
-      <h2 class="section-title-radical">WAF++ altoparlanti per i prossimi eventi</h2>
-      <p class="section-lead-radical">Le persone che rappresentano WAF++ alle conferenze — fare clic su un profilo per saperne di più.</p>
+<!-- Speakers -->
+<section class="dl-section" id="speakers">
+  <div class="dl-wrap">
+    <div class="cfp-section-head dl-rise">
+      <h2 class="dl-heading">Speaker di WAF++.</h2>
+      <p class="dl-lead">Le persone che rappresentano WAF++ alle conferenze, sul palco e nei corridoi.</p>
     </div>
 
     {% if speaker_names.size > 0 %}
-    <div class="speaker-grid">
+    <div class="cfp-speakers dl-rise">
       {% for speaker_name in speaker_names %}
         {% assign author_id = speaker_name | downcase | slugify | prepend: "/staff_members/" | append: "/" %}
         {% assign person = site.staff_members | where: "url", author_id | first %}
         {% if person %}
-        <article class="speaker-card">
-          <div class="speaker-card__head">
-            <img class="speaker-card__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
-            <div>
-              <div class="speaker-card__name">
-                <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
-              </div>
-              <div class="speaker-card__role">{{ person.position }}</div>
-            </div>
+        <article class="cfp-speaker">
+          <div class="cfp-speaker__photo">
+            <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}">
           </div>
+          <div class="cfp-speaker__name"><a href="{{ person.url | relative_url }}">{{ person.name }}</a></div>
+          <div class="cfp-speaker__role">{{ person.position }}</div>
           {% assign speaker_blurb_key = 'blurb_' | append: lang %}
           {% assign speaker_blurb = person[speaker_blurb_key] | default: person.blurb_en | default: person.blurb %}
           {% if speaker_blurb %}
-          <p class="speaker-card__bio">{{ speaker_blurb }}</p>
+          <p class="cfp-speaker__bio">{{ speaker_blurb }}</p>
           {% endif %}
           {% if person.social %}
-          <div class="speaker-card__social">
+          <div class="cfp-speaker__social">
             {% for link in person.social %}
-            <a class="icon-link" {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
-               href="{% include relative-src.html src=link.link %}">
+            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
               {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
             </a>
             {% endfor %}
@@ -269,114 +204,104 @@ cloud conferenze native e sviluppatori. Vieni a trovarci.
       {% endfor %}
     </div>
     {% else %}
-    <div class="conf-empty">
-      <i data-lucide="users" aria-hidden="true"></i>
-      <p>Non ci sono ancora i prossimi diffusori elencati.</p>
-    </div>
+    <p class="dl-lead dl-rise">Nessuno speaker ancora in elenco.</p>
     {% endif %}
-
   </div>
 </section>
 
-
-  <!-- ===================== GET INVOLVED ===================== -->
-  <section class="bento-section" id="get-involved" style="padding-top:0;">
-    <div class="container">
-
-      <div class="section-header-radical">
-        <div class="kicker-radical">Essere coinvolti</div>
-        <h2 class="section-title-radical">Incontriamoci &amp; contribuire</h2>
-        <p class="section-lead-radical">Il nostro focus è open source: contenuti, recensioni, gruppi di lavoro e scambio in persona a conferenze. Ogni formato è un punto di ingresso.</p>
-      </div>
-
-      <div class="conf-involve-grid">
-        <article class="conf-involve-card">
-          <div class="conf-involve-card__icon">
-            <i data-lucide="mic" aria-hidden="true"></i>
-          </div>
-          <h3 class="conf-involve-card__title">Attendere &amp; collegare</h3>
-          <p class="conf-involve-card__desc">Trovaci a colloqui e sessioni Birds-of-a-Feather — condividere sfide reali, sentire come gli altri utilizzano WAF++ e modellare la roadmap insieme.</p>
-        </article>
-
-        <article class="conf-involve-card">
-          <div class="conf-involve-card__icon">
-            <i data-lucide="pen-tool" aria-hidden="true"></i>
-          </div>
-          <h3 class="conf-involve-card__title">Laboratori</h3>
-          <p class="conf-involve-card__desc">Sessioni manuali che coprono modelli di maturità, punteggio e valutazione pratica — teoria della struttura trasformata in pratica di ingegneria.</p>
-        </article>
-
-        <article class="conf-involve-card">
-          <div class="conf-involve-card__icon">
-            <i data-lucide="github" aria-hidden="true"></i>
-          </div>
-          <h3 class="conf-involve-card__title">Contribuisci su GitHub</h3>
-          <p class="conf-involve-card__desc">Problemi, PR e RFC — tutto accade all'aperto. Casi di uso comune, proporre criteri, modelli di revisione. Nessuna dimensione minima del contributo.</p>
-        </article>
-      </div>
-
-      <div class="conf-formats-row">
-        <div class="conf-formats-row__title">Formati comunitari</div>
-        <div class="conf-formats-row__grid">
-          <div class="conf-format-mini">
-            <i data-lucide="presentation" aria-hidden="true"></i>
-            <div>
-              <div class="conf-format-mini__title">Conferenza</div>
-              <div class="conf-format-mini__desc">Concetti quadro · Studi sui casi reali</div>
-            </div>
-          </div>
-
-          <div class="conf-format-mini">
-            <i data-lucide="users" aria-hidden="true"></i>
-            <div>
-              <div class="conf-format-mini__title">Uccelli di una Feather</div>
-              <div class="conf-format-mini__desc">Discussione aperta · Ingresso comunitario</div>
-            </div>
-          </div>
-
-          <div class="conf-format-mini">
-            <i data-lucide="pen-tool" aria-hidden="true"></i>
-            <div>
-              <div class="conf-format-mini__title">Laboratori</div>
-              <div class="conf-format-mini__desc">Scoring · Modelli di maturità · Valutazione</div>
-            </div>
-          </div>
-
-          <div class="conf-format-mini">
-            <i data-lucide="map" aria-hidden="true"></i>
-            <div>
-              <div class="conf-format-mini__title">Roadmap &amp; sessioni RFC</div>
-              <div class="conf-format-mini__desc">Forma quello che viene costruito dopo · Aperto a tutti</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="conf-formats-row__note">Nessun invito richiesto. Ogni sessione è aperta a chiunque sia interessato all'architettura cloud.</div>
-      </div>
-
-      <div style="text-align:center; margin-top: 32px;">
-        <a class="btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">Contribuisci su GitHub &rarr;</a>
-      </div>
-
+<!-- Get involved -->
+<section class="dl-section dl-section--alt" id="get-involved">
+  <div class="dl-wrap">
+    <div class="cfp-section-head dl-rise">
+      <h2 class="dl-heading">Incontraci e contribuisci.</h2>
+      <p class="dl-lead">Il nostro focus è l'open source: contenuti, revisioni, gruppi di lavoro e confronto di persona alle conferenze. Ogni formato è un punto di ingresso.</p>
     </div>
-  </section>
 
+    <div class="cfp-involve dl-rise">
+      <div>
+        <h3 class="cfp-involve__title">Partecipa e fai rete</h3>
+        <p class="cfp-involve__desc">Trovaci ai talk e alle sessioni Birds-of-a-Feather. Condividi sfide reali, scopri come altri usano WAF++ e definisci la roadmap insieme a noi.</p>
+      </div>
+      <div>
+        <h3 class="cfp-involve__title">Workshop</h3>
+        <p class="cfp-involve__desc">Sessioni pratiche su modelli di maturità, punteggi e valutazioni: la teoria del framework trasformata in pratica ingegneristica.</p>
+      </div>
+      <div>
+        <h3 class="cfp-involve__title">Contribuisci su GitHub</h3>
+        <p class="cfp-involve__desc">Issue, PR e RFC: tutto avviene in modo aperto. Condividi casi d'uso, proponi criteri, revisiona pattern. Nessuna dimensione minima per i contributi.</p>
+      </div>
+    </div>
 
-<!-- ===================== CTA ===================== -->
-<section class="cta-radical">
-  <div class="cta-radical__glow" aria-hidden="true"></div>
-  <div class="container">
-    <div class="cta-radical__inner">
-      <div class="kicker-radical" style="margin-bottom:14px;">Ci vediamo.</div>
-      <h2 class="cta-radical__title">Vieni a parlarci.</h2>
-      <p class="cta-radical__lead">Trovaci al prossimo evento, apri una Discussione GitHub, o seguila. WAF++ è costruito in pubblico — e la comunità è sempre aperta.</p>
-      <div class="cta-radical__actions">
-        <a class="btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub &rarr;</a>
-        <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Community &amp; governance</a>
-        <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">Tracker RFC</a>
+    <div class="cfp-formats dl-rise">
+      <h3 class="cfp-formats__title">Formati della community</h3>
+      <div class="cfp-formats__grid">
+        <div>
+          <div class="cfp-format__title">Talk alle conferenze</div>
+          <div class="cfp-format__desc">Concetti del framework · Casi reali</div>
+        </div>
+        <div>
+          <div class="cfp-format__title">Birds of a Feather</div>
+          <div class="cfp-format__desc">Discussione aperta · Contributi della community</div>
+        </div>
+        <div>
+          <div class="cfp-format__title">Workshop</div>
+          <div class="cfp-format__desc">Punteggi · Modelli di maturità · Valutazione</div>
+        </div>
+        <div>
+          <div class="cfp-format__title">Sessioni su roadmap e RFC</div>
+          <div class="cfp-format__desc">Decidi cosa costruire dopo · Aperte a tutti</div>
+        </div>
+      </div>
+      <p class="cfp-formats__note">Nessun invito richiesto. Ogni sessione è aperta a chiunque sia interessato all'architettura cloud.</p>
+      <div class="cfp-formats__cta">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+          Contribuisci su GitHub
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section cfp-cta-section">
+  <div class="dl-wrap">
+    <div class="cfp-cta dl-rise">
+      <h2 class="dl-heading">Vieni a parlarci.</h2>
+      <p class="dl-lead">Trovaci al prossimo evento, apri una discussione su GitHub o semplicemente seguici. WAF++ si costruisce in pubblico e la community è sempre aperta.</p>
+      <div class="cfp-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+          GitHub
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/it/governance-community/' | relative_url }}">Community e governance</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/it/rfc/' | relative_url }}">Tracker degli RFC</a>
       </div>
     </div>
   </div>
 </section>
 
 </div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>

@@ -2,58 +2,59 @@
 layout: default
 lang: pt
 ref: roles
-title: "Funções & Membros"
-description: "Todos os papéis de governança em WAF++ — responsabilidades e membros designados. TSC, Mantenedores, Grupo de trabalho lidera, Grupo Consultivo de Usuários e Contribuintes."
+title: "Papéis e membros"
+description: "Todos os papéis de governança do WAF++: responsabilidades e membros atribuídos. TSC, mantenedores, líderes de grupos de trabalho, User Advisory Group e contribuidores."
 permalink: /pt/roles/
 ---
 
-<div class="page-radical roles-page">
+{% assign roles = site.data.roles %}
+{% assign filled_roles = 0 %}
+{% for role in roles %}{% if role.members and role.members.size > 0 %}{% assign filled_roles = filled_roles | plus: 1 %}{% endif %}{% endfor %}
 
-<!-- ===================== HERO ===================== -->
-<section class="roles-hero">
-  <div class="roles-hero__orb roles-hero__orb--purple" aria-hidden="true"></div>
-  <div class="roles-hero__orb roles-hero__orb--blue" aria-hidden="true"></div>
-  <div class="roles-hero__orb roles-hero__orb--gold" aria-hidden="true"></div>
+<div class="rls-page">
 
-  <div class="container roles-hero__inner">
-    <div class="roles-hero__badge">
-      <span class="roles-hero__badge-dot"></span>Governança · Funções &amp; Membros
-</div>
-    <h1>Funções &amp;<span class="text-gradient-radical">Membros</span></h1>
-    <p class="roles-hero__lead">Todos os papéis de governança no WAF++ — com suas responsabilidades e membros designados.
-As atribuições de papéis são mantidas pelo projeto e atualizadas à medida que a comunidade cresce.
-</p>
-    <div class="roles-hero__actions">
-      <a class="btn-glow" href="{{ '/governance-community/' | relative_url }}">Governança &rarr;</a>
-      <a class="btn-glass" href="#roles">Ver todos os papéis</a>
+<!-- Hero -->
+<section class="rls-hero">
+  <div class="dl-wrap">
+    <h1 class="rls-hero__title dl-rise">Papéis e membros.</h1>
+    <p class="rls-hero__lead dl-rise dl-d1">Todos os papéis de governança do WAF++, com responsabilidades e membros atribuídos. O projeto mantém as atribuições e as atualiza à medida que a comunidade cresce.</p>
+    <div class="rls-hero__actions dl-rise dl-d2">
+      <a class="wf6-btn wf6-btn--pill" href="{{ '/pt/governance-community/' | relative_url }}">Governança
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+          </svg>
+        </span>
+      </a>
+      <a class="wf6-btn wf6-btn--line" href="#roles">Ver todos os papéis</a>
     </div>
   </div>
 </section>
 
+<!-- Stats -->
+<section class="rls-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat dl-rise"><div class="dl-stat__num">{{ roles.size }}</div><div class="dl-stat__label">Papéis de governança</div></div>
+      <div class="dl-stat dl-rise dl-d1"><div class="dl-stat__num">{{ filled_roles }}</div><div class="dl-stat__label">Preenchidos atualmente</div></div>
+      <div class="dl-stat dl-rise dl-d2"><div class="dl-stat__num">12 meses</div><div class="dl-stat__label">Mandatos renováveis</div></div>
+      <div class="dl-stat dl-rise dl-d3"><div class="dl-stat__num">Abertos</div><div class="dl-stat__label">A contribuidores ativos</div></div>
+    </div>
+  </div>
+</section>
 
-<!-- ===================== ROLE DIRECTORY ===================== -->
-<section class="roles-section" id="roles">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">DIRECÇÃO</div>
-      <h2 class="section-title-radical">Todos os papéis de relance</h2>
-      <p class="section-lead-radical">Cinco papéis entre governança, manutenção e comunidade — cada um com um escopo definido, responsabilidade e processo.</p>
+<!-- Role directory -->
+<section class="dl-section" id="roles">
+  <div class="dl-wrap">
+    <div class="rls-section-head dl-rise">
+      <h2 class="dl-heading">Todos os papéis num relance.</h2>
+      <p class="dl-lead">Cinco papéis entre governança, manutenção e comunidade, cada um com escopo, responsabilidade e processo definidos.</p>
     </div>
 
-    {% assign roles = site.data.roles %}
-
-    <div class="roles-directory">
+    <div class="rls-directory dl-rise">
       {% for role in roles %}
-      <a class="roles-directory__card
-        {% case role.id %}
-          {% when 'maintainers' %}roles-directory__card--maintainers
-          {% when 'wg-leads' %}roles-directory__card--wg
-          {% when 'user-advisory' %}roles-directory__card--advisory
-          {% when 'contributors' %}roles-directory__card--contributors
-        {% endcase %}"
-        href="#{{ role.id }}">
-        <div class="roles-directory__icon">
+      <a class="rls-dcard" href="#{{ role.id }}">
+        <div class="rls-dcard__icon">
           {% case role.id %}
             {% when 'tsc' %}<i data-lucide="settings-2" aria-hidden="true"></i>
             {% when 'maintainers' %}<i data-lucide="users" aria-hidden="true"></i>
@@ -63,129 +64,127 @@ As atribuições de papéis são mantidas pelo projeto e atualizadas à medida q
             {% else %}<i data-lucide="circle" aria-hidden="true"></i>
           {% endcase %}
         </div>
-        <div class="roles-directory__num">
+        <div class="rls-dcard__badge">
           {% if role.members and role.members.size > 0 %}
-            {{ role.members.size }}membro{% if role.members.size != 1 %}s{% endif %}
-          {% else %}Abrir
-{% endif %}
+            {{ role.members.size }} {% if role.members.size == 1 %}membro{% else %}membros{% endif %}
+          {% else %}
+            Aberto
+          {% endif %}
         </div>
-        <div class="roles-directory__title">{{ role.title }}</div>
-        {% assign role_desc_key = 'description_' | append: lang %}
-        {% assign role_desc = role[role_desc_key] | default: role.description_en | default: role.description %}
-        <p class="roles-directory__desc">{{ role_desc }}</p>
+        <h3 class="rls-dcard__title">{{ role.title }}</h3>
+        {%- assign role_desc_key = 'description_' | append: lang -%}
+        <p class="rls-dcard__desc">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
       </a>
       {% endfor %}
     </div>
-
   </div>
 </section>
 
+<!-- Role detail sections -->
+{% for role in roles %}
+<section class="dl-section{% cycle '', '--alt' %}" id="{{ role.id }}">
+  <div class="dl-wrap">
 
-<!-- ===================== ROLE DETAIL SECTIONS ===================== -->
-{% for role in site.data.roles %}
-<section class="roles-detail{% cycle '', ' roles-section--alt', '', ' roles-section--alt', '' %}" id="{{ role.id }}">
-  <div class="container">
-
-    <div class="roles-detail__header">
-      <div class="roles-detail__kicker">
-        {% case role.id %}
-          {% when 'tsc' %}GOVERNAÇÃO
-{% when 'maintainers' %}QUALIDADE
-{% when 'wg-leads' %}COORDENAÇÃO
-{% when 'user-advisory' %}COMUNIDADE
-{% when 'contributors' %}ABERTO A TODOS
-{% else %}PAPEL
-{% endcase %}
-      </div>
-      <h2>{{ role.title }}</h2>
-      {% assign role_desc_key = 'description_' | append: lang %}
-      {% assign role_desc = role[role_desc_key] | default: role.description_en | default: role.description %}
-      <p class="roles-detail__lead">{{ role_desc }}</p>
+    <div class="rls-section-head dl-rise">
+      <h2 class="dl-heading">{{ role.title }}</h2>
+      {%- assign role_desc_key = 'description_' | append: lang -%}
+      <p class="rls-detail__lead">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
     </div>
 
     {% if role.members and role.members.size > 0 %}
-      <div class="roles-people">
-        {% for m in role.members %}
-          {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
-          {%- assign person = site.staff_members | where: "url", member_url | first -%}
-          {% if person %}
-          <article class="roles-person">
-            <div class="roles-person__head">
-              <img class="roles-person__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
-              <div>
-                <div class="roles-person__name">
-                  <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
-                </div>
-                {% assign person_position = person.position %}
-                {% assign person_position_key = 'position_' | append: lang %}
-                {% assign person_position = person[person_position_key] | default: person.position_en | default: person.position %}
-                <div class="roles-person__role">{{ person_position }}</div>
-              </div>
-            </div>
-
-            {% assign person_blurb = person.blurb %}
-            {% assign person_blurb_key = 'blurb_' | append: lang %}
-            {% assign person_blurb = person[person_blurb_key] | default: person.blurb_en | default: person.blurb %}
-            {% if person_blurb %}
-            <p class="roles-person__bio">{{ person_blurb }}</p>
-            {% endif %}
-
-            {% if person.social %}
-            <div class="roles-person__social">
-              {% for link in person.social %}
-              <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
-                 href="{% include relative-src.html src=link.link %}">
-                {% if link.social_icon %}
-                  {% include social-icon.html icon=link.social_icon %}
-                {% endif %}
-              </a>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </article>
-          {% else %}
-          <div class="roles-person">
-            <div class="roles-person__name">Membro desconhecido</div>
-            <p class="roles-person__bio"><strong>{{ m }}</strong>é referenciado para este papel, mas o perfil de membro não pôde ser encontrado.</p>
+    <div class="rls-people dl-rise">
+      {% for m in role.members %}
+        {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
+        {%- assign person = site.staff_members | where: "url", member_url | first -%}
+        {% if person %}
+        <div class="rls-person">
+          <div class="rls-person__photo">
+            <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" loading="lazy">
+          </div>
+          <div class="rls-person__name"><a href="{{ person.url | relative_url }}">{{ person.name }}</a></div>
+          <div class="rls-person__role">{{ person.position }}</div>
+          {% if person.blurb %}
+          <p class="rls-person__bio">{{ person.blurb }}</p>
+          {% endif %}
+          {% if person.social %}
+          <div class="rls-person__social">
+            {% for link in person.social %}
+            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
           </div>
           {% endif %}
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="roles-empty">
-        <div class="roles-empty__body">
-          <div class="roles-empty__kicker">Próximo</div>
-          <h3>Membros ainda não designados</h3>
-          <p>Este papel é definido e aberto. Os membros serão anunciados à medida que a comunidade crescer. Interessado? Fala com o GitHub.</p>
         </div>
-        <a class="btn-glow" href="https://github.com/WAF2p" target="_blank" rel="noopener">Contribuir &rarr;</a>
+        {% else %}
+        <div class="rls-person">
+          <div class="rls-person__name">Membro desconhecido</div>
+          <p class="rls-person__bio"><strong>{{ m }}</strong> consta neste papel, mas o perfil do membro não foi encontrado.</p>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="rls-empty dl-rise">
+      <div>
+        <div class="rls-empty__tag">Em breve</div>
+        <h3 class="rls-empty__title">Ainda sem membros atribuídos</h3>
+        <p class="rls-empty__text">Este papel está definido e aberto. Os membros serão anunciados à medida que a comunidade crescer. Tem interesse? Fale conosco no GitHub.</p>
       </div>
+      <a class="wf6-btn wf6-btn--pill" href="https://github.com/{{ site.data.github.org }}" target="_blank" rel="noopener">Contribuir
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+          </svg>
+        </span>
+      </a>
+    </div>
     {% endif %}
 
-    <div class="roles-detail__nav">
-      <a class="btn-glass" href="#roles">Todos os papéis</a>
-      <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Informações relativas à governação</a>
+    <div class="rls-nav">
+      <a class="wf6-btn wf6-btn--line" href="#roles">Todos os papéis</a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/pt/governance-community/' | relative_url }}">Detalhes de governança</a>
     </div>
 
   </div>
 </section>
 {% endfor %}
 
-
-<!-- ===================== CTA ===================== -->
-<section class="roles-cta">
-  <div class="container">
-    <div class="roles-cta__card">
-      <div class="kicker-radical" style="margin-bottom:14px;">Envolva-se</div>
-      <h2 class="roles-cta__title">Queres contribuir?</h2>
-      <p class="roles-cta__lead">Cada papel está aberto a contribuidores ativos. Leia o modelo de governança para entender como os papéis funcionam — então apareça no GitHub.</p>
-      <div class="roles-cta__actions">
-        <a class="btn-glow" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub &rarr;</a>
-        <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Modelo de governação</a>
-        <a class="btn-glass" href="{{ '/rfc/' | relative_url }}">Processo RFC</a>
+<!-- CTA -->
+<section class="dl-section rls-cta-section">
+  <div class="dl-wrap">
+    <div class="rls-cta dl-rise">
+      <h2 class="dl-heading">Quer contribuir?</h2>
+      <p class="dl-lead">Todo papel está aberto a contribuidores ativos. Leia o modelo de governança para entender como os papéis funcionam e depois apareça no GitHub.</p>
+      <div class="rls-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/{{ site.data.github.org }}" target="_blank" rel="noopener">Contribuir no GitHub
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+            </svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/governance-community/' | relative_url }}">Modelo de governança</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/rfc/' | relative_url }}">Processo de RFC</a>
       </div>
     </div>
   </div>
 </section>
 
 </div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

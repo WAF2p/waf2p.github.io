@@ -3,85 +3,156 @@ layout: default
 lang: it
 ref: use_case_fintech
 permalink: /it/use-cases/fintech-compliance/
-title: "Recensione di conformità Fintech · WAF++ Utilizzare i casi"
-description: "Come un fintech regolamentato ha usato WAF++ per mappare i controlli cloud a DSGVO, BSI C5 e NIS2 prima di un audit."
+title: "Revisione di conformità fintech · Casi d'uso WAF++"
+description: "Come una fintech regolamentata ha usato WAF++ per mappare i controlli cloud su DSGVO, BSI C5 e NIS2 prima di un audit."
 ---
 
-<main class="page-radical use-case-detail-page use-case-detail-page--fintech">
+<div class="ucd-page">
 
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="ucd-hero">
+  <div class="dl-wrap">
+    <nav class="dl-rise" aria-label="Percorso di navigazione"><a class="ucd-back" href="{{ '/it/use-cases/' | relative_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i> Torna ai casi d'uso</a></nav>
+    <h1 class="ucd-hero__title dl-rise dl-d1">Revisione di conformità fintech.</h1>
+    <p class="ucd-hero__lead dl-rise dl-d2">Una fintech regolamentata usa WAF++ per mappare i controlli cloud su DSGVO, BSI C5 e NIS2, poi colma le lacune di sovranità e sicurezza prima di un audit.</p>
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+    <div class="ucd-shot dl-rise dl-d3">
+      <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot della matrice di conformità">
+        <img src="{{ '/assets/images/wafpass/Compliance_Matrix.png' | relative_url }}" alt="Screenshot della matrice di conformità di WAFPass per il caso d'uso fintech">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-        <a class="uc-detail-back" href="{{ '/use-cases/' | relative_url }}">
-          <i data-lucide="arrow-left" aria-hidden="true"></i>Torna ai casi di utilizzo
-</a>
+<!-- Context / Approach / Outcome -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="ucd-grid dl-rise">
+      <div>
+        <h2 class="ucd-block__title">Contesto</h2>
+        <p class="ucd-block__text">L'azienda è un fornitore tedesco di servizi di pagamento che sta spostando il proprio carico di lavoro principale da un data center gestito a una configurazione multi-cloud. Le autorità di vigilanza richiedono evidenze documentate su residenza dei dati, cifratura, controllo degli accessi e risposta agli incidenti. Il team ha bisogno di un modo neutrale rispetto ai fornitori per strutturare la revisione e tracciare le lacune.</p>
+      </div>
 
-        <div class="hero-radical-badge" style="margin-top: 18px;">
-          <span class="hero-radical-badge__dot"></span>Servizi finanziari
+      <div>
+        <h2 class="ucd-block__title">Approccio</h2>
+        <p class="ucd-block__text">Il team esegue una valutazione WAF++ incentrata sui pilastri Sicurezza, Sovranità ed Eccellenza operativa. Ogni controllo viene mappato sulla normativa pertinente e le evidenze mancanti vengono registrate come lacuna nel punteggio PASS. I pilastri Sicurezza e Sovranità ricevono un peso maggiore perché rilevanti per l'audit.</p>
+      </div>
+
+      <div>
+        <h2 class="ucd-block__title">Risultato</h2>
+        <p class="ucd-block__text">Il team produce un report pronto per l'audit con la mappatura dei controlli, i link alle evidenze e un backlog di remediation. I punteggi PASS migliorano da 54 a 78 in due sprint e l'audit esterno non rileva criticità relative ai controlli cloud.</p>
+      </div>
+    </div>
+
+    <div class="ucd-tags dl-rise">
+      <span class="ucd-tag">Sicurezza</span>
+      <span class="ucd-tag">Sovranità</span>
+      <span class="ucd-tag">Eccellenza operativa</span>
+      <span class="ucd-tag">DSGVO</span>
+      <span class="ucd-tag">BSI C5</span>
+      <span class="ucd-tag">NIS2</span>
+    </div>
+  </div>
+</section>
+
+<!-- Supporting screenshots -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="uc2-section-head dl-rise">
+      <h2 class="dl-heading">Dalla valutazione.</h2>
+      <p class="dl-lead">Viste reali di WAFPass usate per costruire questa revisione.</p>
+    </div>
+
+    <div class="ucd-gallery dl-rise">
+      <div>
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot dei ruoli di accesso">
+          <img src="{{ '/assets/images/wafpass/Access_Roles.png' | relative_url }}" alt="Schermata dei ruoli di accesso di WAFPass usata come evidenza del controllo degli accessi">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Evidenze del controllo degli accessi</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot dello scanner dei segreti">
+          <img src="{{ '/assets/images/wafpass/Secret_Scanner.png' | relative_url }}" alt="Schermata dello scanner dei segreti di WAFPass usata come evidenza della cifratura e della gestione dei segreti">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Scansione di segreti e cifratura</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot della dashboard direzionale">
+          <img src="{{ '/assets/images/wafpass/Executive_Dashboard.png' | relative_url }}" alt="Dashboard direzionale di WAFPass che traccia il miglioramento del punteggio PASS">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Monitoraggio PASS pronto per l'audit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Analisi della conformità Fintech</span>
-        </h1>
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="ucd-lightbox" role="dialog" aria-modal="true" aria-label="Screenshot ingrandito" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Chiudi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
 
-        <p class="hero-radical-lead">Un fintech regolamentato utilizza WAF++ per mappare i controlli cloud a DSGVO, BSI C5 e NIS2,
-quindi chiude le lacune di Sovrano e Sicurezza prima di un audit.
-</p>
-      </div>
-    </div>
-  </section>
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 
-  <section class="uc-detail-visual">
-    <div class="container">
-      <div class="uc-detail-visual__frame uc-detail-visual--fintech">
-        <img src="/assets/images/wafpass/Compliance_Matrix.png" alt="WAFPass compliance matrix screenshot for the fintech use case">
-      </div>
-    </div>
-  </section>
+  var lightbox = document.getElementById('ucd-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
 
-  <section class="bento-section">
-    <div class="container">
-      <div class="uc-detail-grid">
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Contesto</h2>
-          <p class="uc-detail-block__text">L'azienda è un fornitore di servizi di pagamento tedesco che sposta il suo carico di lavoro principale da un gestito
-data center a una configurazione multi-cloud. I regolatori richiedono prove documentate per la residenza dei dati,
-crittografia, controllo degli accessi e risposta agli incidenti. Il team ha bisogno di un modo neutrale per i fornitori
-strutturare la revisione e tracciare le lacune.</p>
-        </article>
+    function openLightbox(trigger) {
+      var img = trigger.querySelector('img');
+      if (!img) return;
+      lastTrigger = trigger;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.ucd-page').classList.add('ucd-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Approccio</h2>
-          <p class="uc-detail-block__text">Eseguono una valutazione WAF++ focalizzata sulla sicurezza, la sovranità e l'eccellenza operativa
-pilastri. Ogni controllo è mappato al relativo regolamento, e le prove mancanti sono registrate
-come un divario di punteggio PASS. La sicurezza e i pilastri sovrani ricevono un peso extra perché
-sono audit-relevant.</p>
-        </article>
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.ucd-page').classList.remove('ucd-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Risultato</h2>
-          <p class="uc-detail-block__text">Il team produce un rapporto di audit-ready con mappature di controllo, link di prova e un
-il backlog. I punteggi PASS migliorano da 54 a 78 su due sprint, e l'esterno
-audit non trova risultati critici relativi ai controlli cloud.</p>
-        </article>
-      </div>
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
 
-      <div class="uc-detail-tags">
-        <span class="uc-detail-tag">Sicurezza</span>
-        <span class="uc-detail-tag">Sovrano</span>
-        <span class="uc-detail-tag">Eccellenza operativa</span>
-        <span class="uc-detail-tag">DSGVO</span>
-        <span class="uc-detail-tag">BSI C5</span>
-        <span class="uc-detail-tag">NIS2</span>
-      </div>
-    </div>
-  </section>
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
 
-</main>
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

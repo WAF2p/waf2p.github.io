@@ -2,347 +2,388 @@
 layout: default
 lang: pt
 ref: contributing
-title: "Contribuir para WAF++"
-description: "Como contribuir para o WAF++ — código, conteúdo, traduções e comunidade."
+title: "Contribuir com o WAF++"
+description: "Como contribuir com o WAF++: código, conteúdo, traduções e comunidade."
 permalink: /pt/contributing/
 ---
 
-<main class="page-radical contributing-page">
+{% assign core = site.data.core_contributors %}
+{% assign community = site.data.community_contributors %}
+{% assign code_contributors = site.data.github_contributors.contributors %}
+{% assign total_code_contributions = 0 %}
+{% for c in code_contributors %}{% assign total_code_contributions = total_code_contributions | plus: c.contributions %}{% endfor %}
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<div class="ctb-page">
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+<!-- Hero -->
+<section class="ctb-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="ctb-hero__title">Contribuir.</h1>
+      <p class="ctb-hero__lead">O WAF++ vive de contribuições. Seja escrevendo código, melhorando a documentação, revisando RFCs ou compartilhando experiência de projetos reais, cada contribuição dá forma ao framework.</p>
+      <div class="ctb-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="#start">
+          Começar
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}" target="_blank" rel="noopener">GitHub</a>
+        <a class="wf6-btn wf6-btn--line" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %} Slack</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-radical-badge">
-          <span class="hero-radical-badge__dot"></span>Fonte aberta · Comunidade
+<!-- Stats -->
+<section class="ctb-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">6</div><div class="dl-stat__label">Formas de contribuir</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ core.size }}</div><div class="dl-stat__label">Mantenedores principais</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ code_contributors.size }}</div><div class="dl-stat__label">Contribuidores de código</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">0</div><div class="dl-stat__label">Tamanho mínimo de contribuição</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Ways to contribute -->
+<section class="dl-section" id="ways">
+  <div class="dl-wrap">
+    <div class="ctb-section-head dl-rise">
+      <h2 class="dl-heading">Formas de contribuir.</h2>
+      <p class="dl-lead">Código, conteúdo, comunidade: escolha o que combina com suas habilidades e seu tempo.</p>
+    </div>
+
+    <div class="ctb-ways">
+      <div class="ctb-way dl-rise">
+        <div class="ctb-way__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+        <h3 class="ctb-way__title">PRs e issues</h3>
+        <p class="ctb-way__desc">Corrija bugs, implemente controles, melhore as ferramentas. Cada PR é revisado por um mantenedor e vinculado a uma decisão.</p>
+      </div>
+
+      <div class="ctb-way dl-rise dl-d1">
+        <div class="ctb-way__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <h3 class="ctb-way__title">Documentação e padrões</h3>
+        <p class="ctb-way__desc">Escreva documentação dos pilares, arquiteturas de referência, padrões de boas práticas ou exemplos concretos de projetos reais.</p>
+      </div>
+
+      <div class="ctb-way dl-rise dl-d2">
+        <div class="ctb-way__icon"><i data-lucide="message-square" aria-hidden="true"></i></div>
+        <h3 class="ctb-way__title">Revisão de RFCs</h3>
+        <p class="ctb-way__desc">Comente RFCs abertas, proponha alternativas ou vote em decisões do framework. Cada voz conta, especialmente a perspectiva prática.</p>
+      </div>
+
+      <div class="ctb-way dl-rise">
+        <div class="ctb-way__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
+        <h3 class="ctb-way__title">Localização</h3>
+        <p class="ctb-way__desc">Ajude a traduzir o conteúdo para alemão, inglês ou outros idiomas. O WAF++ deve ser acessível à comunidade de nuvem global.</p>
+      </div>
+
+      <div class="ctb-way dl-rise dl-d1">
+        <div class="ctb-way__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+        <h3 class="ctb-way__title">Grupos de trabalho</h3>
+        <p class="ctb-way__desc">Participe ou proponha um grupo de trabalho sobre um pilar específico, o modelo de pontuação, a biblioteca de controles ou uma arquitetura de referência.</p>
+      </div>
+
+      <div class="ctb-way dl-rise dl-d2">
+        <div class="ctb-way__icon"><i data-lucide="mic" aria-hidden="true"></i></div>
+        <h3 class="ctb-way__title">Palestras e BoFs</h3>
+        <p class="ctb-way__desc">Apresente o WAF++ numa conferência, organize uma sessão Birds-of-a-Feather ou conduza um workshop da comunidade. Experiência prática vale ouro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contributors -->
+<section class="dl-section--alt" id="contributors">
+  <div class="dl-wrap">
+    <div class="ctb-section-head dl-rise">
+      <h2 class="dl-heading">Quem está construindo.</h2>
+      <p class="dl-lead">Pessoas reais, commits reais: sem mural de logos, sem fotos de equipe de banco de imagens.</p>
+    </div>
+
+    <div class="ctb-core dl-rise">
+      {% for c in core %}
+      {% assign member = site.staff_members | where: 'github', c.github | first %}
+      <div class="ctb-core__person">
+        <div class="ctb-core__photo">
+          {% if member %}
+          <img src="{% include relative-src.html src=member.image_path %}" alt="{{ c.display_name }}" loading="lazy">
+          {% else %}
+          <img src="https://github.com/{{ c.github }}.png?size=200" alt="{{ c.display_name | default: c.github }}" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="ctb-core__name"><a href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">{{ c.display_name | default: c.github }}</a></div>
+        <div class="ctb-core__role">{{ c.role }}</div>
+        {% if c.note %}<p class="ctb-core__note">{{ c.note }}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if community.size > 0 %}
+    <div class="ctb-community dl-rise">
+      <div class="ctb-community__title">Community Impact Contributors</div>
+      <div class="ctb-community__list">
+        {% for c in community %}
+        <div class="ctb-community__row">
+          <div class="ctb-community__avatar">
+            {% if c.github %}
+            <img src="https://github.com/{{ c.github }}.png?size=80" alt="{{ c.display_name | default: c.github }}" loading="lazy">
+            {% else %}
+            <img src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="{{ c.display_name | default: 'Contributor' }}" loading="lazy">
+            {% endif %}
+          </div>
+          <div>
+            <div class="ctb-community__name">
+              {% if c.github %}
+              <a href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">{{ c.display_name | default: c.github }}</a>
+              {% else %}
+              {{ c.display_name | default: 'Contributor' }}
+              {% endif %}
+            </div>
+            <div class="ctb-community__meta">{{ c.contributions | first }}{% if c.contributions.size > 1 %} +{{ c.contributions.size | minus: 1 }} mais{% endif %}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if code_contributors.size > 0 %}
+    <div class="ctb-code dl-rise">
+      <div class="ctb-code__title">Todos os contribuidores de código</div>
+      <p class="ctb-code__sub">Sincronizado do GitHub · {{ total_code_contributions }} commits no total</p>
+      <div class="ctb-code__grid">
+        {% for c in code_contributors %}
+        <a class="ctb-code__chip" href="{{ c.html_url }}" target="_blank" rel="noopener">
+          <img src="{{ c.avatar_url }}" alt="{{ c.login }}" loading="lazy">
+          {{ c.login }} <span>· {{ c.contributions }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Getting started -->
+<section class="dl-section" id="start">
+  <div class="dl-wrap">
+    <div class="ctb-section-head dl-rise">
+      <h2 class="dl-heading">Primeiros passos.</h2>
+      <p class="dl-lead">Quatro passos para ir de recém-chegado a contribuidor.</p>
+    </div>
+
+    <ol class="ctb-steps dl-rise">
+      <li class="ctb-step">
+        <div class="ctb-step__num" aria-hidden="true"></div>
+        <div>
+          <h3 class="ctb-step__title">Explore a organização no GitHub</h3>
+          <p class="ctb-step__desc">Veja as issues abertas com a etiqueta <code>good first issue</code> ou <code>help wanted</code> em <a href="https://github.com/{{ site.data.github.org }}" target="_blank" rel="noopener">github.com/{{ site.data.github.org }}</a>. Nenhuma issue ainda? Abra uma e descreva o que você quer resolver.</p>
+        </div>
+      </li>
+
+      <li class="ctb-step">
+        <div class="ctb-step__num" aria-hidden="true"></div>
+        <div>
+          <h3 class="ctb-step__title">Apresente-se no Slack</h3>
+          <p class="ctb-step__desc">Entre na comunidade no Slack, diga oi em <code>#general</code>, tire dúvidas e descubra qual grupo de trabalho combina com seu perfil e interesses.</p>
+        </div>
+      </li>
+
+      <li class="ctb-step">
+        <div class="ctb-step__num" aria-hidden="true"></div>
+        <div>
+          <h3 class="ctb-step__title">Fork → branch → PR</h3>
+          <p class="ctb-step__desc">Faça um fork do repositório adequado, crie uma branch de funcionalidade e abra um pull request. Um mantenedor vai revisá-lo, dar feedback e orientar você no processo.</p>
+        </div>
+      </li>
+
+      <li class="ctb-step">
+        <div class="ctb-step__num" aria-hidden="true"></div>
+        <div>
+          <h3 class="ctb-step__title">Mudanças maiores? Abra primeiro uma RFC</h3>
+          <p class="ctb-step__desc">Para novos pilares, mudanças incompatíveis, mudanças de pontuação ou de governança, escreva uma RFC no GitHub Discussions. A comunidade a revisa antes de a implementação começar. Assim as decisões continuam rastreáveis.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Working Groups -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="ctb-section-head dl-rise">
+      <h2 class="dl-heading">Grupos de trabalho.</h2>
+      <p class="dl-lead">Grupos de trabalho são equipes temáticas que constroem partes específicas do WAF++. Qualquer pessoa pode propor um: basta uma carta, pelo menos uma liderança e um mantenedor como patrocinador.</p>
+    </div>
+
+    <div class="ctb-wg dl-rise">
+      <div>
+        <h3 class="ctb-wg__title">Encontre um GT</h3>
+        <p class="ctb-wg__desc">Veja as propostas de grupos abertas no GitHub Discussions e entre no canal correspondente no Slack. Você pode contribuir sem dedicação em tempo integral.</p>
+      </div>
+      <div>
+        <h3 class="ctb-wg__title">Crie um GT</h3>
+        <p class="ctb-wg__desc">Escreva uma carta numa discussão no GitHub, encontre um mantenedor patrocinador e anuncie no Slack. Um grupo pode ter qualquer escopo: um único pilar, uma questão de ferramentas, uma abordagem de pontuação.</p>
+      </div>
+      <div>
+        <h3 class="ctb-wg__title">Entregue resultados</h3>
+        <p class="ctb-wg__desc">Os resultados dos grupos voltam como PRs e RFCs. Todo resultado é público, rastreável e citável, em linha com os princípios de transparência do WAF++.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature lifecycle -->
+<section class="dl-section" id="lifecycle">
+  <div class="dl-wrap">
+    <div class="ctb-section-head dl-rise">
+      <h2 class="dl-heading">Ciclo de vida das funcionalidades.</h2>
+      <p class="dl-lead">Cada capacidade do WAF++ passa por um ciclo de vida claro. Cada etapa depende do processo de RFC/ADR, para que os usuários sempre saibam o quão madura é uma funcionalidade e o que esperar antes de adotá-la.</p>
+    </div>
+
+    <div class="ctb-lifecycle dl-rise">
+      <div class="ctb-stage ctb-stage--closed-alpha">
+        <span class="ctb-stage__badge">Closed Alpha</span>
+        <h3 class="ctb-stage__title">Exploração privada</h3>
+        <p class="ctb-stage__desc">Um pequeno grupo de early adopters testa a capacidade em ambientes controlados. A API, o modelo de pontuação ou a interface da CLI são instáveis de propósito e podem mudar sem aviso.</p>
+        <div>
+          <div class="ctb-stage__rule-title">Como entra</div>
+          <ul class="ctb-stage__rule-list">
+            <li>Uma RFC em rascunho ou aberta define o experimento</li>
+            <li>Grupo de acesso antecipado só por convite</li>
+            <li>O feedback impulsiona iterações rápidas</li>
+          </ul>
+        </div>
+        <a class="ctb-stage__link" href="{{ '/pt/rfc/' | relative_url }}">Ver RFCs em rascunho →</a>
+      </div>
+
+      <div class="ctb-stage ctb-stage--alpha">
+        <span class="ctb-stage__badge">Alpha</span>
+        <h3 class="ctb-stage__title">Teste aberto</h3>
+        <p class="ctb-stage__desc">A capacidade está disponível para qualquer pessoa que queira experimentá-la. As interfaces são em grande parte estáveis, mas ainda podem ocorrer mudanças incompatíveis com base no feedback da comunidade.</p>
+        <div>
+          <div class="ctb-stage__rule-title">Como entra</div>
+          <ul class="ctb-stage__rule-list">
+            <li>RFC aceita com escopo alfa</li>
+            <li>Documentação pública e notas de versão disponíveis</li>
+            <li>O GitHub Discussions reúne o feedback</li>
+          </ul>
+        </div>
+        <a class="ctb-stage__link" href="https://github.com/orgs/{{ site.data.github.org }}/discussions" target="_blank" rel="noopener">Participar das discussões alfa →</a>
+      </div>
+
+      <div class="ctb-stage ctb-stage--beta">
+        <span class="ctb-stage__badge">Beta</span>
+        <h3 class="ctb-stage__title">Uso em produção</h3>
+        <p class="ctb-stage__desc">A capacidade está completa e pronta para produção nos casos de uso documentados. Ajustes menores ainda podem acontecer, mas mudanças incompatíveis exigem orientação de migração explícita.</p>
+        <div>
+          <div class="ctb-stage__rule-title">Como entra</div>
+          <ul class="ctb-stage__rule-list">
+            <li>RFC aceita e implementação mesclada</li>
+            <li>Um ADR documenta os critérios de prontidão para produção</li>
+            <li>Revisão de segurança, desempenho e compatibilidade aprovada</li>
+          </ul>
+        </div>
+        <a class="ctb-stage__link" href="{{ '/pt/rfc/' | relative_url }}">Acompanhar RFCs aceitas →</a>
+      </div>
+
+      <div class="ctb-stage ctb-stage--ga">
+        <span class="ctb-stage__badge">GA</span>
+        <h3 class="ctb-stage__title">Disponibilidade geral</h3>
+        <p class="ctb-stage__desc">A capacidade tem suporte completo, está coberta pela política de estabilidade e é recomendada a todos os usuários. É mantida com atualizações retrocompatíveis e prazos claros de descontinuação.</p>
+        <div>
+          <div class="ctb-stage__rule-title">Como entra</div>
+          <ul class="ctb-stage__rule-list">
+            <li>O status da RFC passa para <em>implemented</em></li>
+            <li>Um ADR final ratifica o contrato estável</li>
+            <li>Incluída no ciclo oficial de versões</li>
+          </ul>
+        </div>
+        <a class="ctb-stage__link" href="{{ '/pt/rfc/' | relative_url }}">Ver RFCs implementadas →</a>
+      </div>
+    </div>
+
+    <p class="ctb-lifecycle-note dl-rise"><strong>Cada etapa está ligada ao processo de RFC/ADR.</strong> Quando uma RFC é aceita, ela aciona a etapa alfa ou beta; quando é marcada como <em>implemented</em> , a capacidade fica pronta para GA. Veja o panorama completo no <a href="{{ '/pt/rfc/' | relative_url }}">acompanhamento de RFCs</a> ou proponha a próxima mudança no <a href="https://github.com/orgs/{{ site.data.github.org }}/discussions" target="_blank" rel="noopener">GitHub Discussions</a>.</p>
+  </div>
+</section>
+
+<!-- RFC process -->
+<section class="dl-section--alt" id="rfc">
+  <div class="dl-wrap">
+    <div class="ctb-section-head dl-rise">
+      <h2 class="dl-heading">O processo de RFC.</h2>
+      <p class="dl-lead">Mudanças relevantes passam por uma RFC (Request for Comments). O processo é leve, mas garante que cada decisão seja revisada pela comunidade e documentada.</p>
+    </div>
+
+    <div class="ctb-rfc-flow dl-rise">
+      <div class="ctb-rfc-step">
+        <div class="ctb-rfc-step__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <div class="ctb-rfc-step__title">Rascunho</div>
+        <div class="ctb-rfc-step__desc">Abra uma discussão no GitHub com sua proposta</div>
+      </div>
+      <div class="ctb-rfc-arrow">→</div>
+      <div class="ctb-rfc-step">
+        <div class="ctb-rfc-step__icon"><i data-lucide="message-square" aria-hidden="true"></i></div>
+        <div class="ctb-rfc-step__title">Revisão</div>
+        <div class="ctb-rfc-step__desc">A comunidade e os mantenedores comentam e refinam</div>
+      </div>
+      <div class="ctb-rfc-arrow">→</div>
+      <div class="ctb-rfc-step">
+        <div class="ctb-rfc-step__icon"><i data-lucide="check-circle-2" aria-hidden="true"></i></div>
+        <div class="ctb-rfc-step__title">Decisão</div>
+        <div class="ctb-rfc-step__desc">TSC ou lazy consensus, documentado publicamente</div>
+      </div>
+      <div class="ctb-rfc-arrow">→</div>
+      <div class="ctb-rfc-step">
+        <div class="ctb-rfc-step__icon"><i data-lucide="rocket" aria-hidden="true"></i></div>
+        <div class="ctb-rfc-step__title">Implementação</div>
+        <div class="ctb-rfc-step__desc">PR mesclado, registro de alterações atualizado</div>
+      </div>
+    </div>
+
+    <div class="ctb-rfc-cta dl-rise">
+      <a class="wf6-btn wf6-btn--line" href="{{ '/pt/rfc/' | relative_url }}">Ver o acompanhamento de RFCs</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section ctb-cta-section">
+  <div class="dl-wrap">
+    <div class="ctb-cta dl-rise">
+      <h2 class="dl-heading">Nenhuma contribuição é pequena demais.</h2>
+      <p class="dl-lead">Corrigir um erro de digitação, esclarecer um comentário, fazer uma revisão: tudo faz o framework avançar. O WAF++ é construído em público e a comunidade está sempre aberta.</p>
+      <div class="ctb-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/{{ site.data.github.org }}/{{ site.data.github.repo }}" target="_blank" rel="noopener">
+          Abrir o GitHub
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">Entrar no Slack</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/governance-community/' | relative_url }}">Governança e comunidade</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Contribuir para WAF++</span>
-        </h1>
-
-        <p class="hero-radical-lead">WAF++ vive de contribuições. Se você escrever código, melhorar a documentação, rever RFCs,
-ou partilhar experiências de projectos reais — cada contribuição molda o quadro.</p>
-
-        <div class="hero-radical-actions">
-          <a class="btn btn-glow" href="#start">Iniciar &rarr;</a>
-          <a class="btn btn-glass" href="https://github.com/waf2p/" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn btn-glass" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">{% include slack-icon.html size=16 %}Slack</a>
-        </div>
-
-        <div class="hero-radical-pills">
-          <span class="hero-radical-pill"><i data-lucide="git-pull-request" aria-hidden="true"></i>6 formas de contribuir</span>
-          <span class="hero-radical-pill"><i data-lucide="shield-check" aria-hidden="true"></i>Sem tamanho mínimo da contribuição</span>
-          <span class="hero-radical-pill"><i data-lucide="lock-open" aria-hidden="true"></i>Tudo acontece ao ar livre</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== WAYS TO CONTRIBUTE ===================== -->
-  <section class="bento-section" id="ways">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Como</div>
-        <h2 class="section-title-radical">Formas de contribuir</h2>
-        <p class="section-lead-radical">Código, conteúdo, comunidade — escolha o que se encaixa em suas habilidades e tempo.</p>
-      </div>
-
-      <div class="contrib-grid">
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
-          <div class="contrib-card__kicker">Código</div>
-          <h3 class="contrib-card__title">Problemas com PRs &amp;</h3>
-          <p class="contrib-card__desc">Corrigir erros, implementar controles, melhorar ferramentas. Cada RP é revista por um mantenedor e ligada a uma decisão.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
-          <div class="contrib-card__kicker">Conteúdo</div>
-          <h3 class="contrib-card__title">Padrões &amp; Docs</h3>
-          <p class="contrib-card__desc">Escreva documentação de pilares, arquiteturas de referência, padrões de melhores práticas ou exemplos concretos de projetos reais.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="message-square" aria-hidden="true"></i></div>
-          <div class="contrib-card__kicker">Revisão</div>
-          <h3 class="contrib-card__title">Revisões RFC</h3>
-          <p class="contrib-card__desc">Comentário sobre RFC abertas, propor alternativas ou votar decisões-quadro. Cada voz conta — especialmente a perspectiva do mundo real.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="globe" aria-hidden="true"></i></div>
-          <div class="contrib-card__kicker">Tradução</div>
-          <h3 class="contrib-card__title">Localização</h3>
-          <p class="contrib-card__desc">Ajude a traduzir conteúdo em alemão, inglês ou outros idiomas. WAF++ deve ser acessível à comunidade global de nuvem.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="users" aria-hidden="true"></i></div>
-          <div class="contrib-card__kicker">Comunidade</div>
-          <h3 class="contrib-card__title">Grupos de Trabalho</h3>
-          <p class="contrib-card__desc">Junte-se ou proponha um Grupo de Trabalho em torno de um pilar específico, modelo de pontuação, biblioteca de controles ou arquitetura de referência.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="mic" aria-hidden="true"></i></div>
-          <div class="contrib-card__kicker">Eventos</div>
-          <h3 class="contrib-card__title">Fala em &amp; BoFs</h3>
-          <p class="contrib-card__desc">Apresentar WAF++ em uma conferência, hospedar uma sessão Birds-of-a-Feather, ou executar uma oficina comunitária. Experiência prática é ouro.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== GETTING STARTED ===================== -->
-  <section class="bento-section" id="start">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Primeiros passos</div>
-        <h2 class="section-title-radical">Começar</h2>
-        <p class="section-lead-radical">Quatro passos do recém-chegado ao contribuinte.</p>
-      </div>
-
-      <div class="contrib-steps">
-        <article class="contrib-step">
-          <div class="contrib-step__number">1</div>
-          <div class="contrib-step__body">
-            <h3 class="contrib-step__title">Explore a organização GitHub</h3>
-            <p class="contrib-step__desc">Navegar por problemas abertos rotulados<code>good first issue</code>ou<code>help wanted</code>em<a href="https://github.com/waf2p/" target="_blank" rel="noopener">github.com/waf2p</a>Nenhum problema? Abra um e descreva o que você quer enfrentar.</p>
-          </div>
-        </article>
-
-        <article class="contrib-step">
-          <div class="contrib-step__number">2</div>
-          <div class="contrib-step__body">
-            <h3 class="contrib-step__title">Apresente-se no Slack</h3>
-            <p class="contrib-step__desc">Junta-te à comunidade no Slack, diz olá<code>#general</code>, faça perguntas e descubra qual Grupo de Trabalho se encaixa em seu passado e interesses.</p>
-          </div>
-        </article>
-
-        <article class="contrib-step">
-          <div class="contrib-step__number">3</div>
-          <div class="contrib-step__body">
-            <h3 class="contrib-step__title">&rarr; ramificação &rarr; PR</h3>
-            <p class="contrib-step__desc">Forque o repositório relevante, crie um branch de recursos e abra uma solicitação de pull. Um mantenedor irá revê-lo, dar feedback e guiá-lo através do processo.</p>
-          </div>
-        </article>
-
-        <article class="contrib-step">
-          <div class="contrib-step__number">4</div>
-          <div class="contrib-step__body">
-            <h3 class="contrib-step__title">Mudanças maiores? Abrir um RFC primeiro</h3>
-            <p class="contrib-step__desc">Para novos pilares, quebrando mudanças, marcando mudanças ou atualizações de governança — redigir um RFC em Discussões do GitHub. A comunidade revisá-lo antes da implementação começa. Isto mantém as decisões rastreáveis.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== WORKING GROUPS ===================== -->
-  <section class="bento-section">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Colaboração</div>
-        <h2 class="section-title-radical">Grupos de Trabalho</h2>
-        <p class="section-lead-radical">Grupos de trabalho são equipes focadas em tópicos que constroem partes específicas do WAF++. Qualquer um pode propor uma — tudo o que você precisa é uma carta, pelo menos uma liderança, e um patrocinador mantenedor.</p>
-      </div>
-
-      <div class="contrib-wg-grid">
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="search" aria-hidden="true"></i></div>
-          <h3 class="contrib-card__title">Encontrar um GT</h3>
-          <p class="contrib-card__desc">Verifique as propostas WG abertas nas discussões do GitHub e junte-se ao canal correspondente no Slack. Você pode contribuir sem um compromisso em tempo integral.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="plus-circle" aria-hidden="true"></i></div>
-          <h3 class="contrib-card__title">Iniciar um GT</h3>
-          <p class="contrib-card__desc">Redija uma carta em uma discussão do GitHub, encontre um patrocinador do mantenedor e anuncie-a no Slack. Os GTs podem se concentrar em qualquer escopo: um único pilar, uma questão de ferramentas, uma abordagem de pontuação.</p>
-        </article>
-
-        <article class="contrib-card">
-          <div class="contrib-card__icon"><i data-lucide="package-check" aria-hidden="true"></i></div>
-          <h3 class="contrib-card__title">Resultados dos navios</h3>
-          <p class="contrib-card__desc">As saídas WG voltam a fluir como RPs e RFCs. Cada resultado é público, rastreável e citável — consistente com os princípios de transparência do WAF++.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== FEATURE LIFECYCLE ===================== -->
-  <section class="lifecycle-section" id="lifecycle">
-    <div class="container">
-      <div class="lifecycle-header">
-        <div class="kicker-radical">Disponibilidade</div>
-        <h2 class="section-title-radical">Ciclo de vida das características</h2>
-        <p class="section-lead-radical">Cada capacidade WAF++ se move através de um ciclo de vida claro. Cada etapa é fechada pelo processo RFC/ADR,
-assim os usuários sempre sabem o quão maduro é um recurso e o que esperar antes de adotá-lo.</p>
-      </div>
-
-      <div class="lifecycle-timeline">
-        <article class="lifecycle-card">
-          <span class="lifecycle-card__badge lifecycle-card__badge--closed-alpha">
-            <i data-lucide="lock" aria-hidden="true"></i>Alfa Fechado
-</span>
-          <h3 class="lifecycle-card__title">Explorar em privado</h3>
-          <p class="lifecycle-card__desc">Um pequeno grupo de adotantes precoces testa a capacidade em ambientes controlados. A API, modelo de pontuação,
-ou a superfície CLI é intencionalmente instável e pode mudar sem aviso prévio.</p>
-          <div class="lifecycle-card__rule">
-            <p class="lifecycle-card__rule-title">Como entra</p>
-            <ul class="lifecycle-card__rule-list">
-              <li>Rascunho ou RFC aberto define o experimento</li>
-              <li>Coorte de acesso precoce apenas para convidados</li>
-              <li>Feedback conduz iteração rápida</li>
-            </ul>
-          </div>
-          <a class="lifecycle-card__link" href="{{ '/rfc/' | relative_url }}">Ver projecto RFC<i data-lucide="arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-
-        <article class="lifecycle-card">
-          <span class="lifecycle-card__badge lifecycle-card__badge--alpha">
-            <i data-lucide="flask-conical" aria-hidden="true"></i>Alfa
-</span>
-          <h3 class="lifecycle-card__title">Teste em aberto</h3>
-          <p class="lifecycle-card__desc">A capacidade está disponível para todos que querem tentar. As interfaces são na sua maioria estáveis, mas
-quebra de mudanças ainda são possíveis com base no feedback da comunidade.
-</p>
-          <div class="lifecycle-card__rule">
-            <p class="lifecycle-card__rule-title">Como entra</p>
-            <ul class="lifecycle-card__rule-list">
-              <li>RFC aceite com âmbito alfa</li>
-              <li>Documentos públicos e notas de lançamento disponíveis</li>
-              <li>Discussões do GitHub coletam feedback</li>
-            </ul>
-          </div>
-          <a class="lifecycle-card__link" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">Juntar discussões alfa<i data-lucide="arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-
-        <article class="lifecycle-card">
-          <span class="lifecycle-card__badge lifecycle-card__badge--beta">
-            <i data-lucide="gauge" aria-hidden="true"></i>Beta
-</span>
-          <h3 class="lifecycle-card__title">Utilização na produção</h3>
-          <p class="lifecycle-card__desc">A capacidade é completa e pronta para a produção dos casos de uso documentados. Podem ainda ocorrer pequenos ajustes, mas a quebra de mudanças requer orientação de migração explícita.</p>
-          <div class="lifecycle-card__rule">
-            <p class="lifecycle-card__rule-title">Como entra</p>
-            <ul class="lifecycle-card__rule-list">
-              <li>RFC aceite e implementação fundida</li>
-              <li>ADR documenta critérios de preparação para a produção</li>
-              <li>Revisão de segurança, desempenho e compatibilidade aprovada</li>
-            </ul>
-          </div>
-          <a class="lifecycle-card__link" href="{{ '/rfc/' | relative_url }}">Faixa aceita RFCs<i data-lucide="arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-
-        <article class="lifecycle-card">
-          <span class="lifecycle-card__badge lifecycle-card__badge--ga">
-            <i data-lucide="check-circle-2" aria-hidden="true"></i>GA
-</span>
-          <h3 class="lifecycle-card__title">Disponibilidade Geral</h3>
-          <p class="lifecycle-card__desc">A capacidade é totalmente apoiada, coberta pela política de estabilidade, e recomendada para todos
-utilizadores. É mantido com atualizações compatíveis com o contrário e janelas de deprecação claras.</p>
-          <div class="lifecycle-card__rule">
-            <p class="lifecycle-card__rule-title">Como entra</p>
-            <ul class="lifecycle-card__rule-list">
-              <li>O estado do RFC move- se para<em>implementado</em></li>
-              <li>O ADR final ratifica o contrato estável</li>
-              <li>Adicionado ao comboio oficial de libertação</li>
-            </ul>
-          </div>
-          <a class="lifecycle-card__link" href="{{ '/rfc/' | relative_url }}">Ver RFCs implementados<i data-lucide="arrow-right" aria-hidden="true"></i>
-          </a>
-        </article>
-      </div>
-
-      <div class="lifecycle-note">
-        <p>
-          <strong>Cada etapa está ligada ao processo RFC/ADR.</strong>Quando um RFC é aceito ele ativa o portão Alfa ou Beta; quando está marcado
-<em>implementado</em>a capacidade torna-se GA-pronto. Siga a imagem completa sobre o
-<a href="{{ '/rfc/' | relative_url }}">Rastreador RFC</a>ou propor a próxima alteração na
-<a href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">Discussão do GitHub</a>.
-</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== RFC PROCESS ===================== -->
-  <section class="bento-section" id="rfc">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Processo</div>
-        <h2 class="section-title-radical">O processo RFC</h2>
-        <p class="section-lead-radical">Mudanças significativas passam por um RFC (Pedido de Comentários). O processo é leve, mas garante que cada decisão seja revista e documentada pela comunidade.</p>
-      </div>
-
-      <div class="contrib-rfc-flow">
-        <div class="contrib-rfc-step">
-          <div class="contrib-rfc-step__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
-          <div class="contrib-rfc-step__title">Rascunho</div>
-          <div class="contrib-rfc-step__desc">Abra uma discussão do GitHub com sua proposta</div>
-        </div>
-
-        <div class="contrib-rfc-arrow">&rarr;</div>
-
-        <div class="contrib-rfc-step">
-          <div class="contrib-rfc-step__icon"><i data-lucide="message-square" aria-hidden="true"></i></div>
-          <div class="contrib-rfc-step__title">Revisão</div>
-          <div class="contrib-rfc-step__desc">Os mantenedores comunitários do &amp; comentam e refinam</div>
-        </div>
-
-        <div class="contrib-rfc-arrow">&rarr;</div>
-
-        <div class="contrib-rfc-step">
-          <div class="contrib-rfc-step__icon"><i data-lucide="check-circle-2" aria-hidden="true"></i></div>
-          <div class="contrib-rfc-step__title">Decisão</div>
-          <div class="contrib-rfc-step__desc">TSC ou consenso preguiçoso — documentado publicamente</div>
-        </div>
-
-        <div class="contrib-rfc-arrow">&rarr;</div>
-
-        <div class="contrib-rfc-step">
-          <div class="contrib-rfc-step__icon"><i data-lucide="rocket" aria-hidden="true"></i></div>
-          <div class="contrib-rfc-step__title">Execução</div>
-          <div class="contrib-rfc-step__desc">PR mesclado, changelog atualizado</div>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 26px;">
-        <a class="btn btn-glass" href="{{ '/rfc/' | relative_url }}">Ver o localizador RFC &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== CTA ===================== -->
-  <section class="cta-radical">
-    <div class="cta-radical__glow" aria-hidden="true"></div>
-    <div class="container cta-radical__inner">
-      <div class="kicker-radical">Pronto para começar?</div>
-      <h2 class="cta-radical__title">Nenhuma contribuição é muito pequena.</h2>
-      <p class="cta-radical__lead">Um erro de digitação, um comentário esclarecedor, uma revisão — tudo isso move o framework para frente. O WAF++ é construído em público e a comunidade está sempre aberta.
-</p>
-      <div class="cta-radical__actions">
-        <a class="btn btn-glow btn-glow--lg" href="https://github.com/waf2p/" target="_blank" rel="noopener">Abrir o &rarr; GitHub</a>
-        <a class="btn btn-glass btn-glass--lg" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener">Junte-se ao Slack</a>
-        <a class="btn btn-glass btn-glass--lg" href="{{ '/governance-community/' | relative_url }}">Governação &amp; Comunidade</a>
-      </div>
-    </div>
-  </section>
-
-</main>
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

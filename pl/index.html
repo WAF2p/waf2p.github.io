@@ -2,86 +2,91 @@
 layout: default
 lang: pl
 ref: home
-title: "Dobrze skonstruowane ramy + +"
+title: "WAF++ – Well Architected Framework"
 image: /images/WAFpp_upscaled_1000.png
-description: "Przeskanuj Terraform w poszukiwaniu błędnych konfiguracji chmurowych jednym poleceniem. Bez konta AWS, bez konfiguracji — uzyskaj pierwszy wynik WAFPass w dwie minuty."
+description: "WAF++ to otwarty, niezależny od chmury framework dla architektur, które od podstaw są suwerenne, bezpieczne i gotowe do audytu."
 ---
 
 <!-- ===================== HERO ===================== -->
-<section class="hp-hero">
-  <div class="hp-noise" aria-hidden="true"></div>
-
-  <div class="hp-container">
-    <div class="hp-hero__grid">
-      <div class="hp-hero__copy hp-reveal">
-        <div class="hp-kicker">
-          <span class="hp-kicker__dot"></span>
-          Otwarte ramy v1.1 — GA
-        </div>
-
-        <h1 class="hp-hero__title">
-          Znajdź błędne konfiguracje chmurowe w swoim Terraform
-          <span class="hp-gradient">przed wdrożeniem.</span>
-        </h1>
-
-        <p class="hp-hero__lead">
-          WAFPass skanuje Twój Infrastructure-as-Code jednym poleceniem. Bez konta AWS, bez konfiguracji, bez danych logowania do chmury — tylko jasna lista rzeczy do naprawienia, zanim trafią na produkcję.
-        </p>
-
-        <div class="hp-hero__actions">
-          <a class="hp-btn hp-btn--primary" href="{{ '/wafpass-install/' | relative_url }}">
-            Przeskanuj swój pierwszy plik — za darmo
-            <span class="hp-btn__icon">{% include hp-icon.html name='arrow-up-right' %}</span>
+<section class="wf6-hero">
+  <div class="wf6-wrap">
+    <div class="wf6-hero__grid">
+      <div class="wf6-hero__body wf6-rise">
+        <h1 class="wf6-hero__title">Przyszłość architektury chmurowej zaczyna się dziś.</h1>
+        <p class="wf6-hero__lead">WAF++ to otwarty, niezależny od chmury framework, który sprawia, że Twoja infrastruktura jest suwerenna, bezpieczna i gotowa do audytu — w oparciu o ponad 100 kontroli w 8 filarach.</p>
+        <div class="wf6-hero__actions">
+          <a class="wf6-btn wf6-btn--pill" href="{{ '/pl/saeulen/' | relative_url }}">
+            Dowiedz się więcej
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
           </a>
-          <a class="hp-btn hp-btn--ghost" href="{{ '/docs/' | relative_url }}">Dokumentacja</a>
-          <a class="hp-btn hp-btn--ghost" href="{{ '/use-cases/' | relative_url }}">Zobacz, jak liderzy tego używają</a>
         </div>
-
-        <div class="hp-pills">
-          <span class="hp-pill">{% include hp-icon.html name='shield-check' %} Apache 2.0 · CC BY 4.0</span>
-          <span class="hp-pill">{% include hp-icon.html name='file-check' %} 83+ kontroli</span>
-          <span class="hp-pill">{% include hp-icon.html name='globe-2' %} Multi-cloud</span>
+        <div class="wf6-hero__facts">
+          <span>Apache 2.0 · Open source</span>
+          <span>8 filarów · ponad 100 kontroli</span>
+          <span>Bez poświadczeń do chmury</span>
         </div>
       </div>
 
-      <div class="hp-hero__visual hp-reveal hp-delay-2">
-        <div class="hp-visual">
-          <div class="hp-shell">
-            <div class="hp-core">
-              <div class="hp-browser-bar">
-                <span></span><span></span><span></span>
-                <div class="hp-browser-bar__url">cloud.waf2p/executive</div>
-              </div>
-              <div class="hp-visual__frame">
-                <img class="ss-light" src="{{ '/assets/images/wafpass/Executive_Dashboard_bright.png' | relative_url }}" alt="WAF++ Executive Dashboard — compliance overview for leadership" loading="eager">
-                <img class="ss-dark" src="{{ '/assets/images/wafpass/Executive_Dashboard_dark.png' | relative_url }}" alt="WAF++ Executive Dashboard — compliance overview for leadership" loading="eager">
-              </div>
-            </div>
-          </div>
+      <button class="wf6-hero__shot wf6-shot wf6-rise wf6-d1" type="button" aria-label="Wyświetl powiększony pulpit zarządczy WAF++">
+        <img class="ss-light" src="{{ '/assets/images/wafpass/Executive_Dashboard_bright.png' | relative_url }}" alt="Pulpit zarządczy WAF++ z wynikiem ogólnym, nieudanymi kontrolami i stanem filarów" loading="eager">
+        <img class="ss-dark" src="{{ '/assets/images/wafpass/Executive_Dashboard_dark.png' | relative_url }}" alt="Pulpit zarządczy WAF++ z wynikiem ogólnym, nieudanymi kontrolami i stanem filarów" loading="eager">
+        <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-          <div class="hp-float hp-float--tl hp-float--gold">
-            {% include hp-icon.html name='globe' %}
-            Zgodne z GDPR · NIS2
-          </div>
-          <div class="hp-float hp-float--tr">
-            {% include hp-icon.html name='shield-check' %}
-            83+ kontroli
-          </div>
-          <div class="hp-float hp-float--bl">
-            {% include hp-icon.html name='check-circle' %}
-            Raporty gotowe do audytu
-          </div>
-          <div class="hp-float hp-float--br hp-float--purple">
-            {% include hp-icon.html name='cpu' %}
-            Agentic-ready
-          </div>
-        </div>
 
-        <div class="hp-hero__evidence">
-          <span class="hp-evidence">{% include hp-icon.html name='shield-check' %} Brak danych logowania do chmury</span>
-          <span class="hp-evidence">{% include hp-icon.html name='scan-search' %} Analiza statyczna IaC</span>
-          <span class="hp-evidence">{% include hp-icon.html name='file-text' %} PDF-y gotowe do audytu</span>
-        </div>
+
+<!-- ===================== MANIFESTO ===================== -->
+<section class="wf6-section wf6-section--dark wf6-manifesto" id="manifesto">
+  <div class="wf6-wrap">
+    <h2 class="wf6-manifesto__heading wf6-rise">Czas jest teraz!</h2>
+    <p class="wf6-manifesto__text wf6-rise">Przez lata przeglądy architektury chmurowej oznaczały uzależnienie od jednego dostawcy, pozorne listy kontrolne zgodności albo konsultantów z prezentacjami. <span class="wf6-manifesto__highlight">WAF++ zaczyna od czystej karty:</span> neutralny wobec dostawców framework, statyczne CLI, które czyta Twój kod, i dowody, które każdy może zweryfikować.</p>
+    <a class="wf6-manifesto__cta wf6-rise" href="{{ '/pl/about/' | relative_url }}">
+      Zobacz, jak możemy pomóc Ci się rozwijać
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+
+
+<!-- ===================== THREE CORE OFFERINGS ===================== -->
+<section class="wf6-section" id="offerings">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-rise">
+      <h2 class="wf6-heading">Trzy sposoby, w jakie WAF++ zmienia przeglądy architektury chmurowej.</h2>
+    </div>
+
+    <div class="wf6-offers__grid wf6-rise">
+      <div class="wf6-offer">
+        <h3 class="wf6-offer__title">Ocena suwerennej chmury</h3>
+        <p class="wf6-offer__desc">Uruchom ten sam skan na AWS, Azure, GCP i u europejskich dostawców, takich jak OVH, Hetzner i STACKIT. Suwerenność to pełnoprawny filar, a nie dodatek.</p>
+        <a class="wf6-arrow wf6-offer__link" href="{{ '/pl/pillars/sovereign/' | relative_url }}">
+          Dowiedz się więcej
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <div class="wf6-offer">
+        <h3 class="wf6-offer__title">Bezpieczeństwo przed wdrożeniem</h3>
+        <p class="wf6-offer__desc">Zakodowane na sztywno sekrety, otwarte ścieżki sieciowe i brakujące kontrole dostępu są zgłaszane przed commitem. Analiza statyczna oznacza brak poświadczeń i brak wywołań API chmury.</p>
+        <a class="wf6-arrow wf6-offer__link" href="{{ '/pl/pillars/security/' | relative_url }}">
+          Dowiedz się więcej
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+
+      <div class="wf6-offer">
+        <h3 class="wf6-offer__title">Dowody gotowe do audytu</h3>
+        <p class="wf6-offer__desc">Zapieczętuj każdy skan w niezmiennym, weryfikowanym hashem pakiecie dowodów z kodem QR, który audytorzy mogą sprawdzić sami. Bez zrzutów ekranu, bez prezentacji.</p>
+        <a class="wf6-arrow wf6-offer__link" href="{{ '/docs/' | relative_url }}">
+          Dowiedz się więcej
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -89,101 +94,37 @@ description: "Przeskanuj Terraform w poszukiwaniu błędnych konfiguracji chmuro
 
 
 
-<!-- ===================== FIRST RESULT: 3 STEPS + TRUST BLOCK ===================== -->
-<section class="hp-section hp-first-result" id="first-result">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Pierwszy wynik w 2 minuty</div>
-      <h2 class="hp-title">Trzy kroki do pierwszego skanu.</h2>
+<!-- ===================== WHY WAF++ ===================== -->
+<section class="wf6-section wf6-section--alt" id="why">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-rise">
+      <h2 class="wf6-heading">Dlaczego zespoły wybierają WAF++.</h2>
+      <p class="wf6-lead">Stworzony dla tech leadów, architektów, zespołów platformowych, bezpieczeństwa, compliance i konsultantów, którzy potrzebują wspólnej, powtarzalnej perspektywy.</p>
     </div>
 
-    <div class="hp-first-result__grid">
-
-      <div class="hp-step-card hp-reveal">
-        <div class="hp-step-card__orb">01</div>
-        <div class="hp-step-card__title">Zainstaluj CLI</div>
-        <p class="hp-step-card__desc">Jedna paczka PyPI daje Ci silnik analizy statycznej.</p>
-        <div class="hp-step-card__code"><code>pip install wafpass-core</code></div>
+    <div class="wf6-values__grid wf6-rise">
+      <div class="wf6-value">
+        <div class="wf6-value__icon"><i data-lucide="banknote"></i></div>
+        <h3 class="wf6-value__title">Najpierw wartość</h3>
+        <p class="wf6-value__desc">Apache 2.0 i niezależność od chmury od podstaw. Bez vendor lock-in, bez poziomów licencji, bez niespodzianek na fakturze.</p>
       </div>
 
-      <div class="hp-step-card hp-reveal hp-delay-1">
-        <div class="hp-step-card__orb">02</div>
-        <div class="hp-step-card__title">Uruchom jedno polecenie</div>
-        <p class="hp-step-card__desc">Skieruj WAFPass na folder Terraform i uzyskaj podsumowanie JSON.</p>
-        <div class="hp-step-card__code"><code>wafpass check . --output json | jq '.summary'</code></div>
+      <div class="wf6-value">
+        <div class="wf6-value__icon"><i data-lucide="gauge"></i></div>
+        <h3 class="wf6-value__title">Wysoka wydajność</h3>
+        <p class="wf6-value__desc">Skany statyczne kończą się w kilka sekund. Bez czekania na API chmury, bez throttlingu, bez agentów do wdrażania.</p>
       </div>
 
-      <div class="hp-step-card hp-reveal hp-delay-2">
-        <div class="hp-step-card__orb">03</div>
-        <div class="hp-step-card__title">Zobacz, co jest nie tak</div>
-        <p class="hp-step-card__desc">Jasna liczba pass/fail i wyniki dla każdej kontroli dokładnie wskazują, co naprawić.</p>
-        <div class="hp-step-card__code hp-step-card__code--result">
-          <span class="hp-result__num hp-result__num--pass">81 passed</span>
-          <span class="hp-result__sep">·</span>
-          <span class="hp-result__num hp-result__num--fail">2 failed</span>
-        </div>
+      <div class="wf6-value">
+        <div class="wf6-value__icon"><i data-lucide="workflow"></i></div>
+        <h3 class="wf6-value__title">Inteligentna automatyzacja</h3>
+        <p class="wf6-value__desc">Podłącz go do CI, pre-commit lub agentowego filaru z v1.1, aby uzyskać przeglądy uwzględniające polityki przy każdym pull requeście.</p>
       </div>
 
-    </div>
-
-    <div class="hp-trust-block hp-reveal">
-      <div class="hp-trust-block__copy">
-        <h3 class="hp-trust-block__title">Jak wygląda pierwsze znalezisko</h3>
-        <p class="hp-trust-block__lead">WAFPass oznacza publiczny bucket S3 i pokazuje dokładną kontrolę oraz poprawkę.</p>
-        <div class="hp-trust-block__finding">
-          <div class="hp-finding__header">
-            <span class="hp-finding__badge hp-finding__badge--fail">FAIL</span>
-            <span class="hp-finding__id">SEC-S3-001</span>
-          </div>
-          <p class="hp-finding__desc">Blok publicznego dostępu do bucketa S3 jest wyłączony. Publiczne bucketi narażają dane na dostęp z internetu.</p>
-        </div>
-      </div>
-
-      <div class="hp-trust-block__fix">
-        <div class="hp-fix__label">Fragment poprawki</div>
-        <pre class="hp-fix__code"><code>resource "aws_s3_bucket_public_access_block" "public" {
-  bucket                  = aws_s3_bucket.public.id
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}</code></pre>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- ===================== STATS BAND ===================== -->
-<section class="hp-stats">
-  <div class="hp-container">
-    <div class="hp-stats__grid">
-      <div class="hp-stat hp-reveal">
-        <div class="hp-stat__num" data-count="8">8</div>
-        <div class="hp-stat__label">Filary</div>
-      </div>
-      <div class="hp-stat hp-reveal hp-delay-1">
-        <div class="hp-stat__num" data-count="83">83+</div>
-        <div class="hp-stat__label">Kontrole</div>
-      </div>
-      <div class="hp-stat hp-reveal hp-delay-2">
-        <div class="hp-stat__num" data-count="50" data-suffix="+">50+</div>
-        <div class="hp-stat__label">Ramy zgodności</div>
-      </div>
-      <div class="hp-stat hp-reveal hp-delay-3">
-        <div class="hp-stat__num" data-count="0" data-suffix="%">0%</div>
-        <div class="hp-stat__label">Zablokowanie Vendor</div>
-      </div>
-      <div class="hp-stat hp-reveal hp-delay-4">
-        <div class="hp-stat__num" data-count="1" data-suffix="M+">1M+</div>
-        <div class="hp-stat__label">Zasoby IaC podlegające ocenie</div>
-      </div>
-      <div class="hp-stat hp-reveal hp-delay-5">
-        <div class="hp-stat__num" data-count="100" data-suffix="%">100%</div>
-        <div class="hp-stat__label">Otwarte źródło i przejrzystość</div>
+      <div class="wf6-value">
+        <div class="wf6-value__icon"><i data-lucide="shield-check"></i></div>
+        <h3 class="wf6-value__title">Zaawansowane bezpieczeństwo</h3>
+        <p class="wf6-value__desc">Ponad 100 kontroli w 8 filarach wychwytuje błędne konfiguracje, ujawnione sekrety i luki w zgodności, zanim trafią na produkcję.</p>
       </div>
     </div>
   </div>
@@ -191,411 +132,207 @@ description: "Przeskanuj Terraform w poszukiwaniu błędnych konfiguracji chmuro
 
 
 
-<!-- ===================== VALUE PROPOSITIONS ===================== -->
-<section class="hp-section hp-values" id="values">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Dlaczego WAF++</div>
-      <h2 class="hp-title">Cztery wyniki, które mają znaczenie dla przywództwa.</h2>
-      <p class="hp-lead">Zmień złożoność chmury w ustrukturyzowaną, wymierną rozmowę - od sali konferencyjnej po zespół inżynieryjny.</p>
-    </div>
-
-    <div class="hp-values__grid">
-
-      <a class="hp-card-shell" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-core hp-value hp-value--sovereign">
-          <div class="hp-value__icon">{% include hp-icon.html name='globe' %}</div>
-          <h3 class="hp-value__title">Państwo według projektu</h3>
-          <p class="hp-value__desc">Zachować kontrolę nad danymi, ładunkami roboczymi i decyzjami infrastrukturalnymi - niezależnie od dostawcy chmur.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-core hp-value hp-value--secure">
-          <div class="hp-value__icon">{% include hp-icon.html name='shield-check' %}</div>
-          <h3 class="hp-value__title">Zabezpieczenie przed wdrożeniem</h3>
-          <p class="hp-value__desc">Umieścić kontrole bezpieczeństwa i zgodności bezpośrednio w structural-as-code workflows.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/wafpass/' | relative_url }}">
-        <div class="hp-core hp-value hp-value--compliant">
-          <div class="hp-value__icon">{% include hp-icon.html name='file-check' %}</div>
-          <h3 class="hp-value__title">Audyt - gotowy, zawsze</h3>
-          <p class="hp-value__desc">Generowanie identyfikowalnych raportów i materiałów dowodowych na podstawie 50 + ram zgodności.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-core hp-value hp-value--cost">
-          <div class="hp-value__icon">{% include hp-icon.html name='trending-down' %}</div>
-          <h3 class="hp-value__title">Przejrzystość kosztów</h3>
-          <p class="hp-value__desc">Uwidaczniaj potencjał w zakresie wydatkowania, marnotrawstwa i optymalizacji w zespołach i zadaniach.</p>
-        </div>
-      </a>
-
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- ===================== WHO IT'S FOR ===================== -->
-<section class="hp-section hp-audiences" id="audiences">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Dla kogo?</div>
-      <h2 class="hp-title">Zbudowany dla wszystkich zainteresowanych stron w podróży w chmurze.</h2>
-    </div>
-
-    <div class="hp-audiences__grid">
-
-      <a class="hp-card-shell" href="{{ '/use-cases/' | relative_url }}">
-        <div class="hp-core hp-audience">
-          <div class="hp-audience__icon">{% include hp-icon.html name='globe-2' %}</div>
-          <h3 class="hp-audience__title">Pola technologiczne i CTO</h3>
-          <p class="hp-audience__desc">Ustalić jasny poziom odniesienia jakości i poprawę toru w poszczególnych zespołach.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/use-cases/' | relative_url }}">
-        <div class="hp-core hp-audience">
-          <div class="hp-audience__icon">{% include hp-icon.html name='layers' %}</div>
-          <h3 class="hp-audience__title">Architekci chmur</h3>
-          <p class="hp-audience__desc">Projektowanie obciążeń roboczych ze współdzielonym obiektywem decyzyjnym neutralnym od vendoru.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/use-cases/' | relative_url }}">
-        <div class="hp-core hp-audience">
-          <div class="hp-audience__icon">{% include hp-icon.html name='settings-2' %}</div>
-          <h3 class="hp-audience__title">Platforma i zespoły SRE</h3>
-          <p class="hp-audience__desc">Zamontować regulatory w rurociągach i sprawić, że najlepsze praktyki będą domyślne.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/use-cases/' | relative_url }}">
-        <div class="hp-core hp-audience">
-          <div class="hp-audience__icon">{% include hp-icon.html name='shield-check' %}</div>
-          <h3 class="hp-audience__title">Bezpieczeństwo i zgodność</h3>
-          <p class="hp-audience__desc">Udowodnij rządzenie dowodami, nie opiniami.</p>
-        </div>
-      </a>
-
-      <a class="hp-card-shell" href="{{ '/use-cases/' | relative_url }}">
-        <div class="hp-core hp-audience">
-          <div class="hp-audience__icon">{% include hp-icon.html name='file-check' %}</div>
-          <h3 class="hp-audience__title">Konsultanci i Audytorzy</h3>
-          <p class="hp-audience__desc">Uruchom powtarzalne, porównywalne oceny dla klientów.</p>
-        </div>
-      </a>
-
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- ===================== TESTIMONIALS MARQUEE ===================== -->
-{% assign t = site.data.home_testimonials[lang] | default: site.data.home_testimonials.en %}
-<section class="hp-section hp-refs" aria-label="{{ t.section_aria }}">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>{{ t.kicker }}</div>
-      <h2 class="hp-title">{{ t.heading }}</h2>
-    </div>
-
-  </div>
-
-  <div class="hp-refs__wrap">
-    <div class="hp-refs__track" data-marquee>
-
-      {% for item in t.items %}
-      <figure class="hp-ref">
-        <blockquote class="hp-ref__quote">{{ item.quote }}</blockquote>
-        <figcaption class="hp-ref__person">
-          {% if item.image %}
-          <img class="hp-ref__avatar" src="{{ item.image }}" alt="{{ item.name }}" loading="lazy">
-          {% else %}
-          <div class="hp-ref__avatar hp-ref__avatar--placeholder">{{ item.placeholder }}</div>
-          {% endif %}
-          <div>
-            <div class="hp-ref__name">{{ item.name }}</div>
-            <div class="hp-ref__role">{{ item.role }}</div>
-          </div>
-        </figcaption>
-      </figure>
-      {% endfor %}
-
+<!-- ===================== STATS ===================== -->
+<section class="wf6-section">
+  <div class="wf6-wrap">
+    <div class="wf6-stats__grid wf6-rise">
+      <div class="wf6-stat"><div class="wf6-stat__num">8</div><div class="wf6-stat__label">Filary</div></div>
+      <div class="wf6-stat"><div class="wf6-stat__num">100+</div><div class="wf6-stat__label">Kontrole</div></div>
+      <div class="wf6-stat"><div class="wf6-stat__num">12</div><div class="wf6-stat__label">Zmapowane jurysdykcje</div></div>
+      <div class="wf6-stat"><div class="wf6-stat__num">0%</div><div class="wf6-stat__label">Vendor lock-in</div></div>
     </div>
   </div>
 </section>
 
 
 
-<!-- ===================== TRUST BAND ===================== -->
-<section class="hp-trust">
-  <div class="hp-container">
-    <div class="hp-trust__label">Odwzorowane na wiodących ramach zgodności</div>
-    <div class="hp-trust__pills">
-      <span class="hp-trust__pill">GDPR</span>
-      <span class="hp-trust__pill">SOC 2</span>
-      <span class="hp-trust__pill">HIPAA</span>
-      <span class="hp-trust__pill">BSI C5</span>
-      <span class="hp-trust__pill">ISO 27001</span>
-      <span class="hp-trust__pill">NIS2</span>
-      <span class="hp-trust__pill">PWZ DSS</span>
-      <span class="hp-trust__pill">DORA</span>
-      <span class="hp-trust__pill">ISO 27017</span>
-      <span class="hp-trust__pill">NIST 800- 53</span>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ===================== TECHNICAL: 8 PILLARS ===================== -->
-<section class="hp-section" id="framework">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Ramy</div>
-      <h2 class="hp-title">8 filarów. Jeden spójny system.</h2>
-      <p class="hp-lead">Dla zespołów technicznych WAF++ zapewnia kompletny model jakości architektury - od bezpieczeństwa do suwerenności po operacje wspomagane przez AIF.</p>
+<!-- ===================== FEATURES ===================== -->
+<section class="wf6-section wf6-section--alt" id="features">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-rise">
+      <h2 class="wf6-heading">Wyniki dla całego zespołu chmurowego.</h2>
+      <p class="wf6-lead">Stworzony dla tech leadów ustalających wspólną bazę, architektów projektujących przez wspólną, neutralną perspektywę, zespołów platformowych wbudowujących kontrole w potoki, działów bezpieczeństwa i compliance dowodzących zarządzania za pomocą dowodów oraz konsultantów prowadzących powtarzalne oceny dla klientów.</p>
     </div>
 
-    <div class="hp-pillars__grid">
+    <div class="wf6-features__list">
 
-      <a class="hp-card-shell hp-bento hp-bento--large hp-bento--sovereign" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='globe' %}</div>
-        <div class="hp-bento__meta">
-          <div class="hp-bento__num">07</div>
-          <div class="hp-bento__name">Władca<span class="hp-bento__badge hp-bento__badge--gold">Unikalne</span></div>
+      <div class="wf6-feature wf6-rise">
+        <div class="wf6-feature__copy">
+          <h3 class="wf6-feature__title">Suwerenny od podstaw</h3>
+          <p class="wf6-feature__desc">Uruchamiaj WAFPass na obciążeniach w AWS, Azure lub GCP albo u europejskich dostawców, takich jak OVH, Hetzner i STACKIT. Filar suwerenności traktuje ich wszystkich na równi.</p>
+          <div class="wf6-feature__meta"><span><strong>3+</strong> modele rezydencji</span><span><strong>100%</strong> Pokrycie BSI C3A</span><span>Gotowy na RODO · NIS2</span></div>
         </div>
-        <p class="hp-bento__desc">Zachowaj pełną kontrolę nad danymi, ładunkami roboczymi i infrastrukturą. Unikaj blokady sprzedawcy i spełniają cyfrowe wymagania suwerenności.</p>
-        <div class="hp-bento__footer">
-          <span><strong>3 +</strong>Modele rezydencji</span>
-          <span><strong>GDPR</strong>gotowe</span>
-        </div>
-      </a>
-
-      <a class="hp-card-shell hp-bento hp-bento--wide hp-bento--agentic" href="{{ '/pillars/agentic/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='cpu' %}</div>
-        <div class="hp-bento__meta">
-          <div class="hp-bento__num">08</div>
-          <div class="hp-bento__name">Agregat<span class="hp-bento__badge hp-bento__badge--purple">Nowy</span></div>
-        </div>
-        <p class="hp-bento__desc">AI- Assisted architecture reviews and policy-known authority agents that operating cloud workloads security.</p>
-      </a>
-
-      <a class="hp-card-shell hp-bento hp-bento--tall" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='shield' %}</div>
-        <div class="hp-bento__num">01</div>
-        <div class="hp-bento__name">Bezpieczeństwo</div>
-        <p class="hp-bento__desc">Chronić ładunki robocze przed zagrożeniami, błędną konfiguracją i nieautoryzowanym dostępem.</p>
-      </a>
-
-      <a class="hp-card-shell hp-bento hp-bento--tall" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='activity' %}</div>
-        <div class="hp-bento__num">04</div>
-        <div class="hp-bento__name">Wiarygodność</div>
-        <p class="hp-bento__desc">Budować systemy, które odzyskują wdzięcznie i służą użytkownikom konsekwentnie na skalę.</p>
-      </a>
-
-      <a class="hp-card-shell hp-bento" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='trending-down' %}</div>
-        <div class="hp-bento__num">02</div>
-        <div class="hp-bento__name">Optymalizacja kosztów</div>
-      </a>
-
-      <a class="hp-card-shell hp-bento" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='zap' %}</div>
-        <div class="hp-bento__num">03</div>
-        <div class="hp-bento__name">Wydajność</div>
-      </a>
-
-      <a class="hp-card-shell hp-bento" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='settings-2' %}</div>
-        <div class="hp-bento__num">05</div>
-        <div class="hp-bento__name">Doskonałość operacyjna</div>
-      </a>
-
-      <a class="hp-card-shell hp-bento" href="{{ '/saeulen/' | relative_url }}">
-        <div class="hp-bento__icon">{% include hp-icon.html name='leaf' %}</div>
-        <div class="hp-bento__num">06</div>
-        <div class="hp-bento__name">Zrównoważony rozwój</div>
-      </a>
-
-    </div>
-
-    <div class="hp-pillars__cta">
-      <a class="hp-btn hp-btn--primary" href="{{ '/saeulen/' | relative_url }}">Poznaj wszystkie filary
-<span class="hp-btn__icon">{% include hp-icon.html name='arrow-up-right' %}</span>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- ===================== WHY ++ ===================== -->
-<section class="hp-section hp-plus" id="plus">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Dlaczego + +</div>
-      <h2 class="hp-title">Dwa dodatkowe filary dla świata, dla którego nie zbudowano klasycznych ram.</h2>
-      <p class="hp-lead">WAF++ bierze sześć sprawdzonych dobrze skonstruowanych filarów i dodaje dwa, które mają największe znaczenie dla nowoczesnych, regulowanych, wspomaganych przez AI- operacji w chmurze.</p>
-    </div>
-
-    <div class="hp-plus__grid">
-      <div class="hp-card-shell">
-        <div class="hp-core hp-plus-card hp-plus-card--sovereign">
-          <div class="hp-plus-card__icon">{% include hp-icon.html name='globe' %}</div>
-          <div class="hp-plus-card__num">+ 01</div>
-          <h3 class="hp-plus-card__title">Władca</h3>
-          <p class="hp-plus-card__desc">Władza cyfrowa, rezydentura danych i niezależność sprzedawcy. Pierwszy plus trzyma architekturę pod kontrolą.</p>
-          <div class="hp-plus-card__actions">
-            <a class="hp-btn hp-btn--ghost" href="{{ '/saeulen/' | relative_url }}">Poznaj Suvereign &rarr;</a>
-          </div>
-        </div>
+        <button class="wf6-feature__shot wf6-shot" type="button" aria-label="Wyświetl powiększoną mapę regionów wdrożeń">
+          <img src="{{ '/assets/images/wafpass_1.0/Deployed_Region_Map.png' | relative_url }}" alt="Mapa regionów wdrożeń WAF++ z obciążeniami w AWS, Azure, GCP, OVH, Hetzner i STACKIT" loading="lazy">
+          <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
       </div>
 
-      <div class="hp-card-shell">
-        <div class="hp-core hp-plus-card hp-plus-card--agentic">
-          <div class="hp-plus-card__icon">{% include hp-icon.html name='cpu' %}</div>
-          <div class="hp-plus-card__num">+ 02</div>
-          <h3 class="hp-plus-card__title">Agregat</h3>
-          <p class="hp-plus-card__desc">Policy- świadomy autonomicznych agentów i AI- wspomagane przeglądy architektury. Drugi plus sprawia, że ramy są gotowe do epoki arystokratycznej.</p>
-          <div class="hp-plus-card__actions">
-            <a class="hp-btn hp-btn--ghost" href="{{ '/pillars/agentic/' | relative_url }}">Poznaj Agustic &rarr;</a>
-          </div>
+      <div class="wf6-feature wf6-feature--reverse wf6-rise">
+        <div class="wf6-feature__copy">
+          <h3 class="wf6-feature__title">Bezpieczny przed wdrożeniem</h3>
+          <p class="wf6-feature__desc">Zakodowane na sztywno hasła, klucze API i tokeny są zgłaszane, zanim na dobre trafią do commitów, a nie wtedy, gdy już są w historii git.</p>
+          <div class="wf6-feature__meta"><span>Analiza statyczna</span><span>Bez poświadczeń</span></div>
         </div>
+        <button class="wf6-feature__shot wf6-shot" type="button" aria-label="Wyświetl powiększony skaner sekretów">
+          <img src="{{ '/assets/images/wafpass/Secret_Scanner.png' | relative_url }}" alt="Skaner sekretów WAF++ zgłaszający zakodowane na sztywno poświadczenia w kodzie Terraform" loading="lazy">
+          <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
       </div>
-    </div>
 
+      <div class="wf6-feature wf6-rise">
+        <div class="wf6-feature__copy">
+          <h3 class="wf6-feature__title">Zawsze gotowy do audytu</h3>
+          <p class="wf6-feature__desc">Zapieczętuj skan w niezmiennym, weryfikowanym hashem pakiecie dowodów z kodem QR, który audytorzy mogą sprawdzić sami. Bez zrzutów ekranu, bez prezentacji.</p>
+          <div class="wf6-feature__meta"><span>Zapieczętowany SHA-256</span><span>Ponad 50 frameworków</span></div>
+        </div>
+        <button class="wf6-feature__shot wf6-shot" type="button" aria-label="Wyświetl powiększone repozytorium dowodów">
+          <img src="{{ '/assets/images/wafpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Repozytorium dowodów WAF++ z zapieczętowanym, weryfikowanym hashem pakietem audytowym z kodem QR" loading="lazy">
+          <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+      </div>
+
+      <div class="wf6-feature wf6-feature--reverse wf6-rise">
+        <div class="wf6-feature__copy">
+          <h3 class="wf6-feature__title">Przejrzystość kosztów</h3>
+          <p class="wf6-feature__desc">Koszty to osobny filar obok bezpieczeństwa i niezawodności, oceniany w ten sam sposób, dzięki czemu marnotrawstwo pojawia się w tym samym raporcie co ryzyko, a nie w osobnym narzędziu.</p>
+          <div class="wf6-feature__meta"><span>Ocena dla każdego filaru</span><span>Jeden raport zamiast dwóch narzędzi</span></div>
+        </div>
+        <button class="wf6-feature__shot wf6-shot" type="button" aria-label="Wyświetl powiększony podział wyniku na moduły">
+          <img src="{{ '/assets/images/wafpass/Module_Score_Breakdown.png' | relative_url }}" alt="Podział wyniku na moduły w WAF++ z filarem kosztów ocenianym obok bezpieczeństwa i niezawodności" loading="lazy">
+          <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+      </div>
+
+    </div>
   </div>
 </section>
 
 
 
-<!-- ===================== WAFPASS THEATER ===================== -->
-<section class="hp-section hp-pass" id="wafpass">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>WAFPass</div>
-      <h2 class="hp-title">Zgodność sprawdza się przed chmurą.</h2>
-      <p class="hp-lead">Platforma WAFPass open- source skanuje Terraform, AWS CDK i więcej - brak referencji, brak połączeń API, tylko szybkie, identyfikowalne wyniki.</p>
+<!-- ===================== PILLARS ===================== -->
+<section class="wf6-section" id="framework">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-rise">
+      <h2 class="wf6-heading">Osiem filarów. Jeden spójny system.</h2>
+      <p class="wf6-lead">Sześć sprawdzonych filarów Well-Architected oraz dwa, które są najważniejsze dla suwerennych operacji chmurowych wspieranych przez AI.</p>
     </div>
 
-    <div class="hp-pass__stage">
-      <div class="hp-browser">
-        <div class="hp-shell">
-          <div class="hp-core">
-            <div class="hp-browser-bar">
-              <span></span><span></span><span></span>
-              <div class="hp-browser-bar__url">cloud.waf2p / runs</div>
-            </div>
-            <div class="hp-browser__frame">
-              <img class="ss-light" src="{{ '/assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="WAFPass Run Dashboard" loading="lazy">
-              <img class="ss-dark" src="{{ '/assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="WAFPass Run Dashboard" loading="lazy">
-            </div>
-          </div>
-        </div>
+    <div class="wf6-pillars__grid wf6-rise">
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Bezpieczeństwo</span><span class="wf6-pillar__desc">Chroń obciążenia przed zagrożeniami, błędną konfiguracją i nieuprawnionym dostępem.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Optymalizacja kosztów</span><span class="wf6-pillar__desc">Uwidocznij wydatki, marnotrawstwo i potencjał optymalizacji we wszystkich zespołach.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Efektywność wydajności</span><span class="wf6-pillar__desc">Dobieraj rozmiar obciążeń i utrzymuj ich szybkość w dużej skali.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Niezawodność</span><span class="wf6-pillar__desc">Buduj systemy, które sprawnie się odtwarzają i stale obsługują użytkowników.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Doskonałość operacyjna</span><span class="wf6-pillar__desc">Prowadź infrastrukturę za pomocą powtarzalnych, audytowalnych operacji.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Zrównoważony rozwój</span><span class="wf6-pillar__desc">Mierz i zmniejszaj ślad środowiskowy obciążeń chmurowych.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Suwerenność<span class="wf6-pillar__tag">Unikalny dla WAF++</span></span><span class="wf6-pillar__desc">Zachowaj kontrolę nad danymi, obciążeniami i decyzjami infrastrukturalnymi.</span></div>
+      <div class="wf6-pillar"><span class="wf6-pillar__name">Agentowy<span class="wf6-pillar__tag">Nowość w v1.1</span></span><span class="wf6-pillar__desc">Przeglądy architektury wspierane przez AI i autonomiczni agenci uwzględniający polityki.</span></div>
+    </div>
+  </div>
+</section>
 
-        <div class="hp-scan" aria-hidden="true">
-          <div class="hp-scan__line"></div>
-          <div class="hp-scan__status">
-            <span class="hp-scan__dot"></span>Skanowanie 83 + kontroli przez 8 filarów...
-</div>
-        </div>
-      </div>
 
-      <div class="hp-chips">
-        <div class="hp-chip">
-          <div class="hp-chip__icon">{% include hp-icon.html name='scan-search' %}</div>
-          <div class="hp-chip__text"><strong>Analiza statyczna</strong>na plikach .tf</div>
-        </div>
-        <div class="hp-chip">
-          <div class="hp-chip__icon">{% include hp-icon.html name='layers' %}</div>
-          <div class="hp-chip__text"><strong>8 filarów</strong>pokryte</div>
-        </div>
-        <div class="hp-chip">
-          <div class="hp-chip__icon">{% include hp-icon.html name='file-text' %}</div>
-          <div class="hp-chip__text"><strong>Raporty PDF</strong>dla biegłych rewidentów</div>
-        </div>
-        <div class="hp-chip">
-          <div class="hp-chip__icon">{% include hp-icon.html name='git-merge' %}</div>
-          <div class="hp-chip__text"><strong>CI / CD gotowe</strong>Haczyki</div>
-        </div>
-      </div>
 
-      <div class="hp-install">
-        <div class="hp-install__label">Szybki start</div>
-        <div class="hp-install__box">
-          <code>git clone https://github.com/WAF2p/wafpass-core.git</code>
-          <button class="hp-install__copy" type="button" data-copy="git clone https://github.com/WAF2p/wafpass-core.git" aria-label="Copy install command">
-            {% include hp-icon.html name='copy' %}
-            <span class="hp-install__copied">Kopiuję!</span>
-          </button>
-        </div>
-        <p class="hp-install__note">Pełny stos kompozycji Docker (CLI + Server + Dashboard) znajduje się na stronie<a href="{{ '/wafpass-install/' | relative_url }}">kompletny przewodnik instalacyjny</a>.</p>
+<!-- ===================== PROOF ===================== -->
+<section class="wf6-section wf6-section--alt">
+  <div class="wf6-wrap">
+    <div class="wf6-proof__row wf6-rise">
+      <span class="wf6-proof__intro">Zmapowany na wiodące frameworki</span>
+      <div class="wf6-proof__names">
+        <span class="wf6-proof__name">RODO</span>
+        <span class="wf6-proof__name">SOC 2</span>
+        <span class="wf6-proof__name">HIPAA</span>
+        <span class="wf6-proof__name">BSI C5</span>
+        <span class="wf6-proof__name">BSI C3A</span>
+        <span class="wf6-proof__name">ISO 27001</span>
+        <span class="wf6-proof__name">NIS2</span>
+        <span class="wf6-proof__name">PCI DSS</span>
+        <span class="wf6-proof__name">DORA</span>
+        <span class="wf6-proof__name">ISO 27017</span>
+        <span class="wf6-proof__name">NIST 800-53</span>
       </div>
     </div>
-
   </div>
 </section>
 
 
 
 <!-- ===================== HOW IT WORKS ===================== -->
-<section class="hp-section" id="how-it-works">
-  <div class="hp-container">
-
-    <div class="hp-section-head hp-reveal">
-      <div class="hp-kicker"><span class="hp-kicker__dot"></span>Jak to działa?</div>
-      <h2 class="hp-title">Od kodu do zgodności w trzech etapach.</h2>
+<section class="wf6-section" id="how-it-works">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-rise">
+      <h2 class="wf6-heading">Od kodu do dowodu.</h2>
     </div>
 
-    <div class="hp-steps__grid">
-
-      <div class="hp-step hp-reveal">
-        <div class="hp-step__orb">01</div>
-        <div>
-          <div class="hp-step__title">Napisz Terraform</div>
-          <p class="hp-step__desc">Zbuduj infrastrukturę - jako kod - tak jak już to robisz. WAF++ pozostaje poza zakresem pracy.</p>
+    <div class="wf6-how__layout">
+      <div class="wf6-how__list wf6-rise">
+        <div class="wf6-how__step">
+          <span class="wf6-how__num">Najpierw</span>
+          <div class="wf6-how__body">
+            <h3>Napisz Terraform</h3>
+            <p>Twórz infrastrukturę jako kod tak jak dotychczas. WAF++ nie wchodzi w Twój proces pracy, dopóki go nie uruchomisz.</p>
+          </div>
+        </div>
+        <div class="wf6-how__step">
+          <span class="wf6-how__num">Potem</span>
+          <div class="wf6-how__body">
+            <h3>Uruchom WAFPass</h3>
+            <p>Skan statyczny sprawdza każdy zasób względem ponad 100 kontroli frameworka za pomocą <code>wafpass check . --output json</code>. Bez poświadczeń, bez wywołań API do Twojego konta w chmurze.</p>
+          </div>
+        </div>
+        <div class="wf6-how__step">
+          <span class="wf6-how__num">Na koniec</span>
+          <div class="wf6-how__body">
+            <h3>Wdrażaj z dowodem</h3>
+            <p>Wyeksportuj przebieg jako PDF gotowy dla audytorów albo zapieczętuj go w pakiecie dowodów, który każdy może niezależnie zweryfikować.</p>
+          </div>
         </div>
       </div>
 
-      <div class="hp-step-line" aria-hidden="true"></div>
+      <button class="wf6-how__shot wf6-shot wf6-rise wf6-d2" type="button" aria-label="Wyświetl powiększony panel przebiegu WAF++">
+        <img src="{{ '/assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Panel przebiegu WAF++ z wynikiem ogólnym, nieudanymi kontrolami i stanem filarów po skanie" loading="lazy">
+        <span class="wf6-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-      <div class="hp-step hp-reveal hp-delay-1">
-        <div class="hp-step__orb">02</div>
-        <div>
-          <div class="hp-step__title">Uruchom WAFPass</div>
-          <p class="hp-step__desc">Analiza statyczna sprawdza wszystkie zasoby pod kątem WAF++ - nie są potrzebne dane o chmurze.</p>
-        </div>
-      </div>
 
-      <div class="hp-step-line" aria-hidden="true"></div>
 
-      <div class="hp-step hp-reveal hp-delay-2">
-        <div class="hp-step__orb">03</div>
-        <div>
-          <div class="hp-step__title">Zgodność statku</div>
-          <p class="hp-step__desc">Eksport raportów PDF, blokowanie naruszeń w CI, i udowodnić zarządzanie do audytorów.</p>
-        </div>
-      </div>
-
+<!-- ===================== TEAM ===================== -->
+<section class="wf6-section wf6-section--dark" id="team">
+  <div class="wf6-wrap">
+    <div class="wf6-section-head wf6-rise">
+      <h2 class="wf6-heading">Tworzony przez cztery osoby, otwarcie.</h2>
+      <p class="wf6-lead">WAF++ jest utrzymywany przez mały zespół i kształtowany w otwartym procesie RFC. Każdy może zaproponować zmianę.</p>
     </div>
 
+    <div class="wf6-team__grid wf6-rise">
+      <div class="wf6-member">
+        <div class="wf6-member__photo"><img src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lajko-artem-web-1920w.jpg" alt="Artem Lajko" loading="lazy"></div>
+        <div class="wf6-member__name">Artem Lajko</div>
+        <div class="wf6-member__role">Head of Platform Engineering</div>
+        <p class="wf6-member__fact">Autor książki <em>Implementing GitOps with Kubernetes</em>, współzałożyciel connectii.io.</p>
+      </div>
+      <div class="wf6-member">
+        <div class="wf6-member__photo"><img src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/lewandowski-sascha-web-1920w.jpg" alt="Sascha Lewandowski" loading="lazy"></div>
+        <div class="wf6-member__name">Sascha Lewandowski</div>
+        <div class="wf6-member__role">Cloud Architect</div>
+        <p class="wf6-member__fact">Doradca ds. bezpieczeństwa IT z certyfikatem TÜV, działający w AWS, Azure, GCP i europejskich chmurach.</p>
+      </div>
+      <div class="wf6-member">
+        <div class="wf6-member__photo"><img src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/meyer-sebastian-web-0ce01114-1920w.jpg" alt="Sebastian Meyer" loading="lazy"></div>
+        <div class="wf6-member__name">Sebastian Meyer</div>
+        <div class="wf6-member__role">Head of Agile Development</div>
+        <p class="wf6-member__fact">Patrzy na rozwój oprogramowania z perspektywy zarządczej, dbając o niezależność od dostawców.</p>
+      </div>
+      <div class="wf6-member">
+        <div class="wf6-member__photo"><img src="https://lirp.cdn-website.com/9dbc9654/dms3rep/multi/opt/urlaub-tim-web-weiss-1920w.jpg" alt="Tim Urlaub" loading="lazy"></div>
+        <div class="wf6-member__name">Tim Urlaub</div>
+        <div class="wf6-member__role">Lead Platform Engineer</div>
+        <p class="wf6-member__fact">Tworzy narzędzia, dzięki którym deweloperzy i klienci wewnętrzni działają szybciej.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -606,39 +343,48 @@ description: "Przeskanuj Terraform w poszukiwaniu błędnych konfiguracji chmuro
 
 
 
-<!-- ===================== FINAL CTA ===================== -->
-<section class="hp-section" id="get-started">
-  <div class="hp-container">
-    <div class="hp-card-shell">
-      <div class="hp-core hp-cta__card">
-        <div class="hp-kicker"><span class="hp-kicker__dot"></span>Zaczynaj.</div>
-        <h2 class="hp-cta__title">Gotowy do budowy<span class="hp-shimmer">architektura chmur</span>Z zamiarem?</h2>
-        <p class="hp-cta__lead">Dołącz do społeczności, przeczytaj dokumenty, albo zrób swój pierwszy skan WAFPass.</p>
-        <div class="hp-cta__actions">
-          <a class="hp-btn hp-btn--primary" href="{{ '/docs/' | relative_url }}">Przeczytaj dokumentację
-<span class="hp-btn__icon">{% include hp-icon.html name='arrow-up-right' %}</span>
-          </a>
-          <a class="hp-btn hp-btn--ghost" href="{{ '/wafpass/' | relative_url }}">Spróbuj WAFPass</a>
-        </div>
-        <div class="hp-cta__compliance">
-          <span class="hp-trust__pill">GDPR</span>
-          <span class="hp-trust__pill">SOC 2</span>
-          <span class="hp-trust__pill">HIPAA</span>
-          <span class="hp-trust__pill">BSI C5</span>
-          <span class="hp-trust__pill">ISO 27001</span>
-          <span class="hp-trust__pill">NIS2</span>
-        </div>
+<!-- ===================== CTA ===================== -->
+<section class="wf6-section wf6-section--dark wf6-cta" id="get-started">
+  <div class="wf6-wrap">
+    <div class="wf6-rise">
+      <h2 class="wf6-cta__title">Twój pierwszy skan zajmie dwie minuty.</h2>
+      <p class="wf6-cta__lead">Zainstaluj CLI, wskaż mu swój Terraform i czytaj prawdziwe wyniki. Bez rejestracji, bez rozmów handlowych.</p>
+      <div class="wf6-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/docs/' | relative_url }}">
+          Przeczytaj dokumentację
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
       </div>
+    </div>
+
+    <div class="wf6-cta__quickstart wf6-rise wf6-d1">
+      <div class="wf6-cta__quickstart-label">Szybki start</div>
+      <div class="wf6-cta__quickstart-box">
+        <code>git clone https://github.com/WAF2p/wafpass-core.git</code>
+        <button class="wf6-cta__quickstart-copy" type="button" data-copy="git clone https://github.com/WAF2p/wafpass-core.git" aria-label="Kopiuj polecenie instalacji">Kopiuj</button>
+      </div>
+      <p class="wf6-cta__secondary">Pełny stack (CLI + serwer + pulpit) opisuje <a href="{{ '/pl/wafpass-install/' | relative_url }}">kompletny przewodnik instalacji</a>.</p>
     </div>
   </div>
 </section>
 
 
 
+<!-- ===================== LIGHTBOX (screenshots open larger) ===================== -->
+<div class="wf6-lightbox" id="wf6-lightbox" role="dialog" aria-modal="true" aria-label="Powiększony zrzut ekranu" data-lightbox>
+  <button class="wf6-lightbox__close" type="button" data-lightbox-close aria-label="Zamknij">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="wf6-lightbox__img" data-lightbox-img src="" alt="">
+</div>
+
+
+
 <script>
 (function () {
-  // Scroll reveal
-  var reveals = document.querySelectorAll('.hp-reveal');
+  var reveals = document.querySelectorAll('.wf6-rise');
   if (reveals.length && window.IntersectionObserver) {
     var rio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -653,60 +399,6 @@ description: "Przeskanuj Terraform w poszukiwaniu błędnych konfiguracji chmuro
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // Typing terminal
-  var terminal = document.querySelector('[data-typing-terminal]');
-  var textEl = terminal && terminal.querySelector('[data-typing-text]');
-  if (textEl) {
-    var text = 'wafpass check ./infrastructure/';
-    var i = 0;
-    function type() {
-      if (i <= text.length) {
-        textEl.textContent = text.slice(0, i);
-        i++;
-        setTimeout(type, 60 + Math.random() * 40);
-      }
-    }
-    setTimeout(type, 800);
-  }
-
-  // Number counters with fallback
-  var counters = document.querySelectorAll('[data-count]');
-  function animateCounter(el) {
-    var target = parseInt(el.getAttribute('data-count'), 10);
-    var suffix = el.getAttribute('data-suffix') || '';
-    var duration = 1400;
-    var start = performance.now();
-    function update(now) {
-      var progress = Math.min((now - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-  if (counters.length) {
-    if (window.IntersectionObserver) {
-      var cio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            cio.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      counters.forEach(function (c) { cio.observe(c); });
-    } else {
-      counters.forEach(animateCounter);
-    }
-  }
-
-  // Marquee duplication for seamless loop
-  var marquee = document.querySelector('[data-marquee]');
-  if (marquee) {
-    marquee.innerHTML += marquee.innerHTML;
-  }
-
-  // Copy to clipboard
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-copy]');
     if (!btn) return;
@@ -714,9 +406,52 @@ description: "Przeskanuj Terraform w poszukiwaniu błędnych konfiguracji chmuro
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(function () {
         btn.classList.add('is-copied');
-        setTimeout(function () { btn.classList.remove('is-copied'); }, 2000);
+        var original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.classList.remove('is-copied'); btn.textContent = original; }, 2000);
       });
     }
   });
+
+  // Lightbox: click a screenshot to view it larger
+  var lightbox = document.getElementById('wf6-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
+
+    function openLightbox(trigger) {
+      var imgs = trigger.querySelectorAll('img');
+      var source = null;
+      for (var i = 0; i < imgs.length; i++) {
+        if (getComputedStyle(imgs[i]).display !== 'none') { source = imgs[i]; break; }
+      }
+      if (!source) return;
+      lastTrigger = trigger;
+      lbImg.src = source.src;
+      lbImg.alt = source.alt || '';
+      lightbox.classList.add('is-open');
+      document.body.classList.add('wf6-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.classList.remove('wf6-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.wf6-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
 })();
 </script>

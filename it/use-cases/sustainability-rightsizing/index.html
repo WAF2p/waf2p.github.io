@@ -3,80 +3,155 @@ layout: default
 lang: it
 ref: use_case_sustainability
 permalink: /it/use-cases/sustainability-rightsizing/
-title: "Diritti della sostenibilità · WAF++ Utilizzare i casi"
-description: "Come un'azienda SaaS ha ridotto l'impronta di carbonio cloud segnando Sostenibilità, eliminando le risorse idle e spostando i lavori in batch nelle regioni più verdi."
+title: "Rightsizing sostenibile · Casi d'uso WAF++"
+description: "Come un'azienda SaaS ha ridotto l'impronta di carbonio del proprio cloud valutando la sostenibilità, eliminando le risorse inattive e spostando i job batch in regioni più verdi."
 ---
 
-<main class="page-radical use-case-detail-page use-case-detail-page--sustainability">
+<div class="ucd-page">
 
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="ucd-hero">
+  <div class="dl-wrap">
+    <nav class="dl-rise" aria-label="Percorso di navigazione"><a class="ucd-back" href="{{ '/it/use-cases/' | relative_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i> Torna ai casi d'uso</a></nav>
+    <h1 class="ucd-hero__title dl-rise dl-d1">Rightsizing sostenibile.</h1>
+    <p class="ucd-hero__lead dl-rise dl-d2">Un'azienda SaaS riduce l'impronta di carbonio del proprio cloud valutando la sostenibilità, eliminando le risorse inattive e spostando i job batch in regioni più verdi.</p>
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+    <div class="ucd-shot dl-rise dl-d3">
+      <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot della dashboard di esecuzione">
+        <img src="{{ '/assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Dashboard di esecuzione di WAFPass per il caso d'uso del rightsizing sostenibile">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-        <a class="uc-detail-back" href="{{ '/use-cases/' | relative_url }}">
-          <i data-lucide="arrow-left" aria-hidden="true"></i>Torna ai casi di utilizzo
-</a>
+<!-- Context / Approach / Outcome -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="ucd-grid dl-rise">
+      <div>
+        <h2 class="ucd-block__title">Contesto</h2>
+        <p class="ucd-block__text">L'azienda gestisce una piattaforma SaaS multi-tenant con carichi di lavoro distribuiti su tre regioni cloud. L'area finanza nota l'aumento dei costi cloud e il team di sostenibilità ha bisogno di dati concreti sulle emissioni da presentare al consiglio di amministrazione. Gli ambienti di sviluppo e test inattivi sono i primi sospettati.</p>
+      </div>
 
-        <div class="hero-radical-badge" style="margin-top: 18px;">
-          <span class="hero-radical-badge__dot"></span>Green IT · Esempio
+      <div>
+        <h2 class="ucd-block__title">Approccio</h2>
+        <p class="ucd-block__text">Il team aggiunge il pilastro Sostenibilità di WAF++ alla propria revisione trimestrale. Misura il calcolo inattivo, il tiering dello storage e l'intensità di carbonio delle regioni, quindi automatizza le pianificazioni di spegnimento e la scelta della regione per i job batch non critici.</p>
+      </div>
+
+      <div>
+        <h2 class="ucd-block__title">Risultato</h2>
+        <p class="ucd-block__text">In due trimestri i costi delle risorse inattive calano del 34% e il punteggio PASS di Sostenibilità migliora da 38 a 67. Le metriche sulle emissioni fanno ora parte della dashboard degli OKR di ingegneria.</p>
+      </div>
+    </div>
+
+    <div class="ucd-tags dl-rise">
+      <span class="ucd-tag">Sostenibilità</span>
+      <span class="ucd-tag">Ottimizzazione dei costi</span>
+      <span class="ucd-tag">Rightsizing</span>
+      <span class="ucd-tag">Regioni verdi</span>
+      <span class="ucd-tag">Reporting ESG</span>
+    </div>
+  </div>
+</section>
+
+<!-- Supporting screenshots -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="uc2-section-head dl-rise">
+      <h2 class="dl-heading">Dalla revisione.</h2>
+      <p class="dl-lead">Viste reali di WAFPass usate per costruire questa revisione trimestrale.</p>
+    </div>
+
+    <div class="ucd-gallery dl-rise">
+      <div>
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot della ripartizione per moduli">
+          <img src="{{ '/assets/images/wafpass_1.0/Run_Module_Breakdown.png' | relative_url }}" alt="Schermata di ripartizione per moduli di un'esecuzione WAFPass usata per seguire il punteggio del pilastro Sostenibilità">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Ripartizione del punteggio di sostenibilità</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot della mappa delle regioni">
+          <img src="{{ '/assets/images/wafpass_1.0/Deployed_Region_Map.png' | relative_url }}" alt="Mappa delle regioni di deployment di WAFPass usata per pianificare una scelta di regioni più verde">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Intensità di carbonio delle regioni</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande lo screenshot della panoramica dei controlli dell'esecuzione">
+          <img src="{{ '/assets/images/wafpass_1.0/Run_Check_Overview.png' | relative_url }}" alt="Schermata di panoramica dei controlli di WAFPass usata per la revisione trimestrale delle risorse inattive">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Revisione trimestrale delle risorse inattive</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Diritti della sostenibilità</span>
-        </h1>
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="ucd-lightbox" role="dialog" aria-modal="true" aria-label="Screenshot ingrandito" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Chiudi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
 
-        <p class="hero-radical-lead">Un'azienda SaaS riduce la sua impronta di carbonio cloud segnando la sostenibilità, eliminando le risorse idle,
-e spostando i posti di lavoro in lotti nelle regioni più verdi.
-</p>
-      </div>
-    </div>
-  </section>
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 
-  <section class="uc-detail-visual">
-    <div class="container">
-      <div class="uc-detail-visual__frame uc-detail-visual--sustainability">
-        <img src="/assets/images/wafpass_1.0/Run_Dashboard.png" alt="WAFPass run dashboard visual for the sustainability rightsizing use case">
-      </div>
-    </div>
-  </section>
+  var lightbox = document.getElementById('ucd-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
 
-  <section class="bento-section">
-    <div class="container">
-      <div class="uc-detail-grid">
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Contesto</h2>
-          <p class="uc-detail-block__text">L'azienda gestisce una piattaforma SaaS multi-tenant con carichi di lavoro distribuiti in tre regioni cloud. Finanza nota i costi cloud in aumento, e il team di sostenibilità ha bisogno di dati concreti in carbonio per segnalare
-al consiglio. Idle dev e gli ambienti di prova sono i primi sospetti.</p>
-        </article>
+    function openLightbox(trigger) {
+      var img = trigger.querySelector('img');
+      if (!img) return;
+      lastTrigger = trigger;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.ucd-page').classList.add('ucd-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Approccio</h2>
-          <p class="uc-detail-block__text">Il team aggiunge il WAF++ pilastro della sostenibilità per la loro revisione trimestrale. Misurano il calcolo inattivo,
-tiering di stoccaggio e intensità di carbonio della regione, quindi automatizzare i programmi di shutdown e la selezione della regione
-per lavori non critici.</p>
-        </article>
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.ucd-page').classList.remove('ucd-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Risultato</h2>
-          <p class="uc-detail-block__text">Oltre due trimestri, i costi delle risorse inattivo diminuiscono del 34%, e il punteggio Sustainability PASS migliora da
-Da 38 a 67. Le metriche di carbonio sono ora parte del cruscotto di ingegneria OKR.</p>
-        </article>
-      </div>
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
 
-      <div class="uc-detail-tags">
-        <span class="uc-detail-tag">Sostenibilità</span>
-        <span class="uc-detail-tag">Ottimizzazione dei costi</span>
-        <span class="uc-detail-tag">Destra.</span>
-        <span class="uc-detail-tag">Regioni verdi</span>
-        <span class="uc-detail-tag">Rapporto ESG</span>
-      </div>
-    </div>
-  </section>
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
 
-</main>
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

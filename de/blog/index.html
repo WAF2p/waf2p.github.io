@@ -2,8 +2,8 @@
 layout: default
 lang: de
 ref: blog
-title: Blog
-description: Updates, Hintergründe und neue Inhalte rund um WAF++.
+title: "Blog"
+description: "Updates, Hintergründe und neue Inhalte rund um WAF++."
 ---
 
 {% assign de_posts = site.posts | where: "lang", "de" %}
@@ -15,161 +15,200 @@ description: Updates, Hintergründe und neue Inhalte rund um WAF++.
 {% endfor %}
 {% assign unique_cats = all_cats | uniq %}
 
-<div class="page-radical blog-page">
+<div class="blg-page">
 
-<!-- ===================== COMPACT HEADER ===================== -->
-<section class="blog-header">
-  <div class="container">
-    <div class="blog-header__inner">
-      <div class="hero-radical-badge" style="margin-bottom: 16px;">
-        <span class="hero-radical-badge__dot"></span>
-        Community · Einblicke
-      </div>
-
-      <h1 class="blog-header__title"><span class="text-gradient-radical">Blog</span></h1>
-      <p class="blog-header__lead">{{ page.description }}</p>
-
-      <div class="blog-header__pills">
-        <span class="blog-header__pill">
-          <i data-lucide="pen-line" aria-hidden="true"></i>
-          Offen für Beiträge
+<!-- Hero -->
+<section class="blg-hero">
+  <div class="dl-wrap">
+    <h1 class="blg-hero__title dl-rise">Blog.</h1>
+    <p class="blg-hero__lead dl-rise dl-d1">{{ page.description }}</p>
+    <div class="blg-hero__actions dl-rise dl-d2">
+      <a class="wf6-btn wf6-btn--pill" href="#posts">
+        Neueste Artikel
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
         </span>
-        <span class="blog-header__pill">
-          <i data-lucide="globe" aria-hidden="true"></i>
-          DE &amp; EN
-        </span>
-        <span class="blog-header__pill">
-          <i data-lucide="layers" aria-hidden="true"></i>
-          Cloud · Architektur · Governance
-        </span>
-      </div>
+      </a>
+      <a class="wf6-btn wf6-btn--line" href="#write-for-us">Für uns schreiben</a>
     </div>
   </div>
 </section>
 
-
-<!-- ===================== KATEGORIEN ===================== -->
-{% if unique_cats.size > 0 %}
-<section class="bento-section" style="padding-top: 28px; padding-bottom: 0;">
-  <div class="container">
-    <div class="blog-cats">
-      <span class="blog-cats__label">Nach Thema filtern:</span>
-      {% for c in unique_cats %}
-      {% assign c_slug = c | slugify %}
-      <a class="blog-cats__chip" href="{{ '/de/blog/category/' | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
-      {% endfor %}
+<!-- Stats -->
+<section class="blg-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid dl-rise">
+      <div class="dl-stat"><div class="dl-stat__num">{{ de_posts.size }}</div><div class="dl-stat__label">Veröffentlichte Artikel</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ unique_cats.size }}</div><div class="dl-stat__label">Behandelte Themen</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">EN &amp; DE</div><div class="dl-stat__label">Sprachen</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">Offen</div><div class="dl-stat__label">Auf GitHub geschrieben</div></div>
     </div>
   </div>
 </section>
-{% endif %}
 
+<!-- Posts -->
+<section class="dl-section" id="posts">
+  <div class="dl-wrap">
+    <div class="blg-section-head dl-rise">
+      <h2 class="dl-heading">Neueste Artikel.</h2>
+      <p class="dl-lead">Beiträge von den Menschen, die WAF++ entwickeln — über Architektur, Governance und gelegentlich auch Meinung.</p>
+    </div>
 
-<!-- ===================== ARTIKEL ===================== -->
-<section class="bento-section" id="posts">
-  <div class="container">
+    {% if unique_cats.size > 0 %}
+    <div class="dl-quiet-row blg-filters dl-rise" style="margin-top: 28px;">
+      <span class="dl-quiet-row__intro">Nach Thema stöbern:</span>
+      <div class="dl-quiet-row__names blg-filters__names">
+        {% for c in unique_cats %}
+        {% assign c_slug = c | slugify %}
+        <a href="{{ '/de/blog/category/' | append: c_slug | append: '/' | relative_url }}">{{ c | replace: '_', ' ' }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
     {% assign all_posts = paginator.posts | default: de_posts %}
     {% assign posts_list = all_posts | where: "lang", page.lang %}
-    <div class="blog-grid">
+
+    {% if posts_list.size > 0 %}
+    <div class="blg-grid">
       {% for post in posts_list %}
-      {% include blog-card.html post=post %}
+      {% include blog-card-v2.html post=post %}
       {% endfor %}
     </div>
+    {% else %}
+    <p class="blg-empty">Noch keine Artikel — schreiben Sie den ersten.</p>
+    {% endif %}
 
     {% if paginator and paginator.total_pages > 1 %}
-    <div class="pagination modern">
+    <div class="blg-pager dl-rise">
       {% if paginator.previous_page %}
-      <a class="btn-glass" href="{% include relative-src.html src=paginator.previous_page_path %}">
-        <span aria-hidden="true">&larr;</span> Neuere
-      </a>
+      <a class="wf6-btn wf6-btn--line" href="{% include relative-src.html src=paginator.previous_page_path %}">Neuer</a>
       {% else %}
-      <span></span>
+      <span class="blg-pager__spacer"></span>
       {% endif %}
 
-      <div class="muted small">Seite {{ paginator.page }} von {{ paginator.total_pages }}</div>
+      <div class="blg-pager__status">Seite {{ paginator.page }} von {{ paginator.total_pages }}</div>
 
       {% if paginator.next_page %}
-      <a class="btn-glass" href="{% include relative-src.html src=paginator.next_page_path %}">
-        Ältere <span aria-hidden="true">&rarr;</span>
-      </a>
+      <a class="wf6-btn wf6-btn--line" href="{% include relative-src.html src=paginator.next_page_path %}">Älter</a>
       {% else %}
-      <span></span>
+      <span class="blg-pager__spacer"></span>
       {% endif %}
     </div>
     {% endif %}
   </div>
 </section>
 
+<!-- Write for us -->
+<section class="blg-write" id="write-for-us">
+  <div class="dl-wrap">
 
-<!-- ===================== BEITRAG EINREICHEN ===================== -->
-<section class="bento-section" id="write-for-us" style="padding-top:0;">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">Beitrag einreichen</div>
-      <h2 class="section-title-radical">Teile deine Perspektive</h2>
-      <p class="section-lead-radical">Der WAF++-Blog ist community-geschrieben und open source. Wer in Cloud-Architektur, Platform Engineering oder Governance arbeitet — deine Erfahrung gehört hierher.</p>
+    <div class="blg-section-head dl-rise">
+      <h2 class="dl-heading">Teilen Sie Ihre Perspektive.</h2>
+      <p class="dl-lead">Der WAF++-Blog wird von der Community geschrieben und ist Open Source. Wenn Sie in Cloud-Architektur, Platform Engineering oder Governance arbeiten — Ihre Erfahrung gehört hierher.</p>
     </div>
 
-    <div class="conf-involve-grid">
-      <article class="conf-involve-card">
-        <div class="conf-involve-card__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
-        <h3 class="conf-involve-card__title">Technische Artikel</h3>
-        <p class="conf-involve-card__desc">Tiefe Einblicke in WAF++-Säulen, Cloud-Souveränität, Multi-Cloud-Muster oder Framework-Vergleiche — basierend auf echten Architekturentscheidungen.</p>
+    <div class="blg-write__grid">
+      <article class="blg-write__card dl-rise">
+        <div class="blg-write__icon"><i data-lucide="file-text" aria-hidden="true"></i></div>
+        <h3 class="blg-write__title">Technische Artikel</h3>
+        <p class="blg-write__desc">Deep Dives zu WAF++-Säulen, Cloud-Souveränität, Multi-Cloud-Patterns oder Framework-Vergleichen — fundiert durch echte Engineering-Entscheidungen.</p>
       </article>
 
-      <article class="conf-involve-card">
-        <div class="conf-involve-card__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
-        <h3 class="conf-involve-card__title">Fallstudien &amp; Erfahrungsberichte</h3>
-        <p class="conf-involve-card__desc">WAF++ in einem echten Projekt eingesetzt? Eine Bewertung durchgeführt? Eine Lücke in bestehenden Frameworks entdeckt? Schreib es auf — die Community lernt aus konkreten Beispielen.</p>
+      <article class="blg-write__card dl-rise dl-d1">
+        <div class="blg-write__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
+        <h3 class="blg-write__title">Fallstudien &amp; Erfahrungen</h3>
+        <p class="blg-write__desc">WAF++ in einem echten Projekt eingesetzt? Ein Assessment durchgeführt? Eine Lücke in bestehenden Frameworks entdeckt? Schreiben Sie darüber — die Community lernt aus konkreten Beispielen.</p>
       </article>
 
-      <article class="conf-involve-card">
-        <div class="conf-involve-card__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
-        <h3 class="conf-involve-card__title">Pull Request öffnen</h3>
-        <p class="conf-involve-card__desc">Artikel liegen als Markdown im GitHub-Repository. Entwurf in einem Branch, PR öffnen — der redaktionelle Prozess ist vollständig transparent und community-reviewt.</p>
+      <article class="blg-write__card dl-rise dl-d2">
+        <div class="blg-write__icon"><i data-lucide="git-pull-request" aria-hidden="true"></i></div>
+        <h3 class="blg-write__title">PR eröffnen</h3>
+        <p class="blg-write__desc">Beiträge liegen als Markdown im GitHub-Repository. Entwerfen Sie in einem Branch und eröffnen Sie einen PR — der Redaktionsprozess ist vollständig transparent und wird von der Community geprüft.</p>
       </article>
     </div>
 
-    <div class="conf-formats-row" style="margin-top: 20px;">
-      <div class="conf-formats-row__title">Wonach wir suchen</div>
-      <div class="conf-formats-row__grid">
-        <div class="conf-format-mini">
+    <div class="blg-write__formats dl-rise">
+      <div class="blg-write__formats-title">Wonach wir suchen</div>
+      <div class="blg-write__formats-grid">
+        <div class="blg-format">
           <i data-lucide="shield" aria-hidden="true"></i>
           <div>
-            <div class="conf-format-mini__title">Cloud-Souveränität &amp; Compliance</div>
-            <div class="conf-format-mini__desc">Regulatorische Anforderungen · Datensouveränität · Exit-Fähigkeit</div>
+            <div class="blg-format__title">Cloud-Souveränität &amp; Compliance</div>
+            <div class="blg-format__desc">Regulatorische Anforderungen · Datenresidenz · Exit-Fähigkeit</div>
           </div>
         </div>
-        <div class="conf-format-mini">
+        <div class="blg-format">
           <i data-lucide="layers" aria-hidden="true"></i>
           <div>
-            <div class="conf-format-mini__title">Multi-Cloud &amp; Platform Engineering</div>
-            <div class="conf-format-mini__desc">IDP-Design · Golden Paths · Workload-Portabilität</div>
+            <div class="blg-format__title">Multi-Cloud &amp; Platform Engineering</div>
+            <div class="blg-format__desc">IDP-Design · Golden Paths · Portabilität von Workloads</div>
           </div>
         </div>
-        <div class="conf-format-mini">
+        <div class="blg-format">
           <i data-lucide="scale" aria-hidden="true"></i>
           <div>
-            <div class="conf-format-mini__title">Governance &amp; offene Standards</div>
-            <div class="conf-format-mini__desc">Framework-Vergleiche · RFC-Prozess · Herstellerneutrale Kriterien</div>
+            <div class="blg-format__title">Governance &amp; offene Standards</div>
+            <div class="blg-format__desc">Framework-Vergleiche · RFC-Prozess · Anbieterneutrale Kriterien</div>
           </div>
         </div>
-        <div class="conf-format-mini">
+        <div class="blg-format">
           <i data-lucide="bar-chart-2" aria-hidden="true"></i>
           <div>
-            <div class="conf-format-mini__title">Architekturbewertungen</div>
-            <div class="conf-format-mini__desc">WAF++ in der Praxis · Scoring-Erfahrungen · Säulen im Detail</div>
+            <div class="blg-format__title">Architektur-Assessments</div>
+            <div class="blg-format__desc">WAF++ in der Praxis · Erfahrungen mit dem Scoring · Säulen im Detail</div>
           </div>
         </div>
       </div>
-      <div class="conf-formats-row__note">Keine Mindestlänge oder Formatvorgaben. Ein kurzer Beitrag mit einer konkreten Erkenntnis ist wertvoller als ein langer ohne.</div>
+      <div class="blg-write__note">Keine Mindestlänge und keine Formatvorgaben. Ein kurzer Beitrag mit einer konkreten Erkenntnis ist wertvoller als ein langer ohne.</div>
     </div>
 
-    <div style="text-align:center; margin-top: 32px;">
-      <a class="btn-glow" href="https://github.com/waf2p/" target="_blank" rel="noopener">Auf GitHub starten &rarr;</a>
+    <div class="blg-write__cta dl-rise">
+      <a class="wf6-btn wf6-btn--pill" href="https://github.com/waf2p/" target="_blank" rel="noopener">
+        Auf GitHub starten
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </a>
     </div>
 
   </div>
 </section>
 
+<!-- CTA -->
+<section class="dl-section blg-cta-section">
+  <div class="dl-wrap">
+    <div class="blg-cta dl-rise">
+      <h2 class="dl-heading">Bleiben Sie auf dem Laufenden.</h2>
+      <p class="dl-lead">Folgen Sie dem Blog, dem Changelog oder dem RFC-Tracker. WAF++ entsteht öffentlich, und jedes Update wird mit der Community geteilt.</p>
+      <div class="blg-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/de/changelog/' | relative_url }}">
+          Changelog
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/rfc/' | relative_url }}">RFC-Tracker</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/stay-updated/' | relative_url }}">Abonnieren</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

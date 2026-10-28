@@ -2,134 +2,111 @@
 layout: default
 lang: fr
 ref: wafpass_mcp
-title: "WAF++ Pont MCP"
-description: "Connectez Claude Desktop et d'autres hôtes MCP à votre moteur WAFPass grâce à un bridge sécurisé du protocole Contexte."
+title: "WAF++ MCP Bridge"
+description: "Connectez Claude Desktop et d'autres hôtes MCP à votre backend WAFPass via une passerelle Model Context Protocol sécurisée."
 permalink: /fr/wafpass-mcp/
 ---
 
-<div class="page-radical wafpass-page">
+<div class="wfpm-page">
 
-  <!-- ===================== HERO ===================== -->
-  <section class="wafpass-hero" aria-label="WAF++ MCP Bridge">
-    <div class="wafpass-hero__orb wafpass-hero__orb--blue" aria-hidden="true"></div>
-    <div class="wafpass-hero__orb wafpass-hero__orb--gold" aria-hidden="true"></div>
-    <div class="wafpass-hero__orb wafpass-hero__orb--purple" aria-hidden="true"></div>
-    <div class="container wafpass-hero__inner">
-      <div class="wafpass-hero__badge">
-        <span class="wafpass-hero__badge-dot"></span>v0.1.2 &middot; PyPI &middot; Open Source
-</div>
-      <h1>Vos données WAFPass,<br><span class="text-gradient-radical">à l'intérieur de tout hôte MCP.</span></h1>
-      <p class="wafpass-hero__lead">WAF++ MCP Bridge expose l'API REST WAFPass en tant qu'outils de protocole de contexte modèle pour les assistants AI. Demandez à Claude de lister les tirages, d'inspecter les résultats ou d'explorer les données de conformité, tout au long de la même session SSO et des autorisations basées sur le rôle que vous avez déjà en confiance.</p>
-      <div class="wafpass-hero__actions">
-        <a class="btn-glow" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">Obtenez de PyPI &rarr;</a>
-        <a class="btn-glass" href="https://github.com/WAF2p/wafpass-mcp" target="_blank" rel="noopener">Vue sur GitHub</a>
-        <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Installer WAFPass</a>
+<!-- Hero -->
+<section class="wfpm-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="wfpm-hero__title">Vos données, dans n'importe quel hôte MCP.</h1>
+      <p class="wfpm-hero__lead">WAF++ MCP Bridge expose l'API REST de WAFPass sous forme d'outils Model Context Protocol pour les assistants IA. Demandez à Claude de lister les exécutions, d'examiner les constats ou d'explorer les données de conformité, avec la même session SSO et les mêmes permissions par rôle auxquelles vous faites déjà confiance.</p>
+      <div class="wfpm-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">
+          Récupérer sur PyPI
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-mcp" target="_blank" rel="noopener">Voir sur GitHub</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/fr/wafpass-install/' | relative_url }}">Installer WAFPass</a>
       </div>
-      <div class="wafpass-hero__compliance">
-        <span class="control-pill">MCP</span>
-        <span class="control-pill">SSE</span>
-        <span class="control-pill">Stdio</span>
-        <span class="control-pill">Passage de l ' OIDC</span>
-        <span class="control-pill">Filtrage des rôles</span>
-        <span class="control-pill">OpenAPI généré</span>
-        <span class="control-pill">Introspection symbolique</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== STATS BAND ===================== -->
-  <section class="stats-band wafpass-stats" aria-label="Key numbers">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">v0.1.2</div>
-          <div class="stat-label">Sortie de PyPI</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">113+</div>
-          <div class="stat-label">Outils exposés</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Transports</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">0</div>
-          <div class="stat-label">Pouvoirs supplémentaires nécessaires</div>
+      <div class="wfpm-hero__row">
+        <div class="dl-quiet-row__names">
+          <span class="dl-quiet-row__name">MCP</span>
+          <span class="dl-quiet-row__name">SSE</span>
+          <span class="dl-quiet-row__name">stdio</span>
+          <span class="dl-quiet-row__name">OIDC pass-through</span>
+          <span class="dl-quiet-row__name">Filtrage par rôle</span>
+          <span class="dl-quiet-row__name">Généré depuis OpenAPI</span>
+          <span class="dl-quiet-row__name">Introspection des jetons</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- Stats -->
+<section class="wfpm-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">v0.1.2</div><div class="dl-stat__label">Version PyPI</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">113+</div><div class="dl-stat__label">Outils exposés</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">2</div><div class="dl-stat__label">Transports</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">0</div><div class="dl-stat__label">Identifiants supplémentaires requis</div></div>
+    </div>
+  </div>
+</section>
 
-  <!-- ===================== FEATURES ===================== -->
-  <section class="bento-section" aria-label="Features">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Caractéristiques</div>
-        <h2 class="section-title-radical">Un pont sécurisé, pas un second système.</h2>
-        <p class="section-lead-radical">Le pont réutilise l'identité, les autorisations et les pistes d'audit WAFPass. Il valide, proxie et filtre — ne stocke jamais les secrets du cloud ou les mots de passe IdP.</p>
+<!-- Features -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpm-section-head dl-rise">
+      <h2 class="dl-heading">Une passerelle sécurisée, pas un second système d'authentification.</h2>
+      <p class="dl-lead">La passerelle réutilise l'identité, les permissions et les pistes d'audit de WAFPass. Elle valide, relaie et filtre, sans jamais stocker de secrets cloud ni de mots de passe de l'IdP.</p>
+    </div>
+
+    <div class="wfpm-grid dl-rise">
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Indépendant de l'IdP</h3>
+        <p class="wfpm-card__desc">Aucune intégration directe avec Keycloak, Entra ou Okta. La passerelle fait confiance aux jetons émis par <code>wafpass-server</code>, qui gère déjà les flux OIDC et SAML.</p>
       </div>
-
-      <div class="wafpass-stack">
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">IdP-agnostic</div>
-          <p class="wafpass-stack__desc">Pas d'intégration directe Keycloak, Entra ou Okta. Le pont trusts jetons émis par<code>wafpass-server</code>, qui gère déjà les flux OIDC et SAML.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="scan" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Introspection symbolique</div>
-          <p class="wafpass-stack__desc">Chaque nouvelle connexion SSE est validée contre<code>GET /auth/me</code>. Détection instantanée de révocation et aucun partage secret JWT requis.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="eye-off" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Outils les moins privilégiés</div>
-          <p class="wafpass-stack__desc"><code>tools/list</code>est filtré par le rôle de l'utilisateur authentifié. Les paramètres admin-only restent invisibles pour les ingénieurs, et le niveau auth de ligne s'applique à chaque appel de moteur.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="repeat" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Diffusion du contexte</div>
-          <p class="wafpass-stack__desc">L'original<code>Authorization: Bearer</code>l'en-tête est transmis à WAFPass sur chaque demande proxiée, en préservant l'identité de l'utilisateur et l'attribution de l'audit.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="file-json" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">OpenAPI généré</div>
-          <p class="wafpass-stack__desc">Au démarrage le pont récupère<code>/openapi.json</code>et enregistre des opérations sûres comme outils MCP dactylographiés avec des arguments validés par Pydantic.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="terminal" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">stdio ou SSE</div>
-          <p class="wafpass-stack__desc">Exécutez le pont comme un processus stdio local pour Claude Desktop, ou exposez-le via HTTP/SSE pour les hôtes MCP distants et les clients basés sur le navigateur.</p>
-        </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Introspection des jetons</h3>
+        <p class="wfpm-card__desc">Chaque nouvelle connexion SSE est validée auprès de <code>GET /auth/me</code>. Révocations détectées instantanément, sans partage de secret JWT.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Outils au moindre privilège</h3>
+        <p class="wfpm-card__desc"><code>tools/list</code> est filtré selon le rôle de l'utilisateur authentifié. Les endpoints réservés aux administrateurs restent invisibles pour les ingénieurs, et l'autorisation par ligne s'applique à chaque appel au backend.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Propagation du contexte</h3>
+        <p class="wfpm-card__desc">L'en-tête d'origine <code>Authorization: Bearer</code> est transmis à WAFPass à chaque requête relayée, ce qui préserve l'identité de l'utilisateur et l'attribution dans l'audit.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Généré depuis OpenAPI</h3>
+        <p class="wfpm-card__desc">Au démarrage, la passerelle récupère <code>/openapi.json</code> et enregistre les opérations sûres comme outils MCP typés, avec des arguments validés par Pydantic.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">stdio ou SSE</h3>
+        <p class="wfpm-card__desc">Exécutez la passerelle comme processus stdio local pour Claude Desktop, ou exposez-la en HTTP/SSE pour des hôtes MCP distants et des clients web.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- Quick start -->
+<section class="dl-section dl-section--alt" id="quick-start">
+  <div class="dl-wrap">
+    <div class="wfpm-section-head dl-rise">
+      <h2 class="dl-heading">Connectez Claude Desktop en quelques minutes.</h2>
+      <p class="dl-lead">Installez la passerelle, connectez-vous une fois et pointez Claude Desktop vers la commande stdio. Ni certificat, ni port ouvert, ni authentification supplémentaire.</p>
+    </div>
 
-  <!-- ===================== QUICK START ===================== -->
-  <section class="bento-section" id="quick-start" style="padding-top:0;" aria-label="Quick start">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Début rapide</div>
-        <h2 class="section-title-radical">Connectez Claude Desktop en quelques minutes.</h2>
-        <p class="section-lead-radical">Installez le pont, connectez-vous une fois et pointez Claude Desktop à la commande stdio. Pas de certificats, pas de ports ouverts, pas d'autorisation supplémentaire.</p>
-      </div>
-
-      <div class="code-window">
-        <div class="code-window__bar">
-          <span class="code-window__dot"></span>
-          <span class="code-window__dot"></span>
-          <span class="code-window__dot"></span>
-          <span class="code-window__title">1. Installer et configurer</span>
-        </div>
-        <pre class="code-window__body"><code>git clone https://github.com/WAF2p/wafpass-mcp.git
+    <div class="wfpm-steps dl-rise">
+      <div class="wfpm-step">
+        <div class="code-window" data-ui>
+          <div class="code-window__bar">
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__title">1. Installer et configurer</span>
+          </div>
+          <pre class="code-window__body"><code>git clone https://github.com/WAF2p/wafpass-mcp.git
 cd wafpass-mcp
 python3 -m venv .venv
 source .venv/bin/activate
@@ -137,114 +114,140 @@ pip install -e ".[dev]"
 
 wafpass-mcp-configure
 # Enter WAFpass API URL, username and password</code></pre>
+        </div>
       </div>
 
-      <div class="code-window">
-        <div class="code-window__bar">
-          <span class="code-window__dot"></span>
-          <span class="code-window__dot"></span>
-          <span class="code-window__dot"></span>
-          <span class="code-window__title">2. Config Claude Desktop (stdio)</span>
-        </div>
-        <pre class="code-window__body"><code>{
+      <div class="wfpm-step">
+        <div class="code-window" data-ui>
+          <div class="code-window__bar">
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__title">2. Configuration de Claude Desktop (stdio)</span>
+          </div>
+          <pre class="code-window__body"><code>{
   "mcpServers": {
     "wafpass": {
       "command": "/path/to/wafpass-mcp/.venv/bin/wafpass-mcp-stdio"
     }
   }
 }</code></pre>
+        </div>
       </div>
 
-      <div class="code-window">
-        <div class="code-window__bar">
-          <span class="code-window__dot"></span>
-          <span class="code-window__dot"></span>
-          <span class="code-window__dot"></span>
-          <span class="code-window__title">3. Docker Compose (alternative)</span>
-        </div>
-        <pre class="code-window__body"><code># From the WAF++ repository root
+      <div class="wfpm-step">
+        <div class="code-window" data-ui>
+          <div class="code-window__bar">
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__title">3. Docker Compose (alternative)</span>
+          </div>
+          <pre class="code-window__body"><code># From the WAF++ repository root
 docker compose up -d wafpass-mcp
+docker compose logs -f wafpass-mcp
 
 # SSE endpoint: http://localhost:3001/sse
 # Override WAFPASS_TOKEN_MODE or WAFPASS_JWT_SECRET in .env</code></pre>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== ARCHITECTURE ===================== -->
-  <section class="bento-section" style="padding-top:0;" aria-label="Architecture">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Architecture</div>
-        <h2 class="section-title-radical">Comment le pont s'intègre.</h2>
-        <p class="section-lead-radical">L'utilisateur authentifie à travers l'IDP en amont, échange des jetons avec WAFPass, puis apporte le même jeton de porteur à l'hôte MCP. Le pont proxies demande et filtre les outils par rôle.</p>
-      </div>
-
-      <div class="wafpass-flow" style="margin-bottom:32px;">
-        <div class="wafpass-flow__node wafpass-flow__node--iac">
-          <div class="wafpass-flow__node-label">Utilisateur</div>
-          <div class="wafpass-flow__node-name">Connexion SSO</div>
-        </div>
-        <div class="wafpass-flow__arrow">&rarr;</div>
-        <div class="wafpass-flow__node wafpass-flow__node--cli">
-          <div class="wafpass-flow__node-label">IdP</div>
-          <div class="wafpass-flow__node-name">Clés / Entra</div>
-        </div>
-        <div class="wafpass-flow__arrow">&rarr;</div>
-        <div class="wafpass-flow__node wafpass-flow__node--api">
-          <div class="wafpass-flow__node-label">WAFPass</div>
-          <div class="wafpass-flow__node-name">wafpass-serveur</div>
-        </div>
-        <div class="wafpass-flow__arrow">&rarr;</div>
-        <div class="wafpass-flow__node wafpass-flow__node--ui">
-          <div class="wafpass-flow__node-label">Client AI</div>
-          <div class="wafpass-flow__node-name">Hôte MCP</div>
-        </div>
-        <div class="wafpass-flow__arrow">&rarr;</div>
-        <div class="wafpass-flow__node wafpass-flow__node--api">
-          <div class="wafpass-flow__node-label">Pont</div>
-          <div class="wafpass-flow__node-name">wafpass-mcp</div>
-        </div>
-      </div>
-
-      <div class="rfc-table-wrap">
-        <table class="rfc-table">
-          <thead>
-            <tr><th>Variable</th><th>Par défaut</th><th>Désignation des marchandises</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>WAFPASS_API_BASE_URL</code></td><td><code>http://localhost:8000</code></td><td>API WAFpass en amont.</td></tr>
-            <tr><td><code>WAFPASS_TOKEN_MODE</code></td><td><code>introspection</code></td><td><code>introspection</code>ou<code>jwt_secret</code>pour le HS256.</td></tr>
-            <tr><td><code>WAFPASS_JWT_SECRET</code></td><td>—</td><td>Requis pour<code>jwt_secret</code>mode; doit correspondre au moteur.</td></tr>
-            <tr><td><code>WAFPASS_ACCESS_TOKEN</code></td><td>—</td><td>Jeton WAF++ pour mode stdio; optionnel si stocké par configure helper.</td></tr>
-            <tr><td><code>WAFPASS_REFRESH_TOKEN</code></td><td>—</td><td>Refresh token pour rafraîchir automatiquement en mode stdio.</td></tr>
-            <tr><td><code>WAFPASS_REFRESH_THRESHOLD_SECONDS</code></td><td><code>300</code></td><td>Rafraîchir l'accès jeton si elle expire dans ces nombreuses secondes.</td></tr>
-            <tr><td><code>MCP_HOST</code></td><td><code>0.0.0.0</code></td><td>Relier l'hôte en mode HTTP/SSE.</td></tr>
-            <tr><td><code>MCP_PORT</code></td><td><code>3001</code></td><td>Bridge lier le port en mode HTTP/SSE.</td></tr>
-            <tr><td><code>LOG_LEVEL</code></td><td><code>INFO</code></td><td>Niveau d'exploitation.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== CTA ===================== -->
-  <section class="cta-radical">
-    <div class="cta-radical__glow" aria-hidden="true"></div>
-    <div class="container">
-      <div class="cta-radical__inner">
-        <div class="kicker-radical" style="margin-bottom:14px;">Prêt à se connecter ?</div>
-        <h2 class="cta-radical__title">Laissez les assistants AI travailler avec vos données de conformité.</h2>
-        <p class="cta-radical__lead">Installez le pont à partir de PyPI ou GitHub, connectez-le à Claude Desktop et commencez à poser des questions en langage naturel sur les parcours, les résultats et les contrôles.</p>
-        <div class="cta-radical__actions">
-          <a class="btn-glow" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">Obtenez de PyPI &rarr;</a>
-          <a class="btn-glass" href="{{ '/wafpass/' | relative_url }}">À propos de WAFPass</a>
-          <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Installer WAFPass</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpm-section-head dl-rise">
+      <h2 class="dl-heading">Comment la passerelle s'intègre.</h2>
+      <p class="dl-lead">L'utilisateur s'authentifie via l'IdP en amont, échange des jetons avec WAFPass, puis apporte le même jeton Bearer à l'hôte MCP. La passerelle relaie les requêtes et filtre les outils selon le rôle.</p>
+    </div>
+
+    <div class="wfpm-pipeline dl-rise">
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">Utilisateur</div>
+        <div class="wfpm-pipeline__name">Connexion SSO</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">IdP</div>
+        <div class="wfpm-pipeline__name">Keycloak / Entra</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">WAFPass</div>
+        <div class="wfpm-pipeline__name">wafpass-server</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">Client IA</div>
+        <div class="wfpm-pipeline__name">MCP host</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">Bridge</div>
+        <div class="wfpm-pipeline__name">wafpass-mcp</div>
+      </div>
+    </div>
+
+    <div class="rfc-table-wrap" data-ui>
+      <table class="rfc-table">
+        <thead>
+          <tr><th>Variable</th><th>Valeur par défaut</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>WAFPASS_API_BASE_URL</code></td><td><code>http://localhost:8000</code></td><td>API WAFpass en amont.</td></tr>
+          <tr><td><code>WAFPASS_TOKEN_MODE</code></td><td><code>introspection</code></td><td><code>introspection</code> ou <code>jwt_secret</code> pour HS256 en local.</td></tr>
+          <tr><td><code>WAFPASS_JWT_SECRET</code></td><td>aucune</td><td>Requis pour le mode <code>jwt_secret</code>  ; doit correspondre au backend.</td></tr>
+          <tr><td><code>WAFPASS_ACCESS_TOKEN</code></td><td>aucune</td><td>Jeton WAF++ pour le mode stdio ; facultatif s'il est enregistré par l'assistant de configuration.</td></tr>
+          <tr><td><code>WAFPASS_REFRESH_TOKEN</code></td><td>aucune</td><td>Jeton de rafraîchissement pour renouveler automatiquement le jeton d'accès en mode stdio.</td></tr>
+          <tr><td><code>WAFPASS_REFRESH_THRESHOLD_SECONDS</code></td><td><code>300</code></td><td>Renouvelle le jeton d'accès s'il expire dans ce nombre de secondes.</td></tr>
+          <tr><td><code>MCP_HOST</code></td><td><code>0.0.0.0</code></td><td>Hôte d'écoute de la passerelle en mode HTTP/SSE.</td></tr>
+          <tr><td><code>MCP_PORT</code></td><td><code>3001</code></td><td>Port d'écoute de la passerelle en mode HTTP/SSE.</td></tr>
+          <tr><td><code>LOG_LEVEL</code></td><td><code>INFO</code></td><td>Niveau de journalisation.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section wfpm-cta-section">
+  <div class="dl-wrap">
+    <div class="wfpm-cta dl-rise">
+      <h2 class="dl-heading">Intégrez l'IA à votre workflow.</h2>
+      <p class="dl-lead">Installez la passerelle depuis PyPI ou GitHub, connectez-la à Claude Desktop et posez des questions en langage naturel sur les exécutions, les constats et les contrôles.</p>
+      <div class="wfpm-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">
+          Récupérer sur PyPI
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/fr/wafpass/' | relative_url }}">À propos de WAFPass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/fr/wafpass-install/' | relative_url }}">Installer WAFPass</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 </div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>

@@ -1,9 +1,9 @@
 ---
 layout: default
 lang: it
-ref: rfc_tracker
-title: "RFC Tracker — WAF++"
-description: "Tutte le richieste aperte, decise e implementate per i commenti e l'architettura Decision Records che modellano WAF++."
+ref: rfc
+title: "Tracker degli RFC — WAF++"
+description: "Tutte le Request for Comments e gli Architecture Decision Record aperti, decisi e implementati che danno forma a WAF++."
 permalink: /it/rfc/
 ---
 
@@ -23,86 +23,62 @@ permalink: /it/rfc/
 {% assign deprecated_adrs = all_adrs | where: "status", "deprecated" %}
 {% assign superseded_adrs = all_adrs | where: "status", "superseded" %}
 
-<div class="page-radical rfc-page">
+<div class="rfc2-page">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero--radical">
-  <div class="hero-noise" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-
-  <div class="container" style="position:relative;z-index:2;max-width:900px;text-align:center;">
-    <div class="hero-radical-badge" style="margin:0 auto 24px;">
-      <span class="hero-radical-badge__dot"></span>Governance &middot; Trasparente di default
-</div>
-
-    <h1 class="hero-radical-h1" style="font-size: clamp(44px, 7vw, 84px);">RFC<span class="text-gradient-radical">Tracker</span>
-    </h1>
-    <p class="hero-radical-lead" style="max-width: 680px; margin: 0 auto 36px;">Ogni cambiamento significativo a WAF++ inizia con una richiesta pubblica per i commenti o il record di decisione di architettura. Questa pagina traccia ogni decisione — dalla prima bozza alla fusione — quindi nulla è nascosto.</p>
-    <div class="hero-radical-actions" style="justify-content:center;">
-      <a class="btn-glow" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">GitHub Discussione &rarr;</a>
-      <a class="btn-glass" href="{{ '/governance-community/' | relative_url }}">Modello di governo</a>
-      <a class="btn-glass" href="#process">Come funziona</a>
-    </div>
-
-    <div class="hero-radical-pills" style="justify-content:center;">
-      <span class="hero-radical-pill">
-        <i data-lucide="git-pull-request" aria-hidden="true"></i>
-        {{ impl_rfcs | size }}implementato
-</span>
-      <span class="hero-radical-pill">
-        <i data-lucide="message-square" aria-hidden="true"></i>
-        {{ open_rfcs | size }}aperto per la recensione
-</span>
-      <span class="hero-radical-pill">
-        <i data-lucide="file-text" aria-hidden="true"></i>
-        {{ all_adrs | size }}ADRs
-</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== STATS BAND ===================== -->
-<section class="stats-band">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number">{{ all_records | size }}</div>
-        <div class="stat-label">Decisioni totali</div>
+<!-- Hero -->
+<section class="rfc2-hero">
+  <div class="dl-wrap">
+    <div class="rfc2-hero__grid">
+      <div class="dl-rise">
+        <h1 class="rfc2-hero__title">Sviluppato in pubblico.</h1>
+        <p class="rfc2-hero__lead">Ogni modifica rilevante a WAF++ nasce da una Request for Comments o da un Architecture Decision Record pubblico. Questa pagina segue ogni decisione, dalla prima bozza al merge, così che nulla resti nascosto.</p>
+        <div class="rfc2-hero__actions">
+          <a class="wf6-btn wf6-btn--pill" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">
+            GitHub Discussions
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/it/governance-community/' | relative_url }}">Modello di governance</a>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">{{ all_rfcs | size }}</div>
-        <div class="stat-label">RFC</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{{ open_rfcs | size }}</div>
-        <div class="stat-label">Aperto per la recensione</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{{ impl_rfcs | size }}</div>
-        <div class="stat-label">Attuazione</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{{ all_adrs | size }}</div>
-        <div class="stat-label">ADRs</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">{{ accepted_adrs | size }}</div>
-        <div class="stat-label">ADR accettati</div>
+
+      <div class="dl-rise dl-d2">
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande l'archivio delle evidenze di WAF++">
+          <img src="{{ '/assets/images/wafpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Archivio delle evidenze di WAF++ con un pacchetto di audit bloccato, verificato tramite hash e con codice QR">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Stats -->
+<section class="rfc2-stats">
+  <div class="dl-wrap">
+    <div class="rfc2-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">{{ all_records | size }}</div><div class="dl-stat__label">Decisioni totali</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ all_rfcs | size }}</div><div class="dl-stat__label">RFCs</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ open_rfcs | size }}</div><div class="dl-stat__label">Aperte alla revisione</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ impl_rfcs | size }}</div><div class="dl-stat__label">Implementate</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ all_adrs | size }}</div><div class="dl-stat__label">ADRs</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">{{ accepted_adrs | size }}</div><div class="dl-stat__label">ADR accettati</div></div>
+    </div>
+  </div>
+</section>
 
-<!-- ===================== RFC TRACKER ===================== -->
-<section class="bento-section">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">Proposte</div>
-      <h2 class="section-title-radical">Tutte le richieste di commenti</h2>
-      <p class="section-lead-radical">Filtra per progetto e stato, leggere i riassunti, e seguire le discussioni collegate e tirare richieste.</p>
+<!-- RFC Tracker -->
+<section class="dl-section" id="rfcs">
+  <div class="dl-wrap">
+    <div class="rfc2-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">Tutte le Request for Comments.</h2>
+        <p class="dl-lead">Filtra per progetto e stato, leggi i riepiloghi e segui le discussioni e le pull request collegate.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande il percorso di maturità">
+        <img src="{{ '/assets/images/wafpass_1.0/Maturity_Journey.png' | relative_url }}" alt="Percorso di maturità di WAF++ che segue i progressi di un progetto tra framework di conformità e fasi">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
     </div>
 
     {% assign repo_list = "framework,wafpass-core,wafpass-server,wafpass-dashboard,wafpass-action,wafpass-mcp" | split: "," %}
@@ -119,7 +95,7 @@ permalink: /it/rfc/
         <label for="rfc-proj-all">Tutti i progetti ({{ all_rfcs | size }})</label>
         {% for repo in repo_list %}
         {% assign rfcs_for_repo = all_rfcs | where: "repo", repo %}
-        <label for="rfc-proj-{{ repo }}">{{ repo_labels[forloop.index0] }}({{ rfcs_for_repo | size }})</label>
+        <label for="rfc-proj-{{ repo }}">{{ repo_labels[forloop.index0] }} ({{ rfcs_for_repo | size }})</label>
         {% endfor %}
       </nav>
 
@@ -131,9 +107,9 @@ permalink: /it/rfc/
 
       <nav class="rfc-tab-nav rfc-tab-nav--status">
         <label for="rfc-st-all">Tutti gli stati</label>
-        <label for="rfc-st-open">Aperto per la revisione ({{ open_rfcs | size }})</label>
-        <label for="rfc-st-draft">Progetto ({{ draft_rfcs | size }})</label>
-        <label for="rfc-st-done">Deciso / implementato ({{ done_rfcs | size }})</label>
+        <label for="rfc-st-open">Aperte alla revisione ({{ open_rfcs | size }})</label>
+        <label for="rfc-st-draft">Bozza ({{ draft_rfcs | size }})</label>
+        <label for="rfc-st-done">Decise / implementate ({{ done_rfcs | size }})</label>
       </nav>
 
       {% for repo in repo_list %}
@@ -150,7 +126,7 @@ permalink: /it/rfc/
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Nessun RFC per{{ repo_label }}.</div>
+        <div class="rfc-empty">Nessun RFC per {{ repo_label }}.</div>
         {% endif %}
       </div>
 
@@ -158,14 +134,14 @@ permalink: /it/rfc/
       <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--open">
         {% assign project_open = all_rfcs | where: "repo", repo | where: "status", "open" %}
         {% if project_open.size > 0 %}
-        <h3 class="rfc-group-heading">{{ repo_label }}— Aperto per la revisione</h3>
+        <h3 class="rfc-group-heading">{{ repo_label }} · Aperte alla revisione</h3>
         <div class="rfc-list">
           {% for rfc in project_open %}
           {% include rfc-card.html rfc=rfc lang="en" %}
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Nessun RFC aperto per{{ repo_label }}.</div>
+        <div class="rfc-empty">Nessun RFC aperto per {{ repo_label }}.</div>
         {% endif %}
       </div>
 
@@ -173,14 +149,14 @@ permalink: /it/rfc/
       <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--draft">
         {% assign project_draft = all_rfcs | where: "repo", repo | where: "status", "draft" %}
         {% if project_draft.size > 0 %}
-        <h3 class="rfc-group-heading">{{ repo_label }}— Progetti</h3>
+        <h3 class="rfc-group-heading">{{ repo_label }} · Bozze</h3>
         <div class="rfc-list">
           {% for rfc in project_draft %}
           {% include rfc-card.html rfc=rfc lang="en" %}
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Nessuna bozza per{{ repo_label }}.</div>
+        <div class="rfc-empty">Nessuna bozza per {{ repo_label }}.</div>
         {% endif %}
       </div>
 
@@ -188,14 +164,14 @@ permalink: /it/rfc/
       <div class="rfc-pane rfc-pane--{{ repo }} rfc-pane--done">
         {% assign project_done = all_rfcs | where: "repo", repo | where_exp: "item", "item.status != 'open' and item.status != 'draft'" %}
         {% if project_done.size > 0 %}
-        <h3 class="rfc-group-heading">{{ repo_label }}— Deciso / implementato</h3>
+        <h3 class="rfc-group-heading">{{ repo_label }} · Decise / implementate</h3>
         <div class="rfc-list">
           {% for rfc in project_done %}
           {% include rfc-card.html rfc=rfc lang="en" %}
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Nessun RFC deciso o implementato per{{ repo_label }}.</div>
+        <div class="rfc-empty">Nessun RFC deciso o implementato per {{ repo_label }}.</div>
         {% endif %}
       </div>
       {% endfor %}
@@ -255,28 +231,31 @@ permalink: /it/rfc/
     </div><!-- /.rfc-tabs -->
 
     <!-- Submit CTA -->
-    <div class="rfc-submit">
+    <div class="rfc-submit dl-rise">
       <div class="rfc-submit-text">
-        <h3>Vuoi proporre un cambiamento?</h3>
-        <p>Aprire una discussione GitHub utilizzando il modello RFC. La comunità lo esamina, i manutentori decidono — tutto è documentato e tracciabile.</p>
+        <h3>Vuoi proporre una modifica?</h3>
+        <p>Apri una discussione su GitHub con il modello RFC. La community la esamina, i maintainer decidono e tutto è documentato e tracciabile.</p>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
-        <a class="btn-glow" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">Open RFC &rarr;</a>
-        <a class="btn-glass" href="{{ '/contributing/' | relative_url }}">Guida di processo RFC &rarr;</a>
+      <div class="rfc-submit__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/orgs/WAF2p/discussions/new" target="_blank" rel="noopener">
+          Apri un RFC
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/it/contributing/' | relative_url }}">Guida al processo RFC</a>
       </div>
     </div>
 
   </div>
 </section>
 
-
-<!-- ===================== ADR TRACKER ===================== -->
-<section class="bento-section" style="padding-top:0;">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">Architettura</div>
-      <h2 class="section-title-radical">Architettura Decision Records</h2>
-      <p class="section-lead-radical">Gli ADR catturano le decisioni strutturali e cross-cutting che modellano l'ecosistema WAF++, i repository e i contratti.</p>
+<!-- ADR Tracker -->
+<section class="dl-section dl-section--alt">
+  <div class="dl-wrap">
+    <div class="rfc2-section-head dl-rise">
+      <h2 class="dl-heading">Architecture Decision Record.</h2>
+      <p class="dl-lead">Gli ADR registrano le decisioni strutturali e trasversali che definiscono l'ecosistema WAF++, i suoi repository e i suoi contratti.</p>
     </div>
 
     <div class="rfc-tabs rfc-tabs--adr">
@@ -287,11 +266,11 @@ permalink: /it/rfc/
       <input type="radio" name="adr-status" id="adr-st-superseded" class="rfc-radio">
 
       <nav class="rfc-tab-nav rfc-tab-nav--status">
-        <label for="adr-st-all">Tutti{{ all_adrs | size }})</label>
-        <label for="adr-st-proposed">Proposta ({{ proposed_adrs | size }})</label>
-        <label for="adr-st-accepted">Accettato ({{ accepted_adrs | size }})</label>
-        <label for="adr-st-deprecated">Deprecato ({{ deprecated_adrs | size }})</label>
-        <label for="adr-st-superseded">Superato ({{ superseded_adrs | size }})</label>
+        <label for="adr-st-all">Tutti ({{ all_adrs | size }})</label>
+        <label for="adr-st-proposed">Proposti ({{ proposed_adrs | size }})</label>
+        <label for="adr-st-accepted">Accettati ({{ accepted_adrs | size }})</label>
+        <label for="adr-st-deprecated">Deprecati ({{ deprecated_adrs | size }})</label>
+        <label for="adr-st-superseded">Sostituiti ({{ superseded_adrs | size }})</label>
       </nav>
 
       <div class="rfc-pane adr-pane--all">
@@ -302,7 +281,7 @@ permalink: /it/rfc/
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Nessun documento di architettura.</div>
+        <div class="rfc-empty">Ancora nessun Architecture Decision Record.</div>
         {% endif %}
       </div>
 
@@ -314,7 +293,7 @@ permalink: /it/rfc/
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Non ho proposto ADRs.</div>
+        <div class="rfc-empty">Nessun ADR proposto.</div>
         {% endif %}
       </div>
 
@@ -326,7 +305,7 @@ permalink: /it/rfc/
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Nessuna ADR accettata.</div>
+        <div class="rfc-empty">Nessun ADR accettato.</div>
         {% endif %}
       </div>
 
@@ -350,212 +329,259 @@ permalink: /it/rfc/
           {% endfor %}
         </div>
         {% else %}
-        <div class="rfc-empty">Non ho superato gli ADR.</div>
+        <div class="rfc-empty">Nessun ADR sostituito.</div>
         {% endif %}
       </div>
     </div>
-
   </div>
 </section>
 
-
-<!-- ===================== MACHINE-READABLE REGISTRY ===================== -->
-<section class="bento-section" style="padding-top:0;">
-  <div class="container">
-    <div class="rfc-registry">
-      <div class="rfc-registry__icon"><i data-lucide="download" aria-hidden="true"></i></div>
+<!-- Machine-readable registry -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="rfc-registry dl-rise">
       <div class="rfc-registry__body">
-        <h3>Registro delle decisioni leggibili in macchina</h3>
-        <p>Tutti gli RFC e gli ADR sono disponibili anche come un unico file YAML che gli strumenti, gli script e i consumatori a valle possono parse. Il registro include stati, categorie, repository, tag e link diretti ad ogni record.</p>
+        <h3>Registro delle decisioni leggibile dalle macchine</h3>
+        <p>Tutti gli RFC e gli ADR sono disponibili anche come singolo file YAML, utilizzabile da strumenti, script e sistemi a valle. Il registro include stati, categorie, repository, tag e link diretti a ogni voce.</p>
       </div>
-      <a class="btn-glass" href="https://waf2p.dev/decisions/registry.yml" target="_blank" rel="noopener">Scarica Registry.yml &rarr;</a>
+      <a class="wf6-btn wf6-btn--line" href="https://waf2p.dev/decisions/registry.yml" target="_blank" rel="noopener">Scarica registry.yml</a>
     </div>
   </div>
 </section>
 
-
-<!-- ===================== WHAT QUALIFIES ===================== -->
-<section class="bento-section" id="process" style="padding-top:0;">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">Processo</div>
-      <h2 class="section-title-radical">Cosa si qualifica come RFC?</h2>
-      <p class="section-lead-radical">Non ogni cambiamento ha bisogno di un RFC — solo quelli significativi. Utilizzare la tabella qui sotto per decidere.</p>
+<!-- What qualifies -->
+<section class="dl-section dl-section--alt" id="process">
+  <div class="dl-wrap">
+    <div class="rfc2-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">Cosa richiede un RFC?</h2>
+        <p class="dl-lead">Non tutte le modifiche richiedono un RFC, solo quelle rilevanti. Usa la tabella qui sotto per decidere.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande la ripartizione dei punteggi per modulo">
+        <img src="{{ '/assets/images/wafpass/Module_Score_Breakdown.png' | relative_url }}" alt="Ripartizione dei punteggi WAF++ per modulo con punteggi e risultati per ogni pilastro">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
     </div>
 
-    <div class="rfc-table-wrap">
+    <div class="rfc-table-wrap dl-rise">
       <table class="rfc-table">
         <thead>
           <tr>
-            <th>Tipo di cambiamento</th>
-            <th>RFC necessario?</th>
+            <th>Tipo di modifica</th>
+            <th>Serve un RFC?</th>
             <th>Processo</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Nuovo pilastro o rimozione di un pilastro</td>
-            <td><strong style="color:#4ade80;">Sì.</strong></td>
-            <td class="muted">RFC &rarr; TSC vota &rr; PR</td>
+            <td><span class="rfc-status rfc-status--implemented">Sì</span></td>
+            <td>RFC → voto del TSC → PR</td>
           </tr>
           <tr>
-            <td>Cambiamenti del modello di punteggio (PASS tiers, pesi)</td>
-            <td><strong style="color:#4ade80;">Sì.</strong></td>
-            <td class="muted">RFC &rarr; TSC vota &rr; PR</td>
+            <td>Modifiche al modello di punteggio (livelli PASS, pesi)</td>
+            <td><span class="rfc-status rfc-status--implemented">Sì</span></td>
+            <td>RFC → voto del TSC → PR</td>
           </tr>
           <tr>
-            <td>Cambiamento di rottura a schemi di controllo o ID</td>
-            <td><strong style="color:#4ade80;">Sì.</strong></td>
-            <td class="muted">RFC &rarr; TSC vota &rr; PR</td>
+            <td>Modifica incompatibile allo schema o agli ID dei controlli</td>
+            <td><span class="rfc-status rfc-status--implemented">Sì</span></td>
+            <td>RFC → voto del TSC → PR</td>
           </tr>
           <tr>
-            <td>Proposta del gruppo di lavoro</td>
-            <td><strong style="color:#4ade80;">Sì.</strong></td>
-            <td class="muted">RFC &rarr; lazy consenso &rarr; charter pubblicato</td>
+            <td>Proposta di un nuovo gruppo di lavoro</td>
+            <td><span class="rfc-status rfc-status--implemented">Sì</span></td>
+            <td>RFC → lazy consensus → statuto pubblicato</td>
           </tr>
           <tr>
-            <td>Governance o cambiamenti di ruolo</td>
-            <td><strong style="color:#4ade80;">Sì.</strong></td>
-            <td class="muted">RFC &rarr; supermajority TSC</td>
+            <td>Modifiche a governance o ruoli</td>
+            <td><span class="rfc-status rfc-status--implemented">Sì</span></td>
+            <td>RFC → maggioranza qualificata del TSC</td>
           </tr>
           <tr>
-            <td>Nuovo controllo (non rotante, additivo)</td>
-            <td class="muted">Consigliato</td>
-            <td class="muted">PR con link di discussione &middot; consenso pigro</td>
+            <td>Nuovo controllo (compatibile, aggiuntivo)</td>
+            <td><span class="rfc-cat">Consigliato</span></td>
+            <td>PR con link alla discussione, lazy consensus</td>
           </tr>
           <tr>
-            <td>Docs wording, typo fixs, traduzioni</td>
-            <td class="muted">No.</td>
-            <td class="muted">PR solo</td>
+            <td>Formulazione della documentazione, refusi, traduzioni</td>
+            <td><span class="rfc-cat">No</span></td>
+            <td>Solo PR</td>
           </tr>
           <tr>
-            <td>Contenuto del sito web, post del blog</td>
-            <td class="muted">No.</td>
-            <td class="muted">PR solo</td>
+            <td>Contenuti del sito web, articoli del blog</td>
+            <td><span class="rfc-cat">No</span></td>
+            <td>Solo PR</td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
 </section>
 
-
-<!-- ===================== RFC LIFECYCLE ===================== -->
-<section class="bento-section" style="padding-top:0;">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">Ciclo di vita</div>
-      <h2 class="section-title-radical">Flusso di stato RFC</h2>
-      <p class="section-lead-radical">Ogni RFC segue lo stesso percorso documentato — dal primo progetto alla decisione chiusa.</p>
+<!-- RFC lifecycle -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="rfc2-section-head dl-rise">
+      <h2 class="dl-heading">Flusso degli stati di un RFC.</h2>
+      <p class="dl-lead">Ogni RFC segue lo stesso percorso documentato, dalla prima bozza alla decisione finale.</p>
     </div>
 
-    <div class="rfc-table-wrap">
+    <div class="rfc-table-wrap dl-rise" style="padding: clamp(28px, 4vw, 40px);">
       <div class="rfc-flow">
 
         <div class="rfc-flow__step">
-          <div class="rfc-flow__icon">
-            <i data-lucide="file-text" style="width:22px;height:22px;" aria-hidden="true"></i>
-          </div>
-          <span class="rfc-status rfc-status--draft">Progetto</span>
-          <div class="rfc-flow__label">Autore scrive la proposta in GitHub Discussioni</div>
+          <span class="rfc-status rfc-status--draft">draft</span>
+          <div class="rfc-flow__label">Chi propone scrive la proposta in GitHub Discussions</div>
         </div>
 
-        <div class="rfc-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="rfc-flow__arrow" aria-hidden="true">→</div>
 
         <div class="rfc-flow__step">
-          <div class="rfc-flow__icon">
-            <i data-lucide="message-square" style="width:22px;height:22px;" aria-hidden="true"></i>
-          </div>
-          <span class="rfc-status rfc-status--open">aperto</span>
-          <div class="rfc-flow__label">Minimo 5 giorni lavorativi aperti per il commento della comunità</div>
+          <span class="rfc-status rfc-status--open">open</span>
+          <div class="rfc-flow__label">Almeno 5 giorni lavorativi aperta ai commenti della community</div>
         </div>
 
-        <div class="rfc-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="rfc-flow__arrow" aria-hidden="true">→</div>
 
         <div class="rfc-flow__step">
-          <div class="rfc-flow__icon">
-            <i data-lucide="check-circle-2" style="width:22px;height:22px;" aria-hidden="true"></i>
-          </div>
-          <span class="rfc-status rfc-status--accepted">accettato</span>
-          <div class="rfc-flow__label">TSC voto o consenso pigro — documentato pubblicamente</div>
+          <span class="rfc-status rfc-status--accepted">accepted</span>
+          <div class="rfc-flow__label">Voto del TSC o lazy consensus, documentato pubblicamente</div>
         </div>
 
-        <div class="rfc-flow__arrow" aria-hidden="true">&rarr;</div>
+        <div class="rfc-flow__arrow" aria-hidden="true">→</div>
 
         <div class="rfc-flow__step">
-          <div class="rfc-flow__icon">
-            <i data-lucide="rocket" style="width:22px;height:22px;" aria-hidden="true"></i>
-          </div>
-          <span class="rfc-status rfc-status--implemented">implementato</span>
-          <div class="rfc-flow__label">PR fuso, ingresso changelog aggiunto, RFC chiuso</div>
+          <span class="rfc-status rfc-status--implemented">implemented</span>
+          <div class="rfc-flow__label">PR unita, voce aggiunta al changelog, RFC chiuso</div>
         </div>
 
       </div>
 
-      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--radical-border);font-size:0.85rem;color:var(--radical-muted);text-align:center;">Risultati alternativi:
-<span class="rfc-status rfc-status--rejected" style="display:inline;margin:0 6px;">respinto</span>(non accettato dopo la recensione) &nbsp;&middot;&nbsp;
-<span class="rfc-status rfc-status--withdrawn" style="display:inline;margin:0 6px;">ritirato</span>(pulito dall'autore). Entrambi sono documentati con motivi.
-</div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===================== HOW TO WRITE ONE ===================== -->
-<section class="bento-section" style="padding-top:0;">
-  <div class="container">
-    <div class="section-header-radical">
-      <div class="kicker-radical">Scrivere un RFC</div>
-      <h2 class="section-title-radical">Come scrivere una buona RFC</h2>
-      <p class="section-lead-radical">Tre cose che fanno la differenza tra un RFC che si muove velocemente e uno che si blocca.</p>
-    </div>
-
-    <div class="rfc-guide-grid">
-
-      <div class="rfc-guide-card">
-        <div class="rfc-guide-card__icon">
-          <i data-lucide="target" style="width:22px;height:22px;" aria-hidden="true"></i>
-        </div>
-        <h3 class="rfc-guide-card__title">Dichiarare il problema, non la soluzione</h3>
-        <p class="rfc-guide-card__body">Inizia con ciò che è rotto o mancante — non con quello che vuoi costruire. I recensori devono concordare che il problema è reale prima che possano valutare la soluzione proposta. Incorniciare il "perché" prima del "cosa".</p>
+      <div class="rfc-flow__note">
+        Esiti alternativi: <span class="rfc-status rfc-status--rejected">rejected</span> (non accettato dopo la revisione), <span class="rfc-status rfc-status--withdrawn">withdrawn</span> (ritirato da chi lo ha proposto). Entrambi sono documentati con le motivazioni.
       </div>
-
-      <div class="rfc-guide-card">
-        <div class="rfc-guide-card__icon">
-          <i data-lucide="scale" style="width:22px;height:22px;" aria-hidden="true"></i>
-        </div>
-        <h3 class="rfc-guide-card__title">Mostra trade-off e alternative</h3>
-        <p class="rfc-guide-card__body">Una forte RFC spiega cos'altro è stato considerato e perché è stato respinto. Questo salva i cicli di revisione e dà il contesto futuro dei manutentori quando l'autore originale ha acceso.</p>
-      </div>
-
-      <div class="rfc-guide-card">
-        <div class="rfc-guide-card__icon">
-          <i data-lucide="users" style="width:22px;height:22px;" aria-hidden="true"></i>
-        </div>
-        <h3 class="rfc-guide-card__title">Essere specifici per l'impatto</h3>
-        <p class="rfc-guide-card__body">Chi è interessato? Quali repository, file o contratti pubblici cambiano? Più chiara la portata, più veloce la comunità può dare feedback utili e un manutentore può prendere una decisione.</p>
-      </div>
-
     </div>
   </div>
 </section>
 
+<!-- How to write one -->
+<section class="dl-section dl-section--alt">
+  <div class="dl-wrap">
+    <div class="rfc2-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">Come scrivere un buon RFC.</h2>
+        <p class="dl-lead">Tre aspetti che fanno la differenza tra un RFC che procede spedito e uno che si arena.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande la dashboard delle esecuzioni">
+        <img src="{{ '/assets/images/wafpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Dashboard delle esecuzioni WAF++ con punteggio complessivo, controlli falliti e stato dei pilastri dopo una scansione">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
 
-<!-- ===================== CTA ===================== -->
-<section class="cta-radical">
-  <div class="cta-radical__glow" aria-hidden="true"></div>
-  <div class="container cta-radical__inner">
-    <div class="kicker-radical">Pronti a modellare WAF++?</div>
-    <h2 class="cta-radical__title">Ogni decisione inizia con una conversazione.</h2>
-    <p class="cta-radical__lead">Scegli un RFC aperto, condividi la tua prospettiva, o apri una nuova. Il quadro è costruito in pubblico e ogni voce conta.
-</p>
-    <div class="cta-radical__actions">
-      <a class="btn btn-glow btn-glow--lg" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">Aprire le discussioni GitHub &rarr;</a>
-      <a class="btn btn-glass btn-glass--lg" href="{{ '/contributing/' | relative_url }}">Come contribuire</a>
+    <div class="rfc-guide-grid dl-rise">
+      <div class="rfc-guide-card">
+        <h3 class="rfc-guide-card__title">Descrivi il problema, non la soluzione</h3>
+        <p class="rfc-guide-card__body">Parti da ciò che non funziona o manca, non da ciò che vuoi costruire. I revisori devono concordare che il problema sia reale prima di valutare la tua soluzione. Chiarisci il «perché» prima del «cosa».</p>
+      </div>
+
+      <div class="rfc-guide-card">
+        <h3 class="rfc-guide-card__title">Mostra compromessi e alternative</h3>
+        <p class="rfc-guide-card__body">Un buon RFC spiega cos'altro è stato valutato e perché è stato scartato. Si risparmiano cicli di revisione e i futuri maintainer hanno contesto quando chi ha proposto l'RFC non è più coinvolto.</p>
+      </div>
+
+      <div class="rfc-guide-card">
+        <h3 class="rfc-guide-card__title">Sii preciso sull'impatto</h3>
+        <p class="rfc-guide-card__body">Chi è coinvolto? Quali repository, file o contratti pubblici cambiano? Più chiaro è l'ambito, prima la community può dare feedback utili e un maintainer può decidere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section rfc2-cta-section">
+  <div class="dl-wrap">
+    <div class="rfc2-cta dl-rise">
+      <h2 class="dl-heading">Contribuisci alla prossima decisione.</h2>
+      <p class="dl-lead">Scegli un RFC aperto, condividi il tuo punto di vista o aprine uno nuovo. Il framework si costruisce in pubblico e ogni voce conta.</p>
+      <div class="rfc2-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/orgs/WAF2p/discussions" target="_blank" rel="noopener">
+          Apri GitHub Discussions
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/it/contributing/' | relative_url }}">Come contribuire</a>
+      </div>
     </div>
   </div>
 </section>
 
 </div>
+
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="rfc2-lightbox" role="dialog" aria-modal="true" aria-label="Screenshot ingrandito" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Chiudi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  var lightbox = document.getElementById('rfc2-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
+
+    function openLightbox(trigger) {
+      var imgs = trigger.querySelectorAll('img');
+      var source = null;
+      for (var i = 0; i < imgs.length; i++) {
+        if (getComputedStyle(imgs[i]).display !== 'none') { source = imgs[i]; break; }
+      }
+      if (!source) return;
+      lastTrigger = trigger;
+      lbImg.src = source.src;
+      lbImg.alt = source.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.rfc2-page').classList.add('rfc2-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.rfc2-page').classList.remove('rfc2-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

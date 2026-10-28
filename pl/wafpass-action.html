@@ -2,133 +2,108 @@
 layout: default
 lang: pl
 ref: wafpass_action
-title: "WAF++ Akcja GitHub PASS"
-description: "Uruchom WAF++ PASS skanuje w GitHub Actions i przenosi wyniki zgodności infrastruktury do serwera WAFPass."
+title: "WAF++ PASS GitHub Action"
+description: "Uruchamiaj skany WAF++ PASS w GitHub Actions i wysyłaj wyniki zgodności infrastruktury na swój serwer WAFPass."
 permalink: /pl/wafpass-action/
 ---
 
-<div class="page-radical wafpass-page">
+<div class="wfpa-page">
 
-  <!-- ===================== HERO ===================== -->
-  <section class="wafpass-hero" aria-label="WAF++ PASS GitHub Action">
-    <div class="wafpass-hero__orb wafpass-hero__orb--blue" aria-hidden="true"></div>
-    <div class="wafpass-hero__orb wafpass-hero__orb--gold" aria-hidden="true"></div>
-    <div class="wafpass-hero__orb wafpass-hero__orb--purple" aria-hidden="true"></div>
-    <div class="container wafpass-hero__inner">
-      <div class="wafpass-hero__badge">
-        <span class="wafpass-hero__badge-dot"></span>v0.1.1 &middot; Marketplace &middot; Open Source
-</div>
-      <h1>Kontrola zgodności w Twoim<br><span class="text-gradient-radical">GitHub Actions.</span></h1>
-      <p class="wafpass-hero__lead">Dodaj WAF++ Przełącz na dowolny przepływ pracy. Przeskanuj Terraform, Bicep, CDK, lub Pulumi na każde żądanie ciągnięcia i pchnij,
-Następnie wyślij pełny ładunek wyników na serwer WAFPass dla desek rozdzielczych, analizy luk i dowodów audytu.</p>
-      <div class="wafpass-hero__actions">
-        <a class="btn-glow" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">Pobierz akcję &rarr;</a>
-        <a class="btn-glass" href="https://github.com/WAF2p/wafpass-action" target="_blank" rel="noopener">Widok na GitHub</a>
-        <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Zainstaluj WAFPass</a>
+<!-- Hero -->
+<section class="wfpa-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="wfpa-hero__title">Zgodność w Twoim potoku.</h1>
+      <p class="wfpa-hero__lead">Dodaj WAF++ PASS do dowolnego workflow. Skanuj Terraform, Bicep, CDK lub Pulumi przy każdym pull requeście i pushu, a następnie wysyłaj pełny wynik na serwer WAFPass na potrzeby pulpitów, analizy luk i dowodów audytowych.</p>
+      <div class="wfpa-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
+          Pobierz action
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-action" target="_blank" rel="noopener">Zobacz na GitHubie</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pl/wafpass-install/' | relative_url }}">Zainstaluj WAFPass</a>
       </div>
-      <div class="wafpass-hero__compliance">
-        <span class="control-pill">Terraform</span>
-        <span class="control-pill">Bicep</span>
-        <span class="control-pill">CDK</span>
-        <span class="control-pill">Pulumi</span>
-        <span class="control-pill">Symbol użytkownika</span>
-        <span class="control-pill">Klucz API</span>
-        <span class="control-pill">Polityka niepowodzeń</span>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================== STATS BAND ===================== -->
-  <section class="stats-band wafpass-stats" aria-label="Key numbers">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">v0.1.1</div>
-          <div class="stat-label">Uwolnienie działań</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">4</div>
-          <div class="stat-label">Ramy IaC</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Tryby aktywacji</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">0</div>
-          <div class="stat-label">Wymagane dane dotyczące chmur</div>
+      <div class="wfpa-hero__row">
+        <div class="dl-quiet-row__names">
+          <span class="dl-quiet-row__name">Terraform</span>
+          <span class="dl-quiet-row__name">Bicep</span>
+          <span class="dl-quiet-row__name">CDK</span>
+          <span class="dl-quiet-row__name">Pulumi</span>
+          <span class="dl-quiet-row__name">Bearer token</span>
+          <span class="dl-quiet-row__name">Klucz API</span>
+          <span class="dl-quiet-row__name">Zasady niepowodzenia</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- Stats -->
+<section class="wfpa-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">v0.1.1</div><div class="dl-stat__label">Wydanie action</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">4</div><div class="dl-stat__label">Frameworki IaC</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">2</div><div class="dl-stat__label">Tryby uwierzytelniania</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">0</div><div class="dl-stat__label">Wymagane poświadczenia chmury</div></div>
+    </div>
+  </div>
+</section>
 
-  <!-- ===================== FEATURES ===================== -->
-  <section class="bento-section" aria-label="Features">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Cechy</div>
-        <h2 class="section-title-radical">Jeden krok. Pełna widoczność.</h2>
-        <p class="section-lead-radical">Działanie obsługuje instalację CLI, skanowanie, wysyłanie wyników i egzekwowanie polityki, aby twój zespół mógł skupić się na wysyłki.</p>
+<!-- Features -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpa-section-head dl-rise">
+      <h2 class="dl-heading">Jeden krok. Pełna widoczność.</h2>
+      <p class="dl-lead">Action zajmuje się instalacją CLI, skanowaniem, wysyłką wyników i egzekwowaniem zasad, aby Twój zespół mógł skupić się na wdrażaniu.</p>
+    </div>
+
+    <div class="wfpa-grid dl-rise">
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Automatyczna instalacja CLI</h3>
+        <p class="wfpa-card__desc">Automatycznie instaluje najnowszy <code>wafpass-core</code> z PyPI — lub użyj własnego źródła pip albo preinstalowanego pliku binarnego.</p>
       </div>
-
-      <div class="wafpass-stack">
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="download" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Auto- install CLI</div>
-          <p class="wafpass-stack__desc">Instaluje najnowsze<code>wafpass-core</code>z PyPI automatycznie, lub nadpisać przy użyciu własnego źródła pip lub wcześniej zainstalowanych binarnych.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="scan" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Skan wieloośrodkowy</div>
-          <p class="wafpass-stack__desc">Skanuj pliki Terraform, Bicep, CDK lub Pulumi w jednym kroku. Obsługuje wiele ścieżek i plan Terraform JSON do przeglądu zmian.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="upload-cloud" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Wciśnij do serwera</div>
-          <p class="wafpass-stack__desc">Wysyła pełną<code>wafpass-result.json</code>do<code>POST /api/v1/runs</code>więc deski rozdzielcze i pakiety dowodów pozostają aktualne.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Bramy polityczne</div>
-          <p class="wafpass-stack__desc">Konfiguracja<code>fail_on</code>polityki<code>never</code>do<code>critical</code>. Niepowodzenie kroku po wyniku jest bezpiecznie przechowywane na serwerze.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="key" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Elastyczna auth</div>
-          <p class="wafpass-stack__desc">Użyj symbolu Berera dla interaktywnych użytkowników lub wgryzionego klucza API dla bezgłowy CI / CD. Oba przeniosły się bezpiecznie na serwer.</p>
-        </div>
-
-        <div class="wafpass-stack__card">
-          <div class="wafpass-stack__icon"><i data-lucide="git-branch" aria-hidden="true"></i></div>
-          <div class="wafpass-stack__name">Metadane CI / CD</div>
-          <p class="wafpass-stack__desc">Znaki działają jako<code>is_cicd: true</code>z<code>triggered_by: github-actions</code>, i przechodzi gałąź, commit SHA, projekt i scena automatycznie.</p>
-        </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Skan wielu IaC</h3>
+        <p class="wfpa-card__desc">Skanuj pliki Terraform, Bicep, CDK lub Pulumi w jednym kroku. Obsługuje wiele ścieżek oraz JSON planu Terraform do przeglądu zmian.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Wysyłka na serwer</h3>
+        <p class="wfpa-card__desc">Wysyła pełny <code>wafpass-result.json</code> do <code>POST /api/v1/runs</code> , aby pulpity i pakiety dowodów były zawsze aktualne.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Bramki zasad</h3>
+        <p class="wfpa-card__desc">Konfigurowalne zasady <code>fail_on</code> od <code>never</code> do <code>critical</code>. Krok kończy się niepowodzeniem dopiero po bezpiecznym zapisaniu wyniku na serwerze.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Elastyczne uwierzytelnianie</h3>
+        <p class="wfpa-card__desc">Użyj tokenu Bearer dla użytkowników interaktywnych lub klucza API do ingestu dla bezobsługowych przebiegów CI/CD. Oba są bezpiecznie przekazywane na serwer.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Metadane CI/CD</h3>
+        <p class="wfpa-card__desc">Oznacza przebiegi jako <code>is_cicd: true</code> z <code>triggered_by: github-actions</code> i automatycznie przekazuje gałąź, SHA commita, projekt i etap.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- Usage -->
+<section class="dl-section dl-section--alt" id="usage">
+  <div class="dl-wrap">
+    <div class="wfpa-section-head dl-rise">
+      <h2 class="dl-heading">Dodaj ją do dowolnego workflow.</h2>
+      <p class="dl-lead">Pobierz repozytorium, uruchom action i pokazuj wyniki zgodności tam, gdzie Twój zespół już pracuje.</p>
+    </div>
 
-  <!-- ===================== USAGE ===================== -->
-  <section class="bento-section" id="usage" style="padding-top:0;" aria-label="Usage">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Zastosowanie</div>
-        <h2 class="section-title-radical">Dodaj go do każdego przepływu pracy.</h2>
-        <p class="section-lead-radical">Sprawdź swój repo, uruchom akcję i wyniki zgodności powierzchni, gdzie twój zespół już działa.</p>
-      </div>
-
-      <div class="code-window">
+    <div class="wfpa-usage dl-rise">
+      <div class="code-window" data-ui>
         <div class="code-window__bar">
           <span class="code-window__dot"></span>
           <span class="code-window__dot"></span>
           <span class="code-window__dot"></span>
-          <span class="code-window__title">.github / workflows / flofpass.yml</span>
+          <span class="code-window__title">.github/workflows/wafpass.yml</span>
         </div>
         {% raw %}<pre class="code-window__body"><code>name: WAF++ PASS Scan
 
@@ -156,12 +131,12 @@ jobs:
           upload_source: true</code></pre>{% endraw %}
       </div>
 
-      <div class="code-window">
+      <div class="code-window" data-ui>
         <div class="code-window__bar">
           <span class="code-window__dot"></span>
           <span class="code-window__dot"></span>
           <span class="code-window__dot"></span>
-          <span class="code-window__title">Przykład wielochmurowy / monorepo</span>
+          <span class="code-window__title">Przykład multi-cloud / monorepo</span>
         </div>
         {% raw %}<pre class="code-window__body"><code>      - name: Run WAF++ PASS
         uses: WAF2p/wafpass-action@v0.1.1
@@ -176,69 +151,97 @@ jobs:
           upload_source: true</code></pre>{% endraw %}
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-
-  <!-- ===================== INPUTS / OUTPUTS ===================== -->
-  <section class="bento-section" style="padding-top:0;" aria-label="Inputs and outputs">
-    <div class="container">
-      <div class="section-header-radical">
-        <div class="kicker-radical">Odniesienie</div>
-        <h2 class="section-title-radical">Wejście i wyjście</h2>
-        <p class="section-lead-radical">Wszystko co działanie akceptuje i zwraca, w skrócie.</p>
-      </div>
-
-      <div class="rfc-table-wrap">
-        <table class="rfc-table">
-          <thead>
-            <tr><th>Wejście</th><th>Wymagane</th><th>Domyślne</th><th>Opis</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>server_url</code></td><td>tak</td><td>-</td><td>Podstawowy adres URL serwera WAF++.</td></tr>
-            <tr><td><code>api_token</code></td><td>nie</td><td>-</td><td>Nosiciel symbolu. Należy podać albo to, albo<code>api_key</code>.</td></tr>
-            <tr><td><code>api_key</code></td><td>nie</td><td>-</td><td>Największy klawisz API (<code>X-Api-Key</code>).</td></tr>
-            <tr><td><code>scan_path</code></td><td>tak</td><td><code>.</code></td><td>Ścieżka do skanowania. Oddziel wiele ścieżek z przestrzeniami.</td></tr>
-            <tr><td><code>iac_framework</code></td><td>nie</td><td><code>terraform</code></td><td>Wtyczka IaC:<code>terraform</code>,<code>bicep</code>,<code>cdk</code>,<code>pulumi</code>.</td></tr>
-            <tr><td><code>stage</code></td><td>nie</td><td>-</td><td>Etap wdrażania, np.<code>dev</code>,<code>staging</code>,<code>prod</code>.</td></tr>
-            <tr><td><code>project</code></td><td>nie</td><td>nazwa repo</td><td>Identyfikator projektu / repo.</td></tr>
-            <tr><td><code>fail_on</code></td><td>nie</td><td><code>fail</code></td><td><code>fail</code>,<code>skip</code>,<code>any</code>,<code>low</code>,<code>medium</code>,<code>high</code>,<code>critical</code>,<code>never</code>.</td></tr>
-            <tr><td><code>upload_source</code></td><td>nie</td><td><code>false</code></td><td>Prześlij pliki źródłowe do podglądów dysków rozdzielczych.</td></tr>
-            <tr><td><code>fetch_controls</code></td><td>nie</td><td><code>false</code></td><td>Przed skanowaniem klony kontrolują z bazy danych.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="rfc-table-wrap" style="margin-top:32px;">
-        <table class="rfc-table">
-          <thead>
-            <tr><th>Wyjście</th><th>Opis</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>run_id</code></td><td>UUID utworzonego serwera WAF++.</td></tr>
-            <tr><td><code>score</code></td><td>Ogólny wynik zgodności zwracany przez serwer.</td></tr>
-            <tr><td><code>findings_count</code></td><td>Liczba wyników skanowania.</td></tr>
-          </tbody>
-        </table>
-      </div>
+<!-- Inputs / outputs -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpa-section-head dl-rise">
+      <h2 class="dl-heading">Wejścia i wyjścia.</h2>
+      <p class="dl-lead">Wszystko, co action przyjmuje i zwraca, w jednym miejscu.</p>
     </div>
-  </section>
 
+    <div class="wfpa-tables dl-rise">
+      <div>
+        <h3 class="wfpa-tables__label">Wejścia</h3>
+        <div class="rfc-table-wrap" data-ui>
+          <table class="rfc-table">
+            <thead>
+              <tr><th>Wejście</th><th>Wymagane</th><th>Domyślnie</th><th>Opis</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>server_url</code></td><td><span class="wfpa-required">tak</span></td><td>brak</td><td>Bazowy URL serwera WAF++.</td></tr>
+              <tr><td><code>api_token</code></td><td>nie</td><td>brak</td><td>Token Bearer. Podaj ten token albo <code>api_key</code>.</td></tr>
+              <tr><td><code>api_key</code></td><td>nie</td><td>brak</td><td>Klucz API do ingestu (<code>X-Api-Key</code>).</td></tr>
+              <tr><td><code>scan_path</code></td><td><span class="wfpa-required">tak</span></td><td><code>.</code></td><td>Ścieżka/ścieżki do skanowania. Wiele ścieżek oddziel spacjami.</td></tr>
+              <tr><td><code>iac_framework</code></td><td>nie</td><td><code>terraform</code></td><td>Wtyczka IaC: <code>terraform</code>, <code>bicep</code>, <code>cdk</code>, <code>pulumi</code>.</td></tr>
+              <tr><td><code>stage</code></td><td>nie</td><td>brak</td><td>Etap wdrożenia, np. <code>dev</code>, <code>staging</code>, <code>prod</code>.</td></tr>
+              <tr><td><code>project</code></td><td>nie</td><td>nazwa repozytorium</td><td>Identyfikator projektu / repozytorium.</td></tr>
+              <tr><td><code>fail_on</code></td><td>nie</td><td><code>fail</code></td><td><code>fail</code>, <code>skip</code>, <code>any</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code>, <code>never</code>.</td></tr>
+              <tr><td><code>upload_source</code></td><td>nie</td><td><code>false</code></td><td>Wysyła pliki źródłowe do podglądu różnic w pulpicie.</td></tr>
+              <tr><td><code>fetch_controls</code></td><td>nie</td><td><code>false</code></td><td>Klonuje kontrole z repozytorium frameworka przed skanowaniem.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  <!-- ===================== CTA ===================== -->
-  <section class="cta-radical">
-    <div class="cta-radical__glow" aria-hidden="true"></div>
-    <div class="container">
-      <div class="cta-radical__inner">
-        <div class="kicker-radical" style="margin-bottom:14px;">Gotowy do automatyzacji?</div>
-        <h2 class="cta-radical__title">Dodaj WAF++ Pass do rurociągu.</h2>
-        <p class="cta-radical__lead">Zainstaluj działanie z GitHub Marketplace, skopiuj przepływ pracy i zacznij ujawniać zgodność infrastruktury w każdym PR.</p>
-        <div class="cta-radical__actions">
-          <a class="btn-glow" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">Pobierz akcję &rarr;</a>
-          <a class="btn-glass" href="{{ '/wafpass/' | relative_url }}">O WaFPass</a>
-          <a class="btn-glass" href="{{ '/wafpass-install/' | relative_url }}">Zainstaluj WAFPass</a>
+      <div>
+        <h3 class="wfpa-tables__label">Wyjścia</h3>
+        <div class="rfc-table-wrap" data-ui>
+          <table class="rfc-table">
+            <thead>
+              <tr><th>Wyjście</th><th>Opis</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>run_id</code></td><td>UUID przebiegu utworzonego na serwerze WAF++.</td></tr>
+              <tr><td><code>score</code></td><td>Ogólny wynik zgodności zwrócony przez serwer.</td></tr>
+              <tr><td><code>findings_count</code></td><td>Liczba wyników w rezultacie skanu.</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section wfpa-cta-section">
+  <div class="dl-wrap">
+    <div class="wfpa-cta dl-rise">
+      <h2 class="dl-heading">Dodaj WAF++ PASS do swojego potoku.</h2>
+      <p class="dl-lead">Zainstaluj action z GitHub Marketplace, skopiuj workflow i pokazuj zgodność infrastruktury przy każdym PR.</p>
+      <div class="wfpa-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
+          Pobierz action
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pl/wafpass/' | relative_url }}">O WAFPass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pl/wafpass-install/' | relative_url }}">Zainstaluj WAFPass</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 </div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>

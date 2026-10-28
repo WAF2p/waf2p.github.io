@@ -3,82 +3,156 @@ layout: default
 lang: pl
 ref: use_case_platform
 permalink: /pl/use-cases/platform-golden-paths/
-title: "Platforma złote ścieżki · WAF++ Przypadki użycia"
-description: "Jak zespół platformy osadza 8 WAF++ filary do wewnętrznych szablonów deweloperskich więc każda usługa uruchamia bezpieczne, operacyjne i suwerenne domyślnie."
+title: "Golden paths platformy · Przypadki użycia WAF++"
+description: "Jak zespół platformowy osadza 8 filarów WAF++ we wewnętrznych szablonach deweloperskich, aby każda usługa startowała bezpieczna, gotowa operacyjnie i suwerenna domyślnie."
 ---
 
-<main class="page-radical use-case-detail-page use-case-detail-page--platform">
+<div class="ucd-page">
 
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="ucd-hero">
+  <div class="dl-wrap">
+    <nav class="dl-rise" aria-label="Breadcrumb"><a class="ucd-back" href="{{ '/pl/use-cases/' | relative_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i> Powrót do przypadków użycia</a></nav>
+    <h1 class="ucd-hero__title dl-rise dl-d1">Golden paths platformy.</h1>
+    <p class="ucd-hero__lead dl-rise dl-d2">Zespół platformowy osadza 8 filarów we wewnętrznych szablonach deweloperskich, aby każda usługa startowała z bezpieczeństwem, gotowością operacyjną i suwerennością domyślnie.</p>
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+    <div class="ucd-shot dl-rise dl-d3">
+      <button class="dl-shot" type="button" aria-label="Wyświetl powiększony zrzut ekranu przeglądu kontroli">
+        <img src="{{ '/assets/images/wafpass_1.0/Controls_Overview.png' | relative_url }}" alt="Widok przeglądu kontroli WAFPass dla przypadku użycia golden paths platformy">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-        <a class="uc-detail-back" href="{{ '/use-cases/' | relative_url }}">
-          <i data-lucide="arrow-left" aria-hidden="true"></i>Powrót do użytku
-</a>
+<!-- Context / Approach / Outcome -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="ucd-grid dl-rise">
+      <div>
+        <h2 class="ucd-block__title">Kontekst</h2>
+        <p class="ucd-block__text">Zespół inżynierii platformy obsługuje 40 zespołów produktowych. Każdy zespół wdrażał usługi z innymi konfiguracjami IAM, tagowania, obserwowalności i kopii zapasowych. Przeglądy wielokrotnie wykrywały te same podstawowe luki, a architekci spędzali większość czasu powtarzając te same zalecenia.</p>
+      </div>
 
-        <div class="hero-radical-badge" style="margin-top: 18px;">
-          <span class="hero-radical-badge__dot"></span>Inżynieria platformy · Przykład
+      <div>
+        <h2 class="ucd-block__title">Podejście</h2>
+        <p class="ucd-block__text">Zespół platformowy przekształca kontrole WAF++ z filarów bezpieczeństwa, doskonałości operacyjnej, niezawodności i suwerenności w szablony golden paths. Nowe usługi dziedziczą sprawdzenia policy-as-code, domyślną obserwowalność i udokumentowane kryteria wyjścia jeszcze przed pierwszym wdrożeniem.</p>
+      </div>
+
+      <div>
+        <h2 class="ucd-block__title">Wynik</h2>
+        <p class="ucd-block__text">Czas onboardingu spada z dni do godzin. Średnia punktacja PASS przy uruchomieniu usługi rośnie z 42 do 71, a przeglądy architektury przechodzą od blokowania do obsługi wyjątków.</p>
+      </div>
+    </div>
+
+    <div class="ucd-tags dl-rise">
+      <span class="ucd-tag">Bezpieczeństwo</span>
+      <span class="ucd-tag">Doskonałość operacyjna</span>
+      <span class="ucd-tag">Niezawodność</span>
+      <span class="ucd-tag">Suwerenność</span>
+      <span class="ucd-tag">Golden paths</span>
+      <span class="ucd-tag">Policy-as-code</span>
+    </div>
+  </div>
+</section>
+
+<!-- Supporting screenshots -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="uc2-section-head dl-rise">
+      <h2 class="dl-heading">Z wdrożenia.</h2>
+      <p class="dl-lead">Prawdziwe widoki WAFPass użyte do zbudowania golden paths.</p>
+    </div>
+
+    <div class="ucd-gallery dl-rise">
+      <div>
+        <button class="dl-shot" type="button" aria-label="Wyświetl powiększony zrzut ekranu aktualizacji kontroli">
+          <img src="{{ '/assets/images/wafpass_1.0/Controls_Upgrade.png' | relative_url }}" alt="Ekran aktualizacji kontroli WAFPass używany do rozwijania sprawdzeń polityk golden paths">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Aktualizacje policy-as-code</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Wyświetl powiększony zrzut ekranu przeglądu implementacji">
+          <img src="{{ '/assets/images/wafpass_1.0/Implementation_Overview.png' | relative_url }}" alt="Ekran przeglądu implementacji WAFPass używany do śledzenia wdrażania szablonów">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Śledzenie wdrażania szablonów</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Wyświetl powiększony zrzut ekranu przeglądu projektów">
+          <img src="{{ '/assets/images/wafpass_1.0/Deployed_Region_Map.png' | relative_url }}" alt="Ekran mapy wdrożonych regionów WAFPass używany do śledzenia 40 zespołów produktowych">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Widoczność całej floty</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Złote ścieżki platformy</span>
-        </h1>
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="ucd-lightbox" role="dialog" aria-modal="true" aria-label="Powiększony zrzut ekranu" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Zamknij">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
 
-        <p class="hero-radical-lead">Zespół platformy osadza 8 filarów w wewnętrzne szablony deweloperskie tak, że każda usługa
-startuje domyślnie z bezpieczeństwem, operacjami i suwerennością.
-</p>
-      </div>
-    </div>
-  </section>
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 
-  <section class="uc-detail-visual">
-    <div class="container">
-      <div class="uc-detail-visual__frame uc-detail-visual--platform">
-        <img src="/assets/images/wafpass_1.0/Controls_Overview.png" alt="WAFPass controls overview visual for the platform golden paths use case">
-      </div>
-    </div>
-  </section>
+  var lightbox = document.getElementById('ucd-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
 
-  <section class="bento-section">
-    <div class="container">
-      <div class="uc-detail-grid">
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Kontekst</h2>
-          <p class="uc-detail-block__text">Zespół inżynieryjny platformy obsługuje 40 szwadronów produktowych. Każdy zespół był usługi wysyłki z
-różne IAM, znakowanie, obserwowalność i zapasowe ustawienia. Recenzje wielokrotnie znaleziono to samo
-luki podstawowe, a architekci spędzili większość czasu powtarzając tę samą opinię.</p>
-        </article>
+    function openLightbox(trigger) {
+      var img = trigger.querySelector('img');
+      if (!img) return;
+      lastTrigger = trigger;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.ucd-page').classList.add('ucd-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Podejście</h2>
-          <p class="uc-detail-block__text">Zespół platformy zmienia WAF++ Bezpieczeństwo, Doskonałość Operacyjna, Niezawodność i Władza
-steruje do szablonów ścieżki goldenowej. Nowe usługi dziedziczą policy-as-code checks, domyślnie
-obserwacji i udokumentowanych kryteriów wyjścia przed pierwszym rozmieszczeniem.</p>
-        </article>
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.ucd-page').classList.remove('ucd-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Wynik</h2>
-          <p class="uc-detail-block__text">Czas wsiadania spada z dni do godzin. Średnia punktacja PASS przy uruchomieniu usługi wzrasta z
-42 do 71, a architektura przegląda przejść od bramki do obsługi wyjątków.</p>
-        </article>
-      </div>
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
 
-      <div class="uc-detail-tags">
-        <span class="uc-detail-tag">Bezpieczeństwo</span>
-        <span class="uc-detail-tag">Doskonałość operacyjna</span>
-        <span class="uc-detail-tag">Wiarygodność</span>
-        <span class="uc-detail-tag">Władca</span>
-        <span class="uc-detail-tag">Złote ścieżki</span>
-        <span class="uc-detail-tag">Kod polityczny</span>
-      </div>
-    </div>
-  </section>
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
 
-</main>
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

@@ -2,60 +2,59 @@
 layout: default
 lang: de
 ref: roles
-title: Rollen & Mitglieder
-description: Alle Governance-Rollen in WAF++ — Verantwortlichkeiten und zugewiesene Mitglieder. TSC, Maintainers, Working Group Leads, User Advisory Group und Contributors.
+title: "Rollen & Mitglieder"
+description: "Alle Governance-Rollen in WAF++ — Verantwortlichkeiten und zugeordnete Mitglieder. TSC, Maintainer, Working-Group-Leads, User Advisory Group und Contributors."
 permalink: /de/roles/
 ---
 
-<div class="page-radical roles-page">
+{% assign roles = site.data.roles %}
+{% assign filled_roles = 0 %}
+{% for role in roles %}{% if role.members and role.members.size > 0 %}{% assign filled_roles = filled_roles | plus: 1 %}{% endif %}{% endfor %}
 
-<!-- ===================== HERO ===================== -->
-<section class="roles-hero">
-  <div class="roles-hero__orb roles-hero__orb--purple" aria-hidden="true"></div>
-  <div class="roles-hero__orb roles-hero__orb--blue" aria-hidden="true"></div>
-  <div class="roles-hero__orb roles-hero__orb--gold" aria-hidden="true"></div>
+<div class="rls-page">
 
-  <div class="container roles-hero__inner">
-    <div class="roles-hero__badge">
-      <span class="roles-hero__badge-dot"></span>
-      Governance · Rollen &amp; Mitglieder
-    </div>
-    <h1>Rollen &amp; <span class="text-gradient-radical">Mitglieder</span></h1>
-    <p class="roles-hero__lead">
-      Alle Governance-Rollen in WAF++ — mit Verantwortlichkeiten und zugewiesenen Mitgliedern.
-      Die Rollenbesetzung wird vom Projekt gepflegt und mit wachsender Community aktualisiert.
-    </p>
-    <div class="roles-hero__actions">
-      <a class="btn-glow" href="{{ '/de/governance-community/' | relative_url }}">Governance &rarr;</a>
-      <a class="btn-glass" href="#roles">Alle Rollen</a>
+<!-- Hero -->
+<section class="rls-hero">
+  <div class="dl-wrap">
+    <h1 class="rls-hero__title dl-rise">Rollen &amp; Mitglieder.</h1>
+    <p class="rls-hero__lead dl-rise dl-d1">Alle Governance-Rollen in WAF++ — mit Verantwortlichkeiten und zugeordneten Mitgliedern. Die Zuordnungen pflegt das Projekt und aktualisiert sie, wenn die Community wächst.</p>
+    <div class="rls-hero__actions dl-rise dl-d2">
+      <a class="wf6-btn wf6-btn--pill" href="{{ '/de/governance-community/' | relative_url }}">Governance
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+          </svg>
+        </span>
+      </a>
+      <a class="wf6-btn wf6-btn--line" href="#roles">Alle Rollen ansehen</a>
     </div>
   </div>
 </section>
 
+<!-- Stats -->
+<section class="rls-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat dl-rise"><div class="dl-stat__num">{{ roles.size }}</div><div class="dl-stat__label">Governance-Rollen</div></div>
+      <div class="dl-stat dl-rise dl-d1"><div class="dl-stat__num">{{ filled_roles }}</div><div class="dl-stat__label">Derzeit besetzt</div></div>
+      <div class="dl-stat dl-rise dl-d2"><div class="dl-stat__num">12 Mon.</div><div class="dl-stat__label">Verlängerbare Amtszeiten</div></div>
+      <div class="dl-stat dl-rise dl-d3"><div class="dl-stat__num">Offen</div><div class="dl-stat__label">Für aktive Contributors</div></div>
+    </div>
+  </div>
+</section>
 
-<!-- ===================== ROLLEN-ÜBERSICHT ===================== -->
-<section class="roles-section" id="roles">
-  <div class="container">
-
-    <div class="section-header-radical">
-      <div class="kicker-radical">ÜBERSICHT</div>
-      <h2 class="section-title-radical">Alle Rollen auf einen Blick</h2>
-      <p class="section-lead-radical">Fünf Rollen über Governance, Maintenance und Community — jede mit klar definiertem Umfang, Verantwortung und Prozess.</p>
+<!-- Role directory -->
+<section class="dl-section" id="roles">
+  <div class="dl-wrap">
+    <div class="rls-section-head dl-rise">
+      <h2 class="dl-heading">Alle Rollen im Überblick.</h2>
+      <p class="dl-lead">Fünf Rollen in Governance, Maintenance und Community — jede mit klarem Zuständigkeitsbereich, klarer Verantwortung und klarem Prozess.</p>
     </div>
 
-    {% assign roles = site.data.roles %}
-
-    <div class="roles-directory">
+    <div class="rls-directory dl-rise">
       {% for role in roles %}
-      <a class="roles-directory__card
-        {% case role.id %}
-          {% when 'maintainers' %}roles-directory__card--maintainers
-          {% when 'wg-leads' %}roles-directory__card--wg
-          {% when 'user-advisory' %}roles-directory__card--advisory
-          {% when 'contributors' %}roles-directory__card--contributors
-        {% endcase %}"
-        href="#{{ role.id }}">
-        <div class="roles-directory__icon">
+      <a class="rls-dcard" href="#{{ role.id }}">
+        <div class="rls-dcard__icon">
           {% case role.id %}
             {% when 'tsc' %}<i data-lucide="settings-2" aria-hidden="true"></i>
             {% when 'maintainers' %}<i data-lucide="users" aria-hidden="true"></i>
@@ -65,122 +64,127 @@ permalink: /de/roles/
             {% else %}<i data-lucide="circle" aria-hidden="true"></i>
           {% endcase %}
         </div>
-        <div class="roles-directory__num">
+        <div class="rls-dcard__badge">
           {% if role.members and role.members.size > 0 %}
-            {{ role.members.size }} Mitglied{% if role.members.size != 1 %}er{% endif %}
+            {{ role.members.size }} {% if role.members.size == 1 %}Mitglied{% else %}Mitglieder{% endif %}
           {% else %}
             Offen
           {% endif %}
         </div>
-        <div class="roles-directory__title">{{ role.title }}</div>
+        <h3 class="rls-dcard__title">{{ role.title }}</h3>
         {%- assign role_desc_key = 'description_' | append: lang -%}
-        <p class="roles-directory__desc">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
+        <p class="rls-dcard__desc">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
       </a>
       {% endfor %}
     </div>
-
   </div>
 </section>
 
+<!-- Role detail sections -->
+{% for role in roles %}
+<section class="dl-section{% cycle '', '--alt' %}" id="{{ role.id }}">
+  <div class="dl-wrap">
 
-<!-- ===================== ROLLEN-DETAILSEKTIONEN ===================== -->
-{% for role in site.data.roles %}
-<section class="roles-detail{% cycle '', ' roles-section--alt', '', ' roles-section--alt', '' %}" id="{{ role.id }}">
-  <div class="container">
-
-    <div class="roles-detail__header">
-      <div class="roles-detail__kicker">
-        {% case role.id %}
-          {% when 'tsc' %}GOVERNANCE
-          {% when 'maintainers' %}QUALITÄT
-          {% when 'wg-leads' %}KOORDINATION
-          {% when 'user-advisory' %}COMMUNITY
-          {% when 'contributors' %}OFFEN FÜR ALLE
-          {% else %}ROLLE
-        {% endcase %}
-      </div>
-      <h2>{{ role.title }}</h2>
+    <div class="rls-section-head dl-rise">
+      <h2 class="dl-heading">{{ role.title }}</h2>
       {%- assign role_desc_key = 'description_' | append: lang -%}
-      <p class="roles-detail__lead">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
+      <p class="rls-detail__lead">{{ role[role_desc_key] | default: role.description_en | default: role.description }}</p>
     </div>
 
     {% if role.members and role.members.size > 0 %}
-      <div class="roles-people">
-        {% for m in role.members %}
-          {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
-          {%- assign person = site.staff_members | where: "url", member_url | first -%}
-          {% if person %}
-          <article class="roles-person">
-            <div class="roles-person__head">
-              <img class="roles-person__avatar" src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" />
-              <div>
-                <div class="roles-person__name">
-                  <a href="{{ person.url | relative_url }}">{{ person.name }}</a>
-                </div>
-                <div class="roles-person__role">{{ person.position }}</div>
-              </div>
-            </div>
-
-            {% if person.blurb %}
-            <p class="roles-person__bio">{{ person.blurb }}</p>
-            {% endif %}
-
-            {% if person.social %}
-            <div class="roles-person__social">
-              {% for link in person.social %}
-              <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %}
-                 href="{% include relative-src.html src=link.link %}">
-                {% if link.social_icon %}
-                  {% include social-icon.html icon=link.social_icon %}
-                {% endif %}
-              </a>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </article>
-          {% else %}
-          <div class="roles-person">
-            <div class="roles-person__name">Unbekanntes Mitglied</div>
-            <p class="roles-person__bio"><strong>{{ m }}</strong> ist für diese Rolle referenziert, aber das Mitgliedsprofil konnte nicht gefunden werden.</p>
+    <div class="rls-people dl-rise">
+      {% for m in role.members %}
+        {%- assign member_url = "/staff_members/" | append: m | append: "/" -%}
+        {%- assign person = site.staff_members | where: "url", member_url | first -%}
+        {% if person %}
+        <div class="rls-person">
+          <div class="rls-person__photo">
+            <img src="{% include relative-src.html src=person.image_path %}" alt="{{ person.name }}" loading="lazy">
+          </div>
+          <div class="rls-person__name"><a href="{{ person.url | relative_url }}">{{ person.name }}</a></div>
+          <div class="rls-person__role">{{ person.position }}</div>
+          {% if person.blurb %}
+          <p class="rls-person__bio">{{ person.blurb }}</p>
+          {% endif %}
+          {% if person.social %}
+          <div class="rls-person__social">
+            {% for link in person.social %}
+            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+              {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
+            </a>
+            {% endfor %}
           </div>
           {% endif %}
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="roles-empty">
-        <div class="roles-empty__body">
-          <div class="roles-empty__kicker">Demnächst</div>
-          <h3>Mitglieder noch nicht zugewiesen</h3>
-          <p>Diese Rolle ist definiert und offen. Mitglieder werden bekannt gegeben, wenn die Community wächst. Interesse? Melde dich auf GitHub.</p>
         </div>
-        <a class="btn-glow" href="https://github.com/WAF2p" target="_blank" rel="noopener">Beitragen &rarr;</a>
+        {% else %}
+        <div class="rls-person">
+          <div class="rls-person__name">Unbekanntes Mitglied</div>
+          <p class="rls-person__bio"><strong>{{ m }}</strong> ist für diese Rolle hinterlegt, das Mitgliedsprofil wurde jedoch nicht gefunden.</p>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="rls-empty dl-rise">
+      <div>
+        <div class="rls-empty__tag">Demnächst</div>
+        <h3 class="rls-empty__title">Noch keine Mitglieder zugeordnet</h3>
+        <p class="rls-empty__text">Diese Rolle ist definiert und offen. Mitglieder werden bekanntgegeben, sobald die Community wächst. Interesse? Melden Sie sich auf GitHub.</p>
       </div>
+      <a class="wf6-btn wf6-btn--pill" href="https://github.com/{{ site.data.github.org }}" target="_blank" rel="noopener">Mitwirken
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+          </svg>
+        </span>
+      </a>
+    </div>
     {% endif %}
 
-    <div class="roles-detail__nav">
-      <a class="btn-glass" href="#roles">Alle Rollen</a>
-      <a class="btn-glass" href="{{ '/de/governance-community/' | relative_url }}">Governance-Details</a>
+    <div class="rls-nav">
+      <a class="wf6-btn wf6-btn--line" href="#roles">Alle Rollen</a>
+      <a class="wf6-btn wf6-btn--line" href="{{ '/de/governance-community/' | relative_url }}">Governance-Details</a>
     </div>
 
   </div>
 </section>
 {% endfor %}
 
-
-<!-- ===================== CTA ===================== -->
-<section class="roles-cta">
-  <div class="container">
-    <div class="roles-cta__card">
-      <div class="kicker-radical" style="margin-bottom:14px;">MITMACHEN</div>
-      <h2 class="roles-cta__title">Möchtest du beitragen?</h2>
-      <p class="roles-cta__lead">Alle Rollen stehen aktiven Contributoren offen. Lies das Governance-Modell, um zu verstehen, wie Rollen funktionieren — dann zeig dich auf GitHub.</p>
-      <div class="roles-cta__actions">
-        <a class="btn-glow" href="https://github.com/WAF2p" target="_blank" rel="noopener">GitHub &rarr;</a>
-        <a class="btn-glass" href="{{ '/de/governance-community/' | relative_url }}">Governance-Modell</a>
-        <a class="btn-glass" href="{{ '/de/rfc/' | relative_url }}">RFC-Prozess</a>
+<!-- CTA -->
+<section class="dl-section rls-cta-section">
+  <div class="dl-wrap">
+    <div class="rls-cta dl-rise">
+      <h2 class="dl-heading">Sie möchten mitwirken?</h2>
+      <p class="dl-lead">Jede Rolle steht aktiven Contributors offen. Lesen Sie das Governance-Modell, um zu verstehen, wie Rollen funktionieren — und kommen Sie dann auf GitHub vorbei.</p>
+      <div class="rls-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/{{ site.data.github.org }}" target="_blank" rel="noopener">Auf GitHub mitwirken
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/><path d="M7 7h10v10"/>
+            </svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/governance-community/' | relative_url }}">Governance-Modell</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/rfc/' | relative_url }}">RFC-Prozess</a>
       </div>
     </div>
   </div>
 </section>
 
 </div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

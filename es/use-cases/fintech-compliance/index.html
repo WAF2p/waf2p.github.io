@@ -3,85 +3,156 @@ layout: default
 lang: es
 ref: use_case_fintech
 permalink: /es/use-cases/fintech-compliance/
-title: "Revisión de cumplimiento de Fintech · WAF++ Casos de uso"
-description: "Cómo un fintech regulado utilizó WAF+ para mapear controles de nube a DSGVO, BSI C5, y NIS2 antes de una auditoría."
+title: "Revisión de cumplimiento fintech · Casos de uso de WAF++"
+description: "Cómo una fintech regulada usó WAF++ para mapear los controles cloud a DSGVO, BSI C5 y NIS2 antes de una auditoría."
 ---
 
-<main class="page-radical use-case-detail-page use-case-detail-page--fintech">
+<div class="ucd-page">
 
-  <section class="hero--radical page-radical__hero">
-    <div class="hero-orb hero-orb--blue" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb--gold" aria-hidden="true"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
+<!-- Hero -->
+<section class="ucd-hero">
+  <div class="dl-wrap">
+    <nav class="dl-rise" aria-label="Ruta de navegación"><a class="ucd-back" href="{{ '/es/use-cases/' | relative_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i> Volver a los casos de uso</a></nav>
+    <h1 class="ucd-hero__title dl-rise dl-d1">Revisión de cumplimiento fintech.</h1>
+    <p class="ucd-hero__lead dl-rise dl-d2">Una fintech regulada usa WAF++ para mapear los controles cloud a DSGVO, BSI C5 y NIS2 y, después, cierra las brechas de soberanía y seguridad antes de una auditoría.</p>
 
-    <div class="container hero-radical-grid">
-      <div class="hero-radical-copy">
-        {% include breadcrumb-inline.html %}
-        {% include breadcrumb.html %}
+    <div class="ucd-shot dl-rise dl-d3">
+      <button class="dl-shot" type="button" aria-label="Ver la captura de la matriz de cumplimiento en grande">
+        <img src="{{ '/assets/images/wafpass/Compliance_Matrix.png' | relative_url }}" alt="Captura de la matriz de cumplimiento de WAFPass para el caso de uso fintech">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
 
-        <a class="uc-detail-back" href="{{ '/use-cases/' | relative_url }}">
-          <i data-lucide="arrow-left" aria-hidden="true"></i>Volver a utilizar casos
-</a>
+<!-- Context / Approach / Outcome -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="ucd-grid dl-rise">
+      <div>
+        <h2 class="ucd-block__title">Contexto</h2>
+        <p class="ucd-block__text">La empresa es un proveedor alemán de servicios de pago que traslada su carga de trabajo principal de un centro de datos gestionado a una configuración multicloud. Los reguladores exigen evidencias documentadas sobre residencia de datos, cifrado, control de acceso y respuesta a incidentes. El equipo necesita una forma neutral respecto al proveedor de estructurar la revisión y hacer seguimiento de las brechas.</p>
+      </div>
 
-        <div class="hero-radical-badge" style="margin-top: 18px;">
-          <span class="hero-radical-badge__dot"></span>Servicios financieros
+      <div>
+        <h2 class="ucd-block__title">Enfoque</h2>
+        <p class="ucd-block__text">Realizan una evaluación WAF++ centrada en los pilares de seguridad, soberanía y excelencia operacional. Cada control se mapea a la normativa correspondiente y las evidencias que faltan se registran como brecha en la puntuación PASS. Los pilares de seguridad y soberanía reciben un peso adicional porque son relevantes para la auditoría.</p>
+      </div>
+
+      <div>
+        <h2 class="ucd-block__title">Resultado</h2>
+        <p class="ucd-block__text">El equipo elabora un informe listo para auditoría con mapeos de controles, enlaces a evidencias y un backlog de remediación. Las puntuaciones PASS mejoran de 54 a 78 en dos sprints, y la auditoría externa no encuentra hallazgos críticos relacionados con los controles cloud.</p>
+      </div>
+    </div>
+
+    <div class="ucd-tags dl-rise">
+      <span class="ucd-tag">Seguridad</span>
+      <span class="ucd-tag">Soberanía</span>
+      <span class="ucd-tag">Excelencia operacional</span>
+      <span class="ucd-tag">DSGVO</span>
+      <span class="ucd-tag">BSI C5</span>
+      <span class="ucd-tag">NIS2</span>
+    </div>
+  </div>
+</section>
+
+<!-- Supporting screenshots -->
+<section class="dl-section--alt">
+  <div class="dl-wrap">
+    <div class="uc2-section-head dl-rise">
+      <h2 class="dl-heading">Desde la evaluación.</h2>
+      <p class="dl-lead">Vistas reales de WAFPass usadas para construir esta revisión.</p>
+    </div>
+
+    <div class="ucd-gallery dl-rise">
+      <div>
+        <button class="dl-shot" type="button" aria-label="Ver la captura de los roles de acceso en grande">
+          <img src="{{ '/assets/images/wafpass/Access_Roles.png' | relative_url }}" alt="Pantalla de roles de acceso de WAFPass usada como evidencia del control de acceso">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Evidencias de control de acceso</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Ver la captura del escáner de secretos en grande">
+          <img src="{{ '/assets/images/wafpass/Secret_Scanner.png' | relative_url }}" alt="Pantalla del escáner de secretos de WAFPass usada como evidencia del cifrado y la gestión de secretos">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Escaneo de secretos y cifrado</div>
+      </div>
+
+      <div>
+        <button class="dl-shot" type="button" aria-label="Ver la captura del panel ejecutivo en grande">
+          <img src="{{ '/assets/images/wafpass/Executive_Dashboard.png' | relative_url }}" alt="Panel ejecutivo de WAFPass que muestra la mejora de la puntuación PASS">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="ucd-gallery__caption">Seguimiento PASS listo para auditoría</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
 
-        <h1 class="hero-radical-h1">
-          <span class="text-gradient-radical">Revisión del cumplimiento de Fintech</span>
-        </h1>
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="ucd-lightbox" role="dialog" aria-modal="true" aria-label="Captura ampliada" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Cerrar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
 
-        <p class="hero-radical-lead">Un fintech regulado utiliza WAF+ para mapear controles de nube a DSGVO, BSI C5, y NIS2,
-entonces cierra brechas Soberana y Seguridad antes de una auditoría.
-</p>
-      </div>
-    </div>
-  </section>
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 
-  <section class="uc-detail-visual">
-    <div class="container">
-      <div class="uc-detail-visual__frame uc-detail-visual--fintech">
-        <img src="/assets/images/wafpass/Compliance_Matrix.png" alt="WAFPass compliance matrix screenshot for the fintech use case">
-      </div>
-    </div>
-  </section>
+  var lightbox = document.getElementById('ucd-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
 
-  <section class="bento-section">
-    <div class="container">
-      <div class="uc-detail-grid">
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Contexto</h2>
-          <p class="uc-detail-block__text">La empresa es un proveedor de servicios de pago alemán que mueve su volumen de trabajo básico de una empresa gestionada
-centro de datos a una configuración multicloud. Los reguladores requieren pruebas documentadas para la residencia de datos,
-encriptación, control de acceso y respuesta a incidentes. El equipo necesita una forma neutra de proveedores
-estructurar las lagunas de examen y seguimiento.</p>
-        </article>
+    function openLightbox(trigger) {
+      var img = trigger.querySelector('img');
+      if (!img) return;
+      lastTrigger = trigger;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.ucd-page').classList.add('ucd-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Enfoque</h2>
-          <p class="uc-detail-block__text">Ejecuten una evaluación WAF+ centrada en la Seguridad, Soberana y Excelencia Operacional
-pilares. Cada control se asigna a la reglamentación pertinente, y se registran pruebas perdidas
-como una brecha de puntuación PASS. Los pilares de Seguridad y Soberana reciben más peso porque ellos
-son relevantes para la auditoría.</p>
-        </article>
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.ucd-page').classList.remove('ucd-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
 
-        <article class="uc-detail-block">
-          <h2 class="uc-detail-block__title">Resultado</h2>
-          <p class="uc-detail-block__text">El equipo produce un informe de auditoría con mapas de control, enlaces de evidencia y un
-Remediación atrasada. Las puntuaciones de PASS mejoran de 54 a 78 sobre dos sprints, y el externo
-auditoría no encuentra hallazgos críticos relacionados con controles en la nube.</p>
-        </article>
-      </div>
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
 
-      <div class="uc-detail-tags">
-        <span class="uc-detail-tag">Seguridad</span>
-        <span class="uc-detail-tag">Soberano</span>
-        <span class="uc-detail-tag">Excelencia operacional</span>
-        <span class="uc-detail-tag">DSGVO</span>
-        <span class="uc-detail-tag">BSI C5</span>
-        <span class="uc-detail-tag">NIS2</span>
-      </div>
-    </div>
-  </section>
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
 
-</main>
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>
