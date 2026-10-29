@@ -1,6 +1,6 @@
-# WAF++ Website - Quick Start Setup
+# Wombat Website - Quick Start Setup
 
-This guide will help you set up the WAF++ website development environment on your local machine.
+This guide will help you set up the Wombat website development environment on your local machine.
 
 ## Prerequisites
 
@@ -197,14 +197,14 @@ task site:build
 
 - Read the full **[README.md](README.md)** for detailed documentation
 - Review **[AGENTS.md](AGENTS.md)** for agentic coding assistant guidelines
-- Check the **[WAF++ Framework documentation](https://waf2p.dev/docs/wafpp/1.1.0/)**
-- Join the WAF++ community discussions
+- Check the **[Wombat Framework documentation](https://www.wombat-gov.dev/docs/wafpp/1.1.0/)**
+- Join the Wombat community discussions
 
 ## Getting Help
 
 - **Issues**: [GitHub Issues](https://github.com/WAF2p/waf2p.github.io/issues)
 - **Documentation**: [Full README](README.md)
-- **Community**: Visit [waf2p.dev](https://waf2p.dev)
+- **Community**: Visit [www.wombat-gov.dev](https://www.wombat-gov.dev)
 
 ---
 

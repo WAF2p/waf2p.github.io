@@ -4,7 +4,7 @@ lang: en
 ref: exit-sovereignty
 date: 2026-04-13
 title: "Exit Is Flight. Not Freedom."
-description: "Sovereignty begins with visibility — not with migration. Those who flee the cloud without knowing what they have simply trade one dependency for more complexity. WAF++ explains why exit and sovereignty are two completely different things."
+description: "Sovereignty begins with visibility — not with migration. Those who flee the cloud without knowing what they have simply trade one dependency for more complexity. Wombat explains why exit and sovereignty are two completely different things."
 categories:
   - governance
   - cloud
@@ -14,7 +14,7 @@ image: /assets/images/articles/exit-fig1-en.png
 excerpt: "Sovereignty begins with visibility — not with migration. Those who flee the cloud without knowing what they have simply trade one dependency for more complexity."
 ---
 
-<img src="/assets/images/articles/exit-fig1-en.png" alt="Exit Is Flight. Not Freedom. — WAF++ at Cloud Native Conference 2026" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;">
+<img src="/assets/images/articles/exit-fig1-en.png" alt="Exit Is Flight. Not Freedom. — Wombat at Cloud Native Conference 2026" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;">
 
 I hear it everywhere. And it's wrong.
 
@@ -26,7 +26,7 @@ Not because the desire for independence is misguided. That desire is legitimate 
 
 > "Those who don't know what they have cannot know what they depend on. And those who don't know that don't make sovereign decisions — no matter where they migrate."
 >
-> *WAF++ Sovereign Pillar · SOV-010*
+> *Wombat Sovereign Pillar · SOV-010*
 
 Exit without visibility is not a step toward sovereignty. It is a step toward a new dependency — one that you now have to operate yourself, without the managed-service depth of a hyperscaler, without dedicated teams, and without the infrastructure expertise these companies have built up over decades.
 
@@ -135,7 +135,7 @@ Exit without visibility is not a step toward sovereignty. It is a step toward a 
   <text x="718" y="380" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#ef4444">Complex. Unclear. Expensive.</text>
 
   <!-- Credit -->
-  <text x="450" y="410" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">waf2p.dev · WAF++ Sovereign Pillar</text>
+  <text x="450" y="410" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">www.wombat-gov.dev · Wombat Sovereign Pillar</text>
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 1 — Exit ≠ Freedom.</strong> What is today an orderly governed cloud becomes, after an unplanned exit, a patchwork of self-operated services. RDS, S3, CloudFront, IAM — everything must be replaced, patched, monitored, and owned. By whom, exactly?</div>
@@ -187,15 +187,15 @@ That's not an isolated case. It's the pattern. Without inventory, without contro
   <text x="60" y="368.5" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#f87171">Unexpected hidden dependencies</text>
 
   <!-- ======= DIVIDER ======= -->
-  <text x="450" y="172" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#0094ff">WAF++</text>
+  <text x="450" y="172" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#0094ff">Wombat</text>
   <text x="450" y="190" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="22" fill="#0094ff">→</text>
   <text x="450" y="210" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#0094ff">BETTER</text>
 
-  <!-- ======= RIGHT: VISIBILITY = FREEDOM (WAF++) ======= -->
+  <!-- ======= RIGHT: VISIBILITY = FREEDOM (Wombat) ======= -->
   <rect x="506" y="78" width="378" height="326" rx="10" fill="#0b1020"/>
   <rect x="506" y="78" width="378" height="4" rx="2" fill="#0094ff"/>
   <rect x="580" y="96" width="152" height="22" rx="11" fill="#0c2340"/>
-  <text x="656" y="111.5" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#60a5fa">WAF++ VISIBILITY</text>
+  <text x="656" y="111.5" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#60a5fa">Wombat VISIBILITY</text>
   <text x="695" y="158" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="28" font-weight="800" fill="#f1f5f9">Visibility</text>
   <text x="695" y="188" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" fill="#0094ff">= Freedom</text>
   <line x1="526" y1="206" x2="864" y2="206" stroke="#1e2d42" stroke-width="1"/>
@@ -213,14 +213,14 @@ That's not an isolated case. It's the pattern. Without inventory, without contro
   <text x="450" y="428" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#60a5fa">Sovereignty is not a question of the provider. It is a question of visibility.</text>
 </svg>
 <figcaption class="article-fig-cap">
-  <div><strong>Fig. 2 — Myth vs. Reality.</strong> What most believe: changing provider = sovereign. What WAF++ shows: visibility = sovereign. With full inventory and controls, exit is possible at any time — but no exit is needed to achieve sovereignty.</div>
+  <div><strong>Fig. 2 — Myth vs. Reality.</strong> What most believe: changing provider = sovereign. What Wombat shows: visibility = sovereign. With full inventory and controls, exit is possible at any time — but no exit is needed to achieve sovereignty.</div>
   <button class="article-fig-dl" data-fig="fig2-svg" data-filename="wafpp-fig2-sovereignty.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
 ## What sovereignty really means
 
-Here is the thesis that WAF++ represents — and it's uncomfortable because it means more work than a migration project:
+Here is the thesis that Wombat represents — and it's uncomfortable because it means more work than a migration project:
 
 **Sovereignty is a continuous system property, not a destination.**
 
@@ -291,7 +291,7 @@ And yes: that's harder than an exit. An exit ends. Governance never ends. But th
   <text x="746" y="290" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.6" fill="#fff">SOV-003</text>
 
   <!-- Credit -->
-  <text x="450" y="320" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">waf2p.dev · WAF++ Sovereign Pillar</text>
+  <text x="450" y="320" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">www.wombat-gov.dev · Wombat Sovereign Pillar</text>
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 3 — Three Uncomfortable Truths.</strong> Exit doesn't solve a governance problem. Visibility is more demanding than exit. And sovereignty works in AWS too — if you know what you have and why.</div>
@@ -301,7 +301,7 @@ And yes: that's harder than an exit. An exit ends. Governance never ends. But th
 
 ## When exit is still the right answer
 
-WAF++ does not fundamentally reject exit. There are legitimate scenarios:
+Wombat does not fundamentally reject exit. There are legitimate scenarios:
 
 **Exit makes sense** when data localization laws explicitly exclude US companies as processors. When the organization has the operational maturity to permanently self-operate managed services. When a complete cost-benefit analysis supports the move.
 
@@ -364,7 +364,7 @@ The decisive question is not: "Where do we run?" The question is: **"Do we know 
 
   <!-- Bottom -->
   <rect x="16" y="442" width="868" height="28" rx="6" fill="#0094ff" opacity="0.08"/>
-  <text x="450" y="460" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="#5578a0">If you answered the first four with Yes: You are sovereign. Regardless of provider. · waf2p.dev</text>
+  <text x="450" y="460" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="600" fill="#5578a0">If you answered the first four with Yes: You are sovereign. Regardless of provider. · www.wombat-gov.dev</text>
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 4 — Four Honest Questions.</strong> Do you fully know what you have? Are all dependencies conscious decisions? Can you show a regulator today what you do with what? Do you know how to exit? If yes: you are sovereign — no matter where you run.</div>
@@ -376,9 +376,9 @@ The decisive question is not: "Where do we run?" The question is: **"Do we know 
 
 On May 13th in Frankfurt, this exact question will land on stage. The panel discussion *"Does sovereignty eat cloud-native for breakfast?"* brings two positions head to head: the cloud-native enthusiast who says innovation needs the big hyperscalers, and the exit advocate who says their path was without alternative.
 
-WAF++ is neither side. We are the framework that enables the community to **answer this question for themselves** — with evidence, not ideology.
+Wombat is neither side. We are the framework that enables the community to **answer this question for themselves** — with evidence, not ideology.
 
-In the Deep Dive (14:20) we'll show live: What does a WAF++ control look like? How does Terraform run as a policy engine? How does an organization get from "no idea where we stand" to "fully auditable" in 90 days — without migrating a single workload?
+In the Deep Dive (14:20) we'll show live: What does a Wombat control look like? How does Terraform run as a policy engine? How does an organization get from "no idea where we stand" to "fully auditable" in 90 days — without migrating a single workload?
 
 If that interests you: come by. Bring your hardest questions.
 

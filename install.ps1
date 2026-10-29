@@ -1,9 +1,9 @@
-# WAF++ PASS installer for Windows (PowerShell)
-# https://waf2p.dev/wafpass-install/
+# WOMBATpass installer for Windows (PowerShell)
+# https://www.wombat-gov.dev/wafpass-install/
 #
 # Usage:
-#   irm https://waf2p.dev/install.ps1 | iex
-#   irm https://waf2p.dev/install.ps1 | iex -Version 1.1.2
+#   irm https://wombat-cli.dev/install.ps1 | iex
+#   irm https://wombat-cli.dev/install.ps1 | iex -Version 1.1.2
 
 #Requires -Version 5.1
 
@@ -67,7 +67,7 @@ function Test-PythonVersion {
 # ── Help ───────────────────────────────────────────────────────────────────────
 if ($Help) {
     @"
-WAF++ PASS installer (Windows)
+WOMBATpass installer (Windows)
 
 Usage: install.ps1 [OPTIONS]
 
@@ -122,7 +122,7 @@ Write-Log "Using Python: $PythonCmd ($ver)"
 
 # ── Detect git ─────────────────────────────────────────────────────────────────
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
-    Write-ErrorLog "git is required to download the WAF++ controls. Please install it from https://git-scm.com/downloads"
+    Write-ErrorLog "git is required to download the Wombat controls. Please install it from https://git-scm.com/downloads"
     exit 1
 }
 
@@ -170,12 +170,12 @@ if (-not $UseVenv) {
 }
 Invoke-Command -Command $pipInstall -DryRun:$DryRun
 
-# ── Download WAF++ controls ────────────────────────────────────────────────────
+# ── Download Wombat controls ────────────────────────────────────────────────────
 $ControlsDir = Join-Path $WafpassHome "controls"
 $DemoDir = Join-Path $WafpassHome "demo"
 $ControlsTmp = Join-Path $WafpassHome ".controls-tmp"
 
-Write-Log "Downloading WAF++ controls..."
+Write-Log "Downloading Wombat controls..."
 if ($DryRun) {
     Write-Log "Would clone $WafpassControlsUrl (branch $WafpassControlsBranch) into $ControlsTmp"
     Write-Log "Would copy controls to $ControlsDir"
@@ -187,7 +187,7 @@ else {
 
     git clone --depth 1 --branch $WafpassControlsBranch $WafpassControlsUrl $ControlsTmp 2>$null | Out-Null
     if ($LASTEXITCODE -ne 0) {
-        Write-ErrorLog "Failed to clone WAF++ controls from $WafpassControlsUrl"
+        Write-ErrorLog "Failed to clone Wombat controls from $WafpassControlsUrl"
         exit 1
     }
 
@@ -236,7 +236,7 @@ resource "aws_s3_bucket_public_access_block" "public" {
 }
 
 # ── Run first scan ─────────────────────────────────────────────────────────────
-Write-Log "Running your first WAFPass scan..."
+Write-Log "Running your first WOMBATpass scan..."
 $checkCommand = "& `"$PythonCmd`" -m wafpass check `"$DemoDir`" --output json"
 if ($DryRun) {
     Write-Log "Would run: $checkCommand | jq '.summary'"
@@ -256,9 +256,9 @@ Write-Log "Installation complete."
 Write-Log "Controls:   $ControlsDir"
 Write-Log "Demo files: $DemoDir"
 if ($UseVenv) {
-    Write-Log "To run WAFPass again, use: & `"$PythonCmd`" -m wafpass check `"$DemoDir`""
+    Write-Log "To run WOMBATpass again, use: & `"$PythonCmd`" -m wafpass check `"$DemoDir`""
     Write-Log "Or activate the environment: & `"$WafpassVenv\Scripts\Activate.ps1`""
 }
 else {
-    Write-Log "To run WAFPass again, use: & `"$PythonCmd`" -m wafpass check `"$DemoDir`""
+    Write-Log "To run WOMBATpass again, use: & `"$PythonCmd`" -m wafpass check `"$DemoDir`""
 }

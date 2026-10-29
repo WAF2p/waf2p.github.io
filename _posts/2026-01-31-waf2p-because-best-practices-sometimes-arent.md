@@ -1,8 +1,8 @@
 ---
 date: 2026-01-31
 lang: en
-title: "WAF++ — Because Best Practices Sometimes Aren't"
-description: "Great ideas rarely happen on schedule. WAF++ was born in a hotel bar the night before Cloud Native Conference 2025 — here's how it happened."
+title: "Wombat — Because Best Practices Sometimes Aren't"
+description: "Great ideas rarely happen on schedule. Wombat was born in a hotel bar the night before Cloud Native Conference 2025 — here's how it happened."
 categories:
   - cloud
   - best_practices
@@ -20,7 +20,7 @@ And somewhere — somewhere between "why does nobody do this properly?" and "thi
 2. None that actually listens to cloud practitioners.
 3. None that reflects the reality of our day-to-day work.
 
-In that moment, WAF++ was born — maybe not the name yet, but definitely the idea. And no, not from a corporate workshop or an "Architecture Steering Board" — but from a spontaneous bar session full of ideas, discussions, and honest technical frustration. A mix of "we could…", "we should…", and "okay, let's actually do this."
+In that moment, Wombat was born — maybe not the name yet, but definitely the idea. And no, not from a corporate workshop or an "Architecture Steering Board" — but from a spontaneous bar session full of ideas, discussions, and honest technical frustration. A mix of "we could…", "we should…", and "okay, let's actually do this."
 
 ## Day 1 After the Idea — CNC 2025
 
@@ -39,7 +39,7 @@ In the two weeks following the conference we kept the conversation going intensi
 
 Artem — who later also came up with the name — completes the founding team.
 
-I asked him, and he was in immediately. So we planned. One session means a virtual marathon meeting of four to five hours on Saturdays. Since the kickoff we've had eight of those sessions already. All following the same pattern: plan, geek out, laugh. Lots of laughing. Fun matters to us. Just as much as the idea that WAF++ is being built by the community, for the community.
+I asked him, and he was in immediately. So we planned. One session means a virtual marathon meeting of four to five hours on Saturdays. Since the kickoff we've had eight of those sessions already. All following the same pattern: plan, geek out, laugh. Lots of laughing. Fun matters to us. Just as much as the idea that Wombat is being built by the community, for the community.
 
 ## Today — 2026, One Hundred Days Before CNC 2026
 
@@ -51,7 +51,7 @@ We are roughly 100 days from Cloud Native Conference 2026 — and we have:
 - more and more conference sessions being confirmed
 - and recently: our own Antora documentation area
 
-> WAF++ is growing. The community can grow. The idea is alive.
+> Wombat is growing. The community can grow. The idea is alive.
 
 And: you can be part of it right now.
 

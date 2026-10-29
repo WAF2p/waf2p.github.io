@@ -32,7 +32,7 @@ Die Firma LGT Capital Partners, für die Sascha tätig ist, wurde mit dem Cloud 
 Sascha verfügt über tiefgehende Kenntnisse in AWS, Azure, GCP, Alibaba Cloud, Yandex.Cloud und Oracle Cloud. Er ist spezialisiert auf Hybrid-Cloud-Architekturen, CI/CD-Automatisierung (Jenkins, GitLab, GitHub), sowie Infrastructure-as-Code mit Terraform und CloudFormation. Seine Projekte reichen von der Einrichtung komplexer Multi-Account-Landing-Zones bis zur Entwicklung hochverfügbarer SaaS-Systeme.
 
 ### IT-Security & Compliance
-Als TÜV-zertifizierter IT-Security Advisor bringt er höchste Standards in die Architektur von Cloud-Umgebungen ein. Seine Arbeit stellt sicher, dass WAF++ nicht nur technisch exzellent, sondern auch regulatorisch und sicherheitsorientiert aufgebaut ist.
+Als TÜV-zertifizierter IT-Security Advisor bringt er höchste Standards in die Architektur von Cloud-Umgebungen ein. Seine Arbeit stellt sicher, dass Wombat nicht nur technisch exzellent, sondern auch regulatorisch und sicherheitsorientiert aufgebaut ist.
 
 ### Praxis & Projekte
 - Aufbau einer privaten Cloud für über 20 Standorte im Rahmen einer IHK-Präsentation.
@@ -40,8 +40,8 @@ Als TÜV-zertifizierter IT-Security Advisor bringt er höchste Standards in die 
 - Gestaltung hybrider Cloud-Umgebungen, die verschiedene Anbieter verbinden, um maximale Flexibilität und Sicherheit zu gewährleisten.
 - Internationale Projekterfahrung, die ihm erlaubt, über Ländergrenzen hinweg Standards zu entwickeln und anzuwenden.
 
-### Strategische Rolle bei WAF++
-Sascha bringt nicht nur technisches Wissen, sondern auch juristische und administrative Erfahrung ein. Er hat rechtssichere Templates und Governance-Dokumentationen entwickelt und sorgt dafür, dass WAF++ als Framework transparent, skalierbar und zukunftssicher bleibt.
+### Strategische Rolle bei Wombat
+Sascha bringt nicht nur technisches Wissen, sondern auch juristische und administrative Erfahrung ein. Er hat rechtssichere Templates und Governance-Dokumentationen entwickelt und sorgt dafür, dass Wombat als Framework transparent, skalierbar und zukunftssicher bleibt.
 
 ### Vision & Community
-Sein Ansatz ist klar: Technik, Recht und Design müssen zusammengeführt werden, um Standards zu schaffen, die langfristig Bestand haben. Mit seiner Erfahrung in Moderation und Dokumentation offener Projekte trägt er dazu bei, dass WAF++ von der Community getragen und weiterentwickelt wird.
+Sein Ansatz ist klar: Technik, Recht und Design müssen zusammengeführt werden, um Standards zu schaffen, die langfristig Bestand haben. Mit seiner Erfahrung in Moderation und Dokumentation offener Projekte trägt er dazu bei, dass Wombat von der Community getragen und weiterentwickelt wird.

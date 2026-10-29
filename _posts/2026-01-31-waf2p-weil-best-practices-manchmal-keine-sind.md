@@ -1,7 +1,7 @@
 ---
 date: 2026-01-31
 lang: de
-title: WAF++ - Weil Best Practices manchmal keine sind
+title: Wombat - Weil Best Practices manchmal keine sind
 categories:
   - cloud
   - best_practices
@@ -19,7 +19,7 @@ Und irgendwann — irgendwo zwischen „Warum macht das eigentlich niemand richt
 2. Keins, das Cloud‑Nerds zuhört.
 3. Keins, das unseren Alltag abbildet.
 
-In diesem Moment war WAF++ geboren — vielleicht noch nicht der Name, aber definitiv die Idee. Und nein, nicht aus einem Corporate‑Workshop oder einem „Architecture Steering Board“, sondern aus einer spontanen Bar‑Session voller Ideen, Diskussionen und ehrlicher technischer Frustration. Eine Mischung aus „wir könnten…“, „wir sollten…“ und „okay, lass uns das jetzt wirklich machen“.
+In diesem Moment war Wombat geboren — vielleicht noch nicht der Name, aber definitiv die Idee. Und nein, nicht aus einem Corporate‑Workshop oder einem „Architecture Steering Board“, sondern aus einer spontanen Bar‑Session voller Ideen, Diskussionen und ehrlicher technischer Frustration. Eine Mischung aus „wir könnten…“, „wir sollten…“ und „okay, lass uns das jetzt wirklich machen“.
 
 ## Tag 1 nach der Idee — CNC 2025
 
@@ -39,7 +39,7 @@ In den zwei Wochen nach der Konferenz haben wir uns intensiv ausgetauscht und en
 
 Artem — der später auch die Idee für den Namen hatte — komplettiert das Gründerteam.
 
-Ich hab ihn gefragt, und er war sofort dabei. Also haben wir geplant. Eine Session basiert auf einem virtuellen Marathon‑Meeting von vier bis fünf Stunden an Samstagen. Seit dem Kick‑off hatten wir bereits acht dieser Sessions. Alle nach dem gleichen Muster: planen, fachsimpeln, lachen. Viel lachen. Spaß ist uns wichtig. Genau wie der Gedanke, dass WAF++ von der Community für die Community entsteht.
+Ich hab ihn gefragt, und er war sofort dabei. Also haben wir geplant. Eine Session basiert auf einem virtuellen Marathon‑Meeting von vier bis fünf Stunden an Samstagen. Seit dem Kick‑off hatten wir bereits acht dieser Sessions. Alle nach dem gleichen Muster: planen, fachsimpeln, lachen. Viel lachen. Spaß ist uns wichtig. Genau wie der Gedanke, dass Wombat von der Community für die Community entsteht.
 
 ## Heute — 2026, Hundert Tage vor der CNC 2026
 
@@ -51,7 +51,7 @@ eine Umfrage auf dem Weg (URL)
 immer mehr Konferenz‑Sessions, die gerade bestätigt werden
 und seit Kurzem: unseren eigenen Antora‑Dokumentationsbereich
 
->WAF++ wächst. Die Community kann wachsen. Die Idee lebt.
+>Wombat wächst. Die Community kann wachsen. Die Idee lebt.
 
 Und: Du kannst jetzt Teil davon werden.
 

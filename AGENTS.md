@@ -1,14 +1,14 @@
-# AGENTS.md - WAF++ Jekyll + Antora Hybrid Site
+# AGENTS.md - Wombat Jekyll + Antora Hybrid Site
 
-This file provides guidelines for agentic coding assistants working on the WAF++ website codebase.
+This file provides guidelines for agentic coding assistants working on the Wombat website codebase.
 
 ## Project Overview
 
 **Type**: Hybrid static website (Jekyll marketing site + Antora documentation)  
-**Purpose**: WAF++ community-driven, cloud-agnostic framework website and documentation  
+**Purpose**: Wombat community-driven, cloud-agnostic framework website and documentation  
 **Deployment**: GitHub Pages via GitHub Actions  
-**URL**: https://waf2p.dev/  
-**Documentation**: https://waf2p.dev/docs/wafpp/1.1.0/
+**URL**: https://www.wombat-gov.dev/  
+**Documentation**: https://www.wombat-gov.dev/docs/wafpp/1.1.0/
 
 ### Architecture
 
@@ -306,4 +306,4 @@ This ensures both systems coexist without conflicts.
 ---
 
 **Last Updated**: 2026-01-31  
-**Maintained By**: WAF++ Community
+**Maintained By**: Wombat Community

@@ -1,5 +1,5 @@
-# WAFPass Server changelog — data source for /changelog/ and /de/changelog/
-# wafpass-server is the FastAPI / PostgreSQL persistence layer for the WAFPass stack.
+# WOMBATpass Server changelog — data source for /changelog/ and /de/changelog/
+# wafpass-server is the FastAPI / PostgreSQL persistence layer for the WOMBATpass stack.
 # wafpass-server v1.0.1 released: 2026-06-07
 # Order: newest first. Add new groups at the top.
 # Types: new | improvement | fix | docs | infra | breaking
@@ -62,11 +62,11 @@
   beta: false
   changes:
     - type: new
-      text_en: "Versioned control snapshot system — `wafpass control pack init` and `wafpass control pack update` commands; snapshots stored in `controls-releases/` with version tags and regulatory mapping files"
-      text_de: "Versioniertes Control-Snapshot-System — `wafpass control pack init`- und `wafpass control pack update`-Befehle; Snapshots in `controls-releases/` mit Versions-Tags und regulatorischen Mapping-Dateien gespeichert"
+      text_en: "Versioned control snapshot system — `wombat control pack init` and `wombat control pack update` commands; snapshots stored in `controls-releases/` with version tags and regulatory mapping files"
+      text_de: "Versioniertes Control-Snapshot-System — `wombat control pack init`- und `wombat control pack update`-Befehle; Snapshots in `controls-releases/` mit Versions-Tags und regulatorischen Mapping-Dateien gespeichert"
     - type: improvement
-      text_en: "Control update management — `wafpass control update` downloads and validates the latest control packs from the central registry; detects version drift between local controls and published packs"
-      text_de: "Control-Update-Verwaltung — `wafpass control update` lädt die neuesten Control-Packs aus dem zentralen Registry herunter und validiert sie; erkennt Versionsdrift zwischen lokalen Controls und veröffentlichten Packs"
+      text_en: "Control update management — `wombat control update` downloads and validates the latest control packs from the central registry; detects version drift between local controls and published packs"
+      text_de: "Control-Update-Verwaltung — `wombat control update` lädt die neuesten Control-Packs aus dem zentralen Registry herunter und validiert sie; erkennt Versionsdrift zwischen lokalen Controls und veröffentlichten Packs"
 
 - group_en: "May 2026"
   group_de: "Mai 2026"
@@ -133,7 +133,7 @@
   beta: true
   changes:
     - type: new
-      text_en: "`/scans` REST endpoint — POST `/api/scans` triggers a wafpass scan remotely from the dashboard; accepts a project reference and returns a streaming run result; integrates with the Run Scan page in wafpass-dashboard"
+      text_en: "`/scans` REST endpoint — POST `/api/scans` triggers a wombat scan remotely from the dashboard; accepts a project reference and returns a streaming run result; integrates with the Run Scan page in wafpass-dashboard"
       text_de: "`/scans` REST-Endpunkt — POST `/api/scans` startet einen wafpass-Scan remote vom Dashboard aus; akzeptiert eine Projektreferenz und gibt ein gestreamtes Run-Ergebnis zurück; integriert mit der Run-Scan-Seite in wafpass-dashboard"
     - type: new
       text_en: "Authorization layer — JWT-based authentication added to all protected endpoints; `/api/auth/*` routes include login, logout, token refresh, and current-user; local-account provider ships in-box with `WAFPASS_JWT_SECRET` and `WAFPASS_ENV` config keys"
@@ -172,7 +172,7 @@
   beta: true
   changes:
     - type: new
-      text_en: "Secret findings persistence — new secret_findings JSONB column on the Run model stores hardcoded credential findings produced by the wafpass secret scanner; Alembic migration 0006_add_secret_findings applies automatically on container start"
+      text_en: "Secret findings persistence — new secret_findings JSONB column on the Run model stores hardcoded credential findings produced by the wombat secret scanner; Alembic migration 0006_add_secret_findings applies automatically on container start"
       text_de: "Secret-Findings-Persistenz — neue secret_findings-JSONB-Spalte im Run-Modell speichert Hardcoded-Credential-Findings des wafpass Secret Scanners; Alembic-Migration 0006_add_secret_findings wird automatisch beim Container-Start angewendet"
     - type: new
       text_en: "Waivers REST API — new /waivers router with GET (list, project-filtered), PUT (idempotent upsert by control ID), and DELETE; waivers created locally in the dashboard are synced to the server when a connection is available"
@@ -196,8 +196,8 @@
   beta: true
   changes:
     - type: new
-      text_en: "Controls REST API — new /controls router with POST (idempotent upsert by id), GET (list with pillar and severity filtering, paginated), and DELETE endpoints; allows custom controls authored via wafpass control generate to be stored and queried server-side"
-      text_de: "Controls REST API — neuer /controls-Router mit POST (idempotenter Upsert nach id), GET (Liste mit Pillar- und Schweregrad-Filter, paginiert) und DELETE-Endpunkten; ermöglicht die server-seitige Speicherung und Abfrage von über wafpass control generate erstellten Custom-Controls"
+      text_en: "Controls REST API — new /controls router with POST (idempotent upsert by id), GET (list with pillar and severity filtering, paginated), and DELETE endpoints; allows custom controls authored via wombat control generate to be stored and queried server-side"
+      text_de: "Controls REST API — neuer /controls-Router mit POST (idempotenter Upsert nach id), GET (Liste mit Pillar- und Schweregrad-Filter, paginiert) und DELETE-Endpunkten; ermöglicht die server-seitige Speicherung und Abfrage von über wombat control generate erstellten Custom-Controls"
     - type: new
       text_en: "Control database model — new Control ORM model with fields for id, pillar, severity, type, description, checks (JSON), source, created_at, and updated_at"
       text_de: "Control-Datenbankmodell — neues Control-ORM-Modell mit Feldern für id, Pillar, Schweregrad, Typ, Beschreibung, Checks (JSON), Quelle, created_at und updated_at"

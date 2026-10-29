@@ -2,8 +2,8 @@
 layout: default
 lang: en
 ref: wafpass_mcp
-title: WAF++ MCP Bridge
-description: Connect Claude Desktop and other MCP hosts to your WAFPass backend through a secure Model Context Protocol bridge.
+title: Wombat MCP Bridge
+description: Connect Claude Desktop and other MCP hosts to your WOMBATpass backend through a secure Model Context Protocol bridge.
 permalink: /wafpass-mcp/
 ---
 
@@ -14,7 +14,7 @@ permalink: /wafpass-mcp/
   <div class="dl-wrap">
     <div class="dl-rise">
       <h1 class="wfpm-hero__title">Your data, in any MCP host.</h1>
-      <p class="wfpm-hero__lead">WAF++ MCP Bridge exposes the WAFPass REST API as Model Context Protocol tools for AI assistants. Ask Claude to list runs, inspect findings, or explore compliance data, all through the same SSO session and role-based permissions you already trust.</p>
+      <p class="wfpm-hero__lead">Wombat MCP Bridge exposes the WOMBATpass REST API as Model Context Protocol tools for AI assistants. Ask Claude to list runs, inspect findings, or explore compliance data, all through the same SSO session and role-based permissions you already trust.</p>
       <div class="wfpm-hero__actions">
         <a class="wf6-btn wf6-btn--pill" href="https://pypi.org/project/wafpass-mcp/" target="_blank" rel="noopener">
           Get from PyPI
@@ -23,7 +23,7 @@ permalink: /wafpass-mcp/
           </span>
         </a>
         <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-mcp" target="_blank" rel="noopener">View on GitHub</a>
-        <a class="wf6-btn wf6-btn--line" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/wafpass-install/' | relative_url }}">Install WOMBATpass</a>
       </div>
       <div class="wfpm-hero__row">
         <div class="dl-quiet-row__names">
@@ -57,7 +57,7 @@ permalink: /wafpass-mcp/
   <div class="dl-wrap">
     <div class="wfpm-section-head dl-rise">
       <h2 class="dl-heading">A secure bridge, not a second auth system.</h2>
-      <p class="dl-lead">The bridge re-uses WAFPass identity, permissions and audit trails. It validates, proxies, and filters, never stores cloud secrets or IdP passwords.</p>
+      <p class="dl-lead">The bridge re-uses WOMBATpass identity, permissions and audit trails. It validates, proxies, and filters, never stores cloud secrets or IdP passwords.</p>
     </div>
 
     <div class="wfpm-grid dl-rise">
@@ -75,7 +75,7 @@ permalink: /wafpass-mcp/
       </div>
       <div class="wfpm-card">
         <h3 class="wfpm-card__title">Context propagation</h3>
-        <p class="wfpm-card__desc">The original <code>Authorization: Bearer</code> header is forwarded to WAFPass on every proxied request, preserving user identity and audit attribution.</p>
+        <p class="wfpm-card__desc">The original <code>Authorization: Bearer</code> header is forwarded to WOMBATpass on every proxied request, preserving user identity and audit attribution.</p>
       </div>
       <div class="wfpm-card">
         <h3 class="wfpm-card__title">OpenAPI generated</h3>
@@ -113,7 +113,7 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 
 wafpass-mcp-configure
-# Enter WAFpass API URL, username and password</code></pre>
+# Enter WOMBATpass API URL, username and password</code></pre>
         </div>
       </div>
 
@@ -143,7 +143,7 @@ wafpass-mcp-configure
             <span class="code-window__dot"></span>
             <span class="code-window__title">3. Docker Compose (alternative)</span>
           </div>
-          <pre class="code-window__body"><code># From the WAF++ repository root
+          <pre class="code-window__body"><code># From the Wombat repository root
 docker compose up -d wafpass-mcp
 docker compose logs -f wafpass-mcp
 
@@ -160,7 +160,7 @@ docker compose logs -f wafpass-mcp
   <div class="dl-wrap">
     <div class="wfpm-section-head dl-rise">
       <h2 class="dl-heading">How the bridge fits in.</h2>
-      <p class="dl-lead">The user authenticates through the upstream IdP, exchanges tokens with WAFPass, then brings the same Bearer token to the MCP host. The bridge proxies requests and filters tools by role.</p>
+      <p class="dl-lead">The user authenticates through the upstream IdP, exchanges tokens with WOMBATpass, then brings the same Bearer token to the MCP host. The bridge proxies requests and filters tools by role.</p>
     </div>
 
     <div class="wfpm-pipeline dl-rise">
@@ -175,7 +175,7 @@ docker compose logs -f wafpass-mcp
       </div>
       <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
       <div class="wfpm-pipeline__node">
-        <div class="wfpm-pipeline__label">WAFPass</div>
+        <div class="wfpm-pipeline__label">WOMBATpass</div>
         <div class="wfpm-pipeline__name">wafpass-server</div>
       </div>
       <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
@@ -196,10 +196,10 @@ docker compose logs -f wafpass-mcp
           <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>WAFPASS_API_BASE_URL</code></td><td><code>http://localhost:8000</code></td><td>Upstream WAFpass API.</td></tr>
+          <tr><td><code>WAFPASS_API_BASE_URL</code></td><td><code>http://localhost:8000</code></td><td>Upstream WOMBATpass API.</td></tr>
           <tr><td><code>WAFPASS_TOKEN_MODE</code></td><td><code>introspection</code></td><td><code>introspection</code> or <code>jwt_secret</code> for local HS256.</td></tr>
           <tr><td><code>WAFPASS_JWT_SECRET</code></td><td>none</td><td>Required for <code>jwt_secret</code> mode; must match backend.</td></tr>
-          <tr><td><code>WAFPASS_ACCESS_TOKEN</code></td><td>none</td><td>WAF++ token for stdio mode; optional if stored by configure helper.</td></tr>
+          <tr><td><code>WAFPASS_ACCESS_TOKEN</code></td><td>none</td><td>Wombat token for stdio mode; optional if stored by configure helper.</td></tr>
           <tr><td><code>WAFPASS_REFRESH_TOKEN</code></td><td>none</td><td>Refresh token for automatic access-token refresh in stdio mode.</td></tr>
           <tr><td><code>WAFPASS_REFRESH_THRESHOLD_SECONDS</code></td><td><code>300</code></td><td>Refresh access token if it expires within this many seconds.</td></tr>
           <tr><td><code>MCP_HOST</code></td><td><code>0.0.0.0</code></td><td>Bridge bind host in HTTP/SSE mode.</td></tr>
@@ -224,8 +224,8 @@ docker compose logs -f wafpass-mcp
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
           </span>
         </a>
-        <a class="wf6-btn wf6-btn--line" href="{{ '/wafpass/' | relative_url }}">About WAFPass</a>
-        <a class="wf6-btn wf6-btn--line" href="{{ '/wafpass-install/' | relative_url }}">Install WAFPass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/wafpass/' | relative_url }}">About WOMBATpass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/wafpass-install/' | relative_url }}">Install WOMBATpass</a>
       </div>
     </div>
   </div>

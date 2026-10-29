@@ -166,7 +166,7 @@
       'vision': 'Vision',
       'faq': 'FAQ',
       'blog': 'Blog',
-      'back_home': 'waf2p.dev'
+      'back_home': 'www.wombat-gov.dev'
     };
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {

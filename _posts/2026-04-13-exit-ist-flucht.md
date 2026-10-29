@@ -4,7 +4,7 @@ lang: de
 ref: exit-sovereignty
 date: 2026-04-13
 title: "Exit ist Flucht. Nicht Freiheit."
-description: "Souveränität beginnt mit Sichtbarkeit — nicht mit Migration. Wer aus der Cloud flieht, ohne zu wissen was er hat, tauscht eine Abhängigkeit gegen mehr Komplexität. WAF++ erklärt, warum Exit und Souveränität zwei verschiedene Dinge sind."
+description: "Souveränität beginnt mit Sichtbarkeit — nicht mit Migration. Wer aus der Cloud flieht, ohne zu wissen was er hat, tauscht eine Abhängigkeit gegen mehr Komplexität. Wombat erklärt, warum Exit und Souveränität zwei verschiedene Dinge sind."
 categories:
   - governance
   - cloud
@@ -14,7 +14,7 @@ image: /assets/images/articles/exit-fig1-de.png
 excerpt: "Souveränität beginnt mit Sichtbarkeit — nicht mit Migration. Wer aus der Cloud flieht, ohne zu wissen was er hat, tauscht eine Abhängigkeit gegen mehr Komplexität."
 ---
 
-<img src="/assets/images/articles/exit-fig1-de.png" alt="Exit ist Flucht. Nicht Freiheit. — WAF++ zur Cloud Native Conference 2026" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;">
+<img src="/assets/images/articles/exit-fig1-de.png" alt="Exit ist Flucht. Nicht Freiheit. — Wombat zur Cloud Native Conference 2026" style="width:100%;height:auto;border-radius:12px;margin-bottom:32px;">
 
 Ich höre es überall. Und es stimmt nicht.
 
@@ -26,7 +26,7 @@ Nicht weil der Wunsch nach Unabhängigkeit falsch wäre. Der ist richtig und wic
 
 > „Wer nicht weiß, was er hat, kann nicht wissen, wovon er abhängig ist. Und wer das nicht weiß, trifft keine souveräne Entscheidung — egal wohin er migriert."
 >
-> *WAF++ Sovereign Pillar · SOV-010*
+> *Wombat Sovereign Pillar · SOV-010*
 
 Exit ohne Sichtbarkeit ist kein Schritt in Richtung Souveränität. Es ist ein Schritt in Richtung einer neuen Abhängigkeit — die man diesmal selbst betreiben muss, ohne die Managed-Service-Tiefe eines Hyperscalers, ohne dedizierte Teams und ohne die Infrastruktur-Expertise, die sich diese Unternehmen über Jahrzehnte aufgebaut haben.
 
@@ -141,7 +141,7 @@ Exit ohne Sichtbarkeit ist kein Schritt in Richtung Souveränität. Es ist ein S
   <text x="718" y="380" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#ef4444">Komplex. Unklar. Teuer.</text>
 
   <!-- Credit -->
-  <text x="450" y="410" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">waf2p.dev · WAF++ Sovereign Pillar</text>
+  <text x="450" y="410" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">www.wombat-gov.dev · Wombat Sovereign Pillar</text>
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 1 — Exit ≠ Freiheit.</strong> Was heute eine ordentliche Governed Cloud ist, wird nach einem ungeplanten Exit zu einem Flickenteppich aus selbst-betriebenen Diensten. RDS, S3, CloudFront, IAM — alles muss ersetzt, gepatcht, überwacht und verantwortet werden. Von wem eigentlich?</div>
@@ -193,15 +193,15 @@ Das ist kein Einzelfall. Es ist das Muster. Ohne Inventar, ohne Controls und ohn
   <text x="60" y="368.5" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#f87171">Unerwartete Abhängigkeiten</text>
 
   <!-- ======= DIVIDER ======= -->
-  <text x="450" y="172" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#0094ff">WAF++</text>
+  <text x="450" y="172" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#0094ff">Wombat</text>
   <text x="450" y="190" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="22" fill="#0094ff">→</text>
   <text x="450" y="210" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#0094ff">BESSER</text>
 
-  <!-- ======= RIGHT: SICHTBARKEIT = FREIHEIT (WAF++) ======= -->
+  <!-- ======= RIGHT: SICHTBARKEIT = FREIHEIT (Wombat) ======= -->
   <rect x="506" y="78" width="378" height="326" rx="10" fill="#0b1020"/>
   <rect x="506" y="78" width="378" height="4" rx="2" fill="#0094ff"/>
   <rect x="586" y="96" width="138" height="22" rx="11" fill="#0c2340"/>
-  <text x="655" y="111.5" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#60a5fa">WAF++ SICHTBARKEIT</text>
+  <text x="655" y="111.5" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#60a5fa">Wombat SICHTBARKEIT</text>
   <text x="695" y="158" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="28" font-weight="800" fill="#f1f5f9">Sichtbarkeit</text>
   <text x="695" y="188" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" fill="#0094ff">= Freiheit</text>
   <line x1="526" y1="206" x2="864" y2="206" stroke="#1e2d42" stroke-width="1"/>
@@ -219,14 +219,14 @@ Das ist kein Einzelfall. Es ist das Muster. Ohne Inventar, ohne Controls und ohn
   <text x="450" y="428" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#60a5fa">Souveränität ist keine Frage des Anbieters. Es ist eine Frage der Sichtbarkeit.</text>
 </svg>
 <figcaption class="article-fig-cap">
-  <div><strong>Abb. 2 — Mythos vs. Realität.</strong> Was die meisten glauben: Anbieter wechseln = souverän. Was WAF++ zeigt: Sichtbarkeit = souverän. Mit vollem Inventar und Controls ist Exit jederzeit möglich — aber kein Exit nötig, um Souveränität zu erreichen.</div>
+  <div><strong>Abb. 2 — Mythos vs. Realität.</strong> Was die meisten glauben: Anbieter wechseln = souverän. Was Wombat zeigt: Sichtbarkeit = souverän. Mit vollem Inventar und Controls ist Exit jederzeit möglich — aber kein Exit nötig, um Souveränität zu erreichen.</div>
   <button class="article-fig-dl" data-fig="fig2-svg" data-filename="wafpp-abb2-souveraenitaet.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
 ## Was Souveränität wirklich bedeutet
 
-Hier ist die These, die WAF++ vertritt — und sie ist unbequem, weil sie mehr Arbeit bedeutet als ein Migrations-Projekt:
+Hier ist die These, die Wombat vertritt — und sie ist unbequem, weil sie mehr Arbeit bedeutet als ein Migrations-Projekt:
 
 **Souveränität ist eine kontinuierliche Systemeigenschaft, keine Destination.**
 
@@ -312,7 +312,7 @@ Und ja: Das ist anstrengender als ein Exit. Ein Exit endet. Governance endet nie
   <text x="746" y="290" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.6" fill="#fff">SOV-003</text>
 
   <!-- Credit -->
-  <text x="450" y="320" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">waf2p.dev · WAF++ Sovereign Pillar</text>
+  <text x="450" y="320" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#9ba8bb">www.wombat-gov.dev · Wombat Sovereign Pillar</text>
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 3 — Drei unbequeme Wahrheiten.</strong> Exit löst kein Governance-Problem. Sichtbarkeit ist anspruchsvoller als Exit. Und Souveränität funktioniert auch in AWS — wenn du weißt, was du hast und warum.</div>
@@ -322,7 +322,7 @@ Und ja: Das ist anstrengender als ein Exit. Ein Exit endet. Governance endet nie
 
 ## Wann Exit trotzdem richtig ist
 
-WAF++ lehnt Exit nicht grundsätzlich ab. Es gibt legitime Szenarien:
+Wombat lehnt Exit nicht grundsätzlich ab. Es gibt legitime Szenarien:
 
 **Exit macht Sinn**, wenn Datenlokalisierungsgesetze US-Unternehmen als Processor explizit ausschließen. Wenn die eigene Organisation die operative Reife hat, Managed Services dauerhaft selbst zu betreiben. Wenn eine vollständige Kosten-Nutzen-Analyse das unterstützt.
 
@@ -385,7 +385,7 @@ Die entscheidende Frage ist nicht: „Wo laufen wir?" Die Frage ist: **„Wissen
 
   <!-- Bottom statement -->
   <rect x="16" y="442" width="868" height="28" rx="8" fill="#0b1020"/>
-  <text x="450" y="460" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#60a5fa">Wenn du die ersten vier mit Ja beantwortest: Du bist souverän. Egal bei welchem Anbieter. · waf2p.dev</text>
+  <text x="450" y="460" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="600" fill="#60a5fa">Wenn du die ersten vier mit Ja beantwortest: Du bist souverän. Egal bei welchem Anbieter. · www.wombat-gov.dev</text>
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 4 — Vier ehrliche Fragen.</strong> Weißt du vollständig, was du hast? Sind alle Abhängigkeiten bewusste Entscheidungen? Kannst du einem Regulator heute zeigen, was du womit machst? Weißt du, wie du rauskommst? Wenn ja: Du bist souverän — egal wo du läufst.</div>
@@ -397,9 +397,9 @@ Die entscheidende Frage ist nicht: „Wo laufen wir?" Die Frage ist: **„Wissen
 
 Am 13. Mai in Frankfurt wird genau diese Frage auf der Bühne landen. Das Streitgespräch *„Frisst Souveränität Cloud-Native zum Frühstück?"* bringt zwei Positionen direkt gegeneinander: Den Cloud-Native-Enthusiasten, der sagt, Innovation braucht die großen Hyperscaler. Den Aussteiger, der sagt, sein Weg war alternativlos.
 
-WAF++ ist keine der beiden Seiten. Wir sind das Framework, das die Community in die Lage versetzt, **diese Frage für sich selbst zu beantworten** — mit Evidence, nicht mit Ideologie.
+Wombat ist keine der beiden Seiten. Wir sind das Framework, das die Community in die Lage versetzt, **diese Frage für sich selbst zu beantworten** — mit Evidence, nicht mit Ideologie.
 
-Im Deep Dive (14:20) zeigen wir live: Wie sieht ein WAF++ Control aus? Wie läuft Terraform als Policy-Engine? Wie kommt eine Organisation in 90 Tagen von „keine Ahnung wo wir stehen" zu „vollständig auditierbar" — ohne einen einzigen Workload zu migrieren?
+Im Deep Dive (14:20) zeigen wir live: Wie sieht ein Wombat Control aus? Wie läuft Terraform als Policy-Engine? Wie kommt eine Organisation in 90 Tagen von „keine Ahnung wo wir stehen" zu „vollständig auditierbar" — ohne einen einzigen Workload zu migrieren?
 
 Wenn dich das interessiert: Komm vorbei. Bring deine schwersten Fragen mit.
 

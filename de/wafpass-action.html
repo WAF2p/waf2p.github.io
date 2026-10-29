@@ -2,8 +2,8 @@
 layout: default
 lang: de
 ref: wafpass_action
-title: "WAF++ PASS GitHub Action"
-description: "WAF++-PASS-Scans in GitHub Actions ausführen und Compliance-Ergebnisse der Infrastruktur an Ihren WAFPass-Server senden."
+title: "WOMBATpass GitHub Action"
+description: "WOMBATpass-Scans in GitHub Actions ausführen und Compliance-Ergebnisse der Infrastruktur an Ihren WOMBATpass-Server senden."
 permalink: /de/wafpass-action/
 ---
 
@@ -14,7 +14,7 @@ permalink: /de/wafpass-action/
   <div class="dl-wrap">
     <div class="dl-rise">
       <h1 class="wfpa-hero__title">Compliance in Ihrer Pipeline.</h1>
-      <p class="wfpa-hero__lead">Fügen Sie WAF++ PASS zu jedem Workflow hinzu. Scannen Sie Terraform, Bicep, CDK oder Pulumi bei jedem Pull Request und Push und senden Sie das vollständige Ergebnis an Ihren WAFPass-Server — für Dashboards, Lückenanalysen und Audit-Nachweise.</p>
+      <p class="wfpa-hero__lead">Fügen Sie WOMBATpass zu jedem Workflow hinzu. Scannen Sie Terraform, Bicep, CDK oder Pulumi bei jedem Pull Request und Push und senden Sie das vollständige Ergebnis an Ihren WOMBATpass-Server — für Dashboards, Lückenanalysen und Audit-Nachweise.</p>
       <div class="wfpa-hero__actions">
         <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
           Action holen
@@ -23,7 +23,7 @@ permalink: /de/wafpass-action/
           </span>
         </a>
         <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-action" target="_blank" rel="noopener">Auf GitHub ansehen</a>
-        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wafpass-install/' | relative_url }}">WAFPass installieren</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wafpass-install/' | relative_url }}">WOMBATpass installieren</a>
       </div>
       <div class="wfpa-hero__row">
         <div class="dl-quiet-row__names">
@@ -105,7 +105,7 @@ permalink: /de/wafpass-action/
           <span class="code-window__dot"></span>
           <span class="code-window__title">.github/workflows/wafpass.yml</span>
         </div>
-        {% raw %}<pre class="code-window__body"><code>name: WAF++ PASS Scan
+        {% raw %}<pre class="code-window__body"><code>name: WOMBATpass Scan
 
 on:
   push:
@@ -118,7 +118,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run WAF++ PASS
+      - name: Run WOMBATpass
         uses: WAF2p/wafpass-action@v0.1.1
         with:
           server_url: ${{ vars.WAFPASS_SERVER_URL }}
@@ -138,7 +138,7 @@ jobs:
           <span class="code-window__dot"></span>
           <span class="code-window__title">Beispiel für Multi-Cloud / Monorepo</span>
         </div>
-        {% raw %}<pre class="code-window__body"><code>      - name: Run WAF++ PASS
+        {% raw %}<pre class="code-window__body"><code>      - name: Run WOMBATpass
         uses: WAF2p/wafpass-action@v0.1.1
         with:
           server_url: ${{ vars.WAFPASS_SERVER_URL }}
@@ -171,7 +171,7 @@ jobs:
               <tr><th>Input</th><th>Pflicht</th><th>Standard</th><th>Beschreibung</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>server_url</code></td><td><span class="wfpa-required">ja</span></td><td>keiner</td><td>Basis-URL des WAF++-Servers.</td></tr>
+              <tr><td><code>server_url</code></td><td><span class="wfpa-required">ja</span></td><td>keiner</td><td>Basis-URL des Wombat-Servers.</td></tr>
               <tr><td><code>api_token</code></td><td>nein</td><td>keiner</td><td>Bearer-Token. Geben Sie entweder dieses oder <code>api_key</code>.</td></tr>
               <tr><td><code>api_key</code></td><td>nein</td><td>keiner</td><td>Ingest-API-Key (<code>X-Api-Key</code>).</td></tr>
               <tr><td><code>scan_path</code></td><td><span class="wfpa-required">ja</span></td><td><code>.</code></td><td>Zu scannende(r) Pfad(e). Mehrere Pfade durch Leerzeichen trennen.</td></tr>
@@ -194,7 +194,7 @@ jobs:
               <tr><th>Output</th><th>Beschreibung</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>run_id</code></td><td>UUID des erzeugten Runs auf dem WAF++-Server.</td></tr>
+              <tr><td><code>run_id</code></td><td>UUID des erzeugten Runs auf dem Wombat-Server.</td></tr>
               <tr><td><code>score</code></td><td>Gesamter Compliance-Score, den der Server zurückgibt.</td></tr>
               <tr><td><code>findings_count</code></td><td>Anzahl der Findings im Scan-Ergebnis.</td></tr>
             </tbody>
@@ -209,7 +209,7 @@ jobs:
 <section class="dl-section wfpa-cta-section">
   <div class="dl-wrap">
     <div class="wfpa-cta dl-rise">
-      <h2 class="dl-heading">Bringen Sie WAF++ PASS in Ihre Pipeline.</h2>
+      <h2 class="dl-heading">Bringen Sie WOMBATpass in Ihre Pipeline.</h2>
       <p class="dl-lead">Installieren Sie die Action aus dem GitHub Marketplace, kopieren Sie den Workflow und machen Sie Infrastruktur-Compliance bei jedem PR sichtbar.</p>
       <div class="wfpa-cta__actions">
         <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
@@ -218,8 +218,8 @@ jobs:
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
           </span>
         </a>
-        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wafpass/' | relative_url }}">Über WAFPass</a>
-        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wafpass-install/' | relative_url }}">WAFPass installieren</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wafpass/' | relative_url }}">Über WOMBATpass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wafpass-install/' | relative_url }}">WOMBATpass installieren</a>
       </div>
     </div>
   </div>

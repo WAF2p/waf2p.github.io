@@ -33,8 +33,8 @@ Tim verfügt über tiefgehende Erfahrung im Aufbau und Betrieb moderner Plattfor
 ### Praxis & Schwerpunkte
 In seiner praktischen Arbeit verbindet Tim Infrastruktur, Automatisierung und Developer Experience. Er entwickelt Lösungen, die interne Entwickler und Fachbereiche produktiver machen, indem wiederkehrende Abläufe vereinheitlicht, manuelle Schritte reduziert und technische Plattformen so gestaltet werden, dass sie im Alltag zuverlässig und nachvollziehbar funktionieren.
 
-### Strategische Rolle bei WAF++
-Bei WAF++ bringt Tim seine Erfahrung aus Platform Engineering und operativer Umsetzung ein. Er unterstützt dabei, das Framework so weiterzuentwickeln, dass es nicht nur architektonisch sinnvoll, sondern auch in realen Betriebs- und Entwicklungsumgebungen praktikabel, skalierbar und wartbar bleibt.
+### Strategische Rolle bei Wombat
+Bei Wombat bringt Tim seine Erfahrung aus Platform Engineering und operativer Umsetzung ein. Er unterstützt dabei, das Framework so weiterzuentwickeln, dass es nicht nur architektonisch sinnvoll, sondern auch in realen Betriebs- und Entwicklungsumgebungen praktikabel, skalierbar und wartbar bleibt.
 
 ### Vision & Community
-Für Tim bedeutet Souveränität, technologische Entscheidungen bewusst und auf Basis offener Standards treffen zu können. WAF++ versteht er als einen Rahmen, der Transparenz schafft, Abhängigkeiten reduziert und Teams dabei unterstützt, produktive und nachhaltige Plattformen gemeinschaftlich weiterzuentwickeln.
+Für Tim bedeutet Souveränität, technologische Entscheidungen bewusst und auf Basis offener Standards treffen zu können. Wombat versteht er als einen Rahmen, der Transparenz schafft, Abhängigkeiten reduziert und Teams dabei unterstützt, produktive und nachhaltige Plattformen gemeinschaftlich weiterzuentwickeln.

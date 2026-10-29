@@ -1,11 +1,15 @@
 <header class="site-header">
   {% include lang-vars.html %}
   <div class="container header-inner">
-    <a class="brand" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'WAF++ Home' }}">
-      <img src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="WAF++">
+    <a class="brand" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'Wombat Home' }}">
+      <picture>
+        <source type="image/webp" srcset="{{ '/images/wombat-face-64.webp' | relative_url }} 1x, {{ '/images/wombat-face-128.webp' | relative_url }} 2x">
+        <img src="{{ '/images/wombat-face-128.png' | relative_url }}" alt="" width="40" height="40">
+      </picture>
+      <span class="brand__name">Wombat</span>
     </a>
 
-    <a class="mobile-brand-name" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'WAF++ Home' }}">WAF++</a>
+    <a class="mobile-brand-name" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'Wombat Home' }}">Wombat</a>
 
     <button class="burger" id="nav-toggle" aria-label="{{ i18n.common.menu_open | default: 'Open menu' }}" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -146,7 +150,7 @@
       <div class="cta-row">
         <div class="cta-row__toolbar">
           {% include lang-switch.html %}
-          <a class="theme-toggle cta-row__icon" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="{{ i18n.common.join_slack | default: 'Join WAF++ Community on Slack' }}" title="{{ i18n.common.join_slack | default: 'Join Community Slack' }}">{% include slack-icon.html size=18 %}</a>
+          <a class="theme-toggle cta-row__icon" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="{{ i18n.common.join_slack | default: 'Join Wombat Community on Slack' }}" title="{{ i18n.common.join_slack | default: 'Join Community Slack' }}">{% include slack-icon.html size=18 %}</a>
           <button class="theme-toggle cta-row__icon" id="theme-toggle" type="button" aria-label="{{ i18n.common.theme_toggle | default: 'Toggle theme' }}" aria-pressed="false"><i data-lucide="moon"></i></button>
         </div>
 

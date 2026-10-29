@@ -1,51 +1,94 @@
 /* ============================================================
-   WAF++ 404 page — v2
-   Built on theme/_design-language.scss. Fresh .err2- prefix:
-   the existing .error-hero class family in errors.scss stays
-   untouched — it still renders the language-variant 404 pages
-   (de/es/fr/it/nl/pl/pt), out of scope here.
+   Wombat 404 page — v3 "Lost in the underground"
+   Built on theme/_design-language.scss. One shared .err2-
+   block for every language variant (404.html, de/404.html, …).
 
-   Scope: 404.html (EN) only. Nav and footer untouched.
+   The page follows the active light/dark theme. The illustration
+   (images/wombat-404.jpg) is painted on a dark teal ground, so it
+   sits in a matching framed panel rather than being feathered
+   into the page background.
    ============================================================ */
 
 @use "theme/design-language" as *;
 
-.err2-page { background: var(--dl-ground); }
+$err2-panel: #02222d;        // ground of the artwork
+$err2-accent: color-mix(in srgb, var(--dl-accent) 72%, var(--dl-ink));
 
-.err2-hero {
-  min-height: calc(100vh - var(--header-offset, 92px));
-  display: flex;
-  align-items: center;
-  padding-top: calc(var(--header-offset, 92px) + clamp(24px, 4vw, 48px));
-  padding-bottom: clamp(48px, 7vw, 80px);
+.err2-page {
+  background: var(--dl-ground);
+  color: var(--dl-ink);
 }
 
-.err2-hero__inner { text-align: center; }
+/* the page fills the viewport; no gap between it and the footer */
+main:has(.err2-page) + .site-footer {
+  margin-top: 0;
+}
+
+.err2-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-height: calc(100vh - var(--header-offset, 92px));
+  padding-top: calc(var(--header-offset, 92px) + clamp(28px, 5vw, 64px));
+  padding-bottom: clamp(48px, 7vw, 88px);
+  background: var(--dl-ground);
+}
+
+.err2-hero__inner { width: 100%; text-align: center; }
 
 .err2-hero__code {
+  display: inline-block;
   font-family: var(--dl-font-display);
   font-weight: 600;
-  font-size: clamp(5rem, 3rem + 10vw, 11rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--dl-surface-2);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: $err2-accent;
+  background: color-mix(in srgb, var(--dl-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--dl-accent) 28%, transparent);
 }
 
 .err2-hero__title {
   font-family: var(--dl-font-display);
-  font-weight: 600;
-  font-size: clamp(2rem, 1.3rem + 3vw, 3.25rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
   color: var(--dl-ink);
-  margin: 8px 0 0;
+  margin: 18px auto 0;
+  max-width: 22ch;
 }
 
 .err2-hero__lead {
-  @include dl-lead;
-  max-width: 48ch;
-  margin-inline: auto;
-  margin-top: 16px;
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.3125rem);
+  line-height: 1.5;
+  color: var(--dl-muted);
+  max-width: 52ch;
+  margin: 18px auto 0;
+  text-wrap: pretty;
+}
+
+.err2-hero__accent { color: $err2-accent; }
+
+.err2-hero__art {
+  margin: clamp(20px, 3vw, 36px) auto 0;
+  max-width: 1100px;
+  padding: clamp(6px, 1vw, 10px);
+  border-radius: var(--dl-radius-lg);
+  background: $err2-panel;
+  border: 1px solid var(--dl-border);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--dl-radius-lg) - 10px);
+  }
 }
 
 .err2-hero__actions {
@@ -53,23 +96,30 @@
   flex-wrap: wrap;
   gap: 14px;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: clamp(20px, 3vw, 32px);
+
+  .wf6-btn--pill {
+    background: var(--dl-ink);
+    border-color: var(--dl-ink);
+    color: var(--dl-ground);
+
+    &:hover { background: var(--dl-accent); border-color: var(--dl-accent); color: #fff; }
+  }
+
+  .wf6-btn--line {
+    background: transparent;
+    border-color: var(--dl-border);
+    color: var(--dl-ink);
+
+    &:hover { border-color: var(--dl-ink); }
+  }
 }
 
-.err2-hero__pills {
-  margin-top: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
+@media (max-width: 640px) {
+  .err2-hero__art {
+    margin-inline: 0;
 
-.err2-pill {
-  display: inline-block;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 999px;
-  color: var(--dl-muted);
-  background: var(--dl-surface-2);
+    // crop to the wombat so it stays legible on phones
+    img { aspect-ratio: 5 / 4; object-fit: cover; }
+  }
 }

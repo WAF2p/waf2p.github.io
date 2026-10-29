@@ -1,0 +1,33 @@
+{% comment %}
+  Homepage mascot placements — one include so the eight language
+  homepages stay in sync.
+
+  Parameters:
+    variant  "hero" | "steps" | "cta-peek"
+    text     label for the hero bubble / steps line
+    href     target for the hero bubble (defaults to /docs/)
+
+  The hero uses the full-body character; small spots use the
+  230px head crop so the mascot stays legible at 32–48px.
+{% endcomment %}
+{%- case include.variant -%}
+{%- when "hero" -%}
+<figure class="wf6-hero__mascot-wrap">
+  {%- if include.text %}
+  <a class="wf6-hero__mascot-bubble" href="{{ include.href | default: '/docs/' | relative_url }}">
+    {{ include.text }}
+    <svg class="wf6-hero__mascot-bubble-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+  </a>
+  {%- endif %}
+  <img class="wf6-hero__mascot" src="{{ '/images/wombat-mark.png' | relative_url }}" alt="" width="512" height="512" aria-hidden="true">
+</figure>
+{%- when "steps" -%}
+<div class="wf6-how__guide">
+  <img class="wf6-how__guide-face" src="{{ '/images/wombat-face-64.png' | relative_url }}" srcset="{{ '/images/wombat-face-64.png' | relative_url }} 1x, {{ '/images/wombat-face-128.png' | relative_url }} 2x" width="64" height="64" alt="" aria-hidden="true" loading="lazy">
+  <span class="wf6-how__guide-text">{{ include.text }}</span>
+</div>
+{%- when "cta-peek" -%}
+<div class="wf6-cta__peek" aria-hidden="true">
+  <img src="{{ '/images/wombat-face-128.png' | relative_url }}" srcset="{{ '/images/wombat-face-128.png' | relative_url }} 1x, {{ '/images/wombat-face-192.png' | relative_url }} 2x" width="230" height="230" alt="" loading="lazy">
+</div>
+{%- endcase -%}

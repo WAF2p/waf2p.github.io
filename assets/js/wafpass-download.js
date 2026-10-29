@@ -1,5 +1,5 @@
 /**
- * WAFPass Controls Download
+ * WOMBATpass Controls Download
  * Fetches the current controls from the WAF2p/framework repo on GitHub,
  * bundles them into a zip in-browser using JSZip, and triggers a download.
  *
@@ -23,7 +23,7 @@
   const JSZIP_SRC = '/assets/js/vendor/jszip.min.js';
   const JSYAML_SRC = '/assets/js/vendor/js-yaml.min.js';
 
-  // Map WAF++ assertion operators to Checkov attribute operators.
+  // Map Wombat assertion operators to Checkov attribute operators.
   // `needsValue` controls whether a `value` field is written.
   // `valueField` lets us pull the value from a non-standard key (e.g. pattern).
   const OP_MAP = {
@@ -235,7 +235,7 @@
       btn.setAttribute('data-label-done', files.length + ' controls downloaded!');
       setState(btn, 'done', originalLabel);
     } catch (err) {
-      console.error('[WAFPass] Controls download failed:', err);
+      console.error('[WOMBATpass] Controls download failed:', err);
       setState(btn, 'error', originalLabel);
       // Re-enable after a moment so user can retry
       setTimeout(function () { setState(btn, 'idle', originalLabel); }, 3000);
@@ -273,7 +273,7 @@
               try {
                 control = parseYaml(content, f.name);
               } catch (parseErr) {
-                console.warn('[WAFPass] Could not parse ' + f.name + ': ' + parseErr.message);
+                console.warn('[WOMBATpass] Could not parse ' + f.name + ': ' + parseErr.message);
                 stats.parseErrors += 1;
                 return;
               }
@@ -301,7 +301,7 @@
       btn.setAttribute('data-label-done', doneLabel);
       setState(btn, 'done', originalLabel);
     } catch (err) {
-      console.error('[WAFPass] Checkov download failed:', err);
+      console.error('[WOMBATpass] Checkov download failed:', err);
       setState(btn, 'error', originalLabel);
       setTimeout(function () { setState(btn, 'idle', originalLabel); }, 3000);
     }

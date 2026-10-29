@@ -1,10 +1,10 @@
-# WAF++ Website
+# Wombat Website
 
 [![Build Status](https://github.com/WAF2p/waf2p.github.io/actions/workflows/jekyll-gh-pages.yml/badge.svg)](https://github.com/WAF2p/waf2p.github.io/actions/workflows/jekyll-gh-pages.yml)
 
-Offizielle Website für das **WAF++** (Well-Architected Framework++) Projekt - ein community-geführtes, cloud-agnostisches Framework für sichere und nachhaltige Cloud-Architekturen.
+Offizielle Website für das **Wombat**-Projekt - ein community-geführtes, cloud-agnostisches Framework für sichere und nachhaltige Cloud-Architekturen.
 
-**Live-Site**: https://waf2p.dev/
+**Live-Site**: https://www.wombat-gov.dev/
 
 ---
 
@@ -373,9 +373,9 @@ task docs:build:local
 
 Nach erfolgreichem Deployment:
 
-- **Homepage**: https://waf2p.dev/
-- **Dokumentation**: https://waf2p.dev/docs/wafpp/1.1.0/
-- **Blog**: https://waf2p.dev/blog/
+- **Homepage**: https://www.wombat-gov.dev/
+- **Dokumentation**: https://www.wombat-gov.dev/docs/wafpp/1.1.0/
+- **Blog**: https://www.wombat-gov.dev/blog/
 
 ### Entwickler-Guidelines
 
@@ -434,7 +434,7 @@ waf2p.github.io/
 - **Jekyll-Dokumentation**: https://jekyllrb.com/docs/
 - **Antora-Dokumentation**: https://docs.antora.org/
 - **Framework-Repository**: https://github.com/WAF2p/framework
-- **Live-Site**: https://waf2p.dev/
+- **Live-Site**: https://www.wombat-gov.dev/
 - **GitHub Actions**: https://github.com/WAF2p/waf2p.github.io/actions
 
 ---
@@ -452,4 +452,4 @@ Bei Fragen zur Architektur oder zum Build-Prozess siehe `AGENTS.md`.
 
 ---
 
-**WAF++ Community** | https://waf2p.dev/
+**Wombat Community** | https://www.wombat-gov.dev/
