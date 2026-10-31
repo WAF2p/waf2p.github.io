@@ -15,6 +15,23 @@
 
 @use "theme/design-language" as *;
 
+/* Core token fallbacks for pages whose <body> lacks .frontpage/.pil-page.
+   Components such as .wfp-cta-section are reused there; without these,
+   var(--wf6-ink) resolves to nothing and dark bands render transparent. */
+:root {
+  --wf6-bg: var(--dl-ground);
+  --wf6-surface: var(--dl-surface);
+  --wf6-surface-2: var(--dl-surface-2);
+  --wf6-text: var(--dl-ink);
+  --wf6-muted: var(--dl-muted);
+  --wf6-border: var(--dl-border);
+  --wf6-accent: var(--dl-accent);
+  --wf6-gold: var(--dl-gold);
+  --wf6-purple: var(--dl-purple);
+  --wf6-ink: #0a0e1a;
+  --wf6-ink-2: #121831;
+}
+
 .frontpage,
 .pil-page {
   --wf6-font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
@@ -128,14 +145,15 @@
 }
 
 .wf6-btn--primary {
-  background: var(--wf6-accent);
-  border-color: var(--wf6-accent);
+  /* brand-600, not brand-500: white on #0094FF is only 3.14:1 */
+  background: var(--brand-600);
+  border-color: var(--brand-600);
   color: #fff;
 }
 
 .wf6-btn--primary:hover {
-  background: color-mix(in srgb, var(--wf6-accent) 85%, black);
-  border-color: color-mix(in srgb, var(--wf6-accent) 85%, black);
+  background: var(--brand-700);
+  border-color: var(--brand-700);
 }
 
 .wf6-btn--line {
@@ -146,6 +164,17 @@
 
 .wf6-btn--line:hover {
   border-color: var(--wf6-text);
+}
+
+/* On dark bands the ink-coloured line button disappears (~1.03:1). */
+.wf6-section--dark .wf6-btn--line {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.wf6-section--dark .wf6-btn--line:hover {
+  border-color: #fff;
+  color: #fff;
 }
 
 /* pill button with circular arrow */
@@ -438,7 +467,9 @@ code, pre { font-family: var(--wf6-font-mono); }
 
 @media (max-width: 900px) {
   .wf6-hero__grid { grid-template-columns: 1fr; }
-  .wf6-hero__visual { order: -1; margin-bottom: 40px; }
+  /* Copy first on mobile: the screenshot is unreadable at 390px and
+     pushed the H1 and CTA below the fold. */
+  .wf6-hero__visual { margin-top: 40px; }
   .wf6-hero__mascot-wrap { left: auto; right: -2%; bottom: -18%; width: 30%; }
 }
 

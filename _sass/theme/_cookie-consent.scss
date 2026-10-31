@@ -52,7 +52,10 @@
   position: relative;
   width: min(560px, 100%);
   max-height: calc(100vh - 32px);
-  overflow-y: auto;
+  /* Body scrolls, action row stays pinned and visible. */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: var(--dl-surface, var(--surface, #ffffff));
   color: var(--dl-ink, var(--text, #0b1220));
   border-radius: var(--dl-radius, 16px);
@@ -251,7 +254,8 @@
   font-size: var(--dl-size-small, 0.875rem);
 
   a {
-    color: var(--dl-accent, var(--brand-500));
+    /* --text-accent flips with the theme (#0B5FBF light, #7CC4FF dark) */
+    color: var(--text-accent, #0B5FBF);
     text-decoration: underline;
     text-underline-offset: 3px;
 
@@ -261,11 +265,19 @@
   }
 }
 
+.cookie-consent__body {
+  overflow-y: auto;
+  min-height: 0;
+}
+
 .cookie-consent__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   justify-content: flex-end;
+  flex: 0 0 auto;
+  padding-top: 12px;
+  background: var(--dl-surface, var(--surface, #ffffff));
 }
 
 .cookie-consent__btn {
@@ -284,11 +296,12 @@
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 
   &--primary {
-    background: var(--dl-accent, var(--brand-500));
+    /* brand-600/700 keep white label text above 4.5:1 (#0094FF is 3.14:1) */
+    background: var(--brand-600, #0F6FD1);
     color: #fff;
 
     &:hover {
-      background: color-mix(in srgb, var(--dl-accent, var(--brand-500)) 80%, black);
+      background: var(--brand-700, #0B5FBF);
     }
   }
 

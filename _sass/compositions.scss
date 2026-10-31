@@ -1,0 +1,135 @@
+/* ============================================================
+   Route compositions
+   Each route below gets a body rhythm authored for its job:
+   evidence leads on Comparison, terms lead on Glossary,
+   coverage leads on Controls, and so on. Loaded last.
+   ============================================================ */
+
+/* ---------- Comparison: the evidence table leads ----------
+   #table precedes #apart in the DOM (not via CSS order), so keyboard
+   and screen-reader order match the visual order. */
+body[data-page="comparison"] #table .dl-wrap {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(16px, 4vw, 56px);
+}
+body[data-page="comparison"] .cmp-table-wrap {
+  max-height: 72vh;
+  overflow: auto;
+}
+body[data-page="comparison"] .cmp-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--dl-surface);
+}
+body[data-page="comparison"] .cmp-spotlights {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---------- Glossary: terms lead, letters stay in reach ----------
+   #terms precedes #categories in the DOM. */
+body[data-page="glossary"] .gl2-alpha-nav {
+  position: sticky;
+  top: 76px;
+  z-index: 5;
+  background: var(--dl-ground);
+  padding-block: 8px;
+}
+body[data-page="glossary"] .gl-entries {
+  column-count: 2;
+  column-gap: clamp(32px, 5vw, 72px);
+}
+body[data-page="glossary"] .gl-entry {
+  break-inside: avoid;
+}
+
+/* ---------- Controls: coverage is the page, not a card ---------- */
+body[data-page="controls"] #controls .wf6-wrap,
+body[data-page="controls"] #country .wf6-wrap {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(16px, 4vw, 56px);
+}
+body[data-page="controls"] .wf6-pillars {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+body[data-page="controls"] .wf6-bars {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---------- Pillars: eight cards read as one map ---------- */
+body[data-page="saeulen"] .wf6-values__grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ---------- RFC: the tracker leads, filters stay visible ---------- */
+body[data-page="rfc"] .rfc-tabs--two-tier {
+  position: sticky;
+  top: 76px;
+  z-index: 5;
+  background: var(--dl-ground);
+  padding-block: 8px;
+}
+body[data-page="rfc"] #rfcs .dl-wrap {
+  max-width: 1200px;
+}
+
+/* ---------- Roles: a directory, not a scroll ---------- */
+body[data-page="roles"] .rls-directory {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* ---------- Conferences: a calendar rail and a speaker wall ---------- */
+body[data-page="conferences"] .cfp-events {
+  display: grid;
+  gap: 20px;
+}
+body[data-page="conferences"] .cfp-speakers {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ---------- Changelog: tabs pin, history reads long ---------- */
+body[data-page="changelog"] .chg-tabs {
+  position: sticky;
+  top: 76px;
+  z-index: 5;
+  background: var(--dl-ground);
+  padding-block: 8px;
+}
+body[data-page="changelog"] #changelog-content .dl-wrap {
+  max-width: 1100px;
+}
+
+/* ---------- Why not: objections as a decision matrix ---------- */
+body[data-page="why-not"] .wn-signals,
+body[data-page="why-not"] .wn-alts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---------- Use cases: full-bleed case study spreads ---------- */
+body[data-page^="use_case"] .dl-section .dl-wrap {
+  max-width: 1160px;
+}
+
+@media (max-width: 900px) {
+  body[data-page="comparison"] .cmp-spotlights,
+  body[data-page="controls"] .wf6-pillars,
+  body[data-page="controls"] .wf6-bars,
+  body[data-page="why-not"] .wn-signals,
+  body[data-page="why-not"] .wn-alts {
+    grid-template-columns: 1fr;
+  }
+  body[data-page="saeulen"] .wf6-values__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-page="roles"] .rls-directory,
+  body[data-page="conferences"] .cfp-speakers {
+    grid-template-columns: 1fr;
+  }
+  body[data-page="glossary"] .gl-entries {
+    column-count: 1;
+  }
+}

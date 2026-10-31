@@ -16,8 +16,73 @@
     document.body.classList.remove('nav-open');
     btn.setAttribute('aria-expanded', 'false');
   });
+
+  // Keyboard: Escape closes the open menu; Tab stays inside it
+  document.addEventListener('keydown', function (e) {
+    if (!document.body.classList.contains('nav-open')) return;
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    if (e.key === 'Escape') {
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus();
+      return;
+    }
+
+    if (e.key !== 'Tab') return;
+    const focusables = [btn].concat(Array.prototype.slice.call(
+      nav.querySelectorAll('a[href], button:not([disabled])')
+    )).filter(function (el) { return el.offsetParent !== null; });
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 })();
 
+
+// Desktop nav dropdowns (replaces the old inline onclick handler)
+(function () {
+  const toggles = document.querySelectorAll('.nav-group-toggle');
+  if (!toggles.length) return;
+
+  function closeAll() {
+    document.querySelectorAll('.nav-group.is-open').forEach(function (group) {
+      group.classList.remove('is-open');
+      const t = group.querySelector('.nav-group-toggle');
+      const d = group.querySelector('.nav-dropdown');
+      if (t) t.setAttribute('aria-expanded', 'false');
+      if (d) d.style.display = '';
+    });
+  }
+
+  toggles.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const group = btn.closest('.nav-group');
+      const dropdown = group && group.querySelector('.nav-dropdown');
+      if (!dropdown) return;
+      const isOpen = group.classList.contains('is-open');
+      closeAll();
+      if (!isOpen) {
+        group.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        dropdown.style.display = 'block';
+      }
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
 
 (function () {
   const modal = document.getElementById('person-modal');
@@ -194,29 +259,31 @@
 })();
 
 
-// Language switch dropdown (enhances the CSS checkbox fallback)
+// Language switch dropdown
 (function () {
   const toggles = document.querySelectorAll('[data-lang-toggle]');
   if (!toggles.length) return;
 
   toggles.forEach(function (root) {
-    const check = root.querySelector('.lang-switch__check');
     const trigger = root.querySelector('.lang-switch__trigger');
     const menu = root.querySelector('.lang-switch__menu');
-    if (!check || !trigger || !menu) return;
+    if (!trigger || !menu) return;
 
-    function syncAria() {
-      trigger.setAttribute('aria-expanded', String(check.checked));
+    function setOpen(open) {
+      menu.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', String(open));
     }
 
     function close() {
-      check.checked = false;
-      syncAria();
+      setOpen(false);
     }
 
-    check.addEventListener('change', syncAria);
+    trigger.addEventListener('click', function (event) {
+      event.stopPropagation();
+      setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+    });
 
-    // close when clicking a language option
+    // close when a language is chosen
     menu.querySelectorAll('.lang-option').forEach(function (link) {
       link.addEventListener('click', function () {
         close();
@@ -228,9 +295,13 @@
       if (!root.contains(e.target)) close();
     });
 
-    // keyboard: close on Escape
+    // keyboard: close on Escape and return focus to the trigger
     root.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { close(); trigger.focus(); }
+      if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+        e.stopPropagation();
+        close();
+        trigger.focus();
+      }
     });
   });
 })();
@@ -291,18 +362,52 @@
 
   function openModal() {
     modal.hidden = false;
+    // The dialog is modal: stop the page behind it from scrolling.
+    document.documentElement.style.overflow = 'hidden';
     // force reflow
     void modal.offsetWidth;
     modal.classList.add('is-open');
     refreshIcons();
-    const firstFocus = modal.querySelector('button, input');
-    if (firstFocus) firstFocus.focus();
+    // Wait one frame: focusing before the open transition applies is ignored.
+    requestAnimationFrame(function () {
+      const firstFocus = modal.querySelector('button, input');
+      if (firstFocus) firstFocus.focus();
+    });
   }
 
   function closeModal() {
     modal.classList.remove('is-open');
+    document.documentElement.style.overflow = '';
     setTimeout(function () { modal.hidden = true; }, 250);
   }
+
+  // aria-modal="true" promises a trap; without this Tab reaches the page behind.
+  // Listen on document: focus may still be outside the dialog when the first
+  // Tab is pressed, and a listener on the modal would never see that keydown.
+  function trapFocus(e) {
+    if (e.key !== 'Tab' || !modal.classList.contains('is-open')) return;
+    const focusables = modal.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (!modal.contains(document.activeElement)) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+      return;
+    }
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  document.addEventListener('keydown', trapFocus);
 
   function populateToggles(consent) {
     toggles.forEach(function (input) {

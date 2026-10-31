@@ -11,7 +11,7 @@
 
     <a class="mobile-brand-name" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'Wombat Home' }}">Wombat</a>
 
-    <button class="burger" id="nav-toggle" aria-label="{{ i18n.common.menu_open | default: 'Open menu' }}" aria-expanded="false">
+    <button type="button" class="burger" id="nav-toggle" aria-label="{{ i18n.common.menu_open | default: 'Open menu' }}" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
@@ -66,8 +66,8 @@
             {% if item.children %}
               <div class="nav-group{% if is_active %} is-active{% endif %}">
                 <a class="nav-group-label{% if is_active %} active{% endif %}" href="{{ item_href | relative_url }}">{{ item_label }}</a>
-                <button class="nav-group-toggle" type="button" aria-expanded="false" onclick="var d=this.parentNode.querySelector('.nav-dropdown'),o=d.style.display==='block';document.querySelectorAll('.nav-dropdown').forEach(function(x){x.style.display='none'});if(!o){d.style.display='block';this.setAttribute('aria-expanded','true');}else{this.setAttribute('aria-expanded','false');}">{{ item_label }}</button>
-                <div class="nav-dropdown" aria-label="{{ item_label }} submenu">
+                <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="nav-dropdown-{{ item_label | slugify }}">{{ item_label }}</button>
+                <div class="nav-dropdown" id="nav-dropdown-{{ item_label | slugify }}" role="group" aria-label="{{ item_label }} submenu">
                   {% for child in item.children %}
                     {%- if child.group -%}
                       {%- assign group_label = child.group -%}

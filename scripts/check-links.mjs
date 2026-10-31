@@ -7,8 +7,8 @@
  *
  * Checks every href/src in the built _site HTML files for a matching local file.
  * External URLs, mailto/tel/javascript/data links and fragments are ignored.
- * Antora output under /docs/ is ignored because the Jekyll build does not
- * generate it; the deploy workflow builds Antora separately.
+ * Antora output under /docs/ is checked when it has been built; skipped only
+ * for a Jekyll-only build, where those files cannot exist.
  */
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
@@ -17,7 +17,10 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = path.join(ROOT, '_site')
-const SKIP_PREFIXES = ['/docs/']
+// Only skip /docs when Antora has not run; otherwise a version mismatch
+// (e.g. links to 1.1.0 while the build outputs 1.0.2) ships 240 dead links.
+const DOCS_BUILT = existsSync(path.join(SITE, 'docs'))
+const SKIP_PREFIXES = DOCS_BUILT ? [] : ['/docs/']
 const ALL = process.argv.includes('--all')
 const OWNED_PREFIXES = [
   'cloud/', 'de/cloud/',

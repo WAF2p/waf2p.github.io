@@ -99,10 +99,14 @@ tasks:
         echo "✓ Framework found at: {{.LOCAL_FRAMEWORK_PATH}}"
 
   validate:links:
-    desc: Validate internal links in documentation
+    desc: Validate internal links in the built site (run site:build first)
     cmds:
-      - echo "Link validation not yet implemented"
-      - echo "TODO - Install and configure html-proofer or similar"
+      - node scripts/check-links.mjs
+
+  validate:html:
+    desc: Validate rendered HTML in the built site (run site:build first)
+    cmds:
+      - node scripts/check-html.mjs
 
   validate:adoc:
     desc: Validate AsciiDoc syntax in framework repository

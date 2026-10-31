@@ -51,9 +51,19 @@ task site:clean
 ```
 
 ### Testing
+
+All checks run against the built `_site` — build first with
+`bundle exec jekyll build`.
+
 ```bash
-# Check for broken links (requires html-proofer gem)
-bundle exec htmlproofer ./_site --disable-external
+# Broken internal links (scoped; --all for the whole site)
+node scripts/check-links.mjs
+
+# Validate the rendered HTML with html-validate (config: .htmlvalidate.json)
+node scripts/check-html.mjs
+
+# Playwright smoke tests, accessibility (axe) and mobile overflow
+node tests/site-smoke.mjs
 
 # Validate YAML data files
 ruby -e "require 'yaml'; YAML.load_file('_data/navigation.yml')"
@@ -64,6 +74,10 @@ task validate:adoc
 # Test a specific Ruby plugin
 ruby _plugins/clean_url.rb
 ```
+
+`check-html.mjs` validates the deployed output, not the sources: Jekyll pages
+are fragments with front matter and Liquid, so they are not valid HTML
+documents on their own. `_site/docs` (Antora) is skipped.
 
 ### Deployment
 - **Automatic**: Push to `main` branch triggers GitHub Actions workflow

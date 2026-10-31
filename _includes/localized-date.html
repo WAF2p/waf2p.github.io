@@ -1,0 +1,8 @@
+{%- comment -%}
+  Localized short date: "13 Apr 2026".
+  Usage: {% include localized-date.html date=post.date lang=post.lang %}
+{%- endcomment -%}
+{%- assign _date_lang = include.lang | default: lang | default: 'en' -%}
+{%- assign _months = site.data.months[_date_lang] | default: site.data.months.en -%}
+{%- assign _month_index = include.date | date: "%-m" | minus: 1 -%}
+{{- include.date | date: "%-d" }} {{ _months[_month_index] }} {{ include.date | date: "%Y" -}}

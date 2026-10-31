@@ -193,7 +193,7 @@ description: "Conferências em que o Wombat está presente: próximos eventos, p
           {% if person.social %}
           <div class="cfp-speaker__social">
             {% for link in person.social %}
-            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}">
+            <a {% if link.new_window %}target="_blank" rel="noopener"{% endif %} href="{% include relative-src.html src=link.link %}" aria-label="{{ link.name }}">
               {% if link.social_icon %}{% include social-icon.html icon=link.social_icon %}{% endif %}
             </a>
             {% endfor %}

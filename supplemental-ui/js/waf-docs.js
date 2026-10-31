@@ -173,6 +173,20 @@
       const key = el.getAttribute('data-i18n');
       if (labels[key]) el.textContent = labels[key];
     });
+
+    // Accessible names must match the page language too.
+    const burger = document.getElementById('nav-toggle');
+    if (burger) burger.setAttribute('aria-label', 'Menü öffnen');
+    const nav = document.querySelector('.waf-docs-header .nav');
+    if (nav) nav.setAttribute('aria-label', 'Hauptnavigation');
+    const theme = document.getElementById('theme-toggle');
+    if (theme) theme.setAttribute('aria-label', 'Theme umschalten');
+  })();
+
+  // The default Antora article <main> has no id; the skip link needs one.
+  (function () {
+    const main = document.querySelector('main.article');
+    if (main && !main.id) main.id = 'main';
   })();
 
   // Marketing-style mobile navigation for docs header
@@ -309,17 +323,44 @@
 
     function openModal() {
       modal.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
       void modal.offsetWidth;
       modal.classList.add('is-open');
       refreshIcons();
-      const firstFocus = modal.querySelector('button, input');
-      if (firstFocus) firstFocus.focus();
+      requestAnimationFrame(function () {
+        const firstFocus = modal.querySelector('button, input');
+        if (firstFocus) firstFocus.focus();
+      });
     }
 
     function closeModal() {
       modal.classList.remove('is-open');
+      document.documentElement.style.overflow = '';
       setTimeout(function () { modal.hidden = true; }, 250);
     }
+
+    // aria-modal="true" promises a trap; keep Tab inside the dialog.
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab' || !modal.classList.contains('is-open')) return;
+      const focusables = modal.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (!modal.contains(document.activeElement)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+        return;
+      }
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
 
     function populateToggles(consent) {
       toggles.forEach(function (input) {

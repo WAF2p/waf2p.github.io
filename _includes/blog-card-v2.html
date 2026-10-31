@@ -42,12 +42,12 @@
 
 <article class="bpc-card dl-rise">
   <a class="bpc-card__media" href="{% include relative-src.html src=post.url %}">
-    <img src="{{ preview }}" alt="" loading="lazy">
+    <img src="{% if preview contains '://' %}{{ preview }}{% else %}{{ preview | relative_url }}{% endif %}" alt="{{ post.title | escape }}" loading="lazy">
   </a>
 
   <div class="bpc-card__body">
     <div class="bpc-card__meta">
-      <span>{{ post.date | date: "%d %b %Y" }}</span>
+      <span>{% include localized-date.html date=post.date lang=post.lang %}</span>
       {% if post.categories and post.categories.size > 0 %}
         {% assign c0 = post.categories | first %}
         <span>· {{ c0 | replace: '_', ' ' }}</span>

@@ -84,6 +84,24 @@ async function main() {
   await page.goto(BASE_URL + '/de/cloud/')
   check('German cloud index has 25 cards', (await page.locator('.hub-card').count()) === 25)
 
+  await page.goto(BASE_URL + '/')
+  await page.evaluate(() => {
+    const el = document.getElementById('cookie-consent')
+    if (el) el.remove()
+  })
+  check('language switch is a button', (await page.locator('button.lang-switch__trigger').count()) === 1)
+  await page.locator('.lang-switch__trigger').click()
+  check(
+    'language switch opens with aria-expanded',
+    (await page.locator('.lang-switch__trigger').getAttribute('aria-expanded')) === 'true' &&
+      (await page.locator('.lang-switch__menu').isVisible())
+  )
+  await page.keyboard.press('Escape')
+  check(
+    'language switch closes on Escape',
+    (await page.locator('.lang-switch__trigger').getAttribute('aria-expanded')) === 'false'
+  )
+
   await page.goto(BASE_URL + '/staff_members/artem/')
   check('member profile header renders', (await page.locator('.profile-header').count()) === 1)
   check('member profile sidebar renders', (await page.locator('.profile-sidebar').count()) === 1)
@@ -125,6 +143,10 @@ async function main() {
     '/de/compliance/',
     '/de/trust/',
     '/staff_members/artem/',
+    '/wombat/',
+    '/roles/',
+    '/de/rfc/',
+    '/governance/cloud/open_source/2026/04/13/exit-is-not-freedom/',
   ]
   for (const route of axeRoutes) {
     await page.goto(BASE_URL + route)
@@ -136,7 +158,6 @@ async function main() {
       content: '.dl-rise{opacity:1 !important;transform:none !important;transition:none !important;}',
     })
     const axe = await new AxeBuilder({ page })
-      .include(route.startsWith('/staff_members/') ? '.profile-page' : '.hub-page')
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze()
     check(

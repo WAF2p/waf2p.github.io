@@ -251,6 +251,12 @@
   [class*="rise"] { transition: none !important; opacity: 1 !important; transform: none !important; }
 }
 
+/* Without JavaScript nothing ever adds .is-visible, so every reveal
+   element (including post titles) would stay at opacity 0. */
+@media (scripting: none) {
+  [class*="rise"] { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
 /* The lightbox modal itself: one per page, placed once near the
    end of <body>. See index.html for the exact markup (a
    role="dialog" wrapper with a close button and a single <img>
