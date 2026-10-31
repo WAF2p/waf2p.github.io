@@ -1,0 +1,122 @@
+# Provider quickstarts — only for providers with framework control coverage.
+# The snippets are intentionally minimal. Credentials are read from the
+# provider's standard environment variables; never commit secrets.
+
+aws:
+  title: "AWS quickstart"
+  intro: "Start with a pinned AWS provider, then run the same control pack you use on the other providers."
+  provider_block: |
+    terraform {
+      required_version = ">= 1.6.0"
+      required_providers {
+        aws = {
+          source  = "hashicorp/aws"
+          version = "~> 5.40"
+        }
+      }
+    }
+
+    provider "aws" {
+      region = "eu-central-1"
+    }
+  check_command: "wombat check . --output json"
+  note: "Set AWS credentials through the standard AWS environment variables or profile. Pin the provider version to the one approved in your platform."
+
+azure:
+  title: "Azure quickstart"
+  intro: "Keep the Azure provider and CAF guidance, then add the Wombat baseline for the same workload."
+  provider_block: |
+    terraform {
+      required_version = ">= 1.6.0"
+      required_providers {
+        azurerm = {
+          source  = "hashicorp/azurerm"
+          version = "~> 3.100"
+        }
+      }
+    }
+
+    provider "azurerm" {
+      features {}
+    }
+  check_command: "wombat check . --output json"
+  note: "Authenticate with the standard Azure CLI or service-principal environment variables. Pin the provider version to your approved version."
+
+gcp:
+  title: "Google Cloud quickstart"
+  intro: "Start with the Google provider and a European region, then run the control pack against the Terraform."
+  provider_block: |
+    terraform {
+      required_version = ">= 1.6.0"
+      required_providers {
+        google = {
+          source  = "hashicorp/google"
+          version = "~> 5.0"
+        }
+      }
+    }
+
+    provider "google" {
+      project = var.project_id
+      region  = "europe-north1"
+    }
+  check_command: "wombat check . --output json"
+  note: "Use Application Default Credentials or the standard GOOGLE_* environment variables. Pin the provider version to your approved version."
+
+stackit:
+  title: "STACKIT quickstart"
+  intro: "Use the STACKIT provider and pass the region explicitly so residency is part of the code review."
+  provider_block: |
+    terraform {
+      required_version = ">= 1.6.0"
+      required_providers {
+        stackit = {
+          source  = "SchwarzIT/stackit"
+          version = "~> 2.0"
+        }
+      }
+    }
+
+    provider "stackit" {
+      region = var.stackit_region
+    }
+  check_command: "wombat check . --output json"
+  note: "Set the STACKIT credentials and region through your standard secret and variable workflow."
+
+ovh:
+  title: "OVHcloud quickstart"
+  intro: "Use the OVH provider with the EU endpoint, then score the workload against the same baseline."
+  provider_block: |
+    terraform {
+      required_version = ">= 1.6.0"
+      required_providers {
+        ovh = {
+          source  = "ovh/ovh"
+          version = "~> 1.0"
+        }
+      }
+    }
+
+    provider "ovh" {
+      endpoint = "ovh-eu"
+    }
+  check_command: "wombat check . --output json"
+  note: "Use the standard OVH_* environment variables. The EU endpoint is the default for European workloads."
+
+hetzner:
+  title: "Hetzner Cloud quickstart"
+  intro: "Start with the Hetzner Cloud provider and keep cost, reliability and residency in the same review."
+  provider_block: |
+    terraform {
+      required_version = ">= 1.6.0"
+      required_providers {
+        hcloud = {
+          source  = "hetznercloud/hcloud"
+          version = "~> 1.0"
+        }
+      }
+    }
+
+    provider "hcloud" {}
+  check_command: "wombat check . --output json"
+  note: "Use the standard HCLOUD_TOKEN environment variable. Keep the token out of Terraform state and source control."

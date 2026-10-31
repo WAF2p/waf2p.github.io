@@ -1,0 +1,110 @@
+---
+layout: default
+lang: en
+ref: newsletter
+title: "From the Burrow — Wombat newsletter"
+description: "From the Burrow is the Wombat community newsletter: framework changes, RFCs, articles and community work, in a short occasional letter."
+permalink: /newsletter/
+translation_notice: false
+---
+
+{% assign nl = site.data.newsletter %}
+{% assign preset = nl.providers[nl.provider] %}
+{% assign form_action = nl.form_action | default: preset.form_action %}
+{% assign email_field = nl.email_field | default: preset.email_field | default: 'email' %}
+{% assign hidden_fields = nl.hidden_fields | default: preset.hidden_fields %}
+{% assign issues_limit = nl.issues_per_page | default: 10 %}
+
+<div class="nl-page">
+
+<!-- Hero -->
+<section class="nl-hero">
+  <div class="dl-wrap">
+    <h1 class="nl-hero__title dl-rise">From the Burrow.</h1>
+    <p class="nl-hero__lead dl-rise dl-d1">A short, occasional letter about what the Wombat community is building: framework changes, open RFCs, new articles, and the people doing the work.</p>
+  </div>
+</section>
+
+<!-- What + signup -->
+<section class="nl-section">
+  <div class="dl-wrap">
+    <div class="nl-layout">
+      <div class="dl-rise">
+        <h2 class="dl-heading">What lands in your inbox.</h2>
+        <ul class="nl-list">
+          <li><strong>Framework and WOMBATpass changes</strong> — the releases and control updates worth knowing about, with links to the changelog.</li>
+          <li><strong>Open RFCs and decisions</strong> — what is being discussed, what was decided, and where to comment.</li>
+          <li><strong>Articles and experience reports</strong> — practical cloud architecture writing from the community.</li>
+          <li><strong>Community work</strong> — contributor ranks, talks, workshops and the sessions coming up.</li>
+        </ul>
+        <p class="nl-note">No tracking pixels. No sales sequence. The archive stays public, so you can read everything before subscribing.</p>
+      </div>
+
+      <aside class="nl-signup dl-rise dl-d1" aria-labelledby="nl-signup-title">
+        <h2 class="nl-signup__title" id="nl-signup-title">Subscribe</h2>
+        {% if nl.enabled and form_action and form_action != blank %}
+        <p class="nl-signup__lead">One short email when there is something worth saying. You can unsubscribe at any time.</p>
+        <form class="nl-signup__form" action="{{ form_action }}" method="post" target="_blank" rel="noopener">
+          <label class="nl-signup__label" for="nl-email">Email address</label>
+          <input class="nl-input" id="nl-email" type="email" name="{{ email_field }}" required autocomplete="email" placeholder="you@example.com">
+          {% if hidden_fields %}
+            {% for field in hidden_fields %}
+            <input type="hidden" name="{{ field[0] }}" value="{{ field[1] }}">
+            {% endfor %}
+          {% endif %}
+          <button class="dl-btn dl-btn--primary" type="submit">{{ nl.button_label | default: "Subscribe" }}</button>
+        </form>
+        <p class="nl-signup__note">The form posts directly to the configured provider. Wombat does not store addresses on this site.</p>
+        {% else %}
+        <p class="nl-signup__soon">Signup opening soon.</p>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Archive -->
+<section class="nl-section nl-section--alt">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h2 class="dl-heading">Archive.</h2>
+      <p class="dl-lead">Every issue stays readable here. No account, no paywall.</p>
+    </div>
+
+    {% assign issues = site.newsletters | sort: 'date' | reverse %}
+    {% if issues and issues.size > 0 %}
+    <div class="nl-archive dl-rise">
+      {% for issue in issues limit: issues_limit %}
+      <article class="nl-issue">
+        <div class="nl-issue__meta">
+          {% if issue.issue %}Issue {{ issue.issue }}{% endif %}
+          {% if issue.date %} · {{ issue.date | date: "%d %b %Y" }}{% endif %}
+        </div>
+        <h3 class="nl-issue__title"><a href="{{ issue.url | relative_url }}">{{ issue.title }}</a></h3>
+        <p class="nl-issue__excerpt">{{ issue.description | default: issue.excerpt | strip_html | truncate: 160 }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="nl-empty">No issues published yet. The first issue is being prepared.</p>
+    {% endif %}
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

@@ -40,7 +40,7 @@ permalink: /fr/translations/
       {{ i18n.common.translation_report_intro }}
     </p>
 
-    {% assign pages_with_ref = site.pages | where_exp: "p", "p.ref" %}
+    {% assign pages_with_ref = site.pages | where_exp: "p", "p.ref and p.layout != 'redirect'" %}
     {% assign refs = "" | split: "" %}
 
     {% for p in pages_with_ref %}

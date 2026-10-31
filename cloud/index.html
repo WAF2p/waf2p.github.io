@@ -1,0 +1,112 @@
+---
+layout: default
+lang: en
+ref: clouds
+title: "Cloud providers"
+description: "Every cloud provider recognised by the WOMBATpass dashboard — with framework control coverage, dashboard tracking or region-map support."
+permalink: /cloud/
+translation_notice: false
+image: /images/og/pillars/sovereign.png
+breadcrumb: []
+breadcrumb_current: "Cloud providers"
+hub_type: cloud
+hub_about: "Cloud providers"
+---
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Wombat by cloud provider.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">Provider frameworks are excellent at provider depth. Wombat adds the neutral baseline: the same controls, score and evidence when a workload touches more than one cloud.</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/wombatpass/scorecard/' | relative_url }}">Run the scorecard →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/comparison/' | relative_url }}">Compare frameworks</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/cloud/coverage/' | relative_url }}">Coverage table</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/sovereignty/' | relative_url }}">Sovereignty hub</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">25 providers recognised</li>
+      <li class="hub-hero__fact">6 with framework control coverage</li>
+      <li class="hub-hero__fact">Dashboard + European region-map providers</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Providers -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Choose a provider.</h2>
+      <p class="hub-section__lead">The list is grouped by the depth of Wombat support, so the score is never presented as more than it is.</p>
+    </div>
+
+    <h3 class="hub-section__title dl-rise" style="font-size: 1.4rem; margin-top: 34px;">Framework control coverage</h3>
+    <p class="hub-section__lead dl-rise">The current framework control pack includes checks for these providers.</p>
+    <div class="hub-grid hub-grid--3 dl-rise">
+      {% for pair in site.data.clouds.clouds %}
+        {% assign slug = pair[0] %}
+        {% assign cloud = pair[1] %}
+        {% if cloud.coverage == 'framework' %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ cloud.kicker }}</div>
+          <h4 class="hub-card__title">{{ cloud.name }}</h4>
+          <p class="hub-card__text">{{ cloud.summary }}</p>
+          <div class="hub-pill-row" style="margin-top: 12px;">
+            <span class="hub-pill">Framework controls</span>
+            {% if cloud.control_count > 0 %}<span class="hub-pill">{{ cloud.control_count }} controls</span>{% endif %}
+          </div>
+          <a class="hub-card__link" href="{{ '/cloud/' | append: slug | append: '/' | relative_url }}">Open the {{ cloud.name }} page →</a>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <h3 class="hub-section__title dl-rise" style="font-size: 1.4rem; margin-top: 44px;">Dashboard-tracked providers</h3>
+    <p class="hub-section__lead dl-rise">These providers are available in the dashboard's provider selector. Framework control coverage is expanding; treat the score as partial until the relevant control pack covers the resource types.</p>
+    <div class="hub-grid hub-grid--3 dl-rise">
+      {% for pair in site.data.clouds.clouds %}
+        {% assign slug = pair[0] %}
+        {% assign cloud = pair[1] %}
+        {% if cloud.coverage == 'dashboard' %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ cloud.kicker }}</div>
+          <h4 class="hub-card__title">{{ cloud.name }}</h4>
+          <p class="hub-card__text">{{ cloud.summary }}</p>
+          <div class="hub-pill-row" style="margin-top: 12px;"><span class="hub-pill">Dashboard-tracked</span></div>
+          <a class="hub-card__link" href="{{ '/cloud/' | append: slug | append: '/' | relative_url }}">Open the {{ cloud.name }} page →</a>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <h3 class="hub-section__title dl-rise" style="font-size: 1.4rem; margin-top: 44px;">European region-map providers</h3>
+    <p class="hub-section__lead dl-rise">The dashboard's region map recognises these providers for region detection. They do not have a dedicated framework control pack yet; the pages are discovery baselines for jurisdiction, residency and provider concentration.</p>
+    <div class="hub-grid hub-grid--3 dl-rise">
+      {% for pair in site.data.clouds.clouds %}
+        {% assign slug = pair[0] %}
+        {% assign cloud = pair[1] %}
+        {% if cloud.coverage == 'region' %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ cloud.kicker }}</div>
+          <h4 class="hub-card__title">{{ cloud.name }}</h4>
+          <p class="hub-card__text">{{ cloud.summary }}</p>
+          <div class="hub-pill-row" style="margin-top: 12px;"><span class="hub-pill">Region-map tracked</span></div>
+          <a class="hub-card__link" href="{{ '/cloud/' | append: slug | append: '/' | relative_url }}">Open the {{ cloud.name }} page →</a>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="hub-note dl-rise"><a class="dl-link" href="{{ '/cloud/map/' | relative_url }}">See all providers on one map →</a></p>
+    <p class="hub-note dl-rise">
+      All providers from the dashboard's provider selector and region map are listed above. The framework control pack currently covers AWS, Azure, GCP, STACKIT, OVHcloud and Hetzner Cloud. Alibaba Cloud, Yandex Cloud and OCI are dashboard-tracked. The European region-map group is recognised for region detection; those pages are discovery baselines until a dedicated control pack exists. Multi-cloud and “other” are metadata modes, not providers.
+    </p>
+    <div class="dl-rise">{% include provider-data-disclaimer.html %}</div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

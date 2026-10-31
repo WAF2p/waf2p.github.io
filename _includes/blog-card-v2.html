@@ -1,24 +1,28 @@
 {% assign post = include.post %}
 
 {%- comment -%}
-  Same preview-image inference as the original blog-card.html (first
-  image in the rendered content, falling back to the site logo) — this
-  include is a fresh v2 just for blog/index.html, blog-category.html
+  Preview image: the post's front-matter `image` first, then the first
+  image in the rendered content, falling back to the site logo.
+
+  This include is a fresh v2 just for blog/index.html, blog-category.html
   and post.html's "more articles", so the original stays untouched for
   archive.html and staff_member_page.html, which still use it as-is.
 {%- endcomment -%}
 
-{% assign preview = '' %}
+{% assign preview = post.image %}
+{% if preview == nil %}{% assign preview = '' %}{% endif %}
 {% assign content_raw = post.content | strip %}
 
-{%- assign html_split = content_raw | split: '<img' -%}
-{%- if html_split.size > 1 -%}
-  {%- assign img_chunk = html_split[1] -%}
-  {%- assign src_split = img_chunk | split: 'src="' -%}
-  {%- if src_split.size > 1 -%}
-    {%- assign src_rest = src_split[1] -%}
-    {%- assign src = src_rest | split: '"' | first -%}
-    {%- assign preview = src -%}
+{%- if preview == '' -%}
+  {%- assign html_split = content_raw | split: '<img' -%}
+  {%- if html_split.size > 1 -%}
+    {%- assign img_chunk = html_split[1] -%}
+    {%- assign src_split = img_chunk | split: 'src="' -%}
+    {%- if src_split.size > 1 -%}
+      {%- assign src_rest = src_split[1] -%}
+      {%- assign src = src_rest | split: '"' | first -%}
+      {%- assign preview = src -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}
 

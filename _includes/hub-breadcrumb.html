@@ -1,0 +1,11 @@
+{%- if page.breadcrumb -%}
+<nav class="hub-breadcrumb" aria-label="Breadcrumb">
+  <a href="{{ '/' | relative_url }}">{% if page.lang == 'de' %}Start{% else %}Home{% endif %}</a>
+  {%- for crumb in page.breadcrumb -%}
+    <span class="hub-breadcrumb__sep" aria-hidden="true">/</span>
+    <a href="{{ crumb.url | relative_url }}">{{ crumb.name }}</a>
+  {%- endfor -%}
+  <span class="hub-breadcrumb__sep" aria-hidden="true">/</span>
+  <span aria-current="page">{{ page.breadcrumb_current | default: page.title }}</span>
+</nav>
+{%- endif -%}

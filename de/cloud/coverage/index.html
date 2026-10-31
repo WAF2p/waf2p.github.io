@@ -1,0 +1,115 @@
+---
+layout: default
+lang: de
+ref: cloud_coverage
+title: "Cloud-Provider-Abdeckung"
+description: "Abdeckungstabelle für alle vom WOMBATpass-Dashboard erkannten Provider: Framework-Controls, Regionsanzahl und Korrektur-Kontakt."
+permalink: /de/cloud/coverage/
+translation_notice: false
+image: /images/og/pillars/sovereign.png
+breadcrumb:
+  - name: "Cloud-Provider"
+    url: "/de/cloud/"
+breadcrumb_current: "Provider-Abdeckung"
+hub_type: cloud
+hub_about: "Cloud-Provider-Abdeckung"
+---
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Provider-Abdeckung.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">Eine Tabelle für alle vom WOMBATpass-Dashboard erkannten Provider: Framework-Control-Tiefe, ungefähre Regionsanzahl und Korrektur-Kontakt.</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/de/cloud/' | relative_url }}">Alle Provider →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/de/cloud/methodology/' | relative_url }}">Datenmethodik</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/de/wombatpass/scorecard/' | relative_url }}">Scorecard starten</a>
+    </div>
+  </div>
+</section>
+
+<!-- Table -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Abdeckung auf einen Blick.</h2>
+      <p class="hub-section__lead">Controls zählt eindeutige Framework-Controls mit providerspezifischen Checks. Regionen zählt Regionscodes in der Dashboard-Map. Beides sind Momentaufnahmen, keine Zertifizierungen.</p>
+    </div>
+
+    <div class="hub-table-wrap dl-rise">
+      <table class="hub-table">
+        <thead>
+          <tr>
+            <th scope="col">Provider</th>
+            <th scope="col">Abdeckung</th>
+            <th scope="col">Controls</th>
+            <th scope="col">Regionen</th>
+            <th scope="col">Korrektur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hub-table__group"><td colspan="5">Framework-Control-Abdeckung</td></tr>
+          {% for pair in site.data.clouds.clouds %}
+            {% assign slug = pair[0] %}
+            {% assign cloud = pair[1] %}
+            {% if cloud.coverage == 'framework' %}
+            {% assign region_data = site.data.cloud_regions[slug] %}
+            <tr>
+              <td><a href="{{ '/de/cloud/' | append: slug | append: '/' | relative_url }}">{{ cloud.name }}</a></td>
+              <td>Framework-Controls</td>
+              <td>{{ cloud.control_count }}</td>
+              <td>{% if region_data %}{{ region_data.region_count }}{% else %}—{% endif %}</td>
+              <td><a href="mailto:{{ site.data.clouds.provider_data_contact }}?subject={{ 'Correction: ' | append: cloud.name | append: ' provider data' | url_encode }}">Melden</a></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+
+          <tr class="hub-table__group"><td colspan="5">Dashboard-getrackte Provider</td></tr>
+          {% for pair in site.data.clouds.clouds %}
+            {% assign slug = pair[0] %}
+            {% assign cloud = pair[1] %}
+            {% if cloud.coverage == 'dashboard' %}
+            {% assign region_data = site.data.cloud_regions[slug] %}
+            <tr>
+              <td><a href="{{ '/de/cloud/' | append: slug | append: '/' | relative_url }}">{{ cloud.name }}</a></td>
+              <td>Dashboard-getrackt</td>
+              <td>—</td>
+              <td>{% if region_data %}{{ region_data.region_count }}{% else %}—{% endif %}</td>
+              <td><a href="mailto:{{ site.data.clouds.provider_data_contact }}?subject={{ 'Correction: ' | append: cloud.name | append: ' provider data' | url_encode }}">Melden</a></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+
+          <tr class="hub-table__group"><td colspan="5">Europäische Region-Map-Provider</td></tr>
+          {% for pair in site.data.clouds.clouds %}
+            {% assign slug = pair[0] %}
+            {% assign cloud = pair[1] %}
+            {% if cloud.coverage == 'region' %}
+            {% assign region_data = site.data.cloud_regions[slug] %}
+            <tr>
+              <td><a href="{{ '/de/cloud/' | append: slug | append: '/' | relative_url }}">{{ cloud.name }}</a></td>
+              <td>Region-Map erkannt</td>
+              <td>—</td>
+              <td>{% if region_data %}{{ region_data.region_count }}{% else %}—{% endif %}</td>
+              <td><a href="mailto:{{ site.data.clouds.provider_data_contact }}?subject={{ 'Correction: ' | append: cloud.name | append: ' provider data' | url_encode }}">Melden</a></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hub-cta__actions dl-rise" style="margin-top: 18px;">
+      <a class="dl-btn dl-btn--line" href="{{ '/assets/data/providers.json' | relative_url }}" download>JSON herunterladen</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/assets/data/providers.csv' | relative_url }}" download>CSV herunterladen</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/assets/data/LICENSE.txt' | relative_url }}">Datenlizenz</a>
+    </div>
+    <div class="dl-rise">{% include provider-data-disclaimer.html %}</div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

@@ -68,13 +68,28 @@
 
 .cookie-consent__header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 16px;
+
+  picture { display: contents; }
+}
+
+/* Mascot avatar — the wombat greets visitors on the consent card */
+.cookie-consent__mascot {
+  flex: none;
+  width: 88px;
+  height: 88px;
+  padding: 6px;
+  background: var(--dl-surface-2, var(--surface-2));
+  border: 1.5px solid var(--dl-border, var(--border));
+  border-radius: 22px;
+  object-fit: contain;
 }
 
 .cookie-consent__title {
+  flex: 1;
   font-family: var(--dl-font-display);
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
   font-weight: 600;
@@ -340,6 +355,13 @@
 }
 
 @media (max-width: 480px) {
+  .cookie-consent__mascot {
+    width: 64px;
+    height: 64px;
+    padding: 4px;
+    border-radius: 16px;
+  }
+
   .cookie-consent__actions {
     flex-direction: column-reverse;
   }

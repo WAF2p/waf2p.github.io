@@ -1,0 +1,150 @@
+{% assign persona = site.data.personas.personas[page.persona_slug] %}
+{% if persona %}
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">{{ persona.title }}</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">{{ persona.summary }}</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      {% if persona.cta.primary_url %}
+      <a class="dl-btn dl-btn--primary" href="{{ persona.cta.primary_url | relative_url }}">{{ persona.cta.primary_label }} →</a>
+      {% endif %}
+      {% if persona.cta.secondary_url %}
+      <a class="dl-btn dl-btn--line" href="{{ persona.cta.secondary_url | relative_url }}">{{ persona.cta.secondary_label }}</a>
+      {% endif %}
+      <a class="dl-btn dl-btn--line" href="{{ '/for/' | relative_url }}">All roles</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">{{ persona.kicker }}</li>
+      <li class="hub-hero__fact">{{ persona.pillars | size }} relevant pillars</li>
+      <li class="hub-hero__fact">{{ persona.links | size }} starting points</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Intro + pains -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What gets in the way.</h2>
+      <p class="hub-section__lead">{{ persona.intro }}</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for pain in persona.pains %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Friction</div>
+        <p class="hub-card__text">{{ pain }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Outcomes -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What changes with a shared baseline.</h2>
+      <p class="hub-section__lead">The goal is not another dashboard. It is a control model that engineering, security and finance can all use in the same conversation.</p>
+    </div>
+
+    <ul class="hub-list dl-rise">
+      {% for outcome in persona.outcomes %}
+      <li>{{ outcome }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Pillars that matter for this role.</h2>
+      <p class="hub-section__lead">Start with the pillars closest to the decisions you own, then use the scorecard to see the whole system.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for p in persona.pillars %}
+        {% assign pillar = site.data.pillars | where: "slug", p.slug | first %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{% if pillar %}{{ pillar.code }}{% else %}{{ p.slug }}{% endif %}</div>
+          <h3 class="hub-card__title">{% if pillar %}{{ pillar.label }}{% else %}{{ p.slug }}{% endif %}</h3>
+          <p class="hub-card__text">{{ p.why }}</p>
+          {% if pillar %}
+          <a class="hub-card__link" href="{{ pillar.url | relative_url }}">Read the {{ pillar.label }} pillar →</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Starting points + CTA -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Start here.</h2>
+      <p class="hub-section__lead">Pick the artifact closest to your next decision. Each one leads back to the same control model.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for link in persona.links %}
+      <article class="hub-card">
+        <h3 class="hub-card__title">{{ link.label }}</h3>
+        <a class="hub-card__link" href="{{ link.url | relative_url }}">Open →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">{{ persona.cta.title }}</h2>
+          <p class="hub-cta__text">{{ persona.cta.text }}</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ persona.cta.primary_url | relative_url }}">{{ persona.cta.primary_label }} →</a>
+          <a class="dl-btn dl-btn--line" href="{{ persona.cta.secondary_url | relative_url }}">{{ persona.cta.secondary_label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related roles -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Other roles.</h2>
+      <p class="hub-section__lead">The same control model is read differently by each role. Use the adjacent page to find the questions that matter to the rest of the team.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for pair in site.data.personas.personas %}
+        {% assign related_slug = pair[0] %}
+        {% assign related = pair[1] %}
+        {% unless related_slug == page.persona_slug %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ related.kicker }}</div>
+          <h3 class="hub-card__title">{{ related.title }}</h3>
+          <p class="hub-card__text">{{ related.summary }}</p>
+          <a class="hub-card__link" href="{{ '/for/' | append: related_slug | append: '/' | relative_url }}">Open the role page →</a>
+        </article>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}
+{% else %}
+<div class="dl-wrap" style="padding-block: 80px;">
+  <p class="hub-note">This persona hub is not configured. Check <code>_data/personas.yml</code>.</p>
+</div>
+{% endif %}

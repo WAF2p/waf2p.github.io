@@ -1,0 +1,247 @@
+---
+layout: default
+lang: pl
+ref: wombatpass_action
+title: "WOMBATpass GitHub Action"
+description: "Uruchamiaj skany WOMBATpass w GitHub Actions i wysyłaj wyniki zgodności infrastruktury na swój serwer WOMBATpass."
+permalink: /pl/wombatpass-action/
+---
+
+<div class="wfpa-page">
+
+<!-- Hero -->
+<section class="wfpa-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="wfpa-hero__title">Zgodność w Twoim potoku.</h1>
+      <p class="wfpa-hero__lead">Dodaj WOMBATpass do dowolnego workflow. Skanuj Terraform, Bicep, CDK lub Pulumi przy każdym pull requeście i pushu, a następnie wysyłaj pełny wynik na serwer WOMBATpass na potrzeby pulpitów, analizy luk i dowodów audytowych.</p>
+      <div class="wfpa-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
+          Pobierz action
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-action" target="_blank" rel="noopener">Zobacz na GitHubie</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pl/wombatpass-install/' | relative_url }}">Zainstaluj WOMBATpass</a>
+      </div>
+      <div class="wfpa-hero__row">
+        <div class="dl-quiet-row__names">
+          <span class="dl-quiet-row__name">Terraform</span>
+          <span class="dl-quiet-row__name">Bicep</span>
+          <span class="dl-quiet-row__name">CDK</span>
+          <span class="dl-quiet-row__name">Pulumi</span>
+          <span class="dl-quiet-row__name">Bearer token</span>
+          <span class="dl-quiet-row__name">Klucz API</span>
+          <span class="dl-quiet-row__name">Zasady niepowodzenia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="wfpa-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">v0.1.1</div><div class="dl-stat__label">Wydanie action</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">4</div><div class="dl-stat__label">Frameworki IaC</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">2</div><div class="dl-stat__label">Tryby uwierzytelniania</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">0</div><div class="dl-stat__label">Wymagane poświadczenia chmury</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpa-section-head dl-rise">
+      <h2 class="dl-heading">Jeden krok. Pełna widoczność.</h2>
+      <p class="dl-lead">Action zajmuje się instalacją CLI, skanowaniem, wysyłką wyników i egzekwowaniem zasad, aby Twój zespół mógł skupić się na wdrażaniu.</p>
+    </div>
+
+    <div class="wfpa-grid dl-rise">
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Automatyczna instalacja CLI</h3>
+        <p class="wfpa-card__desc">Automatycznie instaluje najnowszy <code>wafpass-core</code> z PyPI — lub użyj własnego źródła pip albo preinstalowanego pliku binarnego.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Skan wielu IaC</h3>
+        <p class="wfpa-card__desc">Skanuj pliki Terraform, Bicep, CDK lub Pulumi w jednym kroku. Obsługuje wiele ścieżek oraz JSON planu Terraform do przeglądu zmian.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Wysyłka na serwer</h3>
+        <p class="wfpa-card__desc">Wysyła pełny <code>wafpass-result.json</code> do <code>POST /api/v1/runs</code> , aby pulpity i pakiety dowodów były zawsze aktualne.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Bramki zasad</h3>
+        <p class="wfpa-card__desc">Konfigurowalne zasady <code>fail_on</code> od <code>never</code> do <code>critical</code>. Krok kończy się niepowodzeniem dopiero po bezpiecznym zapisaniu wyniku na serwerze.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Elastyczne uwierzytelnianie</h3>
+        <p class="wfpa-card__desc">Użyj tokenu Bearer dla użytkowników interaktywnych lub klucza API do ingestu dla bezobsługowych przebiegów CI/CD. Oba są bezpiecznie przekazywane na serwer.</p>
+      </div>
+      <div class="wfpa-card">
+        <h3 class="wfpa-card__title">Metadane CI/CD</h3>
+        <p class="wfpa-card__desc">Oznacza przebiegi jako <code>is_cicd: true</code> z <code>triggered_by: github-actions</code> i automatycznie przekazuje gałąź, SHA commita, projekt i etap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Usage -->
+<section class="dl-section dl-section--alt" id="usage">
+  <div class="dl-wrap">
+    <div class="wfpa-section-head dl-rise">
+      <h2 class="dl-heading">Dodaj ją do dowolnego workflow.</h2>
+      <p class="dl-lead">Pobierz repozytorium, uruchom action i pokazuj wyniki zgodności tam, gdzie Twój zespół już pracuje.</p>
+    </div>
+
+    <div class="wfpa-usage dl-rise">
+      <div class="code-window" data-ui>
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">.github/workflows/wafpass.yml</span>
+        </div>
+        {% raw %}<pre class="code-window__body"><code>name: WOMBATpass Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  wafpass:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run WOMBATpass
+        uses: WAF2p/wafpass-action@v0.1.1
+        with:
+          server_url: ${{ vars.WAFPASS_SERVER_URL }}
+          api_key: ${{ secrets.WAFPASS_API_KEY }}
+          scan_path: ./infra
+          iac_framework: terraform
+          project: ${{ github.repository }}
+          stage: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+          fail_on: high
+          upload_source: true</code></pre>{% endraw %}
+      </div>
+
+      <div class="code-window" data-ui>
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__title">Przykład multi-cloud / monorepo</span>
+        </div>
+        {% raw %}<pre class="code-window__body"><code>      - name: Run WOMBATpass
+        uses: WAF2p/wafpass-action@v0.1.1
+        with:
+          server_url: ${{ vars.WAFPASS_SERVER_URL }}
+          api_key: ${{ secrets.WAFPASS_API_KEY }}
+          scan_path: ./aws ./azure ./gcp
+          iac_framework: terraform
+          project: ${{ github.repository }}
+          stage: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+          fail_on: high
+          upload_source: true</code></pre>{% endraw %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Inputs / outputs -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpa-section-head dl-rise">
+      <h2 class="dl-heading">Wejścia i wyjścia.</h2>
+      <p class="dl-lead">Wszystko, co action przyjmuje i zwraca, w jednym miejscu.</p>
+    </div>
+
+    <div class="wfpa-tables dl-rise">
+      <div>
+        <h3 class="wfpa-tables__label">Wejścia</h3>
+        <div class="rfc-table-wrap" data-ui>
+          <table class="rfc-table">
+            <thead>
+              <tr><th>Wejście</th><th>Wymagane</th><th>Domyślnie</th><th>Opis</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>server_url</code></td><td><span class="wfpa-required">tak</span></td><td>brak</td><td>Bazowy URL serwera Wombat.</td></tr>
+              <tr><td><code>api_token</code></td><td>nie</td><td>brak</td><td>Token Bearer. Podaj ten token albo <code>api_key</code>.</td></tr>
+              <tr><td><code>api_key</code></td><td>nie</td><td>brak</td><td>Klucz API do ingestu (<code>X-Api-Key</code>).</td></tr>
+              <tr><td><code>scan_path</code></td><td><span class="wfpa-required">tak</span></td><td><code>.</code></td><td>Ścieżka/ścieżki do skanowania. Wiele ścieżek oddziel spacjami.</td></tr>
+              <tr><td><code>iac_framework</code></td><td>nie</td><td><code>terraform</code></td><td>Wtyczka IaC: <code>terraform</code>, <code>bicep</code>, <code>cdk</code>, <code>pulumi</code>.</td></tr>
+              <tr><td><code>stage</code></td><td>nie</td><td>brak</td><td>Etap wdrożenia, np. <code>dev</code>, <code>staging</code>, <code>prod</code>.</td></tr>
+              <tr><td><code>project</code></td><td>nie</td><td>nazwa repozytorium</td><td>Identyfikator projektu / repozytorium.</td></tr>
+              <tr><td><code>fail_on</code></td><td>nie</td><td><code>fail</code></td><td><code>fail</code>, <code>skip</code>, <code>any</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code>, <code>never</code>.</td></tr>
+              <tr><td><code>upload_source</code></td><td>nie</td><td><code>false</code></td><td>Wysyła pliki źródłowe do podglądu różnic w pulpicie.</td></tr>
+              <tr><td><code>fetch_controls</code></td><td>nie</td><td><code>false</code></td><td>Klonuje kontrole z repozytorium frameworka przed skanowaniem.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="wfpa-tables__label">Wyjścia</h3>
+        <div class="rfc-table-wrap" data-ui>
+          <table class="rfc-table">
+            <thead>
+              <tr><th>Wyjście</th><th>Opis</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>run_id</code></td><td>UUID przebiegu utworzonego na serwerze Wombat.</td></tr>
+              <tr><td><code>score</code></td><td>Ogólny wynik zgodności zwrócony przez serwer.</td></tr>
+              <tr><td><code>findings_count</code></td><td>Liczba wyników w rezultacie skanu.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section wfpa-cta-section">
+  <div class="dl-wrap">
+    <div class="wfpa-cta dl-rise">
+      <h2 class="dl-heading">Dodaj WOMBATpass do swojego potoku.</h2>
+      <p class="dl-lead">Zainstaluj action z GitHub Marketplace, skopiuj workflow i pokazuj zgodność infrastruktury przy każdym PR.</p>
+      <div class="wfpa-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
+          Pobierz action
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pl/wombatpass/' | relative_url }}">O WOMBATpass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pl/wombatpass-install/' | relative_url }}">Zainstaluj WOMBATpass</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>

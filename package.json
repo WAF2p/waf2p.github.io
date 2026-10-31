@@ -4,6 +4,12 @@
   "description": "Wombat Website with Antora Documentation",
   "scripts": {
     "fetch-rfcs": "node scripts/fetch-rfcs.mjs",
+    "og:cloud": "node scripts/generate-cloud-og.mjs",
+    "data:providers": "node scripts/generate-provider-data.mjs",
+    "optimize:maps": "node scripts/optimize-cloud-maps.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check:external": "node scripts/check-external-links.mjs",
+    "test:smoke": "node tests/site-smoke.mjs",
     "copy-assets": "node scripts/copy-local-assets.js",
     "prejekyll:build": "npm run fetch-rfcs && npm run copy-assets",
     "docs:build": "antora antora-playbook.yml",
@@ -25,6 +31,7 @@
     "@antora/pdf-extension": "^1.0.0-rc.4",
     "@antora/site-generator": "^3.1.0",
     "@asciidoctor/tabs": "^1.0.0-beta.6",
+    "@axe-core/playwright": "^4.14.0",
     "asciidoctor-kroki": "^0.18.1",
     "asciidoctor-treeview": "^1.0.1",
     "lunr-languages": "^1.14.0"

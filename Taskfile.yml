@@ -113,6 +113,14 @@ tasks:
       - find modules -name "*.adoc" -type f -print
       - echo "AsciiDoc validation - Found files listed above"
 
+  brand:build:
+    desc: Regenerate mascot SVGs, pillar icons, OG cards and the brand kit ZIP
+    cmds:
+      - python3 scripts/generate-mascot-assets.py
+      - python3 scripts/generate-pillar-icons.py
+      - node scripts/generate-og.mjs
+      - sh scripts/build-brand-kit.sh
+
   # Dependency management
   deps:install:
     desc: Install all dependencies (Ruby + Node.js) and copy local fonts/icons

@@ -29,7 +29,11 @@ layout: default
   {% assign img_marker = '<img' %}
   {% assign first_img_split = rendered_content | split: img_marker %}
   {% if first_img_split.size > 1 %}
-    {% assign after_first = first_img_split[1] %}
+    {%- comment -%}
+      Rejoin every chunk after the first image so posts with additional inline
+      images are not truncated at the second <img> tag.
+    {%- endcomment -%}
+    {% assign after_first = first_img_split | slice: 1, first_img_split.size | join: img_marker %}
     {% assign end_tag_split = after_first | split: '>' %}
     {% if end_tag_split.size > 1 %}
       {% assign before = first_img_split[0] %}

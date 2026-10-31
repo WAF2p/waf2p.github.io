@@ -79,6 +79,15 @@
 {%- endif -%}
 
 {%- comment -%}
+  Do not show translation notices on blog listing pages (index and category
+  pages). The blog only exists in EN and DE, so the notice would otherwise
+  appear on every blog page in every language.
+{%- endcomment -%}
+{%- if page.layout == 'blog-category' or page.url contains '/blog' -%}
+  {%- assign missing_langs = "" | split: "" -%}
+{%- endif -%}
+
+{%- comment -%}
   Do not show translation notices on staff member profile pages.
 {%- endcomment -%}
 {%- if page.layout == 'staff_member_page' or page.ref contains 'staff_members' or page.member_id -%}

@@ -1,0 +1,145 @@
+---
+layout: default
+lang: de
+ref: sovereignty
+title: "Cloud-Souveränität"
+description: "Datenresidenz, Jurisdiktion, Schlüsselverwahrung, Lieferantenrisiko und Exit-Pfade in eine bewertbare Architektur-Baseline übersetzen."
+permalink: /de/sovereignty/
+translation_notice: false
+image: /images/og/pillars/sovereign.png
+breadcrumb:
+  - name: "Compliance"
+    url: "/de/compliance/"
+breadcrumb_current: "Souveränität"
+hub_type: compliance
+hub_about: "Cloud-Souveränität"
+---
+
+{% assign sov = site.data.sovereignty_de %}
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">{{ sov.title }}</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">{{ sov.summary }}</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ sov.cta.primary_url | relative_url }}">{{ sov.cta.primary_label }} →</a>
+      <a class="dl-btn dl-btn--line" href="{{ sov.cta.secondary_url | relative_url }}">{{ sov.cta.secondary_label }}</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/de/compliance/' | relative_url }}">Compliance-Hubs</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">{{ sov.kicker }}</li>
+      <li class="hub-hero__fact">Residenz · Zugriff · Exit · Evidenz</li>
+      <li class="hub-hero__fact">{{ sov.pillars | size }} Wombat-Säulen</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Intro + principles -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Souveränität ist mehr als eine Region.</h2>
+      <p class="hub-section__lead">{{ sov.intro }}</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for principle in sov.principles %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Prinzip {{ forloop.index }}</div>
+        <h3 class="hub-card__title">{{ principle.title }}</h3>
+        <p class="hub-card__text">{{ principle.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Signals -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Was zu bewerten ist.</h2>
+      <p class="hub-section__lead">Diese Signale übersetzt die Sovereign-Säule in Controls. Sie sind bewusst breiter als Datenresidenz.</p>
+    </div>
+
+    <div class="hub-pill-row dl-rise">
+      {% for signal in sov.signals %}
+      <span class="hub-pill">{{ signal }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Säulen, die die Souveränitätsstory tragen.</h2>
+      <p class="hub-section__lead">Souveränität ist kein einzelnes Control. Sie entsteht aus dem Zusammenspiel von Residenz, Sicherheit, Betrieb und Portabilität.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for p in sov.pillars %}
+        {% assign pillar = site.data.pillars | where: "slug", p.slug | first %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{% if pillar %}{{ pillar.code }}{% else %}{{ p.slug }}{% endif %}</div>
+          <h3 class="hub-card__title">{% if pillar %}{{ pillar.label_de | default: pillar.label }}{% else %}{{ p.slug }}{% endif %}</h3>
+          <p class="hub-card__text">{{ p.why }}</p>
+          {% if pillar %}
+          <a class="hub-card__link" href="{{ '/de' | append: pillar.url | relative_url }}">Mehr zur Säule {{ pillar.label_de | default: pillar.label }} →</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Steps + links -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">So wird daraus ein Plan.</h2>
+      <p class="hub-section__lead">Eine Souveränitätsprüfung ist nur nützlich, wenn sie eine Verlängerung, eine Architekturentscheidung oder ein Evidenzpaket verändert.</p>
+    </div>
+
+    <div class="hub-steps dl-rise">
+      {% for step in sov.steps %}
+      <div class="hub-step">
+        <div class="hub-step__num">SCHRITT {{ forloop.index }}</div>
+        <p class="hub-step__text">{{ step }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise" style="margin-top: 24px;">
+      {% for link in sov.links %}
+      <article class="hub-card">
+        <h3 class="hub-card__title">{{ link.label }}</h3>
+        <a class="hub-card__link" href="{{ link.url | relative_url }}">Öffnen →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">{{ sov.cta.title }}</h2>
+          <p class="hub-cta__text">{{ sov.cta.text }}</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ sov.cta.primary_url | relative_url }}">{{ sov.cta.primary_label }} →</a>
+          <a class="dl-btn dl-btn--line" href="{{ sov.cta.secondary_url | relative_url }}">{{ sov.cta.secondary_label }}</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hub-disclaimer dl-rise">Souveränität ist eine technische und organisatorische Bewertung, keine Rechtsberatung. Jurisdiktion und vertragliche Fragen solltest du mit Legal und Beschaffung klären.</p>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

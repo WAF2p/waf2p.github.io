@@ -1,22 +1,23 @@
 ---
 date: 2025-11-25
 lang: de
-title: Wombat - Ein neuer Ansatz für souveräne Multi-Cloud-Architekturen
+title: WAF++ - Ein neuer Ansatz für souveräne Multi-Cloud-Architekturen
 categories:
   - cloud
 author_staff_member: sascha
+image: /assets/images/articles/wafpp-new-approach-cover.jpg
 ---
 
-# Wombat: Ein neuer Ansatz für souveräne Multi-Cloud-Architekturen
+# WAF++: Ein neuer Ansatz für souveräne Multi-Cloud-Architekturen
 
-Cloud-Architekturen stehen heute unter enormem Druck: steigende regulatorische Anforderungen, wachsender Bedarf an Multi-Cloud-Flexibilität und der Wunsch nach Unabhängigkeit von einzelnen Anbietern. Während AWS, Azure und GCP ihre eigenen Well-Architected Frameworks anbieten, fehlt bislang ein neutraler, europäisch geprägter Ansatz. Genau hier setzt **Wombat** an.
+Cloud-Architekturen stehen heute unter enormem Druck: steigende regulatorische Anforderungen, wachsender Bedarf an Multi-Cloud-Flexibilität und der Wunsch nach Unabhängigkeit von einzelnen Anbietern. Während AWS, Azure und GCP ihre eigenen Well-Architected Frameworks anbieten, fehlt bislang ein neutraler, europäisch geprägter Ansatz. Genau hier setzt **WAF++** an.
 
 
-## Warum Wombat?
+## Warum WAF++?
 
-Wombat ist ein *community-getriebenes, cloud-agnostisches* Framework, das sich an Architekten, Engineers und Organisationen richtet, die moderne Cloud-Architekturen entwickeln möchten – ohne sich an einen Anbieter zu binden. Die sieben Säulen des Frameworks decken alle relevanten Bereiche ab: von Security über Operational Excellence bis zu Compliance und Souveränität.
+WAF++ ist ein *community-getriebenes, cloud-agnostisches* Framework, das sich an Architekten, Engineers und Organisationen richtet, die moderne Cloud-Architekturen entwickeln möchten – ohne sich an einen Anbieter zu binden. Die sieben Säulen des Frameworks decken alle relevanten Bereiche ab: von Security über Operational Excellence bis zu Compliance und Souveränität.
 
-Als offenes Projekt steht Wombat für Transparenz, Neutralität und eine starke Community, die gemeinsam Bausteine, Muster und Referenzarchitekturen entwickelt.
+Als offenes Projekt steht WAF++ für Transparenz, Neutralität und eine starke Community, die gemeinsam Bausteine, Muster und Referenzarchitekturen entwickelt.
 
 
 ## Die sieben Säulen auf einen Blick
@@ -32,12 +33,12 @@ Als offenes Projekt steht Wombat für Transparenz, Neutralität und eine starke 
 Jede Säule wird durch Best Practices, Bausteine und konkrete Bewertungskriterien ergänzt.
 
 
-## Was macht Wombat besonders?
+## Was macht WAF++ besonders?
 
-Während bestehende Frameworks stark auf die jeweiligen Cloud-Provider zugeschnitten sind, konzentriert sich Wombat auf das, was Architekten wirklich brauchen:  
+Während bestehende Frameworks stark auf die jeweiligen Cloud-Provider zugeschnitten sind, konzentriert sich WAF++ auf das, was Architekten wirklich brauchen:  
 **Unabhängige Prinzipien, neutrale Architekturmuster und eine nachvollziehbare Bewertungsgrundlage.**
 
-Wombat ist kein Marketingtool eines Anbieters – sondern ein Werkzeug *der Community für die Community*.
+WAF++ ist kein Marketingtool eines Anbieters – sondern ein Werkzeug *der Community für die Community*.
 
 
 ## Was kommt als Nächstes?
@@ -46,8 +47,8 @@ Die Roadmap für Version 1.0 ist klar: ein technisches Grundgerüst, erste Refer
 Mit wachsender Beteiligung aus der Cloud Native Community entsteht Schritt für Schritt ein echtes europäisches Gegenstück zu proprietären WAF-Angeboten.
 
 
-Wenn du dich für Multi-Cloud, Souveränität oder moderne Architekturprinzipien interessierst, ist jetzt der perfekte Zeitpunkt, bei Wombat mitzumachen.  
+Wenn du dich für Multi-Cloud, Souveränität oder moderne Architekturprinzipien interessierst, ist jetzt der perfekte Zeitpunkt, bei WAF++ mitzumachen.  
 **Starte eine Diskussion, öffne ein Issue – oder bring eine eigene Idee ein!**
 
-> Wombat ist offen, vendor-neutral und entwickelt sich mit jeder neuen Stimme weiter.
+> WAF++ ist offen, vendor-neutral und entwickelt sich mit jeder neuen Stimme weiter.
 

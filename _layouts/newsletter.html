@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{% include lang-vars.html %}
+{% assign archive = '/newsletter/' %}
+{% assign archive_label = 'From the Burrow' %}
+{% if lang == 'de' %}
+  {% assign archive = '/de/newsletter/' %}
+  {% assign archive_label = 'Aus dem Bau' %}
+{% endif %}
+<article class="nl-issue-page">
+  <div class="dl-wrap">
+    <p class="nl-issue-page__meta">
+      <a href="{{ archive | relative_url }}">{{ archive_label }}</a>
+      {% if page.issue %}<span>Issue {{ page.issue }}</span>{% endif %}
+      {% if page.date %}<span>{{ page.date | date: "%d %b %Y" }}</span>{% endif %}
+      {% if page.draft %}<span>Draft — not published</span>{% endif %}
+    </p>
+    <h1 class="nl-issue-page__title">{{ page.title }}</h1>
+    <div class="nl-issue-page__body">
+      {{ content }}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,56 @@
+---
+layout: default
+lang: en
+ref: personas
+title: "For your role"
+description: "Wombat landing pages for platform teams, CISOs, FinOps and sustainability teams."
+permalink: /for/
+translation_notice: false
+image: /images/og/brand.png
+breadcrumb: []
+breadcrumb_current: "For your role"
+hub_type: persona
+hub_about: "Role-based cloud architecture"
+---
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Wombat for your role.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">The same control model, read through the decisions you actually own. Pick the role closest to your next review, audit or architecture decision.</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/wombatpass/scorecard/' | relative_url }}">Run the scorecard →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/controls/' | relative_url }}">Controls catalogue</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/compliance/' | relative_url }}">Compliance hubs</a>
+    </div>
+  </div>
+</section>
+
+<!-- Roles -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Choose a lens.</h2>
+      <p class="hub-section__lead">Each page links to the pillar pages, tools and use cases most relevant to that role — without creating a separate framework.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for pair in site.data.personas.personas %}
+        {% assign slug = pair[0] %}
+        {% assign persona = pair[1] %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ persona.kicker }}</div>
+          <h3 class="hub-card__title">{{ persona.title }}</h3>
+          <p class="hub-card__text">{{ persona.summary }}</p>
+          <a class="hub-card__link" href="{{ '/for/' | append: slug | append: '/' | relative_url }}">Open the role page →</a>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

@@ -1,0 +1,115 @@
+---
+layout: default
+lang: en
+ref: compliance
+title: "Compliance & sovereignty"
+description: "Map Wombat controls to NIS2, DORA, BSI C5 and BSI C3A obligations, and turn sovereignty into a scoreable architecture baseline."
+permalink: /compliance/
+translation_notice: false
+image: /images/og/pillars/sovereign.png
+breadcrumb: []
+breadcrumb_current: "Compliance & sovereignty"
+hub_type: compliance
+hub_about: "Cloud compliance and sovereignty"
+---
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Compliance &amp; sovereignty.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">Regulations describe outcomes. Wombat translates them into architecture controls, a repeatable score and evidence that stays current between audits.</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/wombatpass/scorecard/' | relative_url }}">Run the scorecard →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/controls/' | relative_url }}">Controls catalogue</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/trust/' | relative_url }}">Trust center</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">NIS2 · DORA · BSI C5 · BSI C3A</li>
+      <li class="hub-hero__fact">8 pillars · 100+ controls</li>
+      <li class="hub-hero__fact">Evidence, not just a score</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Hubs -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Pick the obligation you are working on.</h2>
+      <p class="hub-section__lead">Each hub explains what the regulation asks for, which Wombat pillars are relevant, and how to turn the gap into an evidence-backed plan.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for pair in site.data.compliance.regulations %}
+        {% assign slug = pair[0] %}
+        {% assign reg = pair[1] %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ reg.kicker }}</div>
+          <h3 class="hub-card__title">{{ reg.title }}</h3>
+          <p class="hub-card__text">{{ reg.summary }}</p>
+          <div class="hub-card__links">
+            <a class="hub-card__link" href="{{ '/compliance/' | append: slug | append: '/' | relative_url }}">Open the {{ reg.title }} hub →</a>
+            {% if reg.official_url %}<a class="hub-card__link" href="{{ reg.official_url }}" target="_blank" rel="noopener">{{ reg.official_label }} ↗</a>{% endif %}
+          </div>
+        </article>
+      {% endfor %}
+
+      <article class="hub-card">
+        <div class="hub-card__kicker">Control, not just location</div>
+        <h3 class="hub-card__title">Sovereignty</h3>
+        <p class="hub-card__text">Residency, jurisdiction, key ownership, supplier concentration and exit paths — turned into controls a team can assess.</p>
+        <a class="hub-card__link" href="{{ '/sovereignty/' | relative_url }}">Open the sovereignty hub →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- How to use -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">How to use these hubs.</h2>
+      <p class="hub-section__lead">The hubs are navigation aids, not a substitute for the official text or the control-level mapping. They help you find the right starting point quickly.</p>
+    </div>
+
+    <div class="hub-steps dl-rise">
+      <div class="hub-step">
+        <div class="hub-step__num">STEP 1</div>
+        <p class="hub-step__text">Read the obligation summary and identify the decisions you own.</p>
+      </div>
+      <div class="hub-step">
+        <div class="hub-step__num">STEP 2</div>
+        <p class="hub-step__text">Open the relevant pillar pages and control themes.</p>
+      </div>
+      <div class="hub-step">
+        <div class="hub-step__num">STEP 3</div>
+        <p class="hub-step__text">Run the scorecard to establish the current baseline.</p>
+      </div>
+      <div class="hub-step">
+        <div class="hub-step__num">STEP 4</div>
+        <p class="hub-step__text">Turn failed controls into a remediation plan and evidence pack.</p>
+      </div>
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">Start with the baseline, not the binder.</h2>
+          <p class="hub-cta__text">A score across the 8 pillars gives the compliance conversation a concrete starting point and a way to show movement.</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ '/wombatpass/scorecard/' | relative_url }}">Run the scorecard →</a>
+          <a class="dl-btn dl-btn--line" href="{{ '/trust/' | relative_url }}">Open the trust center</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hub-disclaimer dl-rise">{{ site.data.compliance.disclaimer }}</p>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

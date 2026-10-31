@@ -371,3 +371,49 @@
   });
 })();
 
+
+
+/* Easter egg: Konami code → the Wombat Control Room (/wombat/).
+   On the room page itself, the page script listens for the event
+   and answers in character instead of reloading. */
+(function () {
+  var sequence = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+  var index = 0;
+
+  function normalize(event) {
+    var key = event.key || '';
+    if (key.length === 1) return key.toLowerCase();
+    return key.toLowerCase();
+  }
+
+  function trigger() {
+    var lang = (document.documentElement.lang || 'en').toLowerCase();
+    var room = lang === 'de' ? '/de/wombat/' : '/wombat/';
+
+    if (window.location.pathname.indexOf('/wombat/') !== -1) {
+      document.dispatchEvent(new CustomEvent('wombat:konami'));
+      return;
+    }
+
+    window.location.href = room + '?konami=1';
+  }
+
+  document.addEventListener('keydown', function (event) {
+    var target = event.target;
+    if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+      index = 0;
+      return;
+    }
+
+    var key = normalize(event);
+    if (key === sequence[index]) {
+      index += 1;
+      if (index === sequence.length) {
+        index = 0;
+        trigger();
+      }
+    } else {
+      index = key === sequence[0] ? 1 : 0;
+    }
+  });
+})();

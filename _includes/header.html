@@ -3,8 +3,8 @@
   <div class="container header-inner">
     <a class="brand" href="{{ (lang_prefix | append: '/') | relative_url }}" aria-label="{{ i18n.common.brand_home | default: 'Wombat Home' }}">
       <picture>
-        <source type="image/webp" srcset="{{ '/images/wombat-face-64.webp' | relative_url }} 1x, {{ '/images/wombat-face-128.webp' | relative_url }} 2x">
-        <img src="{{ '/images/wombat-face-128.png' | relative_url }}" alt="" width="40" height="40">
+        <source type="image/webp" srcset="{{ '/images/wombat-mark-88.webp' | relative_url }} 1x, {{ '/images/wombat-mark-176.webp' | relative_url }} 2x">
+        <img src="{{ '/images/wombat-mark-176.png' | relative_url }}" alt="" width="44" height="44">
       </picture>
       <span class="brand__name">Wombat</span>
     </a>
@@ -94,6 +94,10 @@
                         {%- if subchild.key == 'blog' and lang != 'de' -%}
                           {%- assign child_href = '/blog/' -%}
                         {%- endif -%}
+                        {%- comment -%}Newsletter exists in EN and DE; other languages fall back to EN.{%- endcomment -%}
+                        {%- if subchild.key == 'newsletter' and lang != 'de' -%}
+                          {%- assign child_href = '/newsletter/' -%}
+                        {%- endif -%}
 
                         {%- assign child_label = subchild.name -%}
                         {%- if subchild.key and i18n.nav[subchild.key] -%}
@@ -125,6 +129,10 @@
                       {%- if child.key == 'blog' and lang != 'de' -%}
                         {%- assign child_href = '/blog/' -%}
                       {%- endif -%}
+                      {%- comment -%}Newsletter exists in EN and DE; other languages fall back to EN.{%- endcomment -%}
+                      {%- if child.key == 'newsletter' and lang != 'de' -%}
+                        {%- assign child_href = '/newsletter/' -%}
+                      {%- endif -%}
 
                       {%- assign child_label = child.name -%}
                       {%- if child.key and i18n.nav[child.key] -%}
@@ -149,7 +157,7 @@
 
       <div class="cta-row">
         <div class="cta-row__toolbar">
-          {% include lang-switch.html %}
+          {% unless page.no_lang_switch %}{% include lang-switch.html %}{% endunless %}
           <a class="theme-toggle cta-row__icon" href="https://join.slack.com/t/waf2p/shared_invite/zt-3rmu39vuf-nESwJheP4WAHxp15gEXgsA" target="_blank" rel="noopener" aria-label="{{ i18n.common.join_slack | default: 'Join Wombat Community on Slack' }}" title="{{ i18n.common.join_slack | default: 'Join Community Slack' }}">{% include slack-icon.html size=18 %}</a>
           <button class="theme-toggle cta-row__icon" id="theme-toggle" type="button" aria-label="{{ i18n.common.theme_toggle | default: 'Toggle theme' }}" aria-pressed="false"><i data-lucide="moon"></i></button>
         </div>

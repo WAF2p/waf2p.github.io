@@ -1,0 +1,712 @@
+---
+layout: default
+lang: it
+ref: wombatpass-install
+title: "Installa WOMBATpass — Prima scansione in 2 minuti"
+description: "Ottieni il tuo primo risultato WOMBATpass in due minuti. Installa la CLI open source, scarica i controlli e verifica il tuo Terraform, senza account AWS e senza configurazione."
+permalink: /it/wombatpass-install/
+---
+
+<div class="wfpi-page">
+
+<!-- Hero -->
+<section class="wfpi-hero">
+  <div class="dl-wrap">
+    <div class="wfpi-hero__grid">
+      <div class="dl-rise">
+        <nav class="wfpi-crumb" aria-label="Percorso di navigazione">
+          <a href="{{ '/it/wombatpass/' | relative_url }}">WOMBATpass</a>
+          <span aria-hidden="true">/</span>
+          <span>Installazione</span>
+        </nav>
+        <h1 class="wfpi-hero__title">Prima scansione, in 2 minuti.</h1>
+        <p class="wfpi-hero__lead">Installa la CLI open source di WOMBATpass, scarica i controlli Wombat e scansiona un file Terraform di esempio. Nessuna credenziale cloud, nessuna scatola nera: solo analisi statica della tua Infrastructure as Code.</p>
+        <div class="wfpi-hero__actions">
+          <a class="wf6-btn wf6-btn--pill" href="#quickstart-tabs">
+            Inizia il tutorial di 2 minuti
+            <span class="wf6-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/pass" target="_blank" rel="noopener">Vedi su GitHub</a>
+        </div>
+      </div>
+
+      <div class="dl-rise dl-d2">
+        <button class="dl-shot" type="button" aria-label="Visualizza in grande la dashboard delle esecuzioni WOMBATpass">
+          <img src="{{ '/assets/images/wombatpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Dashboard delle esecuzioni WOMBATpass con punteggio complessivo, controlli falliti e stato dei pilastri dopo una scansione">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="wfpi-stats">
+  <div class="dl-wrap">
+    <div class="wfpi-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">v1.1.0</div><div class="dl-stat__label">WOMBATpass CLI</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">8</div><div class="dl-stat__label">Pilastri</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">100+</div><div class="dl-stat__label">Controlli</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">Docker</div><div class="dl-stat__label">Pronto per Compose</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">Apache 2.0</div><div class="dl-stat__label">Licenza del codice</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- One-liner pitch -->
+<section class="dl-section" id="quickstart-tabs">
+  <div class="dl-wrap">
+    <div class="wfpi-pitch dl-rise">
+      <p class="wfpi-pitch__lead"><strong>Preferisci una riga sola?</strong> Lo script di installazione configura CLI e controlli per te.</p>
+      <div class="wfpi-pitch__row">
+        <div>
+          <span class="wfpi-pitch__os">macOS / Linux</span>
+          <div class="wfpi-term" data-ui>
+            <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+            <code class="wfpi-term__code">
+              <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">curl -fsSL https://wombat-cli.dev/install.sh | sh</span></div>
+            </code>
+          </div>
+        </div>
+        <div>
+          <span class="wfpi-pitch__os">Windows</span>
+          <div class="wfpi-term" data-ui>
+            <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">powershell</span></div>
+            <code class="wfpi-term__code">
+              <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">irm https://wombat-cli.dev/install.ps1 | iex</span></div>
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tabbed quickstart -->
+<section class="dl-section dl-section--alt">
+  <div class="dl-wrap">
+    <div class="wfpi-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">Un percorso chiaro per ogni caso d'uso.</h2>
+        <p class="dl-lead">Inizia con il quickstart della CLI da 2 minuti. Cambia scheda quando sei pronto per dashboard, CI o configurazione manuale.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande la ripartizione dei punteggi per modulo">
+        <img src="{{ '/assets/images/wombatpass/Module_Score_Breakdown.png' | relative_url }}" alt="Ripartizione dei punteggi Wombat per modulo con punteggi e risultati per ogni pilastro">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+
+    <input type="radio" name="wfpi-tab" id="wfpi-tab-cli" class="wfpi-tab-radio" checked>
+    <input type="radio" name="wfpi-tab" id="wfpi-tab-docker" class="wfpi-tab-radio">
+    <input type="radio" name="wfpi-tab" id="wfpi-tab-ci" class="wfpi-tab-radio">
+    <input type="radio" name="wfpi-tab" id="wfpi-tab-advanced" class="wfpi-tab-radio">
+
+    <nav class="wfpi-tab-nav dl-rise" role="tablist" aria-label="Opzioni di installazione di WOMBATpass">
+      <label for="wfpi-tab-cli" role="tab" aria-selected="true" tabindex="0">Primo risultato in 2 minuti</label>
+      <label for="wfpi-tab-docker" role="tab" aria-selected="false" tabindex="0">Dashboard completa in locale</label>
+      <label for="wfpi-tab-ci" role="tab" aria-selected="false" tabindex="0">CI / pre-commit</label>
+      <label for="wfpi-tab-advanced" role="tab" aria-selected="false" tabindex="0">Avanzato / manuale</label>
+    </nav>
+
+    <!-- TAB 1: CLI QUICKSTART -->
+    <div class="wfpi-tab-pane" id="wfpi-pane-cli">
+      <h2 class="wfpi-pane__title">Ottieni il tuo primo risultato in 2 minuti.</h2>
+      <p class="wfpi-pane__lead">Segui i quattro passaggi qui sotto. Ogni comando è pensato per darti un risultato garantito e leggibile al primo tentativo.</p>
+
+      <div class="wfpi-steps">
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">1</div>
+          <div>
+            <h3 class="wfpi-step__title">Installa la CLI</h3>
+            <p class="wfpi-step__text">WOMBATpass è pubblicato su PyPI come <code>wafpass-core</code>. Si consiglia Python 3.11+.</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">pip install wafpass-core</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">wombat --version</span></div>
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">2</div>
+          <div>
+            <h3 class="wfpi-step__title">Scarica i controlli</h3>
+            <p class="wfpi-step__text">Il catalogo dei controlli Wombat contiene le oltre 100 regole che WOMBATpass usa per valutare il tuo codice.</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">git clone https://github.com/WAF2p/framework.git controls-src</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cp -r controls-src/modules/controls/controls ./controls</span></div>
+              </code>
+            </div>
+            <p class="wfpi-step__note">Consigliato: clona il repository dei controlli. In alternativa: scarica lo zip dei controlli dalla <a href="{{ '/it/wombatpass/' | relative_url }}">pagina di WOMBATpass</a> ed estrailo in <code>controls/</code>.</p>
+          </div>
+        </div>
+
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">3</div>
+          <div>
+            <h3 class="wfpi-step__title">Salva un file Terraform di esempio</h3>
+            <p class="wfpi-step__text">Crea un <code>main.tf</code>minimo. Questo esempio lascia volutamente un bucket S3 pubblico, così WOMBATpass ha qualcosa da segnalare.</p>
+            <pre class="wfpi-code"><code>provider "aws" {
+  region = "eu-central-1"
+}
+
+resource "aws_s3_bucket" "public" {
+  bucket = "wafpp-first-check-demo"
+}
+
+resource "aws_s3_bucket_public_access_block" "public" {
+  bucket                  = aws_s3_bucket.public.id
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">4</div>
+          <div>
+            <h3 class="wfpi-step__title">Esegui il tuo primo controllo</h3>
+            <p class="wfpi-step__text">Punta WOMBATpass sulla directory corrente e stampa il riepilogo JSON.</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">wombat check . --output json | jq '.summary'</span></div>
+              </code>
+            </div>
+
+            <p class="wfpi-step__note">Dovresti vedere un output simile a questo:</p>
+            <pre class="wfpi-code"><code>{
+  "total_controls": 100,
+  "passed": 98,
+  "failed": 2,
+  "pillars": {
+    "security": { "passed": 18, "failed": 2 }
+  }
+}</code></pre>
+            <div class="wfpi-legend">
+              <div class="wfpi-legend__item wfpi-legend--pass"><strong>98 superati</strong>: risorse conformi al controllo</div>
+              <div class="wfpi-legend__item wfpi-legend--fail"><strong>2 falliti</strong>: risorse che hanno violato un controllo (qui, il bucket S3 pubblico)</div>
+              <div class="wfpi-legend__item wfpi-legend--total"><strong>100 controlli</strong>: totale delle regole valutate sugli 8 pilastri Wombat</div>
+            </div>
+            <p class="wfpi-step__note">Lo stesso risultato, visualizzato, se in seguito aggiungi la dashboard:</p>
+            <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande la panoramica dei controlli dell'esecuzione">
+              <img src="{{ '/assets/images/wombatpass_1.0/Run_Check_Overview.png' | relative_url }}" alt="Panoramica dei controlli dell'esecuzione con i singoli risultati">
+              <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: DOCKER COMPOSE -->
+    <div class="wfpi-tab-pane" id="wfpi-pane-docker" role="tabpanel" aria-labelledby="wfpi-tab-docker">
+      <h2 class="wfpi-pane__title">Esegui la dashboard completa in locale.</h2>
+      <p class="wfpi-pane__lead">Il monorepo WAF2p/pass include un <code>docker-compose.yml</code>unificato. Avvia CLI, server, dashboard, PostgreSQL e Keycloak con un solo comando.</p>
+
+      <div class="wfpi-term" data-ui>
+        <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+        <code class="wfpi-term__code">
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">git clone https://github.com/WAF2p/pass.git</span></div>
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cd pass</span></div>
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cp .env.example .env</span></div>
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd wfpi-term__cmd--comment"># Edit .env, set POSTGRES_PASSWORD, WAFPASS_JWT_SECRET, etc.</span></div>
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">docker compose up -d</span></div>
+        </code>
+      </div>
+
+      <div class="wfpi-table-wrap">
+        <table class="wfpi-table">
+          <thead><tr><th>Servizio</th><th>URL</th><th>Descrizione</th></tr></thead>
+          <tbody>
+            <tr><td><strong>wafpass-dashboard</strong></td><td><a href="http://localhost:3000"><code>http://localhost:3000</code></a></td><td class="wfpi-table__desc">Dashboard React</td></tr>
+            <tr><td><strong>wafpass-server</strong></td><td><code>http://localhost:8000</code></td><td class="wfpi-table__desc">FastAPI REST API</td></tr>
+            <tr><td><strong>Keycloak (SSO)</strong></td><td><code>http://localhost:8080</code></td><td class="wfpi-table__desc">Identity provider (admin / admin)</td></tr>
+            <tr><td><strong>postgres</strong></td><td><code>localhost:5432</code></td><td class="wfpi-table__desc">Database PostgreSQL</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande la panoramica dei controlli">
+        <img src="{{ '/assets/images/wombatpass_1.0/Controls_Overview.png' | relative_url }}" alt="Panoramica dei controlli con controlli Wombat filtrabili">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+
+      <p class="wfpi-pane__lead" style="margin-bottom:0; margin-top: 28px;">Quando i container sono in salute, popola la tua prima vista della dashboard con il comando demo o caricando un risultato di scansione:</p>
+      <div class="wfpi-term" data-ui>
+        <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+        <code class="wfpi-term__code">
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">wombat demo  <span class="wfpi-term__cmd--comment"># creates sample data and opens the dashboard</span></span></div>
+          <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">open http://localhost:3000</span></div>
+        </code>
+      </div>
+
+      <details class="wfpi-yaml">
+        <summary class="wfpi-yaml__summary">
+          Mostra il docker-compose.yml completo
+          <span class="wfpi-yaml__chevron" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </summary>
+        <div class="wfpi-yaml__frame">
+          <button class="wfpi-yaml__copy" type="button" onclick="wafpassCopyYaml(this)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            <span class="wfpi-yaml__copy-label">Copia</span>
+          </button>
+          <div class="wfpi-yaml__body yaml-hl" data-ui>
+            <pre><code class="language-yaml">services:
+
+  # ── PostgreSQL ────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER:     ${POSTGRES_USER:-wafpass}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-wafpass}
+      POSTGRES_DB:       ${POSTGRES_DB:-wafpass}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./keycloak/init.sql:/docker-entrypoint-initdb.d/01-keycloak-db.sql:ro
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-wafpass} -d ${POSTGRES_DB:-wafpass}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── wafpass-server ────────────────────────────────────────
+  wafpass-server:
+    build:
+      context: .
+      dockerfile: wafpass-server/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL:               postgresql+asyncpg://${POSTGRES_USER:-wafpass}:${POSTGRES_PASSWORD:-wafpass}@postgres:5432/${POSTGRES_DB:-wafpass}
+      WAFPASS_ENV:                ${WAFPASS_ENV:-local}
+      CORS_ORIGINS:               ${API_URL:-http://localhost:3000},http://wafpass-dashboard,http://cloud.waf2p
+      WAFPASS_CONTROLS_DIR:       ${WAFPASS_CONTROLS_DIR:-/app/controls}
+      WAFPASS_JWT_SECRET:         ${WAFPASS_JWT_SECRET:-change-me-in-production}
+      WAFPASS_JWT_EXPIRE_MINUTES: ${WAFPASS_JWT_EXPIRE_MINUTES:-60}
+      WAFPASS_JWT_REFRESH_DAYS:   ${WAFPASS_JWT_REFRESH_DAYS:-7}
+      WAFPASS_ADMIN_USERNAME:     ${WAFPASS_ADMIN_USERNAME:-admin}
+      WAFPASS_ADMIN_PASSWORD:     ${WAFPASS_ADMIN_PASSWORD:-admin}
+      WAFPASS_ADMIN_ROLE:         ${WAFPASS_ADMIN_ROLE:-admin}
+      WAFPASS_API_KEY:            ${WAFPASS_API_KEY:-key}
+    ports:
+      - "8000:8000"
+
+  # ── Keycloak (SSO / IdP — dev mode) ──────────────────────
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1
+    command: start-dev
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      KC_DB:                   postgres
+      KC_DB_URL:               jdbc:postgresql://postgres:5432/${KEYCLOAK_DB:-keycloak}
+      KC_DB_USERNAME:          ${KEYCLOAK_DB_USER:-keycloak}
+      KC_DB_PASSWORD:          ${KEYCLOAK_DB_PASSWORD:-keycloak}
+      KEYCLOAK_ADMIN:          ${KEYCLOAK_ADMIN_USER:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+      KC_HTTP_ENABLED:         "true"
+      KC_HOSTNAME_STRICT:      "false"
+      KC_HEALTH_ENABLED:       "true"
+    ports:
+      - "${KEYCLOAK_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/health/ready || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+  # ── wafpass-dashboard ─────────────────────────────────────
+  wafpass-dashboard:
+    build:
+      context: ./wafpass-dashboard
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - wafpass-server
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres_data:</code></pre>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- TAB 3: CI / PRE-COMMIT -->
+    <div class="wfpi-tab-pane" id="wfpi-pane-ci" role="tabpanel" aria-labelledby="wfpi-tab-ci">
+      <h2 class="wfpi-pane__title">Aggiungi a CI / pre-commit.</h2>
+      <p class="wfpi-pane__lead">Blocca l'infrastruttura non conforme prima che arrivi al branch principale. WOMBATpass lavora solo sui file del repository, quindi i controlli in CI sono rapidi e non richiedono segreti cloud.</p>
+
+      <div class="wfpi-steps">
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">1</div>
+          <div>
+            <h3 class="wfpi-step__title">Installa l'hook pre-commit</h3>
+            <p class="wfpi-step__text">Esegui lo script di installazione dal repository WOMBATpass una volta per clone. Da quel momento ogni <code>git commit</code> viene controllato automaticamente.</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">bash hooks/install.sh  <span class="wfpi-term__cmd--comment"># macOS / Linux / Git Bash</span></span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">.\hooks\install.ps1  <span class="wfpi-term__cmd--comment"># Windows PowerShell</span></span></div>
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">2</div>
+          <div>
+            <h3 class="wfpi-step__title">Aggiungi WOMBATpass a GitHub Actions</h3>
+            <p class="wfpi-step__text">Usa la GitHub Action ufficiale di WOMBATpass per far fallire le pull request che introducono configurazioni errate. Funziona con repository pubblici e privati.</p>
+            <a class="wf6-btn wf6-btn--line" href="{{ '/wombatpass-action/' | relative_url }}">Configura WOMBATpass Action</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: ADVANCED / MANUAL -->
+    <div class="wfpi-tab-pane" id="wfpi-pane-advanced" role="tabpanel" aria-labelledby="wfpi-tab-advanced">
+      <h2 class="wfpi-pane__title">Configurazione avanzata / manuale.</h2>
+      <p class="wfpi-pane__lead">Installa solo i componenti che ti servono. Inizia con la CLI per CI/CD, poi aggiungi server e dashboard quando ti servono persistenza ed esplorazione visiva.</p>
+
+      <div class="wfpi-steps">
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">1</div>
+          <div>
+            <h3 class="wfpi-step__title">Installa la CLI wafpass</h3>
+            <p class="wfpi-step__text">Motore di valutazione principale: analizza l'IaC, valuta i controlli, genera report.</p>
+
+            <p class="wfpi-step__label">Da PyPI (consigliato)</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">pip install wafpass-core</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">uv add wafpass-core  <span class="wfpi-term__cmd--comment"># recommended for Python projects</span></span></div>
+              </code>
+            </div>
+
+            <p class="wfpi-step__label">Dal sorgente</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">git clone https://github.com/WAF2p/pass.git</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cd pass</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">uv pip install -e .  <span class="wfpi-term__cmd--comment"># recommended</span></span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">pip install -e ".[pdf]"  <span class="wfpi-term__cmd--comment"># with PDF report support</span></span></div>
+              </code>
+            </div>
+
+            <p class="wfpi-step__label">macOS (Apple M-series)</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">brew install git python uv</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">git clone https://github.com/WAF2p/pass.git && cd pass</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">uv pip install -e .</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">wombat --version  <span class="wfpi-term__cmd--comment"># verify installation</span></span></div>
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">2</div>
+          <div>
+            <h3 class="wfpi-step__title">Installa wafpass-server</h3>
+            <p class="wfpi-step__text">Livello di persistenza FastAPI: archivia esecuzioni, deroghe, segreti individuati ed eventi di audit.</p>
+
+            <p class="wfpi-step__label">Da PyPI (consigliato)</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">pip install wafpass-server</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">uv add wafpass-server  <span class="wfpi-term__cmd--comment"># recommended for Python projects</span></span></div>
+              </code>
+            </div>
+
+            <p class="wfpi-step__label">Configura e avvia</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cp .env.example .env  <span class="wfpi-term__cmd--comment"># set DATABASE_URL and JWT secret</span></span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">alembic upgrade head  <span class="wfpi-term__cmd--comment"># apply database migrations</span></span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">uvicorn wafpass_server.main:app --reload --port 8000</span></div>
+              </code>
+            </div>
+            <p class="wfpi-step__note">Documentazione API disponibile su <code>http://localhost:8000/api/docs</code></p>
+          </div>
+        </div>
+
+        <div class="wfpi-step">
+          <div class="wfpi-step__num">3</div>
+          <div>
+            <h3 class="wfpi-step__title">Installa wafpass-dashboard</h3>
+            <p class="wfpi-step__text">Dashboard web React: oltre 22 viste di conformità, esportazione delle evidenze, RBAC.</p>
+            <div class="wfpi-term" data-ui>
+              <div class="wfpi-term__bar"><span class="wfpi-term__dot wfpi-term__dot--r"></span><span class="wfpi-term__dot wfpi-term__dot--y"></span><span class="wfpi-term__dot wfpi-term__dot--g"></span><span class="wfpi-term__bar-title">bash</span></div>
+              <code class="wfpi-term__code">
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">git clone https://github.com/WAF2p/wafpass-dashboard.git</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cd wafpass-dashboard</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">npm install</span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">cp .env.example .env.local  <span class="wfpi-term__cmd--comment"># set VITE_API_URL</span></span></div>
+                <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">npm run dev  <span class="wfpi-term__cmd--comment"># dev server at http://localhost:5173</span></span></div>
+              </code>
+            </div>
+            <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande l'associazione progetti-utenti" style="margin-top: 18px;">
+              <img src="{{ '/assets/images/wombatpass_1.0/Project_User_Mapping.png' | relative_url }}" alt="Associazione utenti-progetti con assegnazione dei ruoli">
+              <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="dl-section" id="troubleshooting">
+  <div class="dl-wrap">
+    <div class="wfpi-section-head dl-section-head--split dl-rise">
+      <div>
+        <h2 class="dl-heading">Problemi comuni e soluzioni.</h2>
+        <p class="dl-lead">Risposte rapide se qualcosa non funziona al primo tentativo.</p>
+      </div>
+      <button class="dl-shot dl-section-shot" type="button" aria-label="Visualizza in grande l'archivio delle evidenze">
+        <img src="{{ '/assets/images/wombatpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Archivio delle evidenze con pacchetti di conformità mappati sui framework">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+
+    <div class="wfpi-faq dl-rise">
+      <details class="wfpi-faq__item">
+        <summary class="wfpi-faq__summary">
+          Controlli non trovati
+          <span class="wfpi-faq__chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="wfpi-faq__body">
+          <p>Se <code>wombat check</code> segnala "controls directory not found", la CLI mostra automaticamente le istruzioni per il download. Assicurati che la cartella <code>controls/</code> si trovi accanto al punto da cui esegui le scansioni.</p>
+        </div>
+      </details>
+
+      <details class="wfpi-faq__item">
+        <summary class="wfpi-faq__summary">
+          Porta già in uso
+          <span class="wfpi-faq__chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="wfpi-faq__body">
+          <p>Usa un'altra porta per il server o la dashboard:</p>
+          <div class="wfpi-term" data-ui>
+            <code class="wfpi-term__code">
+              <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">uvicorn wafpass_server.main:app --port 8001</span></div>
+              <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">npm run dev -- --port 5174</span></div>
+            </code>
+          </div>
+        </div>
+      </details>
+
+      <details class="wfpi-faq__item">
+        <summary class="wfpi-faq__summary">
+          Errori di connessione al database
+          <span class="wfpi-faq__chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="wfpi-faq__body">
+          <p>Verifica che PostgreSQL sia in esecuzione e che la tua <code>DATABASE_URL</code> sia corretta:</p>
+          <div class="wfpi-term" data-ui>
+            <code class="wfpi-term__code">
+              <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">psql $DATABASE_URL -c "SELECT 1"</span></div>
+            </code>
+          </div>
+        </div>
+      </details>
+
+      <details class="wfpi-faq__item">
+        <summary class="wfpi-faq__summary">
+          La build Docker fallisce
+          <span class="wfpi-faq__chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="wfpi-faq__body">
+          <p>Quando compili dal sorgente, i tre repository devono essere clonati uno accanto all'altro nella stessa directory padre:</p>
+          <div class="wfpi-term" data-ui>
+            <code class="wfpi-term__code">
+              <div class="wfpi-term__line"><span class="wfpi-term__prompt">$</span><span class="wfpi-term__cmd">ls -1</span></div>
+              <div class="wfpi-term__line"><span class="wfpi-term__cmd">pass/</span></div>
+              <div class="wfpi-term__line"><span class="wfpi-term__cmd">wafpass-server/</span></div>
+              <div class="wfpi-term__line"><span class="wfpi-term__cmd">wafpass-dashboard/</span></div>
+            </code>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / what next -->
+<section class="dl-section wfpi-cta-section" id="continue">
+  <div class="dl-wrap">
+    <div class="wfpi-cta dl-rise">
+      <h2 class="dl-heading">Hai eseguito il tuo primo controllo. E adesso?</h2>
+      <p class="dl-lead">Scegli il passo successivo in base al tuo ruolo: approfondisci il framework, integra WOMBATpass in CI/CD o esplora la dashboard visiva completa.</p>
+
+      <div class="wfpi-next">
+        <a class="wfpi-next__card" href="{{ '/it/saeulen/' | relative_url }}">
+          <h3 class="wfpi-next__title">Esplora gli 8 pilastri</h3>
+          <p class="wfpi-next__desc">Comprendi il framework Wombat e i controlli dietro ogni pilastro.</p>
+          <span class="wfpi-next__link">Scopri di più →</span>
+        </a>
+        <a class="wfpi-next__card" href="{{ '/wombatpass-action/' | relative_url }}">
+          <h3 class="wfpi-next__title">Aggiungi a GitHub Actions</h3>
+          <p class="wfpi-next__desc">Blocca i merge non conformi prima che arrivino al branch principale.</p>
+          <span class="wfpi-next__link">Configura l'action →</span>
+        </a>
+        <a class="wfpi-next__card" href="{{ '/docs/wafpp/1.1.0-en/resources/wafpass.html' | relative_url }}">
+          <h3 class="wfpi-next__title">Leggi la documentazione</h3>
+          <p class="wfpi-next__desc">Riferimento CLI, API del server, configurazione e uso avanzato.</p>
+          <span class="wfpi-next__link">Apri la documentazione →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="wfpi-lightbox" role="dialog" aria-modal="true" aria-label="Screenshot ingrandito" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Chiudi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="" alt="">
+</div>
+
+<style>
+/* YAML syntax highlight, scoped to .yaml-hl, does not affect other terminal blocks */
+.yaml-hl .hljs             { background: transparent; color: rgba(255,255,255,.88); }
+.yaml-hl .hljs-comment     { color: #4e5f72; font-style: italic; }
+.yaml-hl .hljs-attr        { color: #7dd3fc; }
+.yaml-hl .hljs-string      { color: #86efac; }
+.yaml-hl .hljs-number      { color: #fbbf24; }
+.yaml-hl .hljs-literal     { color: #fb923c; }
+.yaml-hl .hljs-template-variable,
+.yaml-hl .hljs-variable    { color: #fbbf24; }
+.yaml-hl .hljs-meta        { color: #94a3b8; }
+</style>
+
+<script>
+function wafpassCopyYaml(btn) {
+  var code = btn.parentElement.querySelector('code');
+  var text = code.textContent.trim();
+  var label = btn.querySelector('.wfpi-yaml__copy-label');
+  function markDone() {
+    label.textContent = 'Copied!';
+    btn.classList.add('is-copied');
+    setTimeout(function () {
+      label.textContent = 'Copy';
+      btn.classList.remove('is-copied');
+    }, 2000);
+  }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(markDone).catch(function () { fallback(text, markDone); });
+  } else { fallback(text, markDone); }
+  function fallback(t, cb) {
+    var ta = document.createElement('textarea');
+    ta.value = t; ta.style.cssText = 'position:fixed;opacity:0;';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); cb(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+}
+</script>
+<script src="{{ '/assets/js/vendor/highlight.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/vendor/highlight-yaml.min.js' | relative_url }}" defer></script>
+<script>
+(function () {
+  function initHighlight() {
+    if (typeof hljs === 'undefined') return;
+    document.querySelectorAll('.yaml-hl code').forEach(function (el) {
+      hljs.highlightElement(el);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHighlight);
+  } else {
+    initHighlight();
+  }
+})();
+</script>
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  var lightbox = document.getElementById('wfpi-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
+
+    function openLightbox(trigger) {
+      var imgs = trigger.querySelectorAll('img');
+      var source = null;
+      for (var i = 0; i < imgs.length; i++) {
+        if (getComputedStyle(imgs[i]).display !== 'none') { source = imgs[i]; break; }
+      }
+      if (!source) return;
+      lastTrigger = trigger;
+      lbImg.src = source.src;
+      lbImg.alt = source.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.wfpi-page').classList.add('wfpi-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.wfpi-page').classList.remove('wfpi-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

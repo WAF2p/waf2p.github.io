@@ -1,0 +1,118 @@
+# Contributor ranks — single source of truth for tiers, signal weights,
+# caps, privacy controls and manual overrides.
+#
+# Points are derived, never guessed:
+#   merged_pr     <- cached GitHub contributor count (a conservative proxy for
+#                    merged work) or GitHub GraphQL `is:pr is:merged author:<login>`
+#                    when a GITHUB_TOKEN is available.
+#   review        <- GraphQL `reviewed-by:<login>` when a token is available.
+#   issue_triage  <- GraphQL assigned issues when a token is available.
+#   docs          <- GraphQL merged PRs labelled `area:docs`.
+#   translation   <- GraphQL merged PRs labelled `area:translation`.
+#   controls_rfc  <- GraphQL merged PRs labelled `area:controls` / `area:rfc`.
+#   talk_session  <- manual only. Record a count under
+#                    `overrides.<login>.signals` with a reason; never inferred.
+#
+# Curated YAML entries (core_contributors, community_contributors,
+# honoured_members) establish identity and display names. They do not add
+# points unless they carry an explicit `points`, `manual_points` or `signals`
+# field.
+
+schema: 1
+repo: waf2p/framework
+
+tiers:
+  - id: digger
+    label: Digger
+    min_points: 0
+    color: "#c98e6b"
+    badge_label: "Wombat Digger"
+    blurb: "The first marks in the burrow. Reviews, issues, translations and small fixes all count."
+
+  - id: foreman
+    label: Foreman
+    min_points: 100
+    color: "#8df5b5"
+    badge_label: "Wombat Foreman"
+    blurb: "A steady hand on the framework: merged work, reviews and documentation that others build on."
+
+  - id: burrow-engineer
+    label: Burrow Engineer
+    min_points: 300
+    color: "#ffcf63"
+    badge_label: "Wombat Burrow Engineer"
+    blurb: "Sustained, cross-cutting contribution — controls, RFCs, translations, reviews and community work."
+
+signals:
+  merged_pr:
+    label: "Merged pull request"
+    weight: 10
+    cap: 30
+    source: "cached GitHub contributions or GraphQL merged PRs"
+    description: "A merged pull request in the framework repository. The offline cache is used as a conservative proxy; GraphQL replaces it with the exact merged-PR count when a token is present."
+
+  review:
+    label: "Pull-request review"
+    weight: 6
+    cap: 40
+    source: "GitHub GraphQL (reviewed-by)"
+    description: "A substantive review on someone else's pull request. Self-reviews do not count."
+
+  issue_triage:
+    label: "Issue triage"
+    weight: 4
+    cap: 25
+    source: "GitHub GraphQL (assigned issues)"
+    description: "An issue assigned to and handled by the contributor."
+
+  docs:
+    label: "Documentation"
+    weight: 5
+    cap: 20
+    source: "GitHub GraphQL (merged PRs labelled area:docs)"
+    description: "Merged documentation work, including the framework docs and this website."
+
+  translation:
+    label: "Translation"
+    weight: 5
+    cap: 20
+    source: "GitHub GraphQL (merged PRs labelled area:translation)"
+    description: "Merged translations of docs, pages or release notes."
+
+  controls_rfc:
+    label: "Controls or RFC work"
+    weight: 12
+    cap: 10
+    source: "GitHub GraphQL (merged PRs labelled area:controls / area:rfc)"
+    description: "A merged control change or an accepted RFC authored by the contributor."
+
+  talk_session:
+    label: "Talk or session"
+    weight: 15
+    cap: 8
+    source: "manual override only"
+    description: "A conference talk, workshop or community session. Recorded by a maintainer with a reason; never inferred."
+
+privacy:
+  publish:
+    - github_login
+    - rank
+  exclude_bots: true
+  opt_out: []
+  no_badge: []
+  summary: "Only a public GitHub login and the computed rank are published. No email addresses, private activity or unapproved contribution details are included. Bots are excluded."
+
+# Maintainer note: to opt out, add the login to privacy.opt_out; to suppress a
+# badge, add it to privacy.no_badge, then run `node scripts/ranks.mjs`.
+
+overrides:
+  # Example — non-code impact that GitHub cannot see. Uncomment and edit.
+  # fobebrz:
+  #   manual_points: 25
+  #   reason: "Sustained community feedback and business use-case input (2025-2026)."
+  #
+  # Example — a maintainer-recorded talk. Counts toward the capped signal.
+  # la-cc:
+  #   signals:
+  #     talk_session: 1
+  #   reason: "Conference session on the Wombat maturity model."

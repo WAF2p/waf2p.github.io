@@ -25,6 +25,15 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
 {%- endif -%}
 {%- assign _og_type = 'website' -%}
 {%- if page.layout == 'post' -%}{%- assign _og_type = 'article' -%}{%- endif -%}
+{%- assign _img_ext = _raw_image | split: '.' | last | downcase -%}
+{%- assign _og_image_type = 'image/png' -%}
+{%- if _img_ext == 'jpg' or _img_ext == 'jpeg' -%}
+  {%- assign _og_image_type = 'image/jpeg' -%}
+{%- elsif _img_ext == 'webp' -%}
+  {%- assign _og_image_type = 'image/webp' -%}
+{%- elsif _img_ext == 'svg' -%}
+  {%- assign _og_image_type = 'image/svg+xml' -%}
+{%- endif -%}
 {%- assign _og_locale = 'en_US' -%}
 {%- if lang == 'de' -%}{%- assign _og_locale = 'de_DE' -%}{%- endif -%}
 
@@ -66,6 +75,9 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
 {%- endif -%}
 
 <link rel="canonical" href="{{ _canonical }}">
+{%- if page.noindex -%}
+<meta name="robots" content="noindex, nofollow">
+{%- endif -%}
 <link rel="alternate" hreflang="en" href="{{ _en_href }}">
 {%- if _de_href -%}
 <link rel="alternate" hreflang="de" href="{{ _de_href }}">
@@ -77,7 +89,7 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
 <meta property="og:url" content="{{ _canonical }}">
 <meta property="og:image" content="{{ _seo_image }}">
 <meta property="og:image:alt" content="{{ page.title | default: site.title | escape }}">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image:type" content="{{ _og_image_type }}">
 <meta property="og:site_name" content="{{ site.title | escape }}">
 <meta property="og:locale" content="{{ _og_locale }}">
 {%- if _og_type == 'article' -%}

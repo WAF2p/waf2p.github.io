@@ -1,0 +1,110 @@
+---
+layout: default
+lang: de
+ref: newsletter
+title: "Aus dem Bau — Wombat-Newsletter"
+description: "Aus dem Bau ist der Newsletter der Wombat-Community: Framework-Änderungen, RFCs, Artikel und Community-Arbeit in einem kurzen, gelegentlichen Brief."
+permalink: /de/newsletter/
+translation_notice: false
+---
+
+{% assign nl = site.data.newsletter %}
+{% assign preset = nl.providers[nl.provider] %}
+{% assign form_action = nl.form_action | default: preset.form_action %}
+{% assign email_field = nl.email_field | default: preset.email_field | default: 'email' %}
+{% assign hidden_fields = nl.hidden_fields | default: preset.hidden_fields %}
+{% assign issues_limit = nl.issues_per_page | default: 10 %}
+
+<div class="nl-page">
+
+<!-- Hero -->
+<section class="nl-hero">
+  <div class="dl-wrap">
+    <h1 class="nl-hero__title dl-rise">Aus dem Bau.</h1>
+    <p class="nl-hero__lead dl-rise dl-d1">Ein kurzer, gelegentlicher Brief darüber, was die Wombat-Community baut: Framework-Änderungen, offene RFCs, neue Artikel und die Menschen, die daran arbeiten.</p>
+  </div>
+</section>
+
+<!-- Inhalt + Anmeldung -->
+<section class="nl-section">
+  <div class="dl-wrap">
+    <div class="nl-layout">
+      <div class="dl-rise">
+        <h2 class="dl-heading">Was im Postfach landet.</h2>
+        <ul class="nl-list">
+          <li><strong>Framework- und WOMBATpass-Änderungen</strong> — Releases und Control-Updates, die wichtig sind, mit Links zum Changelog.</li>
+          <li><strong>Offene RFCs und Entscheidungen</strong> — was diskutiert wird, was entschieden wurde und wo du kommentieren kannst.</li>
+          <li><strong>Artikel und Erfahrungsberichte</strong> — praktische Cloud-Architektur aus der Community.</li>
+          <li><strong>Community-Arbeit</strong> — Mitwirkenden-Ränge, Talks, Workshops und kommende Sessions.</li>
+        </ul>
+        <p class="nl-note">Keine Tracking-Pixel. Keine Verkaufsstrecke. Das Archiv bleibt öffentlich, damit du alles vor dem Abonnieren lesen kannst.</p>
+      </div>
+
+      <aside class="nl-signup dl-rise dl-d1" aria-labelledby="nl-signup-title">
+        <h2 class="nl-signup__title" id="nl-signup-title">Abonnieren</h2>
+        {% if nl.enabled and form_action and form_action != blank %}
+        <p class="nl-signup__lead">Eine kurze E-Mail, wenn es etwas zu sagen gibt. Abmelden ist jederzeit möglich.</p>
+        <form class="nl-signup__form" action="{{ form_action }}" method="post" target="_blank" rel="noopener">
+          <label class="nl-signup__label" for="nl-email">E-Mail-Adresse</label>
+          <input class="nl-input" id="nl-email" type="email" name="{{ email_field }}" required autocomplete="email" placeholder="du@example.com">
+          {% if hidden_fields %}
+            {% for field in hidden_fields %}
+            <input type="hidden" name="{{ field[0] }}" value="{{ field[1] }}">
+            {% endfor %}
+          {% endif %}
+          <button class="dl-btn dl-btn--primary" type="submit">{{ nl.button_label | default: "Abonnieren" }}</button>
+        </form>
+        <p class="nl-signup__note">Das Formular sendet direkt an den konfigurierten Anbieter. Wombat speichert auf dieser Seite keine Adressen.</p>
+        {% else %}
+        <p class="nl-signup__soon">Anmeldung öffnet bald.</p>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Archiv -->
+<section class="nl-section nl-section--alt">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h2 class="dl-heading">Archiv.</h2>
+      <p class="dl-lead">Jede Ausgabe bleibt hier lesbar. Kein Konto, keine Bezahlschranke.</p>
+    </div>
+
+    {% assign issues = site.newsletters | sort: 'date' | reverse %}
+    {% if issues and issues.size > 0 %}
+    <div class="nl-archive dl-rise">
+      {% for issue in issues limit: issues_limit %}
+      <article class="nl-issue">
+        <div class="nl-issue__meta">
+          {% if issue.issue %}Ausgabe {{ issue.issue }}{% endif %}
+          {% if issue.date %} · {{ issue.date | date: "%d.%m.%Y" }}{% endif %}
+        </div>
+        <h3 class="nl-issue__title"><a href="{{ issue.url | relative_url }}">{{ issue.title }}</a></h3>
+        <p class="nl-issue__excerpt">{{ issue.description | default: issue.excerpt | strip_html | truncate: 160 }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="nl-empty">Noch keine Ausgaben veröffentlicht. Die erste Ausgabe wird vorbereitet.</p>
+    {% endif %}
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

@@ -1,0 +1,47 @@
+# From the Burrow — newsletter configuration.
+#
+# The newsletter pages are public and linked from the main navigation. When
+# no provider is configured, the signup area shows a quiet "opening soon"
+# state instead of a fake form.
+#
+# To turn the signup on, set `enabled: true` and copy the provider's embed
+# endpoint into `form_action`. If no provider is configured, the page shows a
+# quiet "signup opening soon" state and does not render a fake form.
+
+enabled: false
+provider: ""            # e.g. "buttondown", "mailchimp", "listmonk"
+form_action: ""         # provider embed endpoint from `providers` below
+email_field: "email"
+button_label: "Subscribe"
+archive_path: "/newsletter/"
+issues_per_page: 10
+
+# Provider presets. Copy the values you need into the top-level fields.
+providers:
+  buttondown:
+    form_action: "https://buttondown.email/api/emails/embed-subscribe/<username>"
+    email_field: "email"
+    hidden_fields:
+      tag: "wombat-website"
+  mailchimp:
+    form_action: "https://<dc>.list-manage.com/subscribe/post?u=<u>&id=<id>"
+    email_field: "EMAIL"
+    hidden_fields: {}
+  listmonk:
+    form_action: "https://<listmonk-host>/subscription/form"
+    email_field: "email"
+    hidden_fields: {}
+
+# Configuration for scripts/newsletter-digest.mjs.
+# The script only calls a provider API with an explicit --send flag and the
+# key named by api_key_env. It never sends automatically.
+digest:
+  provider: ""          # must match a providers key, or use api_url below
+  api_url: ""           # provider draft endpoint for --send
+  api_key_env: "NEWSLETTER_API_KEY"
+  from_name: "Wombat Community"
+  from_email: ""
+  reply_to: ""
+  max_posts: 5
+  max_changelog_groups: 2
+  sessions_file: "_data/sessions.yml"

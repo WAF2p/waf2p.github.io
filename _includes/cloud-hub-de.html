@@ -1,0 +1,343 @@
+{% assign cloud = site.data.clouds.clouds[page.cloud_slug] %}
+{% if cloud %}
+<div class="hub-page">
+
+{% if cloud.coverage == 'framework' %}
+  {% assign secondary_label = 'Vergleich ansehen' %}
+  {% assign secondary_url = '/de/comparison/' %}
+{% elsif cloud.coverage == 'dashboard' %}
+  {% assign secondary_label = 'Controls durchsuchen' %}
+  {% assign secondary_url = '/de/controls/' %}
+{% else %}
+  {% assign secondary_label = 'Souveränitäts-Hub (EN)' %}
+  {% assign secondary_url = '/de/sovereignty/' %}
+{% endif %}
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">{{ cloud.name }}</h1>
+    {% if cloud.coverage == 'framework' %}
+    <p class="hub-hero__lead dl-rise dl-d1">Nutze {{ cloud.name }} mit dem providernativen Blick und ergänze Wombat als providerneutrale Baseline für Vergleich, Evidenz und Multi-Cloud-Bewertung.</p>
+    {% elsif cloud.coverage == 'dashboard' %}
+    <p class="hub-hero__lead dl-rise dl-d1">{{ cloud.name }} ist im Provider-Selector des WOMBATpass-Dashboards verfügbar. Nutze das neutrale Control-Modell, soweit der aktuelle Control-Pack die Ressourcentypen abdeckt.</p>
+    {% else %}
+    <p class="hub-hero__lead dl-rise dl-d1">{{ cloud.name }} ist in der Region-Map des WOMBATpass-Dashboards erkannt. Nutze die Souveränitäts- und Residenz-Perspektive für die Bewertung.</p>
+    {% endif %}
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/de/wombatpass/scorecard/' | relative_url }}">Scorecard starten →</a>
+      <a class="dl-btn dl-btn--line" href="{{ secondary_url | relative_url }}">{{ secondary_label }}</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/de/cloud/' | relative_url }}">Alle Provider</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      {% if cloud.coverage == 'framework' %}
+      <li class="hub-hero__fact">Framework-Control-Abdeckung</li>
+      {% elsif cloud.coverage == 'dashboard' %}
+      <li class="hub-hero__fact">Dashboard-getrackt · Control-Abdeckung wird ausgebaut</li>
+      {% else %}
+      <li class="hub-hero__fact">Region-Map erkannt · noch kein dedizierter Control-Pack</li>
+      {% endif %}
+      {% if cloud.control_count and cloud.control_count > 0 %}
+      <li class="hub-hero__fact">{{ cloud.control_count }} Controls mit providerspezifischen Checks</li>
+      {% endif %}
+      <li class="hub-hero__fact">{{ cloud.pillars | size }} relevante Säulen</li>
+      <li class="hub-hero__fact">{{ cloud.links | size }} Einstiegspunkte</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Was Wombat zum Provider-Bild hinzufügt.</h2>
+      {% if cloud.coverage == 'framework' %}
+      <p class="hub-section__lead">{{ cloud.name }} bietet einen starken providernativen Rahmen. Wombat ersetzt ihn nicht, sondern ergänzt eine providerneutrale Baseline für konsistente Bewertung, Vergleich und Evidenz über Provider hinweg.</p>
+      {% elsif cloud.coverage == 'dashboard' %}
+      <p class="hub-section__lead">Das Dashboard kann Projekte auf {{ cloud.name }} tracken. Die Framework-Control-Abdeckung wird ausgebaut; prüfe im Control-Katalog, welche Ressourcentypen aktuell abgedeckt sind.</p>
+      {% else %}
+      <p class="hub-section__lead">{{ cloud.name }} ist in der Region-Map des Dashboards für die Regionserkennung enthalten. Ein dedizierter Framework-Control-Pack fehlt derzeit; nutze das Dashboard für Sichtbarkeit und prüfe die Ressourcenabdeckung im Control-Katalog.</p>
+      {% endif %}
+    </div>
+
+    {% if cloud.control_count and cloud.control_count > 0 %}
+    <p class="hub-note dl-rise">Der aktuelle Framework-Control-Pack enthält <strong>{{ cloud.control_count }}</strong> Controls mit {{ cloud.name }}-spezifischen Checks.</p>
+    {% endif %}
+
+    {% if cloud.coverage == 'dashboard' %}
+    <p class="hub-note dl-rise">{{ cloud.name }} ist als Provider im Dashboard verfügbar. Behandle den Wombat-Score als teilweise, bis der relevante Control-Pack die von dir genutzten Ressourcentypen abdeckt.</p>
+    {% elsif cloud.coverage == 'region' %}
+    <p class="hub-note dl-rise">{{ cloud.name }} ist in der Region-Map des Dashboards erkannt. Der Provider ist nicht Teil des aktuellen Framework-Control-Packs; behandle den Score als Discovery-Baseline und prüfe die Ressourcenabdeckung im Control-Katalog.</p>
+    {% endif %}
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% if cloud.coverage == 'framework' %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Provider-Liste</div>
+        <p class="hub-card__text">{{ cloud.name }} ist im Provider-Selector des WOMBATpass-Dashboards vertreten.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Control-Abdeckung</div>
+        <p class="hub-card__text">{{ cloud.control_count }} Controls mit providerspezifischen Checks im aktuellen Framework-Control-Pack.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Multi-Provider</div>
+        <p class="hub-card__text">Dasselbe Control-Modell gilt auch für die anderen Provider im Bestand.</p>
+      </article>
+      {% elsif cloud.coverage == 'dashboard' %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Provider-Liste</div>
+        <p class="hub-card__text">{{ cloud.name }} ist im Provider-Selector des WOMBATpass-Dashboards vertreten.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Control-Abdeckung</div>
+        <p class="hub-card__text">Noch kein dedizierter Provider-Pack; prüfe den Control-Katalog für die aktuellen Ressourcentypen.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Tracking</div>
+        <p class="hub-card__text">Das Dashboard hält das Projekt sichtbar, während die Abdeckung ausgebaut wird.</p>
+      </article>
+      {% else %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Region-Map</div>
+        <p class="hub-card__text">{{ cloud.name }} ist in der Region-Map des WOMBATpass-Dashboards erkannt.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Control-Abdeckung</div>
+        <p class="hub-card__text">Noch kein dedizierter Provider-Pack; prüfe den Control-Katalog für die aktuellen Ressourcentypen.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Souveränität</div>
+        <p class="hub-card__text">Prüfe Jurisdiktion, Residenz und Exit mit dem Souveränitäts-Hub.</p>
+      </article>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% assign quickstart = site.data.provider_quickstarts[page.cloud_slug] %}
+{% if quickstart %}
+<!-- Provider-Quickstart -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Provider-Quickstart für {{ cloud.name }}</h2>
+      <p class="hub-section__lead">Minimaler Provider-Block und WOMBATpass-Aufruf. Zugangsdaten kommen aus den Standard-Umgebungsvariablen; keine Secrets committen.</p>
+    </div>
+
+    <div class="hub-code dl-rise">
+      <div class="hub-code__head"><span>main.tf</span><button class="hub-code__copy" type="button" data-copy-code>Kopieren</button></div>
+      <pre><code>{{ quickstart.provider_block | escape }}</code></pre>
+    </div>
+
+    <div class="hub-code dl-rise">
+      <div class="hub-code__head"><span>Terminal</span><button class="hub-code__copy" type="button" data-copy-code>Kopieren</button></div>
+      <pre><code>{{ quickstart.check_command | escape }}</code></pre>
+    </div>
+
+    <p class="hub-note dl-rise">Passe die Provider-Version an deine freigegebene Version an und halte Zugangsdaten aus dem Repository.</p>
+    <p class="hub-note dl-rise"><a class="dl-link" href="{{ '/de/wombatpass-install/' | relative_url }}">Vollständiger WOMBATpass-Schnellstart →</a></p>
+  </div>
+</section>
+<script src="{{ '/assets/js/cloud-quickstart.js' | relative_url }}" defer></script>
+{% endif %}
+
+{% assign regions = site.data.cloud_regions[page.cloud_slug] %}
+{% if regions %}
+<!-- Bekannte Regionen -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Bekannte Regionen in der Dashboard-Map.</h2>
+      <p class="hub-section__lead">Nur Näherungswerte. Das Dashboard führt {{ regions.region_count }} Regionscodes für diesen Provider; unten stehen die unterschiedlichen Orte.</p>
+    </div>
+
+    <div class="hub-map dl-rise">
+      <img src="{{ '/images/cloud-regions/' | append: page.cloud_slug | append: '.svg' | relative_url }}" alt="Ungefähre Regionskarte für {{ cloud.name }}. Punkte markieren Näherungen, keine Datacenter-Adressen." width="800" height="400" loading="lazy">
+    </div>
+    <p class="hub-map__caption dl-rise">Ungefähre Regionsangaben aus der Dashboard-Map. Keine Datacenter-Karte.</p>
+
+    <div class="hub-pill-row dl-rise">
+      {% for loc in regions.locations %}
+      <span class="hub-pill">{{ loc }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="dl-rise">{% include provider-data-disclaimer.html provider=cloud.name region_count=regions.region_count %}</div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Säulen -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Säulen, die für {{ cloud.name }} zählen.</h2>
+      <p class="hub-section__lead">Dasselbe Control-Modell gilt über Provider hinweg, damit der Vergleich konsistent bleibt, auch wenn der Bestand es nicht ist.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for p in cloud.pillars %}
+        {% assign pillar = site.data.pillars | where: "slug", p.slug | first %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{% if pillar %}{{ pillar.code }}{% else %}{{ p.slug }}{% endif %}</div>
+          <h3 class="hub-card__title">{% if pillar %}{{ pillar.label_de | default: pillar.label }}{% else %}{{ p.slug }}{% endif %}</h3>
+          <p class="hub-card__text">{{ p.why_de | default: p.why }}</p>
+          {% if pillar %}
+          <a class="hub-card__link" href="{{ '/de' | append: pillar.url | relative_url }}">Mehr zur Säule {{ pillar.label_de | default: pillar.label }} →</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% assign breakdown = site.data.provider_control_breakdown[page.cloud_slug] %}
+{% if breakdown %}
+<!-- Control-Aufschlüsselung -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Control-Abdeckung nach Säule.</h2>
+      <p class="hub-section__lead">Eindeutige Controls mit providerspezifischen Checks im aktuellen Framework-Control-Pack. Ein Control kann mehrere Checks haben.</p>
+    </div>
+
+    <div class="hub-bars dl-rise">
+      {% for pillar in site.data.pillars %}
+        {% assign count = breakdown.pillars[pillar.slug] | default: 0 %}
+        {% if count > 0 %}
+        {% assign width = count | times: 100.0 | divided_by: breakdown.max | round: 1 %}
+        <div class="hub-bar">
+          <div class="hub-bar__label">{{ pillar.label_de | default: pillar.label }}</div>
+          <div class="hub-bar__track"><span class="hub-bar__fill" style="--bar-width: {{ width }}%;"></span></div>
+          <div class="hub-bar__value">{{ count }}</div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="hub-note dl-rise">Momentaufnahme des aktuellen Framework-Control-Packs; keine Zertifizierung. <a class="dl-link" href="{{ '/de/cloud/coverage/' | relative_url }}">Zur Abdeckungstabelle (EN) →</a></p>
+  </div>
+</section>
+{% endif %}
+
+<!-- Startpunkte + CTA -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Hier starten.</h2>
+      <p class="hub-section__lead">Wähle das Artefakt, das deiner nächsten Entscheidung am nächsten liegt. Jeder Link führt zurück auf dasselbe Control-Modell.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for link in cloud.links %}
+        {% assign link_href = link.url %}
+        {% if link.url == '/sovereignty/' %}{% assign link_href = '/de/sovereignty/' %}
+        {% elsif link.url == '/trust/' %}{% assign link_href = '/de/trust/' %}
+        {% elsif link.url == '/compliance/' %}{% assign link_href = '/de/compliance/' %}
+        {% elsif link.url == '/controls/' %}{% assign link_href = '/de/controls/' %}
+        {% elsif link.url == '/comparison/' %}{% assign link_href = '/de/comparison/' %}
+        {% elsif link.url == '/wombatpass-install/' %}{% assign link_href = '/de/wombatpass-install/' %}
+        {% elsif link.url == '/wombatpass/scorecard/' %}{% assign link_href = '/de/wombatpass/scorecard/' %}
+        {% elsif link.url == '/wombatpass-action/' %}{% assign link_href = '/de/wombatpass-action/' %}
+        {% elsif link.url contains '/pillars/' %}{% assign link_href = '/de' | append: link.url %}
+        {% elsif link.url == '/use-cases/platform-golden-paths/' %}{% assign link_href = '/de/use-cases/platform-golden-paths/' %}
+        {% elsif link.url == '/use-cases/sustainability-rightsizing/' %}{% assign link_href = '/de/use-cases/sustainability-rightsizing/' %}
+        {% endif %}
+
+        {% assign link_label = link.label %}
+        {% case link.label %}
+          {% when 'Sovereignty hub' %}{% assign link_label = 'Souveränitäts-Hub' %}
+          {% when 'Controls catalogue' %}{% assign link_label = 'Control-Katalog' %}
+          {% when 'WOMBATpass quickstart' %}{% assign link_label = 'WOMBATpass Schnellstart' %}
+          {% when 'Trust center' %}{% assign link_label = 'Trust Center' %}
+          {% when 'Comparison with provider frameworks' %}{% assign link_label = 'Vergleich mit Provider-Frameworks' %}
+          {% when 'Cost Optimization pillar' %}{% assign link_label = 'Säule Kostenoptimierung' %}
+          {% when 'Wombat vs. AWS Well-Architected' %}{% assign link_label = 'Wombat vs. AWS Well-Architected' %}
+          {% when 'Wombat vs. Azure CAF' %}{% assign link_label = 'Wombat vs. Azure CAF' %}
+          {% when 'Wombat vs. Google Cloud Framework' %}{% assign link_label = 'Wombat vs. Google Cloud Framework' %}
+          {% when 'WOMBATpass Action' %}{% assign link_label = 'WOMBATpass Action' %}
+          {% when 'Platform golden paths use case' %}{% assign link_label = 'Use Case: Platform Golden Paths' %}
+          {% when 'Run the scorecard' %}{% assign link_label = 'Scorecard starten' %}
+          {% when 'See the cost pillar' %}{% assign link_label = 'Kosten-Säule ansehen' %}
+          {% when 'Read the sustainability pillar' %}{% assign link_label = 'Nachhaltigkeits-Säule lesen' %}
+          {% when 'Open the compliance hubs' %}{% assign link_label = 'Compliance-Hubs' %}
+          {% when 'Open the trust center' %}{% assign link_label = 'Trust Center' %}
+        {% endcase %}
+      <article class="hub-card">
+        <h3 class="hub-card__title">{{ link_label }}</h3>
+        <a class="hub-card__link" href="{{ link_href | relative_url }}">Öffnen →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          {% if cloud.coverage == 'framework' %}
+          <h2 class="hub-cta__title">Den {{ cloud.name }}-Bestand gegen eine neutrale Baseline bewerten</h2>
+          <p class="hub-cta__text">Behalte den providernativen Review und nutze den Wombat-Score für Vergleich und Evidenz über Provider hinweg.</p>
+          {% elsif cloud.coverage == 'dashboard' %}
+          <h2 class="hub-cta__title">Den Provider tracken, ohne Abdeckung zu überzeichnen</h2>
+          <p class="hub-cta__text">Nutze das Dashboard für Sichtbarkeit und prüfe die aktuelle Control-Pack-Abdeckung, bevor du den Score als vollständig behandelst.</p>
+          {% else %}
+          <h2 class="hub-cta__title">{{ cloud.name }} tracken, ohne Abdeckung zu überzeichnen</h2>
+          <p class="hub-cta__text">Nutze das Dashboard für Sichtbarkeit und prüfe die aktuelle Control-Pack-Abdeckung, bevor du den Score als vollständig behandelst.</p>
+          {% endif %}
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ '/de/wombatpass/scorecard/' | relative_url }}">Scorecard starten →</a>
+          {% if cloud.coverage == 'framework' %}
+          <a class="dl-btn dl-btn--line" href="{{ '/de/comparison/' | relative_url }}">Vergleich ansehen</a>
+          {% elsif cloud.coverage == 'dashboard' %}
+          <a class="dl-btn dl-btn--line" href="{{ '/de/controls/' | relative_url }}">Controls durchsuchen</a>
+          {% else %}
+          <a class="dl-btn dl-btn--line" href="{{ '/de/sovereignty/' | relative_url }}">Souveränitäts-Hub</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Weitere Provider -->
+<section class="hub-section cloud-related">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Weitere Provider.</h2>
+      <p class="hub-section__lead">Dieselbe neutrale Baseline lässt sich auf den gesamten Bestand anwenden. Öffne eine andere Provider-Seite, um Abdeckung und Säulen zu vergleichen.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--3 dl-rise">
+      {% assign related_shown = 0 %}
+      {% for pair in site.data.clouds.clouds %}
+        {% assign related_slug = pair[0] %}
+        {% assign related = pair[1] %}
+        {% if related_slug != page.cloud_slug and related.coverage == cloud.coverage and related_shown < 6 %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ related.kicker }}</div>
+          <h3 class="hub-card__title">{{ related.name }}</h3>
+          <p class="hub-card__text">
+            {% if related.coverage == 'framework' %}Providerneutrale Baseline mit Framework-Control-Abdeckung.
+            {% elsif related.coverage == 'dashboard' %}Im Dashboard getrackt; Control-Abdeckung wird ausgebaut.
+            {% else %}In der Region-Map erkannt; Discovery-Baseline ohne dedizierten Control-Pack.{% endif %}
+          </p>
+          <a class="hub-card__link" href="{{ '/de/cloud/' | append: related_slug | append: '/' | relative_url }}">Provider-Seite öffnen →</a>
+        </article>
+        {% assign related_shown = related_shown | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="hub-note dl-rise"><a class="dl-link" href="{{ '/de/cloud/' | relative_url }}">Alle Provider →</a></p>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}
+{% else %}
+<div class="dl-wrap" style="padding-block: 80px;">
+  <p class="hub-note">Dieser Provider-Hub ist nicht konfiguriert. Prüfe <code>_data/clouds.yml</code>.</p>
+</div>
+{% endif %}

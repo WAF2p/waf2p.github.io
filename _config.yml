@@ -21,6 +21,9 @@ collections:
   staff_members:
     output: false
     _hide_content: false
+  newsletters:
+    output: true
+    permalink: /newsletter/:name/
 paginate: 10
 paginate_path: /blog/:num/
 permalink: pretty
@@ -72,6 +75,12 @@ defaults:
     full_width: true
     layout: staff_member_page
 - scope:
+    path: ''
+    type: newsletters
+  values:
+    layout: newsletter
+    translation_notice: false
+- scope:
     path: /docs
   values:
     layout: docs
@@ -104,6 +113,7 @@ exclude:
   - antora-playbook.yml
   - antora-playbook-local.yml
   - docs
+  - tests
   - .cache
   - build
   - .taste-skill

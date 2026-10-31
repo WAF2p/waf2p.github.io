@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ page.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}">
+    <link rel="canonical" href="{{ page.redirect_to | absolute_url }}">
+    <meta name="robots" content="noindex, follow">
+    <title>{% if page.lang == 'de' %}Weiterleitung…{% else %}Redirecting…{% endif %}</title>
+    <script>
+      location.replace({{ page.redirect_to | relative_url | jsonify }} + window.location.search + window.location.hash);
+    </script>
+    <style>
+      body { margin: 3rem; color: #0f172a; font-family: system-ui, -apple-system, sans-serif; }
+      a { color: #0094ff; }
+    </style>
+  </head>
+  <body>
+    <p>
+      {% if page.lang == 'de' %}Diese Seite wurde verschoben.{% else %}This page has moved.{% endif %}
+      <a href="{{ page.redirect_to | relative_url }}">
+        {% if page.lang == 'de' %}Weiter zu WOMBATpass{% else %}Go to WOMBATpass{% endif %} →
+      </a>
+    </p>
+  </body>
+</html>

@@ -5,6 +5,8 @@
 {% assign community_count = site.data.contributors_meta.community_contributors | default: 1 %}
 {% assign gh_cache = site.data.github_contributors %}
 {% assign gh_contribs = gh_cache.contributors %}
+{% assign rank_data = site.data.contributor_ranks %}
+{% assign rank_contribs = rank_data.contributors %}
 
 <section class="wf6-section wf6-section--alt wf6-community" id="community">
   <div class="wf6-wrap">
@@ -30,12 +32,21 @@
                 {% assign author_id = mid | prepend: "/staff_members/" | append: "/" %}
                 {% assign member = site.staff_members | where: "url", author_id | first %}
                 {% if member %}
+                {% assign m_rank = rank_contribs | where: "login", member.github | first %}
                 <a class="wf6-community__maintainer" href="{{ member.url | relative_url }}">
                   <span class="wf6-community__avatar">
                     <img src="{{ member.image_path }}" alt="{{ member.name }}" loading="lazy">
                   </span>
-                  <span class="wf6-community__name">{{ member.name }}</span>
-                  <span class="wf6-community__role">{{ comm.maintainer_label }}</span>
+                  <span class="wf6-community__identity">
+                    <span class="wf6-community__name">{{ member.name }}</span>
+                    <span class="wf6-community__role">{{ comm.maintainer_label }}</span>
+                    {% if m_rank %}
+                    <span class="rank-line">
+                      <span class="rank-chip" style="--rank-color: {{ m_rank.rank_color }};">{{ m_rank.rank_label }}</span>
+                      <span class="rank-next">{% if m_rank.points_to_next %}{{ m_rank.points_to_next }} pts to {{ m_rank.next_rank_label }}{% else %}Top rank{% endif %}</span>
+                    </span>
+                    {% endif %}
+                  </span>
                 </a>
                 {% endif %}
               {% endfor %}
@@ -58,7 +69,8 @@
             <div class="wf6-community__contributors" id="github-contributors">
               {% if gh_contribs and gh_contribs.size > 0 %}
                 {% for contrib in gh_contribs limit: 14 %}
-                  <a class="wf6-community__contributor" href="{{ contrib.html_url }}" target="_blank" rel="noopener" title="{{ contrib.login }}">
+                  {% assign c_rank = rank_contribs | where: "login", contrib.login | first %}
+                  <a class="wf6-community__contributor{% if c_rank %} has-rank{% endif %}" href="{{ contrib.html_url }}" target="_blank" rel="noopener"{% if c_rank %} style="--rank-color: {{ c_rank.rank_color }};" aria-label="{{ c_rank.rank_label }} — {{ contrib.login }} — {{ c_rank.points }} pts{% if c_rank.points_to_next %}, {{ c_rank.points_to_next }} pts to {{ c_rank.next_rank_label }}{% else %}, top rank{% endif %}" title="{{ c_rank.rank_label }} — {{ c_rank.points }} pts{% if c_rank.points_to_next %} · {{ c_rank.points_to_next }} pts to {{ c_rank.next_rank_label }}{% else %} · top rank{% endif %}"{% else %} title="{{ contrib.login }}"{% endif %}>
                     <img src="{{ contrib.avatar_url }}" alt="{{ contrib.login }}" loading="lazy">
                   </a>
                 {% endfor %}
@@ -74,6 +86,9 @@
           </a>
           <a class="wf6-btn wf6-btn--line" href="{% if lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">
             {{ comm.buttons.governance }}
+          </a>
+          <a class="wf6-btn wf6-btn--line" href="{{ '/contributors/ranks/' | relative_url }}">
+            {{ comm.buttons.ranks | default: "Contributor ranks" }}
           </a>
           <a class="wf6-btn wf6-btn--line" href="{{ discussions }}" target="_blank" rel="noopener">
             {{ comm.buttons.discussions }}
