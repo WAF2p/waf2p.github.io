@@ -72,8 +72,12 @@ description: "Konferenzen, auf denen Wombat vertreten ist — kommende Events, S
         <div class="cfp-event__body">
           <h3 class="cfp-event__name">{{ conf.name }}</h3>
           <div class="cfp-event__sub">
-            {% assign conf_date_key = 'date_display_' | append: lang %}
-            {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }} · {{ conf.location }}
+            {% assign conf_date_key = 'date_display_' | append: page.lang %}
+            {% if page.lang == 'de' %}
+              {{ conf.date_display_de | default: conf.date_display }} · {{ conf.location }}
+            {% else %}
+              {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }} · {{ conf.location }}
+            {% endif %}
           </div>
 
           {% if conf.description %}
@@ -150,8 +154,12 @@ description: "Konferenzen, auf denen Wombat vertreten ist — kommende Events, S
         <div>
           <div class="cfp-past__name">{{ conf.name }}</div>
           <div class="cfp-past__sub">
-            {% assign conf_date_key = 'date_display_' | append: lang %}
-            {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }} · {{ conf.location }}
+            {% assign conf_date_key = 'date_display_' | append: page.lang %}
+            {% if page.lang == 'de' %}
+              {{ conf.date_display_de | default: conf.date_display }} · {{ conf.location }}
+            {% else %}
+              {{ conf[conf_date_key] | default: conf.date_display_en | default: conf.date_display }} · {{ conf.location }}
+            {% endif %}
           </div>
           {% if conf.description %}
           <p class="cfp-past__desc">{{ conf.description }}</p>

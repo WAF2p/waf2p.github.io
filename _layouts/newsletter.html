@@ -13,7 +13,7 @@ layout: default
     <p class="nl-issue-page__meta">
       <a href="{{ archive | relative_url }}">{{ archive_label }}</a>
       {% if page.issue %}<span>Issue {{ page.issue }}</span>{% endif %}
-      {% if page.date %}<span>{{ page.date | date: "%d %b %Y" }}</span>{% endif %}
+      {% if page.date %}<span>{% include localized-date.html date=page.date lang=page.lang %}</span>{% endif %}
       {% if page.draft %}<span>Draft — not published</span>{% endif %}
     </p>
     <h1 class="nl-issue-page__title">{{ page.title }}</h1>

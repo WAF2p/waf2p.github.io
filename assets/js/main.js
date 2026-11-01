@@ -49,6 +49,18 @@
 })();
 
 
+// Mark the parent nav group active when one of its children is the current page.
+(function () {
+  document.querySelectorAll('.nav-group').forEach(function (group) {
+    const active = group.querySelector('.nav-dropdown__link.active');
+    if (!active) return;
+    group.classList.add('is-active');
+    const label = group.querySelector('.nav-group-label');
+    if (label) label.classList.add('active');
+    if (!active.hasAttribute('aria-current')) active.setAttribute('aria-current', 'page');
+  });
+})();
+
 // Desktop nav dropdowns (replaces the old inline onclick handler)
 (function () {
   const toggles = document.querySelectorAll('.nav-group-toggle');
