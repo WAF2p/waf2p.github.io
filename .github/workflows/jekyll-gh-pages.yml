@@ -71,7 +71,11 @@ jobs:
           ls -la _site/
           echo ""
           echo "=== Antora output ==="
-          ls -la _site/docs/ || echo "Docs directory not found!"
+          ls -la _site/docs/ || true
+          if ! find _site/docs -name index.html -print -quit 2>/dev/null | grep -q .; then
+            echo "::error::Antora produced no documentation output — check the branch names in antora-playbook.yml"
+            exit 1
+          fi
 
       # Upload combined artifact
       - name: Upload artifact
