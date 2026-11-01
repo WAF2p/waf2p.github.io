@@ -110,8 +110,15 @@ async function main() {
   check('member activity stats render', (await page.locator('.profile-stat__value').count()) >= 1)
   check('member next event renders', (await page.locator('.profile-next').count()) === 1)
   check('member team links render', (await page.locator('.profile-team__link').count()) === 3)
-  await page.evaluate(() => document.getElementById('conferences').scrollIntoView())
-  await page.waitForTimeout(400)
+  // Scroll instantly (CSS smooth-scroll is slower than the assertion window on
+  // CI) and park the section inside the spy's −25%…−60% activation band.
+  await page.evaluate(() => {
+    const el = document.getElementById('conferences')
+    document.documentElement.style.scrollBehavior = 'auto'
+    const top = el.getBoundingClientRect().top + window.scrollY
+    window.scrollTo(0, Math.max(0, top - window.innerHeight * 0.3))
+  })
+  await page.waitForTimeout(600)
   check(
     'member scrollspy marks active section',
     (await page.locator('.profile-anchor.is-active').getAttribute('href')) === '#conferences'

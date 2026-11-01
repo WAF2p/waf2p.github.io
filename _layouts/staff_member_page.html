@@ -426,7 +426,7 @@ layout: default
 
 (function () {
   var nav = document.querySelector('[data-profile-spy]');
-  if (!nav || !('IntersectionObserver' in window)) return;
+  if (!nav) return;
   var links = Array.prototype.slice.call(nav.querySelectorAll('.profile-anchor'));
   var sections = links.map(function (link) {
     return document.getElementById(link.getAttribute('href').slice(1));
@@ -442,12 +442,29 @@ layout: default
     });
   }
 
-  var spy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) activate(entry.target.id);
+  // Mark the last section whose top has passed the upper third of the
+  // viewport. Unlike a narrow IntersectionObserver band, this still marks
+  // a short section after an in-page anchor scrolls it to the top.
+  function update() {
+    var marker = window.scrollY + window.innerHeight * 0.3;
+    var current = sections[0];
+    sections.forEach(function (section) {
+      var top = section.getBoundingClientRect().top + window.scrollY;
+      if (top <= marker) current = section;
     });
-  }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
+    if (current) activate(current.id);
+  }
 
-  sections.forEach(function (section) { spy.observe(section); });
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      update();
+      ticking = false;
+    });
+  }, { passive: true });
+
+  update();
 })();
 </script>
