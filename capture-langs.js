@@ -8,11 +8,6 @@ const { chromium } = require('playwright');
     const url = lang ? `http://localhost:8080/${lang}/` : 'http://localhost:8080/';
     await page.goto(url);
     await page.waitForTimeout(800);
-    await page.evaluate(() => {
-      localStorage.setItem('agentic-launch-modal-dismissed', '1');
-    });
-    await page.reload();
-    await page.waitForTimeout(800);
     await page.click('#lang-switch-check');
     await page.waitForTimeout(400);
     await page.screenshot({ path: `/tmp/navbar-lang-${lang || 'en'}.png` });

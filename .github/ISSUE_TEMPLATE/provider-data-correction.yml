@@ -1,0 +1,66 @@
+name: Provider data correction
+description: Report a correction to provider coverage, region data or control counts.
+title: "[Provider data] "
+labels: ["provider-data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the Wombat provider data accurate.
+
+        The provider data is an approximate compilation from the WOMBATpass dashboard and the Wombat framework control pack. It is not cross-validated with the provider and may be incomplete, approximate or outdated. Corrections are welcome.
+
+        Please include a public source where possible. Do not include personal data.
+
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      description: Which provider does this correction concern?
+      placeholder: "e.g. AWS, STACKIT, Scaleway"
+    validations:
+      required: true
+
+  - type: input
+    id: affected
+    attributes:
+      label: Affected region code or control
+      description: The region code, label or control count that needs correction.
+      placeholder: "e.g. eu-central-1, 35 region codes, 94 controls"
+    validations:
+      required: false
+
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correction
+      description: What is wrong, and what should it say instead?
+      placeholder: "Describe the correction as precisely as possible."
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Public source
+      description: Link to the provider's documentation, official region list or control catalogue.
+      placeholder: "https://..."
+    validations:
+      required: false
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact (optional)
+      description: How should the maintainers follow up? Leave empty if you prefer not to be contacted.
+      placeholder: "Email or GitHub handle"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Acknowledgment
+      options:
+        - label: I understand that this data is approximate and is not a certification or availability guarantee.
+          required: true

@@ -1,0 +1,530 @@
+---
+layout: default
+lang: de
+ref: wombatpass
+title: "WOMBATpass – IaC-Compliance, visualisiert"
+description: "WOMBATpass v1.1.0 ist die Open-Source-Compliance-Plattform für Infrastructure as Code: CLI, Dashboard und Server in einem. Statische Analyse, 8 Wombat-Säulen, über 100 Controls. Bereit für DSGVO, SOC 2, ISO 27001, BSI C5, HIPAA und NIS2."
+permalink: /de/wombatpass/
+---
+
+<div class="wfp-page">
+
+<!-- Hero -->
+<section class="wfp-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="wfp-hero__title">Compliance, visualisiert.</h1>
+      <p class="wfp-hero__lead">WOMBATpass ist die Open-Source-Compliance-Plattform für moderne Infrastruktur. Parsen Sie Terraform und AWS CDK, prüfen Sie über 100 Wombat-Controls über 8 Säulen, erkunden Sie die Ergebnisse im Browser und erzeugen Sie prüferfertige Berichte — alles aus demselben Stack aus CLI, Server und Dashboard. Keine Cloud-Zugangsdaten nötig.</p>
+      <div class="wfp-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/de/wombatpass-install/' | relative_url }}">
+          WOMBATpass installieren
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/waf2p/pass" target="_blank" rel="noopener">Auf GitHub ansehen</a>
+        <a class="wf6-btn wf6-btn--line" href="https://www.wombat-gov.dev/demo/" target="_blank" rel="noopener">Live-Demo</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/de/wombatpass/scorecard/' | relative_url }}">Score teilen</a>
+      </div>
+      <div class="wfp-hero__row">
+        <div class="dl-quiet-row__names">
+          <span class="dl-quiet-row__name">DSGVO</span>
+          <span class="dl-quiet-row__name">SOC 2</span>
+          <span class="dl-quiet-row__name">HIPAA</span>
+          <span class="dl-quiet-row__name">BSI C5</span>
+          <span class="dl-quiet-row__name">ISO 27001</span>
+          <span class="dl-quiet-row__name">NIS2</span>
+          <span class="dl-quiet-row__name">PCI DSS</span>
+          <span class="dl-quiet-row__name">ISO 27017</span>
+          <span class="dl-quiet-row__name">CSA STAR</span>
+          <span class="dl-quiet-row__name">CIS Controls</span>
+          <span class="dl-quiet-row__name">DORA</span>
+          <span class="dl-quiet-row__name">EUCS</span>
+          <span class="dl-quiet-row__name">NIST 800-53</span>
+          <span class="dl-quiet-row__name">COBIT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wfp-hero__shot dl-rise dl-d2">
+      <button class="dl-shot" type="button" aria-label="WOMBATpass Global Operations Center vergrößert anzeigen">
+        <img src="{{ 'assets/images/wombatpass_1.0/global_operation_center_multi_color.png' | relative_url }}" alt="WOMBATpass Global Operations Center, Multi-Region-Compliance-Übersicht">
+        <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="wfp-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">v1.1.0</div><div class="dl-stat__label">CLI-Release</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">8</div><div class="dl-stat__label">Abgedeckte Säulen</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">100+</div><div class="dl-stat__label">Abgebildete Controls</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">22+</div><div class="dl-stat__label">Dashboard-Ansichten</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- The platform -->
+<section class="dl-section" id="platform">
+  <div class="dl-wrap">
+    <div class="wfp-section-head dl-rise">
+      <h2 class="dl-heading">Drei Ebenen. Ein Compliance-Workflow.</h2>
+      <p class="dl-lead">WOMBATpass kombiniert eine CLI mit einem Persistenz-Server und einem Web-Dashboard: ein dreischichtiger Stack für Engineering-Teams, die kontinuierliche Compliance brauchen, ohne an Tempo einzubüßen.</p>
+    </div>
+
+    <div class="wfp-stack dl-rise">
+      <div class="wfp-stack__card">
+        <code class="wfp-stack__name">wafpass</code>
+        <h3 class="wfp-stack__title">Zentrale Prüf-Engine.</h3>
+        <p class="wfp-stack__desc">Parst Terraform und AWS CDK und läuft in CI/CD-Pipelines. Keine Cloud-Zugangsdaten nötig.</p>
+        <div class="wfp-stack__tags"><span>Python</span><span>PyPI: wafpass-core</span><span>Apache 2.0</span></div>
+      </div>
+      <div class="wfp-stack__card">
+        <code class="wfp-stack__name">wafpass-server</code>
+        <h3 class="wfp-stack__title">FastAPI-Persistenzschicht.</h3>
+        <p class="wfp-stack__desc">Speichert Runs, Waiver, Risikoakzeptanzen, Secret-Findings und Audit-Ereignisse. PostgreSQL mit automatischen Migrationen.</p>
+        <div class="wfp-stack__tags"><span>FastAPI</span><span>PostgreSQL</span><span>Alembic</span></div>
+      </div>
+      <div class="wfp-stack__card">
+        <code class="wfp-stack__name">wafpass-dashboard</code>
+        <h3 class="wfp-stack__title">React-Web-Dashboard.</h3>
+        <p class="wfp-stack__desc">Über 22 Seiten zur Compliance-Analyse, prüferfertiger Nachweis-Export und RBAC-Rollenverwaltung.</p>
+        <div class="wfp-stack__tags"><span>React</span><span>Vite</span><span>Docker</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Download controls -->
+<section class="dl-section dl-section--alt" id="download-controls">
+  <div class="dl-wrap">
+    <div class="wfp-download dl-rise">
+      <h2 class="dl-heading">Nehmen Sie die Controls mit.</h2>
+      <p class="dl-lead">Laden Sie den vollständigen Wombat-Controls-Katalog als YAML herunter oder holen Sie sich ein Checkov-kompatibles Policy-Bundle, das direkt aus denselben Quelldateien erzeugt wird.</p>
+      <div class="wfp-download__actions">
+        <button class="wf6-btn wf6-btn--pill" type="button" data-action="download-controls" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">
+          Wombat-Controls herunterladen
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </button>
+        <button class="wf6-btn wf6-btn--line" type="button" data-action="download-checkov" data-label-loading="Preparing…" data-label-done="Downloaded!" data-label-error="Error – try again">Checkov-Policies herunterladen</button>
+      </div>
+      <p class="wfp-download__note">Das Checkov-Bundle wird bei Bedarf aus denselben über 100 Control-Definitionen erzeugt und enthält eine Policy pro automatisierter Prüfaussage.</p>
+      <div class="wfp-download__soon">
+        <span class="wfp-download__soon-label">Weitere Engine-Bundles folgen in Kürze:</span>
+        <span>TFLint</span>
+        <span>Terrascan</span>
+        <span>Open Policy Agent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features in action -->
+<section class="dl-section" id="showcase">
+  <div class="dl-wrap">
+    <div class="wfp-section-head dl-rise">
+      <h2 class="dl-heading">Ein Klick bis zur Behebung.</h2>
+      <p class="dl-lead">WOMBATpass stellt Compliance-Daten so dar, dass der nächste Schritt offensichtlich ist — ob Sie als CISO den Überblick suchen oder als Engineer ein FAIL beheben.</p>
+    </div>
+
+    <div class="wfp-showcases">
+
+      <div class="wfp-feature dl-rise">
+        <div class="wfp-feature__copy">
+          <h3 class="wfp-feature__title">Eine Ansicht über alle Regionen.</h3>
+          <p class="wfp-feature__body"><strong>Global Operations Center.</strong> Farbcodierte Regionskacheln zeigen sofort, wo die Infrastruktur steht. Rot bedeutet aktive Findings; ein Klick führt zu den fehlschlagenden Controls, dem zuständigen Projekt und dem verantwortlichen Engineer.</p>
+          <p class="wfp-feature__body">Verfolgen Sie Deployment-Verteilung, Souveränitätsgrenzen und regionsübergreifende Compliance-Unterschiede, ohne zwischen Cloud-Konsolen oder Tabellen zu wechseln.</p>
+          <div class="wfp-feature__tags"><span>Multi-Region</span><span>Echtzeitstatus</span><span>Souveränitätsgrenzen</span></div>
+        </div>
+        <div class="wfp-feature__shot">
+          <button class="dl-shot" type="button" aria-label="Global Operations Center vergrößert anzeigen">
+            <img class="ss-light" src="{{ 'assets/images/wombatpass_1.0/global_operation_center_bright.png' | relative_url }}" alt="Global Operations Center, heller Modus">
+            <img class="ss-dark" src="{{ 'assets/images/wombatpass_1.0/global_operation_center_dark.png' | relative_url }}" alt="Global Operations Center, dunkler Modus">
+            <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="wfp-feature wfp-feature--reverse dl-rise">
+        <div class="wfp-feature__copy">
+          <h3 class="wfp-feature__title">Jeder Run, in Echtzeit verfolgt.</h3>
+          <p class="wfp-feature__body"><strong>Run-Dashboard.</strong> Jede WOMBATpass-Prüfung erzeugt einen vollständig dokumentierten Run: Zeitstempel, geänderte Controls, Erfolgsquoten pro Säule und das Teammitglied, das ihn ausgelöst hat.</p>
+          <p class="wfp-feature__body">Vergleichen Sie Runs nebeneinander, um Regressionen sofort zu erkennen. Jeder Run verweist auf den vollständigen Pass des geprüften Projekts, damit nichts untergeht.</p>
+          <div class="wfp-feature__tags"><span>Run-Verlauf</span><span>Run-Vergleich</span><span>Vollständiger Audit-Trail</span></div>
+        </div>
+        <div class="wfp-feature__shot">
+          <button class="dl-shot" type="button" aria-label="Run-Dashboard vergrößert anzeigen">
+            <img src="{{ 'assets/images/wombatpass_1.0/Run_Dashboard.png' | relative_url }}" alt="Run-Dashboard mit Verlauf der Compliance-Runs und Erfolgsquoten">
+            <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="wfp-feature dl-rise">
+        <div class="wfp-feature__copy">
+          <h3 class="wfp-feature__title">Keine hartcodierten Zugangsdaten.</h3>
+          <p class="wfp-feature__body"><strong>Secret-Scanner.</strong> WOMBATpass durchsucht jede IaC-Datei nach hartcodierten API-Keys, Tokens, Passwörtern und Zertifikaten, bevor sie ins Repository oder in die Cloud gelangen.</p>
+          <p class="wfp-feature__body">Jedes Finding enthält den genauen Dateipfad, die Zeilennummer, das gefundene Muster und einen Behebungshinweis. Unterdrückungen werden mit vollständigem Audit-Trail erfasst.</p>
+          <div class="wfp-feature__tags"><span>Regex-Muster</span><span>Datei + Zeile</span><span>Geprüfte Unterdrückungen</span></div>
+        </div>
+        <div class="wfp-feature__shot">
+          <button class="dl-shot" type="button" aria-label="Secret-Scanner vergrößert anzeigen">
+            <img src="{{ 'assets/images/wombatpass_1.0/Secret_Scanner.png' | relative_url }}" alt="Secret-Scanner-Oberfläche mit Findings zu Zugangsdaten">
+            <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="wfp-feature wfp-feature--reverse dl-rise">
+        <div class="wfp-feature__copy">
+          <h3 class="wfp-feature__title">Audit-Nachweise, automatisch erzeugt.</h3>
+          <p class="wfp-feature__body"><strong>Evidence Locker.</strong> Jeder Run erzeugt Evidenzpakete, die direkt Zertifizierungs-Frameworks zugeordnet sind. Der Evidence Locker ordnet sie nach Framework, Control und Datum — immer aktuell, immer teilbar.</p>
+          <p class="wfp-feature__body">Teilen Sie schreibgeschützte Nachweis-Links mit Prüfern, ohne manuelle Exporte. Die Pakete enthalten Pass/Fail-Zusammenfassungen, Waiver-Dokumentation und Screenshots mit Zeitstempel.</p>
+          <div class="wfp-feature__tags"><span>Frameworks zugeordnet</span><span>Auditfähig</span><span>Automatisch erzeugt</span></div>
+        </div>
+        <div class="wfp-feature__shot">
+          <button class="dl-shot" type="button" aria-label="Evidence Locker vergrößert anzeigen">
+            <img src="{{ 'assets/images/wombatpass_1.0/Evidence_Locker.png' | relative_url }}" alt="Evidence Locker mit Framework-bezogenen Compliance-Paketen">
+            <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="wfp-feature dl-rise">
+        <div class="wfp-feature__copy">
+          <h3 class="wfp-feature__title">Vom Finding zur Behebung, schneller.</h3>
+          <p class="wfp-feature__body"><strong>Error-Sprint-Planung.</strong> Jedes FAIL eröffnet einen strukturierten Sprint-Plan. Findings werden nach Säule und Schweregrad gruppiert, für häufige Muster entstehen Auto-Fix-Vorschläge, und Zuständigkeiten sind in Sekunden vergeben.</p>
+          <p class="wfp-feature__body">Verfolgen Sie den Fortschritt, während Findings geschlossen werden. Jede Behebung verweist auf den auslösenden Run, das verantwortliche Teammitglied und das zugehörige Jira- oder RFC-Ticket.</p>
+          <div class="wfp-feature__tags"><span>Auto-Fix-Vorschläge</span><span>Sprint-Tracking</span><span>Vollständige Nachvollziehbarkeit</span></div>
+        </div>
+        <div class="wfp-feature__shot">
+          <button class="dl-shot" type="button" aria-label="Error-Sprint-Planung vergrößert anzeigen">
+            <img src="{{ 'assets/images/wombatpass_1.0/Error_Sprint_Planning.png' | relative_url }}" alt="Error-Sprint-Planung mit priorisierten Behebungsvorschlägen">
+            <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- More features -->
+<section class="dl-section dl-section--alt" id="features">
+  <div class="dl-wrap">
+    <div class="wfp-section-head dl-rise">
+      <h2 class="dl-heading">Für jede Rolle gebaut.</h2>
+      <p class="dl-lead">Vom CISO, der die Management-Sicht braucht, bis zum Engineer, der Details auf Zeilenebene benötigt: WOMBATpass hat für jede Interessengruppe eine Ansicht.</p>
+    </div>
+
+    <div class="wfp-feat-grid dl-rise">
+      <div class="wfp-feat-card">
+        <button class="dl-shot" type="button" aria-label="Controls-Übersicht vergrößert anzeigen">
+          <img src="{{ 'assets/images/wombatpass_1.0/Controls_Overview.png' | relative_url }}" alt="Controls-Übersicht mit filterbaren Wombat-Controls">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="wfp-feat-card__body">
+          <h3 class="wfp-feat-card__title">Controls-Übersicht</h3>
+          <p class="wfp-feat-card__desc">Durchsuchen und filtern Sie jeden Wombat-Control nach Säule, Schweregrad und Framework-Zuordnung. Sehen Sie auf einen Blick, welche Controls welche Compliance-Anforderungen abdecken.</p>
+        </div>
+      </div>
+
+      <div class="wfp-feat-card">
+        <button class="dl-shot" type="button" aria-label="Modulaufschlüsselung vergrößert anzeigen">
+          <img src="{{ 'assets/images/wombatpass_1.0/Run_Module_Breakdown.png' | relative_url }}" alt="Aufschlüsselung des Runs pro Terraform-Modul">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="wfp-feat-card__body">
+          <h3 class="wfp-feat-card__title">Modulaufschlüsselung</h3>
+          <p class="wfp-feat-card__desc">Erfolgsquote pro Terraform-Modul. Sehen Sie, welche Module die meisten Fehler verursachen, und priorisieren Sie Behebungen nach tatsächlicher Wirkung.</p>
+        </div>
+      </div>
+
+      <div class="wfp-feat-card">
+        <button class="dl-shot" type="button" aria-label="API-Key-Verwaltung vergrößert anzeigen">
+          <img src="{{ 'assets/images/wombatpass_1.0/API_Key_Management.png' | relative_url }}" alt="Oberfläche der API-Key-Verwaltung">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="wfp-feat-card__body">
+          <h3 class="wfp-feat-card__title">API-Key-Verwaltung</h3>
+          <p class="wfp-feat-card__desc">API-Keys pro Projekt ausstellen, rotieren und widerrufen. Keys auf Lese- oder Lese-/Schreibzugriff beschränken. Jede Key-Aktion wird mit ausstellendem Nutzer und Zeitstempel protokolliert.</p>
+        </div>
+      </div>
+
+      <div class="wfp-feat-card">
+        <button class="dl-shot" type="button" aria-label="SSO-Einstellungen vergrößert anzeigen">
+          <img src="{{ 'assets/images/wombatpass_1.0/SSO_Settings.png' | relative_url }}" alt="SSO-Einstellungen mit Konfiguration des Identity Providers">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="wfp-feat-card__body">
+          <h3 class="wfp-feat-card__title">SSO &amp; Identität</h3>
+          <p class="wfp-feat-card__desc">SAML-2.0- und OIDC-Integration direkt eingebaut. IdP-Gruppen werden automatisch WOMBATpass-Rollen zugeordnet — kein manuelles Anlegen von Nutzern nötig.</p>
+        </div>
+      </div>
+
+      <div class="wfp-feat-card">
+        <button class="dl-shot" type="button" aria-label="Projekt- und Nutzerzuordnung vergrößert anzeigen">
+          <img src="{{ 'assets/images/wombatpass_1.0/Project_User_Mapping.png' | relative_url }}" alt="Projekt-Nutzer-Zuordnung mit Rollenzuweisungen">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="wfp-feat-card__body">
+          <h3 class="wfp-feat-card__title">Projekt- &amp; Nutzerzuordnung</h3>
+          <p class="wfp-feat-card__desc">Weisen Sie Engineers mit feingranularen Berechtigungen Projekten zu. Die Sichtbarkeit ist auf das beschränkt, was jede Rolle tatsächlich braucht — keine unnötige Offenlegung sensibler Compliance-Daten.</p>
+        </div>
+      </div>
+
+      <div class="wfp-feat-card">
+        <button class="dl-shot" type="button" aria-label="Check-Übersicht des Runs vergrößert anzeigen">
+          <img src="{{ 'assets/images/wombatpass_1.0/Run_Check_Overview.png' | relative_url }}" alt="Check-Übersicht des Runs mit einzelnen Control-Ergebnissen">
+          <span class="dl-shot__zoom" aria-hidden="true">{% include wf-zoom-icon.html %}</span>
+        </button>
+        <div class="wfp-feat-card__body">
+          <h3 class="wfp-feat-card__title">Check-Übersicht des Runs</h3>
+          <p class="wfp-feat-card__desc">Schlüsseln Sie einzelne Control-Ergebnisse für jeden Run auf. Filtern Sie nach PASS, FAIL, SKIP oder WAIVED. Sortieren Sie nach Säule, Schweregrad oder Blast Radius und exportieren Sie für Berichte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASS model -->
+<section class="dl-section" id="pass-model">
+  <div class="dl-wrap">
+    <div class="wfp-section-head dl-rise">
+      <h2 class="dl-heading">Vier Blickwinkel. Ein Compliance-Standard.</h2>
+      <p class="dl-lead">WOMBATpass bewertet Ihre Infrastruktur aus vier sich ergänzenden Blickwinkeln und macht Compliance-Entscheidungen nachvollziehbar, wiederholbar und prüfbar.</p>
+    </div>
+
+    <div class="wfp-pass-grid dl-rise">
+      <div class="wfp-pass-card">
+        <div class="wfp-pass-card__letter">P · Plattform</div>
+        <h3 class="wfp-pass-card__title">Basis-Controls</h3>
+        <p class="wfp-pass-card__desc">Tagging-Strategien, Ressourcenkonfiguration und Account-Leitplanken, bei jedem Run automatisch geprüft.</p>
+      </div>
+      <div class="wfp-pass-card">
+        <div class="wfp-pass-card__letter">A · Strategie</div>
+        <h3 class="wfp-pass-card__title">Governance as Code</h3>
+        <p class="wfp-pass-card__desc">Policy-Durchsetzung als Code: Strategische Entscheidungen bleiben über Zeit und Teams hinweg konsistent.</p>
+      </div>
+      <div class="wfp-pass-card">
+        <div class="wfp-pass-card__letter">S · Architektur</div>
+        <h3 class="wfp-pass-card__title">Netzwerk &amp; Residenz</h3>
+        <p class="wfp-pass-card__desc">Netzwerktopologie, Datenresidenz und Souveränität: anbieterneutrale Wombat-Controls für jede Cloud.</p>
+      </div>
+      <div class="wfp-pass-card">
+        <div class="wfp-pass-card__letter">S · Standards</div>
+        <h3 class="wfp-pass-card__title">Zero-Trust-Sicherheit</h3>
+        <p class="wfp-pass-card__desc">IAM nach Least Privilege, Verschlüsselung im Ruhezustand und Härtungs-Controls; Ergebnisse sind PASS, FAIL, SKIP oder WAIVED.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Intelligence layer -->
+<section class="dl-section dl-section--alt" id="intelligence">
+  <div class="dl-wrap">
+    <div class="wfp-section-head dl-rise">
+      <h2 class="dl-heading">Mehr als Pass und Fail.</h2>
+      <p class="dl-lead">WOMBATpass ergänzt Control-Prüfungen um tiefe Compliance-Intelligenz und macht die Risikopriorisierung konkret und umsetzbar.</p>
+    </div>
+
+    <div class="wfp-intel-grid dl-rise">
+      <div class="wfp-intel-card">
+        <h3 class="wfp-intel-card__title">Analyse von Terraform-Plänen</h3>
+        <p class="wfp-intel-card__desc">Parst die Plan-Ausgabe und bewertet Sicherheits-, Compliance- und Blast-Radius-Auswirkungen anstehender Änderungen — noch vor <code>terraform apply</code>.</p>
+      </div>
+      <div class="wfp-intel-card">
+        <h3 class="wfp-intel-card__title">Analyse von Angriffspfaden</h3>
+        <p class="wfp-intel-card__desc">Visualisiert Angriffsketten, die zu fehlschlagenden Controls führen. Schweregrad-Badges und direkte Behebungslinks machen die Risikopriorisierung konkret.</p>
+      </div>
+      <div class="wfp-intel-card">
+        <h3 class="wfp-intel-card__title">Blast-Radius-Scoring</h3>
+        <p class="wfp-intel-card__desc">Jeder Control trägt einen Blast-Radius-Score, der die mögliche Ausfallwirkung beziffert. Priorisieren Sie Behebungen nach tatsächlichem Risiko.</p>
+      </div>
+      <div class="wfp-intel-card">
+        <h3 class="wfp-intel-card__title">Drift-Erkennung</h3>
+        <p class="wfp-intel-card__desc">Controls, die zwischen Runs ohne explizite Codeänderung ihren Status wechseln, werden sofort sichtbar — erkannt, bevor Drift in Produktion entsteht.</p>
+      </div>
+      <div class="wfp-intel-card">
+        <h3 class="wfp-intel-card__title">CO₂-Fußabdruck &amp; ESG</h3>
+        <p class="wfp-intel-card__desc">Das ESG-Modul schätzt die CO₂-Wirkung jeder Entscheidung zu Cloud-Workloads. Pro Control erfasst und automatisch in die PDF-Compliance-Berichte übernommen.</p>
+      </div>
+      <div class="wfp-intel-card">
+        <h3 class="wfp-intel-card__title">Waiver &amp; Risikoakzeptanz</h3>
+        <p class="wfp-intel-card__desc">Controls bewusst mit schriftlicher Begründung überspringen. Risikoakzeptanzen enthalten Genehmiger, RFC-/Jira-Link und Ablaufdatum — vollständig nachvollziehbar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="dl-section" id="architecture">
+  <div class="dl-wrap">
+    <div class="wfp-section-head dl-rise">
+      <h2 class="dl-heading">Wie die Komponenten zusammenspielen.</h2>
+      <p class="dl-lead">Jede Komponente ist unabhängig deploybar. Nutzen Sie die CLI allein in CI/CD-Pipelines und ergänzen Sie Server und Dashboard, wenn Sie dauerhafte Historie und visuelle Analyse brauchen.</p>
+    </div>
+
+    <div class="wfp-pipeline dl-rise">
+      <div class="wfp-pipeline__node">
+        <div class="wfp-pipeline__label">Ihr IaC</div>
+        <div class="wfp-pipeline__name">Terraform / CDK</div>
+      </div>
+      <div class="wfp-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfp-pipeline__node">
+        <div class="wfp-pipeline__label">CLI</div>
+        <div class="wfp-pipeline__name">wafpass</div>
+      </div>
+      <div class="wfp-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfp-pipeline__node">
+        <div class="wfp-pipeline__label">API</div>
+        <div class="wfp-pipeline__name">wafpass-server</div>
+      </div>
+      <div class="wfp-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfp-pipeline__node">
+        <div class="wfp-pipeline__label">UI</div>
+        <div class="wfp-pipeline__name">wafpass-dashboard</div>
+      </div>
+    </div>
+
+    <div class="wfp-arch-stats dl-rise">
+      <div>
+        <div class="wfp-arch-stat__num">2 IaC-Formate</div>
+        <div class="wfp-arch-stat__label">Terraform, AWS CDK</div>
+      </div>
+      <div>
+        <div class="wfp-arch-stat__num">8 Säulen</div>
+        <div class="wfp-arch-stat__label">SEC, COST, PERF, REL, OPS, SUS, SOV, AGN</div>
+      </div>
+      <div>
+        <div class="wfp-arch-stat__num">20+ Operatoren</div>
+        <div class="wfp-arch-stat__label">equals, not, exists, cidr, range und mehr</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Score card promo -->
+<section class="wsc-promo">
+  <div class="dl-wrap wsc-promo__inner">
+    <div class="wsc-promo__copy">
+      <h2>Dein Score, bereit für die README.</h2>
+      <p>Mach aus jedem WOMBATpass-Lauf eine 1200×630 Score-Karte und ein README-Badge. JSON einfügen, Karte herunterladen — und das Ergebnis reist mit deinem Repository.</p>
+      <a class="wf6-btn wf6-btn--pill" href="{{ '/de/wombatpass/scorecard/' | relative_url }}">
+        Score-Karte erzeugen
+        <span class="wf6-btn__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </a>
+    </div>
+    <a class="wsc-promo__art" href="{{ '/de/wombatpass/scorecard/' | relative_url }}">
+      <img src="{{ '/images/og/wombatpass-scorecard-de.png' | relative_url }}" alt="Beispiel einer WOMBATpass Score-Karte mit 82 von 100 Punkten" width="1200" height="630" loading="lazy">
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section wfp-cta-section">
+  <div class="dl-wrap">
+    <div class="wfp-cta dl-rise">
+      <h2 class="dl-heading">Starten Sie Ihren ersten Scan.</h2>
+      <p class="dl-lead">Laden Sie die Wombat-Controls herunter, lassen Sie WOMBATpass über Ihren Terraform- oder CDK-Code laufen und erhalten Sie in Minuten einen vollständigen Compliance-Bericht.</p>
+      <div class="wfp-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="{{ '/de/wombatpass-install/' | relative_url }}">
+          WOMBATpass installieren
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/docs/wafpp/1.1.0-en/resources/wafpass.html' | relative_url }}">Vollständige Dokumentation</a>
+        <a class="wf6-btn wf6-btn--line" href="https://www.wombat-gov.dev/demo/" target="_blank" rel="noopener">Live-Demo</a>
+      </div>
+      <div class="wfp-cta__row">
+        <div class="dl-quiet-row__names">
+          <span class="dl-quiet-row__name">DSGVO</span>
+          <span class="dl-quiet-row__name">SOC 2</span>
+          <span class="dl-quiet-row__name">HIPAA</span>
+          <span class="dl-quiet-row__name">BSI C5</span>
+          <span class="dl-quiet-row__name">ISO 27001</span>
+          <span class="dl-quiet-row__name">NIS2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- Lightbox (screenshots open larger on click) -->
+<div class="dl-lightbox" id="wfp-lightbox" role="dialog" aria-modal="true" aria-label="Vergrößerter Screenshot" data-lightbox>
+  <button class="dl-lightbox__close" type="button" data-lightbox-close aria-label="Schließen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <img class="dl-lightbox__img" data-lightbox-img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+</div>
+
+<script src="{{ '/assets/js/wombatpass-download.js' | relative_url }}" defer></script>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  var lightbox = document.getElementById('wfp-lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('[data-lightbox-img]');
+    var lastTrigger = null;
+
+    function openLightbox(trigger) {
+      var imgs = trigger.querySelectorAll('img');
+      var source = null;
+      for (var i = 0; i < imgs.length; i++) {
+        if (getComputedStyle(imgs[i]).display !== 'none') { source = imgs[i]; break; }
+      }
+      if (!source) return;
+      lastTrigger = trigger;
+      lbImg.src = source.src;
+      lbImg.alt = source.alt || '';
+      lightbox.classList.add('is-open');
+      document.querySelector('.wfp-page').classList.add('wfp-lightbox-open');
+      lightbox.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.querySelector('.wfp-page').classList.remove('wfp-lightbox-open');
+      lbImg.src = '';
+      if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+    }
+
+    document.querySelectorAll('.dl-shot').forEach(function (shot) {
+      shot.addEventListener('click', function () { openLightbox(shot); });
+    });
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox || e.target.closest('[data-lightbox-close]')) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
+})();
+</script>

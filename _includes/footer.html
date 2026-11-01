@@ -50,17 +50,26 @@
             src="{{ '/assets/images/cloud-native-conference.png' | relative_url }}"
             alt="Cloud Native Conference"
             loading="lazy"
-          />
+            width="1142"
+            height="469">
         </a>
       </div>
     </div>
 
     <p class="copyright">
-      &copy; {{ site.time | date: '%Y' }} WAF++
+      &copy; {{ site.time | date: '%Y' }} Wombat ({{ i18n.common.formerly | default: 'formerly WAF++' }})
       &bull; <a href="{{ (lang_prefix | append: '/impressum/') | relative_url }}">{{ i18n.nav.imprint | default: 'Impressum' }}</a>
       &bull; {{ i18n.footer.powered_by | default: 'Powered by GitHub Pages' }}
+      {%- assign wombat_room = '/wombat/' -%}
+      {%- assign wombat_room_label = 'Wombat Control Room' -%}
+      {%- if lang == 'de' -%}
+        {%- assign wombat_room = '/de/wombat/' -%}
+        {%- assign wombat_room_label = 'Wombat-Kontrollraum' -%}
+      {%- endif -%}
+      &bull;
+      <a class="footer-wombat" href="{{ wombat_room | relative_url }}" aria-label="{{ wombat_room_label }}" title="{{ wombat_room_label }}">
+        <img src="{{ '/images/wombat-face-64.png' | relative_url }}" width="22" height="22" alt="" loading="lazy">
+      </a>
     </p>
   </div>
 </footer>
-
-<script src="{{ '/assets/js/nav-hover-intent.js' | relative_url }}" defer></script>

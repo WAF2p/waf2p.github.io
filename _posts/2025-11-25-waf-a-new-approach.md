@@ -6,6 +6,7 @@ description: "Cloud architectures are under enormous pressure. WAF++ is a commun
 categories:
   - cloud
 author_staff_member: sascha
+image: /assets/images/articles/wafpp-new-approach-cover.jpg
 ---
 
 Cloud architectures are under enormous pressure today: rising regulatory requirements, growing demand for multi-cloud flexibility, and the desire to stay independent from any single provider. While AWS, Azure, and GCP each offer their own Well-Architected Frameworks, a neutral, European-led approach has been missing — until now. That is exactly where **WAF++** steps in.

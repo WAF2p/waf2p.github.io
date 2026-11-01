@@ -4,5 +4,5 @@
 			<a href="{{ site.baseurl }}/category/{{ category | slugify }}/">{{ category | capitalize }}</a>
 		</span>
     {% endfor %}
-    <span class="post-date">{{ include.post.date | date: "%B %d, %Y" }}</span>
+    <span class="post-date">{% include localized-date.html date=include.post.date lang=include.post.lang %}</span>
 </p>

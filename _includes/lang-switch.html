@@ -31,14 +31,13 @@
   {% else %}Language: {{ i18n.lang_name | default: lang_labels[0] }}, show more languages{% endif %}
 {%- endcapture -%}
 
-<div class="lang-switch" aria-label="Language switch" data-lang-toggle>
-  <input type="checkbox" class="lang-switch__check" id="lang-switch-check" aria-hidden="true" tabindex="-1">
-  <label for="lang-switch-check" class="lang-switch__trigger" aria-haspopup="true" aria-expanded="false" aria-label="{{ switch_label | strip }}">
+<div class="lang-switch" data-lang-toggle>
+  <button type="button" class="lang-switch__trigger" aria-haspopup="true" aria-expanded="false" aria-controls="lang-switch-menu" aria-label="{{ switch_label | strip }}">
     {%- for l in supported_langs -%}
       {%- if l == lang -%}<span aria-hidden="true">{{ lang_flags[forloop.index0] }}</span>{%- endif -%}
     {%- endfor -%}
-  </label>
-  <div class="lang-switch__menu" role="menu">
+  </button>
+  <div class="lang-switch__menu" id="lang-switch-menu">
     {%- for target_lang in supported_langs -%}
       {%- assign flag = lang_flags[forloop.index0] -%}
       {%- assign label = lang_labels[forloop.index0] -%}
@@ -90,7 +89,7 @@
         {%- endif -%}
       {%- endunless -%}
 
-      <a class="lang-option{% if target_lang == lang %} is-active{% endif %}" href="{{ target_url | relative_url }}" role="menuitem" lang="{{ target_lang }}" data-lang-option="{{ target_lang }}">
+      <a class="lang-option{% if target_lang == lang %} is-active{% endif %}" href="{{ target_url | relative_url }}" lang="{{ target_lang }}" data-lang-option="{{ target_lang }}">
         <span aria-hidden="true">{{ flag }}</span> <span class="lang-option__label">{{ label }}</span>
       </a>
     {%- endfor -%}

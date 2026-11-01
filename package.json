@@ -1,14 +1,22 @@
 {
   "name": "waf2p-website",
   "version": "1.0.0",
-  "description": "WAF++ Website with Antora Documentation",
+  "description": "Wombat Website with Antora Documentation",
   "scripts": {
     "fetch-rfcs": "node scripts/fetch-rfcs.mjs",
-    "prejekyll:build": "npm run fetch-rfcs",
+    "og:cloud": "node scripts/generate-cloud-og.mjs",
+    "data:providers": "node scripts/generate-provider-data.mjs",
+    "optimize:maps": "node scripts/optimize-cloud-maps.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check:html": "node scripts/check-html.mjs",
+    "check:external": "node scripts/check-external-links.mjs",
+    "test:smoke": "node tests/site-smoke.mjs",
+    "copy-assets": "node scripts/copy-local-assets.js",
+    "prejekyll:build": "npm run fetch-rfcs && npm run copy-assets",
     "docs:build": "antora antora-playbook.yml",
     "docs:build:local": "antora antora-playbook-local.yml",
     "docs:serve": "antora antora-playbook-local.yml && python3 -m http.server 8000 -d _site",
-    "site:build": "npm run fetch-rfcs && bundle exec jekyll build && npm run docs:build:local"
+    "site:build": "npm run fetch-rfcs && npm run copy-assets && bundle exec jekyll build && npm run docs:build:local"
   },
   "keywords": [
     "waf",
@@ -16,7 +24,7 @@
     "architecture",
     "documentation"
   ],
-  "author": "WAF++ Community",
+  "author": "Wombat Community",
   "license": "MIT",
   "devDependencies": {
     "@antora/cli": "^3.1.0",
@@ -24,11 +32,20 @@
     "@antora/pdf-extension": "^1.0.0-rc.4",
     "@antora/site-generator": "^3.1.0",
     "@asciidoctor/tabs": "^1.0.0-beta.6",
+    "@axe-core/playwright": "^4.14.0",
     "asciidoctor-kroki": "^0.18.1",
     "asciidoctor-treeview": "^1.0.1",
+    "html-validate": "^11.17.0",
     "lunr-languages": "^1.14.0"
   },
   "dependencies": {
+    "@fontsource/league-spartan": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@highlightjs/cdn-assets": "^11.12.0",
+    "highlight.js": "^11.12.0",
+    "js-yaml": "^5.5.0",
+    "jszip": "^3.10.2",
+    "lucide": "^1.59.0",
     "playwright": "^1.63.0"
   }
 }

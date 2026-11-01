@@ -28,8 +28,8 @@ Sebastian Meyer ist verantwortlich für eine Entwicklungsbereich und hat über 1
 ### Technische Expertise
 Sebastian verfügt über Kenntnisse und Erfahrungen in der Entwicklung von skalierbaren und entkoppelten Systemen. Er wirkt aus der strategischen Management-Rolle auf den Auf- und Ausbau von  Methoden und Tools für die Entwicklung von Anwendungslandschaften, deren Kopplung und den Betrieb.
 
-### Strategische Rolle bei WAF++
+### Strategische Rolle bei Wombat
 Sebastian bringt seine technische Erfahrung aus dem Software Engineering ein und verbindet diese mit dem Blick des Managements. Das gibt dem Projekt eine weitere Perspektive, die über reine technische Betrachtung hinausgeht. Außerdem hat er große Freude daran, Dokumenten den letzten Schliff vor der Veröffentlichung zu geben.
 
 ### Vision & Community
-Souveränität heißt, die Fähigkeit zu behalten, bewusst zu entscheiden. WAF++ gibt Allen diese Möglichkeit, ohne sie bekehren zu wollen. Es liefert aber gewichtige Argument für oder gegen bestimmte Entscheidungen.
+Souveränität heißt, die Fähigkeit zu behalten, bewusst zu entscheiden. Wombat gibt Allen diese Möglichkeit, ohne sie bekehren zu wollen. Es liefert aber gewichtige Argument für oder gegen bestimmte Entscheidungen.

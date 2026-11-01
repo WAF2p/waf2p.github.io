@@ -1,14 +1,14 @@
-title: WAF++
-url: https://waf2p.dev
+title: Wombat
+url: https://www.wombat-gov.dev
 baseurl: ""
 google_analytics_key: null
 google_maps_javascript_api_key: null
 disqus_shortname: null
-logo: https://avatars.githubusercontent.com/u/245947051
-description: WAF++ ist ein community-getriebenes, cloud-agnostisches Open-Source-Framework
+logo: /images/wombat-og.png
+description: Wombat ist ein community-getriebenes, cloud-agnostisches Open-Source-Framework
   für Architektur, Security, Governance und Reifegradmodelle.
 author:
-  name: WAF++ Community
+  name: Wombat Community
   email: info@wafpp.dev
   twitter: ''
 social:
@@ -16,11 +16,16 @@ social:
   links:
   - https://www.cloudnativeconference.de/
 timezone: Etc/UTC
+sass:
+  style: compressed
 
 collections:
   staff_members:
     output: false
     _hide_content: false
+  newsletters:
+    output: true
+    permalink: /newsletter/:name/
 paginate: 10
 paginate_path: /blog/:num/
 permalink: pretty
@@ -72,6 +77,12 @@ defaults:
     full_width: true
     layout: staff_member_page
 - scope:
+    path: ''
+    type: newsletters
+  values:
+    layout: newsletter
+    translation_notice: false
+- scope:
     path: /docs
   values:
     layout: docs
@@ -104,8 +115,10 @@ exclude:
   - antora-playbook.yml
   - antora-playbook-local.yml
   - docs
+  - tests
   - .cache
   - build
+  - .taste-skill
 
 # Keep Antora-generated docs intact
 keep_files:

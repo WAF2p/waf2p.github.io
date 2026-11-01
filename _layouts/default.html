@@ -5,8 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    {% include lang-redirect.html %}
+    <script>
+      /* Old-domain redirect: any waf2p.dev / www.waf2p.dev URL keeps its
+         path, query and hash and moves to the canonical Wombat domain. */
+      (function () {
+        var host = (location.hostname || '').toLowerCase();
+        if (host === 'waf2p.dev' || host === 'www.waf2p.dev') {
+          location.replace(
+            'https://www.wombat-gov.dev' + location.pathname + location.search + location.hash
+          );
+        }
+      })();
+    </script>
+
     <script>
       (function () {
         try {
@@ -21,22 +32,24 @@
     <meta name="description" content="{{ page.description | default: i18n.site_description | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 
     <link rel="stylesheet" href="{{ '/css/screen.css' | relative_url }}">
-    <link rel="icon" href="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/images/apple-touch-icon.png' | relative_url }}">
 
     {% include structured-data.html %}
     {% include seo-head.html %}
   </head>
 
-  <body{% if page.ref == 'home' %} class="frontpage"{% endif %}>
+  <body data-page="{{ page.ref | default: page.layout }}"{% if page.ref == 'home' or page.ref == 'saeulen' or page.ref == 'controls' or page.ref == 'comparison' or page.ref == 'why-not' or page.ref == 'rfc' or page.ref == 'glossary' or page.ref == 'wafpass' or page.ref == 'wafpass-install' or page.ref == 'wafpass_action' or page.ref == 'wafpass_mcp' or page.ref == 'conferences' or page.ref == 'blog' or page.ref contains 'blog/category' or page.layout == 'post' or page.ref == 'contributing' or page.ref == 'about' or page.ref == 'vision' or page.ref == 'roadmap' or page.ref == 'cto' or page.ref == 'legal' or page.ref == 'changelog' or page.ref == 'faq' or page.ref == 'press' or page.ref == 'code_of_conduct' or page.ref == 'governance-community' or page.ref == 'roles' or page.ref == 'use_cases' or page.ref == 'stay_updated' or page.ref == 'impressum' or page.ref == '404' or page.layout == 'staff_member_page' %} class="frontpage"{% endif %}>
+    <a class="skip-link" href="#main">Skip to content</a>
     {% include header.html %}
-    <main>
+    <main id="main">
       {% include translation-notice.html %}
       {{ content }}
     </main>
     {% include footer.html %}
-    {% include agentic-launch-modal.html %}
+    {% include cookie-consent.html %}
     <!-- Icons (Lucide) -->
-    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="{{ '/assets/js/lucide-subset.js' | relative_url }}"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (window.lucide) { window.lucide.createIcons(); }

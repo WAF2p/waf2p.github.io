@@ -1,0 +1,218 @@
+# Compliance hubs — high-level mapping between regulatory obligations and
+# Wombat pillars / control themes.
+#
+# This is a navigation aid, not legal advice. The framework's control
+# metadata and the official legal text remain the authoritative sources.
+# Keep claims conservative: Wombat helps teams assess, evidence and remediate;
+# it does not certify compliance.
+
+intro: "Wombat maps technical controls to the obligations teams are actually measured on. These hubs show where the framework helps, which pillars matter, and how to turn a score into an evidence-backed remediation plan."
+
+disclaimer: "Wombat is a technical framework, not a law firm. These pages map relevant Wombat pillars and control themes to regulatory obligations; they do not provide legal advice. Validate the mapping against the official text and your auditor."
+
+regulations:
+  nis2:
+    title: "NIS2"
+    kicker: "EU cybersecurity directive"
+    status: "Directive (EU) 2022/2555 · national transposition ongoing"
+    official_label: "Official NIS2 directive (EUR-Lex)"
+    official_url: "https://eur-lex.europa.eu/eli/dir/2022/2555/oj"
+    last_reviewed: "2026-10-31"
+    summary: "NIS2 raises the baseline for cybersecurity risk management, incident reporting and supply-chain accountability across essential and important entities in the EU."
+    intro: "The directive is deliberately outcome-oriented: member states transpose it into national law, while Article 21 sets the risk-management measures that most technical teams are asked to evidence. Wombat gives those measures a concrete architecture baseline."
+    obligations:
+      - title: "Risk-management measures"
+        text: "Article 21 requires proportionate technical and organisational measures: risk analysis, incident handling, business continuity, supply-chain security, secure development, access control and cryptography."
+      - title: "Management accountability"
+        text: "Article 20 makes management bodies accountable for approving and overseeing the measures — which means the evidence has to be understandable outside the engineering team."
+      - title: "Incident reporting"
+        text: "Article 23 introduces early warning, incident notification and final-report timelines. Detection, classification and evidence need to be repeatable before an incident happens."
+      - title: "Supply-chain security"
+        text: "Article 21(2)(d) requires assessing the security practices of direct suppliers and service providers, including their own dependencies."
+    pillars:
+      - slug: security
+        why: "Identity, segmentation, vulnerability management and secure configuration are the core of the Article 21 measures."
+      - slug: operational-excellence
+        why: "Runbooks, monitoring, change control and evidence collection make incident response and reporting repeatable."
+      - slug: reliability
+        why: "Business continuity, backup and recovery are explicit expectations, not an afterthought."
+      - slug: sovereign
+        why: "Supplier, jurisdiction and exit risk are part of the supply-chain assessment."
+    control_themes:
+      - "Risk analysis and security policy"
+      - "Incident handling and reporting"
+      - "Business continuity and backup"
+      - "Supply-chain security"
+      - "Secure development and vulnerability handling"
+      - "Access control and cryptography"
+    frameworks:
+      - "ISO 27001:2022"
+      - "BSI C5:2020"
+      - "SOC 2 Type II"
+    steps:
+      - "Run the WOMBATpass scorecard to establish a baseline across the relevant pillars."
+      - "Review the NIS2-tagged control themes in the controls catalogue and their evidence expectations."
+      - "Turn failed controls into a remediation plan with owners, dates and acceptance criteria."
+      - "Export the evidence package for management review and incident-preparedness exercises."
+    cta:
+      title: "Start with a NIS2 baseline"
+      text: "Score the current architecture, then use the mapped control themes to build a remediation plan that survives an auditor conversation."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Browse the controls"
+      secondary_url: "/controls/"
+
+  dora:
+    title: "DORA"
+    kicker: "EU digital operational resilience"
+    status: "Regulation (EU) 2022/2554 · applies from 17 January 2025"
+    official_label: "Official DORA regulation (EUR-Lex)"
+    official_url: "https://eur-lex.europa.eu/eli/reg/2022/2554/oj"
+    last_reviewed: "2026-10-31"
+    summary: "DORA brings ICT risk management, incident reporting, resilience testing and third-party oversight into one operational-resilience regime for financial entities and their critical providers."
+    intro: "DORA is less about a one-off audit and more about proving that the organisation can withstand, respond to and recover from ICT disruption. Wombat connects the architecture baseline to the operational and third-party evidence that regulators ask for."
+    obligations:
+      - title: "ICT risk management"
+        text: "A documented, governed framework for identifying, protecting against, detecting, responding to and recovering from ICT risk."
+      - title: "Incident management and reporting"
+        text: "Classification, early warning, notification and final reporting within defined timelines, with evidence of the response."
+      - title: "Digital operational resilience testing"
+        text: "Regular testing of critical systems and recovery capability, proportionate to the entity's risk profile."
+      - title: "ICT third-party risk"
+        text: "Contractual, concentration, exit and oversight requirements for critical ICT providers — including the ability to leave."
+    pillars:
+      - slug: operational-excellence
+        why: "DORA is an operating-model regulation: runbooks, change control, monitoring and evidence are the centre of gravity."
+      - slug: reliability
+        why: "Recovery objectives, backup, failover and continuity testing are directly relevant to resilience testing."
+      - slug: security
+        why: "Access control, vulnerability handling and secure configuration underpin the ICT risk framework."
+      - slug: sovereign
+        why: "Third-party concentration, jurisdiction and exit strategy are part of the provider oversight story."
+    control_themes:
+      - "ICT risk management and governance"
+      - "Incident classification and reporting"
+      - "Resilience and recovery testing"
+      - "ICT third-party and concentration risk"
+      - "Business continuity and backup"
+      - "Access control and cryptography"
+    frameworks:
+      - "ISO 27001:2022"
+      - "SOC 2 Type II"
+      - "BSI C5:2020"
+    steps:
+      - "Score the operational-resilience baseline across operations, reliability and security."
+      - "Review third-party, exit and concentration controls before the next provider renewal."
+      - "Use failed controls to define resilience tests and recovery acceptance criteria."
+      - "Export evidence for the ICT risk register and management reporting."
+    cta:
+      title: "Make resilience evidence repeatable"
+      text: "Run the scorecard, then put the same checks into CI so the evidence stays current between audits."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Add the CI gate"
+      secondary_url: "/wombatpass-action/"
+
+  c5:
+    title: "BSI C5"
+    kicker: "German cloud compliance catalogue"
+    status: "BSI C5:2020 · cloud provider attestation"
+    official_label: "Official BSI C5 page"
+    official_url: "https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/C5_AktuelleVersion/C5_AktuelleVersion.html"
+    last_reviewed: "2026-10-31"
+    summary: "The BSI Cloud Computing Compliance Criteria Catalogue (C5) is the German benchmark for cloud security, transparency and auditability — and a common procurement requirement for cloud providers and their customers."
+    intro: "C5 is structured around auditable criteria: security, availability, confidentiality, integrity, transparency and compliance. Wombat helps teams translate those criteria into concrete architecture checks and reusable evidence."
+    obligations:
+      - title: "Security and availability"
+        text: "C5 expects documented security management, access control, cryptography, monitoring and availability safeguards for cloud services."
+      - title: "Confidentiality and integrity"
+        text: "Data classification, tenant separation, encryption and integrity protection are assessed across the service lifecycle."
+      - title: "Transparency and auditability"
+        text: "Providers must make relevant security information available to customers and auditors; evidence has to be traceable."
+      - title: "Supply-chain and operations"
+        text: "Incident management, change management, supplier oversight and business continuity are part of the audited control environment."
+    pillars:
+      - slug: security
+        why: "C5's core criteria are security controls: access, cryptography, logging, vulnerability handling and secure configuration."
+      - slug: sovereign
+        why: "Data residency, jurisdiction, provider dependency and exit paths are central to German cloud procurement."
+      - slug: operational-excellence
+        why: "C5 is evidence-heavy: change control, incidents, monitoring and supplier oversight need a repeatable operating model."
+      - slug: reliability
+        why: "Availability, backup and recovery criteria need to be designed and demonstrated, not assumed."
+    control_themes:
+      - "Access control and identity"
+      - "Cryptography and key management"
+      - "Logging, monitoring and incident management"
+      - "Supply-chain and provider oversight"
+      - "Data residency and transparency"
+      - "Business continuity and availability"
+    frameworks:
+      - "ISO 27001:2022"
+      - "SOC 2 Type II"
+      - "GDPR"
+    steps:
+      - "Define the service scope and the C5 criteria that apply to the procurement or attestation."
+      - "Score the current architecture against the relevant pillars."
+      - "Review the C5-tagged control themes and collect evidence per criterion."
+      - "Export the evidence package for the auditor, customer or internal risk committee."
+    cta:
+      title: "Prepare a C5 evidence baseline"
+      text: "Use the scorecard to find the gaps, then use the controls catalogue to assemble the evidence before the audit window."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the trust center"
+      secondary_url: "/trust/"
+
+  c3a:
+    title: "BSI C3A"
+    kicker: "Cloud sovereignty criteria"
+    status: "BSI C3A:2026 · Criteria enabling Cloud Computing Autonomy · published 27 April 2026"
+    official_label: "Official C3A publication (BSI)"
+    official_url: "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/CloudComputing/C3A_Cloud_Computing_Autonomy.html"
+    last_reviewed: "2026-10-31"
+    summary: "C3A is the BSI's non-binding criteria catalogue for digital sovereignty in cloud services. It is structured around six sovereignty categories: strategic, legal and jurisdictional, data, operational, supply chain and technology."
+    intro: "C3A was published by the BSI on 27 April 2026. It provides transparency criteria for digitally sovereign cloud use, is based on the EU Cloud Sovereignty Framework (EU CSF), and presupposes compliance with C5. The dashboard currently maps WAF-SOV-010 (Data Residency & Geolocation) and WAF-SOV-020 (Encryption Key Management) to the C3A data and jurisdictional dimensions; use that as a starting point and verify the exact criteria in the official catalogue."
+    obligations:
+      - title: "Strategic sovereignty (SOV-1)"
+        text: "The provider's strategy, governance and decision-making must support sovereign cloud use and be transparent to customers."
+      - title: "Legal and jurisdictional sovereignty (SOV-2)"
+        text: "Jurisdiction, ownership, legal exposure and the provider's ability to resist extraterritorial access requests must be assessable."
+      - title: "Data sovereignty (SOV-3)"
+        text: "Data classification, residency, processing locations, encryption and key management determine who can access the data and under which law."
+      - title: "Operational, supply-chain and technology sovereignty (SOV-4–SOV-6)"
+        text: "Operational independence, supplier dependencies, SBOM/hardware transparency, source-code escrow and exit capability are part of the sovereignty picture."
+    pillars:
+      - slug: sovereign
+        why: "The primary mapping: WAF-SOV-010 and WAF-SOV-020 are relevant to the data, jurisdictional and technology sovereignty categories."
+      - slug: security
+        why: "Encryption, key custody and access boundaries are the technical core of the data and technology categories."
+      - slug: operational-excellence
+        why: "Evidence, supplier oversight and change control make the sovereignty claims auditable."
+      - slug: reliability
+        why: "A jurisdiction change or provider exit is only credible if the workload can be recovered and moved."
+    control_themes:
+      - "Strategic sovereignty"
+      - "Legal and jurisdictional sovereignty"
+      - "Data sovereignty and residency"
+      - "Operational sovereignty"
+      - "Supply-chain sovereignty"
+      - "Technology sovereignty"
+      - "Encryption and key management"
+      - "Evidence and auditability"
+    frameworks:
+      - "BSI C5"
+      - "EU Cloud Sovereignty Framework (EU CSF)"
+      - "ISO 27001:2022"
+    steps:
+      - "Confirm the C3A scope and the six sovereignty categories in the official BSI publication."
+      - "Review the dashboard's current WAF-SOV-010/020 mapping as a starting point, then verify the exact C3A criteria."
+      - "Score the Sovereign pillar and collect residency, jurisdiction and key-management evidence."
+      - "Export the evidence for provider, procurement or audit conversations."
+    cta:
+      title: "Make the C3A sovereignty claim verifiable"
+      text: "Score the sovereign baseline, then connect the official C3A categories to the controls and evidence you can actually produce."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"

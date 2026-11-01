@@ -1,0 +1,238 @@
+{% assign cloud = site.data.clouds.clouds[page.cloud_slug] %}
+{% if cloud %}
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">{{ cloud.name }}</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">{{ cloud.summary }}</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      {% if cloud.cta.primary_url %}
+      <a class="dl-btn dl-btn--primary" href="{{ cloud.cta.primary_url | relative_url }}">{{ cloud.cta.primary_label }} →</a>
+      {% endif %}
+      {% if cloud.cta.secondary_url %}
+      <a class="dl-btn dl-btn--line" href="{{ cloud.cta.secondary_url | relative_url }}">{{ cloud.cta.secondary_label }}</a>
+      {% endif %}
+      <a class="dl-btn dl-btn--line" href="{{ '/cloud/' | relative_url }}">All providers</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">{{ cloud.kicker }}</li>
+      {% if cloud.coverage == 'framework' %}
+      <li class="hub-hero__fact">Framework control coverage</li>
+      {% elsif cloud.coverage == 'dashboard' %}
+      <li class="hub-hero__fact">Dashboard-tracked · control coverage expanding</li>
+      {% else %}
+      <li class="hub-hero__fact">Region-map tracked · no dedicated control pack yet</li>
+      {% endif %}
+      {% if cloud.control_count and cloud.control_count > 0 %}
+      <li class="hub-hero__fact">{{ cloud.control_count }} controls with provider-specific checks</li>
+      {% endif %}
+      <li class="hub-hero__fact">{{ cloud.pillars | size }} relevant pillars</li>
+      <li class="hub-hero__fact">{{ cloud.links | size }} starting points</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What Wombat adds to the provider view.</h2>
+      <p class="hub-section__lead">{{ cloud.intro }}</p>
+    </div>
+
+    {% if cloud.control_count and cloud.control_count > 0 %}
+    <p class="hub-note dl-rise">The current framework control pack includes <strong>{{ cloud.control_count }}</strong> controls with {{ cloud.name }}-specific checks.</p>
+    {% endif %}
+
+    {% if cloud.coverage_note %}
+    <p class="hub-note dl-rise">{{ cloud.coverage_note }}</p>
+    {% endif %}
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for note in cloud.notes %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Context</div>
+        <p class="hub-card__text">{{ note }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% assign quickstart = site.data.provider_quickstarts[page.cloud_slug] %}
+{% if quickstart %}
+<!-- Provider quickstart -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">{{ quickstart.title }}</h2>
+      <p class="hub-section__lead">{{ quickstart.intro }}</p>
+    </div>
+
+    <div class="hub-code dl-rise">
+      <div class="hub-code__head"><span>main.tf</span><button class="hub-code__copy" type="button" data-copy-code>Copy</button></div>
+      <pre><code>{{ quickstart.provider_block | escape }}</code></pre>
+    </div>
+
+    <div class="hub-code dl-rise">
+      <div class="hub-code__head"><span>terminal</span><button class="hub-code__copy" type="button" data-copy-code>Copy</button></div>
+      <pre><code>{{ quickstart.check_command | escape }}</code></pre>
+    </div>
+
+    <p class="hub-note dl-rise">{{ quickstart.note }}</p>
+    <p class="hub-note dl-rise"><a class="dl-link" href="{{ '/wombatpass-install/' | relative_url }}">Full WOMBATpass quickstart →</a></p>
+  </div>
+</section>
+<script src="{{ '/assets/js/cloud-quickstart.js' | relative_url }}" defer></script>
+{% endif %}
+
+{% assign regions = site.data.cloud_regions[page.cloud_slug] %}
+{% if regions %}
+<!-- Known regions -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Known regions in the dashboard map.</h2>
+      <p class="hub-section__lead">Approximate locations only. The dashboard maps {{ regions.region_count }} region codes for this provider; below are the distinct locations in that map.</p>
+    </div>
+
+    <div class="hub-map dl-rise">
+      <img src="{{ '/images/cloud-regions/' | append: page.cloud_slug | append: '.svg' | relative_url }}" alt="Approximate region map for {{ cloud.name }}. Dots mark approximate locations, not datacenter addresses." width="800" height="400" loading="lazy">
+    </div>
+    <p class="hub-map__caption dl-rise">Approximate region locations from the dashboard map. Not a datacenter map.</p>
+
+    <div class="hub-pill-row dl-rise">
+      {% for loc in regions.locations %}
+      <span class="hub-pill">{{ loc }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="dl-rise">{% include provider-data-disclaimer.html provider=cloud.name region_count=regions.region_count %}</div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Pillars -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Pillars that matter on {{ cloud.name }}.</h2>
+      <p class="hub-section__lead">The same control model applies across providers, so the comparison stays consistent when the estate does not.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for p in cloud.pillars %}
+        {% assign pillar = site.data.pillars | where: "slug", p.slug | first %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{% if pillar %}{{ pillar.code }}{% else %}{{ p.slug }}{% endif %}</div>
+          <h3 class="hub-card__title">{% if pillar %}{{ pillar.label }}{% else %}{{ p.slug }}{% endif %}</h3>
+          <p class="hub-card__text">{{ p.why }}</p>
+          {% if pillar %}
+          <a class="hub-card__link" href="{{ pillar.url | relative_url }}">Read the {{ pillar.label }} pillar →</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% assign breakdown = site.data.provider_control_breakdown[page.cloud_slug] %}
+{% if breakdown %}
+<!-- Control breakdown -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Control coverage by pillar.</h2>
+      <p class="hub-section__lead">Unique controls with provider-specific checks in the current framework control pack. A control may have multiple checks.</p>
+    </div>
+
+    <div class="hub-bars dl-rise">
+      {% for pillar in site.data.pillars %}
+        {% assign count = breakdown.pillars[pillar.slug] | default: 0 %}
+        {% if count > 0 %}
+        {% assign width = count | times: 100.0 | divided_by: breakdown.max | round: 1 %}
+        <div class="hub-bar">
+          <div class="hub-bar__label">{{ pillar.label }}</div>
+          <div class="hub-bar__track"><span class="hub-bar__fill" style="--bar-width: {{ width }}%;"></span></div>
+          <div class="hub-bar__value">{{ count }}</div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="hub-note dl-rise">Snapshot of the current framework control pack; counts are not a certification. <a class="dl-link" href="{{ '/cloud/coverage/' | relative_url }}">See the full coverage table →</a></p>
+  </div>
+</section>
+{% endif %}
+
+<!-- Starting points + CTA -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Start here.</h2>
+      <p class="hub-section__lead">Use the provider-native guidance for depth, and the Wombat baseline for the cross-provider score, comparison and evidence.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for link in cloud.links %}
+      <article class="hub-card">
+        <h3 class="hub-card__title">{{ link.label }}</h3>
+        <a class="hub-card__link" href="{{ link.url | relative_url }}">Open →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">{{ cloud.cta.title }}</h2>
+          <p class="hub-cta__text">{{ cloud.cta.text }}</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ cloud.cta.primary_url | relative_url }}">{{ cloud.cta.primary_label }} →</a>
+          <a class="dl-btn dl-btn--line" href="{{ cloud.cta.secondary_url | relative_url }}">{{ cloud.cta.secondary_label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related providers -->
+<section class="hub-section hub-section--alt cloud-related">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Other providers.</h2>
+      <p class="hub-section__lead">The same neutral baseline can be applied across the estate. Open another provider page to compare the coverage note and the relevant pillars.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--3 dl-rise">
+      {% assign related_shown = 0 %}
+      {% for pair in site.data.clouds.clouds %}
+        {% assign related_slug = pair[0] %}
+        {% assign related = pair[1] %}
+        {% if related_slug != page.cloud_slug and related.coverage == cloud.coverage and related_shown < 6 %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ related.kicker }}</div>
+          <h3 class="hub-card__title">{{ related.name }}</h3>
+          <p class="hub-card__text">{{ related.summary }}</p>
+          <a class="hub-card__link" href="{{ '/cloud/' | append: related_slug | append: '/' | relative_url }}">Open the {{ related.name }} page →</a>
+        </article>
+        {% assign related_shown = related_shown | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="hub-note dl-rise"><a class="dl-link" href="{{ '/cloud/' | relative_url }}">See all providers →</a></p>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}
+{% else %}
+<div class="dl-wrap" style="padding-block: 80px;">
+  <p class="hub-note">This cloud hub is not configured. Check <code>_data/clouds.yml</code>.</p>
+</div>
+{% endif %}

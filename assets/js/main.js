@@ -16,8 +16,85 @@
     document.body.classList.remove('nav-open');
     btn.setAttribute('aria-expanded', 'false');
   });
+
+  // Keyboard: Escape closes the open menu; Tab stays inside it
+  document.addEventListener('keydown', function (e) {
+    if (!document.body.classList.contains('nav-open')) return;
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    if (e.key === 'Escape') {
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus();
+      return;
+    }
+
+    if (e.key !== 'Tab') return;
+    const focusables = [btn].concat(Array.prototype.slice.call(
+      nav.querySelectorAll('a[href], button:not([disabled])')
+    )).filter(function (el) { return el.offsetParent !== null; });
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 })();
 
+
+// Mark the parent nav group active when one of its children is the current page.
+(function () {
+  document.querySelectorAll('.nav-group').forEach(function (group) {
+    const active = group.querySelector('.nav-dropdown__link.active');
+    if (!active) return;
+    group.classList.add('is-active');
+    const label = group.querySelector('.nav-group-label');
+    if (label) label.classList.add('active');
+    if (!active.hasAttribute('aria-current')) active.setAttribute('aria-current', 'page');
+  });
+})();
+
+// Desktop nav dropdowns (replaces the old inline onclick handler)
+(function () {
+  const toggles = document.querySelectorAll('.nav-group-toggle');
+  if (!toggles.length) return;
+
+  function closeAll() {
+    document.querySelectorAll('.nav-group.is-open').forEach(function (group) {
+      group.classList.remove('is-open');
+      const t = group.querySelector('.nav-group-toggle');
+      const d = group.querySelector('.nav-dropdown');
+      if (t) t.setAttribute('aria-expanded', 'false');
+      if (d) d.style.display = '';
+    });
+  }
+
+  toggles.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const group = btn.closest('.nav-group');
+      const dropdown = group && group.querySelector('.nav-dropdown');
+      if (!dropdown) return;
+      const isOpen = group.classList.contains('is-open');
+      closeAll();
+      if (!isOpen) {
+        group.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        dropdown.style.display = 'block';
+      }
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
 
 (function () {
   const modal = document.getElementById('person-modal');
@@ -194,81 +271,31 @@
 })();
 
 
-// Agentic launch modal — shown once per browser, closed via localStorage
-(function () {
-  const modal = document.getElementById('agentic-launch-modal');
-  if (!modal) return;
-
-  const storageKey = 'agentic-launch-modal-dismissed';
-  try {
-    if (localStorage.getItem(storageKey) === '1') return;
-  } catch (e) {
-    // storage unavailable; silently skip
-    return;
-  }
-
-  function showModal() {
-    modal.removeAttribute('hidden');
-    document.body.classList.add('agentic-modal-open');
-    // focus the close button for accessibility
-    const closeBtn = modal.querySelector('[data-agentic-close]');
-    if (closeBtn && closeBtn.focus) closeBtn.focus();
-  }
-
-  function dismissModal() {
-    modal.setAttribute('hidden', '');
-    document.body.classList.remove('agentic-modal-open');
-    try { localStorage.setItem(storageKey, '1'); } catch (e) {}
-  }
-
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-agentic-close]')) {
-      dismissModal();
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
-      dismissModal();
-    }
-  });
-
-  // Show after a short delay so the page renders first
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      setTimeout(showModal, 600);
-      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-    });
-  } else {
-    setTimeout(showModal, 600);
-    if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-  }
-})();
-
-
-// Language switch dropdown (enhances the CSS checkbox fallback)
+// Language switch dropdown
 (function () {
   const toggles = document.querySelectorAll('[data-lang-toggle]');
   if (!toggles.length) return;
 
   toggles.forEach(function (root) {
-    const check = root.querySelector('.lang-switch__check');
     const trigger = root.querySelector('.lang-switch__trigger');
     const menu = root.querySelector('.lang-switch__menu');
-    if (!check || !trigger || !menu) return;
+    if (!trigger || !menu) return;
 
-    function syncAria() {
-      trigger.setAttribute('aria-expanded', String(check.checked));
+    function setOpen(open) {
+      menu.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', String(open));
     }
 
     function close() {
-      check.checked = false;
-      syncAria();
+      setOpen(false);
     }
 
-    check.addEventListener('change', syncAria);
+    trigger.addEventListener('click', function (event) {
+      event.stopPropagation();
+      setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+    });
 
-    // close when clicking a language option
+    // close when a language is chosen
     menu.querySelectorAll('.lang-option').forEach(function (link) {
       link.addEventListener('click', function () {
         close();
@@ -280,10 +307,230 @@
       if (!root.contains(e.target)) close();
     });
 
-    // keyboard: close on Escape
+    // keyboard: close on Escape and return focus to the trigger
     root.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { close(); trigger.focus(); }
+      if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+        e.stopPropagation();
+        close();
+        trigger.focus();
+      }
     });
   });
 })();
 
+
+// Cookie consent modal
+(function () {
+  const STORAGE_KEY = 'wafpp-cookie-consent';
+  const modal = document.getElementById('cookie-consent');
+  const trigger = document.getElementById('cookie-trigger');
+  if (!modal || !trigger) return;
+
+  const closeButtons = modal.querySelectorAll('[data-cookie-close]');
+  const acceptBtn = modal.querySelector('[data-cookie-accept]');
+  const rejectBtn = modal.querySelector('[data-cookie-reject]');
+  const saveBtn = modal.querySelector('[data-cookie-save]');
+  const toggles = modal.querySelectorAll('[data-cookie-category]');
+
+  const categories = ['analytics', 'functional', 'marketing'];
+
+  function getConsent() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  }
+
+  function setConsent(consent) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    } catch (e) {}
+    applyConsent(consent);
+  }
+
+  function applyConsent(consent) {
+    // Dispatch a small event other scripts can listen to
+    try {
+      window.dispatchEvent(new CustomEvent('wafpp:consent', { detail: consent }));
+    } catch (e) {}
+
+    // Functional cookies are already handled by localStorage itself;
+    // here we just expose a global helper for ad-hoc checks.
+    window.wafppConsent = consent;
+  }
+
+  function buildConsent(values) {
+    const out = { necessary: true, version: 1, updated: new Date().toISOString() };
+    categories.forEach(function (c) { out[c] = !!values[c]; });
+    return out;
+  }
+
+  function refreshIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      try { window.lucide.createIcons(); } catch (e) {}
+    }
+  }
+
+  function openModal() {
+    modal.hidden = false;
+    // The dialog is modal: stop the page behind it from scrolling.
+    document.documentElement.style.overflow = 'hidden';
+    // force reflow
+    void modal.offsetWidth;
+    modal.classList.add('is-open');
+    refreshIcons();
+    // Wait one frame: focusing before the open transition applies is ignored.
+    requestAnimationFrame(function () {
+      const firstFocus = modal.querySelector('button, input');
+      if (firstFocus) firstFocus.focus();
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    document.documentElement.style.overflow = '';
+    setTimeout(function () { modal.hidden = true; }, 250);
+  }
+
+  // aria-modal="true" promises a trap; without this Tab reaches the page behind.
+  // Listen on document: focus may still be outside the dialog when the first
+  // Tab is pressed, and a listener on the modal would never see that keydown.
+  function trapFocus(e) {
+    if (e.key !== 'Tab' || !modal.classList.contains('is-open')) return;
+    const focusables = modal.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (!modal.contains(document.activeElement)) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+      return;
+    }
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  document.addEventListener('keydown', trapFocus);
+
+  function populateToggles(consent) {
+    toggles.forEach(function (input) {
+      const cat = input.dataset.cookieCategory;
+      input.checked = !!(consent && consent[cat]);
+    });
+  }
+
+  function acceptAll() {
+    const values = {};
+    categories.forEach(function (c) { values[c] = true; });
+    setConsent(buildConsent(values));
+    closeModal();
+  }
+
+  function rejectNonEssential() {
+    const values = {};
+    categories.forEach(function (c) { values[c] = false; });
+    setConsent(buildConsent(values));
+    closeModal();
+  }
+
+  function savePreferences() {
+    const values = {};
+    toggles.forEach(function (input) {
+      values[input.dataset.cookieCategory] = input.checked;
+    });
+    setConsent(buildConsent(values));
+    closeModal();
+  }
+
+  function updateTriggerState() {
+    if (getConsent()) {
+      trigger.classList.remove('is-pending');
+    } else {
+      trigger.classList.add('is-pending');
+    }
+  }
+
+  // Open modal automatically on first visit
+  const existing = getConsent();
+  if (existing) {
+    applyConsent(existing);
+    populateToggles(existing);
+  } else {
+    openModal();
+  }
+  updateTriggerState();
+
+  // Trigger button reopens settings
+  trigger.addEventListener('click', function () {
+    populateToggles(getConsent());
+    openModal();
+  });
+
+  closeButtons.forEach(function (btn) { btn.addEventListener('click', closeModal); });
+  if (acceptBtn) acceptBtn.addEventListener('click', function () { acceptAll(); updateTriggerState(); });
+  if (rejectBtn) rejectBtn.addEventListener('click', function () { rejectNonEssential(); updateTriggerState(); });
+  if (saveBtn) saveBtn.addEventListener('click', function () { savePreferences(); updateTriggerState(); });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+})();
+
+
+
+/* Easter egg: Konami code → the Wombat Control Room (/wombat/).
+   On the room page itself, the page script listens for the event
+   and answers in character instead of reloading. */
+(function () {
+  var sequence = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+  var index = 0;
+
+  function normalize(event) {
+    var key = event.key || '';
+    if (key.length === 1) return key.toLowerCase();
+    return key.toLowerCase();
+  }
+
+  function trigger() {
+    var lang = (document.documentElement.lang || 'en').toLowerCase();
+    var room = lang === 'de' ? '/de/wombat/' : '/wombat/';
+
+    if (window.location.pathname.indexOf('/wombat/') !== -1) {
+      document.dispatchEvent(new CustomEvent('wombat:konami'));
+      return;
+    }
+
+    window.location.href = room + '?konami=1';
+  }
+
+  document.addEventListener('keydown', function (event) {
+    var target = event.target;
+    if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+      index = 0;
+      return;
+    }
+
+    var key = normalize(event);
+    if (key === sequence[index]) {
+      index += 1;
+      if (index === sequence.length) {
+        index = 0;
+        trigger();
+      }
+    } else {
+      index = key === sequence[0] ? 1 : 0;
+    }
+  });
+})();

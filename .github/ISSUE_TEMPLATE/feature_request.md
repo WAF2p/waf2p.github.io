@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-description: Suggest a new page, section, or functionality for the WAF++ website
+description: Suggest a new page, section, or functionality for the Wombat website
 labels: ["enhancement"]
 ---
 

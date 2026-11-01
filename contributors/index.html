@@ -1,0 +1,87 @@
+---
+layout: default
+lang: en
+ref: contributors
+title: "Contributors — Wombat"
+description: "Wombat is built in the open. Meet the maintainers and contributors, see how contributor ranks work, and get a badge for your own README."
+permalink: /contributors/
+translation_notice: false
+---
+
+<div class="cr-page">
+
+<!-- Hero -->
+<section class="cr-hero">
+  <div class="dl-wrap">
+    <h1 class="cr-hero__title dl-rise">Contributors.</h1>
+    <p class="cr-hero__lead dl-rise dl-d1">Wombat is built in the open. Code, reviews, issue triage, documentation, translations, RFCs and community sessions all move the framework forward — and all of them are recognised.</p>
+    <div class="cr-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/contributors/ranks/' | relative_url }}">How ranks work →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/contributors/badge/' | relative_url }}">Badge lookup</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/governance-community/' | relative_url }}">Governance &amp; Community</a>
+    </div>
+  </div>
+</section>
+
+<!-- How recognition works -->
+<section class="cr-section cr-section--alt">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">Two ways to be recognised.</h2>
+      <p class="cr-section__lead">The rank is a transparent, data-derived summary. The badge is a portable version of it that you can put on your own README or profile.</p>
+    </div>
+
+    <div class="cr-signals dl-rise">
+      <article class="cr-signal">
+        <div class="cr-signal__head">
+          <h3 class="cr-signal__label">Contributor ranks</h3>
+          <span class="cr-signal__points">Digger → Foreman → Burrow Engineer</span>
+        </div>
+        <p class="cr-signal__desc">Weighted signals, per-category caps and manual overrides for non-code impact. The thresholds and weights live in one data file, so the explanation and the calculation cannot drift apart.</p>
+        <p class="cr-signal__source"><a class="dl-link" href="{{ '/contributors/ranks/' | relative_url }}">Read the rules →</a></p>
+      </article>
+
+      <article class="cr-signal">
+        <div class="cr-signal__head">
+          <h3 class="cr-signal__label">Static rank badges</h3>
+          <span class="cr-signal__points">/badges/&lt;login&gt;.svg</span>
+        </div>
+        <p class="cr-signal__desc">A self-contained SVG with the Wombat mascot, the eight pillar accents and the rank colour. No tracking, no external requests, and a stable public URL.</p>
+        <p class="cr-signal__source"><a class="dl-link" href="{{ '/contributors/badge/' | relative_url }}">Find your badge →</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Standings link -->
+<section class="cr-section">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">Current standings.</h2>
+      <p class="cr-section__lead">The sorted list, the tier thresholds and the weights behind them live on the ranks page.</p>
+    </div>
+
+    <div class="cr-actions dl-rise">
+      <a class="dl-btn dl-btn--primary" href="{{ '/contributors/ranks/' | relative_url }}">See current standings →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/contributing/' | relative_url }}">Start contributing</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

@@ -1,4 +1,16 @@
 <script>
+  /* Old-domain redirect: any waf2p.dev / www.waf2p.dev URL keeps its
+     path, query and hash and moves to the canonical Wombat domain. */
+  (function () {
+    var host = (location.hostname || '').toLowerCase();
+    if (host === 'waf2p.dev' || host === 'www.waf2p.dev') {
+      location.replace(
+        'https://www.wombat-gov.dev' + location.pathname + location.search + location.hash
+      );
+    }
+  })();
+</script>
+<script>
   (function () {
     try {
       var t = localStorage.getItem('theme');
@@ -9,5 +21,6 @@
   })();
 </script>
 <link rel="stylesheet" href="{{uiRootPath}}/css/waf-style.css">
-<script defer src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="{{uiRootPath}}/css/cookie-consent.css">
+<script defer src="{{uiRootPath}}/js/lucide.min.js"></script>
 <script src="{{uiRootPath}}/js/waf-docs.js" defer></script>

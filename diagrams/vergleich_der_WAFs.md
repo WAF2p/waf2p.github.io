@@ -64,19 +64,19 @@ graph TD
     linkStyle 14,15,16,17,18 stroke:#EA4335,stroke-width:2px
 ```
 
-# Evolution der Well-Architected Frameworks: WAF++
+# Evolution der Well-Architected Frameworks: Wombat
 
 ```mermaid
 graph TD
     %% Titel
-    Title[<br>☁️ <b>Evolution der Well-Architected Frameworks: WAF++</b><br>]
+    Title[<br>☁️ <b>Evolution der Well-Architected Frameworks: Wombat</b><br>]
     style Title fill:none,stroke:none,font-size:22px
 
     %% Provider-Knoten
     AWS(<b>AWS</b><br>6 Säulen)
     Azure(<b>Azure</b><br>5 Säulen)
     GCP(<b>GCP</b><br>5 Säulen)
-    WAFPP(<b>WAF++</b><br>7 Säulen<br><i>Vendor-Agnostisch</i>)
+    WAFPP(<b>Wombat</b><br>7 Säulen<br><i>Vendor-Agnostisch</i>)
 
     %% Säulen
     S1(Security)
@@ -130,7 +130,7 @@ graph TD
     GCP --- S5
     linkStyle 15,16,17,18,19 stroke:#EA4335,stroke-width:1px
 
-    %% WAF++ Pfeile (Grün - Hervorgehoben)
+    %% Wombat Pfeile (Grün - Hervorgehoben)
     WAFPP --- S1
     WAFPP --- S2
     WAFPP --- S3

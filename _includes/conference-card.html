@@ -22,15 +22,10 @@
           {% else %}
             {% assign s = conf.start_date | default: conf.start %}
             {% assign e = conf.end_date | default: conf.end %}
-            {% if lang == 'de' %}
-              {% assign date_format = "%-d. %b %Y" %}
-            {% else %}
-              {% assign date_format = "%-d %b %Y" %}
-            {% endif %}
             {% if e and s and e != s %}
-              {{ s | date: date_format }} – {{ e | date: date_format }}
+              {% include localized-date.html date=s lang=lang %} – {% include localized-date.html date=e lang=lang %}
             {% else %}
-              {{ s | date: date_format }}
+              {% include localized-date.html date=s lang=lang %}
             {% endif %}
           {% endif %}
         </span>
@@ -53,7 +48,7 @@
 
     {% if conf.members %}
       <div class="conf-card__members">
-        <span class="conf-card__members-label">{{ i18n.common.conference_members_label | default: "WAF++ members:" }}</span>
+        <span class="conf-card__members-label">{{ i18n.common.conference_members_label | default: "Wombat members:" }}</span>
         <div class="conf-avatars">
           {% for p in conf.members %}
             {% assign handle = p.id | default: p.name | slugify %}

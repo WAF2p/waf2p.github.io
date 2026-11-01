@@ -1,0 +1,37 @@
+{%- assign _provider = include.provider | default: "" -%}
+{%- assign _region_count = include.region_count | default: nil -%}
+{%- assign _contact = site.data.clouds.provider_data_contact -%}
+{%- assign _methodology_url = '/cloud/methodology/' -%}
+{%- assign _issue_title = 'Provider data correction' -%}
+{%- if _provider != "" -%}{%- assign _issue_title = 'Provider data correction: ' | append: _provider -%}{%- endif -%}
+{%- assign _issue_title_encoded = _issue_title | url_encode -%}
+{%- if page.lang == 'de' -%}{%- assign _methodology_url = '/de/cloud/methodology/' -%}{%- endif -%}
+{%- if _provider != "" -%}
+  {%- assign _subject = 'Correction: ' | append: _provider | append: ' provider data' -%}
+{%- else -%}
+  {%- assign _subject = 'Correction: provider data' -%}
+{%- endif -%}
+
+{%- if page.lang == 'de' -%}
+<div class="hub-data-disclaimer">
+  <h3 class="hub-data-disclaimer__title">Daten und Prüfung</h3>
+  <p><strong>Datenstatus.</strong> {% if _provider != "" %}Die Regionsangaben für {{ _provider }} stammen{% else %}Die Regionsangaben auf den Provider-Seiten stammen{% endif %} aus der Region-Map des WOMBATpass-Dashboards.{% if site.data.clouds.region_data_updated %} Der aktuelle Extrakt ist vom {{ site.data.clouds.region_data_updated | date: "%d.%m.%Y" }}.{% endif %}{% if _region_count %} Die Seite nennt derzeit {{ _region_count }} Regionscodes aus dieser Map.{% endif %}</p>
+  <p><strong>Prüfung.</strong> Die Daten wurden nicht mit dem Provider abgeglichen. Sie können unvollständig, ungenau oder veraltet sein.</p>
+  <p><strong>Verwendungszweck.</strong> Die Angaben dienen ausschließlich der allgemeinen Orientierung. Sie sind keine Garantie für die Verfügbarkeit von Diensten, keine Darstellung exakter Datacenter-Standorte und keine Aussage über eine Zertifizierung des Providers.</p>
+  <p><strong>Korrekturen.</strong> Provider und andere Stellen können Korrekturen einreichen — mit Providername, betroffenem Regionscode oder Control und einer öffentlichen Quelle — an <a href="mailto:{{ _contact }}?subject={{ _subject | url_encode }}">{{ _contact }}</a> oder <a href="https://github.com/WAF2p/waf2p.github.io/issues/new?template=provider-data-correction.yml&title={{ _issue_title_encoded }}" target="_blank" rel="noopener">ein Korrektur-Issue öffnen ↗</a>.</p>
+  <p><strong>Marken.</strong> Providernamen und Marken sind Eigentum ihrer jeweiligen Inhaber. Wombat ist nicht mit diesen Providern verbunden, von ihnen unterstützt oder gesponsert; die Namen dienen ausschließlich der Identifikation.</p>
+  <p><strong>Lizenz.</strong> Die Provider-Daten auf dieser Seite stehen unter <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Es handelt sich um eine abgeleitete Zusammenstellung aus WOMBATpass-Dashboard und Wombat-Framework-Control-Pack. Attribution: Wombat Community. Die Daten werden ohne Gewähr bereitgestellt. <a href="{{ '/assets/data/LICENSE.txt' | relative_url }}">Datenlizenz</a>.</p>
+  <p><strong>Methodik.</strong> <a href="{{ _methodology_url | relative_url }}">Zur Datenmethodik →</a></p>
+</div>
+{%- else -%}
+<div class="hub-data-disclaimer">
+  <h3 class="hub-data-disclaimer__title">Data and verification</h3>
+  <p><strong>Data status.</strong> {% if _provider != "" %}The region labels for {{ _provider }} are compiled{% else %}The region labels on the provider pages are compiled{% endif %} from the WOMBATpass dashboard region map.{% if site.data.clouds.region_data_updated %} The current extract is dated {{ site.data.clouds.region_data_updated | date: "%d %b %Y" }}.{% endif %}{% if _region_count %} The page currently lists {{ _region_count }} region codes from that map.{% endif %}</p>
+  <p><strong>Verification.</strong> The data has not been cross-validated with the provider. It may be incomplete, approximate or outdated.</p>
+  <p><strong>Intended use.</strong> The information is provided for general orientation only. It is not a guarantee of service availability, a representation of exact datacenter locations, or a statement of provider certification.</p>
+  <p><strong>Corrections.</strong> Providers and other parties may submit corrections — including the provider name, the affected region code or control count, and a public source — to <a href="mailto:{{ _contact }}?subject={{ _subject | url_encode }}">{{ _contact }}</a> or <a href="https://github.com/WAF2p/waf2p.github.io/issues/new?template=provider-data-correction.yml&title={{ _issue_title_encoded }}" target="_blank" rel="noopener">open a correction issue ↗</a>.</p>
+  <p><strong>Trademarks.</strong> Provider names and trademarks are the property of their respective owners. Wombat is not affiliated with, endorsed by or sponsored by these providers; the names are used solely for identification.</p>
+  <p><strong>License.</strong> The provider data on this page is published under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. It is a derived compilation from the WOMBATpass dashboard and the Wombat framework control pack. Attribution: Wombat Community. The data is provided without warranty. <a href="{{ '/assets/data/LICENSE.txt' | relative_url }}">Data license</a>.</p>
+  <p><strong>Methodology.</strong> <a href="{{ _methodology_url | relative_url }}">Read the data methodology →</a></p>
+</div>
+{%- endif -%}

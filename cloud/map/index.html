@@ -1,0 +1,72 @@
+---
+layout: default
+lang: en
+ref: cloud_map
+title: "Cloud provider map"
+description: "Approximate world map of the cloud provider regions recognised by the WOMBATpass dashboard."
+permalink: /cloud/map/
+translation_notice: false
+image: /images/og/pillars/sovereign.png
+breadcrumb:
+  - name: "Cloud providers"
+    url: "/cloud/"
+breadcrumb_current: "Provider map"
+hub_type: cloud
+hub_about: "Cloud provider map"
+---
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Provider map.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">A combined, approximate view of the region locations recognised by the WOMBATpass dashboard. Dots are city/region markers, not datacenter addresses.</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/cloud/' | relative_url }}">All providers →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/cloud/coverage/' | relative_url }}">Coverage table</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/cloud/methodology/' | relative_url }}">Data methodology</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">25 providers</li>
+      <li class="hub-hero__fact">Framework · dashboard · region-map coverage</li>
+      <li class="hub-hero__fact">Approximate locations only</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Map -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">All providers at a glance.</h2>
+      <p class="hub-section__lead">The colours show the depth of Wombat support, not the quality of the provider. A dot means the dashboard map recognises a region code; it does not mean the provider has a dedicated control pack.</p>
+    </div>
+
+    <div class="hub-map dl-rise">
+      <img src="{{ '/images/cloud-regions/all-providers.svg' | relative_url }}" alt="Approximate world map of cloud provider regions recognised by the WOMBATpass dashboard" width="800" height="400" loading="lazy">
+    </div>
+    <p class="hub-map__caption dl-rise">Approximate region locations from the dashboard map. Not a datacenter map.</p>
+
+    <div class="hub-grid hub-grid--3 dl-rise" style="margin-top: 20px;">
+      <article class="hub-card">
+        <div class="hub-card__kicker">Framework controls</div>
+        <p class="hub-card__text">AWS, Azure, GCP, STACKIT, OVHcloud, Hetzner Cloud — with provider-specific checks in the current control pack.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Dashboard-tracked</div>
+        <p class="hub-card__text">Alibaba Cloud, Yandex Cloud, OCI — present in the dashboard provider selector; control coverage is expanding.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Region-map</div>
+        <p class="hub-card__text">European providers recognised in the dashboard region map; discovery baseline until a dedicated control pack exists.</p>
+      </article>
+    </div>
+
+    <div class="dl-rise" style="margin-top: 24px;">{% include provider-data-disclaimer.html %}</div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

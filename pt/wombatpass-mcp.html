@@ -1,0 +1,253 @@
+---
+layout: default
+lang: pt
+ref: wombatpass_mcp
+title: "Wombat MCP Bridge"
+description: "Ligue o Claude Desktop e outros hosts MCP ao seu backend WOMBATpass através de uma ponte Model Context Protocol segura."
+permalink: /pt/wombatpass-mcp/
+---
+
+<div class="wfpm-page">
+
+<!-- Hero -->
+<section class="wfpm-hero">
+  <div class="dl-wrap">
+    <div class="dl-rise">
+      <h1 class="wfpm-hero__title">Os seus dados, em qualquer host MCP.</h1>
+      <p class="wfpm-hero__lead">A Wombat MCP Bridge expõe a API REST do WOMBATpass como ferramentas Model Context Protocol para assistentes de IA. Peça ao Claude para listar execuções, inspecionar constatações ou explorar dados de conformidade, tudo através da mesma sessão SSO e das mesmas permissões por função em que já confia.</p>
+      <div class="wfpm-hero__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://pypi.org/project/wombatpass-mcp/" target="_blank" rel="noopener">
+          Obter no PyPI
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-mcp" target="_blank" rel="noopener">Ver no GitHub</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/wombatpass-install/' | relative_url }}">Instalar o WOMBATpass</a>
+      </div>
+      <div class="wfpm-hero__row">
+        <div class="dl-quiet-row__names">
+          <span class="dl-quiet-row__name">MCP</span>
+          <span class="dl-quiet-row__name">SSE</span>
+          <span class="dl-quiet-row__name">stdio</span>
+          <span class="dl-quiet-row__name">OIDC pass-through</span>
+          <span class="dl-quiet-row__name">Filtragem por função</span>
+          <span class="dl-quiet-row__name">Gerado a partir de OpenAPI</span>
+          <span class="dl-quiet-row__name">Introspeção de tokens</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="wfpm-stats">
+  <div class="dl-wrap">
+    <div class="dl-stats__grid">
+      <div class="dl-stat"><div class="dl-stat__num">v0.1.2</div><div class="dl-stat__label">Versão no PyPI</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">113+</div><div class="dl-stat__label">Ferramentas expostas</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">2</div><div class="dl-stat__label">Transportes</div></div>
+      <div class="dl-stat"><div class="dl-stat__num">0</div><div class="dl-stat__label">Credenciais adicionais necessárias</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpm-section-head dl-rise">
+      <h2 class="dl-heading">Uma ponte segura, não um segundo sistema de autenticação.</h2>
+      <p class="dl-lead">A ponte reutiliza a identidade, as permissões e as trilhas de auditoria do WOMBATpass. Valida, faz proxy e filtra, sem nunca guardar segredos da nuvem nem palavras-passe do IdP.</p>
+    </div>
+
+    <div class="wfpm-grid dl-rise">
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Agnóstica ao IdP</h3>
+        <p class="wfpm-card__desc">Sem integração direta com Keycloak, Entra ou Okta. A ponte confia nos tokens emitidos pelo <code>wafpass-server</code>, que já trata os fluxos OIDC e SAML.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Introspeção de tokens</h3>
+        <p class="wfpm-card__desc">Cada nova ligação SSE é validada contra <code>GET /auth/me</code>. Deteção imediata de revogações e sem necessidade de partilhar segredos JWT.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Ferramentas com privilégio mínimo</h3>
+        <p class="wfpm-card__desc"><code>tools/list</code> é filtrado pela função do utilizador autenticado. Os endpoints exclusivos de administradores ficam invisíveis para os engenheiros, e a autorização por linha aplica-se a cada chamada ao backend.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Propagação de contexto</h3>
+        <p class="wfpm-card__desc">O cabeçalho original <code>Authorization: Bearer</code> é reencaminhado para o WOMBATpass em cada pedido, preservando a identidade do utilizador e a atribuição na auditoria.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">Gerado a partir de OpenAPI</h3>
+        <p class="wfpm-card__desc">No arranque, a ponte obtém <code>/openapi.json</code> e regista as operações seguras como ferramentas MCP tipadas, com argumentos validados pelo Pydantic.</p>
+      </div>
+      <div class="wfpm-card">
+        <h3 class="wfpm-card__title">stdio ou SSE</h3>
+        <p class="wfpm-card__desc">Execute a ponte como processo stdio local para o Claude Desktop ou exponha-a por HTTP/SSE para hosts MCP remotos e clientes no browser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick start -->
+<section class="dl-section dl-section--alt" id="quick-start">
+  <div class="dl-wrap">
+    <div class="wfpm-section-head dl-rise">
+      <h2 class="dl-heading">Ligue o Claude Desktop em minutos.</h2>
+      <p class="dl-lead">Instale a ponte, inicie sessão uma vez e aponte o Claude Desktop para o comando stdio. Sem certificados, sem portas abertas, sem autenticação adicional.</p>
+    </div>
+
+    <div class="wfpm-steps dl-rise">
+      <div class="wfpm-step">
+        <div class="code-window" data-ui>
+          <div class="code-window__bar">
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__title">1. Instalar e configurar</span>
+          </div>
+          <pre class="code-window__body"><code>git clone https://github.com/WAF2p/wafpass-mcp.git
+cd wafpass-mcp
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+
+wafpass-mcp-configure
+# Enter WOMBATpass API URL, username and password</code></pre>
+        </div>
+      </div>
+
+      <div class="wfpm-step">
+        <div class="code-window" data-ui>
+          <div class="code-window__bar">
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__title">2. Configuração do Claude Desktop (stdio)</span>
+          </div>
+          <pre class="code-window__body"><code>{
+  "mcpServers": {
+    "wafpass": {
+      "command": "/path/to/wombatpass-mcp/.venv/bin/wafpass-mcp-stdio"
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="wfpm-step">
+        <div class="code-window" data-ui>
+          <div class="code-window__bar">
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__dot"></span>
+            <span class="code-window__title">3. Docker Compose (alternativa)</span>
+          </div>
+          <pre class="code-window__body"><code># From the Wombat repository root
+docker compose up -d wafpass-mcp
+docker compose logs -f wafpass-mcp
+
+# SSE endpoint: http://localhost:3001/sse
+# Override WAFPASS_TOKEN_MODE or WAFPASS_JWT_SECRET in .env</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="dl-section">
+  <div class="dl-wrap">
+    <div class="wfpm-section-head dl-rise">
+      <h2 class="dl-heading">Como a ponte se encaixa.</h2>
+      <p class="dl-lead">O utilizador autentica-se através do IdP a montante, troca tokens com o WOMBATpass e leva o mesmo token Bearer para o host MCP. A ponte reencaminha os pedidos e filtra as ferramentas por função.</p>
+    </div>
+
+    <div class="wfpm-pipeline dl-rise">
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">Utilizador</div>
+        <div class="wfpm-pipeline__name">Login SSO</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">IdP</div>
+        <div class="wfpm-pipeline__name">Keycloak / Entra</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">WOMBATpass</div>
+        <div class="wfpm-pipeline__name">wafpass-server</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">Cliente de IA</div>
+        <div class="wfpm-pipeline__name">MCP host</div>
+      </div>
+      <div class="wfpm-pipeline__arrow" aria-hidden="true">→</div>
+      <div class="wfpm-pipeline__node">
+        <div class="wfpm-pipeline__label">Bridge</div>
+        <div class="wfpm-pipeline__name">wafpass-mcp</div>
+      </div>
+    </div>
+
+    <div class="rfc-table-wrap" data-ui>
+      <table class="rfc-table">
+        <thead>
+          <tr><th>Variável</th><th>Predefinição</th><th>Descrição</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>WAFPASS_API_BASE_URL</code></td><td><code>http://localhost:8000</code></td><td>API WOMBATpass a montante.</td></tr>
+          <tr><td><code>WAFPASS_TOKEN_MODE</code></td><td><code>introspection</code></td><td><code>introspection</code> ou <code>jwt_secret</code> para HS256 local.</td></tr>
+          <tr><td><code>WAFPASS_JWT_SECRET</code></td><td>nenhum</td><td>Obrigatório para o modo <code>jwt_secret</code> ; tem de corresponder ao backend.</td></tr>
+          <tr><td><code>WAFPASS_ACCESS_TOKEN</code></td><td>nenhum</td><td>Token Wombat para o modo stdio; opcional se guardado pelo assistente de configuração.</td></tr>
+          <tr><td><code>WAFPASS_REFRESH_TOKEN</code></td><td>nenhum</td><td>Token de atualização para renovar automaticamente o token de acesso no modo stdio.</td></tr>
+          <tr><td><code>WAFPASS_REFRESH_THRESHOLD_SECONDS</code></td><td><code>300</code></td><td>Renova o token de acesso se expirar dentro deste número de segundos.</td></tr>
+          <tr><td><code>MCP_HOST</code></td><td><code>0.0.0.0</code></td><td>Host de escuta da ponte no modo HTTP/SSE.</td></tr>
+          <tr><td><code>MCP_PORT</code></td><td><code>3001</code></td><td>Porta de escuta da ponte no modo HTTP/SSE.</td></tr>
+          <tr><td><code>LOG_LEVEL</code></td><td><code>INFO</code></td><td>Nível de log.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dl-section wfpm-cta-section">
+  <div class="dl-wrap">
+    <div class="wfpm-cta dl-rise">
+      <h2 class="dl-heading">Traga a IA para o seu fluxo de trabalho.</h2>
+      <p class="dl-lead">Instale a ponte a partir do PyPI ou do GitHub, ligue-a ao Claude Desktop e comece a fazer perguntas em linguagem natural sobre execuções, constatações e controles.</p>
+      <div class="wfpm-cta__actions">
+        <a class="wf6-btn wf6-btn--pill" href="https://pypi.org/project/wombatpass-mcp/" target="_blank" rel="noopener">
+          Obter no PyPI
+          <span class="wf6-btn__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/wombatpass/' | relative_url }}">Sobre o WOMBATpass</a>
+        <a class="wf6-btn wf6-btn--line" href="{{ '/pt/wombatpass-install/' | relative_url }}">Instalar o WOMBATpass</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var reveals = document.querySelectorAll('.dl-rise');
+  if (reveals.length && window.IntersectionObserver) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+})();
+</script>

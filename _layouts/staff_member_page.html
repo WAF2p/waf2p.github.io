@@ -4,13 +4,14 @@ layout: default
 {% assign member = site.staff_members | where: "slug", page.member_id | first %}
 
 {% if member == nil %}
-<div class="page-radical staff-member-page-radical">
-  <section class="staff-hero-island staff-hero-island--solo">
-    <div class="container">
-      <div class="staff-island-card staff-island-card--centered">
-        <div class="staff-island-card__kicker">Profile</div>
-        <h1>Person not found</h1>
-        <p class="staff-island-card__lead">The requested profile page does not exist.</p>
+<div class="profile-page">
+  <section class="profile-hero">
+    <div class="dl-wrap">
+      <div class="profile-header profile-header--notice">
+        <div class="profile-header__meta">
+          <h1 class="profile-header__name">Profile not found.</h1>
+          <p class="profile-header__intro">The requested profile page does not exist.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -23,7 +24,7 @@ layout: default
   {% assign t_about_title = "Kurzprofil" %}
   {% assign t_blog_kicker = "Blog" %}
   {% assign t_blog_title = "Beiträge von %name%" %}
-  {% assign t_blog_lead = "Artikel auf dem WAF++ Blog." %}
+  {% assign t_blog_lead = "Artikel auf dem Wombat Blog." %}
   {% assign t_blog_all = "Alle Blogbeiträge" %}
   {% assign t_conf_kicker = "Konferenzen" %}
   {% assign t_conf_title = "Auf den Bühnen der Community" %}
@@ -32,19 +33,27 @@ layout: default
   {% assign t_past = "Vergangen" %}
   {% assign t_cta_kicker = "Team" %}
   {% assign t_cta_title = "Alle Team-Mitglieder" %}
-  {% assign t_cta_lead = "Lerne die Menschen kennen, die WAF++ voranbringen — und wie du selbst mitwirken kannst." %}
+  {% assign t_cta_lead = "Lerne die Menschen kennen, die Wombat voranbringen — und wie du selbst mitwirken kannst." %}
   {% assign t_cta_roles = "Rollen & Mitglieder" %}
   {% assign t_cta_about = "Über uns" %}
   {% assign t_cta_governance = "Governance" %}
   {% assign t_social_aria = "%name% auf %network%" %}
   {% assign t_expertise_label = "Expertise" %}
+  {% assign t_connect_label = "Vernetzen" %}
+  {% assign t_on_page = "Auf dieser Seite" %}
+  {% assign t_activity = "Aktivität" %}
+  {% assign t_stat_posts = "Beiträge" %}
+  {% assign t_stat_talks = "Auftritte" %}
+  {% assign t_last_post = "Letzter Beitrag" %}
+  {% assign t_next_event = "Nächster Auftritt" %}
+  {% assign t_team_more = "Weitere Teammitglieder" %}
 {% elsif page.lang == 'nl' %}
   {% assign t_team_profile = "Team · Profiel" %}
   {% assign t_about_kicker = "Over" %}
   {% assign t_about_title = "Bio" %}
   {% assign t_blog_kicker = "Blog" %}
   {% assign t_blog_title = "Artikelen van %name%" %}
-  {% assign t_blog_lead = "Artikelen op de WAF++ blog." %}
+  {% assign t_blog_lead = "Artikelen op de Wombat blog." %}
   {% assign t_blog_all = "Alle blogartikelen" %}
   {% assign t_conf_kicker = "Conferenties" %}
   {% assign t_conf_title = "Op het podium" %}
@@ -53,12 +62,20 @@ layout: default
   {% assign t_past = "Afgelopen" %}
   {% assign t_cta_kicker = "Team" %}
   {% assign t_cta_title = "Alle teamleden" %}
-  {% assign t_cta_lead = "Ontmoet de mensen achter WAF++ — en leer hoe je zelf kunt bijdragen." %}
+  {% assign t_cta_lead = "Ontmoet de mensen achter Wombat — en leer hoe je zelf kunt bijdragen." %}
   {% assign t_cta_roles = "Rollen & leden" %}
   {% assign t_cta_about = "Over ons" %}
   {% assign t_cta_governance = "Governance" %}
   {% assign t_social_aria = "%name% op %network%" %}
   {% assign t_expertise_label = "Expertise" %}
+  {% assign t_connect_label = "Verbinden" %}
+  {% assign t_on_page = "Op deze pagina" %}
+  {% assign t_activity = "Activiteit" %}
+  {% assign t_stat_posts = "Artikelen" %}
+  {% assign t_stat_talks = "Optredens" %}
+  {% assign t_last_post = "Laatste artikel" %}
+  {% assign t_next_event = "Volgende optreden" %}
+  {% assign t_team_more = "Meer teamleden" %}
 {% else %}
   {% assign t_team_profile = "Team · Profile" %}
   {% assign t_about_kicker = "About" %}
@@ -74,137 +91,50 @@ layout: default
   {% assign t_past = "Past" %}
   {% assign t_cta_kicker = "Team" %}
   {% assign t_cta_title = "All team members" %}
-  {% assign t_cta_lead = "Meet the people driving WAF++ — and learn how you can contribute too." %}
+  {% assign t_cta_lead = "Meet the people driving Wombat — and learn how you can contribute too." %}
   {% assign t_cta_roles = "Roles & Members" %}
   {% assign t_cta_about = "About us" %}
   {% assign t_cta_governance = "Governance" %}
   {% assign t_social_aria = "%name% on %network%" %}
   {% assign t_expertise_label = "Expertise" %}
+  {% assign t_connect_label = "Connect" %}
+  {% assign t_on_page = "On this page" %}
+  {% assign t_activity = "Activity" %}
+  {% assign t_stat_posts = "Posts" %}
+  {% assign t_stat_talks = "Talks" %}
+  {% assign t_last_post = "Latest post" %}
+  {% assign t_next_event = "Next event" %}
+  {% assign t_team_more = "More from the team" %}
 {% endif %}
 
 {% assign t_blog_title = t_blog_title | replace: "%name%", member.name %}
 {% assign t_blog_lead = t_blog_lead | replace: "%name%", member.name %}
 {% assign t_conf_lead = t_conf_lead | replace: "%name%", member.name %}
 
-<div class="page-radical staff-member-page-radical">
+{% assign member_blurb = member.blurb %}
+{% if page.lang == 'en' and member.blurb_en %}{% assign member_blurb = member.blurb_en %}{% endif %}
 
-<!-- ===================== HERO ISLAND ===================== -->
-<section class="staff-hero-island">
-  <div class="container">
-    <div class="staff-island-card staff-island-card--hero">
-      <div class="staff-hero-island__avatar-col">
-        <div class="staff-hero-island__avatar-wrap">
-          <img class="staff-hero-island__avatar" src="{{ member.image_path | default: '/images/WAFpp_upscaled_1000.png' | relative_url }}" alt="{{ member.name }}" loading="lazy">
-        </div>
-        <div class="staff-hero-island__avatar-meta">
-          <div class="staff-hero-island__avatar-name">{{ member.name }}</div>
-          {% if member.position %}<div class="staff-hero-island__avatar-role">{{ member.position }}</div>{% endif %}
-          {% if member.github %}<div class="staff-hero-island__avatar-handle">@{{ member.github }}</div>{% endif %}
-        </div>
-      </div>
+{% assign date_format = "%d %b %Y" %}
+{% if page.lang == 'de' %}{% assign date_format = "%d.%m.%Y" %}{% endif %}
 
-      <div class="staff-hero-island__copy-col">
-        <div class="staff-island-card__kicker">
-          <span class="staff-island-card__kicker-dot"></span>
-          {{ t_team_profile }}
-        </div>
-
-        <h1>{{ member.name }}</h1>
-        {% if member.position %}<div class="staff-hero-island__role">{{ member.position }}</div>{% endif %}
-        {% if member.blurb %}<p class="staff-hero-island__blurb">{{ member.blurb }}</p>{% endif %}
-
-        {% if member.expertise %}
-        <div class="staff-hero-island__expertise">
-          <span class="staff-hero-island__expertise-label">{{ t_expertise_label }}</span>
-          {% for e in member.expertise %}
-          <span class="staff-hero-island__chip">{{ e }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if member.social or member.github %}
-        <div class="staff-hero-island__actions">
-          {% if member.github %}
-          <a class="staff-social-link" href="https://github.com/{{ member.github }}" target="_blank" rel="noopener" aria-label="GitHub">
-            <span data-lucide="github" aria-hidden="true"></span>
-            <span>GitHub</span>
-          </a>
-          {% endif %}
-          {% if member.social %}
-          {% for s in member.social %}
-          {% assign s_name_downcase = s.name | downcase %}
-          {% if s_name_downcase == 'github' and member.github %}{% continue %}{% endif %}
-          <a class="staff-social-link" href="{{ s.link }}" {% if s.new_window %}target="_blank" rel="noopener"{% endif %} aria-label="{{ t_social_aria | replace: '%name%', member.name | replace: '%network%', s.name }}">
-            {% if s.social_icon %}
-              {% include social-icon.html icon=s.social_icon %}
-            {% else %}
-              <i data-lucide="link" aria-hidden="true"></i>
-            {% endif %}
-            <span>{{ s.name }}</span>
-          </a>
-          {% endfor %}
-          {% endif %}
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== BIO ISLAND ===================== -->
-<section class="staff-section-island">
-  <div class="container">
-    <div class="staff-island-card">
-      <div class="staff-island-card__header">
-        <div class="staff-island-card__kicker">{{ t_about_kicker }}</div>
-        <h2>{{ t_about_title }}</h2>
-      </div>
-
-      <div class="staff-island-card__prose staff-prose">
-        {% if member.content and member.content != "" %}
-          {{ member.content }}
-        {% elsif member.blurb %}
-          <p>{{ member.blurb }}</p>
-        {% else %}
-          <p>{% if page.lang == 'de' %}Weitere Informationen folgen bald.{% elsif page.lang == 'nl' %}Meer informatie volgt binnenkort.{% else %}More information coming soon.{% endif %}</p>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================== POSTS ISLAND ===================== -->
-{% assign authored_posts = site.posts | where: "author_staff_member", page.member_id %}
-{% if authored_posts and authored_posts.size > 0 %}
-<section class="staff-section-island">
-  <div class="container">
-    <div class="staff-island-card">
-      <div class="staff-island-card__header">
-        <div class="staff-island-card__kicker">{{ t_blog_kicker }}</div>
-        <h2>{{ t_blog_title }}</h2>
-        <p class="staff-island-card__lead">{{ t_blog_lead }}</p>
-      </div>
-
-      <div class="blog-grid">
-        {% for p in authored_posts limit: 3 %}
-          {% include blog-card.html post=p %}
-        {% endfor %}
-      </div>
-
-      <div class="staff-island-card__footer">
-        <a class="staff-text-link" href="{% if page.lang == 'de' %}{{ '/de/blog/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/blog/' | relative_url }}{% else %}{{ '/blog/' | relative_url }}{% endif %}">
-          {{ t_blog_all }} &rarr;
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+{% assign about_url = '/about/' %}
+{% assign blog_url = '/blog/' %}
+{% assign roles_url = '/roles/' %}
+{% assign governance_url = '/governance-community/' %}
+{% if page.lang == 'de' %}
+  {% assign about_url = '/de/about/' %}
+  {% assign blog_url = '/de/blog/' %}
+  {% assign roles_url = '/de/roles/' %}
+  {% assign governance_url = '/de/governance-community/' %}
+{% elsif page.lang == 'nl' %}
+  {% assign about_url = '/nl/about/' %}
+  {% assign blog_url = '/nl/blog/' %}
+  {% assign roles_url = '/nl/roles/' %}
+  {% assign governance_url = '/nl/governance-community/' %}
 {% endif %}
 
+{% assign authored_posts = site.posts | where: "author_staff_member", page.member_id %}
 
-<!-- ===================== CONFERENCES ISLAND ===================== -->
 {% assign all_confs = site.data.conferences | default: empty %}
 {% assign now_ts = site.time | date: "%s" %}
 {% assign upcoming = "" | split: "" %}
@@ -230,56 +160,247 @@ layout: default
   {% endif %}
 {% endfor %}
 
-{% if upcoming.size > 0 or past.size > 0 %}
-<section class="staff-section-island">
-  <div class="container">
-    <div class="staff-island-card">
-      <div class="staff-island-card__header">
-        <div class="staff-island-card__kicker">{{ t_conf_kicker }}</div>
-        <h2>{{ t_conf_title }}</h2>
-        <p class="staff-island-card__lead">{{ t_conf_lead }}</p>
+{% assign total_posts = authored_posts | size %}
+{% assign latest_post = authored_posts | first %}
+{% assign talk_count = upcoming.size | plus: past.size %}
+{% assign next_event = upcoming | first %}
+{% assign next_topic = "" %}
+{% if next_event %}
+  {% for m in next_event.members %}
+    {% assign mid = m.id | default: m.name | slugify %}
+    {% if mid == page.member_id %}{% assign next_topic = m.topic %}{% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign others = "" | split: "" %}
+{% for m in site.staff_members %}
+  {% if m.slug != page.member_id and m.url != page.url %}
+    {% assign others = others | push: m %}
+  {% endif %}
+{% endfor %}
+
+<div class="profile-page">
+
+<!-- Hero -->
+<section class="profile-hero">
+  <div class="dl-wrap">
+    <a class="profile-back" href="{{ about_url | relative_url }}#team">← {{ t_cta_about }}</a>
+    <div class="profile-header dl-rise">
+      <div class="profile-header__avatar-wrap">
+        <img class="profile-header__avatar" src="{{ member.image_path | default: '/images/wombat-face-128.png' | relative_url }}" alt="{{ member.name }}" loading="lazy">
+      </div>
+      <div class="profile-header__meta">
+        <div class="profile-header__kicker">{{ t_team_profile }}</div>
+        <h1 class="profile-header__name">{{ member.name }}</h1>
+        {% if member.position %}<p class="profile-header__role">{{ member.position }}</p>{% endif %}
+        {% if member.github %}<a class="profile-header__handle" href="https://github.com/{{ member.github }}" target="_blank" rel="noopener">@{{ member.github }}</a>{% endif %}
+      </div>
+      {% if member_blurb %}<p class="profile-header__intro">{{ member_blurb }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Body -->
+<div class="profile-layout dl-wrap">
+  <aside class="profile-sidebar">
+    {% if total_posts > 0 or talk_count > 0 %}
+    <nav class="profile-sidebar__block profile-nav dl-rise" aria-label="{{ t_on_page }}" data-profile-spy>
+      <div class="profile-sidebar__label">{{ t_on_page }}</div>
+      <div class="profile-anchors">
+        <a class="profile-anchor" href="#bio">{{ t_about_title }}</a>
+        {% if total_posts > 0 %}<a class="profile-anchor" href="#posts">{{ t_blog_kicker }}</a>{% endif %}
+        {% if talk_count > 0 %}<a class="profile-anchor" href="#conferences">{{ t_conf_kicker }}</a>{% endif %}
+      </div>
+    </nav>
+    {% endif %}
+
+    {% if total_posts > 0 or talk_count > 0 %}
+    <div class="profile-sidebar__block dl-rise">
+      <div class="profile-sidebar__label">{{ t_activity }}</div>
+      <div class="profile-stats">
+        {% if total_posts > 0 %}
+        <div class="profile-stat">
+          <span class="profile-stat__value">{{ total_posts }}</span>
+          <span class="profile-stat__label">{{ t_stat_posts }}</span>
+        </div>
+        {% endif %}
+        {% if talk_count > 0 %}
+        <div class="profile-stat">
+          <span class="profile-stat__value">{{ talk_count }}</span>
+          <span class="profile-stat__label">{{ t_stat_talks }}</span>
+        </div>
+        {% endif %}
+      </div>
+      {% if latest_post %}
+      <p class="profile-stats__meta">{{ t_last_post }} · <time datetime="{{ latest_post.date | date_to_xmlschema }}">{{ latest_post.date | date: date_format }}</time></p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if next_event %}
+    <div class="profile-sidebar__block dl-rise">
+      <div class="profile-sidebar__label">{{ t_next_event }}</div>
+      <a class="profile-next" href="{% if next_event.link %}{{ next_event.link }}{% else %}#conferences{% endif %}"{% if next_event.link %} target="_blank" rel="noopener"{% endif %}>
+        <span class="profile-next__title">{{ next_event.name }}</span>
+        {% assign next_event_place = next_event.location | default: next_event.city %}
+        <span class="profile-next__meta">{{ next_event.start_date | date: date_format }}{% if next_event_place %} · {{ next_event_place }}{% endif %}</span>
+        {% if next_topic and next_topic != "" %}<span class="profile-next__topic">{{ next_topic }}</span>{% endif %}
+      </a>
+    </div>
+    {% endif %}
+
+    {% if member.expertise %}
+    <div class="profile-sidebar__block dl-rise">
+      <div class="profile-sidebar__label">{{ t_expertise_label }}</div>
+      <div class="profile-chips">
+        {% for e in member.expertise %}
+        <span class="profile-chip">{{ e }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if member.social or member.github %}
+    <div class="profile-sidebar__block dl-rise">
+      <div class="profile-sidebar__label">{{ t_connect_label }}</div>
+      <div class="profile-social">
+        {% if member.github %}
+        <a class="profile-social__link" href="https://github.com/{{ member.github }}" target="_blank" rel="noopener" aria-label="{{ t_social_aria | replace: '%name%', member.name | replace: '%network%', 'GitHub' }}">
+          <span data-lucide="github" aria-hidden="true"></span>
+          <span>GitHub</span>
+        </a>
+        {% endif %}
+        {% if member.social %}
+        {% for s in member.social %}
+        {% assign s_name_downcase = s.name | downcase %}
+        {% if s_name_downcase == 'github' and member.github %}{% continue %}{% endif %}
+        <a class="profile-social__link" href="{{ s.link }}" {% if s.new_window %}target="_blank" rel="noopener"{% endif %} aria-label="{{ t_social_aria | replace: '%name%', member.name | replace: '%network%', s.name }}">
+          {% if s.social_icon %}
+            {% include social-icon.html icon=s.social_icon %}
+          {% else %}
+            <i data-lucide="link" aria-hidden="true"></i>
+          {% endif %}
+          <span>{{ s.name }}</span>
+        </a>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if others.size > 0 %}
+    <div class="profile-sidebar__block dl-rise">
+      <div class="profile-sidebar__label">{{ t_team_more }}</div>
+      <div class="profile-team">
+        {% for m in others limit: 3 %}
+        <a class="profile-team__link" href="{{ m.url | relative_url }}">
+          <span class="profile-team__name">{{ m.name }}</span>
+          {% if m.position %}<span class="profile-team__role">{{ m.position }}</span>{% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      <a class="profile-team__all" href="{{ about_url | relative_url }}#team">{{ t_cta_title }} →</a>
+    </div>
+    {% endif %}
+  </aside>
+
+  <div class="profile-main">
+    <!-- Bio -->
+    <section class="profile-section dl-rise" id="bio">
+      <div class="profile-section__head">
+        <h2 class="profile-section__title">{{ t_about_title }}</h2>
+      </div>
+      <div class="profile-prose">
+        {% if member.content and member.content != "" %}
+          {{ member.content }}
+        {% elsif member_blurb %}
+          <p>{{ member_blurb }}</p>
+        {% else %}
+          <p>{% if page.lang == 'de' %}Weitere Informationen folgen bald.{% elsif page.lang == 'nl' %}Meer informatie volgt binnenkort.{% else %}More information coming soon.{% endif %}</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <!-- Posts -->
+    {% if authored_posts and authored_posts.size > 0 %}
+    <section class="profile-section dl-rise" id="posts">
+      <div class="profile-section__head">
+        <h2 class="profile-section__title">{{ t_blog_title }}</h2>
+        <p class="profile-section__lead">{{ t_blog_lead }}</p>
+      </div>
+
+      <div class="profile-articles">
+        {% for p in authored_posts limit: 6 %}
+        <a class="profile-article" href="{{ p.url | relative_url }}">
+          <span class="profile-article__date">{{ p.date | date: date_format }}</span>
+          <span class="profile-article__body">
+            <span class="profile-article__title">{{ p.title }}</span>
+            <span class="profile-article__excerpt">{{ p.excerpt | strip_html | strip_newlines | truncate: 150 }}</span>
+          </span>
+          <span class="profile-article__arrow" aria-hidden="true">→</span>
+        </a>
+        {% endfor %}
+      </div>
+
+      <a class="profile-link" href="{{ blog_url | relative_url }}">{{ t_blog_all }} →</a>
+    </section>
+    {% endif %}
+
+    <!-- Conferences -->
+    {% if upcoming.size > 0 or past.size > 0 %}
+    <section class="profile-section dl-rise" id="conferences">
+      <div class="profile-section__head">
+        <h2 class="profile-section__title">{{ t_conf_title }}</h2>
+        <p class="profile-section__lead">{{ t_conf_lead }}</p>
       </div>
 
       {% if upcoming.size > 0 %}
-      <h3 class="staff-island-card__subhead">{{ t_upcoming }}</h3>
-      <div class="conf-grid" style="margin-bottom: 32px;">
+      <h3 class="profile-subhead">{{ t_upcoming }}</h3>
+      <div class="profile-events">
         {% for c in upcoming %}
-          {% include conference-card.html conf=c %}
+        <div class="profile-event">
+          <span class="profile-event__date">{{ c.start_date | default: c.start | date: date_format }}</span>
+          <span class="profile-event__body">
+            <span class="profile-event__title">{% if c.link %}<a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}</span>
+            <span class="profile-event__meta">{{ c.location | default: c.city }}</span>
+          </span>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
 
       {% if past.size > 0 %}
-      <h3 class="staff-island-card__subhead">{{ t_past }}</h3>
-      <div class="conf-grid">
+      <h3 class="profile-subhead">{{ t_past }}</h3>
+      <div class="profile-events">
         {% for c in past %}
-          {% include conference-card.html conf=c %}
+        <div class="profile-event">
+          <span class="profile-event__date">{{ c.start_date | default: c.start | date: date_format }}</span>
+          <span class="profile-event__body">
+            <span class="profile-event__title">{% if c.link %}<a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}</span>
+            <span class="profile-event__meta">{{ c.location | default: c.city }}</span>
+          </span>
+        </div>
         {% endfor %}
       </div>
       {% endif %}
-    </div>
+    </section>
+    {% endif %}
   </div>
-</section>
-{% endif %}
+</div>
 
-
-<!-- ===================== CTA ISLAND ===================== -->
-<section class="staff-cta-island">
-  <div class="container">
-    <div class="staff-island-card staff-island-card--cta">
-      <div class="staff-island-card__kicker">{{ t_cta_kicker }}</div>
-      <h2>{{ t_cta_title }}</h2>
-      <p class="staff-island-card__lead">{{ t_cta_lead }}</p>
-      <div class="staff-island-card__actions">
-        <a class="btn-glow" href="{% if page.lang == 'de' %}{{ '/de/roles/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/roles/' | relative_url }}{% else %}{{ '/roles/' | relative_url }}{% endif %}">
-          {{ t_cta_roles }} &rarr;
-        </a>
-        <a class="staff-text-link" href="{% if page.lang == 'de' %}{{ '/de/about/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/about/' | relative_url }}{% else %}{{ '/about/' | relative_url }}{% endif %}">
-          {{ t_cta_about }}
-        </a>
-        <a class="staff-text-link" href="{% if page.lang == 'de' %}{{ '/de/governance-community/' | relative_url }}{% elsif page.lang == 'nl' %}{{ '/nl/governance-community/' | relative_url }}{% else %}{{ '/governance-community/' | relative_url }}{% endif %}">
-          {{ t_cta_governance }}
-        </a>
+<!-- CTA -->
+<section class="profile-cta">
+  <div class="dl-wrap">
+    <div class="profile-cta__inner dl-rise">
+      <div>
+        <div class="profile-cta__kicker">{{ t_cta_kicker }}</div>
+        <h2 class="profile-cta__title">{{ t_cta_title }}</h2>
+        <p class="profile-cta__text">{{ t_cta_lead }}</p>
+      </div>
+      <div class="profile-cta__actions">
+        <a class="dl-btn dl-btn--primary" href="{{ roles_url | relative_url }}">{{ t_cta_roles }} →</a>
+        <a class="dl-btn dl-btn--line" href="{{ about_url | relative_url }}">{{ t_cta_about }}</a>
+        <a class="dl-btn dl-btn--line" href="{{ governance_url | relative_url }}">{{ t_cta_governance }}</a>
       </div>
     </div>
   </div>
@@ -287,3 +408,63 @@ layout: default
 
 </div>
 {% endif %}
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+
+(function () {
+  var nav = document.querySelector('[data-profile-spy]');
+  if (!nav) return;
+  var links = Array.prototype.slice.call(nav.querySelectorAll('.profile-anchor'));
+  var sections = links.map(function (link) {
+    return document.getElementById(link.getAttribute('href').slice(1));
+  }).filter(Boolean);
+  if (!sections.length) return;
+
+  function activate(id) {
+    links.forEach(function (link) {
+      var active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('is-active', active);
+      if (active) { link.setAttribute('aria-current', 'true'); }
+      else { link.removeAttribute('aria-current'); }
+    });
+  }
+
+  // Mark the last section whose top has passed the upper third of the
+  // viewport. Unlike a narrow IntersectionObserver band, this still marks
+  // a short section after an in-page anchor scrolls it to the top.
+  function update() {
+    var marker = window.scrollY + window.innerHeight * 0.3;
+    var current = sections[0];
+    sections.forEach(function (section) {
+      var top = section.getBoundingClientRect().top + window.scrollY;
+      if (top <= marker) current = section;
+    });
+    if (current) activate(current.id);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      update();
+      ticking = false;
+    });
+  }, { passive: true });
+
+  update();
+})();
+</script>

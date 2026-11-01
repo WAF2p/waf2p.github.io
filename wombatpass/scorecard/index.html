@@ -1,0 +1,186 @@
+---
+layout: default
+lang: en
+ref: wombatpass-scorecard
+title: "WOMBATpass Score Card"
+description: "Turn a WOMBATpass JSON result into a shareable 1200×630 score card, a README badge and copy-paste snippets. Runs entirely in your browser."
+permalink: /wombatpass/scorecard/
+image: /images/og/wombatpass-scorecard.png
+translation_notice: false
+---
+
+<div class="wsc-page">
+  <section class="wsc-hero">
+    <div class="dl-wrap">
+      <h1 class="wsc-hero__title">Make your WOMBATpass score shareable.</h1>
+      <p class="wsc-hero__lead">Drop in a <code>wombat-result.json</code> and get a 1200×630 score card, a README badge and copy-paste snippets. Everything renders in your browser — the file never leaves your machine.</p>
+      <ul class="wsc-facts">
+        <li>1200×630 card</li>
+        <li>PNG + SVG</li>
+        <li>8 pillar bars</li>
+        <li>README badge</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wsc-tool">
+    <div class="dl-wrap wsc-grid">
+      <div class="wsc-panel wsc-panel--input">
+        <h2 class="wsc-panel__title">1. Paste your result</h2>
+        <p class="wsc-panel__lead">Run the CLI and save the JSON, then paste it here.</p>
+        <pre class="wsc-command"><code>wombat check . --output json &gt; wombat-result.json</code></pre>
+        <p class="wsc-note">Need the CLI? <a href="{{ '/wombatpass-install/' | relative_url }}">Install WOMBATpass</a>.</p>
+
+        <label class="wsc-label" for="wsc-json">wombat-result.json</label>
+        <textarea class="wsc-textarea" id="wsc-json" data-wsc-json spellcheck="false" placeholder="Paste the JSON output here…"></textarea>
+
+        <div class="wsc-actions">
+          <button class="dl-btn dl-btn--line" type="button" data-wsc-file-button>Choose JSON file</button>
+          <input type="file" accept=".json,application/json" data-wsc-file hidden>
+          <button class="dl-btn dl-btn--line" type="button" data-wsc-load-demo>Load demo</button>
+          <button class="dl-btn dl-btn--primary" type="button" data-wsc-generate>Generate</button>
+        </div>
+        <p class="wsc-status" data-wsc-status role="status" aria-live="polite"></p>
+
+        <details class="wsc-help">
+          <summary>What JSON do I need?</summary>
+          <p>Use the JSON output of a WOMBATpass run. The card reads <code>score</code>, <code>pillar_scores</code>, <code>project</code>, <code>branch</code>, <code>git_sha</code>, <code>iac_framework</code> and <code>stage</code>. It also understands the summary shape (<code>total_controls</code>, <code>passed</code>, <code>failed</code>, <code>pillars</code>) and validation envelopes with a nested <code>result</code>. Older <code>wafpass check</code> output works too.</p>
+        </details>
+      </div>
+
+      <div class="wsc-panel wsc-panel--preview">
+        <div class="wsc-preview-head">
+          <h2 class="wsc-panel__title">2. Preview &amp; download</h2>
+          <label class="wsc-lang">Card language
+            <select data-wsc-lang>
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="wsc-card" data-wsc-card aria-live="polite"></div>
+
+        <div class="wsc-actions">
+          <button class="dl-btn dl-btn--primary" type="button" data-wsc-png disabled>Download PNG</button>
+          <button class="dl-btn dl-btn--line" type="button" data-wsc-svg disabled>Download SVG</button>
+          <button class="dl-btn dl-btn--line" type="button" data-wsc-open disabled>Open full size</button>
+        </div>
+
+        <div class="wsc-badge-block">
+          <div class="wsc-badge-head">
+            <h3 class="wsc-badge-title">README badge</h3>
+            <button class="wsc-mini" type="button" data-wsc-badge-download disabled>Download SVG</button>
+          </div>
+          <div class="wsc-badge-preview" data-wsc-badge></div>
+
+          <div class="wsc-snippets">
+            <div class="wsc-snippet">
+              <div class="wsc-snippet__head"><span>Markdown</span><button type="button" data-copy="md">Copy</button></div>
+              <pre data-wsc-md></pre>
+            </div>
+            <div class="wsc-snippet">
+              <div class="wsc-snippet__head"><span>HTML</span><button type="button" data-copy="html">Copy</button></div>
+              <pre data-wsc-html></pre>
+            </div>
+          </div>
+          <p class="wsc-note">Commit <code>wombat-pass-badge.svg</code> next to your README, then paste the snippet. The badge links back to WOMBATpass.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wsc-how">
+    <div class="dl-wrap">
+      <h2 class="wsc-how__title">Three steps, one score card.</h2>
+      <div class="wsc-steps">
+        <div class="wsc-step">
+          <span class="wsc-step__num">01</span>
+          <h3>Run the check</h3>
+          <pre><code>wombat check . --output json &gt; wombat-result.json</code></pre>
+        </div>
+        <div class="wsc-step">
+          <span class="wsc-step__num">02</span>
+          <h3>Paste or drop the file</h3>
+          <p>The card fills itself from the run: score, project, branch, commit and all eight pillar scores.</p>
+        </div>
+        <div class="wsc-step">
+          <span class="wsc-step__num">03</span>
+          <h3>Share it</h3>
+          <p>Use the card in a pull request, release note or architecture review, and commit the badge to your README.</p>
+        </div>
+      </div>
+      <p class="wsc-note">Using GitHub Actions? Add a step that writes <code>wombat-result.json</code> and upload it as an artifact, or download the JSON from your WOMBATpass server. <a href="{{ '/wombatpass-action/' | relative_url }}">See the Action</a>.</p>
+    </div>
+  </section>
+</div>
+
+<script type="application/json" data-wsc-config>
+{
+  "ui": {
+    "demo": "Demo data loaded — replace it with your own result.",
+    "ok": "Score card ready.",
+    "empty": "Paste a WOMBATpass result JSON to build the card.",
+    "invalid": "That did not parse as JSON. Paste the whole wombat-result.json file.",
+    "noScore": "No score found. The JSON needs a score or pillar_scores field.",
+    "copied": "Copied",
+    "copy": "Copy"
+  },
+  "labels": {
+    "en": {
+      "kicker": "SCORE CARD",
+      "scoreLabel": "SCORE",
+      "tiers": { "90": "BURROW MASTER", "70": "SOLID FOUNDATION", "50": "DIGGING DEEP", "0": "FOUNDATIONS FIRST" },
+      "projectFallback": "WOMBATpass run",
+      "controls": "controls",
+      "findings": "findings",
+      "pillars": "8 pillars",
+      "scoreOnly": "SCORE ONLY",
+      "generated": "generated",
+      "validated": { "official": "VALIDATED", "offline": "OFFLINE" }
+    },
+    "de": {
+      "kicker": "SCORE CARD",
+      "scoreLabel": "PUNKTE",
+      "tiers": { "90": "BURROW MASTER", "70": "SOLIDES FUNDAMENT", "50": "TIEF GRABEN", "0": "FUNDAMENT ZUERST" },
+      "projectFallback": "WOMBATpass-Lauf",
+      "controls": "Kontrollen",
+      "findings": "Befunde",
+      "pillars": "8 Säulen",
+      "scoreOnly": "NUR SCORE",
+      "generated": "erstellt",
+      "validated": { "official": "VALIDIERT", "offline": "OFFLINE" }
+    }
+  }
+}
+</script>
+
+<script type="application/json" data-wsc-demo>
+{
+  "schema_version": "1.0",
+  "project": "wombat-platform",
+  "branch": "main",
+  "git_sha": "7f3c9a2e4b1d",
+  "iac_framework": "terraform",
+  "stage": "prod",
+  "score": 82,
+  "pillar_scores": {
+    "SEC": 94,
+    "COST": 76,
+    "PERF": 88,
+    "REL": 81,
+    "OPS": 72,
+    "SUS": 69,
+    "SOV": 90,
+    "AGN": 66
+  },
+  "controls_run": 108,
+  "findings": [
+    { "status": "PASS" }, { "status": "PASS" }, { "status": "FAIL" },
+    { "status": "PASS" }, { "status": "FAIL" }, { "status": "PASS" }
+  ],
+  "run_hash": "a1b2c3d4e5f6a7b8"
+}
+</script>
+
+<script src="{{ '/assets/js/wombatpass-scorecard.js' | relative_url }}" defer></script>

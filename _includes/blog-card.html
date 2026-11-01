@@ -5,24 +5,28 @@
   Fallback to the site logo if none is present.
 {%- endcomment -%}
 
-{% assign preview = '' %}
+{% assign preview = post.image %}
+{% if preview == nil %}{% assign preview = '' %}{% endif %}
 {% assign content_raw = post.content | strip %}
 
 {%- comment -%}
   Jekyll renders Markdown to HTML for post.content.
-  1) Prefer first <img src=...> found in rendered HTML.
-  2) Fallback to first Markdown image pattern if it still exists.
-  3) Finally fallback to the WAF++ logo.
+  1) Prefer the image set in the post front matter.
+  2) Fallback to the first <img src=...> found in rendered HTML.
+  3) Fallback to first Markdown image pattern if it still exists.
+  4) Finally fallback to the Wombat logo.
 {%- endcomment -%}
 
-{%- assign html_split = content_raw | split: '<img' -%}
-{%- if html_split.size > 1 -%}
-  {%- assign img_chunk = html_split[1] -%}
-  {%- assign src_split = img_chunk | split: 'src="' -%}
-  {%- if src_split.size > 1 -%}
-    {%- assign src_rest = src_split[1] -%}
-    {%- assign src = src_rest | split: '"' | first -%}
-    {%- assign preview = src -%}
+{%- if preview == '' -%}
+  {%- assign html_split = content_raw | split: '<img' -%}
+  {%- if html_split.size > 1 -%}
+    {%- assign img_chunk = html_split[1] -%}
+    {%- assign src_split = img_chunk | split: 'src="' -%}
+    {%- if src_split.size > 1 -%}
+      {%- assign src_rest = src_split[1] -%}
+      {%- assign src = src_rest | split: '"' | first -%}
+      {%- assign preview = src -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}
 
@@ -37,12 +41,12 @@
 {%- endif -%}
 
 {% if preview == '' %}
-  {% assign preview = '/images/WAFpp_upscaled_1000.png' %}
+  {% assign preview = '/images/wombat-og.png' %}
 {% endif %}
 
 <article class="post-card">
   <a class="post-card__media" href="{% include relative-src.html src=post.url %}">
-    <img src="{{ preview }}" alt="">
+    <img src="{{ preview }}" alt="{{ post.title | escape }}">
   </a>
 
   <div class="post-card__body">

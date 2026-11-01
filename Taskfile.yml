@@ -31,7 +31,7 @@ tasks:
     deps:
       - docs:build:local
     cmds:
-      - echo "Documentation available at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.0/"
+      - echo "Documentation available at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.1.0/"
       - python3 -m http.server {{.WAFPASS_SITE_PORT}} -d _site
 
   docs:clean:
@@ -72,7 +72,7 @@ tasks:
       - echo "================================================"
       - echo "Complete site available at http://localhost:{{.WAFPASS_SITE_PORT}}/"
       - echo "Marketing at http://localhost:{{.WAFPASS_SITE_PORT}}/"
-      - echo "Documentation at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.0/"
+      - echo "Documentation at http://localhost:{{.WAFPASS_SITE_PORT}}/docs/wafpp/1.1.0/"
       - echo "================================================"
       - echo ""
       - python3 -m http.server {{.WAFPASS_SITE_PORT}} -d _site
@@ -99,10 +99,14 @@ tasks:
         echo "✓ Framework found at: {{.LOCAL_FRAMEWORK_PATH}}"
 
   validate:links:
-    desc: Validate internal links in documentation
+    desc: Validate internal links in the built site (run site:build first)
     cmds:
-      - echo "Link validation not yet implemented"
-      - echo "TODO - Install and configure html-proofer or similar"
+      - node scripts/check-links.mjs
+
+  validate:html:
+    desc: Validate rendered HTML in the built site (run site:build first)
+    cmds:
+      - node scripts/check-html.mjs
 
   validate:adoc:
     desc: Validate AsciiDoc syntax in framework repository
@@ -113,12 +117,21 @@ tasks:
       - find modules -name "*.adoc" -type f -print
       - echo "AsciiDoc validation - Found files listed above"
 
+  brand:build:
+    desc: Regenerate mascot SVGs, pillar icons, OG cards and the brand kit ZIP
+    cmds:
+      - python3 scripts/generate-mascot-assets.py
+      - python3 scripts/generate-pillar-icons.py
+      - node scripts/generate-og.mjs
+      - sh scripts/build-brand-kit.sh
+
   # Dependency management
   deps:install:
-    desc: Install all dependencies (Ruby + Node.js)
+    desc: Install all dependencies (Ruby + Node.js) and copy local fonts/icons
     cmds:
       - bundle install
       - npm install
+      - npm run copy-assets
 
   deps:update:
     desc: Update all dependencies

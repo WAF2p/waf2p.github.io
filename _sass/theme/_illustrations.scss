@@ -1,0 +1,68 @@
+/* ============================================================
+   Story illustrations — the detailed mascot art set
+   ============================================================ */
+
+/* Two-column feature split: copy + illustration */
+.dl-split {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Illustration on the left, copy on the right — stacks copy first on mobile */
+.dl-split--reverse {
+  > :first-child { order: 2; }
+  > :last-child { order: 1; }
+
+  @media (max-width: 860px) {
+    > :first-child { order: 1; }
+    > :last-child { order: 2; }
+  }
+}
+
+/* Framed artwork. The illustrations carry their own dark scene, so the
+   frame supplies only the radius, a hairline and a soft shadow. */
+.dl-figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--dl-radius-lg, 30px);
+  border: 1px solid var(--dl-border);
+  background: #0b1220;
+  box-shadow: var(--shadow-md);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* For transparent cut-outs that should sit directly on the page */
+.dl-figure--plain {
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+
+  img {
+    width: min(100%, 420px);
+    margin-inline: auto;
+  }
+}
+
+.dl-figure--wide img {
+  aspect-ratio: 1680 / 624;
+}
+
+.dl-figure__caption {
+  margin: 12px 0 0;
+  font-size: var(--dl-size-small, .875rem);
+  line-height: 1.5;
+  color: var(--dl-muted);
+  text-align: center;
+}

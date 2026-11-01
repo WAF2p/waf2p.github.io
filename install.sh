@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
-# WAF++ PASS one-line installer
-# https://waf2p.dev/wafpass-install/
+# WOMBATpass one-line installer
+# https://www.wombat-gov.dev/wafpass-install/
 #
 # Usage:
-#   curl -fsSL https://waf2p.dev/install.sh | sh
-#   curl -fsSL https://waf2p.dev/install.sh | sh -s -- --venv
-#   curl -fsSL https://waf2p.dev/install.sh | sh -s -- --dry-run
+#   curl -fsSL https://wombat-cli.dev/install.sh | sh
+#   curl -fsSL https://wombat-cli.dev/install.sh | sh -s -- --venv
+#   curl -fsSL https://wombat-cli.dev/install.sh | sh -s -- --dry-run
 
 set -eu
 
@@ -44,7 +44,7 @@ while [ $# -gt 0 ]; do
       ;;
     -h|--help)
       cat <<'EOF'
-WAF++ PASS installer
+WOMBATpass installer
 
 Usage: install.sh [OPTIONS]
 
@@ -128,7 +128,7 @@ fi
 log "Using Python: $PYTHON_CMD ($($PYTHON_CMD --version 2>&1))"
 
 if ! check_command git; then
-  error "git is required to download the WAF++ controls. Please install it and try again.
+  error "git is required to download the Wombat controls. Please install it and try again.
 See https://git-scm.com/downloads"
 fi
 
@@ -169,12 +169,12 @@ else
   run "$PIP_CMD install --upgrade \"wafpass-core${version_arg}\""
 fi
 
-# ── Download WAF++ controls ───────────────────────────────────────────────────
+# ── Download Wombat controls ───────────────────────────────────────────────────
 CONTROLS_DIR="$WAFPASS_HOME/controls"
 DEMO_DIR="$WAFPASS_HOME/demo"
 CONTROLS_TMP="$WAFPASS_HOME/.controls-tmp"
 
-log "Downloading WAF++ controls..."
+log "Downloading Wombat controls..."
 if [ "$WAFPASS_DRY_RUN" -eq 1 ]; then
   log "Would clone $WAFPASS_CONTROLS_URL (branch $WAFPASS_CONTROLS_BRANCH) into $CONTROLS_TMP"
   log "Would copy controls to $CONTROLS_DIR"
@@ -182,7 +182,7 @@ else
   rm -rf "$CONTROLS_TMP"
   mkdir -p "$CONTROLS_TMP"
   git clone --depth 1 --branch "$WAFPASS_CONTROLS_BRANCH" "$WAFPASS_CONTROLS_URL" "$CONTROLS_TMP" \
-    >/dev/null 2>&1 || error "Failed to clone WAF++ controls from $WAFPASS_CONTROLS_URL"
+    >/dev/null 2>&1 || error "Failed to clone Wombat controls from $WAFPASS_CONTROLS_URL"
 
   if [ ! -d "$CONTROLS_TMP/modules/controls/controls" ]; then
     error "Controls repository layout is unexpected; could not find modules/controls/controls"
@@ -221,7 +221,7 @@ EOF
 fi
 
 # ── Run first scan ────────────────────────────────────────────────────────────
-log "Running your first WAFPass scan..."
+log "Running your first WOMBATpass scan..."
 if [ "$WAFPASS_DRY_RUN" -eq 1 ]; then
   log "Would run: cd $DEMO_DIR && $PYTHON_CMD -m wafpass check . --output json | jq '.summary'"
 else
@@ -238,8 +238,8 @@ log "Installation complete."
 log "Controls:   $CONTROLS_DIR"
 log "Demo files: $DEMO_DIR"
 if [ "$WAFPASS_SKIP_VENV" -eq 0 ]; then
-  log "To run WAFPass again, use: $PYTHON_CMD -m wafpass check $DEMO_DIR"
+  log "To run WOMBATpass again, use: $PYTHON_CMD -m wafpass check $DEMO_DIR"
   log "Or activate the environment: source $WAFPASS_VENV/bin/activate"
 else
-  log "To run WAFPass again, use: $PYTHON_CMD -m wafpass check $DEMO_DIR"
+  log "To run WOMBATpass again, use: $PYTHON_CMD -m wafpass check $DEMO_DIR"
 fi

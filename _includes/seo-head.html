@@ -17,7 +17,28 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
   {%- assign _img_split = page.content | split: '<img' -%}
   {%- assign _first_content_img = _img_split[1] | split: 'src="' | last | split: '"' | first -%}
 {%- endif -%}
-{%- assign _raw_image = page.image | default: _first_content_img | default: site.logo -%}
+{%- comment -%}
+  page.content is unrendered, so an img src may still contain Liquid (a
+  relative_url filter or an include). Extract the quoted path when there is
+  one, otherwise fall back to the logo instead of emitting broken markup.
+{%- endcomment -%}
+{%- assign _detected_img = _first_content_img -%}
+{%- if _detected_img and _detected_img contains '{{' -%}
+  {%- assign _detected_img = _detected_img | split: "'" -%}
+  {%- assign _detected_img = _detected_img[1] -%}
+{%- endif -%}
+{%- if _detected_img and _detected_img contains '{%' -%}
+  {%- assign _detected_img = nil -%}
+{%- endif -%}
+{%- if _detected_img and _detected_img contains '://' -%}
+  {%- comment -%} absolute URL: keep as is {%- endcomment -%}
+{%- elsif _detected_img -%}
+  {%- assign _detected_first = _detected_img | slice: 0, 1 -%}
+  {%- unless _detected_first == '/' -%}
+    {%- assign _detected_img = '/' | append: _detected_img -%}
+  {%- endunless -%}
+{%- endif -%}
+{%- assign _raw_image = page.image | default: _detected_img | default: site.logo -%}
 {%- if _raw_image contains '://' -%}
   {%- assign _seo_image = _raw_image -%}
 {%- else -%}
@@ -25,59 +46,61 @@ Pulls lang-vars.html so it works from both root and de/ layouts.
 {%- endif -%}
 {%- assign _og_type = 'website' -%}
 {%- if page.layout == 'post' -%}{%- assign _og_type = 'article' -%}{%- endif -%}
+{%- assign _img_ext = _raw_image | split: '.' | last | downcase -%}
+{%- assign _og_image_type = 'image/png' -%}
+{%- if _img_ext == 'jpg' or _img_ext == 'jpeg' -%}
+  {%- assign _og_image_type = 'image/jpeg' -%}
+{%- elsif _img_ext == 'webp' -%}
+  {%- assign _og_image_type = 'image/webp' -%}
+{%- elsif _img_ext == 'svg' -%}
+  {%- assign _og_image_type = 'image/svg+xml' -%}
+{%- endif -%}
 {%- assign _og_locale = 'en_US' -%}
 {%- if lang == 'de' -%}{%- assign _og_locale = 'de_DE' -%}{%- endif -%}
 
-{%- comment -%} Resolve hreflang counterpart URLs {%- endcomment -%}
+{%- comment -%} Resolve hreflang counterpart URLs for every site locale {%- endcomment -%}
 {%- assign _all_pages = site.pages | concat: site.documents -%}
-{%- if lang == 'de' -%}
-  {%- assign _de_href = _canonical -%}
-  {%- if page.ref and page.ref != blank -%}
-    {%- assign _en_peer = _all_pages | where: 'ref', page.ref | where: 'lang', 'en' | first -%}
-    {%- if _en_peer -%}
-      {%- assign _en_href = _abs_base | append: _en_peer.url -%}
-    {%- else -%}
-      {%- assign _url_stripped = page.url | remove_first: '/de' -%}
-      {%- if _url_stripped == blank -%}{%- assign _url_stripped = '/' -%}{%- endif -%}
-      {%- assign _en_href = _abs_base | append: _url_stripped -%}
-    {%- endif -%}
-  {%- else -%}
-    {%- assign _url_stripped = page.url | remove_first: '/de' -%}
-    {%- if _url_stripped == blank -%}{%- assign _url_stripped = '/' -%}{%- endif -%}
-    {%- assign _en_href = _abs_base | append: _url_stripped -%}
-  {%- endif -%}
-{%- else -%}
-  {%- assign _en_href = _canonical -%}
-  {%- assign _de_href = nil -%}
-  {%- if page.ref and page.ref != blank -%}
-    {%- assign _de_peer = _all_pages | where: 'ref', page.ref | where: 'lang', 'de' | first -%}
-    {%- if _de_peer -%}
-      {%- assign _de_href = _abs_base | append: _de_peer.url -%}
-    {%- else -%}
-      {%- assign _de_candidate = '/de' | append: page.url -%}
-      {%- assign _de_cand_page = _all_pages | where: 'url', _de_candidate | first -%}
-      {%- if _de_cand_page -%}{%- assign _de_href = _abs_base | append: _de_candidate -%}{%- endif -%}
-    {%- endif -%}
-  {%- else -%}
-    {%- assign _de_candidate = '/de' | append: page.url -%}
-    {%- assign _de_cand_page = _all_pages | where: 'url', _de_candidate | first -%}
-    {%- if _de_cand_page -%}{%- assign _de_href = _abs_base | append: _de_candidate -%}{%- endif -%}
-  {%- endif -%}
+{%- assign _langs = 'en,de,es,fr,it,nl,pl,pt' | split: ',' -%}
+{%- assign _current_lang = lang | default: 'en' -%}
+{%- assign _path_en = page.url -%}
+{%- if _current_lang != 'en' -%}
+  {%- assign _lang_prefix = '/' | append: _current_lang -%}
+  {%- assign _path_en = page.url | remove_first: _lang_prefix -%}
+  {%- if _path_en == blank -%}{%- assign _path_en = '/' -%}{%- endif -%}
 {%- endif -%}
 
 <link rel="canonical" href="{{ _canonical }}">
-<link rel="alternate" hreflang="en" href="{{ _en_href }}">
-{%- if _de_href -%}
-<link rel="alternate" hreflang="de" href="{{ _de_href }}">
+{%- if page.noindex -%}
+<meta name="robots" content="noindex, nofollow">
 {%- endif -%}
-<link rel="alternate" hreflang="x-default" href="{{ _en_href }}">
+{%- for _l in _langs -%}
+  {%- assign _alt = nil -%}
+  {%- if _l == _current_lang -%}
+    {%- assign _alt = _canonical -%}
+  {%- elsif page.ref and page.ref != blank -%}
+    {%- assign _peer = _all_pages | where: 'ref', page.ref | where: 'lang', _l | first -%}
+    {%- if _peer -%}{%- assign _alt = _abs_base | append: _peer.url -%}{%- endif -%}
+  {%- endif -%}
+  {%- if _alt == nil -%}
+    {%- if _l == 'en' -%}
+      {%- assign _cand = _path_en -%}
+    {%- else -%}
+      {%- assign _cand = '/' | append: _l | append: _path_en -%}
+    {%- endif -%}
+    {%- assign _cand_page = _all_pages | where: 'url', _cand | first -%}
+    {%- if _cand_page -%}{%- assign _alt = _abs_base | append: _cand -%}{%- endif -%}
+  {%- endif -%}
+  {%- if _alt -%}<link rel="alternate" hreflang="{{ _l }}" href="{{ _alt }}">
+  {%- endif -%}
+{%- endfor -%}
+<link rel="alternate" hreflang="x-default" href="{{ _abs_base }}{{ _path_en }}">
 <meta property="og:type" content="{{ _og_type }}">
 <meta property="og:title" content="{{ _seo_title | escape }}">
 <meta property="og:description" content="{{ _seo_desc | escape }}">
 <meta property="og:url" content="{{ _canonical }}">
 <meta property="og:image" content="{{ _seo_image }}">
 <meta property="og:image:alt" content="{{ page.title | default: site.title | escape }}">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image:type" content="{{ _og_image_type }}">
 <meta property="og:site_name" content="{{ site.title | escape }}">
 <meta property="og:locale" content="{{ _og_locale }}">
 {%- if _og_type == 'article' -%}

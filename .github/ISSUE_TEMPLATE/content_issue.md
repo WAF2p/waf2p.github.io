@@ -1,12 +1,12 @@
 ---
 name: Content Issue
-description: Report a typo, factual error, outdated information, or missing translation on waf2p.dev
+description: Report a typo, factual error, outdated information, or missing translation on www.wombat-gov.dev
 labels: ["content", "good first issue"]
 ---
 
 ## What page is affected?
 
-<!-- Full URL, e.g. https://waf2p.dev/contributing/ -->
+<!-- Full URL, e.g. https://www.wombat-gov.dev/contributing/ -->
 
 ## What is the problem?
 

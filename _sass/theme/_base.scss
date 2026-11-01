@@ -7,11 +7,22 @@
   /* Brand palette (from your UI screenshot) */
   --brand-500:#0094FF;
   --brand-400:#21A5FF;
+  /* Darker steps: safe for white text (>= 4.5:1) on buttons and filled panels */
+  --brand-600:#0F6FD1;
+  --brand-700:#0B5FBF;
   --accent-300:#FFCF63;  /* Gold - Sovereign */
   --accent-500:#7C3AED;  /* Purple - Agentic */
   --danger-500:#DA2C38;
+  /* Text-on-surface steps: safe at 4.5:1 (used for status text, badges) */
+  --text-default: var(--text);
+  --text-accent:#0B5FBF;
+  --text-success:#157347;
+  --text-danger:#B42318;
+  --text-purple:#6D28D9;
   --warn-500:#F97316;
   --warn-400:#FB923C;
+  --warn-600:#C2410C;
+  --warn-700:#9A3412;
 
   /* Neutrals */
   --neutral-50:#F6F6F6;
@@ -24,6 +35,7 @@
   --bg-soft: #f7f8fb;
   --surface: #ffffff;
   --surface-2: #fbfcfe;
+  --surface-raised: #fbfcfe;
   --text: #0b1220;
   --muted: #5b6474;
 
@@ -33,8 +45,8 @@
   --border: rgba(15, 23, 42, .10);
 
   /* Footer */
-  --footer-bg: #3b3b3b;
-  --footer-text: #eef2ff;
+  --footer-bg: #1f2937;
+  --footer-text: #e5e7eb;
   --footer-muted: #cbd5e1;
 
 
@@ -65,8 +77,13 @@
     --bg-soft:#0a1022;
     --surface:#0b1020;
     --surface-2:#0f1630;
+    --surface-raised:#0f1630;
     --text:#eef2ff;
     --muted:#b4c0d6;
+    --text-accent:#7CC4FF;
+    --text-success:#6EE7A8;
+    --text-danger:#FF8B91;
+    --text-purple:#C4B5FD;
     --border: rgba(238, 242, 255, .14);
 
     --shadow-sm: 0 1px 2px rgba(0,0,0,.35);
@@ -76,10 +93,12 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: no-preference) {
+  html{scroll-behavior:smooth}
+}
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   background:var(--bg);
   color:var(--text);
   line-height:1.55;
@@ -99,16 +118,46 @@ a:hover{opacity:.96}
 }
 
 .muted{color:var(--muted)}
-.small{font-size:14px}
+/* Skip link: visible only when focused, first tab stop on every page. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -64px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--brand-600);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 8px; }
 
-h1,h2,h3{
-  margin:0 0 12px;
-  letter-spacing:-0.02em;
+/* Typography polish: no orphan last words, balanced headings. */
+p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* One visible focus ring everywhere, including header CTAs. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
 }
 
-h1{font-size:var(--h1); line-height:1.02; font-weight:700}
-h2{font-size:var(--h2); line-height:1.12; font-weight:700}
-h3{font-size:var(--h3); line-height:1.2; font-weight:650}
+h1,h2,h3,h4,h5,h6{
+  margin:0 0 12px;
+  letter-spacing:-0.02em;
+  font-family: 'League Spartan', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+h1{font-size:var(--h1); line-height:1.02; font-weight:600}
+h2{font-size:var(--h2); line-height:1.12; font-weight:600}
+h3{font-size:var(--h3); line-height:1.2; font-weight:600}
 
 p{margin:0 0 14px; font-size:var(--p)}
 .lead{font-size:18px; color:var(--muted)}
@@ -120,6 +169,7 @@ html[data-theme="light"]{
   --bg-soft: #f7f8fb;
   --surface: #ffffff;
   --surface-2: #fbfcfe;
+  --surface-raised: #fbfcfe;
   --text: #0b1220;
   --muted: #5b6474;
   --border: rgba(15, 23, 42, .10);
@@ -134,8 +184,13 @@ html[data-theme="dark"]{
   --bg-soft: #0a1022;
   --surface: #0b1020;
   --surface-2: #0f1630;
+  --surface-raised: #0f1630;
   --text: #eef2ff;
   --muted: #b4c0d6;
+  --text-accent: #7CC4FF;
+  --text-success: #6EE7A8;
+  --text-danger: #FF8B91;
+  --text-purple: #C4B5FD;
   --nav-link: var(--muted);
   --nav-link-hover: var(--text);
   --border: rgba(238, 242, 255, .14);

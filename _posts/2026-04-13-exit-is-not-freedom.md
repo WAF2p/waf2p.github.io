@@ -139,7 +139,7 @@ Exit without visibility is not a step toward sovereignty. It is a step toward a 
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 1 — Exit ≠ Freedom.</strong> What is today an orderly governed cloud becomes, after an unplanned exit, a patchwork of self-operated services. RDS, S3, CloudFront, IAM — everything must be replaced, patched, monitored, and owned. By whom, exactly?</div>
-  <button class="article-fig-dl" data-fig="fig1-svg" data-filename="wafpp-fig1-exit-freedom.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig1-svg" data-filename="wafpp-fig1-exit-freedom.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -214,7 +214,7 @@ That's not an isolated case. It's the pattern. Without inventory, without contro
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 2 — Myth vs. Reality.</strong> What most believe: changing provider = sovereign. What WAF++ shows: visibility = sovereign. With full inventory and controls, exit is possible at any time — but no exit is needed to achieve sovereignty.</div>
-  <button class="article-fig-dl" data-fig="fig2-svg" data-filename="wafpp-fig2-sovereignty.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig2-svg" data-filename="wafpp-fig2-sovereignty.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -295,7 +295,7 @@ And yes: that's harder than an exit. An exit ends. Governance never ends. But th
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 3 — Three Uncomfortable Truths.</strong> Exit doesn't solve a governance problem. Visibility is more demanding than exit. And sovereignty works in AWS too — if you know what you have and why.</div>
-  <button class="article-fig-dl" data-fig="fig3-svg" data-filename="wafpp-fig3-truths.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig3-svg" data-filename="wafpp-fig3-truths.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -368,7 +368,7 @@ The decisive question is not: "Where do we run?" The question is: **"Do we know 
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Fig. 4 — Four Honest Questions.</strong> Do you fully know what you have? Are all dependencies conscious decisions? Can you show a regulator today what you do with what? Do you know how to exit? If yes: you are sovereign — no matter where you run.</div>
-  <button class="article-fig-dl" data-fig="fig4-svg" data-filename="wafpp-fig4-questions.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig4-svg" data-filename="wafpp-fig4-questions.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -382,44 +382,6 @@ In the Deep Dive (14:20) we'll show live: What does a WAF++ control look like? H
 
 If that interests you: come by. Bring your hardest questions.
 
-<style>
-.article-fig { margin: 36px 0; }
-.article-fig-cap {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 4px 0;
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.55;
-}
-.article-fig-cap strong { color: var(--text); }
-.article-fig-cap > div { flex: 1; }
-.article-fig-dl {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--surface-raised, #f0f4fa);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border-radius: 7px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background .15s, border-color .15s;
-}
-.article-fig-dl:hover {
-  background: var(--brand-500);
-  border-color: var(--brand-500);
-  color: #fff;
-}
-</style>
 
 <script>
 (function(){

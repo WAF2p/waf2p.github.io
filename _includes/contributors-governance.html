@@ -1,14 +1,17 @@
 <section class="section gov-contrib" aria-label="Contributors">
   <div class="container">
+    {% assign rank_data = site.data.contributor_ranks %}
+    {% assign rank_contribs = rank_data.contributors %}
     <div class="section-kicker">{{ i18n.common.contributors_kicker | default: "Community" }}</div>
     <div class="section-title">{{ i18n.common.contributors_title | default: "Contributors" }}</div>
     <p class="muted" style="max-width: 90ch;">
-      {{ i18n.common.contributors_intro | default: "WAF++ counts contributions as more than code. Reviews, RFC comments, issue triage, working groups, documentation, and translations matter just as much. We combine **GitHub code contributors (automatic)** with **community impact contributors (curated)**." | markdownify }}
+      {{ i18n.common.contributors_intro | default: "Wombat counts contributions as more than code. Reviews, RFC comments, issue triage, working groups, documentation, and translations matter just as much. We combine **GitHub code contributors (automatic)** with **community impact contributors (curated)**." | markdownify }}
     </p>
 
     <div class="section-title" style="font-size: 22px; margin-top: 18px;">{{ i18n.common.contributors_core_title | default: "Core Contributors" }}</div>
     <div class="gov-grid">
       {% for c in site.data.core_contributors %}
+      {% assign c_rank = rank_contribs | where: "login", c.github | first %}
       <div class="gov-card">
         <div class="gov-top">
           <img class="gov-avatar" alt="{{ c.display_name | default: c.github }}" src="https://github.com/{{ c.github }}.png?size=96">
@@ -17,6 +20,12 @@
             <div class="gov-role">{{ c.role }}</div>
           </div>
         </div>
+        {% if c_rank %}
+        <span class="rank-line">
+          <span class="rank-chip" style="--rank-color: {{ c_rank.rank_color }};">{{ c_rank.rank_label }}</span>
+          <span class="rank-next">{% if c_rank.points_to_next %}{{ c_rank.points_to_next }} pts to {{ c_rank.next_rank_label }}{% else %}Top rank{% endif %}</span>
+        </span>
+        {% endif %}
         {% if c.types %}
         <div class="gov-tags">{% for t in c.types %}{% include contrib-tag.html type=t %}{% endfor %}</div>
         {% endif %}
@@ -29,12 +38,13 @@
     <div class="muted">{{ i18n.common.contributors_community_sub | default: "Curated list for non-code contributions (comments, reviews, discussions, triage)." }}</div>
     <div class="gov-grid">
       {% for c in site.data.community_contributors %}
+      {% assign c_rank = rank_contribs | where: "login", c.github | first %}
       <div class="gov-card">
         <div class="gov-top">
           {% if c.github %}
           <img class="gov-avatar" alt="{{ c.display_name | default: c.github }}" src="https://github.com/{{ c.github }}.png?size=96">
           {% else %}
-          <img class="gov-avatar" alt="{{ c.display_name | default: 'Contributor' }}" src="{{ '/images/WAFpp_upscaled_1000.png' | relative_url }}">
+          <img class="gov-avatar" alt="{{ c.display_name | default: 'Contributor' }}" src="{{ '/images/wombat-face-128.png' | relative_url }}" width="128" height="128" loading="lazy">
           {% endif %}
           <div>
             <div class="gov-name">
@@ -49,6 +59,13 @@
             <div class="gov-role">Community Contributor</div>
           </div>
         </div>
+
+        {% if c_rank %}
+        <span class="rank-line">
+          <span class="rank-chip" style="--rank-color: {{ c_rank.rank_color }};">{{ c_rank.rank_label }}</span>
+          <span class="rank-next">{% if c_rank.points_to_next %}{{ c_rank.points_to_next }} pts to {{ c_rank.next_rank_label }}{% else %}Top rank{% endif %}</span>
+        </span>
+        {% endif %}
 
         {% if c.types %}
         <div class="gov-tags">{% for t in c.types %}{% include contrib-tag.html type=t %}{% endfor %}</div>

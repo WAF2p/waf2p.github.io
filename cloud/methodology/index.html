@@ -1,0 +1,116 @@
+---
+layout: default
+lang: en
+ref: cloud_methodology
+title: "Provider data methodology"
+description: "How the Wombat cloud provider lists, control counts and approximate region data are compiled, refreshed and corrected."
+permalink: /cloud/methodology/
+translation_notice: false
+image: /images/og/pillars/sovereign.png
+breadcrumb:
+  - name: "Cloud providers"
+    url: "/cloud/"
+breadcrumb_current: "Data methodology"
+hub_type: cloud
+hub_about: "Cloud provider data methodology"
+---
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Provider data methodology.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">Where the provider list, control counts and approximate region data come from — and what they deliberately do not claim.</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/cloud/coverage/' | relative_url }}">Coverage table →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/cloud/' | relative_url }}">All providers</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/trust/' | relative_url }}">Trust center</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">25 providers recognised</li>
+      <li class="hub-hero__fact">Approximate regions, not datacenter addresses</li>
+      {% if site.data.clouds.region_data_updated %}<li class="hub-hero__fact">Region data extracted {{ site.data.clouds.region_data_updated | date: "%d %b %Y" }}</li>{% endif %}
+    </ul>
+  </div>
+</section>
+
+<!-- Sources -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What each data point comes from.</h2>
+      <p class="hub-section__lead">Every provider page is a compilation of public project data, not a provider-issued certification.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      <article class="hub-card">
+        <div class="hub-card__kicker">Provider list</div>
+        <h3 class="hub-card__title">Dashboard selector + region map</h3>
+        <p class="hub-card__text">The nine concrete providers in the WOMBATpass dashboard provider selector, plus the European providers recognised by the dashboard region map. “Multi-cloud” and “other” are metadata modes, not providers.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Control counts</div>
+        <h3 class="hub-card__title">Current framework control pack</h3>
+        <p class="hub-card__text">Counts are unique control pages with provider-specific checks in the current framework control pack. A control may have multiple checks; the count is not a certification or a guarantee of full resource coverage.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Region labels</div>
+        <h3 class="hub-card__title">Dashboard region map</h3>
+        <p class="hub-card__text">Approximate region labels and coordinates from the WOMBATpass dashboard region map. They are city/region level, not datacenter addresses, and are not cross-validated with the providers.</p>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Refresh</div>
+        <h3 class="hub-card__title">Static snapshots</h3>
+        <p class="hub-card__text">The data is committed to the site and refreshed by maintainers. {% if site.data.clouds.region_data_updated %}The current region extract is dated {{ site.data.clouds.region_data_updated | date: "%d %b %Y" }}.{% endif %} A date records the extraction, not a guarantee that every region is current.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Limitations -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What this data is not.</h2>
+      <p class="hub-section__lead">The pages are an orientation aid. Treat them as a starting point for verification, not as an availability or compliance guarantee.</p>
+    </div>
+
+    <ul class="hub-list dl-rise">
+      <li><strong>Not a datacenter map.</strong> Region labels are approximate city/region markers. They do not disclose exact facilities, addresses or availability-zone topology.</li>
+      <li><strong>Not cross-validated.</strong> We do not claim that every region is current, complete or confirmed by the provider.</li>
+      <li><strong>Not a certification.</strong> Control counts describe the current control pack; they are not an audit opinion, certification or statement of full coverage.</li>
+      <li><strong>Not legal advice.</strong> Jurisdiction, residency and procurement questions must be validated with the provider and your legal team.</li>
+      <li><strong>No provider logos.</strong> Provider names are used for identification only. Trademarks belong to their respective owners; Wombat is not affiliated with or endorsed by the providers.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Correction -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">How to submit a correction.</h2>
+      <p class="hub-section__lead">Providers, customers and maintainers can correct the data. Please include the provider, the region code or control count, the correction and a public source.</p>
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">Report a provider data correction</h2>
+          <p class="hub-cta__text">Send the provider name, the affected region or control, the correct value and a public source. We will review it and update the snapshot.</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="mailto:{{ site.data.clouds.provider_data_contact }}?subject=Correction%3A%20provider%20data">Email {{ site.data.clouds.provider_data_contact }} →</a>
+          <a class="dl-btn dl-btn--line" href="{{ '/cloud/coverage/' | relative_url }}">Open the coverage table</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hub-note dl-rise">You can also use the prefilled “Report” link on any provider row in the coverage table. The email is the same address shown on the provider pages: <a href="mailto:{{ site.data.clouds.provider_data_contact }}">{{ site.data.clouds.provider_data_contact }}</a>.</p>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

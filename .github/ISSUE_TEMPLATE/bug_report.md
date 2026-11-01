@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-description: Report a broken page, rendering issue, or unexpected behaviour on waf2p.dev
+description: Report a broken page, rendering issue, or unexpected behaviour on www.wombat-gov.dev
 labels: ["bug"]
 ---
 
@@ -22,7 +22,7 @@ labels: ["bug"]
 
 | | |
 |---|---|
-| **URL** | <!-- e.g. https://waf2p.dev/changelog/ --> |
+| **URL** | <!-- e.g. https://www.wombat-gov.dev/changelog/ --> |
 | **Browser** | <!-- e.g. Chrome 122, Safari 17, Firefox 124 --> |
 | **OS** | <!-- e.g. macOS 14, Windows 11, iOS 17 --> |
 | **Dark mode** | <!-- On / Off / System --> |

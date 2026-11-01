@@ -102,3 +102,60 @@ Structured Data (JSON-LD)
 </script>
 {%- endif -%}
 {%- endif -%}
+
+{%- comment -%}
+Marketing hubs: WebPage + BreadcrumbList.
+Pages opt in with hub_type, hub_about and breadcrumb front matter.
+{%- endcomment -%}
+{%- if page.hub_type -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page.breadcrumb_current | default: page.title | jsonify }},
+  "description": {{ page.description | strip_newlines | jsonify }},
+  "url": "{{ abs_base }}{{ page.url }}",
+  "inLanguage": "{{ lang | default: 'en' }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ site.title | jsonify }},
+    "url": "{{ abs_base }}"
+  }{% if page.hub_about %},
+  "about": {
+    "@type": "Thing",
+    "name": {{ page.hub_about | jsonify }}
+  }{% endif %}
+}
+</script>
+{%- endif -%}
+
+{%- if page.breadcrumb -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ abs_base }}/"
+    }
+    {%- for crumb in page.breadcrumb -%},
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index | plus: 1 }},
+      "name": {{ crumb.name | jsonify }},
+      "item": "{{ abs_base }}{{ crumb.url }}"
+    }
+    {%- endfor -%},
+    {
+      "@type": "ListItem",
+      "position": {{ page.breadcrumb | size | plus: 2 }},
+      "name": {{ page.breadcrumb_current | default: page.title | jsonify }},
+      "item": "{{ abs_base }}{{ page.url }}"
+    }
+  ]
+}
+</script>
+{%- endif -%}

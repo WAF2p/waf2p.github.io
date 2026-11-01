@@ -1,0 +1,533 @@
+/* ============================================================
+   Brand page — /brand/ + /de/brand/
+   ============================================================
+   The mascot/icon assets are SVG. Icons inherit currentColor via
+   CSS masks, so the same file works in light and dark, inline or
+   as a mask. The cream (#f4eadf) is a brand constant used only on
+   sticker surfaces, never as a page background.
+   ============================================================ */
+
+.brand-icon {
+  display: inline-block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  -webkit-mask: var(--brand-icon) center / contain no-repeat;
+  mask: var(--brand-icon) center / contain no-repeat;
+}
+
+/* ---------- Hero ---------- */
+
+.brand-hero {
+  padding-top: calc(var(--header-offset) + clamp(40px, 6vw, 72px));
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.brand-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(240px, 0.92fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.brand-hero__title {
+  margin: 0;
+  color: var(--dl-ink);
+  font-family: var(--dl-font-display);
+  font-size: var(--dl-size-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.brand-hero__lead {
+  max-width: 62ch;
+  margin: 18px 0 0;
+  color: var(--dl-muted);
+  font-size: var(--dl-size-lead);
+  line-height: 1.6;
+}
+
+.brand-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(22px, 3vw, 30px);
+}
+
+.brand-hero__art {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: clamp(22px, 3.5vw, 36px);
+  border-radius: var(--dl-radius-lg);
+  background: #f4eadf;
+}
+
+.brand-hero__art img {
+  display: block;
+  width: min(320px, 100%);
+  height: auto;
+}
+
+/* ---------- Sections ---------- */
+
+.brand-section {
+  padding-block: clamp(48px, 7vw, 88px);
+}
+
+.brand-section--alt {
+  background: var(--dl-surface-2);
+}
+
+.brand-section__title {
+  max-width: 24ch;
+  margin: 0;
+  color: var(--dl-ink);
+  font-family: var(--dl-font-display);
+  font-size: var(--dl-size-heading);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.brand-section__lead {
+  max-width: 64ch;
+  margin: 14px 0 0;
+  color: var(--dl-muted);
+  font-size: var(--dl-size-body);
+  line-height: 1.6;
+}
+
+/* ---------- Mascot grid ---------- */
+
+.brand-mascots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-mascot {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface);
+}
+
+.brand-mascot__art {
+  display: flex;
+  justify-content: center;
+  padding: clamp(16px, 2.4vw, 24px);
+  background: #f4eadf;
+}
+
+.brand-mascot__art img {
+  display: block;
+  width: min(190px, 100%);
+  height: auto;
+}
+
+/* Full-body PNGs carry their own scene background: let them fill the card. */
+.brand-mascot__art--full {
+  padding: 0;
+  background: #0b1220;
+}
+
+.brand-mascot__art--full picture {
+  display: block;
+  width: 100%;
+}
+
+.brand-mascot__art--full img {
+  width: 100%;
+  height: auto;
+}
+
+.brand-mascot__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px 18px;
+}
+
+.brand-mascot__name {
+  margin: 0;
+  color: var(--dl-ink);
+  font-family: var(--dl-font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.brand-mascot__text {
+  margin: 0;
+  color: var(--dl-muted);
+  font-size: var(--dl-size-small);
+  line-height: 1.5;
+}
+
+.brand-mascot__link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--dl-ink);
+  font-size: var(--dl-size-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--dl-border);
+  text-underline-offset: 3px;
+}
+
+.brand-mascot__link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Pillar icons ---------- */
+
+.brand-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface-2);
+  color: var(--dl-ink);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.brand-pillar:hover {
+  background: var(--dl-surface);
+}
+
+.brand-pillar .brand-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.brand-pillar__name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.brand-pillar__code {
+  color: var(--dl-muted);
+  font-family: var(--dl-font-mono);
+  font-size: 0.8125rem;
+}
+
+.brand-pillar__dl {
+  margin-top: auto;
+  color: var(--dl-muted);
+  font-size: 0.8125rem;
+}
+
+.brand-note {
+  max-width: 70ch;
+  margin: 18px 0 0;
+  color: var(--dl-muted);
+  font-size: var(--dl-size-small);
+  line-height: 1.6;
+}
+
+.brand-note a {
+  color: var(--dl-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--dl-border);
+  text-underline-offset: 3px;
+}
+
+/* ---------- Colors ---------- */
+
+.brand-colors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-swatch {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface-2);
+  color: var(--dl-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.brand-swatch:hover {
+  background: var(--dl-surface);
+}
+
+.brand-swatch:focus-visible {
+  outline: 2px solid var(--dl-ink);
+  outline-offset: 2px;
+}
+
+.brand-swatch__chip {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.brand-swatch__name {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.brand-swatch__hex {
+  display: block;
+  color: var(--dl-muted);
+  font-family: var(--dl-font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+.brand-swatch__hint {
+  display: block;
+  margin-top: 2px;
+  color: var(--dl-muted);
+  font-size: 0.8125rem;
+}
+
+/* ---------- Type ---------- */
+
+.brand-type {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-type__row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 20px;
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface-2);
+}
+
+.brand-type__label,
+.brand-type__meta {
+  color: var(--dl-muted);
+  font-size: var(--dl-size-small);
+}
+
+.brand-type__meta {
+  font-family: var(--dl-font-mono);
+  font-size: 0.8125rem;
+}
+
+.brand-type__sample {
+  color: var(--dl-ink);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.brand-type__sample--display {
+  font-family: var(--dl-font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand-type__sample--body {
+  font-family: var(--dl-font-body);
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+}
+
+.brand-type__sample--mono {
+  font-family: var(--dl-font-mono);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+}
+
+/* ---------- Usage rules ---------- */
+
+.brand-rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-rule {
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface-2);
+}
+
+.brand-rule__title {
+  margin: 0 0 12px;
+  color: var(--dl-ink);
+  font-family: var(--dl-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.brand-rule ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brand-rule li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--dl-muted);
+  font-size: var(--dl-size-body);
+  line-height: 1.5;
+}
+
+.brand-rule li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+}
+
+.brand-rule--do li::before {
+  content: "✓";
+  color: #2ba36b;
+}
+
+.brand-rule--dont li::before {
+  content: "✕";
+  color: #c94f4f;
+}
+
+/* ---------- Downloads ---------- */
+
+.brand-downloads {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-download-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: var(--dl-radius);
+  background: var(--dl-surface-2);
+  color: var(--dl-ink);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.brand-download-card:hover {
+  background: var(--dl-surface);
+}
+
+.brand-download-card__title {
+  font-family: var(--dl-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.brand-download-card__meta {
+  color: var(--dl-muted);
+  font-size: var(--dl-size-small);
+  line-height: 1.5;
+}
+
+.brand-download-card__file {
+  margin-top: 10px;
+  color: var(--dl-muted);
+  font-family: var(--dl-font-mono);
+  font-size: 0.8125rem;
+}
+
+/* ---------- Social cards ---------- */
+
+.brand-og {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+  margin-top: clamp(26px, 4vw, 36px);
+}
+
+.brand-og img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--dl-radius);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+  .brand-mascots,
+  .brand-pillars,
+  .brand-colors,
+  .brand-og {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .brand-hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+
+  .brand-rules,
+  .brand-downloads {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-type__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand-colors,
+  .brand-og {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-pillar,
+  .brand-download-card,
+  .brand-mascot__link {
+    transition: none;
+  }
+}
+
+/* Legacy pillar cards (homepage overview / saeulen) use the same
+   icon set inside their circular badge. */
+.wf6-value__icon .brand-icon {
+  width: 22px;
+  height: 22px;
+}

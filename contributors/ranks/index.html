@@ -1,0 +1,195 @@
+---
+layout: default
+lang: en
+ref: contributor_ranks
+title: "Contributor ranks — Wombat"
+description: "How Wombat recognises contributors: tier thresholds, weighted signals, per-category caps and privacy."
+permalink: /contributors/ranks/
+translation_notice: false
+---
+
+{% assign rules = site.data.ranks %}
+{% assign rank_data = site.data.contributor_ranks %}
+{% assign rank_contribs = rank_data.contributors %}
+{% assign sample = rank_contribs | first %}
+
+<div class="cr-page">
+
+<!-- Hero -->
+<section class="cr-hero">
+  <div class="dl-wrap">
+    <h1 class="cr-hero__title dl-rise">Contributor ranks.</h1>
+    <p class="cr-hero__lead dl-rise dl-d1">A transparent summary of sustained contribution. Every point comes from a published signal, a capped category or a documented manual override — never from a guess.</p>
+    <div class="cr-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="{{ '/contributors/badge/' | relative_url }}">Get your badge →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/contributors/' | relative_url }}">All contributors</a>
+      <a class="dl-btn dl-btn--line" href="#privacy">Privacy</a>
+    </div>
+  </div>
+</section>
+
+<!-- Tiers -->
+<section class="cr-section cr-section--alt">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">Three tiers.</h2>
+      <p class="cr-section__lead">Thresholds are cumulative. A contributor keeps earning points inside a tier until the next threshold is reached; the bar on each card shows how far the next tier is.</p>
+    </div>
+
+    {% if rules.tiers and rules.tiers.size > 0 %}
+    <div class="cr-tiers dl-rise">
+      {% for tier in rules.tiers %}
+      <article class="cr-tier" style="--rank-color: {{ tier.color }};">
+        <div class="cr-tier__top">
+          <h3 class="cr-tier__label">{{ tier.label }}</h3>
+          <span class="cr-tier__points">{{ tier.min_points }} pts</span>
+        </div>
+        <p class="cr-tier__blurb">{{ tier.blurb }}</p>
+        <div class="cr-tier__badge">
+          <span class="cr-tier__swatch" aria-hidden="true"></span>
+          <span>{{ tier.badge_label }}</span>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="cr-note">Tier data is not available in this build. Check <code>_data/ranks.yml</code>.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Signals -->
+<section class="cr-section">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">How points are earned.</h2>
+      <p class="cr-section__lead">Each signal has a fixed weight and a per-category cap. The cap keeps the rank from being a pure volume contest: a long review history and a focused control change both matter.</p>
+    </div>
+
+    {% if rules.signals %}
+    <div class="cr-signals dl-rise">
+      {% for pair in rules.signals %}
+        {% assign key = pair[0] %}
+        {% assign signal = pair[1] %}
+        <article class="cr-signal">
+          <div class="cr-signal__head">
+            <h3 class="cr-signal__label">{{ signal.label }}</h3>
+            <span class="cr-signal__points">{{ signal.weight }} pts each · cap {{ signal.cap }}</span>
+          </div>
+          <p class="cr-signal__desc">{{ signal.description }}</p>
+          <p class="cr-signal__source">{{ signal.source }} · max {{ signal.weight | times: signal.cap }} pts</p>
+        </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="cr-panel cr-panel--alt dl-rise">
+      <h3 class="cr-panel__title">Offline-first, enriched when possible.</h3>
+      <p class="cr-panel__text">The weekly GitHub Action reads the committed contributor cache first. When a <code>GITHUB_TOKEN</code> is available it adds exact merged-PR, review and label counts from the GitHub GraphQL API. If the API is unavailable, the cached numbers are kept and the run still succeeds.</p>
+      <p class="cr-panel__text">Signals that GitHub cannot see — conference talks, workshops and community sessions — are only ever added through a documented override in <code>_data/ranks.yml</code>. No contribution number is invented.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Standings -->
+<section class="cr-section cr-section--alt">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">Current standings.</h2>
+      <p class="cr-section__lead">Sorted by points, then by login. The same data drives the homepage cards and the badge files.</p>
+    </div>
+
+    {% if rank_contribs and rank_contribs.size > 0 %}
+    <div class="cr-leaderboard dl-rise">
+      {% for c in rank_contribs %}
+      <article class="cr-card" style="--rank-color: {{ c.rank_color }};">
+        <img class="cr-card__avatar" src="https://github.com/{{ c.login }}.png?size=96" alt="{{ c.login }}" width="44" height="44" loading="lazy">
+        <div class="cr-card__body">
+          <div class="cr-card__name"><a href="https://github.com/{{ c.login }}" target="_blank" rel="noopener">@{{ c.login }}</a></div>
+          <div class="cr-card__meta">{{ c.points }} pts · {{ c.rank_label }}</div>
+          <div class="cr-progress" role="img" aria-label="{{ c.progress | times: 100 | round }}% of the way to {{ c.next_rank_label | default: 'the top rank' }}">
+            <span class="cr-progress__fill" style="--rank-progress: {{ c.progress | times: 100 }}%;"></span>
+          </div>
+          <div class="rank-next">
+            {% if c.points_to_next %}{{ c.points_to_next }} pts to {{ c.next_rank_label }}{% else %}Top rank{% endif %}
+          </div>
+          {% if c.badge %}
+          <div class="cr-card__badge">
+            <img src="{{ c.badge | relative_url }}" alt="{{ c.badge_label }} badge for {{ c.login }}" loading="lazy">
+            <a href="https://github.com/{{ c.login }}" target="_blank" rel="noopener">@{{ c.login }} →</a>
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="cr-note">No rank data is available in this build. Run <code>node scripts/ranks.mjs</code> and rebuild.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Badges -->
+<section class="cr-section">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">Put the badge on your README.</h2>
+      <p class="cr-section__lead">Every published contributor gets a static SVG. It is self-contained, so it renders without JavaScript, fonts or third-party requests.</p>
+    </div>
+
+    <div class="cr-panel dl-rise">
+      {% if sample %}
+      <h3 class="cr-panel__title">{{ sample.badge_label }} — @{{ sample.login }}</h3>
+      <p class="cr-panel__text">Copy this Markdown snippet. The badge URL is stable and the target is this contributor hub.</p>
+      <img class="cr-badge-preview" src="{{ sample.badge | relative_url }}" alt="{{ sample.badge_label }} badge for {{ sample.login }}" loading="lazy">
+      <div class="cr-snippet">
+        <pre><code>[![{{ sample.badge_label }}](https://www.wombat-gov.dev/badges/{{ sample.login }}.svg)](https://www.wombat-gov.dev/contributors/)</code></pre>
+      </div>
+      {% else %}
+      <h3 class="cr-panel__title">Badge files</h3>
+      <p class="cr-panel__text">Badges are served from <code>/badges/&lt;login&gt;.svg</code> once the rank engine has run.</p>
+      {% endif %}
+      <div class="cr-actions">
+        <a class="dl-btn dl-btn--line" href="{{ '/contributors/badge/' | relative_url }}">Look up your badge</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Privacy -->
+<section class="cr-section cr-section--alt" id="privacy">
+  <div class="dl-wrap">
+    <div class="cr-section__head dl-rise">
+      <h2 class="cr-section__title">Privacy.</h2>
+      <p class="cr-section__lead">The rank system publishes the smallest useful surface: a public GitHub login and a rank. Nothing else.</p>
+    </div>
+
+    <div class="cr-panel dl-rise">
+      <p class="cr-panel__text">
+        {% if rules.privacy and rules.privacy.summary %}
+          {{ rules.privacy.summary }}
+        {% else %}
+          Only a public GitHub login and the computed rank are published. No email addresses, private activity or unapproved contribution details are included. Bots are excluded.
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var items = document.querySelectorAll('.dl-rise');
+  if (!items.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>

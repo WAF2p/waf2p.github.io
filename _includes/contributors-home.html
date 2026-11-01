@@ -1,5 +1,7 @@
 <section class="section section--tight contrib-wrap" aria-label="Community Contributors">
   <div class="container">
+    {% assign rank_data = site.data.contributor_ranks %}
+    {% assign rank_contribs = rank_data.contributors %}
     <div class="contrib-head">
       <div>
         <div class="section-kicker">Community</div>
@@ -13,11 +15,18 @@
 
     <div class="contrib-grid" data-core>
       {% for c in site.data.core_contributors %}
+      {% assign c_rank = rank_contribs | where: "login", c.github | first %}
       <a class="contrib-card" href="https://github.com/{{ c.github }}" target="_blank" rel="noopener">
         <img class="contrib-avatar" alt="{{ c.display_name | default: c.github }}" src="https://github.com/{{ c.github }}.png?size=96">
         <div>
           <div class="contrib-name">{{ c.display_name | default: c.github }}</div>
           <div class="contrib-role">{{ c.role }}</div>
+          {% if c_rank %}
+          <span class="rank-line">
+            <span class="rank-chip" style="--rank-color: {{ c_rank.rank_color }};">{{ c_rank.rank_label }}</span>
+            <span class="rank-next">{% if c_rank.points_to_next %}{{ c_rank.points_to_next }} pts to {{ c_rank.next_rank_label }}{% else %}Top rank{% endif %}</span>
+          </span>
+          {% endif %}
           {% if c.types %}
           <div class="contrib-tags">
             {% for t in c.types %}{% include contrib-tag.html type=t %}{% endfor %}

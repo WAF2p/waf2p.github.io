@@ -1,0 +1,145 @@
+---
+layout: default
+lang: en
+ref: trust
+title: "Trust center"
+description: "Licenses, security disclosure, governance, data handling and release transparency for Wombat."
+permalink: /trust/
+translation_notice: false
+image: /images/og/governance-community.jpg
+breadcrumb: []
+breadcrumb_current: "Trust center"
+hub_type: trust
+hub_about: "Open-source governance and security"
+---
+
+{% assign trust = site.data.trust %}
+
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">Trust center.</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">{{ trust.intro }}</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      <a class="dl-btn dl-btn--primary" href="https://github.com/waf2p/framework" target="_blank" rel="noopener">Open the repository →</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/governance-community/' | relative_url }}">Governance</a>
+      <a class="dl-btn dl-btn--line" href="{{ '/compliance/' | relative_url }}">Compliance hubs</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">Last reviewed {{ trust.last_reviewed }}</li>
+      <li class="hub-hero__fact">Apache 2.0 · CC BY 4.0</li>
+      <li class="hub-hero__fact">Public RFCs · public changelog</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Trust sections -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What you can verify.</h2>
+      <p class="hub-section__lead">Every card below points to a public source. If something cannot be verified there, it is a question for the maintainers — not a commitment.</p>
+    </div>
+
+    <div class="hub-trust-grid dl-rise">
+      {% for section in trust.sections %}
+      <article class="hub-trust-card">
+        <h3 class="hub-trust-card__title">{{ section.title }}</h3>
+        <p class="hub-trust-card__summary">{{ section.summary }}</p>
+        {% if section.facts %}
+        <ul class="hub-trust-card__facts">
+          {% for fact in section.facts %}
+          <li>{{ fact }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% if section.links %}
+        <div class="hub-trust-card__links">
+          {% for link in section.links %}
+            {% if link.url contains '://' %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }} →</a>
+            {% else %}
+            <a href="{{ link.url | relative_url }}">{{ link.label }} →</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Verification -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">{{ trust.verification.title }}</h2>
+      <p class="hub-section__lead">{{ trust.verification.text }}</p>
+    </div>
+
+    <ul class="hub-list dl-rise">
+      {% for item in trust.verification.checklist %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">{{ trust.cta.title }}</h2>
+          <p class="hub-cta__text">{{ trust.cta.text }}</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ trust.cta.primary_url | relative_url }}">{{ trust.cta.primary_label }} →</a>
+          <a class="dl-btn dl-btn--line" href="{{ trust.cta.secondary_url | relative_url }}">{{ trust.cta.secondary_label }}</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hub-disclaimer dl-rise">{{ trust.disclaimer }}</p>
+  </div>
+</section>
+
+<!-- Related hubs -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Related hubs.</h2>
+      <p class="hub-section__lead">The trust story connects to the compliance obligations, the role-based landing pages and the provider coverage.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      <article class="hub-card">
+        <div class="hub-card__kicker">Obligations</div>
+        <h3 class="hub-card__title">Compliance hubs</h3>
+        <p class="hub-card__text">NIS2, DORA, BSI C5, BSI C3A and sovereignty — mapped to Wombat pillars and control themes.</p>
+        <a class="hub-card__link" href="{{ '/compliance/' | relative_url }}">Open compliance →</a>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Roles</div>
+        <h3 class="hub-card__title">Wombat for your role</h3>
+        <p class="hub-card__text">Landing pages for platform teams, CISOs, FinOps and sustainability teams.</p>
+        <a class="hub-card__link" href="{{ '/for/' | relative_url }}">Open role pages →</a>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Providers</div>
+        <h3 class="hub-card__title">Cloud providers</h3>
+        <p class="hub-card__text">Provider-neutral coverage across the dashboard's supported cloud providers.</p>
+        <a class="hub-card__link" href="{{ '/cloud/' | relative_url }}">Open cloud providers →</a>
+      </article>
+      <article class="hub-card">
+        <div class="hub-card__kicker">Governance</div>
+        <h3 class="hub-card__title">Governance &amp; community</h3>
+        <p class="hub-card__text">RFCs, roles, working groups and the public decision process behind the project.</p>
+        <a class="hub-card__link" href="{{ '/governance-community/' | relative_url }}">Open governance →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}

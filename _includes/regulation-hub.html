@@ -1,0 +1,180 @@
+{% assign reg = site.data.compliance.regulations[page.regulation_slug] %}
+{% if reg %}
+<div class="hub-page">
+
+<!-- Hero -->
+<section class="hub-hero">
+  <div class="dl-wrap">
+    {% include hub-breadcrumb.html %}
+    <h1 class="hub-hero__title dl-rise">{{ reg.title }}</h1>
+    <p class="hub-hero__lead dl-rise dl-d1">{{ reg.summary }}</p>
+    <div class="hub-hero__actions dl-rise dl-d2">
+      {% if reg.cta.primary_url %}
+      <a class="dl-btn dl-btn--primary" href="{{ reg.cta.primary_url | relative_url }}">{{ reg.cta.primary_label }} →</a>
+      {% endif %}
+      {% if reg.cta.secondary_url %}
+      <a class="dl-btn dl-btn--line" href="{{ reg.cta.secondary_url | relative_url }}">{{ reg.cta.secondary_label }}</a>
+      {% endif %}
+      {% if reg.official_url %}
+      <a class="dl-btn dl-btn--line" href="{{ reg.official_url }}" target="_blank" rel="noopener">{{ reg.official_label }} ↗</a>
+      {% endif %}
+      <a class="dl-btn dl-btn--line" href="{{ '/compliance/' | relative_url }}">All compliance hubs</a>
+    </div>
+    <ul class="hub-hero__facts dl-rise dl-d3">
+      <li class="hub-hero__fact">{{ reg.status }}</li>
+      <li class="hub-hero__fact">{{ reg.frameworks | size }} related frameworks</li>
+      <li class="hub-hero__fact">{{ reg.pillars | size }} Wombat pillars</li>
+      {% if reg.last_reviewed %}<li class="hub-hero__fact">Last reviewed {{ reg.last_reviewed | date: "%d %b %Y" }}</li>{% endif %}
+    </ul>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Why this matters now.</h2>
+      <p class="hub-section__lead">{{ reg.intro }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Obligations -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">What the regulation asks for.</h2>
+      <p class="hub-section__lead">A practical reading of the obligations that usually end up in architecture, operations and evidence reviews.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for obligation in reg.obligations %}
+      <article class="hub-card">
+        <div class="hub-card__kicker">Obligation</div>
+        <h3 class="hub-card__title">{{ obligation.title }}</h3>
+        <p class="hub-card__text">{{ obligation.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Where Wombat helps.</h2>
+      <p class="hub-section__lead">Each obligation maps to one or more pillars. The pillar pages show the controls, principles and evidence expectations behind the score.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for p in reg.pillars %}
+        {% assign pillar = site.data.pillars | where: "slug", p.slug | first %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{% if pillar %}{{ pillar.code }}{% else %}{{ p.slug }}{% endif %}</div>
+          <h3 class="hub-card__title">{% if pillar %}{{ pillar.label }}{% else %}{{ p.slug }}{% endif %}</h3>
+          <p class="hub-card__text">{{ p.why }}</p>
+          {% if pillar %}
+          <a class="hub-card__link" href="{{ pillar.url | relative_url }}">Read the {{ pillar.label }} pillar →</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Control themes + steps -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Control themes to review.</h2>
+      <p class="hub-section__lead">These are the control themes teams usually need to evidence. The controls catalogue is the authoritative source for the exact control-level mapping.</p>
+    </div>
+
+    <div class="hub-pill-row dl-rise">
+      {% for theme in reg.control_themes %}
+      <span class="hub-pill">{{ theme }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="hub-steps dl-rise">
+      {% for step in reg.steps %}
+      <div class="hub-step">
+        <div class="hub-step__num">STEP {{ forloop.index }}</div>
+        <p class="hub-step__text">{{ step }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Frameworks + CTA -->
+<section class="hub-section">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Related frameworks and evidence.</h2>
+      <p class="hub-section__lead">Wombat controls carry tags for the frameworks below. Use them to connect the technical baseline to the evidence your auditor or procurement team already expects.</p>
+    </div>
+
+    <div class="hub-pill-row dl-rise">
+      {% for framework in reg.frameworks %}
+      <span class="hub-pill">{{ framework }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="hub-cta dl-rise">
+      <div class="hub-cta__inner">
+        <div>
+          <h2 class="hub-cta__title">{{ reg.cta.title }}</h2>
+          <p class="hub-cta__text">{{ reg.cta.text }}</p>
+        </div>
+        <div class="hub-cta__actions">
+          <a class="dl-btn dl-btn--primary" href="{{ reg.cta.primary_url | relative_url }}">{{ reg.cta.primary_label }} →</a>
+          <a class="dl-btn dl-btn--line" href="{{ reg.cta.secondary_url | relative_url }}">{{ reg.cta.secondary_label }}</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hub-disclaimer dl-rise">{{ site.data.compliance.disclaimer }}</p>
+  </div>
+</section>
+
+<!-- Related hubs -->
+<section class="hub-section hub-section--alt">
+  <div class="dl-wrap">
+    <div class="hub-section__head dl-rise">
+      <h2 class="hub-section__title">Related compliance hubs.</h2>
+      <p class="hub-section__lead">The same control baseline usually has to satisfy more than one obligation. Jump to the adjacent hub and reuse the evidence.</p>
+    </div>
+
+    <div class="hub-grid hub-grid--2 dl-rise">
+      {% for pair in site.data.compliance.regulations %}
+        {% assign related_slug = pair[0] %}
+        {% assign related = pair[1] %}
+        {% unless related_slug == page.regulation_slug %}
+        <article class="hub-card">
+          <div class="hub-card__kicker">{{ related.kicker }}</div>
+          <h3 class="hub-card__title">{{ related.title }}</h3>
+          <p class="hub-card__text">{{ related.summary }}</p>
+          <a class="hub-card__link" href="{{ '/compliance/' | append: related_slug | append: '/' | relative_url }}">Open the {{ related.title }} hub →</a>
+        </article>
+        {% endunless %}
+      {% endfor %}
+
+      <article class="hub-card">
+        <div class="hub-card__kicker">Control, not just location</div>
+        <h3 class="hub-card__title">Sovereignty</h3>
+        <p class="hub-card__text">Residency, jurisdiction, key ownership, supplier concentration and exit paths — turned into controls a team can assess.</p>
+        <a class="hub-card__link" href="{{ '/sovereignty/' | relative_url }}">Open the sovereignty hub →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+</div>
+{% include hub-reveal.html %}
+{% else %}
+<div class="dl-wrap" style="padding-block: 80px;">
+  <p class="hub-note">This compliance hub is not configured. Check <code>_data/compliance.yml</code>.</p>
+</div>
+{% endif %}

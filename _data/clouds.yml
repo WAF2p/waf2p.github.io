@@ -1,0 +1,1068 @@
+# Cloud provider hubs — /cloud/<provider>/
+# Provider pages are lenses on the same Wombat baseline. Do not invent
+# provider-specific control IDs or certifications; link to the comparison,
+# controls catalogue and quickstart instead.
+
+provider_data_contact: "page@wombat-gov.dev"
+region_data_updated: "2026-10-31"
+
+clouds:
+  aws:
+    name: "AWS"
+    coverage: "framework"
+    control_count: 94
+    kicker: "Well-Architected, extended"
+    summary: "Use AWS Well-Architected as the provider-native lens, then add the cross-provider sovereignty, evidence and cost controls that a multi-cloud estate needs."
+    intro: "AWS gives teams a strong opinionated framework. Wombat does not replace it. It adds a provider-neutral baseline so the same workload can be assessed consistently when it also touches Azure, GCP, STACKIT, OVHcloud or Hetzner Cloud."
+    notes:
+      - "Wombat's multi-provider Terraform coverage includes AWS alongside Azure, GCP, STACKIT, OVHcloud and Hetzner Cloud (framework v1.1.0)."
+      - "Use the comparison page to see where AWS Well-Architected and Wombat overlap, and where Wombat adds sovereignty and evidence coverage."
+      - "The scorecard and CI action work with the same control model you use on the other providers."
+    pillars:
+      - slug: security
+        why: "Identity, network boundaries, encryption and vulnerability handling are the first review surface."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline across accounts."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: reliability
+        why: "Multi-AZ, backup and recovery decisions should be scored, not assumed."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: sovereign
+        why: "Region choice, key custody and exit paths matter even on a mature provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+    links:
+      - label: "Wombat vs. AWS Well-Architected"
+        url: "/comparison/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+    cta:
+      title: "Score the AWS estate against a neutral baseline"
+      text: "Keep the provider-native review, then use the Wombat score to compare the same workload across providers and over time."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "See the comparison"
+      secondary_url: "/comparison/"
+
+  azure:
+    name: "Azure"
+    coverage: "framework"
+    control_count: 91
+    kicker: "CAF and Well-Architected, plus a neutral baseline"
+    summary: "Keep the Azure Cloud Adoption Framework and Well-Architected guidance, then add a provider-neutral control model for the workloads that do not live in one cloud."
+    intro: "Azure teams already have a strong operating model. Wombat adds the cross-provider view: the same control IDs, scoring and evidence for Azure, AWS, GCP, STACKIT, OVHcloud and Hetzner Cloud."
+    notes:
+      - "Wombat's multi-provider Terraform coverage includes Azure alongside AWS, GCP, STACKIT, OVHcloud and Hetzner Cloud (framework v1.1.0)."
+      - "Use the comparison page to see where Azure CAF and Wombat overlap, and where Wombat adds sovereignty and evidence coverage."
+      - "The control catalogue is designed to be read across providers, not as a replacement for Azure-native guidance."
+    pillars:
+      - slug: security
+        why: "Entra ID boundaries, network controls, encryption and secure configuration are the core review surface."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Azure estates need change control, observability and incident evidence that survives audit."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Zone redundancy, backup and recovery objectives should be scored against the workload."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: sovereign
+        why: "Data residency, key custody and provider concentration are procurement questions in regulated markets."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+    links:
+      - label: "Wombat vs. Azure CAF"
+        url: "/comparison/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Score the Azure estate without losing the Azure view"
+      text: "Keep the CAF and Well-Architected reviews, then use the Wombat baseline to compare, evidence and track the same workload over time."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "See the comparison"
+      secondary_url: "/comparison/"
+
+  stackit:
+    name: "STACKIT"
+    coverage: "framework"
+    control_count: 73
+    kicker: "European cloud, same control model"
+    summary: "Assess STACKIT workloads with the same provider-neutral controls you use on hyperscalers — and make residency, exit and supplier concentration explicit."
+    intro: "STACKIT is a European cloud option for teams that need a different jurisdiction and provider concentration profile. Wombat's multi-provider Terraform coverage includes STACKIT, so the sovereignty conversation can be backed by the same score and evidence as the rest of the estate."
+    notes:
+      - "Wombat's multi-provider Terraform coverage includes STACKIT alongside AWS, Azure, GCP, OVHcloud and Hetzner Cloud (framework v1.1.0)."
+      - "Use the sovereignty hub to connect provider choice to residency, key ownership, exit and supplier risk."
+      - "The same control model lets you compare STACKIT with the hyperscalers without maintaining a separate assessment."
+    pillars:
+      - slug: sovereign
+        why: "The primary lens: residency, jurisdiction, key custody, exit and provider concentration."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network isolation and encryption still determine the security baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incident handling and evidence collection need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Portability and recovery only help if the workload can actually run elsewhere."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Make the European provider choice evidence-backed"
+      text: "Score the STACKIT workload against the same neutral baseline, then use the sovereignty hub to turn residency and exit into controls."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  gcp:
+    name: "Google Cloud"
+    kicker: "Well-Architected, extended"
+    coverage: "framework"
+    control_count: 85
+    summary: "Use the Google Cloud Architecture Framework as the provider-native lens, then add the cross-provider sovereignty, evidence and cost controls that a multi-cloud estate needs."
+    intro: "Google Cloud teams already have a strong opinionated framework. Wombat adds a provider-neutral baseline so the same workload can be assessed consistently when it also touches AWS, Azure, STACKIT, OVHcloud or Hetzner Cloud."
+    notes:
+      - "Wombat's multi-provider Terraform coverage includes GCP alongside AWS, Azure, STACKIT, OVHcloud and Hetzner Cloud (framework v1.1.0)."
+      - "Use the comparison page to see where the Google Cloud Architecture Framework and Wombat overlap, and where Wombat adds sovereignty and evidence coverage."
+      - "The scorecard and CI action use the same control model across providers."
+    pillars:
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration are the first review surface."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: cost-optimization
+        why: "Committed use, waste and unit economics need a consistent baseline across projects."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: reliability
+        why: "Zone, region and recovery decisions should be scored, not assumed."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: sovereign
+        why: "Region choice, key custody and exit paths matter even on a mature provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+    links:
+      - label: "Wombat vs. Google Cloud Framework"
+        url: "/comparison/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Score the Google Cloud estate against a neutral baseline"
+      text: "Keep the provider-native review, then use the Wombat score to compare the same workload across providers and over time."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "See the comparison"
+      secondary_url: "/comparison/"
+
+  alicloud:
+    name: "Alibaba Cloud"
+    kicker: "Dashboard-tracked provider"
+    coverage: "dashboard"
+    control_count: 0
+    summary: "Track Alibaba Cloud projects in the WOMBATpass dashboard and apply the neutral control model where the current control pack covers the resource types."
+    intro: "The dashboard's provider selector includes Alibaba Cloud, so projects and passports can be tracked alongside the rest of the estate. Framework control coverage is expanding; check the controls catalogue for the current resource types before treating the score as complete."
+    coverage_note: "Alibaba Cloud is available as a provider in the dashboard. Treat the Wombat score as partial until the relevant control pack covers the resource types you use."
+    notes:
+      - "The dashboard's provider selector includes Alibaba Cloud."
+      - "Framework control packs currently cover AWS, Azure, GCP, STACKIT, OVHcloud and Hetzner Cloud; Alibaba Cloud coverage is expanding."
+      - "Use the controls catalogue to verify the resource types and checks available for this provider."
+    pillars:
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration are the first review surface."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Zone, region and recovery decisions should be scored, not assumed."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline across accounts."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: sovereign
+        why: "Region choice, jurisdiction and exit paths are procurement questions in regulated markets."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+    links:
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "Comparison with provider frameworks"
+        url: "/comparison/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track the provider without overclaiming coverage"
+      text: "Use the dashboard to keep the project visible, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Browse the controls"
+      secondary_url: "/controls/"
+
+  yandex:
+    name: "Yandex Cloud"
+    kicker: "Dashboard-tracked provider · jurisdiction lens"
+    coverage: "dashboard"
+    control_count: 0
+    summary: "Track Yandex Cloud projects in the dashboard and use the sovereignty lens to make jurisdiction, residency and exit explicit."
+    intro: "Yandex Cloud is available in the dashboard's provider selector. Because the jurisdiction is different from the EU providers, the sovereignty and exit questions matter as much as the security baseline. Control-pack coverage is expanding; verify the current resource types in the controls catalogue."
+    coverage_note: "Yandex Cloud is available as a provider in the dashboard. Treat the Wombat score as partial until the relevant control pack covers the resource types you use."
+    notes:
+      - "The dashboard's provider selector includes Yandex Cloud."
+      - "Framework control packs currently cover AWS, Azure, GCP, STACKIT, OVHcloud and Hetzner Cloud; Yandex Cloud coverage is expanding."
+      - "Use the sovereignty hub to make jurisdiction, residency and exit part of the assessment."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries and encryption remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Make jurisdiction part of the score"
+      text: "Use the dashboard to track the workload, then use the sovereignty hub to make residency, key custody and exit explicit."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  oci:
+    name: "Oracle Cloud Infrastructure"
+    kicker: "Dashboard-tracked provider"
+    coverage: "dashboard"
+    control_count: 0
+    summary: "Track OCI projects in the dashboard and apply the neutral control model where the current control pack covers the resource types."
+    intro: "Oracle Cloud Infrastructure (OCI) is available in the dashboard's provider selector. Framework control coverage is expanding; check the controls catalogue for the current resource types before treating the score as complete."
+    coverage_note: "Oracle Cloud Infrastructure is available as a provider in the dashboard. Treat the Wombat score as partial until the relevant control pack covers the resource types you use."
+    notes:
+      - "The dashboard's provider selector includes Oracle Cloud Infrastructure (OCI)."
+      - "Framework control packs currently cover AWS, Azure, GCP, STACKIT, OVHcloud and Hetzner Cloud; OCI coverage is expanding."
+      - "Use the controls catalogue to verify the resource types and checks available for this provider."
+    pillars:
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration are the first review surface."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Zone, region and recovery decisions should be scored, not assumed."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: operational-excellence
+        why: "Change control, monitoring and incident evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+    links:
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "Comparison with provider frameworks"
+        url: "/comparison/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track OCI without overclaiming coverage"
+      text: "Use the dashboard to keep the project visible, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Browse the controls"
+      secondary_url: "/controls/"
+
+  ovh:
+    name: "OVHcloud"
+    kicker: "European cloud, same control model"
+    coverage: "framework"
+    control_count: 72
+    summary: "Assess OVHcloud workloads with the same provider-neutral controls you use on hyperscalers — with a stronger focus on residency and exit."
+    intro: "OVHcloud is a European provider with framework control coverage in the current control pack. Use the neutral baseline to compare it with the hyperscalers and to make residency, key custody and exit explicit."
+    notes:
+      - "Wombat's multi-provider Terraform coverage includes OVHcloud alongside AWS, Azure, GCP, STACKIT and Hetzner Cloud (framework v1.1.0)."
+      - "Use the sovereignty hub to connect provider choice to residency, key ownership, exit and supplier risk."
+      - "The same control model lets you compare OVHcloud with the hyperscalers without maintaining a separate assessment."
+    pillars:
+      - slug: sovereign
+        why: "The primary lens: residency, jurisdiction, key custody, exit and provider concentration."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network isolation and encryption still determine the security baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Portability and recovery only help if the workload can actually run elsewhere."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence collection need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Make the European provider choice evidence-backed"
+      text: "Score the OVHcloud workload against the same neutral baseline, then use the sovereignty hub to turn residency and exit into controls."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  hetzner:
+    name: "Hetzner Cloud"
+    kicker: "European cloud, cost-aware"
+    coverage: "framework"
+    control_count: 72
+    summary: "Assess Hetzner Cloud workloads with the same provider-neutral controls, with a focus on cost efficiency, reliability and European residency."
+    intro: "Hetzner Cloud is a European provider with framework control coverage in the current control pack. Use the neutral baseline to compare cost, reliability and sovereignty without maintaining a separate assessment."
+    notes:
+      - "Wombat's multi-provider Terraform coverage includes Hetzner Cloud alongside AWS, Azure, GCP, STACKIT and OVHcloud (framework v1.1.0)."
+      - "Use the sovereignty hub to connect provider choice to residency, key ownership and exit."
+      - "The cost and reliability pillars are the natural starting points for a Hetzner workload review."
+    pillars:
+      - slug: sovereign
+        why: "European residency, key custody and exit are central to the provider choice."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: cost-optimization
+        why: "Hetzner is often chosen for cost efficiency; the score should keep that honest against reliability."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: security
+        why: "Identity, network isolation and encryption still determine the security baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Backup, recovery and portability determine whether the cost advantage is durable."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Cost Optimization pillar"
+        url: "/pillars/cost-optimization/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+    cta:
+      title: "Balance cost and sovereignty with evidence"
+      text: "Score the Hetzner workload against the same neutral baseline, then use the cost and sovereignty views to make the trade-off explicit."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  sina-cloud:
+    name: "SINA Cloud"
+    kicker: "German region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "sinacloud"
+    summary: "A German cloud provider recognised in the dashboard region map; use the sovereignty lens for residency and jurisdiction."
+    intro: "SINA Cloud is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated SINA Cloud provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "SINA Cloud is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "SINA Cloud is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated SINA Cloud provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make jurisdiction, residency and exit part of the assessment."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track SINA Cloud without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  infomaniak:
+    name: "Infomaniak"
+    kicker: "Swiss region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "infomaniak"
+    summary: "A Swiss provider recognised in the dashboard region map; useful when Swiss jurisdiction and residency are part of the decision."
+    intro: "Infomaniak is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Infomaniak provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Infomaniak is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Infomaniak is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Infomaniak provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to connect Swiss jurisdiction and residency to concrete controls."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: sustainability
+        why: "Efficiency and carbon-aware choices belong in the same architecture review."
+        why_de: "Effizienz und CO2-bewusste Entscheidungen gehören in dieselbe Architekturprüfung."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Infomaniak without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  leafcloud:
+    name: "Leafcloud"
+    kicker: "Dutch sustainable region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "leafcloud"
+    summary: "A Dutch provider recognised in the region map; pair the efficiency view with the sovereignty and reliability questions."
+    intro: "Leafcloud is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Leafcloud provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Leafcloud is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Leafcloud is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Leafcloud provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sustainability and cost pillars to make the efficiency trade-off explicit."
+    pillars:
+      - slug: sustainability
+        why: "Efficiency and carbon-aware choices belong in the same architecture review."
+        why_de: "Effizienz und CO2-bewusste Entscheidungen gehören in dieselbe Architekturprüfung."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Leafcloud without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  open-telekom-cloud:
+    name: "Open Telekom Cloud"
+    kicker: "German region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "tcloud"
+    summary: "Deutsche Telekom's Open Telekom Cloud is recognised in the dashboard region map; use the sovereignty lens for jurisdiction and residency."
+    intro: "Open Telekom Cloud is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Open Telekom Cloud provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Open Telekom Cloud is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Open Telekom Cloud is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Open Telekom Cloud provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make German jurisdiction, residency and provider concentration part of the assessment."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Open Telekom Cloud without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  seeweb:
+    name: "Seeweb"
+    kicker: "Italian region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "seeweb"
+    summary: "An Italian cloud provider recognised in the region map; evaluate residency and supplier concentration with the sovereignty lens."
+    intro: "Seeweb is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Seeweb provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Seeweb is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Seeweb is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Seeweb provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make Italian residency and supplier concentration explicit."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Seeweb without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  exoscale:
+    name: "Exoscale"
+    kicker: "European region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "exoscale"
+    summary: "A European provider recognised in the region map; use the neutral baseline where the control pack covers the resource types."
+    intro: "Exoscale is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Exoscale provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Exoscale is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Exoscale is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Exoscale provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to connect residency and provider concentration to the score."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Exoscale without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  cyso:
+    name: "CYSO"
+    kicker: "Dutch region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "cyso"
+    summary: "A Dutch provider recognised in the region map; use the sovereignty view for jurisdiction and provider concentration."
+    intro: "CYSO is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated CYSO provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "CYSO is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "CYSO is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated CYSO provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make Dutch jurisdiction and provider concentration explicit."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track CYSO without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  numspot:
+    name: "Numspot"
+    kicker: "French sovereign region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "numspot"
+    summary: "A French sovereign cloud provider recognised in the region map; residency, jurisdiction and exit are the natural starting points."
+    intro: "Numspot is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Numspot provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Numspot is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Numspot is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Numspot provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make French jurisdiction, residency and exit part of the assessment."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Numspot without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  plusserver:
+    name: "plusserver"
+    kicker: "German region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "plusserver"
+    summary: "A German provider recognised in the region map; use the sovereignty and evidence views for German procurement questions."
+    intro: "plusserver is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated plusserver provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "plusserver is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "plusserver is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated plusserver provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make German residency and audit evidence explicit."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track plusserver without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  syselev:
+    name: "Syselev"
+    kicker: "European region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "syselev"
+    summary: "A European provider recognised in the region map; use the dashboard for visibility and verify control coverage before scoring."
+    intro: "Syselev is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Syselev provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Syselev is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Syselev is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Syselev provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to keep jurisdiction and residency in the assessment."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Syselev without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  outscale:
+    name: "Outscale"
+    kicker: "French region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "outscale"
+    summary: "A French cloud provider recognised in the region map; use the sovereignty lens for jurisdiction and exit."
+    intro: "Outscale is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Outscale provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Outscale is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Outscale is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Outscale provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make French jurisdiction and exit paths explicit."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Outscale without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  leaseweb:
+    name: "Leaseweb"
+    kicker: "European region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "leaseweb"
+    summary: "A European hosting and cloud provider recognised in the region map; use cost, reliability and residency together."
+    intro: "Leaseweb is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Leaseweb provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Leaseweb is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Leaseweb is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Leaseweb provider pack; verify resource coverage in the controls catalogue."
+      - "Use the cost and sovereignty views to make the trade-off explicit."
+    pillars:
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Leaseweb without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  scaleway:
+    name: "Scaleway"
+    kicker: "French region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "scaleway"
+    summary: "A French cloud provider recognised in the region map; use the neutral baseline to compare cost, reliability and sovereignty."
+    intro: "Scaleway is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Scaleway provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Scaleway is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Scaleway is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Scaleway provider pack; verify resource coverage in the controls catalogue."
+      - "Use the cost and sovereignty views to make the trade-off explicit."
+    pillars:
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Scaleway without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  ionos:
+    name: "IONOS"
+    kicker: "German region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "ionos"
+    summary: "A German cloud provider recognised in the region map; evaluate residency, reliability and cost in the same baseline."
+    intro: "IONOS is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated IONOS provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "IONOS is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "IONOS is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated IONOS provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make German residency and provider concentration explicit."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track IONOS without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  upcloud:
+    name: "UpCloud"
+    kicker: "Finnish region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "upcloud"
+    summary: "A Finnish cloud provider recognised in the region map; use cost, reliability and European residency together."
+    intro: "UpCloud is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated UpCloud provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "UpCloud is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "UpCloud is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated UpCloud provider pack; verify resource coverage in the controls catalogue."
+      - "Use the cost and sovereignty views to make the trade-off explicit."
+    pillars:
+      - slug: cost-optimization
+        why: "Commitments, waste and unit economics need a consistent baseline."
+        why_de: "Commitments, Waste und Unit Economics brauchen eine konsistente Baseline."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track UpCloud without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"
+
+  cleura:
+    name: "Cleura"
+    kicker: "Swedish region-map provider"
+    coverage: "region"
+    control_count: 0
+    provider_key: "cleura"
+    summary: "A Swedish cloud provider recognised in the region map; use the sovereignty view for jurisdiction and provider concentration."
+    intro: "Cleura is recognised by the dashboard region map for region detection. The current framework control pack does not include a dedicated Cleura provider pack, so use the dashboard for visibility and verify resource coverage in the controls catalogue."
+    coverage_note: "Cleura is recognised in the dashboard region map. It is not part of the current framework control pack; treat the score as a discovery baseline and verify resource coverage in the controls catalogue."
+    notes:
+      - "Cleura is recognised in the dashboard region map."
+      - "The current framework control pack does not include a dedicated Cleura provider pack; verify resource coverage in the controls catalogue."
+      - "Use the sovereignty hub to make Swedish jurisdiction and provider concentration explicit."
+    pillars:
+      - slug: sovereign
+        why: "Jurisdiction, data residency, key custody and exit are the primary questions for this provider."
+        why_de: "Jurisdiktion, Datenresidenz, Schlüsselverwaltung und Exit sind die zentralen Fragen für diesen Provider."
+      - slug: security
+        why: "Identity, network boundaries, encryption and secure configuration remain the technical baseline."
+        why_de: "Identität, Netzwerkgrenzen, Verschlüsselung und sichere Konfiguration bleiben die technische Basis."
+      - slug: operational-excellence
+        why: "Supplier oversight, incidents and evidence need an operating model."
+        why_de: "Lieferantenaufsicht, Incidents und Evidenz brauchen ein Betriebsmodell."
+      - slug: reliability
+        why: "Recovery and portability determine whether an exit or provider change is credible."
+        why_de: "Wiederherstellung und Portabilität entscheiden, ob ein Anbieterwechsel glaubwürdig ist."
+    links:
+      - label: "Sovereignty hub"
+        url: "/sovereignty/"
+      - label: "Controls catalogue"
+        url: "/controls/"
+      - label: "WOMBATpass quickstart"
+        url: "/wombatpass-install/"
+      - label: "Trust center"
+        url: "/trust/"
+    cta:
+      title: "Track Cleura without overclaiming coverage"
+      text: "Use the dashboard for visibility, then verify the current control-pack coverage before treating the score as complete."
+      primary_label: "Run the scorecard"
+      primary_url: "/wombatpass/scorecard/"
+      secondary_label: "Open the sovereignty hub"
+      secondary_url: "/sovereignty/"

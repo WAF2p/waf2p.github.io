@@ -1,5 +1,5 @@
 /* ==========================================================================
-   WAF++ Antora Supplemental UI — Radical Redesign
+   Wombat Antora Supplemental UI — Radical Redesign
    Dark-first, cinematic, bento, matching the marketing site.
    ========================================================================== */
 
@@ -182,7 +182,8 @@ body {
     gap: 10px;
     font-weight: 900;
     font-size: 17px;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--text);
     text-decoration: none;
     flex-shrink: 0;
@@ -662,8 +663,11 @@ html[data-theme="light"] .nav-menu,
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
+    /* WCAG 2.5.8: 24px minimum target */
+    min-width: 24px;
+    min-height: 24px;
+    width: 24px;
+    height: 24px;
     border: none;
     background: transparent;
     color: var(--nav-muted);
@@ -864,12 +868,13 @@ html[data-theme="light"] .nav-panel-explore .components .component .versions a,
 }
 
 .doc a {
-    color: var(--brand-500);
+    /* brand-500 is only 3.14:1 on white; brand-700 clears 4.5:1 */
+    color: var(--brand-700, #0B5FBF);
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 .doc a:hover {
-    color: var(--brand-400);
+    color: var(--brand-600, #0F6FD1);
 }
 
 /* Tables */
@@ -1019,7 +1024,23 @@ html[data-theme="light"] .nav-panel-explore .components .component .versions a,
     text-decoration: none !important;
 }
 .toolbar a:hover { color: var(--brand-500) !important; }
-.toolbar .home-link { color: var(--muted) !important; }
+.toolbar .home-link { color: var(--muted) !important; min-width: 24px; min-height: 24px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* Skip link: first tab stop, visible only on focus */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -64px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--surface, #fff);
+  color: var(--text, #0b1220);
+  border: 2px solid var(--brand-600, #0F6FD1);
+  border-radius: 8px;
+  text-decoration: none;
+}
+.skip-link:focus { top: 8px; }
+.nav-menu-toggle { min-width: 24px; min-height: 24px; }
 .toolbar .edit-this-page a { color: var(--muted) !important; }
 .toolbar .edit-this-page a:hover { color: var(--brand-500) !important; }
 .toolbar .nav-toggle { color: var(--text) !important; }

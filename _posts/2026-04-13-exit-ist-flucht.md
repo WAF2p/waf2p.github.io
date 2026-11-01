@@ -145,7 +145,7 @@ Exit ohne Sichtbarkeit ist kein Schritt in Richtung Souveränität. Es ist ein S
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 1 — Exit ≠ Freiheit.</strong> Was heute eine ordentliche Governed Cloud ist, wird nach einem ungeplanten Exit zu einem Flickenteppich aus selbst-betriebenen Diensten. RDS, S3, CloudFront, IAM — alles muss ersetzt, gepatcht, überwacht und verantwortet werden. Von wem eigentlich?</div>
-  <button class="article-fig-dl" data-fig="fig1-svg" data-filename="wafpp-abb1-exit-freiheit.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig1-svg" data-filename="wafpp-abb1-exit-freiheit.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -220,7 +220,7 @@ Das ist kein Einzelfall. Es ist das Muster. Ohne Inventar, ohne Controls und ohn
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 2 — Mythos vs. Realität.</strong> Was die meisten glauben: Anbieter wechseln = souverän. Was WAF++ zeigt: Sichtbarkeit = souverän. Mit vollem Inventar und Controls ist Exit jederzeit möglich — aber kein Exit nötig, um Souveränität zu erreichen.</div>
-  <button class="article-fig-dl" data-fig="fig2-svg" data-filename="wafpp-abb2-souveraenitaet.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig2-svg" data-filename="wafpp-abb2-souveraenitaet.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -316,7 +316,7 @@ Und ja: Das ist anstrengender als ein Exit. Ein Exit endet. Governance endet nie
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 3 — Drei unbequeme Wahrheiten.</strong> Exit löst kein Governance-Problem. Sichtbarkeit ist anspruchsvoller als Exit. Und Souveränität funktioniert auch in AWS — wenn du weißt, was du hast und warum.</div>
-  <button class="article-fig-dl" data-fig="fig3-svg" data-filename="wafpp-abb3-wahrheiten.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig3-svg" data-filename="wafpp-abb3-wahrheiten.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -389,7 +389,7 @@ Die entscheidende Frage ist nicht: „Wo laufen wir?" Die Frage ist: **„Wissen
 </svg>
 <figcaption class="article-fig-cap">
   <div><strong>Abb. 4 — Vier ehrliche Fragen.</strong> Weißt du vollständig, was du hast? Sind alle Abhängigkeiten bewusste Entscheidungen? Kannst du einem Regulator heute zeigen, was du womit machst? Weißt du, wie du rauskommst? Wenn ja: Du bist souverän — egal wo du läufst.</div>
-  <button class="article-fig-dl" data-fig="fig4-svg" data-filename="wafpp-abb4-fragen.svg">↓ SVG</button>
+  <button type="button" class="article-fig-dl" data-fig="fig4-svg" data-filename="wafpp-abb4-fragen.svg">↓ SVG</button>
 </figcaption>
 </figure>
 
@@ -403,44 +403,6 @@ Im Deep Dive (14:20) zeigen wir live: Wie sieht ein WAF++ Control aus? Wie läuf
 
 Wenn dich das interessiert: Komm vorbei. Bring deine schwersten Fragen mit.
 
-<style>
-.article-fig { margin: 36px 0; }
-.article-fig-cap {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 4px 0;
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.55;
-}
-.article-fig-cap strong { color: var(--text); }
-.article-fig-cap > div { flex: 1; }
-.article-fig-dl {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--surface-raised, #f0f4fa);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border-radius: 7px;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background .15s, border-color .15s;
-}
-.article-fig-dl:hover {
-  background: var(--brand-500);
-  border-color: var(--brand-500);
-  color: #fff;
-}
-</style>
 
 <script>
 (function(){

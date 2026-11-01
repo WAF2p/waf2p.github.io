@@ -1,0 +1,228 @@
+# WOMBATpass Server changelog — data source for /changelog/ and /de/changelog/
+# wafpass-server is the FastAPI / PostgreSQL persistence layer for the WOMBATpass stack.
+# wafpass-server v1.0.1 released: 2026-06-07
+# Order: newest first. Add new groups at the top.
+# Types: new | improvement | fix | docs | infra | breaking
+
+- group_en: "August 2026 — v1.0.3"
+  group_de: "August 2026 — v1.0.3"
+  version: "v1.0.3"
+  date: "2026-08-14"
+  beta: true
+  changes:
+    - type: breaking
+      text_en: "API versioning — all REST endpoints now live under `/api/v1/*`; unversioned routes are removed"
+      text_de: "API-Versionierung — alle REST-Endpunkte befinden sich jetzt unter `/api/v1/*`; unversionierte Routen wurden entfernt"
+    - type: improvement
+      text_en: "Maturity gap analysis API — new endpoints and schema fields for per-project maturity-tier coverage and gap reporting"
+      text_de: "Reifegrad-Gap-Analyse-API — neue Endpunkte und Schema-Felder für projektbezogene Reifegrad-Tier-Abdeckung und Gap-Reporting"
+
+- group_en: "July 2026 — v1.0.2"
+  group_de: "Juli 2026 — v1.0.2"
+  version: "v1.0.2"
+  date: "2026-07-15"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Framework release sync — server fetches published framework versions from GitHub releases and syncs control packs to `WAFPASS_CONTROLS_DIR`"
+      text_de: "Framework-Release-Sync — Server lädt veröffentlichte Framework-Versionen von GitHub Releases herunter und synchronisiert Control-Packs nach `WAFPASS_CONTROLS_DIR`"
+    - type: fix
+      text_en: "Alembic migration chain — restored missing migration 0009, cleaned Dockerfile, and added an Alembic chain test to CI"
+      text_de: "Alembic-Migrationskette — fehlende Migration 0009 wiederhergestellt, Dockerfile bereinigt und Alembic-Ketten-Test zur CI hinzugefügt"
+
+- group_en: "June 2026 — v1.0.1"
+  group_de: "Juni 2026 — v1.0.1"
+  version: "v1.0.1"
+  date: "2026-06-07"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Pillar-8 Agentic support — server-side support for the Agentic pillar (WAF-AGT): schema updates, control ingestion, and scoring APIs"
+      text_de: "Pillar-8 Agentic-Unterstützung — Server-seitige Unterstützung für die Agentic-Säule (WAF-AGT): Schema-Updates, Control-Ingestion und Scoring-APIs"
+    - type: new
+      text_en: "Pipelines view API — new backend endpoints and data model to power the pipelines view page in wafpass and dashboard"
+      text_de: "Pipelines-Ansicht-API — neue Backend-Endpunkte und Datenmodell für die Pipelines-Ansicht in wafpass und Dashboard"
+    - type: new
+      text_en: "Notification system — server-side notification infrastructure for scan completions, control updates, and team events"
+      text_de: "Benachrichtigungssystem — Server-seitige Benachrichtigungsinfrastruktur für Scan-Abschlüsse, Control-Updates und Team-Events"
+    - type: improvement
+      text_en: "Extended cloud provider region coverage — added Scaleway, IONOS, UpCloud, and Cleura datacenters to the region schema and detection logic"
+      text_de: "Erweiterte Cloud-Provider-Regionenabdeckung — Scaleway, IONOS, UpCloud und Cleura Rechenzentren dem Regions-Schema und der Erkennungslogik hinzugefügt"
+    - type: fix
+      text_en: "Region detection fixes — corrected detection for SINA Cloud and UpCloud, and fixed project/run-based RBAC region detection edge cases"
+      text_de: "Regionserkennungs-Fixes — Erkennung für SINA Cloud und UpCloud korrigiert sowie Randfälle bei der projekt-/run-basierten RBAC-Regionserkennung behoben"
+    - type: fix
+      text_en: "Severity handling fix — corrected a typo in control handling that affected severity assignment"
+      text_de: "Severity-Handling-Fix — Tippfehler im Control-Handling korrigiert, der die Schweregrad-Zuweisung beeinflusst hat"
+
+- group_en: "May 2026 — Control Pack Management"
+  group_de: "Mai 2026 — Control Pack Verwaltung"
+  version: "v1.0.0"
+  date: "2026-05-12"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Versioned control snapshot system — `wombat control pack init` and `wombat control pack update` commands; snapshots stored in `controls-releases/` with version tags and regulatory mapping files"
+      text_de: "Versioniertes Control-Snapshot-System — `wombat control pack init`- und `wombat control pack update`-Befehle; Snapshots in `controls-releases/` mit Versions-Tags und regulatorischen Mapping-Dateien gespeichert"
+    - type: improvement
+      text_en: "Control update management — `wombat control update` downloads and validates the latest control packs from the central registry; detects version drift between local controls and published packs"
+      text_de: "Control-Update-Verwaltung — `wombat control update` lädt die neuesten Control-Packs aus dem zentralen Registry herunter und validiert sie; erkennt Versionsdrift zwischen lokalen Controls und veröffentlichten Packs"
+
+- group_en: "May 2026"
+  group_de: "Mai 2026"
+  version: "v1.0.0"
+  date: "2026-05-12"
+  beta: false
+  changes:
+    - type: new
+      text_en: "wafpass-server v1.0.0 — first stable release. Full authentication stack (local accounts, OIDC, SAML2, CI/CD API keys), complete role hierarchy (clevel → ciso → architect → engineer → admin), all 14 Alembic migrations included, and production-ready Docker image published."
+      text_de: "wafpass-server v1.0.0 — erste stabile Veröffentlichung. Vollständiger Authentifizierungs-Stack (lokale Accounts, OIDC, SAML2, CI/CD-API-Keys), vollständige Rollenhierarchie (clevel → ciso → architect → engineer → admin), alle 14 Alembic-Migrationen enthalten und produktionsreifes Docker-Image veröffentlicht."
+    - type: new
+      text_en: "Full SSO support — OIDC and SAML2 providers configurable via the sso_configs table (migration 0013); group-to-role mappings via group_role_mappings (migration 0014)"
+      text_de: "Vollständige SSO-Unterstützung — OIDC- und SAML2-Provider konfigurierbar über die sso_configs-Tabelle (Migration 0013); Gruppen-zu-Rollen-Mapping über group_role_mappings (Migration 0014)"
+    - type: new
+      text_en: "API key management with usage logging — api_keys (migration 0010) and api_key_usage_logs (migration 0011) enable CI/CD integrations with full audit trail"
+      text_de: "API-Key-Verwaltung mit Usage-Logging — api_keys (Migration 0010) und api_key_usage_logs (Migration 0011) ermöglichen CI/CD-Integrationen mit vollständiger Audit-Trail"
+    - type: new
+      text_en: "User audit log — user_audit_logs (migration 0012) records all user-visible state changes for compliance and traceability"
+      text_de: "Benutzer-Audit-Log — user_audit_logs (Migration 0012) protokolliert alle für den Benutzer sichtbaren Zustandsänderungen für Compliance und Rückverfolgbarkeit"
+    - type: improvement
+      text_en: "OpenAPI documentation stable at /api/docs — all endpoints documented, typed, and covered by integration tests"
+      text_de: "OpenAPI-Dokumentation stabil unter /api/docs — alle Endpunkte dokumentiert, typisiert und durch Integrationstests abgedeckt"
+
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v1.0.0"
+  date: "2026-04-25"
+  beta: false
+  changes:
+    - type: new
+      text_en: "Project Passport — `/api/projects` router with Alembic migrations 0016 (`add_project_passports`) and 0017 (`add_passport_image_url`); stores per-project maturity metadata and a custom passport image URL; returned via `PassportOut` schema"
+      text_de: "Project Passport — `/api/projects`-Router mit Alembic-Migrationen 0016 (`add_project_passports`) und 0017 (`add_passport_image_url`); speichert pro-Projekt-Reifegradmetadaten und eine individuelle Passport-Bild-URL; zurückgegeben über `PassportOut`-Schema"
+    - type: new
+      text_en: "Leaderboard, badges, and achievements — `/api/leaderboard`, `/api/badges`, `/api/achievements` routers; Alembic migration 0018 (`add_achievements`); achievement grants are ECDSA-signed for cryptographic verification; badge earn events are triggered by scan runs"
+      text_de: "Leaderboard, Badges und Achievements — `/api/leaderboard`-, `/api/badges`- und `/api/achievements`-Router; Alembic-Migration 0018 (`add_achievements`); Achievement-Grants werden ECDSA-signiert für kryptografische Verifikation; Badge-Earn-Events werden durch Scan-Läufe ausgelöst"
+    - type: infra
+      text_en: "Compliance audit event log — Alembic migration 0019 (`add_compliance_audit_events`) and `/api/compliance-audit` router; structured log of compliance-relevant state changes across waivers, risk acceptances, and run outcomes"
+      text_de: "Compliance-Audit-Ereignisprotokoll — Alembic-Migration 0019 (`add_compliance_audit_events`) und `/api/compliance-audit`-Router; strukturiertes Protokoll compliance-relevanter Zustandsänderungen bei Waivers, Risk-Acceptances und Run-Ergebnissen"
+    - type: infra
+      text_en: "Run findings table — Alembic migration 0023 (`run_findings_table`) splits per-finding records out of the run JSONB blob into a dedicated table; enables server-side filtering, pagination, and first-seen tracking"
+      text_de: "Run-Findings-Tabelle — Alembic-Migration 0023 (`run_findings_table`) lagert Finding-Datensätze aus dem Run-JSONB-Blob in eine dedizierte Tabelle aus; ermöglicht server-seitige Filterung, Paginierung und First-Seen-Tracking"
+    - type: infra
+      text_en: "Typed expiry dates — Alembic migration 0022 (`typed_expiry_dates`) converts all text expiry columns in waivers and risk_acceptances to `timestamptz` for reliable sorting and comparison"
+      text_de: "Typisierte Ablaufdaten — Alembic-Migration 0022 (`typed_expiry_dates`) konvertiert alle Text-Ablaufdatum-Spalten in waivers und risk_acceptances zu `timestamptz` für zuverlässige Sortierung und Vergleiche"
+    - type: infra
+      text_en: "Refresh token family — Alembic migration 0021 (`add_refresh_token_family`) adds family-based refresh token rotation to prevent token reuse attacks"
+      text_de: "Refresh-Token-Family — Alembic-Migration 0021 (`add_refresh_token_family`) fügt familienbasierte Refresh-Token-Rotation hinzu, um Token-Wiederverwendungsangriffe zu verhindern"
+    - type: infra
+      text_en: "Runs cursor index — Alembic migration 0020 (`add_runs_cursor_index`) adds a B-tree index on `(project, created_at)` for efficient cursor-based run history pagination"
+      text_de: "Runs-Cursor-Index — Alembic-Migration 0020 (`add_runs_cursor_index`) fügt einen B-Tree-Index auf `(project, created_at)` für effiziente cursor-basierte Run-Historie-Paginierung hinzu"
+    - type: infra
+      text_en: "Secret encryption at rest — `secret_enc.py` module encrypts all secret-class fields (OIDC client secrets, SAML private keys) using `WAFPASS_ENCRYPTION_KEY` before database writes; transparent decryption on read"
+      text_de: "Secret-Verschlüsselung im Ruhezustand — `secret_enc.py`-Modul verschlüsselt alle Secret-Klassen-Felder (OIDC-Client-Secrets, SAML-Private-Keys) mit `WAFPASS_ENCRYPTION_KEY` vor Datenbankschreibvorgängen; transparente Entschlüsselung beim Lesen"
+    - type: fix
+      text_en: "OIDC security hardening — `oidc_callback` now fetches the IdP JWKS endpoint and verifies the `id_token` signature; nonce is embedded in the signed state JWT and validated in the callback to prevent replay attacks; forged tokens return `sso_error=token_verification_failed`"
+      text_de: "OIDC-Sicherheitshärtung — `oidc_callback` ruft jetzt den IdP-JWKS-Endpunkt ab und verifiziert die `id_token`-Signatur; Nonce ist im signierten State-JWT eingebettet und wird im Callback validiert, um Replay-Angriffe zu verhindern; gefälschte Tokens geben `sso_error=token_verification_failed` zurück"
+    - type: fix
+      text_en: "JWT and encryption key startup validation — `Settings` model raises `ValueError` at startup if `WAFPASS_JWT_SECRET` is still the default value or `WAFPASS_ENCRYPTION_KEY` is unset in any non-local environment; local development is unaffected"
+      text_de: "JWT- und Encryption-Key-Startvalidierung — `Settings`-Modell wirft beim Start `ValueError`, wenn `WAFPASS_JWT_SECRET` noch den Standardwert hat oder `WAFPASS_ENCRYPTION_KEY` in nicht-lokalen Umgebungen nicht gesetzt ist; lokale Entwicklung ist nicht betroffen"
+
+- group_en: "April 2026 — Authorization & Scanning"
+  group_de: "April 2026 — Autorisierung & Scanning"
+  date: "2026-04-17"
+  beta: true
+  changes:
+    - type: new
+      text_en: "`/scans` REST endpoint — POST `/api/scans` triggers a wombat scan remotely from the dashboard; accepts a project reference and returns a streaming run result; integrates with the Run Scan page in wafpass-dashboard"
+      text_de: "`/scans` REST-Endpunkt — POST `/api/scans` startet einen wafpass-Scan remote vom Dashboard aus; akzeptiert eine Projektreferenz und gibt ein gestreamtes Run-Ergebnis zurück; integriert mit der Run-Scan-Seite in wafpass-dashboard"
+    - type: new
+      text_en: "Authorization layer — JWT-based authentication added to all protected endpoints; `/api/auth/*` routes include login, logout, token refresh, and current-user; local-account provider ships in-box with `WAFPASS_JWT_SECRET` and `WAFPASS_ENV` config keys"
+      text_de: "Autorisierungsschicht — JWT-basierte Authentifizierung für alle geschützten Endpunkte hinzugefügt; `/api/auth/*`-Routen umfassen Login, Logout, Token-Refresh und Current-User; lokaler Account-Provider mit `WAFPASS_JWT_SECRET`- und `WAFPASS_ENV`-Konfigurationsschlüsseln enthalten"
+    - type: new
+      text_en: "Evidence REST API — `/api/evidence` router with Alembic migration 0015 (`add_evidence`); evidence packages are cryptographically locked with a SHA-256 fingerprint and QR-code URL; locked records are immutable"
+      text_de: "Evidence REST API — `/api/evidence`-Router mit Alembic-Migration 0015 (`add_evidence`); Evidence-Pakete werden kryptografisch mit SHA-256-Fingerprint und QR-Code-URL gesperrt; gesperrte Einträge sind unveränderlich"
+    - type: infra
+      text_en: "Stage field on runs — Alembic migration 0008 (`add_stage_to_runs`) adds a `stage` column to the runs table; `RunIn`/`RunOut` schemas and the runs router expose the field for per-stage compliance filtering"
+      text_de: "Stage-Feld bei Runs — Alembic-Migration 0008 (`add_stage_to_runs`) fügt eine `stage`-Spalte zur Runs-Tabelle hinzu; `RunIn`/`RunOut`-Schemas und der Runs-Router stellen das Feld für stage-spezifische Compliance-Filterung bereit"
+
+- group_en: "April 2026 — v0.4.2"
+  group_de: "April 2026 — v0.4.2"
+  date: "2026-04-16"
+  beta: true
+  changes:
+    - type: fix
+      text_en: "Skipped controls endpoint — server correctly exposes `skipped_controls` data from run JSONB to support the new Skipped Controls page in wafpass-dashboard"
+      text_de: "Skipped-Controls-Endpunkt — Server gibt `skipped_controls`-Daten aus dem Run-JSONB korrekt aus, um die neue Seite für übersprungene Controls in wafpass-dashboard zu unterstützen"
+      pr: 4
+
+- group_en: "April 2026 — v0.4.1"
+  group_de: "April 2026 — v0.4.1"
+  date: "2026-04-15"
+  beta: true
+  changes:
+    - type: fix
+      text_en: "Dependency correction — pyproject.toml dependency set corrected; removes version conflicts that prevented clean installation"
+      text_de: "Abhängigkeitskorrektur — pyproject.toml-Abhängigkeiten korrigiert; entfernt Versionskonflikte, die eine saubere Installation verhinderten"
+      pr: 2
+
+- group_en: "April 2026"
+  group_de: "April 2026"
+  version: "v0.4.0"
+  date: "2026-04-08"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Secret findings persistence — new secret_findings JSONB column on the Run model stores hardcoded credential findings produced by the wombat secret scanner; Alembic migration 0006_add_secret_findings applies automatically on container start"
+      text_de: "Secret-Findings-Persistenz — neue secret_findings-JSONB-Spalte im Run-Modell speichert Hardcoded-Credential-Findings des wafpass Secret Scanners; Alembic-Migration 0006_add_secret_findings wird automatisch beim Container-Start angewendet"
+    - type: new
+      text_en: "Waivers REST API — new /waivers router with GET (list, project-filtered), PUT (idempotent upsert by control ID), and DELETE; waivers created locally in the dashboard are synced to the server when a connection is available"
+      text_de: "Waivers REST API — neuer /waivers-Router mit GET (Liste, projektgefiltert), PUT (idempotenter Upsert nach Control-ID) und DELETE; lokal im Dashboard erstellte Waivers werden mit dem Server synchronisiert, sobald eine Verbindung besteht"
+    - type: new
+      text_en: "Risk acceptances REST API — new /risks router with GET, PUT (upsert with approver, RFC, Jira link, risk level, residual risk, expiry), and DELETE; formally accepted risks are stored with full traceability metadata"
+      text_de: "Risk-Acceptances REST API — neuer /risks-Router mit GET, PUT (Upsert mit Genehmiger, RFC, Jira-Link, Risikolevel, Restrisiko, Ablaufdatum) und DELETE; formal akzeptierte Risiken werden mit vollständigen Rückverfolgbarkeits-Metadaten gespeichert"
+    - type: infra
+      text_en: "Alembic migration 0007_add_waivers_risks — adds waivers and risk_acceptances tables with fields for reason, owner, expires, project, approver, rfc, jira_link, risk_level, residual_risk, and accepted_at"
+      text_de: "Alembic-Migration 0007_add_waivers_risks — fügt waivers- und risk_acceptances-Tabellen mit Feldern für reason, owner, expires, project, approver, rfc, jira_link, risk_level, residual_risk und accepted_at hinzu"
+    - type: new
+      text_en: "Sandbox deep link support — sandbox endpoint enriched to support deep-linkable evaluation sessions; dashboard can generate a shareable URL for any sandbox run result"
+      text_de: "Sandbox-Deep-Link-Unterstützung — Sandbox-Endpunkt erweitert, um Deep-Links für Evaluierungssessions zu unterstützen; das Dashboard kann eine teilbare URL für jedes Sandbox-Run-Ergebnis generieren"
+    - type: docs
+      text_en: "TECH.md added — technical reference covering request lifecycle, database session management, JSONB storage strategy, ORM model design decisions, and migration history"
+      text_de: "TECH.md hinzugefügt — technische Referenz zu Request-Lifecycle, Datenbank-Session-Management, JSONB-Speicherstrategie, ORM-Modell-Designentscheidungen und Migrationshistorie"
+
+- group_en: "March 2026"
+  group_de: "März 2026"
+  date: "2026-03-29"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Controls REST API — new /controls router with POST (idempotent upsert by id), GET (list with pillar and severity filtering, paginated), and DELETE endpoints; allows custom controls authored via wombat control generate to be stored and queried server-side"
+      text_de: "Controls REST API — neuer /controls-Router mit POST (idempotenter Upsert nach id), GET (Liste mit Pillar- und Schweregrad-Filter, paginiert) und DELETE-Endpunkten; ermöglicht die server-seitige Speicherung und Abfrage von über wombat control generate erstellten Custom-Controls"
+    - type: new
+      text_en: "Control database model — new Control ORM model with fields for id, pillar, severity, type, description, checks (JSON), source, created_at, and updated_at"
+      text_de: "Control-Datenbankmodell — neues Control-ORM-Modell mit Feldern für id, Pillar, Schweregrad, Typ, Beschreibung, Checks (JSON), Quelle, created_at und updated_at"
+    - type: infra
+      text_en: "Alembic migration 0005_add_controls — adds the controls table to the PostgreSQL schema; applied automatically on container startup via the Docker entrypoint"
+      text_de: "Alembic-Migration 0005_add_controls — fügt die controls-Tabelle dem PostgreSQL-Schema hinzu; wird beim Container-Start automatisch über den Docker-Entrypoint angewendet"
+    - type: new
+      text_en: "ControlIn / ControlOut schemas — typed Pydantic request and response models for the controls API, with envelope wrapping consistent with the rest of the API surface"
+      text_de: "ControlIn / ControlOut Schemas — typisierte Pydantic Request- und Response-Modelle für die Controls-API, mit Envelope-Wrapping konsistent zur restlichen API-Oberfläche"
+
+- group_en: "March 2026 — Initial Release"
+  group_de: "März 2026 — Erste Version"
+  version: "v0.3.0"
+  date: "2026-03-28"
+  beta: true
+  changes:
+    - type: new
+      text_en: "Terraform plan changes schema — Alembic migration and REST API support for storing and querying Terraform plan dry-run results per run"
+      text_de: "Terraform-Plan-Änderungs-Schema — Alembic-Migration und REST-API-Unterstützung für das Speichern und Abfragen von Terraform-Plan-Dry-Run-Ergebnissen je Run"
+    - type: improvement
+      text_en: "Run metadata and controls meta schema — extended run model with metadata fields; added controls meta table for per-control persistence across runs"
+      text_de: "Run-Metadaten und Controls-Meta-Schema — erweitertes Run-Modell mit Metadaten-Feldern; Controls-Meta-Tabelle für Control-seitige Persistenz über Runs hinzugefügt"
+    - type: infra
+      text_en: "Docker entrypoint script — automatic Alembic migration on container start; production-ready containerised deployment"
+      text_de: "Docker-Entrypoint-Skript — automatische Alembic-Migration beim Container-Start; produktionsreifes containerisiertes Deployment"
+    - type: new
+      text_en: "FastAPI REST server with PostgreSQL — initial release: runs CRUD API, Alembic migrations, Docker image, OpenAPI docs, and GitHub Actions release workflow"
+      text_de: "FastAPI REST-Server mit PostgreSQL — Erstveröffentlichung: Runs CRUD-API, Alembic-Migrationen, Docker-Image, OpenAPI-Docs und GitHub-Actions-Release-Workflow"
