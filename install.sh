@@ -16,7 +16,7 @@ WAFPASS_VENV="${WAFPASS_VENV:-${WAFPASS_HOME}/venv}"
 WAFPASS_DRY_RUN="${WAFPASS_DRY_RUN:-0}"
 WAFPASS_ALLOW_SUDO="${WAFPASS_ALLOW_SUDO:-0}"
 WAFPASS_SKIP_VENV="${WAFPASS_SKIP_VENV:-0}"
-WAFPASS_CONTROLS_URL="${WAFPASS_CONTROLS_URL:-https://github.com/WAF2p/framework.git}"
+WAFPASS_CONTROLS_URL="${WAFPASS_CONTROLS_URL:-https://github.com/wombat-gov/framework.git}"
 WAFPASS_CONTROLS_BRANCH="${WAFPASS_CONTROLS_BRANCH:-main-en}"
 
 # ── Argument parsing ───────────────────────────────────────────────────────────

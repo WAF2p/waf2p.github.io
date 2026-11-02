@@ -500,7 +500,7 @@ function computeContributor(person) {
 
 async function main() {
   if (shouldEnrich) {
-    const repo = String(ranks.repo || 'waf2p/framework')
+    const repo = String(ranks.repo || 'wombat-gov/framework')
     log(`Enriching ${people.size} contributor(s) from GitHub GraphQL (${repo})…`)
     for (const person of people.values()) {
       await enrichPerson(person, repo)
@@ -524,7 +524,7 @@ async function main() {
 
   const output = {
     schema: finite(ranks.schema, 1),
-    repo: String(ranks.repo || 'waf2p/framework'),
+    repo: String(ranks.repo || 'wombat-gov/framework'),
     source: 'cached github contributors + curated yaml',
     tiers: tiers.map((tier) => ({
       id: tier.id,

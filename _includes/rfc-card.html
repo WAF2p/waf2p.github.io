@@ -1,6 +1,13 @@
 {%- assign rfc = include.rfc -%}
 {%- assign lang = include.lang | default: page.lang | default: "en" -%}
 {%- assign repo = rfc.repo | default: "framework" -%}
+{%- assign rfc_repo = repo -%}
+{%- if repo == "pass" or repo == "wafpass-core" -%}{%- assign rfc_repo = "wombat-core" -%}
+{%- elsif repo == "wafpass-server" -%}{%- assign rfc_repo = "wombat-server" -%}
+{%- elsif repo == "wafpass-dashboard" -%}{%- assign rfc_repo = "wombat-dashboard" -%}
+{%- elsif repo == "wafpass-action" -%}{%- assign rfc_repo = "wombat-action" -%}
+{%- elsif repo == "wafpass-mcp" -%}{%- assign rfc_repo = "wombat-mcp" -%}
+{%- endif -%}
 {%- assign kind = rfc.kind | default: "rfc" -%}
 {%- assign decisions_repo = "https://github.com/WAF2p/decisions" -%}
 
@@ -73,7 +80,7 @@
         {%- assign link_label = label_record -%}
       {%- endif -%}
     <span><strong>{{ link_label }}:</strong> <a href="{{ record_url }}" target="_blank" rel="noopener">GitHub →</a></span>{%- endif -%}
-    {%- if rfc.pr -%}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/WAF2p/{{ repo }}/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{%- endif -%}
+    {%- if rfc.pr -%}<span><strong>{{ label_pr }}:</strong> <a href="https://github.com/wombat-gov/{{ rfc_repo }}/pull/{{ rfc.pr }}" target="_blank" rel="noopener">#{{ rfc.pr }}</a></span>{%- endif -%}
     {%- if rfc.issue_number -%}<span><strong>{{ label_issue }}:</strong> <a href="{{ record_url }}" target="_blank" rel="noopener">#{{ rfc.issue_number }}</a></span>{%- endif -%}
     {%- if rfc.repos and rfc.repos.size > 0 -%}
     <span class="rfc-meta-repos"><strong>{{ label_repos }}:</strong> {{ rfc.repos | join: ", " }}</span>

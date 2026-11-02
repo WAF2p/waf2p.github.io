@@ -16,13 +16,13 @@ permalink: /nl/wombatpass-action/
       <h1 class="wfpa-hero__title">Compliance in je pipeline.</h1>
       <p class="wfpa-hero__lead">Voeg WOMBATpass toe aan elke workflow. Scan Terraform, Bicep, CDK of Pulumi bij elke pull request en push, en stuur het volledige resultaat naar je WOMBATpass-server voor dashboards, gap-analyse en auditbewijs.</p>
       <div class="wfpa-hero__actions">
-        <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/wombat-gov/wombat-action" target="_blank" rel="noopener">
           Action ophalen
           <span class="wf6-btn__arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
           </span>
         </a>
-        <a class="wf6-btn wf6-btn--line" href="https://github.com/WAF2p/wafpass-action" target="_blank" rel="noopener">Bekijken op GitHub</a>
+        <a class="wf6-btn wf6-btn--line" href="https://github.com/wombat-gov/wombat-action" target="_blank" rel="noopener">Bekijken op GitHub</a>
         <a class="wf6-btn wf6-btn--line" href="{{ '/nl/wombatpass-install/' | relative_url }}">WOMBATpass installeren</a>
       </div>
       <div class="wfpa-hero__row">
@@ -63,7 +63,7 @@ permalink: /nl/wombatpass-action/
     <div class="wfpa-grid dl-rise">
       <div class="wfpa-card">
         <h3 class="wfpa-card__title">CLI automatisch installeren</h3>
-        <p class="wfpa-card__desc">Installeert automatisch de nieuwste <code>wafpass-core</code> vanaf PyPI, of gebruik een eigen pip-bron of een vooraf geïnstalleerde binary.</p>
+        <p class="wfpa-card__desc">Installeert automatisch de nieuwste <code>wombat-core</code> vanaf PyPI, of gebruik een eigen pip-bron of een vooraf geïnstalleerde binary.</p>
       </div>
       <div class="wfpa-card">
         <h3 class="wfpa-card__title">Multi-IaC-scan</h3>
@@ -71,7 +71,7 @@ permalink: /nl/wombatpass-action/
       </div>
       <div class="wfpa-card">
         <h3 class="wfpa-card__title">Naar de server sturen</h3>
-        <p class="wfpa-card__desc">Uploadt de volledige <code>wafpass-result.json</code> naar <code>POST /api/v1/runs</code> , zodat dashboards en bewijspakketten actueel blijven.</p>
+        <p class="wfpa-card__desc">Uploadt de volledige <code>wombat-result.json</code> naar <code>POST /api/v1/runs</code> , zodat dashboards en bewijspakketten actueel blijven.</p>
       </div>
       <div class="wfpa-card">
         <h3 class="wfpa-card__title">Policy-gates</h3>
@@ -103,7 +103,7 @@ permalink: /nl/wombatpass-action/
           <span class="code-window__dot"></span>
           <span class="code-window__dot"></span>
           <span class="code-window__dot"></span>
-          <span class="code-window__title">.github/workflows/wafpass.yml</span>
+          <span class="code-window__title">.github/workflows/wombat.yml</span>
         </div>
         {% raw %}<pre class="code-window__body"><code>name: WOMBATpass Scan
 
@@ -113,16 +113,16 @@ on:
   pull_request:
 
 jobs:
-  wafpass:
+  wombat:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Run WOMBATpass
-        uses: WAF2p/wafpass-action@v0.1.1
+        uses: wombat-gov/wombat-action@v0.2.0
         with:
-          server_url: ${{ vars.WAFPASS_SERVER_URL }}
-          api_key: ${{ secrets.WAFPASS_API_KEY }}
+          server_url: ${{ vars.WOMBAT_SERVER_URL }}
+          api_key: ${{ secrets.WOMBAT_API_KEY }}
           scan_path: ./infra
           iac_framework: terraform
           project: ${{ github.repository }}
@@ -139,10 +139,10 @@ jobs:
           <span class="code-window__title">Voorbeeld voor multi-cloud / monorepo</span>
         </div>
         {% raw %}<pre class="code-window__body"><code>      - name: Run WOMBATpass
-        uses: WAF2p/wafpass-action@v0.1.1
+        uses: wombat-gov/wombat-action@v0.2.0
         with:
-          server_url: ${{ vars.WAFPASS_SERVER_URL }}
-          api_key: ${{ secrets.WAFPASS_API_KEY }}
+          server_url: ${{ vars.WOMBAT_SERVER_URL }}
+          api_key: ${{ secrets.WOMBAT_API_KEY }}
           scan_path: ./aws ./azure ./gcp
           iac_framework: terraform
           project: ${{ github.repository }}
@@ -210,9 +210,9 @@ jobs:
   <div class="dl-wrap">
     <div class="wfpa-cta dl-rise">
       <h2 class="dl-heading">Voeg WOMBATpass toe aan je pipeline.</h2>
-      <p class="dl-lead">Installeer de action via de GitHub Marketplace, kopieer de workflow en maak infrastructuurcompliance zichtbaar bij elke PR.</p>
+      <p class="dl-lead">Installeer de action via GitHub, kopieer de workflow en maak infrastructuurcompliance zichtbaar bij elke PR.</p>
       <div class="wfpa-cta__actions">
-        <a class="wf6-btn wf6-btn--pill" href="https://github.com/marketplace/actions/waf-pass" target="_blank" rel="noopener">
+        <a class="wf6-btn wf6-btn--pill" href="https://github.com/wombat-gov/wombat-action" target="_blank" rel="noopener">
           Action ophalen
           <span class="wf6-btn__arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>

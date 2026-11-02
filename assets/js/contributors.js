@@ -22,7 +22,7 @@
   }
 
   async function loadContributors() {
-    const repo = (window.__WAFPP_CONTRIB__ || {}).repo || "waf2p/waf2p.github.io";
+    const repo = (window.__WAFPP_CONTRIB__ || {}).repo || "wombat-gov/framework";
     const status = document.getElementById("github-contrib-status");
     const wrap = document.getElementById("github-contributors");
     if (!status || !wrap) return;

@@ -27,7 +27,7 @@ module WAFPP
 
     def generate(site)
       meta = site.data["contributors_meta"] || {}
-      repo = meta["repo"] || "waf2p/waf2p.github.io"
+      repo = meta["repo"] || "wombat-gov/framework"
       per_page = 12
       api = "https://api.github.com/repos/#{repo}/contributors?per_page=#{per_page}"
 
